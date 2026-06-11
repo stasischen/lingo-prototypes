@@ -60,7 +60,7 @@
       font-weight: 800;
     }
     h1 { margin: 4px 0 0; font-size: 20px; letter-spacing: 0; line-height: 1.2; }
-    .progress { display: grid; grid-template-columns: repeat(8, 1fr); gap: 4px; margin-top: 12px; }
+    .progress { display: grid; grid-template-columns: repeat(5, 1fr); gap: 4px; margin-top: 12px; }
     .dot { height: 5px; border-radius: 999px; background: #ddd3c6; }
     .dot.active, .dot.done { background: var(--friend); }
     main { flex: 1; padding: 18px 18px 132px; display: flex; flex-direction: column; gap: 14px; }
@@ -162,6 +162,9 @@
     .formula-card { min-height: 78px; padding: 10px; border-radius: 8px; border: 1px solid var(--line); background: #fff; text-align: left; }
     .formula-card b { display: block; font-size: 20px; line-height: 1.2; }
     .hand { display: grid; grid-template-columns: 1fr; gap: 8px; }
+    .transcript { display: grid; gap: 8px; }
+    .transcript .mini-turn { background: #fff; }
+    .round-label { color: var(--muted); font-size: 13px; font-weight: 800; margin-bottom: 8px; }
     .play-slot { min-height: 52px; border: 1px dashed #b89977; border-radius: 8px; display: grid; place-items: center; color: var(--muted); background: rgba(255,253,248,.74); padding: 10px; text-align: center; }
     .wrap-list { display: grid; gap: 9px; margin: 12px 0 0; }
     .wrap-item { padding: 10px; border-radius: 8px; background: #fff; border: 1px solid var(--line); }
@@ -183,54 +186,29 @@
       <h1>飯店預約情境</h1>
       <div class="progress" aria-label="flow progress">
         <div class="dot active"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div>
-        <div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div>
+        <div class="dot"></div>
       </div>
     </header>
     <main>
-      <section class="screen active reigns" data-title="剛到櫃台" data-friend="先看這一幕就好。櫃台人員問你有沒有預約，你先憑直覺選一句能接上的回答。">
+      <section class="screen active reigns" data-title="飯店櫃台" data-friend="你剛到飯店櫃台。先看情境，等一下我只在你需要時給提示。">
+        <div class="scene"><div class="scene-title">Hotel check-in counter.</div></div>
+        <div class="card friend-line"><div class="avatar">F</div><div><div class="friend-copy">櫃台人員會用自然的韓文問你。你不用講得一樣長，只要選一張能接上的回應卡。</div><div class="meta">有需要再按提示。</div></div></div>
+      </section>
+      <section class="screen reigns" data-title="櫃台對話" data-friend="對方說完後，選一張你會用的回答。卡住就按提示。">
         <div class="reigns-board">
           <div class="event-card">
-            <div class="event-label">櫃台現場</div>
-            <div>你剛到飯店櫃台，想確認自己的訂房。</div>
-            <div class="npc listen-only">
-              <div class="role">hotel staff</div>
-              <div class="ko">어서 오세요.</div>
-              <div class="zh">歡迎光臨。</div>
-              <div class="controls"><button class="btn secondary speak" type="button" data-speak="어서 오세요.">發音</button></div>
-            </div>
-            <div class="npc">
-              <div class="role">hotel staff</div>
-              <div class="ko">예약하셨나요?</div>
-              <div class="zh">有預約嗎？</div>
-              <div class="controls"><button class="btn secondary speak" type="button" data-speak="예약하셨나요?">發音</button></div>
-            </div>
+            <div class="event-label" id="roundLabel">Counter Card</div>
+            <div class="round-label" id="roundProgress">1 / 4</div>
+            <div class="npc"><div class="role">職員</div><div class="ko" id="staffKo"></div><div class="zh" id="staffZh"></div><div class="controls"><button class="btn secondary" type="button" id="staffSpeak">發音</button></div></div>
           </div>
-          <div class="hand">
-            <button class="choice opening-choice" data-speak="네, 예약했어요." data-good="true" data-feedback="對，這就是這次要練到能自然用出來的回答。">네, 예약했어요.</button>
-            <button class="choice opening-choice" data-speak="호텔을 좋아해요." data-feedback="這句韓文沒錯，但意思是「我喜歡飯店」。等一下我們會練怎麼回答預約。">호텔을 좋아해요.</button>
-            <button class="choice opening-choice" data-speak="아니요, 괜찮아요." data-feedback="這句是「沒關係」。在這個場景裡，對方需要知道你有沒有預約。">아니요, 괜찮아요.</button>
-          </div>
-          <div class="feedback" id="openingFeedback"></div>
-        </div>
-        <div class="card friend-line"><div class="avatar">F</div><div><div class="friend-copy">先不用管後面會問什麼。這一刻你只要聽懂「有預約嗎」，然後接一句短短的回答。</div><div class="meta">完整對話等一下再一起看。</div></div></div>
-      </section>
-      <section class="screen" data-title="一起看對話" data-friend="這是一小段 check-in。有些句子只要聽懂，有些句子才需要你會接。">
-        <div class="card dialogue">
-          <div class="bubble staff listen-only"><div class="role">職員</div><div class="ko">어서 오세요.</div><div class="zh">歡迎光臨。</div><div class="controls"><button class="btn secondary speak" type="button" data-speak="어서 오세요.">發音</button></div></div>
-          <div class="bubble staff listen-only"><div class="role">職員</div><div class="ko">예약하셨나요?</div><div class="zh">請問有預約嗎？</div><div class="controls"><button class="btn secondary speak" type="button" data-speak="예약하셨나요?">發音</button></div></div>
-          <div class="bubble learner"><div class="role">你</div><div class="ko">네, 예약했어요.</div><div class="zh">有，我有預約。</div><div class="controls"><button class="btn secondary speak" type="button" data-speak="네, 예약했어요.">發音</button></div></div>
-          <div class="bubble staff"><div class="role">職員</div><div class="ko">성함이 어떻게 되세요?</div><div class="zh">請問姓名是？</div><div class="controls"><button class="btn secondary speak" type="button" data-speak="성함이 어떻게 되세요?">發音</button></div></div>
-          <div class="bubble learner"><div class="role">你</div><div class="ko">왕리로 예약했어요.</div><div class="zh">我是用王立預約的。</div><div class="controls"><button class="btn secondary speak" type="button" data-speak="왕리로 예약했어요.">發音</button></div></div>
-          <div class="bubble staff listen-only"><div class="role">職員</div><div class="ko">네, 확인했습니다.</div><div class="zh">好的，確認到了。</div><div class="controls"><button class="btn secondary speak" type="button" data-speak="네, 확인했습니다.">發音</button></div></div>
-          <div class="bubble staff listen-only"><div class="role">職員</div><div class="ko">2박 맞으세요?</div><div class="zh">是兩晚沒錯嗎？</div><div class="controls"><button class="btn secondary speak" type="button" data-speak="이박 맞으세요?">發音</button></div></div>
-          <div class="bubble learner"><div class="role">你</div><div class="ko">네, 맞아요.</div><div class="zh">對，沒錯。</div><div class="controls"><button class="btn secondary speak" type="button" data-speak="네, 맞아요.">發音</button></div></div>
-          <div class="bubble staff listen-only"><div class="role">職員</div><div class="ko">여기 객실 키입니다.</div><div class="zh">這是您的房卡。</div><div class="controls"><button class="btn secondary speak" type="button" data-speak="여기 객실 키입니다.">發音</button></div></div>
-          <div class="bubble staff listen-only"><div class="role">職員</div><div class="ko">엘리베이터는 오른쪽에 있습니다.</div><div class="zh">電梯在右邊。</div><div class="controls"><button class="btn secondary speak" type="button" data-speak="엘리베이터는 오른쪽에 있습니다.">發音</button></div></div>
-          <div class="bubble learner"><div class="role">你</div><div class="ko">감사합니다.</div><div class="zh">謝謝。</div><div class="controls"><button class="btn secondary speak" type="button" data-speak="감사합니다.">發音</button></div></div>
-          <div class="bubble staff listen-only"><div class="role">職員</div><div class="ko">편안한 시간 되세요.</div><div class="zh">祝您住得愉快。</div><div class="controls"><button class="btn secondary speak" type="button" data-speak="편안한 시간 되세요.">發音</button></div></div>
+          <div class="play-slot" id="dialogueSlot">選一張回應卡</div>
+          <div class="hand" id="responseHand"></div>
+          <div class="controls"><button class="btn" type="button" id="commitResponse">出牌</button><button class="btn secondary" type="button" id="friendHint">提示</button></div>
+          <div class="feedback" id="dialogueFeedback"></div>
+          <div class="card transcript"><h2>目前對話</h2><div id="transcriptList"></div></div>
         </div>
       </section>
-      <section class="screen" data-title="剛剛的公式" data-friend="剛剛職員說 `2박 맞으세요?`。這裡的 `박` 是幾晚，先聽得出來就很有用。">
+      <section class="screen" data-title="剛剛的公式" data-friend="剛剛職員說 `2박 맞으세요?`。這裡的 `박` 是幾晚，聽得出來就很有用。">
         <div class="card">
           <span class="stage-pill">幾晚公式</span>
           <h2>數字 + 박 = 幾晚</h2>
@@ -243,29 +221,15 @@
           <div class="feedback show">這不是要你馬上會說所有數字，是讓你在櫃台聽到時抓得到重點。</div>
         </div>
       </section>
-      <section class="screen" data-title="句子聚焦" data-friend="`예약했어요` 是「我預約了」。在飯店或餐廳確認預約時，這句很常用。">
-        <div class="spotlight"><div class="ko">네, 예약했어요.</div><div class="zh">有，我預約了。</div><div class="chips"><button class="chip" type="button">네</button><button class="chip" type="button">예약했어요</button></div></div>
-        <div class="card sheet"><h2>Chunk Breakdown</h2><div class="row"><b>意思</b><span>預約了／預訂了</span></div><div class="row"><b>用法</b><span>예약하다 + polite past ending</span></div><div class="row"><b>場景</b><span>飯店、餐廳、活動報到</span></div></div>
+      <section class="screen reigns" data-title="再走一次" data-friend="如果想再熟一點，就回到剛剛的櫃台對話重走一次。">
+        <div class="card"><h2>再走一次櫃台流程</h2><div class="meta">同一段對話可以重走。提示還在，卡住就按一下。</div><div class="controls"><button class="btn" type="button" id="restartDialogue">重新走對話</button></div></div>
+        <div class="card transcript"><h2>會用到的回答</h2><div class="wrap-list"><div class="wrap-item"><b>네, 예약했어요.</b><div class="meta">有，我有預約。</div></div><div class="wrap-item"><b>왕리로 예약했어요.</b><div class="meta">我是用王立預約的。</div></div><div class="wrap-item"><b>네, 맞아요.</b><div class="meta">對，沒錯。</div></div><div class="wrap-item"><b>감사합니다.</b><div class="meta">謝謝。</div></div></div></div>
       </section>
-      <section class="screen practice" data-title="先認得" data-friend="先認得出來就好。看到對方問預約，就找那句最直接的回答。">
-        <div class="card"><span class="stage-pill">先認得</span><h2>櫃台問你「예약하셨나요?」。你要怎麼回答「有，我預約了」？</h2>
-          <div class="choice-list" data-choice-group="recognition">
-            <button class="choice" data-good="true" data-feedback="對。這句直接回答了對方問的「有沒有預約」。">네, 예약했어요.</button>
-            <button class="choice" data-feedback="這句是「我喜歡飯店」。韓文沒錯，但沒有回答對方問的預約。">호텔을 좋아해요.</button>
-            <button class="choice" data-feedback="`괜찮아요` 是「沒關係」。這裡對方要的是預約資訊。">아니요, 괜찮아요.</button>
-          </div><div class="feedback" id="recognitionFeedback"></div></div>
-      </section>
-      <section class="screen practice" data-title="要不要加練" data-friend="你已經選得出來了。想多熟一點，可以跟著念或照著打；不想加練也可以直接去櫃台試。">
-        <div class="card"><span class="stage-pill">加練選項</span><h2>想用哪種方式多碰一次？</h2><div class="spotlight"><div class="ko">네, 예약했어요.</div><div class="zh">有，我有預約。</div></div><div class="controls"><button class="btn secondary" type="button" id="playNormal">聽一次</button><button class="btn secondary" type="button" id="playSlow">慢一點</button><button class="btn ghost" type="button" id="skipMic">跳過加練</button></div><input class="typebox" id="copyInput" autocomplete="off" placeholder="想打字再打，不打也可以"><div class="controls"><button class="btn secondary" type="button" id="checkCopy">檢查打字</button><button class="btn ghost" type="button" id="fillCopy">填入這句</button></div><div class="feedback show" id="practiceOptionsFeedback">A0 可以只聽和選；跟讀、打字都是加練。</div></div>
-      </section>
-      <section class="screen reigns" data-title="再回到櫃台" data-friend="好，回到櫃台。這次我不先提醒你，憑剛剛練的選一張。">
-      <div class="reigns-board"><div class="hud"><div class="stat">confidence<b id="confidence">2</b></div><div class="stat">relationship<b id="relationship">2</b></div></div><div class="event-card"><div class="event-label">再回到櫃台</div><div>你回到飯店櫃台，這次要自己接第一句。</div><div class="npc"><div class="role">hotel staff</div><div class="ko">예약하셨나요?</div><div class="zh">請問有預約嗎？</div><div class="controls"><button class="btn secondary speak" type="button" data-speak="예약하셨나요?">發音</button></div></div><div class="mini-thread followup" id="followupDialogue"><div class="mini-turn"><b>staff</b>성함이 어떻게 되세요? / 請問姓名是？</div><div class="mini-turn"><b>you</b>왕리로 예약했어요. / 我是用王立預約的。</div><div class="mini-turn"><b>staff</b>네, 확인했습니다. / 好的，確認到了。</div><div class="mini-turn"><b>staff</b>2박 맞으세요? / 是兩晚沒錯嗎？</div><div class="mini-turn"><b>you</b>네, 맞아요. / 對，沒錯。</div><div class="mini-turn"><b>staff</b>여기 객실 키입니다. / 這是您的房卡。</div><div class="mini-turn"><b>staff</b>엘리베이터는 오른쪽에 있습니다. / 電梯在右邊。</div><div class="mini-turn"><b>staff</b>편안한 시간 되세요. / 祝您住得愉快。</div></div></div><div class="play-slot" id="playSlot">選一張回應卡</div><div class="hand"><button class="choice reigns-choice" data-good="true" data-card="네, 예약했어요." data-outcome="可以。對方講得比較完整，你用短短一句也接得上。">네, 예약했어요.</button><button class="choice reigns-choice" data-card="호텔을 좋아해요." data-outcome="差一點。這句是「我喜歡飯店」，櫃台還是不知道你有沒有預約。我們回去抓一下有 `예약` 的那句。">호텔을 좋아해요.</button><button class="choice reigns-choice" data-card="아니요, 괜찮아요." data-outcome="差一點。`괜찮아요` 是「沒關係」，這裡要先說有沒有預約。我們回去看一眼再來。">아니요, 괜찮아요.</button></div><div class="controls"><button class="btn" type="button" id="playCard">出牌</button><button class="btn secondary" type="button" id="finalStepDown">回去看一眼</button></div><div class="feedback" id="reignsFeedback"></div></div>
-      </section>
-      <section class="screen" data-title="Wrap" data-friend="這次你練了飯店櫃台最常見的一個回合：對方問有沒有預約，你能回答「有，我預約了」。">
-        <div class="card"><h2>今天這段櫃台對話</h2><div class="wrap-list"><div class="wrap-item"><b>어서 오세요.</b><div class="meta">歡迎光臨。</div></div><div class="wrap-item"><b>예약하셨나요?</b><div class="meta">請問有預約嗎？</div></div><div class="wrap-item"><b>네, 예약했어요.</b><div class="meta">有，我有預約。</div></div><div class="wrap-item"><b>왕리로 예약했어요.</b><div class="meta">我是用王立預約的。</div></div><div class="wrap-item"><b>1박 / 2박 / 3박</b><div class="meta">一晚 / 兩晚 / 三晚。</div></div><div class="wrap-item"><b>성함이 어떻게 되세요?</b><div class="meta">請問姓名是？</div></div><div class="wrap-item"><b>2박 맞으세요?</b><div class="meta">是兩晚沒錯嗎？</div></div><div class="wrap-item"><b>네, 맞아요.</b><div class="meta">對，沒錯。</div></div><div class="wrap-item"><b>여기 객실 키입니다.</b><div class="meta">這是您的房卡。</div></div><div class="wrap-item"><b>엘리베이터는 오른쪽에 있습니다.</b><div class="meta">電梯在右邊。</div></div><div class="wrap-item"><b>편안한 시간 되세요.</b><div class="meta">祝您住得愉快。</div></div><div class="wrap-item"><b>예약하다</b><div class="meta">預約／預訂</div></div></div><div class="controls"><button class="btn secondary" type="button" id="restart">再看一次</button></div></div>
+      <section class="screen" data-title="Wrap" data-friend="你剛剛走完一段飯店 check-in。能接上幾個短句，就能把流程推下去。">
+        <div class="card"><h2>今天這段櫃台對話</h2><div class="wrap-list"><div class="wrap-item"><b>예약하셨나요?</b><div class="meta">請問有預約嗎？</div></div><div class="wrap-item"><b>네, 예약했어요.</b><div class="meta">有，我有預約。</div></div><div class="wrap-item"><b>성함이 어떻게 되세요?</b><div class="meta">請問姓名是？</div></div><div class="wrap-item"><b>왕리로 예약했어요.</b><div class="meta">我是用王立預約的。</div></div><div class="wrap-item"><b>2박 맞으세요?</b><div class="meta">是兩晚沒錯嗎？</div></div><div class="wrap-item"><b>네, 맞아요.</b><div class="meta">對，沒錯。</div></div><div class="wrap-item"><b>감사합니다.</b><div class="meta">謝謝。</div></div></div><div class="controls"><button class="btn secondary" type="button" id="restart">再看一次</button></div></div>
       </section>
     </main>
-    <div class="friend-bar" aria-live="polite"><div class="avatar">F</div><div class="bar-text" id="friendText">先看看這一幕。你剛到櫃台，對方問了一句話；憑直覺選就好。</div><button class="next" type="button" id="nextBtn">繼續</button></div>
+    <div class="friend-bar" aria-live="polite"><div class="avatar">F</div><div class="bar-text" id="friendText">你剛到飯店櫃台。先看情境，等一下我只在你需要時給提示。</div><button class="next" type="button" id="nextBtn">繼續</button></div>
   </div>
   <script>
     const screens = Array.from(document.querySelectorAll('.screen'));
@@ -274,7 +238,56 @@
     const friendText = document.getElementById('friendText');
     const title = document.querySelector('h1');
     let index = 0;
-    let selectedReigns = null;
+    let roundIndex = 0;
+    let selectedResponse = null;
+    const rounds = [
+      {
+        staffKo: '어서 오세요. 예약하셨나요?',
+        staffZh: '歡迎光臨。請問有預約嗎？',
+        staffSpeak: '어서 오세요. 예약하셨나요?',
+        hint: '對方問的是有沒有預約。找有 `예약` 的回答。',
+        choices: [
+          { text: '네, 예약했어요.', speak: '네, 예약했어요.', good: true, feedback: '可以。這句短短的，但能把話接上。' },
+          { text: '호텔을 좋아해요.', speak: '호텔을 좋아해요.', feedback: '這句是「我喜歡飯店」，沒有回答有沒有預約。' },
+          { text: '아니요, 괜찮아요.', speak: '아니요, 괜찮아요.', feedback: '`괜찮아요` 是「沒關係」。這裡要先回答預約。' }
+        ]
+      },
+      {
+        staffKo: '성함이 어떻게 되세요?',
+        staffZh: '請問姓名是？',
+        staffSpeak: '성함이 어떻게 되세요?',
+        hint: '對方在問姓名。你可以用「用某某名字預約」來回答。',
+        choices: [
+          { text: '왕리로 예약했어요.', speak: '왕리로 예약했어요.', good: true, feedback: '對。這句就是「我是用王立預約的」。' },
+          { text: '네, 맞아요.', speak: '네, 맞아요.', feedback: '這句是確認沒錯，但還沒告訴對方名字。' },
+          { text: '감사합니다.', speak: '감사합니다.', feedback: '現在還沒到道謝，對方正在問名字。' }
+        ]
+      },
+      {
+        staffKo: '네, 확인했습니다. 2박 맞으세요?',
+        staffZh: '好的，確認到了。是兩晚沒錯嗎？',
+        staffSpeak: '네, 확인했습니다. 이박 맞으세요?',
+        hint: '`2박` 是兩晚。對方在確認資料是不是對的。',
+        choices: [
+          { text: '네, 맞아요.', speak: '네, 맞아요.', good: true, feedback: '對。資料正確時，這句就夠了。' },
+          { text: '왕리로 예약했어요.', speak: '왕리로 예약했어요.', feedback: '名字剛剛已經說過了，現在對方在確認兩晚。' },
+          { text: '호텔을 좋아해요.', speak: '호텔을 좋아해요.', feedback: '這句還是在說喜歡飯店，不是在確認住宿天數。' }
+        ]
+      },
+      {
+        staffKo: '여기 객실 키입니다. 엘리베이터는 오른쪽에 있습니다.',
+        staffZh: '這是您的房卡。電梯在右邊。',
+        staffSpeak: '여기 객실 키입니다. 엘리베이터는 오른쪽에 있습니다.',
+        hint: '對方把房卡給你，也告訴你電梯在哪。這裡簡單道謝就好。',
+        choices: [
+          { text: '감사합니다.', speak: '감사합니다.', good: true, feedback: '對。這裡說謝謝就很自然。' },
+          { text: '네, 예약했어요.', speak: '네, 예약했어요.', feedback: '預約已經確認完了，現在不用再說一次。' },
+          { text: '아니요, 괜찮아요.', speak: '아니요, 괜찮아요.', feedback: '這樣像是在拒絕房卡，和場景不合。' }
+        ],
+        closing: '편안한 시간 되세요. / 祝您住得愉快。'
+      }
+    ];
+    const transcript = [];
     function normalize(text) { return text.normalize('NFC').replace(/[.,!?，。！？\s]/g, '').trim(); }
     function speakKo(text, rate = 0.88) {
       if (!('speechSynthesis' in window)) {
@@ -291,6 +304,44 @@
       if (koVoice) utterance.voice = koVoice;
       window.speechSynthesis.speak(utterance);
     }
+    function renderDialogueRound() {
+      const round = rounds[roundIndex];
+      selectedResponse = null;
+      document.getElementById('roundProgress').textContent = `${roundIndex + 1} / ${rounds.length}`;
+      document.getElementById('staffKo').textContent = round.staffKo;
+      document.getElementById('staffZh').textContent = round.staffZh;
+      document.getElementById('dialogueSlot').textContent = '選一張回應卡';
+      const feedback = document.getElementById('dialogueFeedback');
+      feedback.textContent = '';
+      feedback.classList.remove('show');
+      const hand = document.getElementById('responseHand');
+      hand.innerHTML = '';
+      round.choices.forEach((choice, choiceIndex) => {
+        const button = document.createElement('button');
+        button.className = 'choice';
+        button.type = 'button';
+        button.textContent = choice.text;
+        button.addEventListener('click', () => {
+          Array.from(hand.children).forEach((child) => child.classList.remove('selected', 'good', 'warn'));
+          button.classList.add('selected', choice.good ? 'good' : 'warn');
+          selectedResponse = choice;
+          document.getElementById('dialogueSlot').textContent = choice.text;
+          speakKo(choice.speak || choice.text);
+        });
+        hand.appendChild(button);
+      });
+      renderTranscript();
+    }
+    function renderTranscript() {
+      const list = document.getElementById('transcriptList');
+      if (!list) return;
+      list.innerHTML = transcript.length ? transcript.map((turn) => `<div class="mini-turn"><b>${turn.role}</b>${turn.text}</div>`).join('') : '<div class="mini-turn">對話會一輪一輪出現在這裡。</div>';
+    }
+    function resetDialogue() {
+      roundIndex = 0;
+      transcript.length = 0;
+      renderDialogueRound();
+    }
     function show(i) {
       index = Math.max(0, Math.min(i, screens.length - 1));
       screens.forEach((screen, idx) => screen.classList.toggle('active', idx === index));
@@ -299,58 +350,42 @@
       title.textContent = screen.dataset.title || 'A1 Friend Pilot';
       friendText.textContent = screen.dataset.friend || '';
       nextBtn.textContent = index === screens.length - 1 ? '重來' : '繼續';
+      if (screen.dataset.title === '櫃台對話') renderDialogueRound();
       window.scrollTo({ top: 0, behavior: 'smooth' });
     }
     nextBtn.addEventListener('click', () => show(index === screens.length - 1 ? 0 : index + 1));
     document.querySelectorAll('.speak').forEach((button) => {
       button.addEventListener('click', () => speakKo(button.dataset.speak || button.textContent));
     });
-    document.querySelectorAll('.opening-choice').forEach((button) => {
-      button.addEventListener('click', () => {
-        document.querySelectorAll('.opening-choice').forEach((b) => b.classList.remove('selected', 'good', 'warn'));
-        button.classList.add('selected', button.dataset.good ? 'good' : 'warn');
-        speakKo(button.dataset.speak || button.textContent);
-        const feedback = document.getElementById('openingFeedback');
-        feedback.textContent = button.dataset.feedback;
-        feedback.classList.add('show');
-      });
-    });
-    document.querySelectorAll('[data-choice-group="recognition"] .choice').forEach((button) => {
-      button.addEventListener('click', () => {
-        document.querySelectorAll('[data-choice-group="recognition"] .choice').forEach((b) => b.classList.remove('selected', 'good', 'warn'));
-        button.classList.add('selected', button.dataset.good ? 'good' : 'warn');
-        const feedback = document.getElementById('recognitionFeedback');
-        feedback.textContent = button.dataset.feedback;
-        feedback.classList.add('show');
-      });
-    });
-    document.getElementById('playNormal').addEventListener('click', () => { speakKo('네, 예약했어요.', 0.92); document.getElementById('practiceOptionsFeedback').textContent = '聽一次就好也可以。這句在櫃台很夠用了。'; });
-    document.getElementById('playSlow').addEventListener('click', () => { speakKo('네. 예약했어요.', 0.68); document.getElementById('practiceOptionsFeedback').textContent = '慢速分段：네 / 예약했어요。想跟著念就念，不用念得很完美。'; });
-    document.getElementById('skipMic').addEventListener('click', () => { document.getElementById('practiceOptionsFeedback').textContent = '可以，這次就不加練。直接去櫃台試試看。'; });
-    document.getElementById('fillCopy').addEventListener('click', () => { document.getElementById('copyInput').value = '네, 예약했어요.'; });
-    document.getElementById('checkCopy').addEventListener('click', () => {
-      const value = normalize(document.getElementById('copyInput').value);
-      const feedback = document.getElementById('copyFeedback');
-      feedback.textContent = value === normalize('네, 예약했어요.') ? '對。打字也熟了。' : value.includes('예약했') ? '很接近。檢查看看有沒有少 `네` 或禮貌結尾 `요`。' : '沒關係，打字只是加練。想跳過也可以。';
+    document.getElementById('staffSpeak').addEventListener('click', () => speakKo(rounds[roundIndex].staffSpeak || rounds[roundIndex].staffKo));
+    document.getElementById('friendHint').addEventListener('click', () => {
+      const feedback = document.getElementById('dialogueFeedback');
+      feedback.textContent = rounds[roundIndex].hint;
       feedback.classList.add('show');
     });
-    document.querySelectorAll('.reigns-choice').forEach((button) => {
-      button.addEventListener('click', () => {
-        document.querySelectorAll('.reigns-choice').forEach((b) => b.classList.remove('selected', 'good', 'warn'));
-        button.classList.add('selected', button.dataset.good ? 'good' : 'warn');
-        selectedReigns = button;
-        document.getElementById('playSlot').textContent = button.dataset.card;
-      });
-    });
-    document.getElementById('finalStepDown').addEventListener('click', () => show(4));
-    document.getElementById('playCard').addEventListener('click', () => {
-      const feedback = document.getElementById('reignsFeedback');
-      if (!selectedReigns) { feedback.textContent = '先選一張回應卡，再出牌。'; feedback.classList.add('show'); return; }
-      feedback.textContent = selectedReigns.dataset.outcome;
+    document.getElementById('commitResponse').addEventListener('click', () => {
+      const feedback = document.getElementById('dialogueFeedback');
+      if (!selectedResponse) {
+        feedback.textContent = '先選一張回應卡。';
+        feedback.classList.add('show');
+        return;
+      }
+      feedback.textContent = selectedResponse.feedback;
       feedback.classList.add('show');
-      document.getElementById('followupDialogue').classList.toggle('show', Boolean(selectedReigns.dataset.good));
-      if (selectedReigns.dataset.good) { document.getElementById('confidence').textContent = '3'; document.getElementById('relationship').textContent = '3'; }
+      if (!selectedResponse.good) return;
+      const round = rounds[roundIndex];
+      transcript.push({ role: '職員', text: `${round.staffKo} / ${round.staffZh}` });
+      transcript.push({ role: '你', text: selectedResponse.text });
+      if (round.closing) transcript.push({ role: '職員', text: round.closing });
+      renderTranscript();
+      if (roundIndex < rounds.length - 1) {
+        roundIndex += 1;
+        window.setTimeout(renderDialogueRound, 650);
+      } else {
+        feedback.textContent = '這段 check-in 走完了。等一下看一個小公式。';
+      }
     });
+    document.getElementById('restartDialogue').addEventListener('click', () => { show(1); resetDialogue(); });
     document.getElementById('restart').addEventListener('click', () => show(0));
     show(0);
   </script>
