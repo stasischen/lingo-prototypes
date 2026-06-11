@@ -157,6 +157,7 @@
     .mini-turn b { display: block; font-size: 12px; color: var(--muted); margin-bottom: 3px; }
     .followup { display: none; }
     .followup.show { display: grid; }
+    .listen-only { border-color: #c8d7d4; background: #f3faf8; }
     .hand { display: grid; grid-template-columns: 1fr; gap: 8px; }
     .play-slot { min-height: 52px; border: 1px dashed #b89977; border-radius: 8px; display: grid; place-items: center; color: var(--muted); background: rgba(255,253,248,.74); padding: 10px; text-align: center; }
     .wrap-list { display: grid; gap: 9px; margin: 12px 0 0; }
@@ -184,11 +185,17 @@
       </div>
     </header>
     <main>
-      <section class="screen active reigns" data-title="剛到櫃台" data-friend="先看看這一幕。你剛到櫃台，櫃台人員會先確認預約，接著問名字和住宿天數。">
+      <section class="screen active reigns" data-title="剛到櫃台" data-friend="先看看這一幕。櫃台人員會先打招呼，再確認預約。打招呼那些句子聽懂就好，不用急著自己說。">
         <div class="reigns-board">
           <div class="event-card">
             <div class="event-label">櫃台現場</div>
             <div>你剛到飯店櫃台，想確認自己的訂房。</div>
+            <div class="npc listen-only">
+              <div class="role">hotel staff</div>
+              <div class="ko">어서 오세요.</div>
+              <div class="zh">歡迎光臨。</div>
+              <div class="controls"><button class="btn secondary speak" type="button" data-speak="어서 오세요.">發音</button></div>
+            </div>
             <div class="npc">
               <div class="role">hotel staff</div>
               <div class="ko">예약하셨어요?</div>
@@ -207,16 +214,18 @@
           </div>
           <div class="feedback" id="openingFeedback"></div>
         </div>
-        <div class="card friend-line"><div class="avatar">F</div><div><div class="friend-copy">你現在就在櫃台前。這段會先從「有沒有預約」開始，我陪你把第一句接穩，後面就比較好跟上。</div><div class="meta">等一下會看到完整對話，不只一句。</div></div></div>
+        <div class="card friend-line"><div class="avatar">F</div><div><div class="friend-copy">像「歡迎光臨」這種你會一直聽到，先知道意思就很好。你真正要開口接的，是對方問有沒有預約那句。</div><div class="meta">這次分成兩種：常聽到的句子、需要你回答的句子。</div></div></div>
       </section>
-      <section class="screen" data-title="一起看對話" data-friend="這是一小段 check-in。先把開頭接上，後面名字和天數就像照著流程走。">
+      <section class="screen" data-title="一起看對話" data-friend="這是一小段 check-in。有些句子只要聽懂，有些句子才需要你會接。">
         <div class="card dialogue">
+          <div class="bubble staff listen-only"><div class="role">職員 · 聽懂就好</div><div class="ko">어서 오세요.</div><div class="zh">歡迎光臨。</div><div class="controls"><button class="btn secondary speak" type="button" data-speak="어서 오세요.">發音</button></div></div>
           <div class="bubble staff"><div class="role">職員</div><div class="ko">예약하셨어요?</div><div class="zh">有預約嗎？</div><div class="controls"><button class="btn secondary speak" type="button" data-speak="예약하셨어요?">發音</button></div></div>
           <div class="bubble learner"><div class="role">你</div><div class="ko">네, 예약했어요.</div><div class="zh">有，我預約了。</div><div class="controls"><button class="btn secondary speak" type="button" data-speak="네, 예약했어요.">發音</button></div></div>
           <div class="bubble staff"><div class="role">職員</div><div class="ko">성함이 어떻게 되세요?</div><div class="zh">請問姓名是？</div><div class="controls"><button class="btn secondary speak" type="button" data-speak="성함이 어떻게 되세요?">發音</button></div></div>
           <div class="bubble learner"><div class="role">你</div><div class="ko">왕리입니다.</div><div class="zh">我是王立。</div><div class="controls"><button class="btn secondary speak" type="button" data-speak="왕리입니다.">發音</button></div></div>
           <div class="bubble staff"><div class="role">職員</div><div class="ko">이틀 맞으세요?</div><div class="zh">是兩晚嗎？</div><div class="controls"><button class="btn secondary speak" type="button" data-speak="이틀 맞으세요?">發音</button></div></div>
           <div class="bubble learner"><div class="role">你</div><div class="ko">네, 맞아요.</div><div class="zh">對，沒錯。</div><div class="controls"><button class="btn secondary speak" type="button" data-speak="네, 맞아요.">發音</button></div></div>
+          <div class="bubble staff listen-only"><div class="role">職員 · 聽懂就好</div><div class="ko">안녕히 가세요.</div><div class="zh">請慢走。</div><div class="controls"><button class="btn secondary speak" type="button" data-speak="안녕히 가세요.">發音</button></div></div>
         </div>
       </section>
       <section class="screen" data-title="句子聚焦" data-friend="`예약했어요` 是「我預約了」。在飯店或餐廳確認預約時，這句很常用。">
@@ -244,7 +253,7 @@
       <div class="reigns-board"><div class="hud"><div class="stat">confidence<b id="confidence">2</b></div><div class="stat">relationship<b id="relationship">2</b></div></div><div class="event-card"><div class="event-label">再回到櫃台</div><div>你回到飯店櫃台，這次要自己接第一句。</div><div class="npc"><div class="role">hotel staff</div><div class="ko">예약하셨어요?</div><div class="zh">有預約嗎？</div><div class="controls"><button class="btn secondary speak" type="button" data-speak="예약하셨어요?">發音</button></div></div><div class="mini-thread followup" id="followupDialogue"><div class="mini-turn"><b>staff</b>성함이 어떻게 되세요? / 請問姓名是？</div><div class="mini-turn"><b>you</b>왕리입니다. / 我是王立。</div><div class="mini-turn"><b>staff</b>이틀 맞으세요? / 是兩晚嗎？</div><div class="mini-turn"><b>you</b>네, 맞아요. / 對，沒錯。</div></div></div><div class="play-slot" id="playSlot">選一張回應卡</div><div class="hand"><button class="choice reigns-choice" data-good="true" data-card="네, 예약했어요." data-outcome="可以，櫃台人員開始查你的名字。前面接上了，後面就會順著姓名和天數走。">네, 예약했어요.</button><button class="choice reigns-choice" data-card="호텔을 좋아해요." data-outcome="差一點。這句是「我喜歡飯店」，櫃台還是不知道你有沒有預約。我們回去抓一下有 `예약` 的那句。">호텔을 좋아해요.</button><button class="choice reigns-choice" data-card="아니요, 괜찮아요." data-outcome="差一點。`괜찮아요` 是「沒關係」，這裡要先說有沒有預約。我們回去看一眼再來。">아니요, 괜찮아요.</button></div><div class="controls"><button class="btn" type="button" id="playCard">出牌</button><button class="btn secondary" type="button" id="finalStepDown">回去看一眼</button></div><div class="feedback" id="reignsFeedback"></div></div>
       </section>
       <section class="screen" data-title="Wrap" data-friend="這次你練了飯店櫃台最常見的一個回合：對方問有沒有預約，你能回答「有，我預約了」。">
-        <div class="card"><h2>你今天練了</h2><div class="wrap-list"><div class="wrap-item"><b>예약하셨어요?</b><div class="meta">有預約嗎？</div></div><div class="wrap-item"><b>네, 예약했어요.</b><div class="meta">有，我預約了。</div></div><div class="wrap-item"><b>성함이 어떻게 되세요?</b><div class="meta">請問姓名是？</div></div><div class="wrap-item"><b>이틀 맞으세요?</b><div class="meta">是兩晚嗎？</div></div><div class="wrap-item"><b>예약하다</b><div class="meta">預約／預訂</div></div></div><div class="controls"><button class="btn secondary" type="button" id="restart">再看一次</button></div></div>
+        <div class="card"><h2>你今天練了</h2><div class="wrap-list"><div class="wrap-item"><b>어서 오세요.</b><div class="meta">歡迎光臨。聽懂就好。</div></div><div class="wrap-item"><b>예약하셨어요?</b><div class="meta">有預約嗎？</div></div><div class="wrap-item"><b>네, 예약했어요.</b><div class="meta">有，我預約了。</div></div><div class="wrap-item"><b>성함이 어떻게 되세요?</b><div class="meta">請問姓名是？</div></div><div class="wrap-item"><b>이틀 맞으세요?</b><div class="meta">是兩晚嗎？</div></div><div class="wrap-item"><b>안녕히 가세요.</b><div class="meta">請慢走。聽懂就好。</div></div><div class="wrap-item"><b>예약하다</b><div class="meta">預約／預訂</div></div></div><div class="controls"><button class="btn secondary" type="button" id="restart">再看一次</button></div></div>
       </section>
     </main>
     <div class="friend-bar" aria-live="polite"><div class="avatar">F</div><div class="bar-text" id="friendText">先看看這一幕。你剛到櫃台，對方問了一句話；憑直覺選就好。</div><button class="next" type="button" id="nextBtn">繼續</button></div>
