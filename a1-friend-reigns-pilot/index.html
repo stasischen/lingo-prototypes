@@ -200,9 +200,9 @@
             <div class="round-label" id="roundProgress">1 / 4</div>
             <div class="npc"><div class="role">職員</div><div class="ko" id="staffKo"></div><div class="zh" id="staffZh"></div><div class="controls"><button class="btn secondary" type="button" id="staffSpeak">發音</button></div></div>
           </div>
-          <div class="play-slot" id="dialogueSlot">選一張回應卡</div>
+          <div class="play-slot" id="dialogueSlot">選一句回應</div>
           <div class="hand" id="responseHand"></div>
-          <div class="controls"><button class="btn" type="button" id="commitResponse">出牌</button></div>
+          <div class="controls"><button class="btn" type="button" id="commitResponse">這樣回</button></div>
           <div class="feedback" id="dialogueFeedback"></div>
           <div class="card transcript"><h2>目前對話</h2><div id="transcriptList"></div></div>
         </div>
@@ -313,7 +313,7 @@
       document.getElementById('roundProgress').textContent = `${roundIndex + 1} / ${rounds.length}`;
       document.getElementById('staffKo').textContent = round.staffKo;
       document.getElementById('staffZh').textContent = round.staffZh;
-      document.getElementById('dialogueSlot').textContent = '選一張回應卡';
+      document.getElementById('dialogueSlot').textContent = '選一句回應';
       friendText.textContent = round.hint;
       const feedback = document.getElementById('dialogueFeedback');
       feedback.textContent = '';
@@ -394,7 +394,7 @@
       const feedback = document.getElementById('dialogueFeedback');
       if (roundCommitted) return;
       if (!selectedResponse) {
-        feedback.textContent = '先選一張回應卡。';
+        feedback.textContent = '先選一句回應。';
         feedback.classList.add('show');
         return;
       }
