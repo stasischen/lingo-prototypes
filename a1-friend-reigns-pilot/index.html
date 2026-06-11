@@ -60,7 +60,7 @@
       font-weight: 800;
     }
     h1 { margin: 4px 0 0; font-size: 20px; letter-spacing: 0; line-height: 1.2; }
-    .progress { display: grid; grid-template-columns: repeat(8, 1fr); gap: 4px; margin-top: 12px; }
+    .progress { display: grid; grid-template-columns: repeat(9, 1fr); gap: 4px; margin-top: 12px; }
     .dot { height: 5px; border-radius: 999px; background: #ddd3c6; }
     .dot.active, .dot.done { background: var(--friend); }
     main { flex: 1; padding: 18px 18px 132px; display: flex; flex-direction: column; gap: 14px; }
@@ -175,12 +175,30 @@
       <div class="progress" aria-label="flow progress">
         <div class="dot active"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div>
         <div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div>
+        <div class="dot"></div>
       </div>
     </header>
     <main>
-      <section class="screen active" data-title="飯店預約情境" data-friend="你現在到飯店櫃台了。先練一句最實用的回答，等一下拿去情境卡裡用。">
-        <div class="scene"><div class="scene-title">Hotel counter, one useful line.</div></div>
-        <div class="card friend-line"><div class="avatar">F</div><div><div class="friend-copy">你現在到飯店櫃台了。對方會先確認你有沒有預約。</div><div class="meta">目標時間：8 分鐘內。這次只把一句話練到能用。</div></div></div>
+      <section class="screen active reigns" data-title="Opening Event" data-friend="先進場景。你不用先會，先感覺一下：在飯店櫃台，對方問有沒有預約時，你會想回哪一句？">
+        <div class="reigns-board">
+          <div class="event-card">
+            <div class="event-label">Scene Card</div>
+            <div>你剛到飯店櫃台，想確認自己的訂房。</div>
+            <div class="npc">
+              <div class="role">hotel staff</div>
+              <div class="ko">예약하셨어요?</div>
+              <div class="zh">有預約嗎？</div>
+              <div class="controls"><button class="btn secondary speak" type="button" data-speak="예약하셨어요?">發音</button></div>
+            </div>
+          </div>
+          <div class="hand">
+            <button class="choice opening-choice" data-good="true" data-feedback="對，這就是這次要練到能自然用出來的回答。">네, 예약했어요.</button>
+            <button class="choice opening-choice" data-feedback="這句韓文沒錯，但意思是「我喜歡飯店」。等一下我們會練怎麼回答預約。">호텔을 좋아해요.</button>
+            <button class="choice opening-choice" data-feedback="這句是「沒關係」。在這個場景裡，對方需要知道你有沒有預約。">아니요, 괜찮아요.</button>
+          </div>
+          <div class="feedback" id="openingFeedback"></div>
+        </div>
+        <div class="card friend-line"><div class="avatar">F</div><div><div class="friend-copy">這不是正式測驗。先知道「這句話要拿來解決什麼場景」，下一步再一起拆開學。</div><div class="meta">目標時間：8 分鐘內。這次只把一句話練到能用。</div></div></div>
       </section>
       <section class="screen" data-title="一起看對話" data-friend="這段很短，但很實用。對方問有沒有預約時，你只要能接上這句就不會卡住。">
         <div class="card dialogue">
@@ -209,8 +227,8 @@
       <section class="screen practice" data-title="階梯練習：自己產出" data-friend="最後選一種方式。現在 prototype 先做自己打；沒有麥克風時就走這條。">
         <div class="card"><span class="stage-pill">Self Typing</span><h2>只看中文，自己打出來</h2><div class="spotlight"><div class="zh">有，我預約了。</div></div><input class="typebox" id="selfInput" autocomplete="off" placeholder="輸入韓文回答"><div class="controls"><button class="btn" type="button" id="checkSelf">送出</button><button class="btn secondary" type="button" id="stepDown">退回跟打</button></div><div class="feedback" id="selfFeedback"></div></div>
       </section>
-      <section class="screen reigns" data-title="Reigns 情境挑戰" data-friend="現在把剛剛那句拿去情境裡用。選一張回應牌，放進出牌區。">
-        <div class="reigns-board"><div class="hud"><div class="stat">confidence<b id="confidence">2</b></div><div class="stat">relationship<b id="relationship">2</b></div></div><div class="event-card"><div class="event-label">Event Card</div><div>你到飯店櫃台，想確認自己的訂房。</div><div class="npc"><div class="role">hotel staff</div><div class="ko">예약하셨어요?</div><div class="zh">有預約嗎？</div><div class="controls"><button class="btn secondary speak" type="button" data-speak="예약하셨어요?">發音</button></div></div></div><div class="play-slot" id="playSlot">選一張 response card</div><div class="hand"><button class="choice reigns-choice" data-good="true" data-card="네, 예약했어요." data-outcome="櫃台人員開始查你的名字。Friend: 對，這句剛好回答了「有沒有預約」。">네, 예약했어요.</button><button class="choice reigns-choice" data-card="호텔을 좋아해요." data-outcome="櫃台人員還是不知道你有沒有預約。Friend: 這句是「我喜歡飯店」，不是現在要回答的事。">호텔을 좋아해요.</button><button class="choice reigns-choice" data-card="아니요, 괜찮아요." data-outcome="櫃台人員停了一下，像是在等你補充。Friend: `괜찮아요` 是「沒關係」，這裡對方要的是預約資訊。">아니요, 괜찮아요.</button></div><div class="controls"><button class="btn" type="button" id="playCard">出牌</button><button class="btn secondary" type="button" id="hintCard">提示</button></div><div class="feedback" id="reignsFeedback"></div></div>
+      <section class="screen reigns" data-title="Final Event Check" data-friend="最後回到同一個情境。這次不給提示，看看你能不能直接通過。">
+      <div class="reigns-board"><div class="hud"><div class="stat">confidence<b id="confidence">2</b></div><div class="stat">relationship<b id="relationship">2</b></div></div><div class="event-card"><div class="event-label">Final Event</div><div>你回到飯店櫃台，這次要自己處理。</div><div class="npc"><div class="role">hotel staff</div><div class="ko">예약하셨어요?</div><div class="zh">有預約嗎？</div><div class="controls"><button class="btn secondary speak" type="button" data-speak="예약하셨어요?">發音</button></div></div></div><div class="play-slot" id="playSlot">選一張 response card</div><div class="hand"><button class="choice reigns-choice" data-good="true" data-card="네, 예약했어요." data-outcome="通過。櫃台人員開始查你的名字。Friend: 你有把練過的句子拿回真實場景裡用。">네, 예약했어요.</button><button class="choice reigns-choice" data-card="호텔을 좋아해요." data-outcome="還沒通過。櫃台人員還是不知道你有沒有預約。Friend: 這句是「我喜歡飯店」，我們退回認得那一步再抓一次。">호텔을 좋아해요.</button><button class="choice reigns-choice" data-card="아니요, 괜찮아요." data-outcome="還沒通過。`괜찮아요` 是「沒關係」，這裡對方要的是預約資訊。Friend: 不熟就退階，回去看有 `예약` 的回答。">아니요, 괜찮아요.</button></div><div class="controls"><button class="btn" type="button" id="playCard">出牌</button><button class="btn secondary" type="button" id="finalStepDown">不熟，回去練</button></div><div class="feedback" id="reignsFeedback"></div></div>
       </section>
       <section class="screen" data-title="Wrap" data-friend="這次你練了飯店櫃台最常見的一個回合：對方問有沒有預約，你能回答「有，我預約了」。">
         <div class="card"><h2>你今天練了</h2><div class="wrap-list"><div class="wrap-item"><b>예약하셨어요?</b><div class="meta">有預約嗎？</div></div><div class="wrap-item"><b>네, 예약했어요.</b><div class="meta">有，我預約了。</div></div><div class="wrap-item"><b>예약하다</b><div class="meta">預約／預訂</div></div></div><div class="controls"><button class="btn secondary" type="button" id="restart">再看一次</button></div></div>
@@ -256,6 +274,15 @@
     document.querySelectorAll('.speak').forEach((button) => {
       button.addEventListener('click', () => speakKo(button.dataset.speak || button.textContent));
     });
+    document.querySelectorAll('.opening-choice').forEach((button) => {
+      button.addEventListener('click', () => {
+        document.querySelectorAll('.opening-choice').forEach((b) => b.classList.remove('selected', 'good', 'warn'));
+        button.classList.add('selected', button.dataset.good ? 'good' : 'warn');
+        const feedback = document.getElementById('openingFeedback');
+        feedback.textContent = button.dataset.feedback;
+        feedback.classList.add('show');
+      });
+    });
     document.querySelectorAll('[data-choice-group="recognition"] .choice').forEach((button) => {
       button.addEventListener('click', () => {
         document.querySelectorAll('[data-choice-group="recognition"] .choice').forEach((b) => b.classList.remove('selected', 'good', 'warn'));
@@ -290,7 +317,7 @@
         document.getElementById('playSlot').textContent = button.dataset.card;
       });
     });
-    document.getElementById('hintCard').addEventListener('click', () => { const feedback = document.getElementById('reignsFeedback'); feedback.textContent = '提示：對方問的是有沒有「預約」。找有 `예약` 的回答。'; feedback.classList.add('show'); });
+    document.getElementById('finalStepDown').addEventListener('click', () => show(3));
     document.getElementById('playCard').addEventListener('click', () => {
       const feedback = document.getElementById('reignsFeedback');
       if (!selectedReigns) { feedback.textContent = '先選一張 response card，再出牌。'; feedback.classList.add('show'); return; }
