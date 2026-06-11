@@ -137,6 +137,7 @@
     .feedback.show { display: block; }
     .controls { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 14px; }
     .btn { min-height: 44px; border-radius: 8px; padding: 0 14px; background: var(--ink); color: white; font-weight: 800; }
+    .btn:disabled { opacity: .45; cursor: not-allowed; }
     .btn.secondary { background: #ede4d8; color: var(--ink); border: 1px solid var(--line); }
     .btn.ghost { background: transparent; color: var(--friend); border: 1px solid #b9ddd7; }
     .stage-pill { display: inline-flex; align-items: center; gap: 6px; padding: 6px 9px; border-radius: 999px; background: var(--friend-soft); color: var(--friend); font-size: 12px; font-weight: 850; margin-bottom: 10px; }
@@ -164,6 +165,8 @@
     .hand { display: grid; grid-template-columns: 1fr; gap: 8px; }
     .transcript { display: grid; gap: 8px; }
     .transcript .mini-turn { background: #fff; }
+    .transcript .bubble { max-width: 100%; width: 100%; box-shadow: none; }
+    .transcript .ko { font-size: 18px; }
     .round-label { color: var(--muted); font-size: 13px; font-weight: 800; margin-bottom: 8px; }
     .play-slot { min-height: 52px; border: 1px dashed #b89977; border-radius: 8px; display: grid; place-items: center; color: var(--muted); background: rgba(255,253,248,.74); padding: 10px; text-align: center; }
     .wrap-list { display: grid; gap: 9px; margin: 12px 0 0; }
@@ -236,6 +239,7 @@
     let index = 0;
     let roundIndex = 0;
     let selectedResponse = null;
+    let roundCommitted = false;
     let dialogueComplete = false;
     const rounds = [
       {
@@ -304,6 +308,8 @@
     function renderDialogueRound() {
       const round = rounds[roundIndex];
       selectedResponse = null;
+      roundCommitted = false;
+      document.getElementById('commitResponse').disabled = false;
       document.getElementById('roundProgress').textContent = `${roundIndex + 1} / ${rounds.length}`;
       document.getElementById('staffKo').textContent = round.staffKo;
       document.getElementById('staffZh').textContent = round.staffZh;
@@ -334,7 +340,15 @@
     function renderTranscript() {
       const list = document.getElementById('transcriptList');
       if (!list) return;
-      list.innerHTML = transcript.length ? transcript.map((turn) => `<div class="mini-turn"><b>${turn.role}</b>${turn.text}</div>`).join('') : '<div class="mini-turn">對話會一輪一輪出現在這裡。</div>';
+      if (!transcript.length) {
+        list.innerHTML = '<div class="mini-turn">對話會一輪一輪出現在這裡。</div>';
+        return;
+      }
+      list.innerHTML = transcript.map((turn) => {
+        const roleClass = turn.role === '你' ? 'learner' : 'staff';
+        const zh = turn.zh ? `<div class="zh">${turn.zh}</div>` : '';
+        return `<div class="bubble ${roleClass}"><div class="role">${turn.role}</div><div class="ko">${turn.ko}</div>${zh}</div>`;
+      }).join('');
     }
     function resetDialogue() {
       roundIndex = 0;
@@ -378,6 +392,7 @@
     document.getElementById('staffSpeak').addEventListener('click', () => speakKo(rounds[roundIndex].staffSpeak || rounds[roundIndex].staffKo));
     document.getElementById('commitResponse').addEventListener('click', () => {
       const feedback = document.getElementById('dialogueFeedback');
+      if (roundCommitted) return;
       if (!selectedResponse) {
         feedback.textContent = '先選一張回應卡。';
         feedback.classList.add('show');
@@ -387,9 +402,12 @@
       feedback.classList.add('show');
       if (!selectedResponse.good) return;
       const round = rounds[roundIndex];
-      transcript.push({ role: '職員', text: `${round.staffKo} / ${round.staffZh}` });
-      transcript.push({ role: '你', text: selectedResponse.text });
-      if (round.closing) transcript.push({ role: '職員', text: round.closing });
+      roundCommitted = true;
+      document.getElementById('commitResponse').disabled = true;
+      Array.from(document.getElementById('responseHand').children).forEach((button) => { button.disabled = true; });
+      transcript.push({ role: '職員', ko: round.staffKo, zh: round.staffZh });
+      transcript.push({ role: '你', ko: selectedResponse.text });
+      if (round.closing) transcript.push({ role: '職員', ko: '편안한 시간 되세요.', zh: '祝您住得愉快。' });
       renderTranscript();
       if (roundIndex < rounds.length - 1) {
         roundIndex += 1;
