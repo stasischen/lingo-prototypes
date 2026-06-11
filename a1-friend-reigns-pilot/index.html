@@ -184,8 +184,8 @@
       </section>
       <section class="screen" data-title="一起看對話" data-friend="這段很短，但很實用。對方問有沒有預約時，你只要能接上這句就不會卡住。">
         <div class="card dialogue">
-          <div class="bubble staff"><div class="role">職員</div><div class="ko">예약하셨어요?</div><div class="zh">有預約嗎？</div></div>
-          <div class="bubble learner"><div class="role">你</div><div class="ko">네, 예약했어요.</div><div class="zh">有，我預約了。</div></div>
+          <div class="bubble staff"><div class="role">職員</div><div class="ko">예약하셨어요?</div><div class="zh">有預約嗎？</div><div class="controls"><button class="btn secondary speak" type="button" data-speak="예약하셨어요?">發音</button></div></div>
+          <div class="bubble learner"><div class="role">你</div><div class="ko">네, 예약했어요.</div><div class="zh">有，我預約了。</div><div class="controls"><button class="btn secondary speak" type="button" data-speak="네, 예약했어요.">發音</button></div></div>
         </div>
       </section>
       <section class="screen" data-title="句子聚焦" data-friend="`예약했어요` 是「我預約了」。在飯店或餐廳確認預約時，這句很常用。">
@@ -201,7 +201,7 @@
           </div><div class="feedback" id="recognitionFeedback"></div></div>
       </section>
       <section class="screen practice" data-title="階梯練習：跟讀" data-friend="現在跟著念一次。先不用完美，抓節奏就好。">
-        <div class="card"><span class="stage-pill">Shadow Reading</span><h2>跟著節奏念</h2><div class="spotlight"><div class="ko">네 / 예약했어요</div><div class="zh">有 / 我預約了</div></div><div class="controls"><button class="btn secondary" type="button" id="playNormal">原速</button><button class="btn secondary" type="button" id="playSlow">慢速</button><button class="btn ghost" type="button" id="skipMic">現在不方便說</button></div><div class="feedback show" id="shadowFeedback">手機上先當作低壓跟讀：你可以聽、念，或直接跳到跟打。</div></div>
+        <div class="card"><span class="stage-pill">Shadow Reading</span><h2>跟著節奏念</h2><div class="spotlight"><div class="ko">네 / 예약했어요</div><div class="zh">有 / 我預約了</div></div><div class="controls"><button class="btn secondary" type="button" id="playNormal">原速發音</button><button class="btn secondary" type="button" id="playSlow">慢速發音</button><button class="btn ghost" type="button" id="skipMic">現在不方便說</button></div><div class="feedback show" id="shadowFeedback">手機上先當作低壓跟讀：你可以聽、念，或直接跳到跟打。</div></div>
       </section>
       <section class="screen practice" data-title="階梯練習：跟打" data-friend="照著打一遍。這不是考你記憶，只是讓手也熟一下。">
         <div class="card"><span class="stage-pill">Copy Typing</span><h2>照著打一遍</h2><div class="spotlight"><div class="ko">네, 예약했어요.</div></div><input class="typebox" id="copyInput" autocomplete="off" placeholder="在這裡輸入 네, 예약했어요."><div class="controls"><button class="btn" type="button" id="checkCopy">檢查</button><button class="btn secondary" type="button" id="fillCopy">先幫我填</button></div><div class="feedback" id="copyFeedback"></div></div>
@@ -210,7 +210,7 @@
         <div class="card"><span class="stage-pill">Self Typing</span><h2>只看中文，自己打出來</h2><div class="spotlight"><div class="zh">有，我預約了。</div></div><input class="typebox" id="selfInput" autocomplete="off" placeholder="輸入韓文回答"><div class="controls"><button class="btn" type="button" id="checkSelf">送出</button><button class="btn secondary" type="button" id="stepDown">退回跟打</button></div><div class="feedback" id="selfFeedback"></div></div>
       </section>
       <section class="screen reigns" data-title="Reigns 情境挑戰" data-friend="現在把剛剛那句拿去情境裡用。選一張回應牌，放進出牌區。">
-        <div class="reigns-board"><div class="hud"><div class="stat">confidence<b id="confidence">2</b></div><div class="stat">relationship<b id="relationship">2</b></div></div><div class="event-card"><div class="event-label">Event Card</div><div>你到飯店櫃台，想確認自己的訂房。</div><div class="npc"><div class="role">hotel staff</div><div class="ko">예약하셨어요?</div><div class="zh">有預約嗎？</div></div></div><div class="play-slot" id="playSlot">選一張 response card</div><div class="hand"><button class="choice reigns-choice" data-good="true" data-card="네, 예약했어요." data-outcome="櫃台人員開始查你的名字。Friend: 對，這句剛好回答了「有沒有預約」。">네, 예약했어요.</button><button class="choice reigns-choice" data-card="호텔을 좋아해요." data-outcome="櫃台人員還是不知道你有沒有預約。Friend: 這句是「我喜歡飯店」，不是現在要回答的事。">호텔을 좋아해요.</button><button class="choice reigns-choice" data-card="아니요, 괜찮아요." data-outcome="櫃台人員停了一下，像是在等你補充。Friend: `괜찮아요` 是「沒關係」，這裡對方要的是預約資訊。">아니요, 괜찮아요.</button></div><div class="controls"><button class="btn" type="button" id="playCard">出牌</button><button class="btn secondary" type="button" id="hintCard">提示</button></div><div class="feedback" id="reignsFeedback"></div></div>
+        <div class="reigns-board"><div class="hud"><div class="stat">confidence<b id="confidence">2</b></div><div class="stat">relationship<b id="relationship">2</b></div></div><div class="event-card"><div class="event-label">Event Card</div><div>你到飯店櫃台，想確認自己的訂房。</div><div class="npc"><div class="role">hotel staff</div><div class="ko">예약하셨어요?</div><div class="zh">有預約嗎？</div><div class="controls"><button class="btn secondary speak" type="button" data-speak="예약하셨어요?">發音</button></div></div></div><div class="play-slot" id="playSlot">選一張 response card</div><div class="hand"><button class="choice reigns-choice" data-good="true" data-card="네, 예약했어요." data-outcome="櫃台人員開始查你的名字。Friend: 對，這句剛好回答了「有沒有預約」。">네, 예약했어요.</button><button class="choice reigns-choice" data-card="호텔을 좋아해요." data-outcome="櫃台人員還是不知道你有沒有預約。Friend: 這句是「我喜歡飯店」，不是現在要回答的事。">호텔을 좋아해요.</button><button class="choice reigns-choice" data-card="아니요, 괜찮아요." data-outcome="櫃台人員停了一下，像是在等你補充。Friend: `괜찮아요` 是「沒關係」，這裡對方要的是預約資訊。">아니요, 괜찮아요.</button></div><div class="controls"><button class="btn" type="button" id="playCard">出牌</button><button class="btn secondary" type="button" id="hintCard">提示</button></div><div class="feedback" id="reignsFeedback"></div></div>
       </section>
       <section class="screen" data-title="Wrap" data-friend="這次你練了飯店櫃台最常見的一個回合：對方問有沒有預約，你能回答「有，我預約了」。">
         <div class="card"><h2>你今天練了</h2><div class="wrap-list"><div class="wrap-item"><b>예약하셨어요?</b><div class="meta">有預約嗎？</div></div><div class="wrap-item"><b>네, 예약했어요.</b><div class="meta">有，我預約了。</div></div><div class="wrap-item"><b>예약하다</b><div class="meta">預約／預訂</div></div></div><div class="controls"><button class="btn secondary" type="button" id="restart">再看一次</button></div></div>
@@ -227,6 +227,21 @@
     let index = 0;
     let selectedReigns = null;
     function normalize(text) { return text.normalize('NFC').replace(/[.,!?，。！？\s]/g, '').trim(); }
+    function speakKo(text, rate = 0.88) {
+      if (!('speechSynthesis' in window)) {
+        alert('這個瀏覽器不支援內建發音。');
+        return;
+      }
+      window.speechSynthesis.cancel();
+      const utterance = new SpeechSynthesisUtterance(text);
+      utterance.lang = 'ko-KR';
+      utterance.rate = rate;
+      utterance.pitch = 1;
+      const voices = window.speechSynthesis.getVoices();
+      const koVoice = voices.find((voice) => voice.lang && voice.lang.toLowerCase().startsWith('ko'));
+      if (koVoice) utterance.voice = koVoice;
+      window.speechSynthesis.speak(utterance);
+    }
     function show(i) {
       index = Math.max(0, Math.min(i, screens.length - 1));
       screens.forEach((screen, idx) => screen.classList.toggle('active', idx === index));
@@ -238,6 +253,9 @@
       window.scrollTo({ top: 0, behavior: 'smooth' });
     }
     nextBtn.addEventListener('click', () => show(index === screens.length - 1 ? 0 : index + 1));
+    document.querySelectorAll('.speak').forEach((button) => {
+      button.addEventListener('click', () => speakKo(button.dataset.speak || button.textContent));
+    });
     document.querySelectorAll('[data-choice-group="recognition"] .choice').forEach((button) => {
       button.addEventListener('click', () => {
         document.querySelectorAll('[data-choice-group="recognition"] .choice').forEach((b) => b.classList.remove('selected', 'good', 'warn'));
@@ -247,8 +265,8 @@
         feedback.classList.add('show');
       });
     });
-    document.getElementById('playNormal').addEventListener('click', () => { document.getElementById('shadowFeedback').textContent = '播放原速：네, 예약했어요. 先聽一次，再跟著念。'; });
-    document.getElementById('playSlow').addEventListener('click', () => { document.getElementById('shadowFeedback').textContent = '慢速分段：네 / 예약했어요。這裡先抓節奏，不追求完美。'; });
+    document.getElementById('playNormal').addEventListener('click', () => { speakKo('네, 예약했어요.', 0.92); document.getElementById('shadowFeedback').textContent = '播放原速：네, 예약했어요. 先聽一次，再跟著念。'; });
+    document.getElementById('playSlow').addEventListener('click', () => { speakKo('네. 예약했어요.', 0.68); document.getElementById('shadowFeedback').textContent = '慢速分段：네 / 예약했어요。這裡先抓節奏，不追求完美。'; });
     document.getElementById('skipMic').addEventListener('click', () => { document.getElementById('shadowFeedback').textContent = '可以，現在不方便說就走跟打。這不是退步，是換一種練法。'; });
     document.getElementById('fillCopy').addEventListener('click', () => { document.getElementById('copyInput').value = '네, 예약했어요.'; });
     document.getElementById('checkCopy').addEventListener('click', () => {
