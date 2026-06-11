@@ -192,9 +192,9 @@
             </div>
           </div>
           <div class="hand">
-            <button class="choice opening-choice" data-good="true" data-feedback="對，這就是這次要練到能自然用出來的回答。">네, 예약했어요.</button>
-            <button class="choice opening-choice" data-feedback="這句韓文沒錯，但意思是「我喜歡飯店」。等一下我們會練怎麼回答預約。">호텔을 좋아해요.</button>
-            <button class="choice opening-choice" data-feedback="這句是「沒關係」。在這個場景裡，對方需要知道你有沒有預約。">아니요, 괜찮아요.</button>
+            <button class="choice opening-choice" data-speak="네, 예약했어요." data-good="true" data-feedback="對，這就是這次要練到能自然用出來的回答。">네, 예약했어요.</button>
+            <button class="choice opening-choice" data-speak="호텔을 좋아해요." data-feedback="這句韓文沒錯，但意思是「我喜歡飯店」。等一下我們會練怎麼回答預約。">호텔을 좋아해요.</button>
+            <button class="choice opening-choice" data-speak="아니요, 괜찮아요." data-feedback="這句是「沒關係」。在這個場景裡，對方需要知道你有沒有預約。">아니요, 괜찮아요.</button>
           </div>
           <div class="feedback" id="openingFeedback"></div>
         </div>
@@ -278,6 +278,7 @@
       button.addEventListener('click', () => {
         document.querySelectorAll('.opening-choice').forEach((b) => b.classList.remove('selected', 'good', 'warn'));
         button.classList.add('selected', button.dataset.good ? 'good' : 'warn');
+        speakKo(button.dataset.speak || button.textContent);
         const feedback = document.getElementById('openingFeedback');
         feedback.textContent = button.dataset.feedback;
         feedback.classList.add('show');
