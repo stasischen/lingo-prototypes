@@ -60,7 +60,7 @@
       font-weight: 800;
     }
     h1 { margin: 4px 0 0; font-size: 20px; letter-spacing: 0; line-height: 1.2; }
-    .progress { display: grid; grid-template-columns: repeat(10, 1fr); gap: 4px; margin-top: 12px; }
+    .progress { display: grid; grid-template-columns: repeat(8, 1fr); gap: 4px; margin-top: 12px; }
     .dot { height: 5px; border-radius: 999px; background: #ddd3c6; }
     .dot.active, .dot.done { background: var(--friend); }
     main { flex: 1; padding: 18px 18px 132px; display: flex; flex-direction: column; gap: 14px; }
@@ -184,7 +184,6 @@
       <div class="progress" aria-label="flow progress">
         <div class="dot active"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div>
         <div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div>
-        <div class="dot"></div><div class="dot"></div>
       </div>
     </header>
     <main>
@@ -256,14 +255,8 @@
             <button class="choice" data-feedback="`괜찮아요` 是「沒關係」。這裡對方要的是預約資訊。">아니요, 괜찮아요.</button>
           </div><div class="feedback" id="recognitionFeedback"></div></div>
       </section>
-      <section class="screen practice" data-title="跟著念" data-friend="現在跟著念一次。先不用完美，抓節奏就好。">
-        <div class="card"><span class="stage-pill">跟著念</span><h2>跟著節奏念</h2><div class="spotlight"><div class="ko">네 / 예약했어요</div><div class="zh">有 / 我預約了</div></div><div class="controls"><button class="btn secondary" type="button" id="playNormal">原速發音</button><button class="btn secondary" type="button" id="playSlow">慢速發音</button><button class="btn ghost" type="button" id="skipMic">現在不方便說</button></div><div class="feedback show" id="shadowFeedback">先聽一次，再小聲跟著念也可以。</div></div>
-      </section>
-      <section class="screen practice" data-title="照著打" data-friend="照著打一遍，讓手也記一下這句長什麼樣子。">
-        <div class="card"><span class="stage-pill">照著打</span><h2>照著打一遍</h2><div class="spotlight"><div class="ko">네, 예약했어요.</div></div><input class="typebox" id="copyInput" autocomplete="off" placeholder="在這裡輸入 네, 예약했어요."><div class="controls"><button class="btn" type="button" id="checkCopy">檢查</button><button class="btn secondary" type="button" id="fillCopy">先幫我填</button></div><div class="feedback" id="copyFeedback"></div></div>
-      </section>
-      <section class="screen practice" data-title="自己來" data-friend="這次只看中文。想不起來也沒關係，回去看一眼再來就好。">
-        <div class="card"><span class="stage-pill">自己來</span><h2>只看中文，自己打出來</h2><div class="spotlight"><div class="zh">有，我預約了。</div></div><input class="typebox" id="selfInput" autocomplete="off" placeholder="輸入韓文回答"><div class="controls"><button class="btn" type="button" id="checkSelf">送出</button><button class="btn secondary" type="button" id="stepDown">回去看一眼</button></div><div class="feedback" id="selfFeedback"></div></div>
+      <section class="screen practice" data-title="要不要加練" data-friend="你已經選得出來了。想多熟一點，可以跟著念或照著打；不想加練也可以直接去櫃台試。">
+        <div class="card"><span class="stage-pill">加練選項</span><h2>想用哪種方式多碰一次？</h2><div class="spotlight"><div class="ko">네, 예약했어요.</div><div class="zh">有，我有預約。</div></div><div class="controls"><button class="btn secondary" type="button" id="playNormal">聽一次</button><button class="btn secondary" type="button" id="playSlow">慢一點</button><button class="btn ghost" type="button" id="skipMic">跳過加練</button></div><input class="typebox" id="copyInput" autocomplete="off" placeholder="想打字再打，不打也可以"><div class="controls"><button class="btn secondary" type="button" id="checkCopy">檢查打字</button><button class="btn ghost" type="button" id="fillCopy">填入這句</button></div><div class="feedback show" id="practiceOptionsFeedback">A0 可以只聽和選；跟讀、打字都是加練。</div></div>
       </section>
       <section class="screen reigns" data-title="再回到櫃台" data-friend="好，回到櫃台。這次我不先提醒你，憑剛剛練的選一張。">
       <div class="reigns-board"><div class="hud"><div class="stat">confidence<b id="confidence">2</b></div><div class="stat">relationship<b id="relationship">2</b></div></div><div class="event-card"><div class="event-label">再回到櫃台</div><div>你回到飯店櫃台，這次要自己接第一句。</div><div class="npc"><div class="role">hotel staff</div><div class="ko">예약하셨나요?</div><div class="zh">請問有預約嗎？</div><div class="controls"><button class="btn secondary speak" type="button" data-speak="예약하셨나요?">發音</button></div></div><div class="mini-thread followup" id="followupDialogue"><div class="mini-turn"><b>staff</b>성함이 어떻게 되세요? / 請問姓名是？</div><div class="mini-turn"><b>you</b>왕리로 예약했어요. / 我是用王立預約的。</div><div class="mini-turn"><b>staff</b>네, 확인했습니다. / 好的，確認到了。</div><div class="mini-turn"><b>staff</b>2박 맞으세요? / 是兩晚沒錯嗎？</div><div class="mini-turn"><b>you</b>네, 맞아요. / 對，沒錯。</div><div class="mini-turn"><b>staff</b>여기 객실 키입니다. / 這是您的房卡。</div><div class="mini-turn"><b>staff</b>엘리베이터는 오른쪽에 있습니다. / 電梯在右邊。</div><div class="mini-turn"><b>staff</b>편안한 시간 되세요. / 祝您住得愉快。</div></div></div><div class="play-slot" id="playSlot">選一張回應卡</div><div class="hand"><button class="choice reigns-choice" data-good="true" data-card="네, 예약했어요." data-outcome="可以。對方講得比較完整，你用短短一句也接得上。">네, 예약했어요.</button><button class="choice reigns-choice" data-card="호텔을 좋아해요." data-outcome="差一點。這句是「我喜歡飯店」，櫃台還是不知道你有沒有預約。我們回去抓一下有 `예약` 的那句。">호텔을 좋아해요.</button><button class="choice reigns-choice" data-card="아니요, 괜찮아요." data-outcome="差一點。`괜찮아요` 是「沒關係」，這裡要先說有沒有預約。我們回去看一眼再來。">아니요, 괜찮아요.</button></div><div class="controls"><button class="btn" type="button" id="playCard">出牌</button><button class="btn secondary" type="button" id="finalStepDown">回去看一眼</button></div><div class="feedback" id="reignsFeedback"></div></div>
@@ -331,23 +324,16 @@
         feedback.classList.add('show');
       });
     });
-    document.getElementById('playNormal').addEventListener('click', () => { speakKo('네, 예약했어요.', 0.92); document.getElementById('shadowFeedback').textContent = '播放原速：네, 예약했어요. 先聽一次，再跟著念。'; });
-    document.getElementById('playSlow').addEventListener('click', () => { speakKo('네. 예약했어요.', 0.68); document.getElementById('shadowFeedback').textContent = '慢速分段：네 / 예약했어요。這裡先抓節奏，不追求完美。'; });
-    document.getElementById('skipMic').addEventListener('click', () => { document.getElementById('shadowFeedback').textContent = '可以，現在不方便說就走跟打。這不是退步，是換一種練法。'; });
+    document.getElementById('playNormal').addEventListener('click', () => { speakKo('네, 예약했어요.', 0.92); document.getElementById('practiceOptionsFeedback').textContent = '聽一次就好也可以。這句在櫃台很夠用了。'; });
+    document.getElementById('playSlow').addEventListener('click', () => { speakKo('네. 예약했어요.', 0.68); document.getElementById('practiceOptionsFeedback').textContent = '慢速分段：네 / 예약했어요。想跟著念就念，不用念得很完美。'; });
+    document.getElementById('skipMic').addEventListener('click', () => { document.getElementById('practiceOptionsFeedback').textContent = '可以，這次就不加練。直接去櫃台試試看。'; });
     document.getElementById('fillCopy').addEventListener('click', () => { document.getElementById('copyInput').value = '네, 예약했어요.'; });
     document.getElementById('checkCopy').addEventListener('click', () => {
       const value = normalize(document.getElementById('copyInput').value);
       const feedback = document.getElementById('copyFeedback');
-      feedback.textContent = value === normalize('네, 예약했어요.') ? '對。手也熟了，等一下只看中文試一次。' : value.includes('예약했') ? '很接近。檢查看看有沒有少 `네` 或禮貌結尾 `요`。' : '這句還沒黏住沒關係。先照著目標句修一次。';
+      feedback.textContent = value === normalize('네, 예약했어요.') ? '對。打字也熟了。' : value.includes('예약했') ? '很接近。檢查看看有沒有少 `네` 或禮貌結尾 `요`。' : '沒關係，打字只是加練。想跳過也可以。';
       feedback.classList.add('show');
     });
-    document.getElementById('checkSelf').addEventListener('click', () => {
-      const value = normalize(document.getElementById('selfInput').value);
-      const feedback = document.getElementById('selfFeedback');
-      feedback.textContent = value === normalize('네, 예약했어요.') ? '對。你已經能自己產出這句了。' : value === normalize('예약했어요.') ? '句子本身可以。這裡加 `네` 比較像自然回答對方。' : '先不用硬背。我們可以退回跟打，讓手再熟一次。';
-      feedback.classList.add('show');
-    });
-    document.getElementById('stepDown').addEventListener('click', () => show(6));
     document.querySelectorAll('.reigns-choice').forEach((button) => {
       button.addEventListener('click', () => {
         document.querySelectorAll('.reigns-choice').forEach((b) => b.classList.remove('selected', 'good', 'warn'));
