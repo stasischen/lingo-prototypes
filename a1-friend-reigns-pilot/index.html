@@ -177,6 +177,7 @@
     .friend-bar .avatar { width: 34px; height: 34px; font-size: 13px; }
     .bar-text { font-size: 14px; line-height: 1.35; color: var(--ink); }
     .next { min-width: 58px; height: 40px; border-radius: 8px; background: var(--friend); color: white; font-weight: 850; }
+    .next:disabled { opacity: .45; cursor: not-allowed; }
   </style>
 </head>
 <body>
@@ -235,6 +236,7 @@
     let index = 0;
     let roundIndex = 0;
     let selectedResponse = null;
+    let dialogueComplete = false;
     const rounds = [
       {
         staffKo: '어서 오세요. 예약하셨나요?',
@@ -327,6 +329,7 @@
         hand.appendChild(button);
       });
       renderTranscript();
+      updateNextButton();
     }
     function renderTranscript() {
       const list = document.getElementById('transcriptList');
@@ -335,8 +338,19 @@
     }
     function resetDialogue() {
       roundIndex = 0;
+      dialogueComplete = false;
       transcript.length = 0;
       renderDialogueRound();
+    }
+    function updateNextButton() {
+      const onDialogue = screens[index] && screens[index].dataset.title === '櫃台對話';
+      if (onDialogue && !dialogueComplete) {
+        nextBtn.disabled = true;
+        nextBtn.textContent = '對話中';
+        return;
+      }
+      nextBtn.disabled = false;
+      nextBtn.textContent = index === screens.length - 1 ? '重來' : (onDialogue ? '看公式' : '繼續');
     }
     function show(i) {
       index = Math.max(0, Math.min(i, screens.length - 1));
@@ -345,11 +359,12 @@
       const screen = screens[index];
       title.textContent = screen.dataset.title || 'A1 Friend Pilot';
       friendText.textContent = screen.dataset.friend || '';
-      nextBtn.textContent = index === screens.length - 1 ? '重來' : '繼續';
-      if (screen.dataset.title === '櫃台對話') renderDialogueRound();
+      if (screen.dataset.title === '櫃台對話' && transcript.length === 0 && !dialogueComplete) renderDialogueRound();
+      updateNextButton();
       window.scrollTo({ top: 0, behavior: 'smooth' });
     }
     nextBtn.addEventListener('click', () => {
+      if (nextBtn.disabled) return;
       if (index === screens.length - 1) {
         resetDialogue();
         show(0);
@@ -380,7 +395,10 @@
         roundIndex += 1;
         window.setTimeout(renderDialogueRound, 650);
       } else {
+        dialogueComplete = true;
         feedback.textContent = '這段 check-in 走完了。等一下看一個小公式。';
+        friendText.textContent = '這段櫃台對話走完了。按繼續看剛剛的 `2박`。';
+        updateNextButton();
       }
     });
     document.getElementById('restartDialogue').addEventListener('click', () => { resetDialogue(); show(0); });
