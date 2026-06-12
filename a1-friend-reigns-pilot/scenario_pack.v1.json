@@ -74,6 +74,7 @@
             "speak": "왕리로 예약했어요.",
             "learning_role": "production_target",
             "name_slot": "fixed_sample",
+            "feedback_mode": "quiet",
             "feedback": "名字＋예약했어요，櫃台最常用的講法。"
           },
           {
@@ -125,6 +126,7 @@
             "translation": "對，沒錯。",
             "speak": "네, 맞아요.",
             "learning_role": "production_target",
+            "feedback_mode": "quiet",
             "feedback": "네, 맞아요，兩個詞搞定。"
           },
           {

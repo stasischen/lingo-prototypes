@@ -332,6 +332,7 @@
             <div class="chat-tools">
               <button class="toggle" type="button" id="translationToggle" aria-pressed="false">翻譯</button>
               <button class="toggle" type="button" id="hintToggle" aria-pressed="false">提示</button>
+              <button class="toggle active" type="button" id="audioToggle" aria-pressed="true">聲音</button>
               <span id="roundProgress">1 / 4</span>
             </div>
           </div>
@@ -359,6 +360,9 @@
     let dialogueComplete = false;
     let showTranslations = false;
     let showHints = false;
+    let autoSpeakStaff = true;
+    let audioUnlocked = false;
+    let pendingStaffSpeak = null;
     let visibleChoices = [];
     let scenarioPack = null;
     let rounds = [];
@@ -385,6 +389,7 @@
             speak: choice.speak || choice.surface,
             good: choice.id === correctId,
             feedback: choice.feedback,
+            feedbackMode: choice.feedback_mode || 'normal',
             learningRole: choice.learning_role || null,
             contrastType: choice.contrast_type || null
           })),
@@ -404,10 +409,10 @@
       }
       return shuffled;
     }
-    function speakKo(text, rate = 0.88) {
+    function speakKo(text, rate = 0.88, options = {}) {
       if (!('speechSynthesis' in window)) {
-        alert('這個瀏覽器不支援內建發音。');
-        return;
+        if (!options.silent) alert('這個瀏覽器不支援內建發音。');
+        return false;
       }
       window.speechSynthesis.cancel();
       const utterance = new SpeechSynthesisUtterance(text);
@@ -418,14 +423,34 @@
       const koVoice = voices.find((voice) => voice.lang && voice.lang.toLowerCase().startsWith('ko'));
       if (koVoice) utterance.voice = koVoice;
       window.speechSynthesis.speak(utterance);
+      return true;
+    }
+    function unlockAudio() {
+      audioUnlocked = true;
+      if (autoSpeakStaff && pendingStaffSpeak) {
+        speakKo(pendingStaffSpeak, 0.88, { silent: true });
+        pendingStaffSpeak = null;
+      }
+    }
+    function autoPlayStaff(text) {
+      if (!autoSpeakStaff || !text) return;
+      pendingStaffSpeak = text;
+      if (audioUnlocked) {
+        speakKo(text, 0.88, { silent: true });
+        pendingStaffSpeak = null;
+      } else {
+        friendText.textContent = '點「聲音」或任一處，就能聽職員念出來。';
+      }
     }
     function renderDialogueRound() {
       const round = rounds[roundIndex];
       selectedResponse = null;
       roundCommitted = false;
       document.getElementById('roundProgress').textContent = `${roundIndex + 1} / ${rounds.length}`;
+      let addedStaff = false;
       if (!transcript.some((turn) => turn.round === roundIndex && turn.role === '職員')) {
         transcript.push({ round: roundIndex, role: '職員', ko: round.staffKo, zh: round.staffZh, speak: round.staffSpeak || round.staffKo });
+        addedStaff = true;
         if (round.inlineExplain) {
           transcript.push({
             round: roundIndex,
@@ -447,6 +472,7 @@
       renderChoices();
       renderTranscript();
       updateNextButton();
+      if (addedStaff) autoPlayStaff(round.staffSpeak || round.staffKo);
     }
     function renderChoices() {
       const hand = document.getElementById('responseHand');
@@ -461,6 +487,7 @@
           Array.from(hand.children).forEach((child) => child.classList.remove('selected', 'good', 'warn'));
           button.classList.add('selected', choice.good ? 'good' : 'warn');
           selectedResponse = choice;
+          unlockAudio();
           speakKo(choice.speak || choice.text);
           sendSelectedReply();
         });
@@ -528,11 +555,15 @@
       }
     });
     document.querySelectorAll('.speak').forEach((button) => {
-      button.addEventListener('click', () => speakKo(button.dataset.speak || button.textContent));
+      button.addEventListener('click', () => {
+        unlockAudio();
+        speakKo(button.dataset.speak || button.textContent);
+      });
     });
     document.getElementById('transcriptList').addEventListener('click', (event) => {
       const button = event.target.closest('.speak-link, .formula-chip');
       if (!button) return;
+      unlockAudio();
       speakKo(button.dataset.speak || button.textContent);
     });
     function updateToggle(button, active) {
@@ -559,6 +590,21 @@
     document.getElementById('hintToggle').addEventListener('click', () => {
       setHints(!showHints);
     });
+    document.getElementById('audioToggle').addEventListener('click', () => {
+      if (!audioUnlocked) {
+        unlockAudio();
+        updateToggle(document.getElementById('audioToggle'), autoSpeakStaff);
+        return;
+      }
+      autoSpeakStaff = !autoSpeakStaff;
+      updateToggle(document.getElementById('audioToggle'), autoSpeakStaff);
+      if (autoSpeakStaff && pendingStaffSpeak) {
+        speakKo(pendingStaffSpeak, 0.88, { silent: true });
+        pendingStaffSpeak = null;
+      } else if (!autoSpeakStaff) {
+        pendingStaffSpeak = null;
+      }
+    });
     function sendSelectedReply() {
       const feedback = document.getElementById('dialogueFeedback');
       if (roundCommitted) return;
@@ -567,8 +613,13 @@
         feedback.classList.add('show');
         return;
       }
-      feedback.textContent = selectedResponse.feedback;
-      feedback.classList.add('show');
+      if (selectedResponse.good && selectedResponse.feedbackMode === 'quiet') {
+        feedback.textContent = '';
+        feedback.classList.remove('show');
+      } else {
+        feedback.textContent = selectedResponse.feedback;
+        feedback.classList.add('show');
+      }
       if (!selectedResponse.good) {
         missesByRound[roundIndex] += 1;
         if (missesByRound[roundIndex] >= 2) setHints(true);
@@ -579,7 +630,7 @@
       roundCommitted = true;
       Array.from(document.getElementById('responseHand').children).forEach((button) => { button.disabled = true; });
       transcript.push({ round: roundIndex, role: '你', ko: selectedResponse.text, zh: selectedResponse.zh, speak: selectedResponse.speak || selectedResponse.text });
-      transcript.push({ round: roundIndex, role: 'Friend', ko: selectedResponse.feedback });
+      if (selectedResponse.feedbackMode !== 'quiet') transcript.push({ round: roundIndex, role: 'Friend', ko: selectedResponse.feedback });
       if (round.closing) transcript.push({ round: roundIndex, role: '職員', ko: round.closing.ko, zh: round.closing.zh, speak: round.closing.speak });
       renderTranscript();
       if (roundIndex < rounds.length - 1) {
