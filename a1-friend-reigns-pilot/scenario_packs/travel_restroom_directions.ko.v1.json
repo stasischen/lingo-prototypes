@@ -1,0 +1,171 @@
+{
+  "schema_version": "scenario_pack.v1",
+  "scenario_id": "travel_restroom_directions",
+  "title": "問洗手間情境",
+  "setting_label": "店內問路",
+  "wrap_title": "今天這段問路對話",
+  "wrap_friend": "你剛剛問到洗手間位置。能先開口問，再聽懂大方向，就能在店裡找到路。",
+  "language": "ko",
+  "ui_language": "zh_tw",
+  "source_status": "pilot_authored_ai_review_pending",
+  "review_state": "draft",
+  "production_mode_default": {
+    "required": ["choice"],
+    "optional_visible": ["speaking"],
+    "optional_hidden": ["typing"]
+  },
+  "support_text": "你在店裡想找洗手間。先問一句，再聽對方指方向。",
+  "roles": {
+    "npc": { "label": "店員" },
+    "learner": { "label": "你" }
+  },
+  "turns": [
+    {
+      "turn_id": "t1",
+      "speaker": "npc",
+      "act": "greeting",
+      "act_slots": { "topic": "服務開場" },
+      "learning_role": "context_support",
+      "surface": "네, 무엇을 도와드릴까요?",
+      "speak": "네, 무엇을 도와드릴까요?",
+      "translation": "您好，需要幫忙嗎？",
+      "friend": {
+        "hint": "他在問你需要什麼。直接問洗手間在哪裡就可以。"
+      },
+      "reply_set": {
+        "correct": "r1a",
+        "choices": [
+          {
+            "id": "r1a",
+            "surface": "화장실이 어디예요?",
+            "translation": "洗手間在哪裡？",
+            "speak": "화장실이 어디예요?",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r1b",
+            "surface": "아이스 아메리카노 주세요.",
+            "translation": "請給我冰美式。",
+            "speak": "아이스 아메리카노 주세요.",
+            "contrast_type": "wrong_scenario_request",
+            "feedback": "這句是在點咖啡。你現在要問洗手間。"
+          },
+          {
+            "id": "r1c",
+            "surface": "괜찮아요.",
+            "translation": "不用了。",
+            "speak": "괜찮아요.",
+            "contrast_type": "wrong_act_refusal",
+            "feedback": "괜찮아요 像是在說不需要幫忙。要找洗手間時，直接問在哪裡。"
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t2",
+      "speaker": "npc",
+      "act": "direction_instruction",
+      "act_slots": { "topic": "右邊", "keyword": "오른쪽", "gloss": "右邊" },
+      "learning_role": "listen_only",
+      "surface": "저쪽으로 쭉 가시면 오른쪽에 있어요.",
+      "speak": "저쪽으로 쭉 가시면 오른쪽에 있어요.",
+      "translation": "往那邊一直走，在右邊。",
+      "friend": {
+        "hint": "쭉 가세요 是一直走，오른쪽 是右邊。先抓方向就好。"
+      },
+      "inline_explain": {
+        "pattern_id": "ko.directions.left.right.v1",
+        "formula_ref": null,
+        "title": "왼쪽 / 오른쪽 = 左邊 / 右邊",
+        "explain": "왼쪽 是左邊，오른쪽 是右邊。",
+        "items": [
+          { "surface": "왼쪽", "translation": "左邊", "speak": "왼쪽" },
+          { "surface": "오른쪽", "translation": "右邊", "speak": "오른쪽" }
+        ]
+      },
+      "reply_set": {
+        "correct": "r2a",
+        "choices": [
+          {
+            "id": "r2a",
+            "surface": "오른쪽이요?",
+            "translation": "右邊嗎？",
+            "speak": "오른쪽이요?",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r2b",
+            "surface": "아이스 아메리카노 주세요.",
+            "translation": "請給我冰美式。",
+            "speak": "아이스 아메리카노 주세요.",
+            "contrast_type": "wrong_scenario_request",
+            "feedback": "他剛剛在指路，不是在問你要點什麼。"
+          },
+          {
+            "id": "r2c",
+            "surface": "네, 예약했어요.",
+            "translation": "有，我有預約。",
+            "speak": "네, 예약했어요.",
+            "contrast_type": "wrong_scenario_response",
+            "feedback": "這句是飯店入住會用到的。這裡在確認方向。"
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t3",
+      "speaker": "npc",
+      "act": "confirmation",
+      "act_slots": { "topic": "方向確認", "keyword": "맞아요", "gloss": "沒錯" },
+      "learning_role": "listen_only",
+      "surface": "네, 오른쪽에 있습니다.",
+      "speak": "네, 오른쪽에 있습니다.",
+      "translation": "對，在右邊。",
+      "friend": {
+        "hint": "他確認是右邊。這時候道謝就好。"
+      },
+      "reply_set": {
+        "correct": "r3a",
+        "choices": [
+          {
+            "id": "r3a",
+            "surface": "감사합니다.",
+            "translation": "謝謝。",
+            "speak": "감사합니다.",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r3b",
+            "surface": "오른쪽이요?",
+            "translation": "右邊嗎？",
+            "speak": "오른쪽이요?",
+            "contrast_type": "repeated_prior_answer",
+            "feedback": "他已經又確認一次了，這裡可以道謝。"
+          },
+          {
+            "id": "r3c",
+            "surface": "괜찮아요.",
+            "translation": "不用了。",
+            "speak": "괜찮아요.",
+            "contrast_type": "wrong_act_refusal",
+            "feedback": "這樣像是在拒絕幫忙。已經得到方向時，用 감사합니다。"
+          }
+        ]
+      },
+      "closing": {
+        "act": "closing",
+        "learning_role": "context_support",
+        "surface": "네, 천천히 가세요.",
+        "speak": "네, 천천히 가세요.",
+        "translation": "好的，慢慢走。"
+      }
+    }
+  ],
+  "formula_moments": [
+    { "after_turn": "t2", "pattern_id": "ko.directions.left.right.v1" }
+  ],
+  "notes": {
+    "review_policy": "AI review required before closed pilot; native review pending.",
+    "canonical_policy": "Pilot-authored derived fixture only; do not write back to canonical schema."
+  }
+}

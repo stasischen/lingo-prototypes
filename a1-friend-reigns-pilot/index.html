@@ -63,6 +63,28 @@
     .progress { display: grid; grid-template-columns: repeat(2, 1fr); gap: 4px; margin-top: 12px; }
     .dot { height: 5px; border-radius: 999px; background: #ddd3c6; }
     .dot.active, .dot.done { background: var(--friend); }
+    .scenario-tabs {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 6px;
+      margin-top: 12px;
+    }
+    .scenario-tab {
+      min-height: 34px;
+      padding: 6px 8px;
+      border-radius: 8px;
+      background: rgba(255,253,248,.9);
+      border: 1px solid var(--line);
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 850;
+      overflow-wrap: anywhere;
+    }
+    .scenario-tab.active {
+      background: var(--friend-soft);
+      border-color: #b9ddd7;
+      color: var(--friend);
+    }
     main { flex: 1; padding: 18px 18px 132px; display: flex; flex-direction: column; gap: 14px; }
     .screen { display: none; animation: rise .18s ease-out; }
     .screen.active { display: block; }
@@ -328,12 +350,13 @@
       <div class="progress" aria-label="flow progress">
         <div class="dot active"></div><div class="dot"></div>
       </div>
+      <div class="scenario-tabs" id="scenarioTabs" aria-label="scenario selector"></div>
     </header>
     <main>
       <section class="screen active" data-title="櫃台對話" data-friend="到櫃台了。聽聽看他說什麼，挑一句回他。">
         <div class="chat-shell">
           <div class="chat-status">
-            <span>飯店櫃台</span>
+            <span id="settingLabel">飯店櫃台</span>
             <div class="chat-tools">
               <button class="toggle" type="button" id="translationToggle" aria-pressed="false">翻譯</button>
               <button class="toggle" type="button" id="hintToggle" aria-pressed="false">提示</button>
@@ -346,8 +369,8 @@
           <div class="quick-replies" id="responseHand"></div>
         </div>
       </section>
-      <section class="screen" data-title="Wrap" data-friend="你剛剛走完一段飯店 check-in。能接上幾個短句，就能把流程推下去。">
-        <div class="card"><h2>今天這段櫃台對話</h2><div class="wrap-list"><div class="wrap-item"><b>예약하셨나요?</b><div class="meta">聽得懂就好 · 請問有預約嗎？</div></div><div class="wrap-item"><b>네, 예약했어요.</b><div class="meta">你會說了 · 有，我有預約。</div></div><div class="wrap-item"><b>성함이 어떻게 되세요?</b><div class="meta">聽得懂就好 · 請問姓名是？</div></div><div class="wrap-item"><b>왕리로 예약했어요.</b><div class="meta">你會說了 · 我是用王立預約的。</div></div><div class="wrap-item"><b>2박 맞으세요?</b><div class="meta">聽得懂就好 · 是兩晚沒錯嗎？</div></div><div class="wrap-item"><b>네, 맞아요.</b><div class="meta">你會說了 · 對，沒錯。</div></div><div class="wrap-item"><b>감사합니다.</b><div class="meta">你會說了 · 謝謝。</div></div></div><div class="controls"><button class="btn" type="button" id="restart">再走一次</button></div></div>
+      <section class="screen" data-title="Wrap" data-friend="你剛剛走完一段對話。">
+        <div class="card"><h2 id="wrapTitle">今天這段對話</h2><div class="wrap-list" id="wrapList"></div><div class="controls"><button class="btn" type="button" id="restart">再走一次</button></div></div>
       </section>
     </main>
     <div class="friend-bar" aria-live="polite"><div class="avatar">F</div><div class="bar-text" id="friendText">到櫃台了。聽聽看他說什麼，挑一句回他。</div><button class="next" type="button" id="nextBtn">繼續</button></div>
@@ -369,12 +392,20 @@
     let audioUnlocked = false;
     let pendingStaffSpeak = null;
     let visibleChoices = [];
+    let scenarioManifest = null;
+    let currentScenarioId = null;
     let scenarioPack = null;
     let rounds = [];
     const transcript = [];
     let missesByRound = [];
     function normalize(text) { return text.normalize('NFC').replace(/[.,!?，。！？\s]/g, '').trim(); }
-    function supportText() { return '到櫃台了。聽聽看他說什麼，挑一句回他。'; }
+    function supportText() { return scenarioPack && scenarioPack.support_text ? scenarioPack.support_text : '聽聽看對方說什麼，挑一句回他。'; }
+    function npcLabel() { return scenarioPack && scenarioPack.roles && scenarioPack.roles.npc ? scenarioPack.roles.npc.label : '對方'; }
+    function learnerLabel() { return scenarioPack && scenarioPack.roles && scenarioPack.roles.learner ? scenarioPack.roles.learner.label : '你'; }
+    function targetLangCode() {
+      const map = { ko: 'ko-KR', ja: 'ja-JP', en: 'en-US', th: 'th-TH' };
+      return map[scenarioPack && scenarioPack.language] || 'ko-KR';
+    }
     function buildRounds(pack) {
       return pack.turns.map((turn) => {
         const correctId = turn.reply_set.correct;
@@ -420,11 +451,12 @@
       }
       window.speechSynthesis.cancel();
       const utterance = new SpeechSynthesisUtterance(text);
-      utterance.lang = 'ko-KR';
+      utterance.lang = targetLangCode();
       utterance.rate = rate;
       utterance.pitch = 1;
       const voices = window.speechSynthesis.getVoices();
-      const koVoice = voices.find((voice) => voice.lang && voice.lang.toLowerCase().startsWith('ko'));
+      const targetPrefix = targetLangCode().slice(0, 2).toLowerCase();
+      const koVoice = voices.find((voice) => voice.lang && voice.lang.toLowerCase().startsWith(targetPrefix));
       if (koVoice) utterance.voice = koVoice;
       window.speechSynthesis.speak(utterance);
       return true;
@@ -452,14 +484,15 @@
       roundCommitted = false;
       document.getElementById('roundProgress').textContent = `${roundIndex + 1} / ${rounds.length}`;
       let addedStaff = false;
-      if (!transcript.some((turn) => turn.round === roundIndex && turn.role === '職員')) {
-        transcript.push({ round: roundIndex, role: '職員', ko: round.staffKo, zh: round.staffZh, speak: round.staffSpeak || round.staffKo });
+      if (!transcript.some((turn) => turn.round === roundIndex && turn.kind === 'staff')) {
+        transcript.push({ round: roundIndex, kind: 'staff', role: npcLabel(), ko: round.staffKo, zh: round.staffZh, speak: round.staffSpeak || round.staffKo });
         addedStaff = true;
         if (round.inlineExplain) {
           transcript.push({
             round: roundIndex,
+            kind: 'friend',
             role: 'Friend',
-            ko: '박 是「晚」，2박 就是兩晚。',
+            ko: round.inlineExplain.explain || round.inlineExplain.title,
             formula: round.inlineExplain
           });
         }
@@ -503,11 +536,11 @@
       const list = document.getElementById('transcriptList');
       if (!list) return;
       if (!transcript.length) {
-        list.innerHTML = '<div class="message friend"><div class="ko">你在飯店櫃台，先聽對方問什麼。</div></div>';
+        list.innerHTML = `<div class="message friend"><div class="ko">${supportText()}</div></div>`;
         return;
       }
       list.innerHTML = transcript.map((turn) => {
-        const roleClass = turn.role === '你' ? 'learner' : (turn.role === 'Friend' ? 'friend' : 'staff');
+        const roleClass = turn.kind || (turn.role === learnerLabel() ? 'learner' : (turn.role === 'Friend' ? 'friend' : 'staff'));
         const zh = showTranslations && turn.zh ? `<div class="zh">${turn.zh}</div>` : '';
         const action = turn.speak ? `<div class="message-actions"><button class="speak-link" type="button" data-speak="${turn.speak}">發音</button></div>` : '';
         const formula = turn.formula ? `<div class="formula-inline">${turn.formula.items.map((item) => `<button class="formula-chip" type="button" data-speak="${item.speak}">${item.surface}<span>${item.translation}</span></button>`).join('')}</div>` : '';
@@ -520,7 +553,7 @@
       roundIndex = 0;
       dialogueComplete = false;
       transcript.length = 0;
-      missesByRound.fill(0);
+      missesByRound = Array(rounds.length).fill(0);
       visibleChoices = [];
       document.getElementById('dialogueFeedback').dataset.keep = '';
       document.getElementById('responseHand').classList.remove('is-hidden');
@@ -541,7 +574,7 @@
       screens.forEach((screen, idx) => screen.classList.toggle('active', idx === index));
       dots.forEach((dot, idx) => { dot.classList.toggle('active', idx === index); dot.classList.toggle('done', idx < index); });
       const screen = screens[index];
-      title.textContent = screen.dataset.title || 'A1 Friend Pilot';
+      title.textContent = screen.dataset.title === 'Wrap' ? (scenarioPack && scenarioPack.title ? scenarioPack.title : 'A1 Friend Pilot') : (scenarioPack && scenarioPack.title ? scenarioPack.title : 'A1 Friend Pilot');
       if (screen.dataset.title === '櫃台對話') {
         friendText.textContent = showHints && rounds[roundIndex] ? rounds[roundIndex].hint : supportText();
       } else {
@@ -632,8 +665,8 @@
       const round = rounds[roundIndex];
       roundCommitted = true;
       Array.from(document.getElementById('responseHand').children).forEach((button) => { button.disabled = true; });
-      transcript.push({ round: roundIndex, role: '你', ko: selectedResponse.text, zh: selectedResponse.zh, speak: selectedResponse.speak || selectedResponse.text });
-      if (round.closing) transcript.push({ round: roundIndex, role: '職員', ko: round.closing.ko, zh: round.closing.zh, speak: round.closing.speak });
+      transcript.push({ round: roundIndex, kind: 'learner', role: learnerLabel(), ko: selectedResponse.text, zh: selectedResponse.zh, speak: selectedResponse.speak || selectedResponse.text });
+      if (round.closing) transcript.push({ round: roundIndex, kind: 'staff', role: npcLabel(), ko: round.closing.ko, zh: round.closing.zh, speak: round.closing.speak });
       renderTranscript();
       if (roundIndex < rounds.length - 1) {
         roundIndex += 1;
@@ -650,14 +683,73 @@
       }
     }
     document.getElementById('restart').addEventListener('click', () => { resetDialogue(); show(0); });
+    function renderWrap() {
+      const list = document.getElementById('wrapList');
+      const wrapTitle = document.getElementById('wrapTitle');
+      if (!list || !scenarioPack) return;
+      wrapTitle.textContent = scenarioPack.wrap_title || '今天這段對話';
+      screens[1].dataset.friend = scenarioPack.wrap_friend || '你剛剛走完一段對話。';
+      const seen = new Set();
+      const items = [];
+      const addItem = (surface, translation, label) => {
+        if (!surface || seen.has(surface)) return;
+        seen.add(surface);
+        items.push({ surface, translation, label });
+      };
+      scenarioPack.turns.forEach((turn) => {
+        if (turn.learning_role === 'listen_only') addItem(turn.surface, turn.translation, '聽得懂就好');
+        const correctId = turn.reply_set && turn.reply_set.correct;
+        const correctChoice = turn.reply_set && turn.reply_set.choices ? turn.reply_set.choices.find((choice) => choice.id === correctId) : null;
+        if (correctChoice && correctChoice.learning_role === 'production_target') {
+          addItem(correctChoice.surface, correctChoice.translation, '你會說了');
+        }
+        if (turn.closing && turn.closing.learning_role === 'listen_only') {
+          addItem(turn.closing.surface, turn.closing.translation, '聽得懂就好');
+        }
+      });
+      list.innerHTML = items.map((item) => `<div class="wrap-item"><b>${item.surface}</b><div class="meta">${item.label} · ${item.translation}</div></div>`).join('');
+    }
+    function renderScenarioTabs() {
+      const tabs = document.getElementById('scenarioTabs');
+      if (!tabs || !scenarioManifest) return;
+      tabs.innerHTML = scenarioManifest.scenarios.map((scenario) => `<button class="scenario-tab${scenario.scenario_id === currentScenarioId ? ' active' : ''}" type="button" data-scenario-id="${scenario.scenario_id}">${scenario.label}</button>`).join('');
+    }
+    async function loadScenario(entry) {
+      const response = await fetch(entry.path, { cache: 'no-store' });
+      if (!response.ok) throw new Error(`scenario pack load failed: ${response.status}`);
+      scenarioPack = await response.json();
+      currentScenarioId = scenarioPack.scenario_id;
+      rounds = buildRounds(scenarioPack);
+      missesByRound = Array(rounds.length).fill(0);
+      document.getElementById('settingLabel').textContent = scenarioPack.setting_label || entry.label;
+      document.querySelector('section[data-title="櫃台對話"]').dataset.friend = scenarioPack.support_text || supportText();
+      title.textContent = scenarioPack.title || entry.label;
+      renderScenarioTabs();
+      renderWrap();
+      resetDialogue();
+      show(0);
+    }
+    document.getElementById('scenarioTabs').addEventListener('click', async (event) => {
+      const button = event.target.closest('.scenario-tab');
+      if (!button || !scenarioManifest) return;
+      const entry = scenarioManifest.scenarios.find((scenario) => scenario.scenario_id === button.dataset.scenarioId);
+      if (!entry || entry.scenario_id === currentScenarioId) return;
+      try {
+        await loadScenario(entry);
+      } catch (error) {
+        friendText.textContent = '這份練習資料載入失敗，先重新整理看看。';
+        document.getElementById('dialogueFeedback').textContent = error.message;
+        document.getElementById('dialogueFeedback').classList.add('show');
+      }
+    });
     async function init() {
       try {
-        const response = await fetch('scenario_pack.v1.json', { cache: 'no-store' });
-        if (!response.ok) throw new Error(`scenario pack load failed: ${response.status}`);
-        scenarioPack = await response.json();
-        rounds = buildRounds(scenarioPack);
-        missesByRound = Array(rounds.length).fill(0);
-        show(0);
+        const manifestResponse = await fetch('scenario_manifest.v1.json', { cache: 'no-store' });
+        if (!manifestResponse.ok) throw new Error(`scenario manifest load failed: ${manifestResponse.status}`);
+        scenarioManifest = await manifestResponse.json();
+        const requestedId = new URLSearchParams(window.location.search).get('scenario') || scenarioManifest.default_scenario_id;
+        const entry = scenarioManifest.scenarios.find((scenario) => scenario.scenario_id === requestedId) || scenarioManifest.scenarios[0];
+        await loadScenario(entry);
       } catch (error) {
         friendText.textContent = '這份練習資料載入失敗，先重新整理看看。';
         const hand = document.getElementById('responseHand');

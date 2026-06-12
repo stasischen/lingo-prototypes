@@ -1,0 +1,24 @@
+{
+  "schema_version": "scenario_manifest.v1",
+  "default_scenario_id": "travel_hotel_checkin",
+  "scenarios": [
+    {
+      "scenario_id": "travel_hotel_checkin",
+      "label": "飯店入住",
+      "language": "ko",
+      "path": "scenario_pack.v1.json"
+    },
+    {
+      "scenario_id": "food_coffee_ordering",
+      "label": "咖啡點餐",
+      "language": "ko",
+      "path": "scenario_packs/food_coffee_ordering.ko.v1.json"
+    },
+    {
+      "scenario_id": "travel_restroom_directions",
+      "label": "問洗手間",
+      "language": "ko",
+      "path": "scenario_packs/travel_restroom_directions.ko.v1.json"
+    }
+  ]
+}

@@ -1,9 +1,19 @@
 {
   "schema_version": "scenario_pack.v1",
   "scenario_id": "travel_hotel_checkin",
+  "title": "飯店預約情境",
+  "setting_label": "飯店櫃台",
+  "wrap_title": "今天這段櫃台對話",
+  "wrap_friend": "你剛剛走完一段飯店 check-in。能接上幾個短句，就能把流程推下去。",
   "language": "ko",
   "ui_language": "zh_tw",
   "source_status": "pilot_authored_derived",
+  "review_state": "ai_reviewed",
+  "production_mode_default": {
+    "required": ["choice"],
+    "optional_visible": ["speaking"],
+    "optional_hidden": ["typing"]
+  },
   "support_text": "到櫃台了。聽聽看他說什麼，挑一句回他。",
   "roles": {
     "npc": { "label": "職員" },
@@ -107,7 +117,9 @@
       },
       "inline_explain": {
         "pattern_id": "ko.hotel.nights.bak.v1",
+        "formula_ref": null,
         "title": "數字 + 박 = 幾晚",
+        "explain": "박 是「晚」，2박 就是兩晚。",
         "items": [
           { "surface": "1박", "translation": "一晚", "speak": "일박" },
           { "surface": "2박", "translation": "兩晚", "speak": "이박" },

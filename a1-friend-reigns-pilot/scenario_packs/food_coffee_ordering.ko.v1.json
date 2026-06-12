@@ -1,0 +1,212 @@
+{
+  "schema_version": "scenario_pack.v1",
+  "scenario_id": "food_coffee_ordering",
+  "title": "咖啡點餐情境",
+  "setting_label": "咖啡店櫃台",
+  "wrap_title": "今天這段咖啡點餐",
+  "wrap_friend": "你剛剛走完一段咖啡點餐。能用短句點到東西，就能把流程接下去。",
+  "language": "ko",
+  "ui_language": "zh_tw",
+  "source_status": "pilot_authored_ai_review_pending",
+  "review_state": "draft",
+  "production_mode_default": {
+    "required": ["choice"],
+    "optional_visible": ["speaking"],
+    "optional_hidden": ["typing"]
+  },
+  "support_text": "你在咖啡店櫃台。聽店員問什麼，挑一句接得上的回應。",
+  "roles": {
+    "npc": { "label": "店員" },
+    "learner": { "label": "你" }
+  },
+  "turns": [
+    {
+      "turn_id": "t1",
+      "speaker": "npc",
+      "act": "request",
+      "act_slots": { "topic": "點什麼", "keyword": "주문", "gloss": "點餐" },
+      "learning_role": "listen_only",
+      "surface": "어서 오세요. 주문하시겠어요?",
+      "speak": "어서 오세요. 주문하시겠어요?",
+      "translation": "歡迎光臨。要點餐嗎？",
+      "friend": {
+        "hint": "他在問你要不要點餐。你可以直接說想要的飲料。"
+      },
+      "reply_set": {
+        "correct": "r1a",
+        "choices": [
+          {
+            "id": "r1a",
+            "surface": "아이스 아메리카노 주세요.",
+            "translation": "請給我冰美式。",
+            "speak": "아이스 아메리카노 주세요.",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r1b",
+            "surface": "화장실이 어디예요?",
+            "translation": "洗手間在哪裡？",
+            "speak": "화장실이 어디예요?",
+            "contrast_type": "wrong_scenario_request",
+            "feedback": "這句是在問洗手間。現在店員等你點飲料。"
+          },
+          {
+            "id": "r1c",
+            "surface": "괜찮아요.",
+            "translation": "不用了。",
+            "speak": "괜찮아요.",
+            "contrast_type": "wrong_act_refusal",
+            "feedback": "괜찮아요 像是在說不用點了。你要點飲料時別用這句。"
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t2",
+      "speaker": "npc",
+      "act": "choice_question",
+      "act_slots": { "topic": "外帶或內用", "keyword": "드시고 가세요", "gloss": "內用" },
+      "learning_role": "listen_only",
+      "surface": "드시고 가세요, 가져가세요?",
+      "speak": "드시고 가세요, 가져가세요?",
+      "translation": "內用還是外帶？",
+      "friend": {
+        "hint": "드시고 가세요 是內用，가져가세요 是外帶。選一個就好。"
+      },
+      "inline_explain": {
+        "pattern_id": "ko.cafe.for_here.to_go.v1",
+        "formula_ref": null,
+        "title": "드시고 가세요 / 가져가세요",
+        "explain": "드시고 가세요 是內用，가져가세요 是外帶。",
+        "items": [
+          { "surface": "드시고 가세요", "translation": "內用", "speak": "드시고 가세요" },
+          { "surface": "가져가세요", "translation": "外帶", "speak": "가져가세요" }
+        ]
+      },
+      "reply_set": {
+        "correct": "r2a",
+        "choices": [
+          {
+            "id": "r2a",
+            "surface": "가져갈게요.",
+            "translation": "我要外帶。",
+            "speak": "가져갈게요.",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r2b",
+            "surface": "아이스 아메리카노 주세요.",
+            "translation": "請給我冰美式。",
+            "speak": "아이스 아메리카노 주세요.",
+            "contrast_type": "repeated_prior_answer",
+            "feedback": "飲料已經點了。他現在是在問內用還是外帶。"
+          },
+          {
+            "id": "r2c",
+            "surface": "네, 맞아요.",
+            "translation": "對，沒錯。",
+            "speak": "네, 맞아요.",
+            "contrast_type": "wrong_act_confirmation",
+            "feedback": "這句是確認用的，但他給你兩個選項，要選內用或外帶。"
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t3",
+      "speaker": "npc",
+      "act": "confirmation",
+      "act_slots": { "topic": "訂單確認", "keyword": "맞으세요", "gloss": "沒錯嗎" },
+      "learning_role": "listen_only",
+      "surface": "아이스 아메리카노 한 잔, 포장 맞으세요?",
+      "speak": "아이스 아메리카노 한 잔, 포장 맞으세요?",
+      "translation": "一杯冰美式，外帶沒錯嗎？",
+      "friend": {
+        "hint": "他在跟你確認訂單。맞으세요 聽到時，可以用 네, 맞아요 回。"
+      },
+      "reply_set": {
+        "correct": "r3a",
+        "choices": [
+          {
+            "id": "r3a",
+            "surface": "네, 맞아요.",
+            "translation": "對，沒錯。",
+            "speak": "네, 맞아요.",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r3b",
+            "surface": "아니요, 괜찮아요.",
+            "translation": "不用了，沒關係。",
+            "speak": "아니요, 괜찮아요.",
+            "contrast_type": "wrong_act_refusal",
+            "feedback": "這樣像是在取消。訂單沒問題時，用 네, 맞아요。"
+          },
+          {
+            "id": "r3c",
+            "surface": "화장실이 어디예요?",
+            "translation": "洗手間在哪裡？",
+            "speak": "화장실이 어디예요?",
+            "contrast_type": "off_topic_statement",
+            "feedback": "先確認飲料，問洗手間是另一個場景。"
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t4",
+      "speaker": "npc",
+      "act": "payment",
+      "act_slots": { "topic": "付款", "keyword": "결제", "gloss": "付款" },
+      "learning_role": "listen_only",
+      "surface": "결제 도와드릴게요. 카드는 여기에 꽂아 주세요.",
+      "speak": "결제 도와드릴게요. 카드는 여기에 꽂아 주세요.",
+      "translation": "幫您結帳。請把卡插在這裡。",
+      "friend": {
+        "hint": "他在說要結帳，把卡放到機器上就好。"
+      },
+      "reply_set": {
+        "correct": "r4a",
+        "choices": [
+          {
+            "id": "r4a",
+            "surface": "네.",
+            "translation": "好。",
+            "speak": "네.",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r4b",
+            "surface": "가져갈게요.",
+            "translation": "我要外帶。",
+            "speak": "가져갈게요.",
+            "contrast_type": "repeated_prior_answer",
+            "feedback": "外帶剛剛講過了。現在是付款。"
+          },
+          {
+            "id": "r4c",
+            "surface": "아이스 아메리카노 주세요.",
+            "translation": "請給我冰美式。",
+            "speak": "아이스 아메리카노 주세요.",
+            "contrast_type": "repeated_prior_answer",
+            "feedback": "飲料已經點好了，現在接著付款。"
+          }
+        ]
+      },
+      "closing": {
+        "act": "handover",
+        "learning_role": "listen_only",
+        "surface": "주문하신 음료 나왔습니다.",
+        "speak": "주문하신 음료 나왔습니다.",
+        "translation": "您的飲料好了。"
+      }
+    }
+  ],
+  "formula_moments": [
+    { "after_turn": "t2", "pattern_id": "ko.cafe.for_here.to_go.v1" }
+  ],
+  "notes": {
+    "review_policy": "AI review required before closed pilot; native review pending.",
+    "canonical_policy": "Pilot-authored derived fixture only; do not write back to canonical schema."
+  }
+}
