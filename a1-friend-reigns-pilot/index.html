@@ -444,6 +444,10 @@
       }
       return shuffled;
     }
+    function estimateSpeechDelayMs(text) {
+      const length = Array.from(text || '').length;
+      return Math.min(3200, Math.max(900, length * 140));
+    }
     function speakKo(text, rate = 0.88, options = {}) {
       if (!('speechSynthesis' in window)) {
         if (!options.silent) alert('這個瀏覽器不支援內建發音。');
@@ -526,8 +530,9 @@
           button.classList.add('selected', choice.good ? 'good' : 'warn');
           selectedResponse = choice;
           unlockAudio();
-          speakKo(choice.speak || choice.text);
-          sendSelectedReply();
+          const spokenText = choice.speak || choice.text;
+          const didSpeak = speakKo(spokenText);
+          sendSelectedReply(didSpeak ? estimateSpeechDelayMs(spokenText) : 0);
         });
         hand.appendChild(button);
       });
@@ -644,7 +649,7 @@
         pendingStaffSpeak = null;
       }
     });
-    function sendSelectedReply() {
+    function sendSelectedReply(advanceDelayMs = 0) {
       const feedback = document.getElementById('dialogueFeedback');
       if (roundCommitted) return;
       if (!selectedResponse) {
@@ -670,7 +675,7 @@
       renderTranscript();
       if (roundIndex < rounds.length - 1) {
         roundIndex += 1;
-        window.setTimeout(renderDialogueRound, 650);
+        window.setTimeout(renderDialogueRound, 650 + advanceDelayMs);
       } else {
         dialogueComplete = true;
         feedback.textContent = '';
