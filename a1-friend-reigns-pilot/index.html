@@ -389,7 +389,6 @@
             speak: choice.speak || choice.surface,
             good: choice.id === correctId,
             feedback: choice.feedback,
-            feedbackMode: choice.feedback_mode || 'normal',
             learningRole: choice.learning_role || null,
             contrastType: choice.contrast_type || null
           })),
@@ -613,34 +612,30 @@
         feedback.classList.add('show');
         return;
       }
-      if (selectedResponse.good && selectedResponse.feedbackMode === 'quiet') {
-        feedback.textContent = '';
-        feedback.classList.remove('show');
-      } else {
+      if (!selectedResponse.good) {
         feedback.textContent = selectedResponse.feedback;
         feedback.classList.add('show');
-      }
-      if (!selectedResponse.good) {
         missesByRound[roundIndex] += 1;
         if (missesByRound[roundIndex] >= 2) setHints(true);
         if (missesByRound[roundIndex] >= 3) setTranslations(true);
         return;
       }
+      feedback.textContent = '';
+      feedback.classList.remove('show');
       const round = rounds[roundIndex];
       roundCommitted = true;
       Array.from(document.getElementById('responseHand').children).forEach((button) => { button.disabled = true; });
       transcript.push({ round: roundIndex, role: '你', ko: selectedResponse.text, zh: selectedResponse.zh, speak: selectedResponse.speak || selectedResponse.text });
-      if (selectedResponse.feedbackMode !== 'quiet') transcript.push({ round: roundIndex, role: 'Friend', ko: selectedResponse.feedback });
       if (round.closing) transcript.push({ round: roundIndex, role: '職員', ko: round.closing.ko, zh: round.closing.zh, speak: round.closing.speak });
       renderTranscript();
       if (roundIndex < rounds.length - 1) {
         roundIndex += 1;
-        feedback.dataset.keep = 'true';
-        window.setTimeout(renderDialogueRound, 1200);
+        window.setTimeout(renderDialogueRound, 650);
       } else {
         dialogueComplete = true;
-        feedback.textContent = '整段 check-in 都是你自己接下來的。';
-        friendText.textContent = '整段 check-in 都是你自己接下來的。';
+        feedback.textContent = '';
+        feedback.classList.remove('show');
+        friendText.textContent = '按整理看今天用到的句子。';
         document.getElementById('responseHand').innerHTML = '';
         updateNextButton();
       }

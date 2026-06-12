@@ -30,8 +30,7 @@
             "surface": "네, 예약했어요.",
             "translation": "有，我有預約。",
             "speak": "네, 예약했어요.",
-            "learning_role": "production_target",
-            "feedback": "嗯，這樣回就行，不用講長。"
+            "learning_role": "production_target"
           },
           {
             "id": "r1b",
@@ -73,9 +72,7 @@
             "translation": "我是用王立預約的。",
             "speak": "왕리로 예약했어요.",
             "learning_role": "production_target",
-            "name_slot": "fixed_sample",
-            "feedback_mode": "quiet",
-            "feedback": "名字＋예약했어요，櫃台最常用的講法。"
+            "name_slot": "fixed_sample"
           },
           {
             "id": "r2b",
@@ -125,9 +122,7 @@
             "surface": "네, 맞아요.",
             "translation": "對，沒錯。",
             "speak": "네, 맞아요.",
-            "learning_role": "production_target",
-            "feedback_mode": "quiet",
-            "feedback": "네, 맞아요，兩個詞搞定。"
+            "learning_role": "production_target"
           },
           {
             "id": "r3b",
@@ -168,8 +163,7 @@
             "surface": "감사합니다.",
             "translation": "謝謝。",
             "speak": "감사합니다.",
-            "learning_role": "production_target",
-            "feedback": "收尾漂亮。"
+            "learning_role": "production_target"
           },
           {
             "id": "r4b",
