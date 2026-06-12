@@ -1,0 +1,211 @@
+{
+  "schema_version": "scenario_pack.v1",
+  "scenario_id": "food_restaurant_ordering",
+  "title": "餐廳點餐情境",
+  "setting_label": "餐廳",
+  "wrap_title": "今天這段餐廳點餐",
+  "wrap_friend": "你剛剛從入座走到點餐確認。餐廳裡先聽人數，再用短句點一道餐，就能把流程接起來。",
+  "language": "ko",
+  "ui_language": "zh_tw",
+  "source_status": "pilot_authored_ai_review_pending",
+  "review_state": "draft",
+  "production_mode_default": {
+    "required": ["choice"],
+    "optional_visible": ["speaking"],
+    "optional_hidden": ["typing"]
+  },
+  "support_text": "你到餐廳吃飯。店員會先問幾位，再問要點什麼。",
+  "roles": {
+    "npc": { "label": "店員" },
+    "learner": { "label": "你" }
+  },
+  "turns": [
+    {
+      "turn_id": "t1",
+      "speaker": "npc",
+      "act": "info_request",
+      "act_slots": { "topic": "人數", "keyword": "몇 분", "gloss": "幾位" },
+      "learning_role": "listen_only",
+      "surface": "어서 오세요. 몇 분이세요?",
+      "speak": "어서 오세요. 몇 분이세요?",
+      "translation": "歡迎光臨。請問幾位？",
+      "friend": {
+        "hint": "몇 분이세요 是在問幾位。兩個人可以說 두 명이요。"
+      },
+      "reply_set": {
+        "correct": "r1a",
+        "choices": [
+          {
+            "id": "r1a",
+            "surface": "두 명이요.",
+            "translation": "兩位。",
+            "speak": "두 명이요.",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r1b",
+            "surface": "비빔밥 하나 주세요.",
+            "translation": "請給我一份拌飯。",
+            "speak": "비빔밥 하나 주세요.",
+            "contrast_type": "premature_order",
+            "feedback": "餐點等一下再點。他現在先問幾位。"
+          },
+          {
+            "id": "r1c",
+            "surface": "카드로 할게요.",
+            "translation": "我用卡付款。",
+            "speak": "카드로 할게요.",
+            "contrast_type": "wrong_act_payment",
+            "feedback": "付款還沒到。先回答人數。"
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t2",
+      "speaker": "npc",
+      "act": "request",
+      "act_slots": { "topic": "點餐", "keyword": "주문", "gloss": "點餐" },
+      "learning_role": "listen_only",
+      "surface": "이쪽으로 앉으세요. 주문하시겠어요?",
+      "speak": "이쪽으로 앉으세요. 주문하시겠어요?",
+      "translation": "請坐這邊。要點餐嗎？",
+      "friend": {
+        "hint": "他帶你入座後問要不要點餐。주세요 可以拿來點東西。"
+      },
+      "inline_explain": {
+        "pattern_id": "ko.restaurant.item.hana.juseyo.v1",
+        "formula_ref": null,
+        "title": "餐點 + 하나 주세요",
+        "explain": "하나 是一個/一份，주세요 是請給我。",
+        "items": [
+          { "surface": "비빔밥 하나 주세요", "translation": "請給我一份拌飯", "speak": "비빔밥 하나 주세요" },
+          { "surface": "물 하나 주세요", "translation": "請給我一杯水", "speak": "물 하나 주세요" }
+        ]
+      },
+      "reply_set": {
+        "correct": "r2a",
+        "choices": [
+          {
+            "id": "r2a",
+            "surface": "비빔밥 하나 주세요.",
+            "translation": "請給我一份拌飯。",
+            "speak": "비빔밥 하나 주세요.",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r2b",
+            "surface": "두 명이요.",
+            "translation": "兩位。",
+            "speak": "두 명이요.",
+            "contrast_type": "repeated_prior_answer",
+            "feedback": "人數剛講過了。現在可以點餐。"
+          },
+          {
+            "id": "r2c",
+            "surface": "화장실이 어디예요?",
+            "translation": "洗手間在哪裡？",
+            "speak": "화장실이 어디예요?",
+            "contrast_type": "wrong_scenario_request",
+            "feedback": "這句是在問洗手間。現在店員在等你點餐。"
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t3",
+      "speaker": "npc",
+      "act": "confirmation",
+      "act_slots": { "topic": "餐點確認", "keyword": "맞으세요", "gloss": "沒錯嗎" },
+      "learning_role": "listen_only",
+      "surface": "비빔밥 하나 맞으세요?",
+      "speak": "비빔밥 하나 맞으세요?",
+      "translation": "一份拌飯沒錯嗎？",
+      "friend": {
+        "hint": "맞으세요 是確認。沒問題時，用 네, 맞아요 接上。"
+      },
+      "reply_set": {
+        "correct": "r3a",
+        "choices": [
+          {
+            "id": "r3a",
+            "surface": "네, 맞아요.",
+            "translation": "對，沒錯。",
+            "speak": "네, 맞아요."
+          },
+          {
+            "id": "r3b",
+            "surface": "아니요, 괜찮아요.",
+            "translation": "不用了，沒關係。",
+            "speak": "아니요, 괜찮아요.",
+            "contrast_type": "wrong_act_refusal",
+            "feedback": "這樣像是在取消。餐點沒問題時，用 네, 맞아요。"
+          },
+          {
+            "id": "r3c",
+            "surface": "카드로 할게요.",
+            "translation": "我用卡付款。",
+            "speak": "카드로 할게요.",
+            "contrast_type": "wrong_act_payment",
+            "feedback": "還沒結帳。現在只是確認餐點。"
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t4",
+      "speaker": "npc",
+      "act": "info_response",
+      "act_slots": { "topic": "準備餐點" },
+      "learning_role": "context_support",
+      "surface": "네, 준비해 드릴게요.",
+      "speak": "네, 준비해 드릴게요.",
+      "translation": "好的，幫您準備。",
+      "friend": {
+        "hint": "點餐完成了，最後簡單道謝。"
+      },
+      "reply_set": {
+        "correct": "r4a",
+        "choices": [
+          {
+            "id": "r4a",
+            "surface": "감사합니다.",
+            "translation": "謝謝。",
+            "speak": "감사합니다."
+          },
+          {
+            "id": "r4b",
+            "surface": "비빔밥 하나 맞으세요?",
+            "translation": "一份拌飯沒錯嗎？",
+            "speak": "비빔밥 하나 맞으세요?",
+            "contrast_type": "wrong_speaker_role",
+            "feedback": "這是店員確認餐點的句子，不是你要回的句子。"
+          },
+          {
+            "id": "r4c",
+            "surface": "두 명이요.",
+            "translation": "兩位。",
+            "speak": "두 명이요.",
+            "contrast_type": "repeated_prior_answer",
+            "feedback": "人數已經說過了，現在收尾道謝就好。"
+          }
+        ]
+      },
+      "closing": {
+        "act": "closing",
+        "learning_role": "context_support",
+        "surface": "잠시만 기다려 주세요.",
+        "speak": "잠시만 기다려 주세요.",
+        "translation": "請稍等。"
+      }
+    }
+  ],
+  "formula_moments": [
+    { "after_turn": "t2", "pattern_id": "ko.restaurant.item.hana.juseyo.v1" }
+  ],
+  "notes": {
+    "practice_plan": "Primary production target is 비빔밥 하나 주세요. Optional support is 두 명이요. Confirmations and thanks are choice-only practiced.",
+    "review_policy": "AI review required before closed pilot; native review pending.",
+    "canonical_policy": "Pilot-authored derived fixture only; do not write back to canonical schema."
+  }
+}

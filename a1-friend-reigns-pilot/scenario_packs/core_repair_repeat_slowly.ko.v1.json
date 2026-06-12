@@ -1,0 +1,211 @@
+{
+  "schema_version": "scenario_pack.v1",
+  "scenario_id": "core_repair_repeat_slowly",
+  "title": "請對方再說一次",
+  "setting_label": "便利商店櫃台",
+  "wrap_title": "今天這段聽不懂時的對話",
+  "wrap_friend": "你剛剛沒有硬猜，而是把對話拉回來。聽不懂時會請對方再說一次，很多場景都用得上。",
+  "language": "ko",
+  "ui_language": "zh_tw",
+  "source_status": "pilot_authored_ai_review_pending",
+  "review_state": "draft",
+  "production_mode_default": {
+    "required": ["choice"],
+    "optional_visible": ["speaking"],
+    "optional_hidden": ["typing"]
+  },
+  "support_text": "你在便利商店結帳，店員問了一句你沒聽清楚的話。",
+  "roles": {
+    "npc": { "label": "店員" },
+    "learner": { "label": "你" }
+  },
+  "turns": [
+    {
+      "turn_id": "t1",
+      "speaker": "npc",
+      "act": "yn_question",
+      "act_slots": { "topic": "袋子", "keyword": "봉투", "gloss": "袋子" },
+      "learning_role": "listen_only",
+      "surface": "봉투 필요하세요?",
+      "speak": "봉투 필요하세요?",
+      "translation": "需要袋子嗎？",
+      "friend": {
+        "hint": "沒聽清楚時不用猜。다시 말해 주세요 是「請再說一次」。"
+      },
+      "reply_set": {
+        "correct": "r1a",
+        "choices": [
+          {
+            "id": "r1a",
+            "surface": "다시 말해 주세요.",
+            "translation": "請再說一次。",
+            "speak": "다시 말해 주세요.",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r1b",
+            "surface": "감사합니다.",
+            "translation": "謝謝。",
+            "speak": "감사합니다.",
+            "contrast_type": "wrong_act_closing",
+            "feedback": "你還沒聽懂他問什麼，先不要收尾。"
+          },
+          {
+            "id": "r1c",
+            "surface": "네, 맞아요.",
+            "translation": "對，沒錯。",
+            "speak": "네, 맞아요.",
+            "contrast_type": "wrong_act_confirmation",
+            "feedback": "這句是確認用的。沒聽懂時先請他再說一次。"
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t2",
+      "speaker": "npc",
+      "act": "info_response",
+      "act_slots": { "topic": "重複問題", "keyword": "다시", "gloss": "再一次" },
+      "learning_role": "listen_only",
+      "surface": "네, 다시 말씀드릴게요. 봉투 필요하세요?",
+      "speak": "네, 다시 말씀드릴게요. 봉투 필요하세요?",
+      "translation": "好，我再說一次。需要袋子嗎？",
+      "friend": {
+        "hint": "他重複了，但如果還是太快，可以請他慢一點。천천히 是「慢慢地」。"
+      },
+      "inline_explain": {
+        "pattern_id": "ko.repair.repeat.slowly.v1",
+        "formula_ref": null,
+        "title": "다시 / 천천히",
+        "explain": "다시 是再一次，천천히 是慢慢地。",
+        "items": [
+          { "surface": "다시 말해 주세요", "translation": "請再說一次", "speak": "다시 말해 주세요" },
+          { "surface": "천천히 말해 주세요", "translation": "請慢一點說", "speak": "천천히 말해 주세요" }
+        ]
+      },
+      "reply_set": {
+        "correct": "r2a",
+        "choices": [
+          {
+            "id": "r2a",
+            "surface": "천천히 말해 주세요.",
+            "translation": "請慢一點說。",
+            "speak": "천천히 말해 주세요.",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r2b",
+            "surface": "봉투 주세요.",
+            "translation": "請給我袋子。",
+            "speak": "봉투 주세요.",
+            "contrast_type": "premature_answer",
+            "feedback": "如果你已經聽懂可以這樣回；但這一輪是在練「再慢一點」。"
+          },
+          {
+            "id": "r2c",
+            "surface": "아이스 아메리카노 주세요.",
+            "translation": "請給我冰美式。",
+            "speak": "아이스 아메리카노 주세요.",
+            "contrast_type": "wrong_scenario_request",
+            "feedback": "這句是在咖啡店點飲料。現在是在便利商店結帳。"
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t3",
+      "speaker": "npc",
+      "act": "choice_question",
+      "act_slots": { "topic": "袋子確認", "keyword": "필요하세요", "gloss": "需要嗎" },
+      "learning_role": "listen_only",
+      "surface": "봉투요. 필요하세요?",
+      "speak": "봉투요. 필요하세요?",
+      "translation": "袋子。需要嗎？",
+      "friend": {
+        "hint": "這次短很多。봉투 是袋子，필요하세요 是問需不需要。"
+      },
+      "reply_set": {
+        "correct": "r3a",
+        "choices": [
+          {
+            "id": "r3a",
+            "surface": "아니요, 괜찮아요.",
+            "translation": "不用了，沒關係。",
+            "speak": "아니요, 괜찮아요."
+          },
+          {
+            "id": "r3b",
+            "surface": "다시 말해 주세요.",
+            "translation": "請再說一次。",
+            "speak": "다시 말해 주세요.",
+            "contrast_type": "repeated_repair",
+            "feedback": "已經聽懂是袋子時，就可以回答要不要。"
+          },
+          {
+            "id": "r3c",
+            "surface": "두 명이요.",
+            "translation": "兩位。",
+            "speak": "두 명이요.",
+            "contrast_type": "wrong_scenario_response",
+            "feedback": "두 명이요 是餐廳說人數時用的。這裡在問袋子。"
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t4",
+      "speaker": "npc",
+      "act": "closing",
+      "act_slots": { "topic": "收尾" },
+      "learning_role": "context_support",
+      "surface": "네, 알겠습니다.",
+      "speak": "네, 알겠습니다.",
+      "translation": "好的，知道了。",
+      "friend": {
+        "hint": "他懂了。最後簡單道謝就好。"
+      },
+      "reply_set": {
+        "correct": "r4a",
+        "choices": [
+          {
+            "id": "r4a",
+            "surface": "감사합니다.",
+            "translation": "謝謝。",
+            "speak": "감사합니다."
+          },
+          {
+            "id": "r4b",
+            "surface": "봉투 필요하세요?",
+            "translation": "需要袋子嗎？",
+            "speak": "봉투 필요하세요?",
+            "contrast_type": "wrong_speaker_role",
+            "feedback": "這是店員問你的句子，不是你要回的句子。"
+          },
+          {
+            "id": "r4c",
+            "surface": "네, 맞아요.",
+            "translation": "對，沒錯。",
+            "speak": "네, 맞아요.",
+            "contrast_type": "wrong_act_confirmation",
+            "feedback": "這裡不是確認資料，簡單說謝謝就好。"
+          }
+        ]
+      },
+      "closing": {
+        "act": "closing",
+        "learning_role": "context_support",
+        "surface": "안녕히 가세요.",
+        "speak": "안녕히 가세요.",
+        "translation": "請慢走。"
+      }
+    }
+  ],
+  "formula_moments": [
+    { "after_turn": "t2", "pattern_id": "ko.repair.repeat.slowly.v1" }
+  ],
+  "notes": {
+    "practice_plan": "Primary production target is 다시 말해 주세요. Optional support is 천천히 말해 주세요. Bag and thank-you replies are choice-only practiced.",
+    "review_policy": "AI review required before closed pilot; native review pending.",
+    "canonical_policy": "Pilot-authored derived fixture only; do not write back to canonical schema."
+  }
+}

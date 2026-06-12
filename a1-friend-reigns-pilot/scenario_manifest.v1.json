@@ -19,6 +19,36 @@
       "label": "問洗手間",
       "language": "ko",
       "path": "scenario_packs/travel_restroom_directions.ko.v1.json"
+    },
+    {
+      "scenario_id": "core_repair_repeat_slowly",
+      "label": "請再說一次",
+      "language": "ko",
+      "path": "scenario_packs/core_repair_repeat_slowly.ko.v1.json"
+    },
+    {
+      "scenario_id": "food_restaurant_ordering",
+      "label": "餐廳點餐",
+      "language": "ko",
+      "path": "scenario_packs/food_restaurant_ordering.ko.v1.json"
+    },
+    {
+      "scenario_id": "convenience_payment_card_cash",
+      "label": "便利商店付款",
+      "language": "ko",
+      "path": "scenario_packs/convenience_payment_card_cash.ko.v1.json"
+    },
+    {
+      "scenario_id": "travel_station_directions",
+      "label": "問地鐵站",
+      "language": "ko",
+      "path": "scenario_packs/travel_station_directions.ko.v1.json"
+    },
+    {
+      "scenario_id": "hotel_wifi_breakfast",
+      "label": "飯店 Wi-Fi/早餐",
+      "language": "ko",
+      "path": "scenario_packs/hotel_wifi_breakfast.ko.v1.json"
     }
   ]
 }

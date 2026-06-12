@@ -1,0 +1,212 @@
+{
+  "schema_version": "scenario_pack.v1",
+  "scenario_id": "travel_station_directions",
+  "title": "問地鐵站情境",
+  "setting_label": "旅遊服務台",
+  "wrap_title": "今天這段問地鐵站",
+  "wrap_friend": "你剛剛問到地鐵站，也聽懂方向和出口。旅途中先抓地點、方向、出口號碼就很夠用。",
+  "language": "ko",
+  "ui_language": "zh_tw",
+  "source_status": "pilot_authored_ai_review_pending",
+  "review_state": "draft",
+  "production_mode_default": {
+    "required": ["choice"],
+    "optional_visible": ["speaking"],
+    "optional_hidden": ["typing"]
+  },
+  "support_text": "你在旅遊服務台想找地鐵站。先問在哪裡，再聽方向和出口。",
+  "roles": {
+    "npc": { "label": "服務人員" },
+    "learner": { "label": "你" }
+  },
+  "turns": [
+    {
+      "turn_id": "t1",
+      "speaker": "npc",
+      "act": "greeting",
+      "act_slots": { "topic": "問需要什麼" },
+      "learning_role": "context_support",
+      "surface": "네, 무엇을 도와드릴까요?",
+      "speak": "네, 무엇을 도와드릴까요?",
+      "translation": "您好，需要幫忙嗎？",
+      "friend": {
+        "hint": "直接問地鐵站在哪裡就可以。지하철역 是地鐵站。"
+      },
+      "reply_set": {
+        "correct": "r1a",
+        "choices": [
+          {
+            "id": "r1a",
+            "surface": "지하철역이 어디예요?",
+            "translation": "地鐵站在哪裡？",
+            "speak": "지하철역이 어디예요?",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r1b",
+            "surface": "화장실이 어디예요?",
+            "translation": "洗手間在哪裡？",
+            "speak": "화장실이 어디예요?",
+            "contrast_type": "wrong_entity",
+            "feedback": "這句是在問洗手間。現在你要找地鐵站。"
+          },
+          {
+            "id": "r1c",
+            "surface": "카드로 할게요.",
+            "translation": "我用卡。",
+            "speak": "카드로 할게요.",
+            "contrast_type": "wrong_scenario_response",
+            "feedback": "這句是在付款。現在是在問路。"
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t2",
+      "speaker": "npc",
+      "act": "direction_instruction",
+      "act_slots": { "topic": "左邊方向", "keyword": "왼쪽", "gloss": "左邊" },
+      "learning_role": "listen_only",
+      "surface": "이 길로 쭉 가서 왼쪽으로 가세요.",
+      "speak": "이 길로 쭉 가서 왼쪽으로 가세요.",
+      "translation": "沿著這條路一直走，然後往左邊。",
+      "friend": {
+        "hint": "쭉 가세요 是一直走，왼쪽 是左邊。先抓方向。"
+      },
+      "reply_set": {
+        "correct": "r2a",
+        "choices": [
+          {
+            "id": "r2a",
+            "surface": "왼쪽이요?",
+            "translation": "左邊嗎？",
+            "speak": "왼쪽이요?"
+          },
+          {
+            "id": "r2b",
+            "surface": "오른쪽이요?",
+            "translation": "右邊嗎？",
+            "speak": "오른쪽이요?",
+            "contrast_type": "wrong_direction",
+            "feedback": "他說的是 왼쪽，左邊。오른쪽 是右邊。"
+          },
+          {
+            "id": "r2c",
+            "surface": "비빔밥 하나 주세요.",
+            "translation": "請給我一份拌飯。",
+            "speak": "비빔밥 하나 주세요.",
+            "contrast_type": "wrong_scenario_request",
+            "feedback": "這句是在餐廳點餐。現在是在確認方向。"
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t3",
+      "speaker": "npc",
+      "act": "info_response",
+      "act_slots": { "topic": "出口", "keyword": "3번 출구", "gloss": "3 號出口" },
+      "learning_role": "listen_only",
+      "surface": "네. 3번 출구가 가까워요.",
+      "speak": "네. 삼번 출구가 가까워요.",
+      "translation": "對。3 號出口比較近。",
+      "friend": {
+        "hint": "번 是號，출구 是出口。3번 출구 就是 3 號出口。"
+      },
+      "inline_explain": {
+        "pattern_id": "ko.station.exit.number.v1",
+        "formula_ref": null,
+        "title": "數字 + 번 출구 = 幾號出口",
+        "explain": "번 是號，출구 是出口。",
+        "items": [
+          { "surface": "1번 출구", "translation": "1 號出口", "speak": "일번 출구" },
+          { "surface": "2번 출구", "translation": "2 號出口", "speak": "이번 출구" },
+          { "surface": "3번 출구", "translation": "3 號出口", "speak": "삼번 출구" }
+        ]
+      },
+      "reply_set": {
+        "correct": "r3a",
+        "choices": [
+          {
+            "id": "r3a",
+            "surface": "3번 출구요?",
+            "translation": "3 號出口嗎？",
+            "speak": "삼번 출구요?",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r3b",
+            "surface": "2박 맞으세요?",
+            "translation": "是兩晚沒錯嗎？",
+            "speak": "이박 맞으세요?",
+            "contrast_type": "wrong_scenario_response",
+            "feedback": "2박 是飯店住幾晚。這裡在說出口號碼。"
+          },
+          {
+            "id": "r3c",
+            "surface": "영수증 드릴까요?",
+            "translation": "需要收據嗎？",
+            "speak": "영수증 드릴까요?",
+            "contrast_type": "wrong_speaker_role",
+            "feedback": "這是店員問收據的句子。現在你在確認出口。"
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t4",
+      "speaker": "npc",
+      "act": "confirmation",
+      "act_slots": { "topic": "出口確認" },
+      "learning_role": "listen_only",
+      "surface": "네, 3번 출구입니다.",
+      "speak": "네, 삼번 출구입니다.",
+      "translation": "對，是 3 號出口。",
+      "friend": {
+        "hint": "他確認了出口。最後道謝就好。"
+      },
+      "reply_set": {
+        "correct": "r4a",
+        "choices": [
+          {
+            "id": "r4a",
+            "surface": "감사합니다.",
+            "translation": "謝謝。",
+            "speak": "감사합니다."
+          },
+          {
+            "id": "r4b",
+            "surface": "왼쪽이요?",
+            "translation": "左邊嗎？",
+            "speak": "왼쪽이요?",
+            "contrast_type": "repeated_prior_answer",
+            "feedback": "方向已經確認過了，現在出口也確認了，可以道謝。"
+          },
+          {
+            "id": "r4c",
+            "surface": "괜찮아요.",
+            "translation": "不用了。",
+            "speak": "괜찮아요.",
+            "contrast_type": "wrong_act_refusal",
+            "feedback": "已經得到方向時，不用拒絕，簡單道謝就好。"
+          }
+        ]
+      },
+      "closing": {
+        "act": "closing",
+        "learning_role": "context_support",
+        "surface": "조심히 가세요.",
+        "speak": "조심히 가세요.",
+        "translation": "路上小心。"
+      }
+    }
+  ],
+  "formula_moments": [
+    { "after_turn": "t3", "pattern_id": "ko.station.exit.number.v1" }
+  ],
+  "notes": {
+    "practice_plan": "Primary production target is 지하철역이 어디예요. Optional support is 3번 출구요. Direction confirmation and thanks are choice-only practiced.",
+    "review_policy": "AI review required before closed pilot; native review pending.",
+    "canonical_policy": "Pilot-authored derived fixture only; do not write back to canonical schema."
+  }
+}

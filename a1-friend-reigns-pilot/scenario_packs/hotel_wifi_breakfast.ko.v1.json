@@ -1,0 +1,251 @@
+{
+  "schema_version": "scenario_pack.v1",
+  "scenario_id": "hotel_wifi_breakfast",
+  "title": "飯店 Wi-Fi 和早餐情境",
+  "setting_label": "飯店櫃台",
+  "wrap_title": "今天這段問飯店資訊",
+  "wrap_friend": "你剛剛問到 Wi-Fi 和早餐時間。住飯店時，能問這兩句就很實用。",
+  "language": "ko",
+  "ui_language": "zh_tw",
+  "source_status": "pilot_authored_ai_review_pending",
+  "review_state": "draft",
+  "production_mode_default": {
+    "required": ["choice"],
+    "optional_visible": ["speaking"],
+    "optional_hidden": ["typing"]
+  },
+  "support_text": "你已經入住飯店，回到櫃台想問 Wi-Fi 和早餐時間。",
+  "roles": {
+    "npc": { "label": "職員" },
+    "learner": { "label": "你" }
+  },
+  "turns": [
+    {
+      "turn_id": "t1",
+      "speaker": "npc",
+      "act": "greeting",
+      "act_slots": { "topic": "服務開場" },
+      "learning_role": "context_support",
+      "surface": "네, 무엇을 도와드릴까요?",
+      "speak": "네, 무엇을 도와드릴까요?",
+      "translation": "您好，需要幫忙嗎？",
+      "friend": {
+        "hint": "想問 Wi-Fi 密碼時，可以直接說 와이파이 비밀번호。"
+      },
+      "reply_set": {
+        "correct": "r1a",
+        "choices": [
+          {
+            "id": "r1a",
+            "surface": "와이파이 비밀번호가 뭐예요?",
+            "translation": "Wi-Fi 密碼是什麼？",
+            "speak": "와이파이 비밀번호가 뭐예요?",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r1b",
+            "surface": "비빔밥 하나 주세요.",
+            "translation": "請給我一份拌飯。",
+            "speak": "비빔밥 하나 주세요.",
+            "contrast_type": "wrong_scenario_request",
+            "feedback": "這句是在餐廳點餐。現在你在飯店櫃台問資訊。"
+          },
+          {
+            "id": "r1c",
+            "surface": "카드로 할게요.",
+            "translation": "我用卡。",
+            "speak": "카드로 할게요.",
+            "contrast_type": "wrong_act_payment",
+            "feedback": "付款已經不是這一段的重點。現在要問 Wi-Fi。"
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t2",
+      "speaker": "npc",
+      "act": "info_response",
+      "act_slots": { "topic": "Wi-Fi 位置", "keyword": "객실 카드", "gloss": "房卡" },
+      "learning_role": "listen_only",
+      "surface": "객실 카드에 적혀 있습니다.",
+      "speak": "객실 카드에 적혀 있습니다.",
+      "translation": "寫在房卡上。",
+      "friend": {
+        "hint": "객실 카드 是房卡。他說密碼寫在房卡上。"
+      },
+      "reply_set": {
+        "correct": "r2a",
+        "choices": [
+          {
+            "id": "r2a",
+            "surface": "아, 네.",
+            "translation": "啊，好的。",
+            "speak": "아, 네."
+          },
+          {
+            "id": "r2b",
+            "surface": "다시 말해 주세요.",
+            "translation": "請再說一次。",
+            "speak": "다시 말해 주세요.",
+            "contrast_type": "repair_when_understood",
+            "feedback": "如果真的沒聽懂可以用這句；這一輪先抓 객실 카드。"
+          },
+          {
+            "id": "r2c",
+            "surface": "봉투 주세요.",
+            "translation": "請給我袋子。",
+            "speak": "봉투 주세요.",
+            "contrast_type": "wrong_scenario_request",
+            "feedback": "봉투 是便利商店袋子。這裡在說 Wi-Fi 密碼在哪裡。"
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t3",
+      "speaker": "npc",
+      "act": "info_request",
+      "act_slots": { "topic": "其他需求" },
+      "learning_role": "context_support",
+      "surface": "또 궁금하신 점 있으세요?",
+      "speak": "또 궁금하신 점 있으세요?",
+      "translation": "還有其他想問的嗎？",
+      "friend": {
+        "hint": "可以接著問早餐時間。아침 식사 是早餐。"
+      },
+      "reply_set": {
+        "correct": "r3a",
+        "choices": [
+          {
+            "id": "r3a",
+            "surface": "아침 식사는 몇 시예요?",
+            "translation": "早餐是幾點？",
+            "speak": "아침 식사는 몇 시예요?",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r3b",
+            "surface": "3번 출구요?",
+            "translation": "3 號出口嗎？",
+            "speak": "삼번 출구요?",
+            "contrast_type": "wrong_scenario_response",
+            "feedback": "3번 출구 是問路會用到的出口。這裡可以問早餐。"
+          },
+          {
+            "id": "r3c",
+            "surface": "네, 예약했어요.",
+            "translation": "有，我有預約。",
+            "speak": "네, 예약했어요.",
+            "contrast_type": "repeated_prior_scenario",
+            "feedback": "入住已經完成了，現在是在問飯店資訊。"
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t4",
+      "speaker": "npc",
+      "act": "info_response",
+      "act_slots": { "topic": "早餐時間", "keyword": "7시부터 10시까지", "gloss": "7 點到 10 點" },
+      "learning_role": "listen_only",
+      "surface": "아침 식사는 오전 7시부터 10시까지입니다.",
+      "speak": "아침 식사는 오전 일곱 시부터 열 시까지입니다.",
+      "translation": "早餐是早上 7 點到 10 點。",
+      "friend": {
+        "hint": "부터 是從，까지 是到。7시부터 10시까지 就是 7 點到 10 點。"
+      },
+      "inline_explain": {
+        "pattern_id": "ko.time.from.to.v1",
+        "formula_ref": null,
+        "title": "時間 + 부터 / 까지",
+        "explain": "부터 是從，까지 是到。",
+        "items": [
+          { "surface": "7시부터", "translation": "從 7 點", "speak": "일곱 시부터" },
+          { "surface": "10시까지", "translation": "到 10 點", "speak": "열 시까지" }
+        ]
+      },
+      "reply_set": {
+        "correct": "r4a",
+        "choices": [
+          {
+            "id": "r4a",
+            "surface": "7시부터요?",
+            "translation": "從 7 點嗎？",
+            "speak": "일곱 시부터요?"
+          },
+          {
+            "id": "r4b",
+            "surface": "2박 맞으세요?",
+            "translation": "是兩晚沒錯嗎？",
+            "speak": "이박 맞으세요?",
+            "contrast_type": "wrong_scenario_response",
+            "feedback": "2박 是住宿幾晚。這裡在說早餐時間。"
+          },
+          {
+            "id": "r4c",
+            "surface": "영수증 드릴까요?",
+            "translation": "需要收據嗎？",
+            "speak": "영수증 드릴까요?",
+            "contrast_type": "wrong_speaker_role",
+            "feedback": "這是店員問收據的句子。現在你在確認時間。"
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t5",
+      "speaker": "npc",
+      "act": "info_response",
+      "act_slots": { "topic": "早餐地點", "keyword": "1층", "gloss": "1 樓" },
+      "learning_role": "listen_only",
+      "surface": "장소는 1층 식당입니다.",
+      "speak": "장소는 일층 식당입니다.",
+      "translation": "地點是 1 樓餐廳。",
+      "friend": {
+        "hint": "1층 是 1 樓，식당 是餐廳。知道地點後道謝就好。"
+      },
+      "reply_set": {
+        "correct": "r5a",
+        "choices": [
+          {
+            "id": "r5a",
+            "surface": "감사합니다.",
+            "translation": "謝謝。",
+            "speak": "감사합니다."
+          },
+          {
+            "id": "r5b",
+            "surface": "와이파이 비밀번호가 뭐예요?",
+            "translation": "Wi-Fi 密碼是什麼？",
+            "speak": "와이파이 비밀번호가 뭐예요?",
+            "contrast_type": "repeated_prior_answer",
+            "feedback": "Wi-Fi 剛問過了。早餐時間和地點也拿到了，這裡道謝。"
+          },
+          {
+            "id": "r5c",
+            "surface": "괜찮아요.",
+            "translation": "不用了。",
+            "speak": "괜찮아요.",
+            "contrast_type": "wrong_act_refusal",
+            "feedback": "已經得到資訊時，不用拒絕，簡單道謝就好。"
+          }
+        ]
+      },
+      "closing": {
+        "act": "closing",
+        "learning_role": "context_support",
+        "surface": "편안한 시간 되세요.",
+        "speak": "편안한 시간 되세요.",
+        "translation": "祝您住得愉快。"
+      }
+    }
+  ],
+  "formula_moments": [
+    { "after_turn": "t4", "pattern_id": "ko.time.from.to.v1" }
+  ],
+  "notes": {
+    "practice_plan": "Primary production target is 와이파이 비밀번호가 뭐예요. Optional support is 아침 식사는 몇 시예요. Time confirmation and thanks are choice-only practiced.",
+    "review_policy": "AI review required before closed pilot; native review pending.",
+    "canonical_policy": "Pilot-authored derived fixture only; do not write back to canonical schema."
+  }
+}
