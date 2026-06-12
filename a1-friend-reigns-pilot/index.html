@@ -143,6 +143,99 @@
     .stage-pill { display: inline-flex; align-items: center; gap: 6px; padding: 6px 9px; border-radius: 999px; background: var(--friend-soft); color: var(--friend); font-size: 12px; font-weight: 850; margin-bottom: 10px; }
     .typebox { width: 100%; min-height: 48px; border-radius: 8px; border: 1px solid var(--line); padding: 12px; background: #fff; color: var(--ink); margin-top: 10px; }
     .reigns-board { display: grid; gap: 12px; }
+    .chat-shell {
+      height: clamp(430px, calc(100vh - 246px), 620px);
+      display: grid;
+      grid-template-rows: auto 1fr auto auto;
+      gap: 10px;
+    }
+    .chat-status {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      color: var(--muted);
+      font-size: 13px;
+      font-weight: 800;
+      padding: 0 2px;
+    }
+    .message-list {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      min-height: 0;
+      padding: 8px 2px 12px;
+      overflow-y: auto;
+    }
+    .message {
+      max-width: 84%;
+      padding: 11px 12px;
+      border-radius: 18px;
+      border: 1px solid rgba(216, 208, 196, .82);
+      background: #fff;
+      box-shadow: 0 8px 18px rgba(57, 45, 32, .07);
+    }
+    .message.staff { align-self: flex-start; border-bottom-left-radius: 6px; }
+    .message.learner {
+      align-self: flex-end;
+      border-bottom-right-radius: 6px;
+      background: var(--friend);
+      border-color: var(--friend);
+      color: white;
+    }
+    .message.friend {
+      align-self: center;
+      max-width: 94%;
+      background: var(--friend-soft);
+      border-color: #b9ddd7;
+      color: var(--ink);
+      box-shadow: none;
+    }
+    .message .role { margin-bottom: 4px; }
+    .message.learner .role { color: rgba(255,255,255,.74); }
+    .message .ko { font-size: 19px; }
+    .message.learner .ko { color: white; }
+    .message .zh { font-size: 13px; }
+    .message.learner .zh { color: rgba(255,255,255,.8); }
+    .message-actions { margin-top: 8px; }
+    .speak-link {
+      min-height: 32px;
+      padding: 0 9px;
+      border-radius: 999px;
+      background: #ede4d8;
+      color: var(--ink);
+      font-size: 12px;
+      font-weight: 800;
+    }
+    .quick-replies {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 8px;
+      padding: 10px;
+      border: 1px solid var(--line);
+      border-radius: 16px 16px 8px 8px;
+      background: rgba(255,253,248,.92);
+      box-shadow: 0 -8px 20px rgba(57, 45, 32, .08);
+    }
+    .quick-replies .choice {
+      min-height: 46px;
+      border-radius: 999px;
+      padding: 10px 14px;
+      box-shadow: 0 4px 12px rgba(57,45,32,.06);
+    }
+    .typing-hint {
+      display: none;
+      align-self: start;
+      width: fit-content;
+      max-width: 92%;
+      padding: 9px 11px;
+      border-radius: 14px;
+      background: var(--friend-soft);
+      border: 1px solid #b9ddd7;
+      color: var(--ink);
+      font-size: 14px;
+      line-height: 1.4;
+    }
+    .typing-hint.show { display: block; }
     .hud { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
     .stat { background: #fff; border: 1px solid var(--line); border-radius: 8px; padding: 9px; font-size: 12px; color: var(--muted); }
     .stat b { display: block; margin-top: 3px; color: var(--ink); font-size: 16px; }
@@ -193,18 +286,12 @@
       </div>
     </header>
     <main>
-      <section class="screen active reigns" data-title="櫃台對話" data-friend="對方問的是有沒有預約。找有 `예약` 的回答。">
-        <div class="reigns-board">
-          <div class="event-card">
-            <div class="event-label" id="roundLabel">Counter Card</div>
-            <div class="round-label" id="roundProgress">1 / 4</div>
-            <div class="npc"><div class="role">職員</div><div class="ko" id="staffKo"></div><div class="zh" id="staffZh"></div><div class="controls"><button class="btn secondary" type="button" id="staffSpeak">發音</button></div></div>
-          </div>
-          <div class="play-slot" id="dialogueSlot">選一句回應</div>
-          <div class="hand" id="responseHand"></div>
-          <div class="controls"><button class="btn" type="button" id="commitResponse">這樣回</button></div>
-          <div class="feedback" id="dialogueFeedback"></div>
-          <div class="card transcript"><h2>目前對話</h2><div id="transcriptList"></div></div>
+      <section class="screen active" data-title="櫃台對話" data-friend="你在飯店櫃台 check-in。對方講韓文，你選一句接得上的回答。">
+        <div class="chat-shell">
+          <div class="chat-status"><span>飯店櫃台</span><span id="roundProgress">1 / 4</span></div>
+          <div class="message-list" id="transcriptList" aria-live="polite"></div>
+          <div class="typing-hint" id="dialogueFeedback"></div>
+          <div class="quick-replies" id="responseHand"></div>
         </div>
       </section>
       <section class="screen" data-title="剛剛的公式" data-friend="剛剛職員說 `2박 맞으세요?`。這裡的 `박` 是幾晚，聽得出來就很有用。">
@@ -309,11 +396,10 @@
       const round = rounds[roundIndex];
       selectedResponse = null;
       roundCommitted = false;
-      document.getElementById('commitResponse').disabled = false;
       document.getElementById('roundProgress').textContent = `${roundIndex + 1} / ${rounds.length}`;
-      document.getElementById('staffKo').textContent = round.staffKo;
-      document.getElementById('staffZh').textContent = round.staffZh;
-      document.getElementById('dialogueSlot').textContent = '選一句回應';
+      if (!transcript.some((turn) => turn.round === roundIndex && turn.role === '職員')) {
+        transcript.push({ round: roundIndex, role: '職員', ko: round.staffKo, zh: round.staffZh, speak: round.staffSpeak || round.staffKo });
+      }
       friendText.textContent = round.hint;
       const feedback = document.getElementById('dialogueFeedback');
       feedback.textContent = '';
@@ -326,11 +412,12 @@
         button.type = 'button';
         button.textContent = choice.text;
         button.addEventListener('click', () => {
+          if (roundCommitted) return;
           Array.from(hand.children).forEach((child) => child.classList.remove('selected', 'good', 'warn'));
           button.classList.add('selected', choice.good ? 'good' : 'warn');
           selectedResponse = choice;
-          document.getElementById('dialogueSlot').textContent = choice.text;
           speakKo(choice.speak || choice.text);
+          sendSelectedReply();
         });
         hand.appendChild(button);
       });
@@ -341,14 +428,17 @@
       const list = document.getElementById('transcriptList');
       if (!list) return;
       if (!transcript.length) {
-        list.innerHTML = '<div class="mini-turn">對話會一輪一輪出現在這裡。</div>';
+        list.innerHTML = '<div class="message friend"><div class="ko">你在飯店櫃台，先聽對方問什麼。</div></div>';
         return;
       }
       list.innerHTML = transcript.map((turn) => {
-        const roleClass = turn.role === '你' ? 'learner' : 'staff';
+        const roleClass = turn.role === '你' ? 'learner' : (turn.role === 'Friend' ? 'friend' : 'staff');
         const zh = turn.zh ? `<div class="zh">${turn.zh}</div>` : '';
-        return `<div class="bubble ${roleClass}"><div class="role">${turn.role}</div><div class="ko">${turn.ko}</div>${zh}</div>`;
+        const action = turn.speak ? `<div class="message-actions"><button class="speak-link" type="button" data-speak="${turn.speak}">發音</button></div>` : '';
+        const role = turn.role === 'Friend' ? 'F' : turn.role;
+        return `<div class="message ${roleClass}"><div class="role">${role}</div><div class="ko">${turn.ko}</div>${zh}${action}</div>`;
       }).join('');
+      list.scrollTop = list.scrollHeight;
     }
     function resetDialogue() {
       roundIndex = 0;
@@ -389,8 +479,12 @@
     document.querySelectorAll('.speak').forEach((button) => {
       button.addEventListener('click', () => speakKo(button.dataset.speak || button.textContent));
     });
-    document.getElementById('staffSpeak').addEventListener('click', () => speakKo(rounds[roundIndex].staffSpeak || rounds[roundIndex].staffKo));
-    document.getElementById('commitResponse').addEventListener('click', () => {
+    document.getElementById('transcriptList').addEventListener('click', (event) => {
+      const button = event.target.closest('.speak-link');
+      if (!button) return;
+      speakKo(button.dataset.speak || button.textContent);
+    });
+    function sendSelectedReply() {
       const feedback = document.getElementById('dialogueFeedback');
       if (roundCommitted) return;
       if (!selectedResponse) {
@@ -403,22 +497,21 @@
       if (!selectedResponse.good) return;
       const round = rounds[roundIndex];
       roundCommitted = true;
-      document.getElementById('commitResponse').disabled = true;
       Array.from(document.getElementById('responseHand').children).forEach((button) => { button.disabled = true; });
-      transcript.push({ role: '職員', ko: round.staffKo, zh: round.staffZh });
-      transcript.push({ role: '你', ko: selectedResponse.text });
-      if (round.closing) transcript.push({ role: '職員', ko: '편안한 시간 되세요.', zh: '祝您住得愉快。' });
+      transcript.push({ round: roundIndex, role: '你', ko: selectedResponse.text, speak: selectedResponse.speak || selectedResponse.text });
+      if (round.closing) transcript.push({ round: roundIndex, role: '職員', ko: '편안한 시간 되세요.', zh: '祝您住得愉快。', speak: '편안한 시간 되세요.' });
       renderTranscript();
       if (roundIndex < rounds.length - 1) {
         roundIndex += 1;
         window.setTimeout(renderDialogueRound, 650);
       } else {
         dialogueComplete = true;
-        feedback.textContent = '這段 check-in 走完了。等一下看一個小公式。';
-        friendText.textContent = '這段櫃台對話走完了。按繼續看剛剛的 `2박`。';
+        feedback.textContent = '可以，櫃台這段接完了。';
+        friendText.textContent = '這段櫃台對話走完了。繼續看剛剛的 `2박`。';
+        document.getElementById('responseHand').innerHTML = '';
         updateNextButton();
       }
-    });
+    }
     document.getElementById('restartDialogue').addEventListener('click', () => { resetDialogue(); show(0); });
     document.getElementById('restart').addEventListener('click', () => { resetDialogue(); show(0); });
     show(0);
