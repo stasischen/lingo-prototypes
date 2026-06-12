@@ -394,6 +394,7 @@
     let visibleChoices = [];
     let scenarioManifest = null;
     let currentScenarioId = null;
+    let awaitingAdvanceTap = false;
     let scenarioPack = null;
     let rounds = [];
     const transcript = [];
@@ -443,10 +444,6 @@
         [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
       }
       return shuffled;
-    }
-    function estimateSpeechDelayMs(text) {
-      const length = Array.from(text || '').length;
-      return Math.min(3200, Math.max(900, length * 140));
     }
     function speakKo(text, rate = 0.88, options = {}) {
       if (!('speechSynthesis' in window)) {
@@ -531,8 +528,8 @@
           selectedResponse = choice;
           unlockAudio();
           const spokenText = choice.speak || choice.text;
-          const didSpeak = speakKo(spokenText);
-          sendSelectedReply(didSpeak ? estimateSpeechDelayMs(spokenText) : 0);
+          speakKo(spokenText);
+          sendSelectedReply();
         });
         hand.appendChild(button);
       });
@@ -557,6 +554,7 @@
     function resetDialogue() {
       roundIndex = 0;
       dialogueComplete = false;
+      awaitingAdvanceTap = false;
       transcript.length = 0;
       missesByRound = Array(rounds.length).fill(0);
       visibleChoices = [];
@@ -567,8 +565,8 @@
     function updateNextButton() {
       const onDialogue = screens[index] && screens[index].dataset.title === '櫃台對話';
       if (onDialogue && !dialogueComplete) {
-        nextBtn.disabled = true;
-        nextBtn.textContent = '對話中';
+        nextBtn.disabled = !awaitingAdvanceTap;
+        nextBtn.textContent = awaitingAdvanceTap ? '下一句' : '對話中';
         return;
       }
       nextBtn.disabled = false;
@@ -591,6 +589,10 @@
     }
     nextBtn.addEventListener('click', () => {
       if (nextBtn.disabled) return;
+      if (awaitingAdvanceTap) {
+        advanceDialogueRound();
+        return;
+      }
       if (index === screens.length - 1) {
         resetDialogue();
         show(0);
@@ -618,7 +620,7 @@
       showTranslations = active;
       updateToggle(document.getElementById('translationToggle'), showTranslations);
       renderTranscript();
-      if (screens[index] && screens[index].dataset.title === '櫃台對話') renderChoices();
+      if (screens[index] && screens[index].dataset.title === '櫃台對話' && !awaitingAdvanceTap) renderChoices();
     }
     function setHints(active) {
       showHints = active;
@@ -649,7 +651,17 @@
         pendingStaffSpeak = null;
       }
     });
-    function sendSelectedReply(advanceDelayMs = 0) {
+    function advanceDialogueRound() {
+      if (!awaitingAdvanceTap) return;
+      awaitingAdvanceTap = false;
+      renderDialogueRound();
+    }
+    document.querySelector('.chat-shell').addEventListener('click', (event) => {
+      if (!awaitingAdvanceTap) return;
+      if (event.target.closest('button')) return;
+      advanceDialogueRound();
+    });
+    function sendSelectedReply() {
       const feedback = document.getElementById('dialogueFeedback');
       if (roundCommitted) return;
       if (!selectedResponse) {
@@ -675,7 +687,11 @@
       renderTranscript();
       if (roundIndex < rounds.length - 1) {
         roundIndex += 1;
-        window.setTimeout(renderDialogueRound, 650 + advanceDelayMs);
+        awaitingAdvanceTap = true;
+        const hand = document.getElementById('responseHand');
+        hand.innerHTML = '';
+        hand.classList.add('is-hidden');
+        updateNextButton();
       } else {
         dialogueComplete = true;
         feedback.textContent = '';
