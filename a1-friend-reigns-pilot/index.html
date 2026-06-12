@@ -60,7 +60,7 @@
       font-weight: 800;
     }
     h1 { margin: 4px 0 0; font-size: 20px; letter-spacing: 0; line-height: 1.2; }
-    .progress { display: grid; grid-template-columns: repeat(4, 1fr); gap: 4px; margin-top: 12px; }
+    .progress { display: grid; grid-template-columns: repeat(2, 1fr); gap: 4px; margin-top: 12px; }
     .dot { height: 5px; border-radius: 999px; background: #ddd3c6; }
     .dot.active, .dot.done { background: var(--friend); }
     main { flex: 1; padding: 18px 18px 132px; display: flex; flex-direction: column; gap: 14px; }
@@ -216,6 +216,23 @@
     .message.friend .ko { font-size: 13px; line-height: 1.35; font-weight: 650; }
     .message .zh { font-size: 13px; }
     .message.learner .zh { color: rgba(255,255,255,.8); }
+    .formula-inline {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 6px;
+      margin-top: 8px;
+    }
+    .formula-chip {
+      min-height: 42px;
+      padding: 6px;
+      border-radius: 10px;
+      background: rgba(255,253,248,.86);
+      border: 1px solid #b9ddd7;
+      color: var(--ink);
+      font-size: 12px;
+      font-weight: 800;
+    }
+    .formula-chip span { display: block; margin-top: 2px; color: var(--muted); font-weight: 700; }
     .message-actions { margin-top: 8px; }
     .speak-link {
       min-height: 32px;
@@ -304,7 +321,7 @@
       <div class="kicker">A1 Friend Pilot</div>
       <h1>飯店預約情境</h1>
       <div class="progress" aria-label="flow progress">
-        <div class="dot active"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div>
+        <div class="dot active"></div><div class="dot"></div>
       </div>
     </header>
     <main>
@@ -323,25 +340,8 @@
           <div class="quick-replies" id="responseHand"></div>
         </div>
       </section>
-      <section class="screen" data-title="剛剛的公式" data-friend="剛剛職員說 `2박 맞으세요?`。這裡的 `박` 是幾晚，聽得出來就很有用。">
-        <div class="card">
-          <span class="stage-pill">幾晚公式</span>
-          <h2>數字 + 박 = 幾晚</h2>
-          <div class="spotlight"><div class="ko">2박 맞으세요?</div><div class="zh">是兩晚沒錯嗎？</div><div class="controls"><button class="btn secondary speak" type="button" data-speak="이박 맞으세요?">發音</button></div></div>
-          <div class="formula-grid">
-            <button class="formula-card speak" type="button" data-speak="일박"><b>1박</b><span class="meta">一晚</span></button>
-            <button class="formula-card speak" type="button" data-speak="이박"><b>2박</b><span class="meta">兩晚</span></button>
-            <button class="formula-card speak" type="button" data-speak="삼박"><b>3박</b><span class="meta">三晚</span></button>
-          </div>
-          <div class="feedback show">這不是要你馬上會說所有數字，是讓你在櫃台聽到時抓得到重點。</div>
-        </div>
-      </section>
-      <section class="screen reigns" data-title="再走一次" data-friend="如果想再熟一點，就回到剛剛的櫃台對話重走一次。">
-        <div class="card"><h2>再走一次櫃台流程</h2><div class="meta">同一段對話可以重走。提示還在，卡住就按一下。</div><div class="controls"><button class="btn" type="button" id="restartDialogue">重新走對話</button></div></div>
-        <div class="card transcript"><h2>會用到的回答</h2><div class="wrap-list"><div class="wrap-item"><b>네, 예약했어요.</b><div class="meta">有，我有預約。</div></div><div class="wrap-item"><b>왕리로 예약했어요.</b><div class="meta">我是用王立預約的。</div></div><div class="wrap-item"><b>네, 맞아요.</b><div class="meta">對，沒錯。</div></div><div class="wrap-item"><b>감사합니다.</b><div class="meta">謝謝。</div></div></div></div>
-      </section>
       <section class="screen" data-title="Wrap" data-friend="你剛剛走完一段飯店 check-in。能接上幾個短句，就能把流程推下去。">
-        <div class="card"><h2>今天這段櫃台對話</h2><div class="wrap-list"><div class="wrap-item"><b>예약하셨나요?</b><div class="meta">請問有預約嗎？</div></div><div class="wrap-item"><b>네, 예약했어요.</b><div class="meta">有，我有預約。</div></div><div class="wrap-item"><b>성함이 어떻게 되세요?</b><div class="meta">請問姓名是？</div></div><div class="wrap-item"><b>왕리로 예약했어요.</b><div class="meta">我是用王立預約的。</div></div><div class="wrap-item"><b>2박 맞으세요?</b><div class="meta">是兩晚沒錯嗎？</div></div><div class="wrap-item"><b>네, 맞아요.</b><div class="meta">對，沒錯。</div></div><div class="wrap-item"><b>감사합니다.</b><div class="meta">謝謝。</div></div></div><div class="controls"><button class="btn secondary" type="button" id="restart">再看一次</button></div></div>
+        <div class="card"><h2>今天這段櫃台對話</h2><div class="wrap-list"><div class="wrap-item"><b>예약하셨나요?</b><div class="meta">聽得懂就好 · 請問有預約嗎？</div></div><div class="wrap-item"><b>네, 예약했어요.</b><div class="meta">你會說了 · 有，我有預約。</div></div><div class="wrap-item"><b>성함이 어떻게 되세요?</b><div class="meta">聽得懂就好 · 請問姓名是？</div></div><div class="wrap-item"><b>왕리로 예약했어요.</b><div class="meta">你會說了 · 我是用王立預約的。</div></div><div class="wrap-item"><b>2박 맞으세요?</b><div class="meta">聽得懂就好 · 是兩晚沒錯嗎？</div></div><div class="wrap-item"><b>네, 맞아요.</b><div class="meta">你會說了 · 對，沒錯。</div></div><div class="wrap-item"><b>감사합니다.</b><div class="meta">你會說了 · 謝謝。</div></div></div><div class="controls"><button class="btn" type="button" id="restart">再走一次</button></div></div>
       </section>
     </main>
     <div class="friend-bar" aria-live="polite"><div class="avatar">F</div><div class="bar-text" id="friendText">到櫃台了。聽聽看他說什麼，挑一句回他。</div><button class="next" type="button" id="nextBtn">繼續</button></div>
@@ -426,6 +426,14 @@
       document.getElementById('roundProgress').textContent = `${roundIndex + 1} / ${rounds.length}`;
       if (!transcript.some((turn) => turn.round === roundIndex && turn.role === '職員')) {
         transcript.push({ round: roundIndex, role: '職員', ko: round.staffKo, zh: round.staffZh, speak: round.staffSpeak || round.staffKo });
+        if (round.inlineExplain) {
+          transcript.push({
+            round: roundIndex,
+            role: 'Friend',
+            ko: '剛剛那個 2박 有點意思。박 是「晚」，2박 就是兩晚。',
+            formula: round.inlineExplain
+          });
+        }
       }
       friendText.textContent = showHints ? round.hint : supportText();
       const feedback = document.getElementById('dialogueFeedback');
@@ -470,8 +478,9 @@
         const roleClass = turn.role === '你' ? 'learner' : (turn.role === 'Friend' ? 'friend' : 'staff');
         const zh = showTranslations && turn.zh ? `<div class="zh">${turn.zh}</div>` : '';
         const action = turn.speak ? `<div class="message-actions"><button class="speak-link" type="button" data-speak="${turn.speak}">發音</button></div>` : '';
+        const formula = turn.formula ? `<div class="formula-inline">${turn.formula.items.map((item) => `<button class="formula-chip" type="button" data-speak="${item.speak}">${item.surface}<span>${item.translation}</span></button>`).join('')}</div>` : '';
         const role = turn.role === 'Friend' ? '' : `<div class="role">${turn.role}</div>`;
-        return `<div class="message ${roleClass}">${role}<div class="ko">${turn.ko}</div>${zh}${action}</div>`;
+        return `<div class="message ${roleClass}">${role}<div class="ko">${turn.ko}</div>${zh}${formula}${action}</div>`;
       }).join('');
       list.scrollTop = list.scrollHeight;
     }
@@ -492,7 +501,7 @@
         return;
       }
       nextBtn.disabled = false;
-      nextBtn.textContent = index === screens.length - 1 ? '重來' : (onDialogue ? '看公式' : '繼續');
+      nextBtn.textContent = index === screens.length - 1 ? '重來' : (onDialogue ? '整理' : '繼續');
     }
     function show(i) {
       index = Math.max(0, Math.min(i, screens.length - 1));
@@ -522,7 +531,7 @@
       button.addEventListener('click', () => speakKo(button.dataset.speak || button.textContent));
     });
     document.getElementById('transcriptList').addEventListener('click', (event) => {
-      const button = event.target.closest('.speak-link');
+      const button = event.target.closest('.speak-link, .formula-chip');
       if (!button) return;
       speakKo(button.dataset.speak || button.textContent);
     });
@@ -580,12 +589,11 @@
       } else {
         dialogueComplete = true;
         feedback.textContent = '整段 check-in 都是你自己接下來的。';
-        friendText.textContent = '剛剛那個 2박 有點意思，看一眼再走。';
+        friendText.textContent = '整段 check-in 都是你自己接下來的。';
         document.getElementById('responseHand').innerHTML = '';
         updateNextButton();
       }
     }
-    document.getElementById('restartDialogue').addEventListener('click', () => { resetDialogue(); show(0); });
     document.getElementById('restart').addEventListener('click', () => { resetDialogue(); show(0); });
     async function init() {
       try {
