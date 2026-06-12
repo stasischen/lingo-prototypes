@@ -1,0 +1,206 @@
+{
+  "schema_version": "scenario_pack.v1",
+  "scenario_id": "travel_hotel_checkin",
+  "language": "ko",
+  "ui_language": "zh_tw",
+  "source_status": "pilot_authored_derived",
+  "support_text": "到櫃台了。聽聽看他說什麼，挑一句回他。",
+  "roles": {
+    "npc": { "label": "職員" },
+    "learner": { "label": "你" }
+  },
+  "turns": [
+    {
+      "turn_id": "t1",
+      "speaker": "npc",
+      "act": "yn_question",
+      "act_slots": { "topic": "訂房了沒", "keyword": "예약", "gloss": "預約" },
+      "learning_role": "listen_only",
+      "surface": "어서 오세요. 예약하셨나요?",
+      "speak": "어서 오세요. 예약하셨나요?",
+      "translation": "歡迎光臨。請問有預約嗎？",
+      "friend": {
+        "hint": "他在問你「訂房了嗎」。예약 就是預約，聽到這個詞就懂了。"
+      },
+      "reply_set": {
+        "correct": "r1a",
+        "choices": [
+          {
+            "id": "r1a",
+            "surface": "네, 예약했어요.",
+            "translation": "有，我有預約。",
+            "speak": "네, 예약했어요.",
+            "learning_role": "production_target",
+            "feedback": "嗯，這樣回就行，不用講長。"
+          },
+          {
+            "id": "r1b",
+            "surface": "호텔을 좋아해요.",
+            "translation": "我喜歡飯店。",
+            "speak": "호텔을 좋아해요.",
+            "contrast_type": "off_topic_statement",
+            "feedback": "這句是「我喜歡飯店」……他是在問你訂房了沒。"
+          },
+          {
+            "id": "r1c",
+            "surface": "아니요, 괜찮아요.",
+            "translation": "不用了，沒關係。",
+            "speak": "아니요, 괜찮아요.",
+            "contrast_type": "wrong_function_refusal",
+            "feedback": "괜찮아요 是「不用了」，這樣講他會以為你沒訂房。"
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t2",
+      "speaker": "npc",
+      "act": "info_request",
+      "act_slots": { "topic": "名字", "answer_frame": "왕리로 예약했어요." },
+      "learning_role": "listen_only",
+      "surface": "성함이 어떻게 되세요?",
+      "speak": "성함이 어떻게 되세요?",
+      "translation": "請問姓名是？",
+      "friend": {
+        "hint": "他在問你的名字。可以說「我用◯◯的名字訂的」。"
+      },
+      "reply_set": {
+        "correct": "r2a",
+        "choices": [
+          {
+            "id": "r2a",
+            "surface": "왕리로 예약했어요.",
+            "translation": "我是用王立預約的。",
+            "speak": "왕리로 예약했어요.",
+            "learning_role": "production_target",
+            "name_slot": "fixed_sample",
+            "feedback": "名字＋예약했어요，櫃台最常用的講法。"
+          },
+          {
+            "id": "r2b",
+            "surface": "네, 맞아요.",
+            "translation": "對，沒錯。",
+            "speak": "네, 맞아요.",
+            "contrast_type": "wrong_act_confirmation",
+            "feedback": "他還在等你的名字。"
+          },
+          {
+            "id": "r2c",
+            "surface": "감사합니다.",
+            "translation": "謝謝。",
+            "speak": "감사합니다.",
+            "contrast_type": "wrong_act_closing",
+            "feedback": "先別急著道謝，他在問你叫什麼。"
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t3",
+      "speaker": "npc",
+      "act": "confirmation",
+      "act_slots": { "topic": "兩晚", "keyword": "2박", "gloss": "兩晚" },
+      "learning_role": "listen_only",
+      "surface": "네, 확인했습니다. 2박 맞으세요?",
+      "speak": "네, 확인했습니다. 이박 맞으세요?",
+      "translation": "好的，確認到了。是兩晚沒錯嗎？",
+      "friend": {
+        "hint": "박 是「晚」，2박 就是兩晚。他在跟你對訂單。"
+      },
+      "inline_explain": {
+        "pattern_id": "ko.hotel.nights.bak.v1",
+        "title": "數字 + 박 = 幾晚",
+        "items": [
+          { "surface": "1박", "translation": "一晚", "speak": "일박" },
+          { "surface": "2박", "translation": "兩晚", "speak": "이박" },
+          { "surface": "3박", "translation": "三晚", "speak": "삼박" }
+        ]
+      },
+      "reply_set": {
+        "correct": "r3a",
+        "choices": [
+          {
+            "id": "r3a",
+            "surface": "네, 맞아요.",
+            "translation": "對，沒錯。",
+            "speak": "네, 맞아요.",
+            "learning_role": "production_target",
+            "feedback": "네, 맞아요，兩個詞搞定。"
+          },
+          {
+            "id": "r3b",
+            "surface": "왕리로 예약했어요.",
+            "translation": "我是用王立預約的。",
+            "speak": "왕리로 예약했어요.",
+            "contrast_type": "repeated_prior_answer",
+            "feedback": "名字剛講過囉，他現在問的是「住幾晚」。"
+          },
+          {
+            "id": "r3c",
+            "surface": "호텔을 좋아해요.",
+            "translation": "我喜歡飯店。",
+            "speak": "호텔을 좋아해요.",
+            "contrast_type": "off_topic_statement",
+            "feedback": "又是「我喜歡飯店」……他在問住幾晚對不對。"
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t4",
+      "speaker": "npc",
+      "act": "handover",
+      "act_slots": { "topic": "房卡和電梯位置" },
+      "learning_role": "listen_only",
+      "surface": "여기 객실 키입니다. 엘리베이터는 오른쪽에 있습니다.",
+      "speak": "여기 객실 키입니다. 엘리베이터는 오른쪽에 있습니다.",
+      "translation": "這是您的房卡。電梯在右邊。",
+      "friend": {
+        "hint": "房卡到手了，道個謝就好。"
+      },
+      "reply_set": {
+        "correct": "r4a",
+        "choices": [
+          {
+            "id": "r4a",
+            "surface": "감사합니다.",
+            "translation": "謝謝。",
+            "speak": "감사합니다.",
+            "learning_role": "production_target",
+            "feedback": "收尾漂亮。"
+          },
+          {
+            "id": "r4b",
+            "surface": "네, 예약했어요.",
+            "translation": "有，我有預約。",
+            "speak": "네, 예약했어요.",
+            "contrast_type": "repeated_prior_answer",
+            "feedback": "預約早就確認過啦，拿了房卡道個謝就好。"
+          },
+          {
+            "id": "r4c",
+            "surface": "아니요, 괜찮아요.",
+            "translation": "不用了，沒關係。",
+            "speak": "아니요, 괜찮아요.",
+            "contrast_type": "wrong_function_refusal",
+            "feedback": "這樣講像在拒絕房卡，他會愣住。"
+          }
+        ]
+      },
+      "closing": {
+        "act": "closing",
+        "learning_role": "listen_only",
+        "surface": "편안한 시간 되세요.",
+        "speak": "편안한 시간 되세요.",
+        "translation": "祝您住得愉快。"
+      }
+    }
+  ],
+  "formula_moments": [
+    { "after_turn": "t3", "pattern_id": "ko.hotel.nights.bak.v1" }
+  ],
+  "notes": {
+    "learner_name": "Uses fixed sample name because Korean (으)로 is morphology-sensitive.",
+    "canonical_policy": "Pilot-authored derived fixture only; do not write back to canonical schema."
+  }
+}

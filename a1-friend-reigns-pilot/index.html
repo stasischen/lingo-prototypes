@@ -360,57 +360,42 @@
     let showTranslations = false;
     let showHints = false;
     let visibleChoices = [];
-    const rounds = [
-      {
-        staffKo: '어서 오세요. 예약하셨나요?',
-        staffZh: '歡迎光臨。請問有預約嗎？',
-        staffSpeak: '어서 오세요. 예약하셨나요?',
-        hint: '他在問你「訂房了嗎」。예약 就是預約，聽到這個詞就懂了。',
-        choices: [
-          { text: '네, 예약했어요.', zh: '有，我有預約。', speak: '네, 예약했어요.', good: true, feedback: '嗯，這樣回就行，不用講長。' },
-          { text: '호텔을 좋아해요.', zh: '我喜歡飯店。', speak: '호텔을 좋아해요.', feedback: '這句是「我喜歡飯店」……他是在問你訂房了沒。' },
-          { text: '아니요, 괜찮아요.', zh: '不用了，沒關係。', speak: '아니요, 괜찮아요.', feedback: '괜찮아요 是「不用了」，這樣講他會以為你沒訂房。' }
-        ]
-      },
-      {
-        staffKo: '성함이 어떻게 되세요?',
-        staffZh: '請問姓名是？',
-        staffSpeak: '성함이 어떻게 되세요?',
-        hint: '他在問你的名字。可以說「我用◯◯的名字訂的」。',
-        choices: [
-          { text: '왕리로 예약했어요.', zh: '我是用王立預約的。', speak: '왕리로 예약했어요.', good: true, feedback: '名字＋예약했어요，櫃台最常用的講法。' },
-          { text: '네, 맞아요.', zh: '對，沒錯。', speak: '네, 맞아요.', feedback: '他還在等你的名字。' },
-          { text: '감사합니다.', zh: '謝謝。', speak: '감사합니다.', feedback: '先別急著道謝，他在問你叫什麼。' }
-        ]
-      },
-      {
-        staffKo: '네, 확인했습니다. 2박 맞으세요?',
-        staffZh: '好的，確認到了。是兩晚沒錯嗎？',
-        staffSpeak: '네, 확인했습니다. 이박 맞으세요?',
-        hint: '박 是「晚」，2박 就是兩晚。他在跟你對訂單。',
-        choices: [
-          { text: '네, 맞아요.', zh: '對，沒錯。', speak: '네, 맞아요.', good: true, feedback: '네, 맞아요，兩個詞搞定。' },
-          { text: '왕리로 예약했어요.', zh: '我是用王立預約的。', speak: '왕리로 예약했어요.', feedback: '名字剛講過囉，他現在問的是「住幾晚」。' },
-          { text: '호텔을 좋아해요.', zh: '我喜歡飯店。', speak: '호텔을 좋아해요.', feedback: '又是「我喜歡飯店」……他在問住幾晚對不對。' }
-        ]
-      },
-      {
-        staffKo: '여기 객실 키입니다. 엘리베이터는 오른쪽에 있습니다.',
-        staffZh: '這是您的房卡。電梯在右邊。',
-        staffSpeak: '여기 객실 키입니다. 엘리베이터는 오른쪽에 있습니다.',
-        hint: '房卡到手了，道個謝就好。',
-        choices: [
-          { text: '감사합니다.', zh: '謝謝。', speak: '감사합니다.', good: true, feedback: '收尾漂亮。' },
-          { text: '네, 예약했어요.', zh: '有，我有預約。', speak: '네, 예약했어요.', feedback: '預約早就確認過啦，拿了房卡道個謝就好。' },
-          { text: '아니요, 괜찮아요.', zh: '不用了，沒關係。', speak: '아니요, 괜찮아요.', feedback: '這樣講像在拒絕房卡，他會愣住。' }
-        ],
-        closing: '편안한 시간 되세요. / 祝您住得愉快。'
-      }
-    ];
+    let scenarioPack = null;
+    let rounds = [];
     const transcript = [];
-    const missesByRound = Array(rounds.length).fill(0);
+    let missesByRound = [];
     function normalize(text) { return text.normalize('NFC').replace(/[.,!?，。！？\s]/g, '').trim(); }
     function supportText() { return '到櫃台了。聽聽看他說什麼，挑一句回他。'; }
+    function buildRounds(pack) {
+      return pack.turns.map((turn) => {
+        const correctId = turn.reply_set.correct;
+        return {
+          id: turn.turn_id,
+          act: turn.act,
+          learningRole: turn.learning_role,
+          staffKo: turn.surface,
+          staffZh: turn.translation,
+          staffSpeak: turn.speak || turn.surface,
+          hint: turn.friend && turn.friend.hint ? turn.friend.hint : supportText(),
+          inlineExplain: turn.inline_explain || null,
+          choices: turn.reply_set.choices.map((choice) => ({
+            id: choice.id,
+            text: choice.surface,
+            zh: choice.translation,
+            speak: choice.speak || choice.surface,
+            good: choice.id === correctId,
+            feedback: choice.feedback,
+            learningRole: choice.learning_role || null,
+            contrastType: choice.contrast_type || null
+          })),
+          closing: turn.closing ? {
+            ko: turn.closing.surface,
+            zh: turn.closing.translation,
+            speak: turn.closing.speak || turn.closing.surface
+          } : null
+        };
+      });
+    }
     function shuffle(items) {
       const shuffled = [...items];
       for (let i = shuffled.length - 1; i > 0; i -= 1) {
@@ -586,7 +571,7 @@
       Array.from(document.getElementById('responseHand').children).forEach((button) => { button.disabled = true; });
       transcript.push({ round: roundIndex, role: '你', ko: selectedResponse.text, zh: selectedResponse.zh, speak: selectedResponse.speak || selectedResponse.text });
       transcript.push({ round: roundIndex, role: 'Friend', ko: selectedResponse.feedback });
-      if (round.closing) transcript.push({ round: roundIndex, role: '職員', ko: '편안한 시간 되세요.', zh: '祝您住得愉快。', speak: '편안한 시간 되세요.' });
+      if (round.closing) transcript.push({ round: roundIndex, role: '職員', ko: round.closing.ko, zh: round.closing.zh, speak: round.closing.speak });
       renderTranscript();
       if (roundIndex < rounds.length - 1) {
         roundIndex += 1;
@@ -602,7 +587,23 @@
     }
     document.getElementById('restartDialogue').addEventListener('click', () => { resetDialogue(); show(0); });
     document.getElementById('restart').addEventListener('click', () => { resetDialogue(); show(0); });
-    show(0);
+    async function init() {
+      try {
+        const response = await fetch('scenario_pack.v1.json', { cache: 'no-store' });
+        if (!response.ok) throw new Error(`scenario pack load failed: ${response.status}`);
+        scenarioPack = await response.json();
+        rounds = buildRounds(scenarioPack);
+        missesByRound = Array(rounds.length).fill(0);
+        show(0);
+      } catch (error) {
+        friendText.textContent = '這份練習資料載入失敗，先重新整理看看。';
+        document.getElementById('responseHand').innerHTML = '';
+        document.getElementById('dialogueFeedback').textContent = error.message;
+        document.getElementById('dialogueFeedback').classList.add('show');
+        nextBtn.disabled = true;
+      }
+    }
+    init();
   </script>
 </body>
 </html>
