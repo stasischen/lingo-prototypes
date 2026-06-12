@@ -242,6 +242,8 @@
       padding: 10px 14px;
       box-shadow: 0 4px 12px rgba(57,45,32,.06);
     }
+    .choice-ko { display: block; }
+    .choice-zh { display: block; margin-top: 3px; color: var(--muted); font-size: 12px; }
     .typing-hint {
       display: none;
       align-self: start;
@@ -306,7 +308,7 @@
       </div>
     </header>
     <main>
-      <section class="screen active" data-title="櫃台對話" data-friend="你在飯店櫃台 check-in。對方講韓文，你選一句接得上的回答。">
+      <section class="screen active" data-title="櫃台對話" data-friend="到櫃台了。聽聽看他說什麼，挑一句回他。">
         <div class="chat-shell">
           <div class="chat-status">
             <span>飯店櫃台</span>
@@ -342,7 +344,7 @@
         <div class="card"><h2>今天這段櫃台對話</h2><div class="wrap-list"><div class="wrap-item"><b>예약하셨나요?</b><div class="meta">請問有預約嗎？</div></div><div class="wrap-item"><b>네, 예약했어요.</b><div class="meta">有，我有預約。</div></div><div class="wrap-item"><b>성함이 어떻게 되세요?</b><div class="meta">請問姓名是？</div></div><div class="wrap-item"><b>왕리로 예약했어요.</b><div class="meta">我是用王立預約的。</div></div><div class="wrap-item"><b>2박 맞으세요?</b><div class="meta">是兩晚沒錯嗎？</div></div><div class="wrap-item"><b>네, 맞아요.</b><div class="meta">對，沒錯。</div></div><div class="wrap-item"><b>감사합니다.</b><div class="meta">謝謝。</div></div></div><div class="controls"><button class="btn secondary" type="button" id="restart">再看一次</button></div></div>
       </section>
     </main>
-    <div class="friend-bar" aria-live="polite"><div class="avatar">F</div><div class="bar-text" id="friendText">飯店 check-in。聽韓文，選一句接得上的回答。</div><button class="next" type="button" id="nextBtn">繼續</button></div>
+    <div class="friend-bar" aria-live="polite"><div class="avatar">F</div><div class="bar-text" id="friendText">到櫃台了。聽聽看他說什麼，挑一句回他。</div><button class="next" type="button" id="nextBtn">繼續</button></div>
   </div>
   <script>
     const screens = Array.from(document.querySelectorAll('.screen'));
@@ -357,55 +359,66 @@
     let dialogueComplete = false;
     let showTranslations = false;
     let showHints = false;
+    let visibleChoices = [];
     const rounds = [
       {
         staffKo: '어서 오세요. 예약하셨나요?',
         staffZh: '歡迎光臨。請問有預約嗎？',
         staffSpeak: '어서 오세요. 예약하셨나요?',
-        hint: '對方問的是有沒有預約。找有 `예약` 的回答。',
+        hint: '他在問你「訂房了嗎」。예약 就是預約，聽到這個詞就懂了。',
         choices: [
-          { text: '네, 예약했어요.', zh: '有，我有預約。', speak: '네, 예약했어요.', good: true, feedback: '可以。這句短短的，但能把話接上。' },
-          { text: '호텔을 좋아해요.', zh: '我喜歡飯店。', speak: '호텔을 좋아해요.', feedback: '這句是「我喜歡飯店」，沒有回答有沒有預約。' },
-          { text: '아니요, 괜찮아요.', zh: '不用了，沒關係。', speak: '아니요, 괜찮아요.', feedback: '`괜찮아요` 是「沒關係」。這裡要先回答預約。' }
+          { text: '네, 예약했어요.', zh: '有，我有預約。', speak: '네, 예약했어요.', good: true, feedback: '嗯，這樣回就行，不用講長。' },
+          { text: '호텔을 좋아해요.', zh: '我喜歡飯店。', speak: '호텔을 좋아해요.', feedback: '這句是「我喜歡飯店」……他是在問你訂房了沒。' },
+          { text: '아니요, 괜찮아요.', zh: '不用了，沒關係。', speak: '아니요, 괜찮아요.', feedback: '괜찮아요 是「不用了」，這樣講他會以為你沒訂房。' }
         ]
       },
       {
         staffKo: '성함이 어떻게 되세요?',
         staffZh: '請問姓名是？',
         staffSpeak: '성함이 어떻게 되세요?',
-        hint: '對方在問姓名。你可以用「用某某名字預約」來回答。',
+        hint: '他在問你的名字。可以說「我用◯◯的名字訂的」。',
         choices: [
-          { text: '왕리로 예약했어요.', zh: '我是用王立預約的。', speak: '왕리로 예약했어요.', good: true, feedback: '對。這句就是「我是用王立預約的」。' },
-          { text: '네, 맞아요.', zh: '對，沒錯。', speak: '네, 맞아요.', feedback: '這句是確認沒錯，但還沒告訴對方名字。' },
-          { text: '감사합니다.', zh: '謝謝。', speak: '감사합니다.', feedback: '現在還沒到道謝，對方正在問名字。' }
+          { text: '왕리로 예약했어요.', zh: '我是用王立預約的。', speak: '왕리로 예약했어요.', good: true, feedback: '名字＋예약했어요，櫃台最常用的講法。' },
+          { text: '네, 맞아요.', zh: '對，沒錯。', speak: '네, 맞아요.', feedback: '他還在等你的名字。' },
+          { text: '감사합니다.', zh: '謝謝。', speak: '감사합니다.', feedback: '先別急著道謝，他在問你叫什麼。' }
         ]
       },
       {
         staffKo: '네, 확인했습니다. 2박 맞으세요?',
         staffZh: '好的，確認到了。是兩晚沒錯嗎？',
         staffSpeak: '네, 확인했습니다. 이박 맞으세요?',
-        hint: '`2박` 是兩晚。對方在確認資料是不是對的。',
+        hint: '박 是「晚」，2박 就是兩晚。他在跟你對訂單。',
         choices: [
-          { text: '네, 맞아요.', zh: '對，沒錯。', speak: '네, 맞아요.', good: true, feedback: '對。資料正確時，這句就夠了。' },
-          { text: '왕리로 예약했어요.', zh: '我是用王立預約的。', speak: '왕리로 예약했어요.', feedback: '名字剛剛已經說過了，現在對方在確認兩晚。' },
-          { text: '호텔을 좋아해요.', zh: '我喜歡飯店。', speak: '호텔을 좋아해요.', feedback: '這句還是在說喜歡飯店，不是在確認住宿天數。' }
+          { text: '네, 맞아요.', zh: '對，沒錯。', speak: '네, 맞아요.', good: true, feedback: '네, 맞아요，兩個詞搞定。' },
+          { text: '왕리로 예약했어요.', zh: '我是用王立預約的。', speak: '왕리로 예약했어요.', feedback: '名字剛講過囉，他現在問的是「住幾晚」。' },
+          { text: '호텔을 좋아해요.', zh: '我喜歡飯店。', speak: '호텔을 좋아해요.', feedback: '又是「我喜歡飯店」……他在問住幾晚對不對。' }
         ]
       },
       {
         staffKo: '여기 객실 키입니다. 엘리베이터는 오른쪽에 있습니다.',
         staffZh: '這是您的房卡。電梯在右邊。',
         staffSpeak: '여기 객실 키입니다. 엘리베이터는 오른쪽에 있습니다.',
-        hint: '對方把房卡給你，也告訴你電梯在哪。這裡簡單道謝就好。',
+        hint: '房卡到手了，道個謝就好。',
         choices: [
-          { text: '감사합니다.', zh: '謝謝。', speak: '감사합니다.', good: true, feedback: '對。這裡說謝謝就很自然。' },
-          { text: '네, 예약했어요.', zh: '有，我有預約。', speak: '네, 예약했어요.', feedback: '預約已經確認完了，現在不用再說一次。' },
-          { text: '아니요, 괜찮아요.', zh: '不用了，沒關係。', speak: '아니요, 괜찮아요.', feedback: '這樣像是在拒絕房卡，和場景不合。' }
+          { text: '감사합니다.', zh: '謝謝。', speak: '감사합니다.', good: true, feedback: '收尾漂亮。' },
+          { text: '네, 예약했어요.', zh: '有，我有預約。', speak: '네, 예약했어요.', feedback: '預約早就確認過啦，拿了房卡道個謝就好。' },
+          { text: '아니요, 괜찮아요.', zh: '不用了，沒關係。', speak: '아니요, 괜찮아요.', feedback: '這樣講像在拒絕房卡，他會愣住。' }
         ],
         closing: '편안한 시간 되세요. / 祝您住得愉快。'
       }
     ];
     const transcript = [];
+    const missesByRound = Array(rounds.length).fill(0);
     function normalize(text) { return text.normalize('NFC').replace(/[.,!?，。！？\s]/g, '').trim(); }
+    function supportText() { return '到櫃台了。聽聽看他說什麼，挑一句回他。'; }
+    function shuffle(items) {
+      const shuffled = [...items];
+      for (let i = shuffled.length - 1; i > 0; i -= 1) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+      }
+      return shuffled;
+    }
     function speakKo(text, rate = 0.88) {
       if (!('speechSynthesis' in window)) {
         alert('這個瀏覽器不支援內建發音。');
@@ -429,7 +442,7 @@
       if (!transcript.some((turn) => turn.round === roundIndex && turn.role === '職員')) {
         transcript.push({ round: roundIndex, role: '職員', ko: round.staffKo, zh: round.staffZh, speak: round.staffSpeak || round.staffKo });
       }
-      friendText.textContent = showHints ? round.hint : '飯店 check-in。聽韓文，選一句接得上的回答。';
+      friendText.textContent = showHints ? round.hint : supportText();
       const feedback = document.getElementById('dialogueFeedback');
       if (!feedback.dataset.keep) {
         feedback.textContent = '';
@@ -437,12 +450,19 @@
       }
       feedback.dataset.keep = '';
       const hand = document.getElementById('responseHand');
+      visibleChoices = shuffle(round.choices);
+      renderChoices();
+      renderTranscript();
+      updateNextButton();
+    }
+    function renderChoices() {
+      const hand = document.getElementById('responseHand');
       hand.innerHTML = '';
-      round.choices.forEach((choice, choiceIndex) => {
+      visibleChoices.forEach((choice) => {
         const button = document.createElement('button');
         button.className = 'choice';
         button.type = 'button';
-        button.textContent = choice.text;
+        button.innerHTML = `<span class="choice-ko">${choice.text}</span>${showTranslations && choice.zh ? `<span class="choice-zh">${choice.zh}</span>` : ''}`;
         button.addEventListener('click', () => {
           if (roundCommitted) return;
           Array.from(hand.children).forEach((child) => child.classList.remove('selected', 'good', 'warn'));
@@ -453,8 +473,6 @@
         });
         hand.appendChild(button);
       });
-      renderTranscript();
-      updateNextButton();
     }
     function renderTranscript() {
       const list = document.getElementById('transcriptList');
@@ -476,6 +494,8 @@
       roundIndex = 0;
       dialogueComplete = false;
       transcript.length = 0;
+      missesByRound.fill(0);
+      visibleChoices = [];
       document.getElementById('dialogueFeedback').dataset.keep = '';
       renderDialogueRound();
     }
@@ -496,7 +516,7 @@
       const screen = screens[index];
       title.textContent = screen.dataset.title || 'A1 Friend Pilot';
       if (screen.dataset.title === '櫃台對話') {
-        friendText.textContent = showHints && rounds[roundIndex] ? rounds[roundIndex].hint : '飯店 check-in。聽韓文，選一句接得上的回答。';
+        friendText.textContent = showHints && rounds[roundIndex] ? rounds[roundIndex].hint : supportText();
       } else {
         friendText.textContent = screen.dataset.friend || '';
       }
@@ -525,18 +545,25 @@
       button.classList.toggle('active', active);
       button.setAttribute('aria-pressed', String(active));
     }
-    document.getElementById('translationToggle').addEventListener('click', () => {
-      showTranslations = !showTranslations;
+    function setTranslations(active) {
+      showTranslations = active;
       updateToggle(document.getElementById('translationToggle'), showTranslations);
       renderTranscript();
-    });
-    document.getElementById('hintToggle').addEventListener('click', () => {
-      showHints = !showHints;
+      if (screens[index] && screens[index].dataset.title === '櫃台對話') renderChoices();
+    }
+    function setHints(active) {
+      showHints = active;
       updateToggle(document.getElementById('hintToggle'), showHints);
       if (screens[index] && screens[index].dataset.title === '櫃台對話') {
         const round = rounds[roundIndex];
-        friendText.textContent = showHints && round ? round.hint : '飯店 check-in。聽韓文，選一句接得上的回答。';
+        friendText.textContent = showHints && round ? round.hint : supportText();
       }
+    }
+    document.getElementById('translationToggle').addEventListener('click', () => {
+      setTranslations(!showTranslations);
+    });
+    document.getElementById('hintToggle').addEventListener('click', () => {
+      setHints(!showHints);
     });
     function sendSelectedReply() {
       const feedback = document.getElementById('dialogueFeedback');
@@ -548,7 +575,12 @@
       }
       feedback.textContent = selectedResponse.feedback;
       feedback.classList.add('show');
-      if (!selectedResponse.good) return;
+      if (!selectedResponse.good) {
+        missesByRound[roundIndex] += 1;
+        if (missesByRound[roundIndex] >= 2) setHints(true);
+        if (missesByRound[roundIndex] >= 3) setTranslations(true);
+        return;
+      }
       const round = rounds[roundIndex];
       roundCommitted = true;
       Array.from(document.getElementById('responseHand').children).forEach((button) => { button.disabled = true; });
@@ -562,8 +594,8 @@
         window.setTimeout(renderDialogueRound, 1200);
       } else {
         dialogueComplete = true;
-        feedback.textContent = '可以，櫃台這段接完了。';
-        friendText.textContent = '這段櫃台對話走完了。繼續看剛剛的 `2박`。';
+        feedback.textContent = '整段 check-in 都是你自己接下來的。';
+        friendText.textContent = '剛剛那個 2박 有點意思，看一眼再走。';
         document.getElementById('responseHand').innerHTML = '';
         updateNextButton();
       }
