@@ -189,6 +189,7 @@
       border: 1px solid rgba(216, 208, 196, .82);
       background: #fff;
       box-shadow: 0 8px 18px rgba(57, 45, 32, .07);
+      overflow-wrap: anywhere;
     }
     .message.staff { align-self: flex-start; border-bottom-left-radius: 6px; }
     .message.learner {
@@ -200,9 +201,10 @@
     }
     .message.friend {
       align-self: center;
-      max-width: 86%;
-      padding: 7px 10px;
-      border-radius: 999px;
+      width: min(100%, 320px);
+      max-width: 100%;
+      padding: 8px 10px;
+      border-radius: 8px;
       background: var(--friend-soft);
       border-color: #b9ddd7;
       color: var(--ink);
@@ -225,12 +227,13 @@
     .formula-chip {
       min-height: 42px;
       padding: 6px;
-      border-radius: 10px;
+      border-radius: 8px;
       background: rgba(255,253,248,.86);
       border: 1px solid #b9ddd7;
       color: var(--ink);
       font-size: 12px;
       font-weight: 800;
+      overflow-wrap: anywhere;
     }
     .formula-chip span { display: block; margin-top: 2px; color: var(--muted); font-weight: 700; }
     .message-actions { margin-top: 8px; }
@@ -255,9 +258,10 @@
     }
     .quick-replies .choice {
       min-height: 46px;
-      border-radius: 999px;
+      border-radius: 8px;
       padding: 10px 14px;
       box-shadow: 0 4px 12px rgba(57,45,32,.06);
+      overflow-wrap: anywhere;
     }
     .choice-ko { display: block; }
     .choice-zh { display: block; margin-top: 3px; color: var(--muted); font-size: 12px; }
@@ -454,7 +458,7 @@
           transcript.push({
             round: roundIndex,
             role: 'Friend',
-            ko: '剛剛那個 2박 有點意思。박 是「晚」，2박 就是兩晚。',
+            ko: '박 是「晚」，2박 就是兩晚。',
             formula: round.inlineExplain
           });
         }
