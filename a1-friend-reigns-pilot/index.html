@@ -200,7 +200,9 @@
     }
     .message.friend {
       align-self: center;
-      max-width: 94%;
+      max-width: 86%;
+      padding: 7px 10px;
+      border-radius: 999px;
       background: var(--friend-soft);
       border-color: #b9ddd7;
       color: var(--ink);
@@ -210,6 +212,8 @@
     .message.learner .role { color: rgba(255,255,255,.74); }
     .message .ko { font-size: 19px; }
     .message.learner .ko { color: white; }
+    .message.friend .role { display: none; }
+    .message.friend .ko { font-size: 13px; line-height: 1.35; font-weight: 650; }
     .message .zh { font-size: 13px; }
     .message.learner .zh { color: rgba(255,255,255,.8); }
     .message-actions { margin-top: 8px; }
@@ -360,9 +364,9 @@
         staffSpeak: '어서 오세요. 예약하셨나요?',
         hint: '對方問的是有沒有預約。找有 `예약` 的回答。',
         choices: [
-          { text: '네, 예약했어요.', speak: '네, 예약했어요.', good: true, feedback: '可以。這句短短的，但能把話接上。' },
-          { text: '호텔을 좋아해요.', speak: '호텔을 좋아해요.', feedback: '這句是「我喜歡飯店」，沒有回答有沒有預約。' },
-          { text: '아니요, 괜찮아요.', speak: '아니요, 괜찮아요.', feedback: '`괜찮아요` 是「沒關係」。這裡要先回答預約。' }
+          { text: '네, 예약했어요.', zh: '有，我有預約。', speak: '네, 예약했어요.', good: true, feedback: '可以。這句短短的，但能把話接上。' },
+          { text: '호텔을 좋아해요.', zh: '我喜歡飯店。', speak: '호텔을 좋아해요.', feedback: '這句是「我喜歡飯店」，沒有回答有沒有預約。' },
+          { text: '아니요, 괜찮아요.', zh: '不用了，沒關係。', speak: '아니요, 괜찮아요.', feedback: '`괜찮아요` 是「沒關係」。這裡要先回答預約。' }
         ]
       },
       {
@@ -371,9 +375,9 @@
         staffSpeak: '성함이 어떻게 되세요?',
         hint: '對方在問姓名。你可以用「用某某名字預約」來回答。',
         choices: [
-          { text: '왕리로 예약했어요.', speak: '왕리로 예약했어요.', good: true, feedback: '對。這句就是「我是用王立預約的」。' },
-          { text: '네, 맞아요.', speak: '네, 맞아요.', feedback: '這句是確認沒錯，但還沒告訴對方名字。' },
-          { text: '감사합니다.', speak: '감사합니다.', feedback: '現在還沒到道謝，對方正在問名字。' }
+          { text: '왕리로 예약했어요.', zh: '我是用王立預約的。', speak: '왕리로 예약했어요.', good: true, feedback: '對。這句就是「我是用王立預約的」。' },
+          { text: '네, 맞아요.', zh: '對，沒錯。', speak: '네, 맞아요.', feedback: '這句是確認沒錯，但還沒告訴對方名字。' },
+          { text: '감사합니다.', zh: '謝謝。', speak: '감사합니다.', feedback: '現在還沒到道謝，對方正在問名字。' }
         ]
       },
       {
@@ -382,9 +386,9 @@
         staffSpeak: '네, 확인했습니다. 이박 맞으세요?',
         hint: '`2박` 是兩晚。對方在確認資料是不是對的。',
         choices: [
-          { text: '네, 맞아요.', speak: '네, 맞아요.', good: true, feedback: '對。資料正確時，這句就夠了。' },
-          { text: '왕리로 예약했어요.', speak: '왕리로 예약했어요.', feedback: '名字剛剛已經說過了，現在對方在確認兩晚。' },
-          { text: '호텔을 좋아해요.', speak: '호텔을 좋아해요.', feedback: '這句還是在說喜歡飯店，不是在確認住宿天數。' }
+          { text: '네, 맞아요.', zh: '對，沒錯。', speak: '네, 맞아요.', good: true, feedback: '對。資料正確時，這句就夠了。' },
+          { text: '왕리로 예약했어요.', zh: '我是用王立預約的。', speak: '왕리로 예약했어요.', feedback: '名字剛剛已經說過了，現在對方在確認兩晚。' },
+          { text: '호텔을 좋아해요.', zh: '我喜歡飯店。', speak: '호텔을 좋아해요.', feedback: '這句還是在說喜歡飯店，不是在確認住宿天數。' }
         ]
       },
       {
@@ -393,9 +397,9 @@
         staffSpeak: '여기 객실 키입니다. 엘리베이터는 오른쪽에 있습니다.',
         hint: '對方把房卡給你，也告訴你電梯在哪。這裡簡單道謝就好。',
         choices: [
-          { text: '감사합니다.', speak: '감사합니다.', good: true, feedback: '對。這裡說謝謝就很自然。' },
-          { text: '네, 예약했어요.', speak: '네, 예약했어요.', feedback: '預約已經確認完了，現在不用再說一次。' },
-          { text: '아니요, 괜찮아요.', speak: '아니요, 괜찮아요.', feedback: '這樣像是在拒絕房卡，和場景不合。' }
+          { text: '감사합니다.', zh: '謝謝。', speak: '감사합니다.', good: true, feedback: '對。這裡說謝謝就很自然。' },
+          { text: '네, 예약했어요.', zh: '有，我有預約。', speak: '네, 예약했어요.', feedback: '預約已經確認完了，現在不用再說一次。' },
+          { text: '아니요, 괜찮아요.', zh: '不用了，沒關係。', speak: '아니요, 괜찮아요.', feedback: '這樣像是在拒絕房卡，和場景不合。' }
         ],
         closing: '편안한 시간 되세요. / 祝您住得愉快。'
       }
@@ -463,8 +467,8 @@
         const roleClass = turn.role === '你' ? 'learner' : (turn.role === 'Friend' ? 'friend' : 'staff');
         const zh = showTranslations && turn.zh ? `<div class="zh">${turn.zh}</div>` : '';
         const action = turn.speak ? `<div class="message-actions"><button class="speak-link" type="button" data-speak="${turn.speak}">發音</button></div>` : '';
-        const role = turn.role === 'Friend' ? 'F' : turn.role;
-        return `<div class="message ${roleClass}"><div class="role">${role}</div><div class="ko">${turn.ko}</div>${zh}${action}</div>`;
+        const role = turn.role === 'Friend' ? '' : `<div class="role">${turn.role}</div>`;
+        return `<div class="message ${roleClass}">${role}<div class="ko">${turn.ko}</div>${zh}${action}</div>`;
       }).join('');
       list.scrollTop = list.scrollHeight;
     }
@@ -548,7 +552,7 @@
       const round = rounds[roundIndex];
       roundCommitted = true;
       Array.from(document.getElementById('responseHand').children).forEach((button) => { button.disabled = true; });
-      transcript.push({ round: roundIndex, role: '你', ko: selectedResponse.text, speak: selectedResponse.speak || selectedResponse.text });
+      transcript.push({ round: roundIndex, role: '你', ko: selectedResponse.text, zh: selectedResponse.zh, speak: selectedResponse.speak || selectedResponse.text });
       transcript.push({ round: roundIndex, role: 'Friend', ko: selectedResponse.feedback });
       if (round.closing) transcript.push({ round: roundIndex, role: '職員', ko: '편안한 시간 되세요.', zh: '祝您住得愉快。', speak: '편안한 시간 되세요.' });
       renderTranscript();
