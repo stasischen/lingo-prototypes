@@ -49,6 +49,12 @@
       "label": "飯店 Wi-Fi/早餐",
       "language": "ko",
       "path": "scenario_packs/hotel_wifi_breakfast.ko.v1.json"
+    },
+    {
+      "scenario_id": "daily_schedule_time",
+      "label": "約時間",
+      "language": "ko",
+      "path": "scenario_packs/daily_schedule_time.ko.v1.json"
     }
   ]
 }

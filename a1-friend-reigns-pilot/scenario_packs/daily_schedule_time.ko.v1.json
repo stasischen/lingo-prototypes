@@ -1,0 +1,204 @@
+{
+  "schema_version": "scenario_pack.v1",
+  "scenario_id": "daily_schedule_time",
+  "title": "約時間情境",
+  "setting_label": "和朋友約見面",
+  "wrap_title": "今天這段約時間",
+  "wrap_friend": "你剛剛把見面時間和地點接起來了。日常約人時，先能問幾點、確認時間，就很實用。",
+  "language": "ko",
+  "ui_language": "zh_tw",
+  "source_status": "pilot_authored_ai_review_pending",
+  "review_state": "draft",
+  "production_mode_default": {
+    "required": ["choice"],
+    "optional_visible": ["speaking"],
+    "optional_hidden": ["typing"]
+  },
+  "support_text": "你和朋友今天要見面，正在約時間和地點。",
+  "roles": {
+    "npc": { "label": "朋友" },
+    "learner": { "label": "你" }
+  },
+  "turns": [
+    {
+      "turn_id": "t1",
+      "speaker": "npc",
+      "act": "yn_question",
+      "act_slots": { "topic": "今天能不能見", "keyword": "오늘", "gloss": "今天" },
+      "learning_role": "listen_only",
+      "surface": "오늘 만날 수 있어요?",
+      "speak": "오늘 만날 수 있어요?",
+      "translation": "今天可以見面嗎？",
+      "friend": {
+        "hint": "他在問今天能不能見。可以先問幾點。몇 시 是幾點。"
+      },
+      "reply_set": {
+        "correct": "r1a",
+        "choices": [
+          {
+            "id": "r1a",
+            "surface": "몇 시에 만날까요?",
+            "translation": "幾點見？",
+            "speak": "몇 시에 만날까요?",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r1b",
+            "surface": "와이파이 비밀번호가 뭐예요?",
+            "translation": "Wi-Fi 密碼是什麼？",
+            "speak": "와이파이 비밀번호가 뭐예요?",
+            "contrast_type": "wrong_scenario_request",
+            "feedback": "這句是在飯店問 Wi-Fi。現在是在和朋友約時間。"
+          },
+          {
+            "id": "r1c",
+            "surface": "카드로 할게요.",
+            "translation": "我用卡。",
+            "speak": "카드로 할게요.",
+            "contrast_type": "wrong_act_payment",
+            "feedback": "這句是付款用的。朋友現在在約見面。"
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t2",
+      "speaker": "npc",
+      "act": "info_response",
+      "act_slots": { "topic": "三點", "keyword": "3시", "gloss": "3 點" },
+      "learning_role": "listen_only",
+      "surface": "오후 3시 괜찮아요?",
+      "speak": "오후 세 시 괜찮아요?",
+      "translation": "下午 3 點可以嗎？",
+      "friend": {
+        "hint": "오후 是下午，3시 是 3 點。괜찮아요? 是問可不可以。"
+      },
+      "inline_explain": {
+        "pattern_id": "ko.time.hour.e.v1",
+        "formula_ref": null,
+        "title": "時間 + 에",
+        "explain": "에 放在時間後面，表示在那個時間。",
+        "items": [
+          { "surface": "3시에", "translation": "在 3 點", "speak": "세 시에" },
+          { "surface": "오후 3시", "translation": "下午 3 點", "speak": "오후 세 시" }
+        ]
+      },
+      "reply_set": {
+        "correct": "r2a",
+        "choices": [
+          {
+            "id": "r2a",
+            "surface": "3시 좋아요.",
+            "translation": "3 點好。",
+            "speak": "세 시 좋아요.",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r2b",
+            "surface": "3번 출구요?",
+            "translation": "3 號出口嗎？",
+            "speak": "삼번 출구요?",
+            "contrast_type": "wrong_entity",
+            "feedback": "3번 출구 是 3 號出口。這裡是 3시，3 點。"
+          },
+          {
+            "id": "r2c",
+            "surface": "아니요, 괜찮아요.",
+            "translation": "不用了，沒關係。",
+            "speak": "아니요, 괜찮아요.",
+            "contrast_type": "wrong_act_refusal",
+            "feedback": "這樣像在拒絕見面。3 點可以的話，用 3시 좋아요。"
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t3",
+      "speaker": "npc",
+      "act": "info_response",
+      "act_slots": { "topic": "咖啡店前", "keyword": "카페 앞", "gloss": "咖啡店前面" },
+      "learning_role": "listen_only",
+      "surface": "카페 앞에서 만나요.",
+      "speak": "카페 앞에서 만나요.",
+      "translation": "在咖啡店前面見。",
+      "friend": {
+        "hint": "앞 是前面。카페 앞 就是咖啡店前面。"
+      },
+      "reply_set": {
+        "correct": "r3a",
+        "choices": [
+          {
+            "id": "r3a",
+            "surface": "카페 앞이요?",
+            "translation": "咖啡店前面嗎？",
+            "speak": "카페 앞이요?"
+          },
+          {
+            "id": "r3b",
+            "surface": "비빔밥 하나 주세요.",
+            "translation": "請給我一份拌飯。",
+            "speak": "비빔밥 하나 주세요.",
+            "contrast_type": "wrong_scenario_request",
+            "feedback": "這句是在餐廳點餐。朋友現在在說見面地點。"
+          },
+          {
+            "id": "r3c",
+            "surface": "영수증 드릴까요?",
+            "translation": "需要收據嗎？",
+            "speak": "영수증 드릴까요?",
+            "contrast_type": "wrong_speaker_role",
+            "feedback": "這是店員會問你的句子。現在是在確認地點。"
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t4",
+      "speaker": "npc",
+      "act": "confirmation",
+      "act_slots": { "topic": "見面確認" },
+      "learning_role": "listen_only",
+      "surface": "네, 그때 봐요.",
+      "speak": "네, 그때 봐요.",
+      "translation": "對，到時候見。",
+      "friend": {
+        "hint": "그때 봐요 是到時候見。可以用 이따 봐요 收尾。"
+      },
+      "reply_set": {
+        "correct": "r4a",
+        "choices": [
+          {
+            "id": "r4a",
+            "surface": "네, 이따 봐요.",
+            "translation": "好，等一下見。",
+            "speak": "네, 이따 봐요."
+          },
+          {
+            "id": "r4b",
+            "surface": "감사합니다.",
+            "translation": "謝謝。",
+            "speak": "감사합니다.",
+            "contrast_type": "over_formal_closing",
+            "feedback": "這句可以懂，但朋友之間約見面，用 이따 봐요 更自然。"
+          },
+          {
+            "id": "r4c",
+            "surface": "다시 말해 주세요.",
+            "translation": "請再說一次。",
+            "speak": "다시 말해 주세요.",
+            "contrast_type": "repair_when_understood",
+            "feedback": "如果沒聽懂可以用；這裡已經約好時間地點了，可以收尾。"
+          }
+        ]
+      }
+    }
+  ],
+  "formula_moments": [
+    { "after_turn": "t2", "pattern_id": "ko.time.hour.e.v1" }
+  ],
+  "notes": {
+    "practice_plan": "Primary production target is 몇 시에 만날까요. Optional support is 3시 좋아요. Place confirmation and closing are choice-only practiced.",
+    "review_policy": "AI review required before closed pilot; native review pending.",
+    "canonical_policy": "Pilot-authored derived fixture only; do not write back to canonical schema."
+  }
+}
