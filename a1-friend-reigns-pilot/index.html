@@ -450,11 +450,13 @@
         if (!options.silent) alert('這個瀏覽器不支援內建發音。');
         return false;
       }
-      window.speechSynthesis.cancel();
+      if (!options.queue) window.speechSynthesis.cancel();
       const utterance = new SpeechSynthesisUtterance(text);
       utterance.lang = targetLangCode();
       utterance.rate = rate;
       utterance.pitch = 1;
+      if (typeof options.onend === 'function') utterance.onend = options.onend;
+      if (typeof options.onerror === 'function') utterance.onerror = options.onerror;
       const voices = window.speechSynthesis.getVoices();
       const targetPrefix = targetLangCode().slice(0, 2).toLowerCase();
       const koVoice = voices.find((voice) => voice.lang && voice.lang.toLowerCase().startsWith(targetPrefix));
@@ -703,6 +705,9 @@
       transcript.push({ round: roundIndex, kind: 'learner', role: learnerLabel(), ko: selectedResponse.text, zh: selectedResponse.zh, speak: selectedResponse.speak || selectedResponse.text });
       if (round.closing) transcript.push({ round: roundIndex, kind: 'staff', role: npcLabel(), ko: round.closing.ko, zh: round.closing.zh, speak: round.closing.speak });
       renderTranscript();
+      if (round.closing && autoSpeakStaff && audioUnlocked) {
+        speakKo(round.closing.speak || round.closing.ko, 0.88, { silent: true, queue: true });
+      }
       if (roundIndex < rounds.length - 1) {
         roundIndex += 1;
         awaitingAdvanceTap = true;
