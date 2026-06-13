@@ -95,11 +95,11 @@
           },
           {
             "id": "r2b",
-            "surface": "봉투 주세요.",
-            "translation": "請給我袋子。",
-            "speak": "봉투 주세요.",
-            "contrast_type": "premature_answer",
-            "feedback": "如果你已經聽懂可以這樣回；但這一輪是在練「再慢一點」。"
+            "surface": "두 명이요.",
+            "translation": "兩位。",
+            "speak": "두 명이요.",
+            "contrast_type": "wrong_scenario_response",
+            "feedback": "두 명이요 是餐廳說人數時用的。這裡是在請對方慢一點說。"
           },
           {
             "id": "r2c",
@@ -157,7 +157,7 @@
       "speaker": "npc",
       "act": "closing",
       "act_slots": { "topic": "收尾" },
-      "learning_role": "context_support",
+      "learning_role": "listen_only",
       "surface": "네, 알겠습니다.",
       "speak": "네, 알겠습니다.",
       "translation": "好的，知道了。",

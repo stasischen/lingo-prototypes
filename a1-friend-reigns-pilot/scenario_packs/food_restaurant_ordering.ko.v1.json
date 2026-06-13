@@ -157,7 +157,7 @@
       "speaker": "npc",
       "act": "info_response",
       "act_slots": { "topic": "準備餐點" },
-      "learning_role": "context_support",
+      "learning_role": "listen_only",
       "surface": "네, 준비해 드릴게요.",
       "speak": "네, 준비해 드릴게요.",
       "translation": "好的，幫您準備。",

@@ -157,7 +157,7 @@
       "speaker": "npc",
       "act": "handover",
       "act_slots": { "topic": "付款完成" },
-      "learning_role": "context_support",
+      "learning_role": "listen_only",
       "surface": "네, 결제됐습니다.",
       "speak": "네, 결제됐습니다.",
       "translation": "好的，付款完成了。",

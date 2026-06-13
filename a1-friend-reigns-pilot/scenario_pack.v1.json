@@ -209,6 +209,8 @@
   ],
   "notes": {
     "learner_name": "Uses fixed sample name because Korean (으)로 is morphology-sensitive.",
+    "practice_plan": "Primary production target is 네, 예약했어요. Optional support is 왕리로 예약했어요. Night confirmation and thank-you replies are choice-only practiced.",
+    "review_policy": "AI review pass 1 is recorded in KO_SCENARIO_REVIEW_LOG_CLAUDE_20260613.md. A second independent AI review is required before closed_pilot_ai_reviewed; native review pending.",
     "canonical_policy": "Pilot-authored derived fixture only; do not write back to canonical schema."
   }
 }
