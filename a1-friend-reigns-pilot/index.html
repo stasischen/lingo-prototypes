@@ -730,30 +730,30 @@
       screens[1].dataset.friend = scenarioPack.wrap_friend || '你剛剛走完一段對話。';
       const seen = new Set();
       const items = [];
-      const addItem = (surface, translation, label) => {
+      const addItem = (surface, translation) => {
         if (!surface || seen.has(surface)) return;
         seen.add(surface);
-        items.push({ surface, translation, label });
+        items.push({ surface, translation });
       };
-      scenarioPack.turns.forEach((turn) => {
-        if (turn.learning_role === 'listen_only') addItem(turn.surface, turn.translation, '聽得懂就好');
-        const correctId = turn.reply_set && turn.reply_set.correct;
-        const correctChoice = turn.reply_set && turn.reply_set.choices ? turn.reply_set.choices.find((choice) => choice.id === correctId) : null;
-        if (correctChoice && correctChoice.learning_role === 'production_target') {
-          addItem(correctChoice.surface, correctChoice.translation, '你會說了');
-        }
-        if (turn.closing && turn.closing.learning_role === 'listen_only') {
-          addItem(turn.closing.surface, turn.closing.translation, '聽得懂就好');
-        }
-      });
       if (Array.isArray(scenarioPack.opening_messages)) {
         scenarioPack.opening_messages.forEach((message) => {
           if (message.learning_role === 'production_target') {
-            addItem(message.surface, message.translation, '你會說了');
+            addItem(message.surface, message.translation);
           }
         });
       }
-      list.innerHTML = items.map((item) => `<div class="wrap-item"><b>${item.surface}</b><div class="meta">${item.label} · ${item.translation}</div></div>`).join('');
+      scenarioPack.turns.forEach((turn) => {
+        if (turn.learning_role === 'listen_only') addItem(turn.surface, turn.translation);
+        const correctId = turn.reply_set && turn.reply_set.correct;
+        const correctChoice = turn.reply_set && turn.reply_set.choices ? turn.reply_set.choices.find((choice) => choice.id === correctId) : null;
+        if (correctChoice && correctChoice.learning_role === 'production_target') {
+          addItem(correctChoice.surface, correctChoice.translation);
+        }
+        if (turn.closing && turn.closing.learning_role === 'listen_only') {
+          addItem(turn.closing.surface, turn.closing.translation);
+        }
+      });
+      list.innerHTML = items.map((item) => `<div class="wrap-item"><b>${item.surface}</b><div class="meta">${item.translation}</div></div>`).join('');
     }
     function renderScenarioTabs() {
       const tabs = document.getElementById('scenarioTabs');
