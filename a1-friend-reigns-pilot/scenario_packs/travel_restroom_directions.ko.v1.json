@@ -19,6 +19,15 @@
     "npc": { "label": "店員" },
     "learner": { "label": "你" }
   },
+  "opening_messages": [
+    {
+      "speaker": "learner",
+      "learning_role": "production_target",
+      "surface": "저기요.",
+      "speak": "저기요.",
+      "translation": "不好意思。"
+    }
+  ],
   "turns": [
     {
       "turn_id": "t1",
@@ -26,8 +35,8 @@
       "act": "greeting",
       "act_slots": { "topic": "服務開場" },
       "learning_role": "context_support",
-      "surface": "어서 오세요. 무엇을 도와드릴까요?",
-      "speak": "어서 오세요. 무엇을 도와드릴까요?",
+      "surface": "네, 무엇을 도와드릴까요?",
+      "speak": "네, 무엇을 도와드릴까요?",
       "translation": "您好，需要幫忙嗎？",
       "friend": {
         "hint": "他在問你需要什麼。直接問洗手間在哪裡就可以。"

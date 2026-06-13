@@ -551,11 +551,29 @@
       }).join('');
       list.scrollTop = list.scrollHeight;
     }
+    function seedOpeningMessages() {
+      const openingMessages = scenarioPack && Array.isArray(scenarioPack.opening_messages) ? scenarioPack.opening_messages : [];
+      openingMessages.forEach((message, openingIndex) => {
+        const kind = message.speaker === 'learner' ? 'learner' : (message.speaker === 'friend' ? 'friend' : 'staff');
+        const role = kind === 'learner' ? learnerLabel() : (kind === 'staff' ? npcLabel() : 'Friend');
+        transcript.push({
+          round: -1,
+          openingIndex,
+          kind,
+          role,
+          ko: message.surface,
+          zh: message.translation,
+          speak: message.speak || message.surface,
+          learningRole: message.learning_role || null
+        });
+      });
+    }
     function resetDialogue() {
       roundIndex = 0;
       dialogueComplete = false;
       awaitingAdvanceTap = false;
       transcript.length = 0;
+      seedOpeningMessages();
       missesByRound = Array(rounds.length).fill(0);
       visibleChoices = [];
       document.getElementById('dialogueFeedback').dataset.keep = '';
@@ -728,6 +746,13 @@
           addItem(turn.closing.surface, turn.closing.translation, '聽得懂就好');
         }
       });
+      if (Array.isArray(scenarioPack.opening_messages)) {
+        scenarioPack.opening_messages.forEach((message) => {
+          if (message.learning_role === 'production_target') {
+            addItem(message.surface, message.translation, '你會說了');
+          }
+        });
+      }
       list.innerHTML = items.map((item) => `<div class="wrap-item"><b>${item.surface}</b><div class="meta">${item.label} · ${item.translation}</div></div>`).join('');
     }
     function renderScenarioTabs() {
