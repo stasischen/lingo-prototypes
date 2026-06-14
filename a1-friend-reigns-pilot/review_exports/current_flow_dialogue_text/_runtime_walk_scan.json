@@ -1,0 +1,2651 @@
+{
+  "generated_at": "2026-06-14T10:06:49.721Z",
+  "scope": "a1-friend-reigns-pilot current_flow",
+  "scenarios": 440,
+  "total_rounds": 1738,
+  "total_transcript_messages": 3582,
+  "issues": [],
+  "by_type": {},
+  "results": [
+    {
+      "entry_id": "a1:de:convenience_payment_card_cash",
+      "rounds": 4,
+      "transcript_messages": 8,
+      "passed": true
+    },
+    {
+      "entry_id": "a1:de:core_repair_repeat_slowly",
+      "rounds": 4,
+      "transcript_messages": 8,
+      "passed": true
+    },
+    {
+      "entry_id": "a1:de:daily_meet_friend",
+      "rounds": 4,
+      "transcript_messages": 8,
+      "passed": true
+    },
+    {
+      "entry_id": "a1:de:daily_schedule_time",
+      "rounds": 4,
+      "transcript_messages": 8,
+      "passed": true
+    },
+    {
+      "entry_id": "a1:de:daily_self_intro",
+      "rounds": 4,
+      "transcript_messages": 8,
+      "passed": true
+    },
+    {
+      "entry_id": "a1:de:digital_battery_charging",
+      "rounds": 4,
+      "transcript_messages": 8,
+      "passed": true
+    },
+    {
+      "entry_id": "a1:de:digital_wifi_connect",
+      "rounds": 4,
+      "transcript_messages": 8,
+      "passed": true
+    },
+    {
+      "entry_id": "a1:de:food_bill_payment",
+      "rounds": 4,
+      "transcript_messages": 8,
+      "passed": true
+    },
+    {
+      "entry_id": "a1:de:food_coffee_ordering",
+      "rounds": 4,
+      "transcript_messages": 8,
+      "passed": true
+    },
+    {
+      "entry_id": "a1:de:food_restaurant_ordering",
+      "rounds": 4,
+      "transcript_messages": 8,
+      "passed": true
+    },
+    {
+      "entry_id": "a1:de:hotel_checkout",
+      "rounds": 4,
+      "transcript_messages": 8,
+      "passed": true
+    },
+    {
+      "entry_id": "a1:de:hotel_wifi_breakfast",
+      "rounds": 4,
+      "transcript_messages": 9,
+      "passed": true
+    },
+    {
+      "entry_id": "a1:de:problem_lost_item",
+      "rounds": 4,
+      "transcript_messages": 8,
+      "passed": true
+    },
+    {
+      "entry_id": "a1:de:shopping_ask_price",
+      "rounds": 4,
+      "transcript_messages": 8,
+      "passed": true
+    },
+    {
+      "entry_id": "a1:de:social_running_late",
+      "rounds": 4,
+      "transcript_messages": 8,
+      "passed": true
+    },
+    {
+      "entry_id": "a1:de:travel_hotel_checkin",
+      "rounds": 4,
+      "transcript_messages": 8,
+      "passed": true
+    },
+    {
+      "entry_id": "a1:de:travel_restroom_directions",
+      "rounds": 4,
+      "transcript_messages": 8,
+      "passed": true
+    },
+    {
+      "entry_id": "a1:de:travel_station_directions",
+      "rounds": 4,
+      "transcript_messages": 8,
+      "passed": true
+    },
+    {
+      "entry_id": "a1:de:travel_taxi_destination",
+      "rounds": 4,
+      "transcript_messages": 8,
+      "passed": true
+    },
+    {
+      "entry_id": "a1:de:travel_ticket_buying",
+      "rounds": 4,
+      "transcript_messages": 8,
+      "passed": true
+    },
+    {
+      "entry_id": "a1:en:convenience_payment_card_cash",
+      "rounds": 4,
+      "transcript_messages": 9,
+      "passed": true
+    },
+    {
+      "entry_id": "a1:en:core_repair_repeat_slowly",
+      "rounds": 4,
+      "transcript_messages": 8,
+      "passed": true
+    },
+    {
+      "entry_id": "a1:en:daily_meet_friend",
+      "rounds": 3,
+      "transcript_messages": 6,
+      "passed": true
+    },
+    {
+      "entry_id": "a1:en:daily_schedule_time",
+      "rounds": 4,
+      "transcript_messages": 9,
+      "passed": true
+    },
+    {
+      "entry_id": "a1:en:daily_self_intro",
+      "rounds": 4,
+      "transcript_messages": 8,
+      "passed": true
+    },
+    {
+      "entry_id": "a1:en:digital_battery_charging",
+      "rounds": 4,
+      "transcript_messages": 9,
+      "passed": true
+    },
+    {
+      "entry_id": "a1:en:digital_wifi_connect",
+      "rounds": 4,
+      "transcript_messages": 9,
+      "passed": true
+    },
+    {
+      "entry_id": "a1:en:food_bill_payment",
+      "rounds": 3,
+      "transcript_messages": 6,
+      "passed": true
+    },
+    {
+      "entry_id": "a1:en:food_coffee_ordering",
+      "rounds": 4,
+      "transcript_messages": 9,
+      "passed": true
+    },
+    {
+      "entry_id": "a1:en:food_restaurant_ordering",
+      "rounds": 4,
+      "transcript_messages": 9,
+      "passed": true
+    },
+    {
+      "entry_id": "a1:en:hotel_checkout",
+      "rounds": 4,
+      "transcript_messages": 9,
+      "passed": true
+    },
+    {
+      "entry_id": "a1:en:hotel_wifi_breakfast",
+      "rounds": 4,
+      "transcript_messages": 9,
+      "passed": true
+    },
+    {
+      "entry_id": "a1:en:problem_lost_item",
+      "rounds": 4,
+      "transcript_messages": 9,
+      "passed": true
+    },
+    {
+      "entry_id": "a1:en:shopping_ask_price",
+      "rounds": 3,
+      "transcript_messages": 5,
+      "passed": true
+    },
+    {
+      "entry_id": "a1:en:social_running_late",
+      "rounds": 4,
+      "transcript_messages": 9,
+      "passed": true
+    },
+    {
+      "entry_id": "a1:en:travel_hotel_checkin",
+      "rounds": 4,
+      "transcript_messages": 9,
+      "passed": true
+    },
+    {
+      "entry_id": "a1:en:travel_restroom_directions",
+      "rounds": 3,
+      "transcript_messages": 8,
+      "passed": true
+    },
+    {
+      "entry_id": "a1:en:travel_station_directions",
+      "rounds": 4,
+      "transcript_messages": 9,
+      "passed": true
+    },
+    {
+      "entry_id": "a1:en:travel_taxi_destination",
+      "rounds": 4,
+      "transcript_messages": 9,
+      "passed": true
+    },
+    {
+      "entry_id": "a1:en:travel_ticket_buying",
+      "rounds": 4,
+      "transcript_messages": 8,
+      "passed": true
+    },
+    {
+      "entry_id": "a1:es:convenience_payment_card_cash",
+      "rounds": 4,
+      "transcript_messages": 9,
+      "passed": true
+    },
+    {
+      "entry_id": "a1:es:core_repair_repeat_slowly",
+      "rounds": 4,
+      "transcript_messages": 9,
+      "passed": true
+    },
+    {
+      "entry_id": "a1:es:daily_meet_friend",
+      "rounds": 3,
+      "transcript_messages": 6,
+      "passed": true
+    },
+    {
+      "entry_id": "a1:es:daily_schedule_time",
+      "rounds": 4,
+      "transcript_messages": 9,
+      "passed": true
+    },
+    {
+      "entry_id": "a1:es:daily_self_intro",
+      "rounds": 4,
+      "transcript_messages": 9,
+      "passed": true
+    },
+    {
+      "entry_id": "a1:es:digital_battery_charging",
+      "rounds": 4,
+      "transcript_messages": 8,
+      "passed": true
+    },
+    {
+      "entry_id": "a1:es:digital_wifi_connect",
+      "rounds": 4,
+      "transcript_messages": 8,
+      "passed": true
+    },
+    {
+      "entry_id": "a1:es:food_bill_payment",
+      "rounds": 4,
+      "transcript_messages": 9,
+      "passed": true
+    },
+    {
+      "entry_id": "a1:es:food_coffee_ordering",
+      "rounds": 4,
+      "transcript_messages": 9,
+      "passed": true
+    },
+    {
+      "entry_id": "a1:es:food_restaurant_ordering",
+      "rounds": 4,
+      "transcript_messages": 9,
+      "passed": true
+    },
+    {
+      "entry_id": "a1:es:hotel_checkout",
+      "rounds": 4,
+      "transcript_messages": 8,
+      "passed": true
+    },
+    {
+      "entry_id": "a1:es:hotel_wifi_breakfast",
+      "rounds": 4,
+      "transcript_messages": 9,
+      "passed": true
+    },
+    {
+      "entry_id": "a1:es:problem_lost_item",
+      "rounds": 4,
+      "transcript_messages": 8,
+      "passed": true
+    },
+    {
+      "entry_id": "a1:es:shopping_ask_price",
+      "rounds": 3,
+      "transcript_messages": 6,
+      "passed": true
+    },
+    {
+      "entry_id": "a1:es:social_running_late",
+      "rounds": 4,
+      "transcript_messages": 8,
+      "passed": true
+    },
+    {
+      "entry_id": "a1:es:travel_hotel_checkin",
+      "rounds": 4,
+      "transcript_messages": 9,
+      "passed": true
+    },
+    {
+      "entry_id": "a1:es:travel_restroom_directions",
+      "rounds": 3,
+      "transcript_messages": 7,
+      "passed": true
+    },
+    {
+      "entry_id": "a1:es:travel_station_directions",
+      "rounds": 4,
+      "transcript_messages": 9,
+      "passed": true
+    },
+    {
+      "entry_id": "a1:es:travel_taxi_destination",
+      "rounds": 4,
+      "transcript_messages": 8,
+      "passed": true
+    },
+    {
+      "entry_id": "a1:es:travel_ticket_buying",
+      "rounds": 4,
+      "transcript_messages": 9,
+      "passed": true
+    },
+    {
+      "entry_id": "a1:fr:convenience_payment_card_cash",
+      "rounds": 4,
+      "transcript_messages": 9,
+      "passed": true
+    },
+    {
+      "entry_id": "a1:fr:core_repair_repeat_slowly",
+      "rounds": 4,
+      "transcript_messages": 9,
+      "passed": true
+    },
+    {
+      "entry_id": "a1:fr:daily_meet_friend",
+      "rounds": 3,
+      "transcript_messages": 6,
+      "passed": true
+    },
+    {
+      "entry_id": "a1:fr:daily_schedule_time",
+      "rounds": 4,
+      "transcript_messages": 9,
+      "passed": true
+    },
+    {
+      "entry_id": "a1:fr:daily_self_intro",
+      "rounds": 4,
+      "transcript_messages": 9,
+      "passed": true
+    },
+    {
+      "entry_id": "a1:fr:digital_battery_charging",
+      "rounds": 4,
+      "transcript_messages": 8,
+      "passed": true
+    },
+    {
+      "entry_id": "a1:fr:digital_wifi_connect",
+      "rounds": 4,
+      "transcript_messages": 8,
+      "passed": true
+    },
+    {
+      "entry_id": "a1:fr:food_bill_payment",
+      "rounds": 4,
+      "transcript_messages": 9,
+      "passed": true
+    },
+    {
+      "entry_id": "a1:fr:food_coffee_ordering",
+      "rounds": 4,
+      "transcript_messages": 9,
+      "passed": true
+    },
+    {
+      "entry_id": "a1:fr:food_restaurant_ordering",
+      "rounds": 4,
+      "transcript_messages": 9,
+      "passed": true
+    },
+    {
+      "entry_id": "a1:fr:hotel_checkout",
+      "rounds": 4,
+      "transcript_messages": 8,
+      "passed": true
+    },
+    {
+      "entry_id": "a1:fr:hotel_wifi_breakfast",
+      "rounds": 4,
+      "transcript_messages": 9,
+      "passed": true
+    },
+    {
+      "entry_id": "a1:fr:problem_lost_item",
+      "rounds": 4,
+      "transcript_messages": 8,
+      "passed": true
+    },
+    {
+      "entry_id": "a1:fr:shopping_ask_price",
+      "rounds": 3,
+      "transcript_messages": 6,
+      "passed": true
+    },
+    {
+      "entry_id": "a1:fr:social_running_late",
+      "rounds": 4,
+      "transcript_messages": 8,
+      "passed": true
+    },
+    {
+      "entry_id": "a1:fr:travel_hotel_checkin",
+      "rounds": 4,
+      "transcript_messages": 9,
+      "passed": true
+    },
+    {
+      "entry_id": "a1:fr:travel_restroom_directions",
+      "rounds": 3,
+      "transcript_messages": 8,
+      "passed": true
+    },
+    {
+      "entry_id": "a1:fr:travel_station_directions",
+      "rounds": 4,
+      "transcript_messages": 9,
+      "passed": true
+    },
+    {
+      "entry_id": "a1:fr:travel_taxi_destination",
+      "rounds": 4,
+      "transcript_messages": 8,
+      "passed": true
+    },
+    {
+      "entry_id": "a1:fr:travel_ticket_buying",
+      "rounds": 4,
+      "transcript_messages": 9,
+      "passed": true
+    },
+    {
+      "entry_id": "a1:it:convenience_payment_card_cash",
+      "rounds": 4,
+      "transcript_messages": 9,
+      "passed": true
+    },
+    {
+      "entry_id": "a1:it:core_repair_repeat_slowly",
+      "rounds": 4,
+      "transcript_messages": 8,
+      "passed": true
+    },
+    {
+      "entry_id": "a1:it:daily_meet_friend",
+      "rounds": 4,
+      "transcript_messages": 8,
+      "passed": true
+    },
+    {
+      "entry_id": "a1:it:daily_schedule_time",
+      "rounds": 4,
+      "transcript_messages": 9,
+      "passed": true
+    },
+    {
+      "entry_id": "a1:it:daily_self_intro",
+      "rounds": 4,
+      "transcript_messages": 8,
+      "passed": true
+    },
+    {
+      "entry_id": "a1:it:digital_battery_charging",
+      "rounds": 4,
+      "transcript_messages": 8,
+      "passed": true
+    },
+    {
+      "entry_id": "a1:it:digital_wifi_connect",
+      "rounds": 4,
+      "transcript_messages": 8,
+      "passed": true
+    },
+    {
+      "entry_id": "a1:it:food_bill_payment",
+      "rounds": 4,
+      "transcript_messages": 8,
+      "passed": true
+    },
+    {
+      "entry_id": "a1:it:food_coffee_ordering",
+      "rounds": 4,
+      "transcript_messages": 9,
+      "passed": true
+    },
+    {
+      "entry_id": "a1:it:food_restaurant_ordering",
+      "rounds": 4,
+      "transcript_messages": 8,
+      "passed": true
+    },
+    {
+      "entry_id": "a1:it:hotel_checkout",
+      "rounds": 4,
+      "transcript_messages": 8,
+      "passed": true
+    },
+    {
+      "entry_id": "a1:it:hotel_wifi_breakfast",
+      "rounds": 4,
+      "transcript_messages": 9,
+      "passed": true
+    },
+    {
+      "entry_id": "a1:it:problem_lost_item",
+      "rounds": 4,
+      "transcript_messages": 8,
+      "passed": true
+    },
+    {
+      "entry_id": "a1:it:shopping_ask_price",
+      "rounds": 4,
+      "transcript_messages": 8,
+      "passed": true
+    },
+    {
+      "entry_id": "a1:it:social_running_late",
+      "rounds": 4,
+      "transcript_messages": 8,
+      "passed": true
+    },
+    {
+      "entry_id": "a1:it:travel_hotel_checkin",
+      "rounds": 4,
+      "transcript_messages": 9,
+      "passed": true
+    },
+    {
+      "entry_id": "a1:it:travel_restroom_directions",
+      "rounds": 3,
+      "transcript_messages": 8,
+      "passed": true
+    },
+    {
+      "entry_id": "a1:it:travel_station_directions",
+      "rounds": 4,
+      "transcript_messages": 8,
+      "passed": true
+    },
+    {
+      "entry_id": "a1:it:travel_taxi_destination",
+      "rounds": 4,
+      "transcript_messages": 8,
+      "passed": true
+    },
+    {
+      "entry_id": "a1:it:travel_ticket_buying",
+      "rounds": 4,
+      "transcript_messages": 8,
+      "passed": true
+    },
+    {
+      "entry_id": "a1:ja:convenience_payment_card_cash",
+      "rounds": 4,
+      "transcript_messages": 9,
+      "passed": true
+    },
+    {
+      "entry_id": "a1:ja:core_repair_repeat_slowly",
+      "rounds": 4,
+      "transcript_messages": 8,
+      "passed": true
+    },
+    {
+      "entry_id": "a1:ja:daily_meet_friend",
+      "rounds": 3,
+      "transcript_messages": 6,
+      "passed": true
+    },
+    {
+      "entry_id": "a1:ja:daily_schedule_time",
+      "rounds": 4,
+      "transcript_messages": 9,
+      "passed": true
+    },
+    {
+      "entry_id": "a1:ja:daily_self_intro",
+      "rounds": 4,
+      "transcript_messages": 8,
+      "passed": true
+    },
+    {
+      "entry_id": "a1:ja:digital_battery_charging",
+      "rounds": 4,
+      "transcript_messages": 9,
+      "passed": true
+    },
+    {
+      "entry_id": "a1:ja:digital_wifi_connect",
+      "rounds": 4,
+      "transcript_messages": 9,
+      "passed": true
+    },
+    {
+      "entry_id": "a1:ja:food_bill_payment",
+      "rounds": 3,
+      "transcript_messages": 6,
+      "passed": true
+    },
+    {
+      "entry_id": "a1:ja:food_coffee_ordering",
+      "rounds": 4,
+      "transcript_messages": 9,
+      "passed": true
+    },
+    {
+      "entry_id": "a1:ja:food_restaurant_ordering",
+      "rounds": 4,
+      "transcript_messages": 9,
+      "passed": true
+    },
+    {
+      "entry_id": "a1:ja:hotel_checkout",
+      "rounds": 4,
+      "transcript_messages": 9,
+      "passed": true
+    },
+    {
+      "entry_id": "a1:ja:hotel_wifi_breakfast",
+      "rounds": 4,
+      "transcript_messages": 9,
+      "passed": true
+    },
+    {
+      "entry_id": "a1:ja:problem_lost_item",
+      "rounds": 4,
+      "transcript_messages": 9,
+      "passed": true
+    },
+    {
+      "entry_id": "a1:ja:shopping_ask_price",
+      "rounds": 3,
+      "transcript_messages": 5,
+      "passed": true
+    },
+    {
+      "entry_id": "a1:ja:social_running_late",
+      "rounds": 4,
+      "transcript_messages": 9,
+      "passed": true
+    },
+    {
+      "entry_id": "a1:ja:travel_hotel_checkin",
+      "rounds": 4,
+      "transcript_messages": 9,
+      "passed": true
+    },
+    {
+      "entry_id": "a1:ja:travel_restroom_directions",
+      "rounds": 3,
+      "transcript_messages": 8,
+      "passed": true
+    },
+    {
+      "entry_id": "a1:ja:travel_station_directions",
+      "rounds": 4,
+      "transcript_messages": 9,
+      "passed": true
+    },
+    {
+      "entry_id": "a1:ja:travel_taxi_destination",
+      "rounds": 4,
+      "transcript_messages": 9,
+      "passed": true
+    },
+    {
+      "entry_id": "a1:ja:travel_ticket_buying",
+      "rounds": 4,
+      "transcript_messages": 8,
+      "passed": true
+    },
+    {
+      "entry_id": "a1:ko:convenience_payment_card_cash",
+      "rounds": 4,
+      "transcript_messages": 9,
+      "passed": true
+    },
+    {
+      "entry_id": "a1:ko:core_repair_repeat_slowly",
+      "rounds": 4,
+      "transcript_messages": 9,
+      "passed": true
+    },
+    {
+      "entry_id": "a1:ko:daily_meet_friend",
+      "rounds": 4,
+      "transcript_messages": 9,
+      "passed": true
+    },
+    {
+      "entry_id": "a1:ko:daily_schedule_time",
+      "rounds": 4,
+      "transcript_messages": 8,
+      "passed": true
+    },
+    {
+      "entry_id": "a1:ko:daily_self_intro",
+      "rounds": 4,
+      "transcript_messages": 8,
+      "passed": true
+    },
+    {
+      "entry_id": "a1:ko:digital_battery_charging",
+      "rounds": 4,
+      "transcript_messages": 8,
+      "passed": true
+    },
+    {
+      "entry_id": "a1:ko:digital_wifi_connect",
+      "rounds": 4,
+      "transcript_messages": 8,
+      "passed": true
+    },
+    {
+      "entry_id": "a1:ko:food_bill_payment",
+      "rounds": 4,
+      "transcript_messages": 10,
+      "passed": true
+    },
+    {
+      "entry_id": "a1:ko:food_coffee_ordering",
+      "rounds": 4,
+      "transcript_messages": 9,
+      "passed": true
+    },
+    {
+      "entry_id": "a1:ko:food_restaurant_ordering",
+      "rounds": 4,
+      "transcript_messages": 9,
+      "passed": true
+    },
+    {
+      "entry_id": "a1:ko:hotel_checkout",
+      "rounds": 4,
+      "transcript_messages": 10,
+      "passed": true
+    },
+    {
+      "entry_id": "a1:ko:hotel_wifi_breakfast",
+      "rounds": 5,
+      "transcript_messages": 12,
+      "passed": true
+    },
+    {
+      "entry_id": "a1:ko:problem_lost_item",
+      "rounds": 4,
+      "transcript_messages": 10,
+      "passed": true
+    },
+    {
+      "entry_id": "a1:ko:shopping_ask_price",
+      "rounds": 4,
+      "transcript_messages": 10,
+      "passed": true
+    },
+    {
+      "entry_id": "a1:ko:social_running_late",
+      "rounds": 4,
+      "transcript_messages": 8,
+      "passed": true
+    },
+    {
+      "entry_id": "a1:ko:travel_hotel_checkin",
+      "rounds": 4,
+      "transcript_messages": 9,
+      "passed": true
+    },
+    {
+      "entry_id": "a1:ko:travel_restroom_directions",
+      "rounds": 3,
+      "transcript_messages": 8,
+      "passed": true
+    },
+    {
+      "entry_id": "a1:ko:travel_station_directions",
+      "rounds": 4,
+      "transcript_messages": 10,
+      "passed": true
+    },
+    {
+      "entry_id": "a1:ko:travel_taxi_destination",
+      "rounds": 4,
+      "transcript_messages": 8,
+      "passed": true
+    },
+    {
+      "entry_id": "a1:ko:travel_ticket_buying",
+      "rounds": 4,
+      "transcript_messages": 9,
+      "passed": true
+    },
+    {
+      "entry_id": "a1:pt:convenience_payment_card_cash",
+      "rounds": 4,
+      "transcript_messages": 9,
+      "passed": true
+    },
+    {
+      "entry_id": "a1:pt:core_repair_repeat_slowly",
+      "rounds": 4,
+      "transcript_messages": 9,
+      "passed": true
+    },
+    {
+      "entry_id": "a1:pt:daily_meet_friend",
+      "rounds": 3,
+      "transcript_messages": 6,
+      "passed": true
+    },
+    {
+      "entry_id": "a1:pt:daily_schedule_time",
+      "rounds": 4,
+      "transcript_messages": 9,
+      "passed": true
+    },
+    {
+      "entry_id": "a1:pt:daily_self_intro",
+      "rounds": 4,
+      "transcript_messages": 9,
+      "passed": true
+    },
+    {
+      "entry_id": "a1:pt:digital_battery_charging",
+      "rounds": 4,
+      "transcript_messages": 8,
+      "passed": true
+    },
+    {
+      "entry_id": "a1:pt:digital_wifi_connect",
+      "rounds": 4,
+      "transcript_messages": 8,
+      "passed": true
+    },
+    {
+      "entry_id": "a1:pt:food_bill_payment",
+      "rounds": 4,
+      "transcript_messages": 9,
+      "passed": true
+    },
+    {
+      "entry_id": "a1:pt:food_coffee_ordering",
+      "rounds": 4,
+      "transcript_messages": 9,
+      "passed": true
+    },
+    {
+      "entry_id": "a1:pt:food_restaurant_ordering",
+      "rounds": 4,
+      "transcript_messages": 9,
+      "passed": true
+    },
+    {
+      "entry_id": "a1:pt:hotel_checkout",
+      "rounds": 4,
+      "transcript_messages": 8,
+      "passed": true
+    },
+    {
+      "entry_id": "a1:pt:hotel_wifi_breakfast",
+      "rounds": 4,
+      "transcript_messages": 9,
+      "passed": true
+    },
+    {
+      "entry_id": "a1:pt:problem_lost_item",
+      "rounds": 4,
+      "transcript_messages": 8,
+      "passed": true
+    },
+    {
+      "entry_id": "a1:pt:shopping_ask_price",
+      "rounds": 3,
+      "transcript_messages": 6,
+      "passed": true
+    },
+    {
+      "entry_id": "a1:pt:social_running_late",
+      "rounds": 4,
+      "transcript_messages": 8,
+      "passed": true
+    },
+    {
+      "entry_id": "a1:pt:travel_hotel_checkin",
+      "rounds": 4,
+      "transcript_messages": 9,
+      "passed": true
+    },
+    {
+      "entry_id": "a1:pt:travel_restroom_directions",
+      "rounds": 3,
+      "transcript_messages": 7,
+      "passed": true
+    },
+    {
+      "entry_id": "a1:pt:travel_station_directions",
+      "rounds": 4,
+      "transcript_messages": 9,
+      "passed": true
+    },
+    {
+      "entry_id": "a1:pt:travel_taxi_destination",
+      "rounds": 4,
+      "transcript_messages": 8,
+      "passed": true
+    },
+    {
+      "entry_id": "a1:pt:travel_ticket_buying",
+      "rounds": 4,
+      "transcript_messages": 9,
+      "passed": true
+    },
+    {
+      "entry_id": "a1:th:convenience_payment_card_cash",
+      "rounds": 4,
+      "transcript_messages": 9,
+      "passed": true
+    },
+    {
+      "entry_id": "a1:th:core_repair_repeat_slowly",
+      "rounds": 4,
+      "transcript_messages": 8,
+      "passed": true
+    },
+    {
+      "entry_id": "a1:th:daily_meet_friend",
+      "rounds": 3,
+      "transcript_messages": 6,
+      "passed": true
+    },
+    {
+      "entry_id": "a1:th:daily_schedule_time",
+      "rounds": 4,
+      "transcript_messages": 9,
+      "passed": true
+    },
+    {
+      "entry_id": "a1:th:daily_self_intro",
+      "rounds": 4,
+      "transcript_messages": 8,
+      "passed": true
+    },
+    {
+      "entry_id": "a1:th:digital_battery_charging",
+      "rounds": 4,
+      "transcript_messages": 9,
+      "passed": true
+    },
+    {
+      "entry_id": "a1:th:digital_wifi_connect",
+      "rounds": 4,
+      "transcript_messages": 9,
+      "passed": true
+    },
+    {
+      "entry_id": "a1:th:food_bill_payment",
+      "rounds": 3,
+      "transcript_messages": 6,
+      "passed": true
+    },
+    {
+      "entry_id": "a1:th:food_coffee_ordering",
+      "rounds": 4,
+      "transcript_messages": 9,
+      "passed": true
+    },
+    {
+      "entry_id": "a1:th:food_restaurant_ordering",
+      "rounds": 4,
+      "transcript_messages": 9,
+      "passed": true
+    },
+    {
+      "entry_id": "a1:th:hotel_checkout",
+      "rounds": 4,
+      "transcript_messages": 9,
+      "passed": true
+    },
+    {
+      "entry_id": "a1:th:hotel_wifi_breakfast",
+      "rounds": 4,
+      "transcript_messages": 9,
+      "passed": true
+    },
+    {
+      "entry_id": "a1:th:problem_lost_item",
+      "rounds": 4,
+      "transcript_messages": 9,
+      "passed": true
+    },
+    {
+      "entry_id": "a1:th:shopping_ask_price",
+      "rounds": 3,
+      "transcript_messages": 5,
+      "passed": true
+    },
+    {
+      "entry_id": "a1:th:social_running_late",
+      "rounds": 4,
+      "transcript_messages": 9,
+      "passed": true
+    },
+    {
+      "entry_id": "a1:th:travel_hotel_checkin",
+      "rounds": 4,
+      "transcript_messages": 9,
+      "passed": true
+    },
+    {
+      "entry_id": "a1:th:travel_restroom_directions",
+      "rounds": 3,
+      "transcript_messages": 7,
+      "passed": true
+    },
+    {
+      "entry_id": "a1:th:travel_station_directions",
+      "rounds": 4,
+      "transcript_messages": 9,
+      "passed": true
+    },
+    {
+      "entry_id": "a1:th:travel_taxi_destination",
+      "rounds": 4,
+      "transcript_messages": 9,
+      "passed": true
+    },
+    {
+      "entry_id": "a1:th:travel_ticket_buying",
+      "rounds": 4,
+      "transcript_messages": 8,
+      "passed": true
+    },
+    {
+      "entry_id": "a1:zh:convenience_payment_card_cash",
+      "rounds": 4,
+      "transcript_messages": 8,
+      "passed": true
+    },
+    {
+      "entry_id": "a1:zh:core_repair_repeat_slowly",
+      "rounds": 4,
+      "transcript_messages": 8,
+      "passed": true
+    },
+    {
+      "entry_id": "a1:zh:daily_meet_friend",
+      "rounds": 4,
+      "transcript_messages": 8,
+      "passed": true
+    },
+    {
+      "entry_id": "a1:zh:daily_schedule_time",
+      "rounds": 4,
+      "transcript_messages": 8,
+      "passed": true
+    },
+    {
+      "entry_id": "a1:zh:daily_self_intro",
+      "rounds": 4,
+      "transcript_messages": 8,
+      "passed": true
+    },
+    {
+      "entry_id": "a1:zh:digital_battery_charging",
+      "rounds": 4,
+      "transcript_messages": 8,
+      "passed": true
+    },
+    {
+      "entry_id": "a1:zh:digital_wifi_connect",
+      "rounds": 4,
+      "transcript_messages": 8,
+      "passed": true
+    },
+    {
+      "entry_id": "a1:zh:food_bill_payment",
+      "rounds": 4,
+      "transcript_messages": 8,
+      "passed": true
+    },
+    {
+      "entry_id": "a1:zh:food_coffee_ordering",
+      "rounds": 4,
+      "transcript_messages": 8,
+      "passed": true
+    },
+    {
+      "entry_id": "a1:zh:food_restaurant_ordering",
+      "rounds": 4,
+      "transcript_messages": 8,
+      "passed": true
+    },
+    {
+      "entry_id": "a1:zh:hotel_checkout",
+      "rounds": 4,
+      "transcript_messages": 8,
+      "passed": true
+    },
+    {
+      "entry_id": "a1:zh:hotel_wifi_breakfast",
+      "rounds": 4,
+      "transcript_messages": 9,
+      "passed": true
+    },
+    {
+      "entry_id": "a1:zh:problem_lost_item",
+      "rounds": 4,
+      "transcript_messages": 8,
+      "passed": true
+    },
+    {
+      "entry_id": "a1:zh:shopping_ask_price",
+      "rounds": 4,
+      "transcript_messages": 8,
+      "passed": true
+    },
+    {
+      "entry_id": "a1:zh:social_running_late",
+      "rounds": 4,
+      "transcript_messages": 8,
+      "passed": true
+    },
+    {
+      "entry_id": "a1:zh:travel_hotel_checkin",
+      "rounds": 4,
+      "transcript_messages": 8,
+      "passed": true
+    },
+    {
+      "entry_id": "a1:zh:travel_restroom_directions",
+      "rounds": 4,
+      "transcript_messages": 8,
+      "passed": true
+    },
+    {
+      "entry_id": "a1:zh:travel_station_directions",
+      "rounds": 4,
+      "transcript_messages": 8,
+      "passed": true
+    },
+    {
+      "entry_id": "a1:zh:travel_taxi_destination",
+      "rounds": 4,
+      "transcript_messages": 8,
+      "passed": true
+    },
+    {
+      "entry_id": "a1:zh:travel_ticket_buying",
+      "rounds": 4,
+      "transcript_messages": 8,
+      "passed": true
+    },
+    {
+      "entry_id": "a2:de:a2_app_booking_confirmation",
+      "rounds": 4,
+      "transcript_messages": 8,
+      "passed": true
+    },
+    {
+      "entry_id": "a2:de:a2_ask_ingredient_preference",
+      "rounds": 4,
+      "transcript_messages": 8,
+      "passed": true
+    },
+    {
+      "entry_id": "a2:de:a2_ask_late_checkout",
+      "rounds": 4,
+      "transcript_messages": 8,
+      "passed": true
+    },
+    {
+      "entry_id": "a2:de:a2_ask_recommendation_budget",
+      "rounds": 4,
+      "transcript_messages": 8,
+      "passed": true
+    },
+    {
+      "entry_id": "a2:de:a2_ask_transfer_platform",
+      "rounds": 4,
+      "transcript_messages": 8,
+      "passed": true
+    },
+    {
+      "entry_id": "a2:de:a2_change_delivery_pickup_time",
+      "rounds": 4,
+      "transcript_messages": 8,
+      "passed": true
+    },
+    {
+      "entry_id": "a2:de:a2_change_ticket_time",
+      "rounds": 4,
+      "transcript_messages": 8,
+      "passed": true
+    },
+    {
+      "entry_id": "a2:de:a2_compare_two_menu_options",
+      "rounds": 4,
+      "transcript_messages": 8,
+      "passed": true
+    },
+    {
+      "entry_id": "a2:de:a2_confirm_date_time_place",
+      "rounds": 4,
+      "transcript_messages": 8,
+      "passed": true
+    },
+    {
+      "entry_id": "a2:de:a2_decline_with_reason",
+      "rounds": 4,
+      "transcript_messages": 8,
+      "passed": true
+    },
+    {
+      "entry_id": "a2:de:a2_describe_weekend_activity",
+      "rounds": 4,
+      "transcript_messages": 8,
+      "passed": true
+    },
+    {
+      "entry_id": "a2:de:a2_exchange_wrong_item",
+      "rounds": 4,
+      "transcript_messages": 8,
+      "passed": true
+    },
+    {
+      "entry_id": "a2:de:a2_explain_simple_delay_reason",
+      "rounds": 4,
+      "transcript_messages": 8,
+      "passed": true
+    },
+    {
+      "entry_id": "a2:de:a2_fill_simple_form_help",
+      "rounds": 4,
+      "transcript_messages": 8,
+      "passed": true
+    },
+    {
+      "entry_id": "a2:de:a2_invite_friend_activity",
+      "rounds": 4,
+      "transcript_messages": 8,
+      "passed": true
+    },
+    {
+      "entry_id": "a2:de:a2_lost_item_followup_message",
+      "rounds": 4,
+      "transcript_messages": 8,
+      "passed": true
+    },
+    {
+      "entry_id": "a2:de:a2_luggage_storage_pickup",
+      "rounds": 4,
+      "transcript_messages": 8,
+      "passed": true
+    },
+    {
+      "entry_id": "a2:de:a2_make_simple_plan_sequence",
+      "rounds": 4,
+      "transcript_messages": 8,
+      "passed": true
+    },
+    {
+      "entry_id": "a2:de:a2_plan_tomorrow_morning",
+      "rounds": 4,
+      "transcript_messages": 8,
+      "passed": true
+    },
+    {
+      "entry_id": "a2:de:a2_report_room_problem",
+      "rounds": 4,
+      "transcript_messages": 8,
+      "passed": true
+    },
+    {
+      "entry_id": "a2:de:a2_request_room_change",
+      "rounds": 4,
+      "transcript_messages": 8,
+      "passed": true
+    },
+    {
+      "entry_id": "a2:de:a2_reschedule_meeting_time",
+      "rounds": 4,
+      "transcript_messages": 8,
+      "passed": true
+    },
+    {
+      "entry_id": "a2:de:a2_transport_delay_announcement",
+      "rounds": 4,
+      "transcript_messages": 8,
+      "passed": true
+    },
+    {
+      "entry_id": "a2:de:a2_understand_hotel_notice",
+      "rounds": 4,
+      "transcript_messages": 8,
+      "passed": true
+    },
+    {
+      "entry_id": "a2:en:a2_app_booking_confirmation",
+      "rounds": 4,
+      "transcript_messages": 8,
+      "passed": true
+    },
+    {
+      "entry_id": "a2:en:a2_ask_ingredient_preference",
+      "rounds": 4,
+      "transcript_messages": 8,
+      "passed": true
+    },
+    {
+      "entry_id": "a2:en:a2_ask_late_checkout",
+      "rounds": 4,
+      "transcript_messages": 8,
+      "passed": true
+    },
+    {
+      "entry_id": "a2:en:a2_ask_recommendation_budget",
+      "rounds": 4,
+      "transcript_messages": 8,
+      "passed": true
+    },
+    {
+      "entry_id": "a2:en:a2_ask_transfer_platform",
+      "rounds": 4,
+      "transcript_messages": 8,
+      "passed": true
+    },
+    {
+      "entry_id": "a2:en:a2_change_delivery_pickup_time",
+      "rounds": 4,
+      "transcript_messages": 8,
+      "passed": true
+    },
+    {
+      "entry_id": "a2:en:a2_change_ticket_time",
+      "rounds": 4,
+      "transcript_messages": 8,
+      "passed": true
+    },
+    {
+      "entry_id": "a2:en:a2_compare_two_menu_options",
+      "rounds": 4,
+      "transcript_messages": 8,
+      "passed": true
+    },
+    {
+      "entry_id": "a2:en:a2_confirm_date_time_place",
+      "rounds": 4,
+      "transcript_messages": 8,
+      "passed": true
+    },
+    {
+      "entry_id": "a2:en:a2_decline_with_reason",
+      "rounds": 4,
+      "transcript_messages": 8,
+      "passed": true
+    },
+    {
+      "entry_id": "a2:en:a2_describe_weekend_activity",
+      "rounds": 4,
+      "transcript_messages": 8,
+      "passed": true
+    },
+    {
+      "entry_id": "a2:en:a2_exchange_wrong_item",
+      "rounds": 4,
+      "transcript_messages": 8,
+      "passed": true
+    },
+    {
+      "entry_id": "a2:en:a2_explain_simple_delay_reason",
+      "rounds": 4,
+      "transcript_messages": 8,
+      "passed": true
+    },
+    {
+      "entry_id": "a2:en:a2_fill_simple_form_help",
+      "rounds": 4,
+      "transcript_messages": 8,
+      "passed": true
+    },
+    {
+      "entry_id": "a2:en:a2_invite_friend_activity",
+      "rounds": 4,
+      "transcript_messages": 8,
+      "passed": true
+    },
+    {
+      "entry_id": "a2:en:a2_lost_item_followup_message",
+      "rounds": 4,
+      "transcript_messages": 8,
+      "passed": true
+    },
+    {
+      "entry_id": "a2:en:a2_luggage_storage_pickup",
+      "rounds": 4,
+      "transcript_messages": 8,
+      "passed": true
+    },
+    {
+      "entry_id": "a2:en:a2_make_simple_plan_sequence",
+      "rounds": 4,
+      "transcript_messages": 8,
+      "passed": true
+    },
+    {
+      "entry_id": "a2:en:a2_plan_tomorrow_morning",
+      "rounds": 4,
+      "transcript_messages": 8,
+      "passed": true
+    },
+    {
+      "entry_id": "a2:en:a2_report_room_problem",
+      "rounds": 4,
+      "transcript_messages": 8,
+      "passed": true
+    },
+    {
+      "entry_id": "a2:en:a2_request_room_change",
+      "rounds": 4,
+      "transcript_messages": 8,
+      "passed": true
+    },
+    {
+      "entry_id": "a2:en:a2_reschedule_meeting_time",
+      "rounds": 4,
+      "transcript_messages": 8,
+      "passed": true
+    },
+    {
+      "entry_id": "a2:en:a2_transport_delay_announcement",
+      "rounds": 4,
+      "transcript_messages": 8,
+      "passed": true
+    },
+    {
+      "entry_id": "a2:en:a2_understand_hotel_notice",
+      "rounds": 4,
+      "transcript_messages": 8,
+      "passed": true
+    },
+    {
+      "entry_id": "a2:es:a2_app_booking_confirmation",
+      "rounds": 4,
+      "transcript_messages": 8,
+      "passed": true
+    },
+    {
+      "entry_id": "a2:es:a2_ask_ingredient_preference",
+      "rounds": 4,
+      "transcript_messages": 8,
+      "passed": true
+    },
+    {
+      "entry_id": "a2:es:a2_ask_late_checkout",
+      "rounds": 4,
+      "transcript_messages": 8,
+      "passed": true
+    },
+    {
+      "entry_id": "a2:es:a2_ask_recommendation_budget",
+      "rounds": 4,
+      "transcript_messages": 8,
+      "passed": true
+    },
+    {
+      "entry_id": "a2:es:a2_ask_transfer_platform",
+      "rounds": 4,
+      "transcript_messages": 8,
+      "passed": true
+    },
+    {
+      "entry_id": "a2:es:a2_change_delivery_pickup_time",
+      "rounds": 4,
+      "transcript_messages": 8,
+      "passed": true
+    },
+    {
+      "entry_id": "a2:es:a2_change_ticket_time",
+      "rounds": 4,
+      "transcript_messages": 8,
+      "passed": true
+    },
+    {
+      "entry_id": "a2:es:a2_compare_two_menu_options",
+      "rounds": 4,
+      "transcript_messages": 8,
+      "passed": true
+    },
+    {
+      "entry_id": "a2:es:a2_confirm_date_time_place",
+      "rounds": 4,
+      "transcript_messages": 8,
+      "passed": true
+    },
+    {
+      "entry_id": "a2:es:a2_decline_with_reason",
+      "rounds": 4,
+      "transcript_messages": 8,
+      "passed": true
+    },
+    {
+      "entry_id": "a2:es:a2_describe_weekend_activity",
+      "rounds": 4,
+      "transcript_messages": 8,
+      "passed": true
+    },
+    {
+      "entry_id": "a2:es:a2_exchange_wrong_item",
+      "rounds": 4,
+      "transcript_messages": 8,
+      "passed": true
+    },
+    {
+      "entry_id": "a2:es:a2_explain_simple_delay_reason",
+      "rounds": 4,
+      "transcript_messages": 8,
+      "passed": true
+    },
+    {
+      "entry_id": "a2:es:a2_fill_simple_form_help",
+      "rounds": 4,
+      "transcript_messages": 8,
+      "passed": true
+    },
+    {
+      "entry_id": "a2:es:a2_invite_friend_activity",
+      "rounds": 4,
+      "transcript_messages": 8,
+      "passed": true
+    },
+    {
+      "entry_id": "a2:es:a2_lost_item_followup_message",
+      "rounds": 4,
+      "transcript_messages": 8,
+      "passed": true
+    },
+    {
+      "entry_id": "a2:es:a2_luggage_storage_pickup",
+      "rounds": 4,
+      "transcript_messages": 8,
+      "passed": true
+    },
+    {
+      "entry_id": "a2:es:a2_make_simple_plan_sequence",
+      "rounds": 4,
+      "transcript_messages": 8,
+      "passed": true
+    },
+    {
+      "entry_id": "a2:es:a2_plan_tomorrow_morning",
+      "rounds": 4,
+      "transcript_messages": 8,
+      "passed": true
+    },
+    {
+      "entry_id": "a2:es:a2_report_room_problem",
+      "rounds": 4,
+      "transcript_messages": 8,
+      "passed": true
+    },
+    {
+      "entry_id": "a2:es:a2_request_room_change",
+      "rounds": 4,
+      "transcript_messages": 8,
+      "passed": true
+    },
+    {
+      "entry_id": "a2:es:a2_reschedule_meeting_time",
+      "rounds": 4,
+      "transcript_messages": 8,
+      "passed": true
+    },
+    {
+      "entry_id": "a2:es:a2_transport_delay_announcement",
+      "rounds": 4,
+      "transcript_messages": 8,
+      "passed": true
+    },
+    {
+      "entry_id": "a2:es:a2_understand_hotel_notice",
+      "rounds": 4,
+      "transcript_messages": 8,
+      "passed": true
+    },
+    {
+      "entry_id": "a2:fr:a2_app_booking_confirmation",
+      "rounds": 4,
+      "transcript_messages": 8,
+      "passed": true
+    },
+    {
+      "entry_id": "a2:fr:a2_ask_ingredient_preference",
+      "rounds": 4,
+      "transcript_messages": 8,
+      "passed": true
+    },
+    {
+      "entry_id": "a2:fr:a2_ask_late_checkout",
+      "rounds": 4,
+      "transcript_messages": 8,
+      "passed": true
+    },
+    {
+      "entry_id": "a2:fr:a2_ask_recommendation_budget",
+      "rounds": 4,
+      "transcript_messages": 8,
+      "passed": true
+    },
+    {
+      "entry_id": "a2:fr:a2_ask_transfer_platform",
+      "rounds": 4,
+      "transcript_messages": 8,
+      "passed": true
+    },
+    {
+      "entry_id": "a2:fr:a2_change_delivery_pickup_time",
+      "rounds": 4,
+      "transcript_messages": 8,
+      "passed": true
+    },
+    {
+      "entry_id": "a2:fr:a2_change_ticket_time",
+      "rounds": 4,
+      "transcript_messages": 8,
+      "passed": true
+    },
+    {
+      "entry_id": "a2:fr:a2_compare_two_menu_options",
+      "rounds": 4,
+      "transcript_messages": 8,
+      "passed": true
+    },
+    {
+      "entry_id": "a2:fr:a2_confirm_date_time_place",
+      "rounds": 4,
+      "transcript_messages": 8,
+      "passed": true
+    },
+    {
+      "entry_id": "a2:fr:a2_decline_with_reason",
+      "rounds": 4,
+      "transcript_messages": 8,
+      "passed": true
+    },
+    {
+      "entry_id": "a2:fr:a2_describe_weekend_activity",
+      "rounds": 4,
+      "transcript_messages": 8,
+      "passed": true
+    },
+    {
+      "entry_id": "a2:fr:a2_exchange_wrong_item",
+      "rounds": 4,
+      "transcript_messages": 8,
+      "passed": true
+    },
+    {
+      "entry_id": "a2:fr:a2_explain_simple_delay_reason",
+      "rounds": 4,
+      "transcript_messages": 8,
+      "passed": true
+    },
+    {
+      "entry_id": "a2:fr:a2_fill_simple_form_help",
+      "rounds": 4,
+      "transcript_messages": 8,
+      "passed": true
+    },
+    {
+      "entry_id": "a2:fr:a2_invite_friend_activity",
+      "rounds": 4,
+      "transcript_messages": 8,
+      "passed": true
+    },
+    {
+      "entry_id": "a2:fr:a2_lost_item_followup_message",
+      "rounds": 4,
+      "transcript_messages": 8,
+      "passed": true
+    },
+    {
+      "entry_id": "a2:fr:a2_luggage_storage_pickup",
+      "rounds": 4,
+      "transcript_messages": 8,
+      "passed": true
+    },
+    {
+      "entry_id": "a2:fr:a2_make_simple_plan_sequence",
+      "rounds": 4,
+      "transcript_messages": 8,
+      "passed": true
+    },
+    {
+      "entry_id": "a2:fr:a2_plan_tomorrow_morning",
+      "rounds": 4,
+      "transcript_messages": 8,
+      "passed": true
+    },
+    {
+      "entry_id": "a2:fr:a2_report_room_problem",
+      "rounds": 4,
+      "transcript_messages": 8,
+      "passed": true
+    },
+    {
+      "entry_id": "a2:fr:a2_request_room_change",
+      "rounds": 4,
+      "transcript_messages": 8,
+      "passed": true
+    },
+    {
+      "entry_id": "a2:fr:a2_reschedule_meeting_time",
+      "rounds": 4,
+      "transcript_messages": 8,
+      "passed": true
+    },
+    {
+      "entry_id": "a2:fr:a2_transport_delay_announcement",
+      "rounds": 4,
+      "transcript_messages": 8,
+      "passed": true
+    },
+    {
+      "entry_id": "a2:fr:a2_understand_hotel_notice",
+      "rounds": 4,
+      "transcript_messages": 8,
+      "passed": true
+    },
+    {
+      "entry_id": "a2:it:a2_app_booking_confirmation",
+      "rounds": 4,
+      "transcript_messages": 8,
+      "passed": true
+    },
+    {
+      "entry_id": "a2:it:a2_ask_ingredient_preference",
+      "rounds": 4,
+      "transcript_messages": 8,
+      "passed": true
+    },
+    {
+      "entry_id": "a2:it:a2_ask_late_checkout",
+      "rounds": 4,
+      "transcript_messages": 8,
+      "passed": true
+    },
+    {
+      "entry_id": "a2:it:a2_ask_recommendation_budget",
+      "rounds": 4,
+      "transcript_messages": 8,
+      "passed": true
+    },
+    {
+      "entry_id": "a2:it:a2_ask_transfer_platform",
+      "rounds": 4,
+      "transcript_messages": 8,
+      "passed": true
+    },
+    {
+      "entry_id": "a2:it:a2_change_delivery_pickup_time",
+      "rounds": 4,
+      "transcript_messages": 8,
+      "passed": true
+    },
+    {
+      "entry_id": "a2:it:a2_change_ticket_time",
+      "rounds": 4,
+      "transcript_messages": 8,
+      "passed": true
+    },
+    {
+      "entry_id": "a2:it:a2_compare_two_menu_options",
+      "rounds": 4,
+      "transcript_messages": 8,
+      "passed": true
+    },
+    {
+      "entry_id": "a2:it:a2_confirm_date_time_place",
+      "rounds": 4,
+      "transcript_messages": 8,
+      "passed": true
+    },
+    {
+      "entry_id": "a2:it:a2_decline_with_reason",
+      "rounds": 4,
+      "transcript_messages": 8,
+      "passed": true
+    },
+    {
+      "entry_id": "a2:it:a2_describe_weekend_activity",
+      "rounds": 4,
+      "transcript_messages": 8,
+      "passed": true
+    },
+    {
+      "entry_id": "a2:it:a2_exchange_wrong_item",
+      "rounds": 4,
+      "transcript_messages": 8,
+      "passed": true
+    },
+    {
+      "entry_id": "a2:it:a2_explain_simple_delay_reason",
+      "rounds": 4,
+      "transcript_messages": 8,
+      "passed": true
+    },
+    {
+      "entry_id": "a2:it:a2_fill_simple_form_help",
+      "rounds": 4,
+      "transcript_messages": 8,
+      "passed": true
+    },
+    {
+      "entry_id": "a2:it:a2_invite_friend_activity",
+      "rounds": 4,
+      "transcript_messages": 8,
+      "passed": true
+    },
+    {
+      "entry_id": "a2:it:a2_lost_item_followup_message",
+      "rounds": 4,
+      "transcript_messages": 8,
+      "passed": true
+    },
+    {
+      "entry_id": "a2:it:a2_luggage_storage_pickup",
+      "rounds": 4,
+      "transcript_messages": 8,
+      "passed": true
+    },
+    {
+      "entry_id": "a2:it:a2_make_simple_plan_sequence",
+      "rounds": 4,
+      "transcript_messages": 8,
+      "passed": true
+    },
+    {
+      "entry_id": "a2:it:a2_plan_tomorrow_morning",
+      "rounds": 4,
+      "transcript_messages": 8,
+      "passed": true
+    },
+    {
+      "entry_id": "a2:it:a2_report_room_problem",
+      "rounds": 4,
+      "transcript_messages": 8,
+      "passed": true
+    },
+    {
+      "entry_id": "a2:it:a2_request_room_change",
+      "rounds": 4,
+      "transcript_messages": 8,
+      "passed": true
+    },
+    {
+      "entry_id": "a2:it:a2_reschedule_meeting_time",
+      "rounds": 4,
+      "transcript_messages": 8,
+      "passed": true
+    },
+    {
+      "entry_id": "a2:it:a2_transport_delay_announcement",
+      "rounds": 4,
+      "transcript_messages": 8,
+      "passed": true
+    },
+    {
+      "entry_id": "a2:it:a2_understand_hotel_notice",
+      "rounds": 4,
+      "transcript_messages": 8,
+      "passed": true
+    },
+    {
+      "entry_id": "a2:ja:a2_app_booking_confirmation",
+      "rounds": 4,
+      "transcript_messages": 8,
+      "passed": true
+    },
+    {
+      "entry_id": "a2:ja:a2_ask_ingredient_preference",
+      "rounds": 4,
+      "transcript_messages": 8,
+      "passed": true
+    },
+    {
+      "entry_id": "a2:ja:a2_ask_late_checkout",
+      "rounds": 4,
+      "transcript_messages": 8,
+      "passed": true
+    },
+    {
+      "entry_id": "a2:ja:a2_ask_recommendation_budget",
+      "rounds": 4,
+      "transcript_messages": 8,
+      "passed": true
+    },
+    {
+      "entry_id": "a2:ja:a2_ask_transfer_platform",
+      "rounds": 4,
+      "transcript_messages": 8,
+      "passed": true
+    },
+    {
+      "entry_id": "a2:ja:a2_change_delivery_pickup_time",
+      "rounds": 4,
+      "transcript_messages": 8,
+      "passed": true
+    },
+    {
+      "entry_id": "a2:ja:a2_change_ticket_time",
+      "rounds": 4,
+      "transcript_messages": 8,
+      "passed": true
+    },
+    {
+      "entry_id": "a2:ja:a2_compare_two_menu_options",
+      "rounds": 4,
+      "transcript_messages": 8,
+      "passed": true
+    },
+    {
+      "entry_id": "a2:ja:a2_confirm_date_time_place",
+      "rounds": 4,
+      "transcript_messages": 8,
+      "passed": true
+    },
+    {
+      "entry_id": "a2:ja:a2_decline_with_reason",
+      "rounds": 4,
+      "transcript_messages": 8,
+      "passed": true
+    },
+    {
+      "entry_id": "a2:ja:a2_describe_weekend_activity",
+      "rounds": 4,
+      "transcript_messages": 8,
+      "passed": true
+    },
+    {
+      "entry_id": "a2:ja:a2_exchange_wrong_item",
+      "rounds": 4,
+      "transcript_messages": 8,
+      "passed": true
+    },
+    {
+      "entry_id": "a2:ja:a2_explain_simple_delay_reason",
+      "rounds": 4,
+      "transcript_messages": 8,
+      "passed": true
+    },
+    {
+      "entry_id": "a2:ja:a2_fill_simple_form_help",
+      "rounds": 4,
+      "transcript_messages": 8,
+      "passed": true
+    },
+    {
+      "entry_id": "a2:ja:a2_invite_friend_activity",
+      "rounds": 4,
+      "transcript_messages": 7,
+      "passed": true
+    },
+    {
+      "entry_id": "a2:ja:a2_lost_item_followup_message",
+      "rounds": 4,
+      "transcript_messages": 8,
+      "passed": true
+    },
+    {
+      "entry_id": "a2:ja:a2_luggage_storage_pickup",
+      "rounds": 4,
+      "transcript_messages": 8,
+      "passed": true
+    },
+    {
+      "entry_id": "a2:ja:a2_make_simple_plan_sequence",
+      "rounds": 4,
+      "transcript_messages": 7,
+      "passed": true
+    },
+    {
+      "entry_id": "a2:ja:a2_plan_tomorrow_morning",
+      "rounds": 4,
+      "transcript_messages": 8,
+      "passed": true
+    },
+    {
+      "entry_id": "a2:ja:a2_report_room_problem",
+      "rounds": 4,
+      "transcript_messages": 8,
+      "passed": true
+    },
+    {
+      "entry_id": "a2:ja:a2_request_room_change",
+      "rounds": 4,
+      "transcript_messages": 8,
+      "passed": true
+    },
+    {
+      "entry_id": "a2:ja:a2_reschedule_meeting_time",
+      "rounds": 4,
+      "transcript_messages": 8,
+      "passed": true
+    },
+    {
+      "entry_id": "a2:ja:a2_transport_delay_announcement",
+      "rounds": 4,
+      "transcript_messages": 8,
+      "passed": true
+    },
+    {
+      "entry_id": "a2:ja:a2_understand_hotel_notice",
+      "rounds": 4,
+      "transcript_messages": 8,
+      "passed": true
+    },
+    {
+      "entry_id": "a2:ko:a2_app_booking_confirmation",
+      "rounds": 4,
+      "transcript_messages": 8,
+      "passed": true
+    },
+    {
+      "entry_id": "a2:ko:a2_ask_ingredient_preference",
+      "rounds": 4,
+      "transcript_messages": 8,
+      "passed": true
+    },
+    {
+      "entry_id": "a2:ko:a2_ask_late_checkout",
+      "rounds": 4,
+      "transcript_messages": 8,
+      "passed": true
+    },
+    {
+      "entry_id": "a2:ko:a2_ask_recommendation_budget",
+      "rounds": 4,
+      "transcript_messages": 8,
+      "passed": true
+    },
+    {
+      "entry_id": "a2:ko:a2_ask_transfer_platform",
+      "rounds": 4,
+      "transcript_messages": 8,
+      "passed": true
+    },
+    {
+      "entry_id": "a2:ko:a2_change_delivery_pickup_time",
+      "rounds": 4,
+      "transcript_messages": 8,
+      "passed": true
+    },
+    {
+      "entry_id": "a2:ko:a2_change_ticket_time",
+      "rounds": 4,
+      "transcript_messages": 8,
+      "passed": true
+    },
+    {
+      "entry_id": "a2:ko:a2_compare_two_menu_options",
+      "rounds": 4,
+      "transcript_messages": 8,
+      "passed": true
+    },
+    {
+      "entry_id": "a2:ko:a2_confirm_date_time_place",
+      "rounds": 4,
+      "transcript_messages": 8,
+      "passed": true
+    },
+    {
+      "entry_id": "a2:ko:a2_decline_with_reason",
+      "rounds": 4,
+      "transcript_messages": 8,
+      "passed": true
+    },
+    {
+      "entry_id": "a2:ko:a2_describe_weekend_activity",
+      "rounds": 4,
+      "transcript_messages": 8,
+      "passed": true
+    },
+    {
+      "entry_id": "a2:ko:a2_exchange_wrong_item",
+      "rounds": 4,
+      "transcript_messages": 8,
+      "passed": true
+    },
+    {
+      "entry_id": "a2:ko:a2_explain_simple_delay_reason",
+      "rounds": 4,
+      "transcript_messages": 8,
+      "passed": true
+    },
+    {
+      "entry_id": "a2:ko:a2_fill_simple_form_help",
+      "rounds": 4,
+      "transcript_messages": 8,
+      "passed": true
+    },
+    {
+      "entry_id": "a2:ko:a2_invite_friend_activity",
+      "rounds": 4,
+      "transcript_messages": 8,
+      "passed": true
+    },
+    {
+      "entry_id": "a2:ko:a2_lost_item_followup_message",
+      "rounds": 4,
+      "transcript_messages": 8,
+      "passed": true
+    },
+    {
+      "entry_id": "a2:ko:a2_luggage_storage_pickup",
+      "rounds": 4,
+      "transcript_messages": 8,
+      "passed": true
+    },
+    {
+      "entry_id": "a2:ko:a2_make_simple_plan_sequence",
+      "rounds": 4,
+      "transcript_messages": 8,
+      "passed": true
+    },
+    {
+      "entry_id": "a2:ko:a2_plan_tomorrow_morning",
+      "rounds": 4,
+      "transcript_messages": 8,
+      "passed": true
+    },
+    {
+      "entry_id": "a2:ko:a2_report_room_problem",
+      "rounds": 4,
+      "transcript_messages": 8,
+      "passed": true
+    },
+    {
+      "entry_id": "a2:ko:a2_request_room_change",
+      "rounds": 4,
+      "transcript_messages": 8,
+      "passed": true
+    },
+    {
+      "entry_id": "a2:ko:a2_reschedule_meeting_time",
+      "rounds": 4,
+      "transcript_messages": 8,
+      "passed": true
+    },
+    {
+      "entry_id": "a2:ko:a2_transport_delay_announcement",
+      "rounds": 4,
+      "transcript_messages": 8,
+      "passed": true
+    },
+    {
+      "entry_id": "a2:ko:a2_understand_hotel_notice",
+      "rounds": 4,
+      "transcript_messages": 8,
+      "passed": true
+    },
+    {
+      "entry_id": "a2:pt:a2_app_booking_confirmation",
+      "rounds": 4,
+      "transcript_messages": 8,
+      "passed": true
+    },
+    {
+      "entry_id": "a2:pt:a2_ask_ingredient_preference",
+      "rounds": 4,
+      "transcript_messages": 8,
+      "passed": true
+    },
+    {
+      "entry_id": "a2:pt:a2_ask_late_checkout",
+      "rounds": 4,
+      "transcript_messages": 8,
+      "passed": true
+    },
+    {
+      "entry_id": "a2:pt:a2_ask_recommendation_budget",
+      "rounds": 4,
+      "transcript_messages": 8,
+      "passed": true
+    },
+    {
+      "entry_id": "a2:pt:a2_ask_transfer_platform",
+      "rounds": 4,
+      "transcript_messages": 8,
+      "passed": true
+    },
+    {
+      "entry_id": "a2:pt:a2_change_delivery_pickup_time",
+      "rounds": 4,
+      "transcript_messages": 8,
+      "passed": true
+    },
+    {
+      "entry_id": "a2:pt:a2_change_ticket_time",
+      "rounds": 4,
+      "transcript_messages": 8,
+      "passed": true
+    },
+    {
+      "entry_id": "a2:pt:a2_compare_two_menu_options",
+      "rounds": 4,
+      "transcript_messages": 8,
+      "passed": true
+    },
+    {
+      "entry_id": "a2:pt:a2_confirm_date_time_place",
+      "rounds": 4,
+      "transcript_messages": 8,
+      "passed": true
+    },
+    {
+      "entry_id": "a2:pt:a2_decline_with_reason",
+      "rounds": 4,
+      "transcript_messages": 8,
+      "passed": true
+    },
+    {
+      "entry_id": "a2:pt:a2_describe_weekend_activity",
+      "rounds": 4,
+      "transcript_messages": 8,
+      "passed": true
+    },
+    {
+      "entry_id": "a2:pt:a2_exchange_wrong_item",
+      "rounds": 4,
+      "transcript_messages": 8,
+      "passed": true
+    },
+    {
+      "entry_id": "a2:pt:a2_explain_simple_delay_reason",
+      "rounds": 4,
+      "transcript_messages": 8,
+      "passed": true
+    },
+    {
+      "entry_id": "a2:pt:a2_fill_simple_form_help",
+      "rounds": 4,
+      "transcript_messages": 8,
+      "passed": true
+    },
+    {
+      "entry_id": "a2:pt:a2_invite_friend_activity",
+      "rounds": 4,
+      "transcript_messages": 8,
+      "passed": true
+    },
+    {
+      "entry_id": "a2:pt:a2_lost_item_followup_message",
+      "rounds": 4,
+      "transcript_messages": 8,
+      "passed": true
+    },
+    {
+      "entry_id": "a2:pt:a2_luggage_storage_pickup",
+      "rounds": 4,
+      "transcript_messages": 8,
+      "passed": true
+    },
+    {
+      "entry_id": "a2:pt:a2_make_simple_plan_sequence",
+      "rounds": 4,
+      "transcript_messages": 8,
+      "passed": true
+    },
+    {
+      "entry_id": "a2:pt:a2_plan_tomorrow_morning",
+      "rounds": 4,
+      "transcript_messages": 8,
+      "passed": true
+    },
+    {
+      "entry_id": "a2:pt:a2_report_room_problem",
+      "rounds": 4,
+      "transcript_messages": 8,
+      "passed": true
+    },
+    {
+      "entry_id": "a2:pt:a2_request_room_change",
+      "rounds": 4,
+      "transcript_messages": 8,
+      "passed": true
+    },
+    {
+      "entry_id": "a2:pt:a2_reschedule_meeting_time",
+      "rounds": 4,
+      "transcript_messages": 8,
+      "passed": true
+    },
+    {
+      "entry_id": "a2:pt:a2_transport_delay_announcement",
+      "rounds": 4,
+      "transcript_messages": 8,
+      "passed": true
+    },
+    {
+      "entry_id": "a2:pt:a2_understand_hotel_notice",
+      "rounds": 4,
+      "transcript_messages": 8,
+      "passed": true
+    },
+    {
+      "entry_id": "a2:th:a2_app_booking_confirmation",
+      "rounds": 4,
+      "transcript_messages": 8,
+      "passed": true
+    },
+    {
+      "entry_id": "a2:th:a2_ask_ingredient_preference",
+      "rounds": 4,
+      "transcript_messages": 8,
+      "passed": true
+    },
+    {
+      "entry_id": "a2:th:a2_ask_late_checkout",
+      "rounds": 4,
+      "transcript_messages": 8,
+      "passed": true
+    },
+    {
+      "entry_id": "a2:th:a2_ask_recommendation_budget",
+      "rounds": 4,
+      "transcript_messages": 8,
+      "passed": true
+    },
+    {
+      "entry_id": "a2:th:a2_ask_transfer_platform",
+      "rounds": 4,
+      "transcript_messages": 8,
+      "passed": true
+    },
+    {
+      "entry_id": "a2:th:a2_change_delivery_pickup_time",
+      "rounds": 4,
+      "transcript_messages": 8,
+      "passed": true
+    },
+    {
+      "entry_id": "a2:th:a2_change_ticket_time",
+      "rounds": 4,
+      "transcript_messages": 8,
+      "passed": true
+    },
+    {
+      "entry_id": "a2:th:a2_compare_two_menu_options",
+      "rounds": 4,
+      "transcript_messages": 8,
+      "passed": true
+    },
+    {
+      "entry_id": "a2:th:a2_confirm_date_time_place",
+      "rounds": 4,
+      "transcript_messages": 8,
+      "passed": true
+    },
+    {
+      "entry_id": "a2:th:a2_decline_with_reason",
+      "rounds": 4,
+      "transcript_messages": 8,
+      "passed": true
+    },
+    {
+      "entry_id": "a2:th:a2_describe_weekend_activity",
+      "rounds": 4,
+      "transcript_messages": 8,
+      "passed": true
+    },
+    {
+      "entry_id": "a2:th:a2_exchange_wrong_item",
+      "rounds": 4,
+      "transcript_messages": 8,
+      "passed": true
+    },
+    {
+      "entry_id": "a2:th:a2_explain_simple_delay_reason",
+      "rounds": 4,
+      "transcript_messages": 8,
+      "passed": true
+    },
+    {
+      "entry_id": "a2:th:a2_fill_simple_form_help",
+      "rounds": 4,
+      "transcript_messages": 8,
+      "passed": true
+    },
+    {
+      "entry_id": "a2:th:a2_invite_friend_activity",
+      "rounds": 4,
+      "transcript_messages": 8,
+      "passed": true
+    },
+    {
+      "entry_id": "a2:th:a2_lost_item_followup_message",
+      "rounds": 4,
+      "transcript_messages": 8,
+      "passed": true
+    },
+    {
+      "entry_id": "a2:th:a2_luggage_storage_pickup",
+      "rounds": 4,
+      "transcript_messages": 8,
+      "passed": true
+    },
+    {
+      "entry_id": "a2:th:a2_make_simple_plan_sequence",
+      "rounds": 4,
+      "transcript_messages": 8,
+      "passed": true
+    },
+    {
+      "entry_id": "a2:th:a2_plan_tomorrow_morning",
+      "rounds": 4,
+      "transcript_messages": 8,
+      "passed": true
+    },
+    {
+      "entry_id": "a2:th:a2_report_room_problem",
+      "rounds": 4,
+      "transcript_messages": 8,
+      "passed": true
+    },
+    {
+      "entry_id": "a2:th:a2_request_room_change",
+      "rounds": 4,
+      "transcript_messages": 8,
+      "passed": true
+    },
+    {
+      "entry_id": "a2:th:a2_reschedule_meeting_time",
+      "rounds": 4,
+      "transcript_messages": 8,
+      "passed": true
+    },
+    {
+      "entry_id": "a2:th:a2_transport_delay_announcement",
+      "rounds": 4,
+      "transcript_messages": 8,
+      "passed": true
+    },
+    {
+      "entry_id": "a2:th:a2_understand_hotel_notice",
+      "rounds": 4,
+      "transcript_messages": 8,
+      "passed": true
+    },
+    {
+      "entry_id": "a2:zh:a2_app_booking_confirmation",
+      "rounds": 4,
+      "transcript_messages": 8,
+      "passed": true
+    },
+    {
+      "entry_id": "a2:zh:a2_ask_ingredient_preference",
+      "rounds": 4,
+      "transcript_messages": 8,
+      "passed": true
+    },
+    {
+      "entry_id": "a2:zh:a2_ask_late_checkout",
+      "rounds": 4,
+      "transcript_messages": 8,
+      "passed": true
+    },
+    {
+      "entry_id": "a2:zh:a2_ask_recommendation_budget",
+      "rounds": 4,
+      "transcript_messages": 8,
+      "passed": true
+    },
+    {
+      "entry_id": "a2:zh:a2_ask_transfer_platform",
+      "rounds": 4,
+      "transcript_messages": 8,
+      "passed": true
+    },
+    {
+      "entry_id": "a2:zh:a2_change_delivery_pickup_time",
+      "rounds": 4,
+      "transcript_messages": 8,
+      "passed": true
+    },
+    {
+      "entry_id": "a2:zh:a2_change_ticket_time",
+      "rounds": 4,
+      "transcript_messages": 8,
+      "passed": true
+    },
+    {
+      "entry_id": "a2:zh:a2_compare_two_menu_options",
+      "rounds": 4,
+      "transcript_messages": 8,
+      "passed": true
+    },
+    {
+      "entry_id": "a2:zh:a2_confirm_date_time_place",
+      "rounds": 4,
+      "transcript_messages": 8,
+      "passed": true
+    },
+    {
+      "entry_id": "a2:zh:a2_decline_with_reason",
+      "rounds": 4,
+      "transcript_messages": 8,
+      "passed": true
+    },
+    {
+      "entry_id": "a2:zh:a2_describe_weekend_activity",
+      "rounds": 4,
+      "transcript_messages": 8,
+      "passed": true
+    },
+    {
+      "entry_id": "a2:zh:a2_exchange_wrong_item",
+      "rounds": 4,
+      "transcript_messages": 8,
+      "passed": true
+    },
+    {
+      "entry_id": "a2:zh:a2_explain_simple_delay_reason",
+      "rounds": 4,
+      "transcript_messages": 8,
+      "passed": true
+    },
+    {
+      "entry_id": "a2:zh:a2_fill_simple_form_help",
+      "rounds": 4,
+      "transcript_messages": 8,
+      "passed": true
+    },
+    {
+      "entry_id": "a2:zh:a2_invite_friend_activity",
+      "rounds": 4,
+      "transcript_messages": 8,
+      "passed": true
+    },
+    {
+      "entry_id": "a2:zh:a2_lost_item_followup_message",
+      "rounds": 4,
+      "transcript_messages": 8,
+      "passed": true
+    },
+    {
+      "entry_id": "a2:zh:a2_luggage_storage_pickup",
+      "rounds": 4,
+      "transcript_messages": 8,
+      "passed": true
+    },
+    {
+      "entry_id": "a2:zh:a2_make_simple_plan_sequence",
+      "rounds": 4,
+      "transcript_messages": 8,
+      "passed": true
+    },
+    {
+      "entry_id": "a2:zh:a2_plan_tomorrow_morning",
+      "rounds": 4,
+      "transcript_messages": 8,
+      "passed": true
+    },
+    {
+      "entry_id": "a2:zh:a2_report_room_problem",
+      "rounds": 4,
+      "transcript_messages": 8,
+      "passed": true
+    },
+    {
+      "entry_id": "a2:zh:a2_request_room_change",
+      "rounds": 4,
+      "transcript_messages": 8,
+      "passed": true
+    },
+    {
+      "entry_id": "a2:zh:a2_reschedule_meeting_time",
+      "rounds": 4,
+      "transcript_messages": 8,
+      "passed": true
+    },
+    {
+      "entry_id": "a2:zh:a2_transport_delay_announcement",
+      "rounds": 4,
+      "transcript_messages": 8,
+      "passed": true
+    },
+    {
+      "entry_id": "a2:zh:a2_understand_hotel_notice",
+      "rounds": 4,
+      "transcript_messages": 8,
+      "passed": true
+    }
+  ]
+}

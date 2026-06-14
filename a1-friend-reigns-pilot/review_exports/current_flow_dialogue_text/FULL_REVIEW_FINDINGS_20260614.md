@@ -9,7 +9,8 @@ This update supersedes the earlier same-day review. The earlier report correctly
 
 The current 440-scenario corpus is still **not native-certified** and should not
 be labeled native-reviewed. It is now suitable for the next content-review loop
-because the text-only export/audit gate has no unresolved findings.
+because the text-only export/audit gate has no unresolved findings and the
+browserless full-walk runtime simulator reaches completion for every scenario.
 
 ## Scope
 
@@ -59,6 +60,25 @@ because the text-only export/audit gate has no unresolved findings.
 | Reused correct-surface signals | 0 |
 | Nonstandard A1 turn-count signals | 0 |
 
+## Runtime Walk Summary
+
+The browserless runtime-walk gate simulates the current prototype's dialogue
+progression logic after the same learner-mirror and duplicate-closing
+normalization used by the viewer, text export, and audit script.
+
+| Metric | Count |
+| :--- | ---: |
+| Scenarios walked | 440 |
+| Runtime rounds walked | 1738 |
+| Transcript messages simulated | 3582 |
+| Runtime-walk issues | 0 |
+
+Artifact: `_runtime_walk_scan.json`
+
+This is stronger than the earlier turn-1 smoke evidence because it walks every
+runtime round through correct-choice selection and completion. It is still not a
+browser rendering smoke, TTS smoke, or native-speaker review.
+
 ## Remaining Policy Notes
 
 ### P1 - Learner-production mirror turns are display/runtime-normalized
@@ -105,8 +125,10 @@ the review gate.
 node scripts/generate_a1_friend_reigns_pilot_data.js
 node scripts/export_current_flow_dialogue_text.js
 node scripts/audit_current_flow_dialogue_text.js
+node scripts/runtime_walk_current_flow.js
 node --check scripts/export_current_flow_dialogue_text.js
 node --check scripts/audit_current_flow_dialogue_text.js
+node --check scripts/runtime_walk_current_flow.js
 ```
 
 ## Next Recommended Work
