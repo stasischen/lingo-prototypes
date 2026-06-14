@@ -14,6 +14,12 @@ Regenerate the static data after content repo updates:
 node scripts/generate_a1_friend_reigns_pilot_data.js
 ```
 
+Regenerate plain-text dialogue review exports:
+
+```bash
+node scripts/export_current_flow_dialogue_text.js
+```
+
 ## Publish
 
 This folder is safe to publish separately from the private/control-tower repository.
@@ -35,6 +41,7 @@ https://<owner>.github.io/lingo-prototypes/a1-friend-reigns-pilot/
 - `index.html`
 - generated `scenario_manifest.v1.json`
 - generated `scenario_packs/current_flow/`
+- generated `review_exports/current_flow_dialogue_text/`
 - no control-tower docs
 - no worklogs
 - no task files
