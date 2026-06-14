@@ -2,7 +2,7 @@
   "schema_version": "scenario_pack.v1",
   "scenario_id": "a2_lost_item_followup_message",
   "title": "Faire un Suivi pour un Objet Perdu",
-  "setting_label": "low-risk help message",
+  "setting_label": "message d’aide",
   "wrap_title": "Faire un Suivi pour un Objet Perdu",
   "wrap_friend": "Bien. Tu as géré une aide numérique ou documentaire à faible risque avec seulement le détail nécessaire.",
   "language": "fr",

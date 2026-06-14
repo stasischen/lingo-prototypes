@@ -2,7 +2,7 @@
   "schema_version": "scenario_pack.v1",
   "scenario_id": "a2_change_delivery_pickup_time",
   "title": "Mudar o Horário de Retirada",
-  "setting_label": "low-risk help message",
+  "setting_label": "mensagem de ajuda",
   "wrap_title": "Mudar o Horário de Retirada",
   "wrap_friend": "Muito bem. Você lidou com uma tarefa digital ou de formulário usando só o detalhe necessário.",
   "language": "pt",

@@ -2,7 +2,7 @@
   "schema_version": "scenario_pack.v1",
   "scenario_id": "a2_decline_with_reason",
   "title": "Refuser avec une Raison Simple",
-  "setting_label": "friend chat",
+  "setting_label": "message avec un ami",
   "wrap_title": "Refus doux confirmé",
   "wrap_friend": "Bien. Tu as refusé avec une raison courte tout en gardant une relation chaleureuse.",
   "language": "fr",

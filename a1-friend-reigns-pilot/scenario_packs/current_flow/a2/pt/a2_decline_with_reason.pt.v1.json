@@ -2,7 +2,7 @@
   "schema_version": "scenario_pack.v1",
   "scenario_id": "a2_decline_with_reason",
   "title": "Recusar com um Motivo Simples",
-  "setting_label": "friend chat",
+  "setting_label": "chat com um amigo",
   "wrap_title": "Recusa gentil confirmada",
   "wrap_friend": "Muito bem. Você recusou com um motivo curto e manteve um tom amigável.",
   "language": "pt",

@@ -2,7 +2,7 @@
   "schema_version": "scenario_pack.v1",
   "scenario_id": "a2_fill_simple_form_help",
   "title": "Hilfe bei Einem Einfachen Formular Bekommen",
-  "setting_label": "low-risk help message",
+  "setting_label": "Hilfenachricht",
   "wrap_title": "Hilfe bei Einem Einfachen Formular Bekommen",
   "wrap_friend": "Gut. Du hast eine risikoarme digitale oder Formular-Hilfe mit nur den nötigen Details erledigt.",
   "language": "de",

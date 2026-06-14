@@ -2,7 +2,7 @@
   "schema_version": "scenario_pack.v1",
   "scenario_id": "a2_make_simple_plan_sequence",
   "title": "安排兩步驟計畫",
-  "setting_label": "friend chat",
+  "setting_label": "朋友聊天",
   "wrap_title": "已確認兩步驟計畫",
   "wrap_friend": "做得好。你把先做什麼和接著做什麼連起來，並確認了計畫。",
   "language": "zh",
@@ -63,7 +63,7 @@
       "speak": "我們先在車站見，好嗎？",
       "translation": "我們先在車站見，好嗎？",
       "friend": {
-        "hint": "Keep the plan to two simple steps."
+        "hint": "把計畫維持在兩個簡單步驟。"
       },
       "reply_set": {
         "correct": "r1a",
@@ -108,7 +108,7 @@
       "speak": "接著去公園嗎？",
       "translation": "接著去公園嗎？",
       "friend": {
-        "hint": "Keep the plan to two simple steps."
+        "hint": "把計畫維持在兩個簡單步驟。"
       },
       "reply_set": {
         "correct": "r2a",
@@ -153,7 +153,7 @@
       "speak": "所以先車站，接著公園，對嗎？",
       "translation": "所以先車站，接著公園，對嗎？",
       "friend": {
-        "hint": "Keep the plan to two simple steps."
+        "hint": "把計畫維持在兩個簡單步驟。"
       },
       "reply_set": {
         "correct": "r3a",
@@ -198,16 +198,16 @@
       "speak": "好，星期六兩點見。",
       "translation": "好，星期六兩點見。",
       "friend": {
-        "hint": "Keep the plan to two simple steps."
+        "hint": "把計畫維持在兩個簡單步驟。"
       },
       "reply_set": {
         "correct": "r4a",
         "choices": [
           {
             "id": "r4a",
-            "surface": "好，星期六兩點見。",
-            "translation": "好，星期六兩點見。",
-            "speak": "好，星期六兩點見。",
+            "surface": "好，那星期六兩點見。",
+            "translation": "好，那星期六兩點見。",
+            "speak": "好，那星期六兩點見。",
             "learning_role": "production_target"
           },
           {
@@ -241,7 +241,7 @@
     "好，我們先在車站見。",
     "好，接著走去公園。",
     "對，先車站，接著公園。",
-    "好，星期六兩點見。"
+    "好，那星期六兩點見。"
   ],
   "formula_moments": [
     {

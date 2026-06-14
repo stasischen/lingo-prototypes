@@ -2,7 +2,7 @@
   "schema_version": "scenario_pack.v1",
   "scenario_id": "a2_decline_with_reason",
   "title": "用簡單理由婉拒",
-  "setting_label": "friend chat",
+  "setting_label": "朋友聊天",
   "wrap_title": "已完成婉拒",
   "wrap_friend": "做得好。你用簡短理由婉拒，也保留了友善關係。",
   "language": "zh",

@@ -92,7 +92,6 @@ This export is for language/content review. It intentionally removes the interac
 - amigo: Sim, estou pronto. (對，我準備好了。)
 - amiga: Ótimo. Vamos para o café. (太好了。我們去咖啡店吧。)
 - amigo: Vamos. (走吧。)
-- amiga: Vamos. (走吧。)
 - amigo: Vamos. (走吧。)
 - amiga: Beleza. (好。)
 
@@ -462,7 +461,6 @@ This export is for language/content review. It intentionally removes the interac
 - cliente: Tá bom. Vou levar. (好。我要買。)
 - vendedor: Certo. São dez reais. (好的。總共十雷亞爾。)
 - cliente: Obrigado. (謝謝。)
-- vendedor: Obrigado. (謝謝。)
 - cliente: Obrigado. (謝謝。)
 - vendedor: Eu que agradeço. (是我謝謝您。)
 

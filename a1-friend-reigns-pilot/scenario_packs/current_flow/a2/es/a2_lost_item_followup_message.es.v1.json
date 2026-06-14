@@ -2,7 +2,7 @@
   "schema_version": "scenario_pack.v1",
   "scenario_id": "a2_lost_item_followup_message",
   "title": "Consultar por un Objeto Perdido",
-  "setting_label": "low-risk help message",
+  "setting_label": "mensaje de ayuda",
   "wrap_title": "Consultar por un Objeto Perdido",
   "wrap_friend": "Bien. Manejaste una tarea digital o de ayuda con documentos usando solo el detalle necesario.",
   "language": "es",

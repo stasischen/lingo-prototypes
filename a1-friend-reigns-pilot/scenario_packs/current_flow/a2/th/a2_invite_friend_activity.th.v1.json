@@ -2,7 +2,7 @@
   "schema_version": "scenario_pack.v1",
   "scenario_id": "a2_invite_friend_activity",
   "title": "ชวนเพื่อนไปทำกิจกรรม",
-  "setting_label": "คุยกับเพื่อนทางแชต",
+  "setting_label": "แชตกับเพื่อน",
   "wrap_title": "ยืนยันนัดกับเพื่อนแล้ว",
   "wrap_friend": "ทำได้ดีค่ะ คุณชวนเพื่อนแบบไม่กดดัน และยืนยันเวลา/สถานที่ง่าย ๆ ได้",
   "language": "th",
@@ -63,16 +63,16 @@
       "speak": "บ่ายนี้ไปดื่มกาแฟด้วยกันไหม",
       "translation": "今天下午要一起喝咖啡嗎？",
       "friend": {
-        "hint": "ชวนเพื่อนไปกิจกรรมง่าย ๆ ค่ะ"
+        "hint": "ตอบรับคำชวนของเพื่อนแบบเป็นธรรมชาติค่ะ"
       },
       "reply_set": {
         "correct": "r1a",
         "choices": [
           {
             "id": "r1a",
-            "surface": "บ่ายนี้ไปดื่มกาแฟด้วยกันไหม",
-            "translation": "今天下午要一起喝咖啡嗎？",
-            "speak": "บ่ายนี้ไปดื่มกาแฟด้วยกันไหม",
+            "surface": "ได้สิ ไปดื่มกาแฟกัน",
+            "translation": "ได้สิ ไปดื่มกาแฟกัน",
+            "speak": "ได้สิ ไปดื่มกาแฟกัน",
             "learning_role": "production_target"
           },
           {
@@ -198,16 +198,16 @@
       "speak": "ดีเลย เดี๋ยวเจอกันนะ",
       "translation": "好，等一下見。",
       "friend": {
-        "hint": "ปิดแผนอย่างอบอุ่นค่ะ"
+        "hint": "ปิดแผนแบบเป็นกันเองค่ะ"
       },
       "reply_set": {
         "correct": "r4a",
         "choices": [
           {
             "id": "r4a",
-            "surface": "ดีเลย เดี๋ยวเจอกันนะ",
-            "translation": "好，等一下見。",
-            "speak": "ดีเลย เดี๋ยวเจอกันนะ",
+            "surface": "ไว้เจอกันนะ",
+            "translation": "ไว้เจอกันนะ",
+            "speak": "ไว้เจอกันนะ",
             "learning_role": "production_target"
           },
           {
@@ -238,10 +238,10 @@
   ],
   "feedback": "Distractors test social register, time/function/domain contrast, and A2 boundary without offering valid alternate answers.",
   "tts_segments": [
-    "บ่ายนี้ไปดื่มกาแฟด้วยกันไหม",
+    "ได้สิ ไปดื่มกาแฟกัน",
     "ประมาณบ่ายสามดีไหม",
     "ได้ เจอกันหน้าสถานี",
-    "ดีเลย เดี๋ยวเจอกันนะ"
+    "ไว้เจอกันนะ"
   ],
   "formula_moments": [
     {

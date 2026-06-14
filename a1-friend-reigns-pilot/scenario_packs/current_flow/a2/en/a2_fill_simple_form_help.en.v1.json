@@ -2,7 +2,7 @@
   "schema_version": "scenario_pack.v1",
   "scenario_id": "a2_fill_simple_form_help",
   "title": "Get Help with a Simple Form",
-  "setting_label": "low-risk help message",
+  "setting_label": "help message",
   "wrap_title": "Get Help with a Simple Form",
   "wrap_friend": "Good. You handled a low-risk digital or document-help task with only the needed detail.",
   "language": "en",

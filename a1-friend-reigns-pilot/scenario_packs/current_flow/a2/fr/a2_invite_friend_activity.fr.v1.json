@@ -2,7 +2,7 @@
   "schema_version": "scenario_pack.v1",
   "scenario_id": "a2_invite_friend_activity",
   "title": "Inviter un Ami à une Activité",
-  "setting_label": "friend chat",
+  "setting_label": "message avec un ami",
   "wrap_title": "Plan avec un ami confirmé",
   "wrap_friend": "Bien. Tu as invité un ami sans pression et confirmé une heure et un lieu simples.",
   "language": "fr",
@@ -63,16 +63,16 @@
       "speak": "Tu veux prendre un café plus tard ?",
       "translation": "等一下要一起喝咖啡嗎？",
       "friend": {
-        "hint": "Respond naturally to the friend plan."
+        "hint": "Accepte l’invitation naturellement."
       },
       "reply_set": {
         "correct": "r1a",
         "choices": [
           {
             "id": "r1a",
-            "surface": "Tu veux prendre un café plus tard ?",
-            "translation": "等一下要一起喝咖啡嗎？",
-            "speak": "Tu veux prendre un café plus tard ?",
+            "surface": "Oui, bonne idée.",
+            "translation": "Oui, bonne idée.",
+            "speak": "Oui, bonne idée.",
             "learning_role": "production_target"
           },
           {
@@ -108,7 +108,7 @@
       "speak": "Bien sûr. À quelle heure ?",
       "translation": "好啊。幾點？",
       "friend": {
-        "hint": "Respond naturally to the friend plan."
+        "hint": "Propose une heure simple."
       },
       "reply_set": {
         "correct": "r2a",
@@ -153,7 +153,7 @@
       "speak": "On se retrouve devant la gare ?",
       "translation": "要在車站前面見嗎？",
       "friend": {
-        "hint": "Respond naturally to the friend plan."
+        "hint": "Confirme le lieu du rendez-vous."
       },
       "reply_set": {
         "correct": "r3a",
@@ -198,7 +198,7 @@
       "speak": "Parfait. À tout à l’heure.",
       "translation": "好，等一下見。",
       "friend": {
-        "hint": "Respond naturally to the friend plan."
+        "hint": "Termine l’échange amicalement."
       },
       "reply_set": {
         "correct": "r4a",
@@ -238,7 +238,7 @@
   ],
   "feedback": "Les distracteurs testent le registre social, le temps, la fonction et la limite A2.",
   "tts_segments": [
-    "Tu veux prendre un café plus tard ?",
+    "Oui, bonne idée.",
     "Vers trois heures, ça te va ?",
     "Oui, on se retrouve devant la gare.",
     "Super. À tout à l’heure."

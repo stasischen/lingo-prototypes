@@ -2,7 +2,7 @@
   "schema_version": "scenario_pack.v1",
   "scenario_id": "a2_change_delivery_pickup_time",
   "title": "Eine Abholzeit Ändern",
-  "setting_label": "low-risk help message",
+  "setting_label": "Hilfenachricht",
   "wrap_title": "Eine Abholzeit Ändern",
   "wrap_friend": "Gut. Du hast eine risikoarme digitale oder Formular-Hilfe mit nur den nötigen Details erledigt.",
   "language": "de",

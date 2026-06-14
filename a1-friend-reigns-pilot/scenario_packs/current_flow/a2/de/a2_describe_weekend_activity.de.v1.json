@@ -2,7 +2,7 @@
   "schema_version": "scenario_pack.v1",
   "scenario_id": "a2_describe_weekend_activity",
   "title": "Eine Wochenendaktivität Beschreiben",
-  "setting_label": "friend chat",
+  "setting_label": "Chat mit einem Freund",
   "wrap_title": "Wochenendaktivität beschrieben",
   "wrap_friend": "Gut. Du hast kurz erzählt, was du am Wochenende gemacht hast.",
   "language": "de",

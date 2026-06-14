@@ -2,7 +2,7 @@
   "schema_version": "scenario_pack.v1",
   "scenario_id": "a2_app_booking_confirmation",
   "title": "Confirm an App Booking",
-  "setting_label": "low-risk help message",
+  "setting_label": "help message",
   "wrap_title": "Confirm an App Booking",
   "wrap_friend": "Good. You handled a low-risk digital or document-help task with only the needed detail.",
   "language": "en",

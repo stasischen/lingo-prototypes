@@ -2,7 +2,7 @@
   "schema_version": "scenario_pack.v1",
   "scenario_id": "a2_invite_friend_activity",
   "title": "Invitare un Amico a un’Attività",
-  "setting_label": "friend chat",
+  "setting_label": "chat con un amico",
   "wrap_title": "Piano con un amico confermato",
   "wrap_friend": "Bene. Hai invitato un amico senza pressione e hai confermato ora e luogo.",
   "language": "it",
@@ -63,16 +63,16 @@
       "speak": "Ti va di prendere un caffè più tardi?",
       "translation": "等一下要一起喝咖啡嗎？",
       "friend": {
-        "hint": "Respond naturally to the friend plan."
+        "hint": "Accetta l’invito in modo naturale."
       },
       "reply_set": {
         "correct": "r1a",
         "choices": [
           {
             "id": "r1a",
-            "surface": "Ti va di prendere un caffè più tardi?",
-            "translation": "等一下要一起喝咖啡嗎？",
-            "speak": "Ti va di prendere un caffè più tardi?",
+            "surface": "Sì, volentieri. Un caffè va bene.",
+            "translation": "Sì, volentieri. Un caffè va bene.",
+            "speak": "Sì, volentieri. Un caffè va bene.",
             "learning_role": "production_target"
           },
           {
@@ -108,7 +108,7 @@
       "speak": "Certo. A che ora?",
       "translation": "好啊。幾點？",
       "friend": {
-        "hint": "Respond naturally to the friend plan."
+        "hint": "Proponi un orario semplice."
       },
       "reply_set": {
         "correct": "r2a",
@@ -153,7 +153,7 @@
       "speak": "Ci vediamo davanti alla stazione?",
       "translation": "要在車站前面見嗎？",
       "friend": {
-        "hint": "Respond naturally to the friend plan."
+        "hint": "Conferma il luogo dell’incontro."
       },
       "reply_set": {
         "correct": "r3a",
@@ -198,16 +198,16 @@
       "speak": "Perfetto. A dopo.",
       "translation": "好，等一下見。",
       "friend": {
-        "hint": "Respond naturally to the friend plan."
+        "hint": "Chiudi il piano in modo amichevole."
       },
       "reply_set": {
         "correct": "r4a",
         "choices": [
           {
             "id": "r4a",
-            "surface": "Perfetto. A dopo.",
-            "translation": "很好，等一下見。",
-            "speak": "Perfetto. A dopo.",
+            "surface": "A dopo, allora.",
+            "translation": "A dopo, allora.",
+            "speak": "A dopo, allora.",
             "learning_role": "production_target"
           },
           {
@@ -238,10 +238,10 @@
   ],
   "feedback": "I distrattori controllano registro sociale, tempo, funzione e limite A2.",
   "tts_segments": [
-    "Ti va di prendere un caffè più tardi?",
+    "Sì, volentieri. Un caffè va bene.",
     "Verso le tre va bene?",
     "Sì, ci vediamo davanti alla stazione.",
-    "Perfetto. A dopo."
+    "A dopo, allora."
   ],
   "formula_moments": [
     {

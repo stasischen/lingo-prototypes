@@ -58,16 +58,21 @@ function renderScenario(entry, pack) {
   lines.push('');
   const npc = pack.roles?.npc?.label || 'NPC';
   const learner = pack.roles?.learner?.label || 'Learner';
+  const roleFor = (speaker) => speaker === 'learner' ? learner : speaker === 'friend' ? 'Friend' : npc;
   for (const message of pack.opening_messages || []) {
-    const role = message.speaker === 'learner' ? learner : message.speaker === 'friend' ? 'Friend' : npc;
+    const role = roleFor(message.speaker);
     lines.push(`- ${role}: ${clean(message.surface)}${message.translation ? ` (${clean(message.translation)})` : ''}`);
   }
   for (const turn of pack.turns || []) {
     const correct = (turn.reply_set?.choices || []).find((choice) => choice.id === turn.reply_set?.correct);
-    lines.push(`- ${npc}: ${clean(turn.surface)}${turn.translation ? ` (${clean(turn.translation)})` : ''}`);
-    if (correct) {
-      lines.push(`- ${learner}: ${clean(correct.surface)}${correct.translation ? ` (${clean(correct.translation)})` : ''}`);
+    if (turn.speaker === 'learner') {
+      lines.push(`- ${learner}: ${clean(correct?.surface || turn.surface)}${(correct?.translation || turn.translation) ? ` (${clean(correct?.translation || turn.translation)})` : ''}`);
     } else {
+      lines.push(`- ${roleFor(turn.speaker)}: ${clean(turn.surface)}${turn.translation ? ` (${clean(turn.translation)})` : ''}`);
+    }
+    if (correct && turn.speaker !== 'learner') {
+      lines.push(`- ${learner}: ${clean(correct.surface)}${correct.translation ? ` (${clean(correct.translation)})` : ''}`);
+    } else if (!correct) {
       lines.push(`- ${learner}: [MISSING CORRECT CHOICE ${clean(turn.reply_set?.correct)}]`);
     }
     if (turn.closing) {
@@ -127,8 +132,12 @@ function renderGroup(level, language, entries) {
 
 function main() {
   const manifest = readJson(manifestPath);
-  fs.rmSync(outputRoot, { recursive: true, force: true });
   ensureDir(outputRoot);
+  for (const name of fs.readdirSync(outputRoot)) {
+    if (/^a[12]_[a-z]+_dialogue_review\.md$/.test(name) || name === 'README.md') {
+      fs.rmSync(path.join(outputRoot, name), { force: true });
+    }
+  }
 
   const groups = new Map();
   for (const entry of manifest.scenarios) {

@@ -2,7 +2,7 @@
   "schema_version": "scenario_pack.v1",
   "scenario_id": "a2_invite_friend_activity",
   "title": "친구에게 활동 제안하기",
-  "setting_label": "친구와 메시지 후 통화",
+  "setting_label": "친구와 메시지",
   "wrap_title": "친구와 약속 잡기",
   "wrap_friend": "잘했어요. 친구에게 부담 없이 제안하고 시간까지 간단히 확인했어요.",
   "language": "ko",
@@ -63,16 +63,16 @@
       "speak": "오늘 오후에 같이 산책할래요?",
       "translation": "今天下午要一起散步嗎？",
       "friend": {
-        "hint": "친구에게 부담 없는 활동을 제안하세요."
+        "hint": "친구의 제안에 자연스럽게 답하세요."
       },
       "reply_set": {
         "correct": "r1a",
         "choices": [
           {
             "id": "r1a",
-            "surface": "오늘 오후에 같이 산책할래요?",
-            "translation": "今天下午要一起散步嗎？",
-            "speak": "오늘 오후에 같이 산책할래요?"
+            "surface": "좋아요. 같이 산책해요.",
+            "translation": "좋아요. 같이 산책해요.",
+            "speak": "좋아요. 같이 산책해요."
           },
           {
             "id": "r1b",
@@ -107,7 +107,7 @@
       "speak": "좋아요. 몇 시에 만날까요?",
       "translation": "好啊。幾點見？",
       "friend": {
-        "hint": "친구가 시간을 묻고 있어요. 간단한 시간을 제안하세요."
+        "hint": "간단한 시간을 제안하세요."
       },
       "reply_set": {
         "correct": "r2a",
@@ -196,16 +196,16 @@
       "speak": "좋아요. 이따 봐요.",
       "translation": "好，等一下見。",
       "friend": {
-        "hint": "약속이 정해졌어요. 따뜻하게 마무리하세요."
+        "hint": "약속을 따뜻하게 마무리하세요."
       },
       "reply_set": {
         "correct": "r4a",
         "choices": [
           {
             "id": "r4a",
-            "surface": "좋아요. 이따 봐요.",
-            "translation": "好，等一下見。",
-            "speak": "좋아요. 이따 봐요."
+            "surface": "네, 이따 봐요.",
+            "translation": "네, 이따 봐요.",
+            "speak": "네, 이따 봐요."
           },
           {
             "id": "r4b",
@@ -235,10 +235,10 @@
   ],
   "feedback": "Distractors test service-register leakage, pressure, wrong time, and wrong scenario without offering valid alternate invitations.",
   "tts_segments": [
-    "오늘 오후에 같이 산책할래요?",
+    "좋아요. 같이 산책해요.",
     "세 시쯤 어때요?",
     "네, 카페 앞에서 만나요.",
-    "좋아요. 이따 봐요."
+    "네, 이따 봐요."
   ],
   "formula_moments": [
     {

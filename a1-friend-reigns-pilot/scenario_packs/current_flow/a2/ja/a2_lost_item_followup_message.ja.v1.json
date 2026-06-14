@@ -2,7 +2,7 @@
   "schema_version": "scenario_pack.v1",
   "scenario_id": "a2_lost_item_followup_message",
   "title": "忘れ物について連絡する",
-  "setting_label": "low-risk help message",
+  "setting_label": "ヘルプメッセージ",
   "wrap_title": "忘れ物について連絡する",
   "wrap_friend": "よくできました。低リスクのデジタル・書類サポート場面で、必要な情報だけを確認しました。",
   "language": "ja",

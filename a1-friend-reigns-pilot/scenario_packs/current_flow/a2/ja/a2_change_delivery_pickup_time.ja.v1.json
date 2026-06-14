@@ -2,7 +2,7 @@
   "schema_version": "scenario_pack.v1",
   "scenario_id": "a2_change_delivery_pickup_time",
   "title": "受け取り時間を変える",
-  "setting_label": "low-risk help message",
+  "setting_label": "ヘルプメッセージ",
   "wrap_title": "受け取り時間を変える",
   "wrap_friend": "よくできました。低リスクのデジタル・書類サポート場面で、必要な情報だけを確認しました。",
   "language": "ja",

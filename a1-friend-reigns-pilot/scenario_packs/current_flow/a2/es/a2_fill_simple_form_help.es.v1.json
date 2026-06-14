@@ -2,7 +2,7 @@
   "schema_version": "scenario_pack.v1",
   "scenario_id": "a2_fill_simple_form_help",
   "title": "Pedir Ayuda con un Formulario Simple",
-  "setting_label": "low-risk help message",
+  "setting_label": "mensaje de ayuda",
   "wrap_title": "Pedir Ayuda con un Formulario Simple",
   "wrap_friend": "Bien. Manejaste una tarea digital o de ayuda con documentos usando solo el detalle necesario.",
   "language": "es",

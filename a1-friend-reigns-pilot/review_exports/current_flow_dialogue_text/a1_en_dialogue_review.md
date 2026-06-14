@@ -92,7 +92,6 @@ This export is for language/content review. It intentionally removes the interac
 - You: Yes, that's right. (對，沒錯。)
 - Friend: Ready to go? (準備好了嗎？)
 - You: Yes, I'm ready. Let's go. (好了，我準備好了。我們走吧。)
-- Friend: Yes, I'm ready. Let's go. (好了，我準備好了。我們走吧。)
 - You: Yes, I'm ready. Let's go. (好了，我準備好了。我們走吧。)
 - Friend: You found your friend and are ready to go. (你找到朋友，也準備好出發了。)
 
@@ -256,11 +255,9 @@ This export is for language/content review. It intentionally removes the interac
 
 ### Clean Dialogue Path
 
-- Server: Can I get the check, please? (可以給我帳單嗎？)
 - You: Can I get the check, please? (可以給我帳單嗎？)
 - Server: Sure. Card or cash? (好的。刷卡還是現金？)
 - You: Card, please. (刷卡，謝謝。)
-- Server: Card, please. (刷卡，謝謝。)
 - You: Card, please. (刷卡，謝謝。)
 - Server: All set. Thank you. (好了，謝謝。)
 - You: Thank you. (謝謝。)
@@ -462,11 +459,9 @@ This export is for language/content review. It intentionally removes the interac
 
 - Shop staff: Hi there. Can I help you? (你好，需要幫忙嗎？)
 - You: Excuse me. (不好意思。)
-- Shop staff: How much is this? (這個多少錢？)
 - You: How much is this? (這個多少錢？)
 - Shop staff: It's five dollars. (五美元。)
 - You: Okay, I'll take it. (好，我要這個。)
-- Shop staff: Okay, I'll take it. (好，我要這個。)
 - You: Okay, I'll take it. (好，我要這個。)
 - Shop staff: You understood the price and answered clearly. (你聽懂價格並清楚回應了。)
 

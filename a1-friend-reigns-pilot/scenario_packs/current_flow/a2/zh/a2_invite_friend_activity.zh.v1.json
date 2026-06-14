@@ -2,7 +2,7 @@
   "schema_version": "scenario_pack.v1",
   "scenario_id": "a2_invite_friend_activity",
   "title": "邀朋友一起活動",
-  "setting_label": "friend chat",
+  "setting_label": "朋友聊天",
   "wrap_title": "已確認朋友約定",
   "wrap_friend": "做得好。你自然地邀朋友，並確認了簡單的時間和地點。",
   "language": "zh",
@@ -63,16 +63,16 @@
       "speak": "等一下要不要一起喝咖啡？",
       "translation": "等一下要一起喝咖啡嗎？",
       "friend": {
-        "hint": "Respond naturally to the friend plan."
+        "hint": "自然回應朋友的邀請。"
       },
       "reply_set": {
         "correct": "r1a",
         "choices": [
           {
             "id": "r1a",
-            "surface": "等一下要不要一起喝咖啡？",
-            "translation": "等一下要不要一起喝咖啡？",
-            "speak": "等一下要不要一起喝咖啡？",
+            "surface": "好啊，一起去喝咖啡。",
+            "translation": "好啊，一起去喝咖啡。",
+            "speak": "好啊，一起去喝咖啡。",
             "learning_role": "production_target"
           },
           {
@@ -108,7 +108,7 @@
       "speak": "好啊，幾點？",
       "translation": "好啊。幾點？",
       "friend": {
-        "hint": "Respond naturally to the friend plan."
+        "hint": "提出一個簡單的時間。"
       },
       "reply_set": {
         "correct": "r2a",
@@ -153,7 +153,7 @@
       "speak": "要在車站前面見嗎？",
       "translation": "要在車站前面見嗎？",
       "friend": {
-        "hint": "Respond naturally to the friend plan."
+        "hint": "確認見面地點。"
       },
       "reply_set": {
         "correct": "r3a",
@@ -198,16 +198,16 @@
       "speak": "好，等一下見。",
       "translation": "好，等一下見。",
       "friend": {
-        "hint": "Respond naturally to the friend plan."
+        "hint": "用朋友語氣自然收尾。"
       },
       "reply_set": {
         "correct": "r4a",
         "choices": [
           {
             "id": "r4a",
-            "surface": "好，等一下見。",
-            "translation": "好，等一下見。",
-            "speak": "好，等一下見。",
+            "surface": "好，那等一下見。",
+            "translation": "好，那等一下見。",
+            "speak": "好，那等一下見。",
             "learning_role": "production_target"
           },
           {
@@ -238,10 +238,10 @@
   ],
   "feedback": "干擾選項測試朋友語氣、時間、功能和 A2 邊界。",
   "tts_segments": [
-    "等一下要不要一起喝咖啡？",
+    "好啊，一起去喝咖啡。",
     "三點左右可以嗎？",
     "好，我們在車站前面見。",
-    "好，等一下見。"
+    "好，那等一下見。"
   ],
   "formula_moments": [
     {

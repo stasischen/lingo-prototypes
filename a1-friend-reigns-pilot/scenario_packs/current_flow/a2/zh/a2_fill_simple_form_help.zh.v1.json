@@ -2,7 +2,7 @@
   "schema_version": "scenario_pack.v1",
   "scenario_id": "a2_fill_simple_form_help",
   "title": "請人協助簡單表格",
-  "setting_label": "low-risk help message",
+  "setting_label": "客服訊息",
   "wrap_title": "請人協助簡單表格",
   "wrap_friend": "做得好。你在低風險的數位或文件協助情境中，只確認了必要資訊。",
   "language": "zh",

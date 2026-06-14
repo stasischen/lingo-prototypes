@@ -2,7 +2,7 @@
   "schema_version": "scenario_pack.v1",
   "scenario_id": "a2_change_delivery_pickup_time",
   "title": "Cambiare l’Orario di Ritiro",
-  "setting_label": "low-risk help message",
+  "setting_label": "messaggio di aiuto",
   "wrap_title": "Cambiare l’Orario di Ritiro",
   "wrap_friend": "Bene. Hai gestito un aiuto digitale o documentale a basso rischio con solo il dettaglio necessario.",
   "language": "it",

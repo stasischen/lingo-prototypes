@@ -2,7 +2,7 @@
   "schema_version": "scenario_pack.v1",
   "scenario_id": "a2_invite_friend_activity",
   "title": "Einen Freund zu einer Aktivität Einladen",
-  "setting_label": "friend chat",
+  "setting_label": "Chat mit einem Freund",
   "wrap_title": "Plan mit einem Freund bestätigt",
   "wrap_friend": "Gut. Du hast einen Freund ohne Druck eingeladen und Zeit und Ort einfach bestätigt.",
   "language": "de",
@@ -63,16 +63,16 @@
       "speak": "Möchtest du später einen Kaffee trinken?",
       "translation": "等一下要一起喝咖啡嗎？",
       "friend": {
-        "hint": "Respond naturally to the friend plan."
+        "hint": "Antworte locker auf die Einladung."
       },
       "reply_set": {
         "correct": "r1a",
         "choices": [
           {
             "id": "r1a",
-            "surface": "Möchtest du später einen Kaffee trinken?",
-            "translation": "等一下要一起喝咖啡嗎？",
-            "speak": "Möchtest du später einen Kaffee trinken?",
+            "surface": "Ja, gern. Kaffee klingt gut.",
+            "translation": "Ja, gern. Kaffee klingt gut.",
+            "speak": "Ja, gern. Kaffee klingt gut.",
             "learning_role": "production_target"
           },
           {
@@ -108,7 +108,7 @@
       "speak": "Klar. Um wie viel Uhr?",
       "translation": "好啊。幾點？",
       "friend": {
-        "hint": "Respond naturally to the friend plan."
+        "hint": "Schlag eine einfache Uhrzeit vor."
       },
       "reply_set": {
         "correct": "r2a",
@@ -153,7 +153,7 @@
       "speak": "Treffen wir uns vor dem Bahnhof?",
       "translation": "要在車站前面見嗎？",
       "friend": {
-        "hint": "Respond naturally to the friend plan."
+        "hint": "Bestätige den Treffpunkt."
       },
       "reply_set": {
         "correct": "r3a",
@@ -198,16 +198,16 @@
       "speak": "Super. Bis später.",
       "translation": "好，等一下見。",
       "friend": {
-        "hint": "Respond naturally to the friend plan."
+        "hint": "Schließ den Plan freundlich ab."
       },
       "reply_set": {
         "correct": "r4a",
         "choices": [
           {
             "id": "r4a",
-            "surface": "Super. Bis später.",
-            "translation": "很好，等一下見。",
-            "speak": "Super. Bis später.",
+            "surface": "Bis später, ich freue mich.",
+            "translation": "Bis später, ich freue mich.",
+            "speak": "Bis später, ich freue mich.",
             "learning_role": "production_target"
           },
           {
@@ -238,10 +238,10 @@
   ],
   "feedback": "Die Ablenker prüfen soziales Register, Zeit, Funktion und A2-Grenze.",
   "tts_segments": [
-    "Möchtest du später einen Kaffee trinken?",
+    "Ja, gern. Kaffee klingt gut.",
     "Wie wäre es um drei?",
     "Ja, treffen wir uns vor dem Bahnhof.",
-    "Super. Bis später."
+    "Bis später, ich freue mich."
   ],
   "formula_moments": [
     {

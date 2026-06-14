@@ -2,7 +2,7 @@
   "schema_version": "scenario_pack.v1",
   "scenario_id": "a2_decline_with_reason",
   "title": "Mit einem Einfachen Grund Absagen",
-  "setting_label": "friend chat",
+  "setting_label": "Chat mit einem Freund",
   "wrap_title": "Freundliche Absage bestätigt",
   "wrap_friend": "Gut. Du hast kurz abgesagt, einen einfachen Grund genannt und freundlich abgeschlossen.",
   "language": "de",

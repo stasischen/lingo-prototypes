@@ -2,7 +2,7 @@
   "schema_version": "scenario_pack.v1",
   "scenario_id": "a2_describe_weekend_activity",
   "title": "Contar uma Atividade do Fim de Semana",
-  "setting_label": "friend chat",
+  "setting_label": "chat com um amigo",
   "wrap_title": "Atividade do fim de semana contada",
   "wrap_friend": "Muito bem. Você contou o que fez no fim de semana com detalhes curtos de A2.",
   "language": "pt",

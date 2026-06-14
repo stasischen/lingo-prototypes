@@ -187,9 +187,9 @@
         "choices": [
           {
             "id": "r4a",
-            "surface": "ありがとうございます。",
-            "translation": "謝謝。",
-            "speak": "ありがとうございます。",
+            "surface": "ごちそうさまでした。",
+            "translation": "謝謝招待。",
+            "speak": "ごちそうさまでした。",
             "learning_role": "production_target"
           },
           {

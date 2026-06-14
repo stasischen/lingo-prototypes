@@ -10,7 +10,7 @@ This export is for language/content review. It intentionally removes the interac
 - Level: A2
 - Language: Portuguese (pt)
 - Scenario ID: a2_app_booking_confirmation
-- Setting: low-risk help message
+- Setting: mensagem de ajuda
 - Source status: candidate_runtime_verified
 - Review state: ai_reviewed
 - Native review: native_pending
@@ -185,7 +185,7 @@ This export is for language/content review. It intentionally removes the interac
 - Level: A2
 - Language: Portuguese (pt)
 - Scenario ID: a2_change_delivery_pickup_time
-- Setting: low-risk help message
+- Setting: mensagem de ajuda
 - Source status: candidate_runtime_verified
 - Review state: ai_reviewed
 - Native review: native_pending
@@ -325,7 +325,7 @@ This export is for language/content review. It intentionally removes the interac
 - Level: A2
 - Language: Portuguese (pt)
 - Scenario ID: a2_decline_with_reason
-- Setting: friend chat
+- Setting: chat com um amigo
 - Source status: candidate_runtime_verified
 - Review state: ai_reviewed
 - Native review: native_pending
@@ -360,7 +360,7 @@ This export is for language/content review. It intentionally removes the interac
 - Level: A2
 - Language: Portuguese (pt)
 - Scenario ID: a2_describe_weekend_activity
-- Setting: friend chat
+- Setting: chat com um amigo
 - Source status: candidate_runtime_verified
 - Review state: ai_reviewed
 - Native review: native_pending
@@ -465,7 +465,7 @@ This export is for language/content review. It intentionally removes the interac
 - Level: A2
 - Language: Portuguese (pt)
 - Scenario ID: a2_fill_simple_form_help
-- Setting: low-risk help message
+- Setting: mensagem de ajuda
 - Source status: candidate_runtime_verified
 - Review state: ai_reviewed
 - Native review: native_pending
@@ -500,7 +500,7 @@ This export is for language/content review. It intentionally removes the interac
 - Level: A2
 - Language: Portuguese (pt)
 - Scenario ID: a2_invite_friend_activity
-- Setting: friend chat
+- Setting: chat com um amigo
 - Source status: candidate_runtime_verified
 - Review state: ai_reviewed
 - Native review: native_pending
@@ -511,22 +511,22 @@ This export is for language/content review. It intentionally removes the interac
 ### Clean Dialogue Path
 
 - amigo: Você quer tomar um café mais tarde? (等一下要一起喝咖啡嗎？)
-- 你: Você quer tomar um café mais tarde? (等一下要一起喝咖啡嗎？)
+- 你: Sim, um café parece ótimo. (Sim, um café parece ótimo.)
 - amigo: Claro. Que horas? (好啊。幾點？)
 - 你: Que tal às três? (三點怎麼樣？)
 - amigo: A gente se encontra na frente da estação? (要在車站前面見嗎？)
 - 你: Sim, vamos nos encontrar na frente da estação. (好，我們在車站前面見。)
 - amigo: Ótimo. Até mais tarde. (好，等一下見。)
-- 你: Ótimo. Até mais tarde. (很好，等一下見。)
+- 你: Até mais tarde, então. (Até mais tarde, então.)
 
 ### Turn Review
 
 | Turn | NPC line | Correct learner line | Distractors / feedback | Friend hint | Formula |
 | :--- | :--- | :--- | :--- | :--- | :--- |
-| t1 | Você quer tomar um café mais tarde? (等一下要一起喝咖啡嗎？) | Você quer tomar um café mais tarde? (等一下要一起喝咖啡嗎？) | 1. Por favor, troque meu quarto mais tarde. (等一下請幫我換房間。) [wrong_scenario_service] - feedback: Isso não combina com esta situação com um amigo.<br>2. Você tem que vir comigo hoje. (你今天一定要跟我來。) [too_pressuring] - feedback: Isso soa forte demais para falar com um amigo. | Respond naturally to the friend plan. |  |
-| t2 | Claro. Que horas? (好啊。幾點？) | Que tal às três? (三點怎麼樣？) | 1. Por favor, troque meu quarto mais tarde. (等一下請幫我換房間。) [wrong_scenario_service] - feedback: Isso não combina com esta situação com um amigo.<br>2. Você tem que vir comigo hoje. (你今天一定要跟我來。) [too_pressuring] - feedback: Isso soa forte demais para falar com um amigo. | Respond naturally to the friend plan. |  |
-| t3 | A gente se encontra na frente da estação? (要在車站前面見嗎？) | Sim, vamos nos encontrar na frente da estação. (好，我們在車站前面見。) | 1. Por favor, troque meu quarto mais tarde. (等一下請幫我換房間。) [wrong_scenario_service] - feedback: Isso não combina com esta situação com um amigo.<br>2. Você tem que vir comigo hoje. (你今天一定要跟我來。) [too_pressuring] - feedback: Isso soa forte demais para falar com um amigo. | Respond naturally to the friend plan. |  |
-| t4 | Ótimo. Até mais tarde. (好，等一下見。) | Ótimo. Até mais tarde. (很好，等一下見。) | 1. Por favor, troque meu quarto mais tarde. (等一下請幫我換房間。) [wrong_scenario_service] - feedback: Isso não combina com esta situação com um amigo.<br>2. Você tem que vir comigo hoje. (你今天一定要跟我來。) [too_pressuring] - feedback: Isso soa forte demais para falar com um amigo. | Respond naturally to the friend plan. |  |
+| t1 | Você quer tomar um café mais tarde? (等一下要一起喝咖啡嗎？) | Sim, um café parece ótimo. (Sim, um café parece ótimo.) | 1. Por favor, troque meu quarto mais tarde. (等一下請幫我換房間。) [wrong_scenario_service] - feedback: Isso não combina com esta situação com um amigo.<br>2. Você tem que vir comigo hoje. (你今天一定要跟我來。) [too_pressuring] - feedback: Isso soa forte demais para falar com um amigo. | Aceite o convite de forma natural. |  |
+| t2 | Claro. Que horas? (好啊。幾點？) | Que tal às três? (三點怎麼樣？) | 1. Por favor, troque meu quarto mais tarde. (等一下請幫我換房間。) [wrong_scenario_service] - feedback: Isso não combina com esta situação com um amigo.<br>2. Você tem que vir comigo hoje. (你今天一定要跟我來。) [too_pressuring] - feedback: Isso soa forte demais para falar com um amigo. | Sugira um horário simples. |  |
+| t3 | A gente se encontra na frente da estação? (要在車站前面見嗎？) | Sim, vamos nos encontrar na frente da estação. (好，我們在車站前面見。) | 1. Por favor, troque meu quarto mais tarde. (等一下請幫我換房間。) [wrong_scenario_service] - feedback: Isso não combina com esta situação com um amigo.<br>2. Você tem que vir comigo hoje. (你今天一定要跟我來。) [too_pressuring] - feedback: Isso soa forte demais para falar com um amigo. | Confirme o ponto de encontro. |  |
+| t4 | Ótimo. Até mais tarde. (好，等一下見。) | Até mais tarde, então. (Até mais tarde, então.) | 1. Por favor, troque meu quarto mais tarde. (等一下請幫我換房間。) [wrong_scenario_service] - feedback: Isso não combina com esta situação com um amigo.<br>2. Você tem que vir comigo hoje. (你今天一定要跟我來。) [too_pressuring] - feedback: Isso soa forte demais para falar com um amigo. | Feche o plano de forma amigável. |  |
 
 ---
 
@@ -535,7 +535,7 @@ This export is for language/content review. It intentionally removes the interac
 - Level: A2
 - Language: Portuguese (pt)
 - Scenario ID: a2_lost_item_followup_message
-- Setting: low-risk help message
+- Setting: mensagem de ajuda
 - Source status: candidate_runtime_verified
 - Review state: ai_reviewed
 - Native review: native_pending
@@ -605,7 +605,7 @@ This export is for language/content review. It intentionally removes the interac
 - Level: A2
 - Language: Portuguese (pt)
 - Scenario ID: a2_make_simple_plan_sequence
-- Setting: friend chat
+- Setting: chat com um amigo
 - Source status: candidate_runtime_verified
 - Review state: ai_reviewed
 - Native review: native_pending
@@ -628,10 +628,10 @@ This export is for language/content review. It intentionally removes the interac
 
 | Turn | NPC line | Correct learner line | Distractors / feedback | Friend hint | Formula |
 | :--- | :--- | :--- | :--- | :--- | :--- |
-| t1 | A gente se encontra primeiro na estação? (我們先在車站見，好嗎？) | Sim, primeiro vamos nos encontrar na estação. (好，我們先在車站見。) | 1. Sim, primeiro me devolva o dinheiro. (好，先退款給我。) [wrong_scenario_refund] - feedback: Isso não combina com esta situação com um amigo.<br>2. Não, de jeito nenhum. (不，絕對不要。) [too_blunt] - feedback: Isso soa forte demais para falar com um amigo. | Keep the plan to two simple steps. |  |
-| t2 | Depois vamos ao parque? (接著去公園嗎？) | Boa. Depois vamos caminhar até o parque. (好，接著走去公園。) | 1. Sim, primeiro me devolva o dinheiro. (好，先退款給我。) [wrong_scenario_refund] - feedback: Isso não combina com esta situação com um amigo.<br>2. Não, de jeito nenhum. (不，絕對不要。) [too_blunt] - feedback: Isso soa forte demais para falar com um amigo. | Keep the plan to two simple steps. |  |
-| t3 | Então, primeiro a estação e depois o parque? (所以先車站，接著公園，對嗎？) | Sim, primeiro a estação, depois o parque. (對，先車站，接著公園。) | 1. Sim, primeiro me devolva o dinheiro. (好，先退款給我。) [wrong_scenario_refund] - feedback: Isso não combina com esta situação com um amigo.<br>2. Não, de jeito nenhum. (不，絕對不要。) [too_blunt] - feedback: Isso soa forte demais para falar com um amigo. | Keep the plan to two simple steps. |  |
-| t4 | Ótimo. Até sábado às duas. (好，星期六兩點見。) | Tá bom, até sábado às duas. (好，星期六兩點見。) | 1. Sim, primeiro me devolva o dinheiro. (好，先退款給我。) [wrong_scenario_refund] - feedback: Isso não combina com esta situação com um amigo.<br>2. Não, de jeito nenhum. (不，絕對不要。) [too_blunt] - feedback: Isso soa forte demais para falar com um amigo. | Keep the plan to two simple steps. |  |
+| t1 | A gente se encontra primeiro na estação? (我們先在車站見，好嗎？) | Sim, primeiro vamos nos encontrar na estação. (好，我們先在車站見。) | 1. Sim, primeiro me devolva o dinheiro. (好，先退款給我。) [wrong_scenario_refund] - feedback: Isso não combina com esta situação com um amigo.<br>2. Não, de jeito nenhum. (不，絕對不要。) [too_blunt] - feedback: Isso soa forte demais para falar com um amigo. | Mantenha o plano em dois passos simples. |  |
+| t2 | Depois vamos ao parque? (接著去公園嗎？) | Boa. Depois vamos caminhar até o parque. (好，接著走去公園。) | 1. Sim, primeiro me devolva o dinheiro. (好，先退款給我。) [wrong_scenario_refund] - feedback: Isso não combina com esta situação com um amigo.<br>2. Não, de jeito nenhum. (不，絕對不要。) [too_blunt] - feedback: Isso soa forte demais para falar com um amigo. | Mantenha o plano em dois passos simples. |  |
+| t3 | Então, primeiro a estação e depois o parque? (所以先車站，接著公園，對嗎？) | Sim, primeiro a estação, depois o parque. (對，先車站，接著公園。) | 1. Sim, primeiro me devolva o dinheiro. (好，先退款給我。) [wrong_scenario_refund] - feedback: Isso não combina com esta situação com um amigo.<br>2. Não, de jeito nenhum. (不，絕對不要。) [too_blunt] - feedback: Isso soa forte demais para falar com um amigo. | Mantenha o plano em dois passos simples. |  |
+| t4 | Ótimo. Até sábado às duas. (好，星期六兩點見。) | Tá bom, até sábado às duas. (好，星期六兩點見。) | 1. Sim, primeiro me devolva o dinheiro. (好，先退款給我。) [wrong_scenario_refund] - feedback: Isso não combina com esta situação com um amigo.<br>2. Não, de jeito nenhum. (不，絕對不要。) [too_blunt] - feedback: Isso soa forte demais para falar com um amigo. | Mantenha o plano em dois passos simples. |  |
 
 ---
 

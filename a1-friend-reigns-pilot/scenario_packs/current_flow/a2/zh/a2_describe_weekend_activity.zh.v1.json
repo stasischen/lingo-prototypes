@@ -2,7 +2,7 @@
   "schema_version": "scenario_pack.v1",
   "scenario_id": "a2_describe_weekend_activity",
   "title": "說週末做了什麼",
-  "setting_label": "friend chat",
+  "setting_label": "朋友聊天",
   "wrap_title": "已說明週末活動",
   "wrap_friend": "做得好。你用 A2 程度的短句說了週末做的事。",
   "language": "zh",

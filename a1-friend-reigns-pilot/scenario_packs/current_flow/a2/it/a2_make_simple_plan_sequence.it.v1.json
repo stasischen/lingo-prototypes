@@ -2,7 +2,7 @@
   "schema_version": "scenario_pack.v1",
   "scenario_id": "a2_make_simple_plan_sequence",
   "title": "Fare un Piano Semplice in Due Passi",
-  "setting_label": "friend chat",
+  "setting_label": "chat con un amico",
   "wrap_title": "Piano in due passi confermato",
   "wrap_friend": "Bene. Hai collegato il primo passo e il secondo, poi hai confermato il piano.",
   "language": "it",
@@ -63,7 +63,7 @@
       "speak": "Ci vediamo prima alla stazione?",
       "translation": "我們先在車站見，好嗎？",
       "friend": {
-        "hint": "Keep the plan to two simple steps."
+        "hint": "Mantieni il piano in due passaggi semplici."
       },
       "reply_set": {
         "correct": "r1a",
@@ -108,7 +108,7 @@
       "speak": "Poi andiamo al parco?",
       "translation": "接著去公園嗎？",
       "friend": {
-        "hint": "Keep the plan to two simple steps."
+        "hint": "Mantieni il piano in due passaggi semplici."
       },
       "reply_set": {
         "correct": "r2a",
@@ -153,7 +153,7 @@
       "speak": "Allora, prima la stazione e poi il parco?",
       "translation": "所以先車站，接著公園，對嗎？",
       "friend": {
-        "hint": "Keep the plan to two simple steps."
+        "hint": "Mantieni il piano in due passaggi semplici."
       },
       "reply_set": {
         "correct": "r3a",
@@ -198,7 +198,7 @@
       "speak": "Perfetto. Ci vediamo sabato alle due.",
       "translation": "好，星期六兩點見。",
       "friend": {
-        "hint": "Keep the plan to two simple steps."
+        "hint": "Mantieni il piano in due passaggi semplici."
       },
       "reply_set": {
         "correct": "r4a",

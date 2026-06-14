@@ -2,7 +2,7 @@
   "schema_version": "scenario_pack.v1",
   "scenario_id": "a2_change_delivery_pickup_time",
   "title": "Cambiar la Hora de Recogida",
-  "setting_label": "low-risk help message",
+  "setting_label": "mensaje de ayuda",
   "wrap_title": "Cambiar la Hora de Recogida",
   "wrap_friend": "Bien. Manejaste una tarea digital o de ayuda con documentos usando solo el detalle necesario.",
   "language": "es",

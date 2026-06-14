@@ -2,7 +2,7 @@
   "schema_version": "scenario_pack.v1",
   "scenario_id": "a2_decline_with_reason",
   "title": "Rifiutare con un Motivo Semplice",
-  "setting_label": "friend chat",
+  "setting_label": "chat con un amico",
   "wrap_title": "Rifiuto gentile confermato",
   "wrap_friend": "Bene. Hai rifiutato con un motivo breve e hai mantenuto un tono amichevole.",
   "language": "it",

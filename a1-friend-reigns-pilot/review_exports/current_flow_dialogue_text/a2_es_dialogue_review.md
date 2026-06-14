@@ -10,7 +10,7 @@ This export is for language/content review. It intentionally removes the interac
 - Level: A2
 - Language: Spanish (es)
 - Scenario ID: a2_app_booking_confirmation
-- Setting: low-risk help message
+- Setting: mensaje de ayuda
 - Source status: candidate_runtime_verified
 - Review state: ai_reviewed
 - Native review: native_pending
@@ -185,7 +185,7 @@ This export is for language/content review. It intentionally removes the interac
 - Level: A2
 - Language: Spanish (es)
 - Scenario ID: a2_change_delivery_pickup_time
-- Setting: low-risk help message
+- Setting: mensaje de ayuda
 - Source status: candidate_runtime_verified
 - Review state: ai_reviewed
 - Native review: native_pending
@@ -325,7 +325,7 @@ This export is for language/content review. It intentionally removes the interac
 - Level: A2
 - Language: Spanish (es)
 - Scenario ID: a2_decline_with_reason
-- Setting: friend chat
+- Setting: chat con un amigo
 - Source status: candidate_runtime_verified
 - Review state: ai_reviewed
 - Native review: native_pending
@@ -360,7 +360,7 @@ This export is for language/content review. It intentionally removes the interac
 - Level: A2
 - Language: Spanish (es)
 - Scenario ID: a2_describe_weekend_activity
-- Setting: friend chat
+- Setting: chat con un amigo
 - Source status: candidate_runtime_verified
 - Review state: ai_reviewed
 - Native review: native_pending
@@ -465,7 +465,7 @@ This export is for language/content review. It intentionally removes the interac
 - Level: A2
 - Language: Spanish (es)
 - Scenario ID: a2_fill_simple_form_help
-- Setting: low-risk help message
+- Setting: mensaje de ayuda
 - Source status: candidate_runtime_verified
 - Review state: ai_reviewed
 - Native review: native_pending
@@ -500,7 +500,7 @@ This export is for language/content review. It intentionally removes the interac
 - Level: A2
 - Language: Spanish (es)
 - Scenario ID: a2_invite_friend_activity
-- Setting: friend chat
+- Setting: chat con un amigo
 - Source status: candidate_runtime_verified
 - Review state: ai_reviewed
 - Native review: native_pending
@@ -511,7 +511,7 @@ This export is for language/content review. It intentionally removes the interac
 ### Clean Dialogue Path
 
 - amigo: ¿Quieres tomar un café más tarde? (等一下要一起喝咖啡嗎？)
-- 你: ¿Quieres tomar un café más tarde? (等一下要一起喝咖啡嗎？)
+- 你: Sí, me apetece un café. (Sí, me apetece un café.)
 - amigo: Claro. ¿A qué hora? (好啊。幾點？)
 - 你: ¿Qué tal a las tres? (三點怎麼樣？)
 - amigo: ¿Nos vemos delante de la estación? (要在車站前面見嗎？)
@@ -523,10 +523,10 @@ This export is for language/content review. It intentionally removes the interac
 
 | Turn | NPC line | Correct learner line | Distractors / feedback | Friend hint | Formula |
 | :--- | :--- | :--- | :--- | :--- | :--- |
-| t1 | ¿Quieres tomar un café más tarde? (等一下要一起喝咖啡嗎？) | ¿Quieres tomar un café más tarde? (等一下要一起喝咖啡嗎？) | 1. Por favor, cámbiame la habitación más tarde. (等一下請幫我換房間。) [wrong_scenario_service] - feedback: No corresponde a esta situación con un amigo.<br>2. Tienes que venir conmigo hoy. (你今天一定要跟我來。) [too_pressuring] - feedback: Suena demasiado fuerte para un amigo. | Respond naturally to the friend plan. |  |
-| t2 | Claro. ¿A qué hora? (好啊。幾點？) | ¿Qué tal a las tres? (三點怎麼樣？) | 1. Por favor, cámbiame la habitación más tarde. (等一下請幫我換房間。) [wrong_scenario_service] - feedback: No corresponde a esta situación con un amigo.<br>2. Tienes que venir conmigo hoy. (你今天一定要跟我來。) [too_pressuring] - feedback: Suena demasiado fuerte para un amigo. | Respond naturally to the friend plan. |  |
-| t3 | ¿Nos vemos delante de la estación? (要在車站前面見嗎？) | Sí, nos vemos delante de la estación. (好，我們在車站前面見。) | 1. Por favor, cámbiame la habitación más tarde. (等一下請幫我換房間。) [wrong_scenario_service] - feedback: No corresponde a esta situación con un amigo.<br>2. Tienes que venir conmigo hoy. (你今天一定要跟我來。) [too_pressuring] - feedback: Suena demasiado fuerte para un amigo. | Respond naturally to the friend plan. |  |
-| t4 | Perfecto. Nos vemos luego. (好，等一下見。) | Genial. Nos vemos luego. (很好，等一下見。) | 1. Por favor, cámbiame la habitación más tarde. (等一下請幫我換房間。) [wrong_scenario_service] - feedback: No corresponde a esta situación con un amigo.<br>2. Tienes que venir conmigo hoy. (你今天一定要跟我來。) [too_pressuring] - feedback: Suena demasiado fuerte para un amigo. | Respond naturally to the friend plan. |  |
+| t1 | ¿Quieres tomar un café más tarde? (等一下要一起喝咖啡嗎？) | Sí, me apetece un café. (Sí, me apetece un café.) | 1. Por favor, cámbiame la habitación más tarde. (等一下請幫我換房間。) [wrong_scenario_service] - feedback: No corresponde a esta situación con un amigo.<br>2. Tienes que venir conmigo hoy. (你今天一定要跟我來。) [too_pressuring] - feedback: Suena demasiado fuerte para un amigo. | Acepta la invitación de forma natural. |  |
+| t2 | Claro. ¿A qué hora? (好啊。幾點？) | ¿Qué tal a las tres? (三點怎麼樣？) | 1. Por favor, cámbiame la habitación más tarde. (等一下請幫我換房間。) [wrong_scenario_service] - feedback: No corresponde a esta situación con un amigo.<br>2. Tienes que venir conmigo hoy. (你今天一定要跟我來。) [too_pressuring] - feedback: Suena demasiado fuerte para un amigo. | Propón una hora sencilla. |  |
+| t3 | ¿Nos vemos delante de la estación? (要在車站前面見嗎？) | Sí, nos vemos delante de la estación. (好，我們在車站前面見。) | 1. Por favor, cámbiame la habitación más tarde. (等一下請幫我換房間。) [wrong_scenario_service] - feedback: No corresponde a esta situación con un amigo.<br>2. Tienes que venir conmigo hoy. (你今天一定要跟我來。) [too_pressuring] - feedback: Suena demasiado fuerte para un amigo. | Confirma el lugar de encuentro. |  |
+| t4 | Perfecto. Nos vemos luego. (好，等一下見。) | Genial. Nos vemos luego. (很好，等一下見。) | 1. Por favor, cámbiame la habitación más tarde. (等一下請幫我換房間。) [wrong_scenario_service] - feedback: No corresponde a esta situación con un amigo.<br>2. Tienes que venir conmigo hoy. (你今天一定要跟我來。) [too_pressuring] - feedback: Suena demasiado fuerte para un amigo. | Cierra el plan con naturalidad. |  |
 
 ---
 
@@ -535,7 +535,7 @@ This export is for language/content review. It intentionally removes the interac
 - Level: A2
 - Language: Spanish (es)
 - Scenario ID: a2_lost_item_followup_message
-- Setting: low-risk help message
+- Setting: mensaje de ayuda
 - Source status: candidate_runtime_verified
 - Review state: ai_reviewed
 - Native review: native_pending
@@ -605,7 +605,7 @@ This export is for language/content review. It intentionally removes the interac
 - Level: A2
 - Language: Spanish (es)
 - Scenario ID: a2_make_simple_plan_sequence
-- Setting: friend chat
+- Setting: chat con un amigo
 - Source status: candidate_runtime_verified
 - Review state: ai_reviewed
 - Native review: native_pending
@@ -628,10 +628,10 @@ This export is for language/content review. It intentionally removes the interac
 
 | Turn | NPC line | Correct learner line | Distractors / feedback | Friend hint | Formula |
 | :--- | :--- | :--- | :--- | :--- | :--- |
-| t1 | ¿Nos vemos primero en la estación? (我們先在車站見，好嗎？) | Sí, primero nos vemos en la estación. (好，我們先在車站見。) | 1. Sí, primero devuélveme el dinero. (好，先退款給我。) [wrong_scenario_refund] - feedback: No corresponde a esta situación con un amigo.<br>2. No, de ninguna manera. (不，絕對不要。) [too_blunt] - feedback: Suena demasiado fuerte para un amigo. | Keep the plan to two simple steps. |  |
-| t2 | ¿Después vamos al parque? (接著去公園嗎？) | Bien. Después caminamos al parque. (好，接著走去公園。) | 1. Sí, primero devuélveme el dinero. (好，先退款給我。) [wrong_scenario_refund] - feedback: No corresponde a esta situación con un amigo.<br>2. No, de ninguna manera. (不，絕對不要。) [too_blunt] - feedback: Suena demasiado fuerte para un amigo. | Keep the plan to two simple steps. |  |
-| t3 | Entonces, primero la estación y después el parque, ¿no? (所以先車站，接著公園，對嗎？) | Sí, primero la estación y después el parque. (對，先車站，接著公園。) | 1. Sí, primero devuélveme el dinero. (好，先退款給我。) [wrong_scenario_refund] - feedback: No corresponde a esta situación con un amigo.<br>2. No, de ninguna manera. (不，絕對不要。) [too_blunt] - feedback: Suena demasiado fuerte para un amigo. | Keep the plan to two simple steps. |  |
-| t4 | Perfecto. Nos vemos el sábado a las dos. (好，星期六兩點見。) | Vale, nos vemos el sábado a las dos. (好，星期六兩點見。) | 1. Sí, primero devuélveme el dinero. (好，先退款給我。) [wrong_scenario_refund] - feedback: No corresponde a esta situación con un amigo.<br>2. No, de ninguna manera. (不，絕對不要。) [too_blunt] - feedback: Suena demasiado fuerte para un amigo. | Keep the plan to two simple steps. |  |
+| t1 | ¿Nos vemos primero en la estación? (我們先在車站見，好嗎？) | Sí, primero nos vemos en la estación. (好，我們先在車站見。) | 1. Sí, primero devuélveme el dinero. (好，先退款給我。) [wrong_scenario_refund] - feedback: No corresponde a esta situación con un amigo.<br>2. No, de ninguna manera. (不，絕對不要。) [too_blunt] - feedback: Suena demasiado fuerte para un amigo. | Mantén el plan en dos pasos sencillos. |  |
+| t2 | ¿Después vamos al parque? (接著去公園嗎？) | Bien. Después caminamos al parque. (好，接著走去公園。) | 1. Sí, primero devuélveme el dinero. (好，先退款給我。) [wrong_scenario_refund] - feedback: No corresponde a esta situación con un amigo.<br>2. No, de ninguna manera. (不，絕對不要。) [too_blunt] - feedback: Suena demasiado fuerte para un amigo. | Mantén el plan en dos pasos sencillos. |  |
+| t3 | Entonces, primero la estación y después el parque, ¿no? (所以先車站，接著公園，對嗎？) | Sí, primero la estación y después el parque. (對，先車站，接著公園。) | 1. Sí, primero devuélveme el dinero. (好，先退款給我。) [wrong_scenario_refund] - feedback: No corresponde a esta situación con un amigo.<br>2. No, de ninguna manera. (不，絕對不要。) [too_blunt] - feedback: Suena demasiado fuerte para un amigo. | Mantén el plan en dos pasos sencillos. |  |
+| t4 | Perfecto. Nos vemos el sábado a las dos. (好，星期六兩點見。) | Vale, nos vemos el sábado a las dos. (好，星期六兩點見。) | 1. Sí, primero devuélveme el dinero. (好，先退款給我。) [wrong_scenario_refund] - feedback: No corresponde a esta situación con un amigo.<br>2. No, de ninguna manera. (不，絕對不要。) [too_blunt] - feedback: Suena demasiado fuerte para un amigo. | Mantén el plan en dos pasos sencillos. |  |
 
 ---
 

@@ -2,7 +2,7 @@
   "schema_version": "scenario_pack.v1",
   "scenario_id": "a2_fill_simple_form_help",
   "title": "簡単なフォームを手伝ってもらう",
-  "setting_label": "low-risk help message",
+  "setting_label": "ヘルプメッセージ",
   "wrap_title": "簡単なフォームを手伝ってもらう",
   "wrap_friend": "よくできました。低リスクのデジタル・書類サポート場面で、必要な情報だけを確認しました。",
   "language": "ja",

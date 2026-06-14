@@ -2,7 +2,7 @@
   "schema_version": "scenario_pack.v1",
   "scenario_id": "a2_invite_friend_activity",
   "title": "Convidar um Amigo para uma Atividade",
-  "setting_label": "friend chat",
+  "setting_label": "chat com um amigo",
   "wrap_title": "Plano com um amigo confirmado",
   "wrap_friend": "Muito bem. Você convidou um amigo sem pressão e confirmou horário e lugar.",
   "language": "pt",
@@ -63,16 +63,16 @@
       "speak": "Você quer tomar um café mais tarde?",
       "translation": "等一下要一起喝咖啡嗎？",
       "friend": {
-        "hint": "Respond naturally to the friend plan."
+        "hint": "Aceite o convite de forma natural."
       },
       "reply_set": {
         "correct": "r1a",
         "choices": [
           {
             "id": "r1a",
-            "surface": "Você quer tomar um café mais tarde?",
-            "translation": "等一下要一起喝咖啡嗎？",
-            "speak": "Você quer tomar um café mais tarde?",
+            "surface": "Sim, um café parece ótimo.",
+            "translation": "Sim, um café parece ótimo.",
+            "speak": "Sim, um café parece ótimo.",
             "learning_role": "production_target"
           },
           {
@@ -108,7 +108,7 @@
       "speak": "Claro. Que horas?",
       "translation": "好啊。幾點？",
       "friend": {
-        "hint": "Respond naturally to the friend plan."
+        "hint": "Sugira um horário simples."
       },
       "reply_set": {
         "correct": "r2a",
@@ -153,7 +153,7 @@
       "speak": "A gente se encontra na frente da estação?",
       "translation": "要在車站前面見嗎？",
       "friend": {
-        "hint": "Respond naturally to the friend plan."
+        "hint": "Confirme o ponto de encontro."
       },
       "reply_set": {
         "correct": "r3a",
@@ -198,16 +198,16 @@
       "speak": "Ótimo. Até mais tarde.",
       "translation": "好，等一下見。",
       "friend": {
-        "hint": "Respond naturally to the friend plan."
+        "hint": "Feche o plano de forma amigável."
       },
       "reply_set": {
         "correct": "r4a",
         "choices": [
           {
             "id": "r4a",
-            "surface": "Ótimo. Até mais tarde.",
-            "translation": "很好，等一下見。",
-            "speak": "Ótimo. Até mais tarde.",
+            "surface": "Até mais tarde, então.",
+            "translation": "Até mais tarde, então.",
+            "speak": "Até mais tarde, então.",
             "learning_role": "production_target"
           },
           {
@@ -238,10 +238,10 @@
   ],
   "feedback": "Os distratores testam registro social, tempo, função e limite A2.",
   "tts_segments": [
-    "Você quer tomar um café mais tarde?",
+    "Sim, um café parece ótimo.",
     "Que tal às três?",
     "Sim, vamos nos encontrar na frente da estação.",
-    "Ótimo. Até mais tarde."
+    "Até mais tarde, então."
   ],
   "formula_moments": [
     {

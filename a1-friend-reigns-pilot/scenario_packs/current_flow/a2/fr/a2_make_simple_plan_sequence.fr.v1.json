@@ -2,7 +2,7 @@
   "schema_version": "scenario_pack.v1",
   "scenario_id": "a2_make_simple_plan_sequence",
   "title": "Faire un Plan Simple en Deux Étapes",
-  "setting_label": "friend chat",
+  "setting_label": "message avec un ami",
   "wrap_title": "Plan en deux étapes confirmé",
   "wrap_friend": "Bien. Tu as relié la première étape et la suivante, puis confirmé le plan.",
   "language": "fr",
@@ -63,7 +63,7 @@
       "speak": "On se retrouve d’abord à la gare ?",
       "translation": "我們先在車站見，好嗎？",
       "friend": {
-        "hint": "Keep the plan to two simple steps."
+        "hint": "Garde le plan en deux étapes simples."
       },
       "reply_set": {
         "correct": "r1a",
@@ -108,7 +108,7 @@
       "speak": "Ensuite, on va au parc ?",
       "translation": "接著去公園嗎？",
       "friend": {
-        "hint": "Keep the plan to two simple steps."
+        "hint": "Garde le plan en deux étapes simples."
       },
       "reply_set": {
         "correct": "r2a",
@@ -153,7 +153,7 @@
       "speak": "Donc, d’abord la gare, puis le parc ?",
       "translation": "所以先車站，接著公園，對嗎？",
       "friend": {
-        "hint": "Keep the plan to two simple steps."
+        "hint": "Garde le plan en deux étapes simples."
       },
       "reply_set": {
         "correct": "r3a",
@@ -198,7 +198,7 @@
       "speak": "Parfait. À samedi à deux heures.",
       "translation": "好，星期六兩點見。",
       "friend": {
-        "hint": "Keep the plan to two simple steps."
+        "hint": "Garde le plan en deux étapes simples."
       },
       "reply_set": {
         "correct": "r4a",

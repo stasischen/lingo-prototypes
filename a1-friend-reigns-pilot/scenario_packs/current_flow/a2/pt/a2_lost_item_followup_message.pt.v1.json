@@ -2,7 +2,7 @@
   "schema_version": "scenario_pack.v1",
   "scenario_id": "a2_lost_item_followup_message",
   "title": "Perguntar sobre um Item Perdido",
-  "setting_label": "low-risk help message",
+  "setting_label": "mensagem de ajuda",
   "wrap_title": "Perguntar sobre um Item Perdido",
   "wrap_friend": "Muito bem. Você lidou com uma tarefa digital ou de formulário usando só o detalhe necessário.",
   "language": "pt",

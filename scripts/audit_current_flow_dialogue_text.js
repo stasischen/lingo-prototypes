@@ -16,6 +16,16 @@ const expectedTurns = {
   a2: 4,
 };
 
+function isNaturalEchoCandidate(prev, current, turnCount) {
+  const currentMatch = current.where.match(/^turn\[(\d+)\]\.correct$/);
+  if (!currentMatch || !prev.where.endsWith('.npc')) return false;
+  const turnIndex = Number(currentMatch[1]);
+  if (turnIndex !== turnCount - 1) return false;
+  const text = clean(current.value);
+  const wordCount = text.split(/\s+/).filter(Boolean).length;
+  return text.length <= 32 || wordCount <= 5;
+}
+
 function readJson(filePath) {
   return JSON.parse(fs.readFileSync(filePath, 'utf8'));
 }
@@ -63,11 +73,12 @@ function scanEntry(entry) {
   const expected = expectedTurns[entry.level];
 
   if (expected && turns.length !== expected) {
+    const withinNaturalRuntimeRange = entry.level === 'a1' && turns.length >= 3 && turns.length <= 5;
     issues.push(
       issue(
         entry,
-        'high',
-        'turn_count',
+        withinNaturalRuntimeRange ? 'medium' : 'high',
+        withinNaturalRuntimeRange ? 'nonstandard_turn_count' : 'turn_count',
         'turns',
         `expected ${expected}, got ${turns.length}`,
       ),
@@ -99,13 +110,21 @@ function scanEntry(entry) {
     const correct = (turn.reply_set?.choices || []).find(
       (choice) => choice.id === turn.reply_set?.correct,
     );
-    cleanPath.push({ speaker: 'npc', value: clean(turn.surface), where: `turn[${index}].npc` });
-    if (correct) {
+    if (turn.speaker === 'learner') {
       cleanPath.push({
         speaker: 'learner',
-        value: clean(correct.surface),
+        value: clean(correct?.surface || turn.surface),
         where: `turn[${index}].correct`,
       });
+    } else {
+      cleanPath.push({ speaker: 'npc', value: clean(turn.surface), where: `turn[${index}].npc` });
+      if (correct) {
+        cleanPath.push({
+          speaker: 'learner',
+          value: clean(correct.surface),
+          where: `turn[${index}].correct`,
+        });
+      }
     }
     if (turn.closing?.surface) {
       cleanPath.push({
@@ -120,11 +139,12 @@ function scanEntry(entry) {
     const prev = cleanPath[index - 1];
     const current = cleanPath[index];
     if (norm(prev.value) && norm(prev.value) === norm(current.value)) {
+      const naturalEcho = isNaturalEchoCandidate(prev, current, turns.length);
       issues.push(
         issue(
           entry,
-          prev.speaker === current.speaker ? 'medium' : 'high',
-          'adjacent_clean_path_duplicate',
+          naturalEcho || prev.speaker === current.speaker ? 'medium' : 'high',
+          naturalEcho ? 'natural_echo_candidate' : 'adjacent_clean_path_duplicate',
           current.where,
           `${prev.where}: ${prev.value} / ${current.where}: ${current.value}`,
         ),

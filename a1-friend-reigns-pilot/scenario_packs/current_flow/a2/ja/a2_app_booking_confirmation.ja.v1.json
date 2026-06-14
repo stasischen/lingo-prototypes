@@ -2,7 +2,7 @@
   "schema_version": "scenario_pack.v1",
   "scenario_id": "a2_app_booking_confirmation",
   "title": "アプリ予約を確認する",
-  "setting_label": "low-risk help message",
+  "setting_label": "ヘルプメッセージ",
   "wrap_title": "アプリ予約を確認する",
   "wrap_friend": "よくできました。低リスクのデジタル・書類サポート場面で、必要な情報だけを確認しました。",
   "language": "ja",

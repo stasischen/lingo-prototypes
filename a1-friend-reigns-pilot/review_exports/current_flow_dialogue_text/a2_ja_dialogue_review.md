@@ -10,7 +10,7 @@ This export is for language/content review. It intentionally removes the interac
 - Level: A2
 - Language: Japanese (ja)
 - Scenario ID: a2_app_booking_confirmation
-- Setting: low-risk help message
+- Setting: ヘルプメッセージ
 - Source status: candidate_runtime_verified
 - Review state: ai_reviewed
 - Native review: native_pending
@@ -185,7 +185,7 @@ This export is for language/content review. It intentionally removes the interac
 - Level: A2
 - Language: Japanese (ja)
 - Scenario ID: a2_change_delivery_pickup_time
-- Setting: low-risk help message
+- Setting: ヘルプメッセージ
 - Source status: candidate_runtime_verified
 - Review state: ai_reviewed
 - Native review: native_pending
@@ -465,7 +465,7 @@ This export is for language/content review. It intentionally removes the interac
 - Level: A2
 - Language: Japanese (ja)
 - Scenario ID: a2_fill_simple_form_help
-- Setting: low-risk help message
+- Setting: ヘルプメッセージ
 - Source status: candidate_runtime_verified
 - Review state: ai_reviewed
 - Native review: native_pending
@@ -510,8 +510,7 @@ This export is for language/content review. It intentionally removes the interac
 
 ### Clean Dialogue Path
 
-- 友だち: 今日、カフェに行かない？ (今天要不要去咖啡店？)
-- 你: 今日、カフェに行かない？ (今天要不要去咖啡店？)
+- 你: いいね、行こう。 (いいね、行こう。)
 - 友だち: いいね。何時ごろ行く？ (好啊。大概幾點去？)
 - 你: 3時ごろはどう？ (3 點左右怎麼樣？)
 - 友だち: うん、3時なら大丈夫。 (嗯，3 點可以。)
@@ -523,10 +522,10 @@ This export is for language/content review. It intentionally removes the interac
 
 | Turn | NPC line | Correct learner line | Distractors / feedback | Friend hint | Formula |
 | :--- | :--- | :--- | :--- | :--- | :--- |
-| t1 | 今日、カフェに行かない？ (今天要不要去咖啡店？) | 今日、カフェに行かない？ (今天要不要去咖啡店？) | 1. お客様、カフェにご案内します。 (客人，我帶您去咖啡店。) [wrong_register_service] - feedback: これは店員のような言い方です。友だちには自然な誘いにしましょう。<br>2. 昨日、カフェに行った？ (你昨天去了咖啡店嗎？) [wrong_time_past_question] - feedback: 過去の質問ではなく、今から一緒に行く誘いです。 | 友だちを自然に誘います。行かない？ is a casual invitation. |  |
-| t2 | いいね。何時ごろ行く？ (好啊。大概幾點去？) | 3時ごろはどう？ (3 點左右怎麼樣？) | 1. 3番の席でお願いします。 (請安排 3 號座位。) [wrong_domain_service_seat] - feedback: 席の指定ではありません。友だちと時間を決めています。<br>2. 3時に終わった。 (3 點結束了。) [wrong_function_past_statement] - feedback: ここでは行く時間を提案します。 | 友だちは時間を聞いています。一つ簡単な時間を言いましょう。 | 何時ごろ = 大概幾點<br>Use time + ごろ for an approximate meeting time.<br>3時ごろ = 3 點左右<br>夕方ごろ = 傍晚左右 |
-| t3 | うん、3時なら大丈夫。 (嗯，3 點可以。) | じゃあ、駅の前で会おう。 (那在車站前見吧。) | 1. じゃあ、レジで払おう。 (那在收銀台付款吧。) [wrong_domain_payment] - feedback: 支払いではなく、待ち合わせを確認する流れです。<br>2. じゃあ、毎日3時に会おう。 (那每天 3 點見吧。) [too_much_commitment] - feedback: 毎日の約束は重すぎます。今回の予定だけを確認しましょう。 | 時間が決まりました。待ち合わせを短く確認しましょう。 |  |
-| t4 | いいよ。じゃあ、あとでね。 (好啊。那等一下見。) | うん、あとでね。 (嗯，等一下見。) | 1. 申し訳ございません。 (非常抱歉。) [wrong_register_formal_apology] - feedback: 友だちとの予定確認には少し硬すぎます。<br>2. 予約をキャンセルします。 (我要取消預約。) [wrong_domain_reservation] - feedback: 予約の話ではありません。友だちとの予定が決まっています。 | 予定が決まりました。自然に返して終わりましょう。 |  |
+| t1 | 今日、カフェに行かない？ (今天要不要去咖啡店？) | いいね、行こう。 (いいね、行こう。) | 1. お客様、カフェにご案内します。 (客人，我帶您去咖啡店。) [wrong_register_service] - feedback: これは店員のような言い方です。友だちには自然な誘いにしましょう。<br>2. 昨日、カフェに行った？ (你昨天去了咖啡店嗎？) [wrong_time_past_question] - feedback: 過去の質問ではなく、今から一緒に行く誘いです。 | 友だちの誘いに自然に返します。 |  |
+| t2 | いいね。何時ごろ行く？ (好啊。大概幾點去？) | 3時ごろはどう？ (3 點左右怎麼樣？) | 1. 3番の席でお願いします。 (請安排 3 號座位。) [wrong_domain_service_seat] - feedback: 席の指定ではありません。友だちと時間を決めています。<br>2. 3時に終わった。 (3 點結束了。) [wrong_function_past_statement] - feedback: ここでは行く時間を提案します。 | 短く時間を提案しましょう。 | 何時ごろ = 大概幾點<br>Use time + ごろ for an approximate meeting time.<br>3時ごろ = 3 點左右<br>夕方ごろ = 傍晚左右 |
+| t3 | うん、3時なら大丈夫。 (嗯，3 點可以。) | じゃあ、駅の前で会おう。 (那在車站前見吧。) | 1. じゃあ、レジで払おう。 (那在收銀台付款吧。) [wrong_domain_payment] - feedback: 支払いではなく、待ち合わせを確認する流れです。<br>2. じゃあ、毎日3時に会おう。 (那每天 3 點見吧。) [too_much_commitment] - feedback: 毎日の約束は重すぎます。今回の予定だけを確認しましょう。 | 待ち合わせ場所を確認しましょう。 |  |
+| t4 | いいよ。じゃあ、あとでね。 (好啊。那等一下見。) | うん、あとでね。 (嗯，等一下見。) | 1. 申し訳ございません。 (非常抱歉。) [wrong_register_formal_apology] - feedback: 友だちとの予定確認には少し硬すぎます。<br>2. 予約をキャンセルします。 (我要取消預約。) [wrong_domain_reservation] - feedback: 予約の話ではありません。友だちとの予定が決まっています。 | 自然に予定を締めましょう。 |  |
 
 ---
 
@@ -535,7 +534,7 @@ This export is for language/content review. It intentionally removes the interac
 - Level: A2
 - Language: Japanese (ja)
 - Scenario ID: a2_lost_item_followup_message
-- Setting: low-risk help message
+- Setting: ヘルプメッセージ
 - Source status: candidate_runtime_verified
 - Review state: ai_reviewed
 - Native review: native_pending
@@ -615,7 +614,6 @@ This export is for language/content review. It intentionally removes the interac
 
 ### Clean Dialogue Path
 
-- 友だち: 先に駅で会おう。 (先在車站見吧。)
 - 你: 先に駅で会おう。 (先在車站見吧。)
 - 友だち: いいね。そのあと、少し歩く？ (好啊。之後要走走嗎？)
 - 你: うん、先に会って、そのあと歩こう。 (嗯，先見面，之後散步吧。)

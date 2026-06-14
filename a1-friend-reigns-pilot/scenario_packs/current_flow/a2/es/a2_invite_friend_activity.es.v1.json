@@ -2,7 +2,7 @@
   "schema_version": "scenario_pack.v1",
   "scenario_id": "a2_invite_friend_activity",
   "title": "Invitar a un Amigo a una Actividad",
-  "setting_label": "friend chat",
+  "setting_label": "chat con un amigo",
   "wrap_title": "Plan con un amigo confirmado",
   "wrap_friend": "Bien. Invitaste a un amigo sin presión y confirmaste una hora y un lugar sencillos.",
   "language": "es",
@@ -63,16 +63,16 @@
       "speak": "¿Quieres tomar un café más tarde?",
       "translation": "等一下要一起喝咖啡嗎？",
       "friend": {
-        "hint": "Respond naturally to the friend plan."
+        "hint": "Acepta la invitación de forma natural."
       },
       "reply_set": {
         "correct": "r1a",
         "choices": [
           {
             "id": "r1a",
-            "surface": "¿Quieres tomar un café más tarde?",
-            "translation": "等一下要一起喝咖啡嗎？",
-            "speak": "¿Quieres tomar un café más tarde?",
+            "surface": "Sí, me apetece un café.",
+            "translation": "Sí, me apetece un café.",
+            "speak": "Sí, me apetece un café.",
             "learning_role": "production_target"
           },
           {
@@ -108,7 +108,7 @@
       "speak": "Claro. ¿A qué hora?",
       "translation": "好啊。幾點？",
       "friend": {
-        "hint": "Respond naturally to the friend plan."
+        "hint": "Propón una hora sencilla."
       },
       "reply_set": {
         "correct": "r2a",
@@ -153,7 +153,7 @@
       "speak": "¿Nos vemos delante de la estación?",
       "translation": "要在車站前面見嗎？",
       "friend": {
-        "hint": "Respond naturally to the friend plan."
+        "hint": "Confirma el lugar de encuentro."
       },
       "reply_set": {
         "correct": "r3a",
@@ -198,7 +198,7 @@
       "speak": "Perfecto. Nos vemos luego.",
       "translation": "好，等一下見。",
       "friend": {
-        "hint": "Respond naturally to the friend plan."
+        "hint": "Cierra el plan con naturalidad."
       },
       "reply_set": {
         "correct": "r4a",
@@ -238,7 +238,7 @@
   ],
   "feedback": "Los distractores prueban registro social, tiempo, función y límite A2.",
   "tts_segments": [
-    "¿Quieres tomar un café más tarde?",
+    "Sí, me apetece un café.",
     "¿Qué tal a las tres?",
     "Sí, nos vemos delante de la estación.",
     "Genial. Nos vemos luego."

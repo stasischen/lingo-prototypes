@@ -10,7 +10,7 @@ This export is for language/content review. It intentionally removes the interac
 - Level: A2
 - Language: German (de)
 - Scenario ID: a2_app_booking_confirmation
-- Setting: low-risk help message
+- Setting: Hilfenachricht
 - Source status: candidate_runtime_verified
 - Review state: ai_reviewed
 - Native review: native_pending
@@ -185,7 +185,7 @@ This export is for language/content review. It intentionally removes the interac
 - Level: A2
 - Language: German (de)
 - Scenario ID: a2_change_delivery_pickup_time
-- Setting: low-risk help message
+- Setting: Hilfenachricht
 - Source status: candidate_runtime_verified
 - Review state: ai_reviewed
 - Native review: native_pending
@@ -325,7 +325,7 @@ This export is for language/content review. It intentionally removes the interac
 - Level: A2
 - Language: German (de)
 - Scenario ID: a2_decline_with_reason
-- Setting: friend chat
+- Setting: Chat mit einem Freund
 - Source status: candidate_runtime_verified
 - Review state: ai_reviewed
 - Native review: native_pending
@@ -360,7 +360,7 @@ This export is for language/content review. It intentionally removes the interac
 - Level: A2
 - Language: German (de)
 - Scenario ID: a2_describe_weekend_activity
-- Setting: friend chat
+- Setting: Chat mit einem Freund
 - Source status: candidate_runtime_verified
 - Review state: ai_reviewed
 - Native review: native_pending
@@ -465,7 +465,7 @@ This export is for language/content review. It intentionally removes the interac
 - Level: A2
 - Language: German (de)
 - Scenario ID: a2_fill_simple_form_help
-- Setting: low-risk help message
+- Setting: Hilfenachricht
 - Source status: candidate_runtime_verified
 - Review state: ai_reviewed
 - Native review: native_pending
@@ -500,7 +500,7 @@ This export is for language/content review. It intentionally removes the interac
 - Level: A2
 - Language: German (de)
 - Scenario ID: a2_invite_friend_activity
-- Setting: friend chat
+- Setting: Chat mit einem Freund
 - Source status: candidate_runtime_verified
 - Review state: ai_reviewed
 - Native review: native_pending
@@ -511,22 +511,22 @@ This export is for language/content review. It intentionally removes the interac
 ### Clean Dialogue Path
 
 - Freund: Möchtest du später einen Kaffee trinken? (等一下要一起喝咖啡嗎？)
-- 你: Möchtest du später einen Kaffee trinken? (等一下要一起喝咖啡嗎？)
+- 你: Ja, gern. Kaffee klingt gut. (Ja, gern. Kaffee klingt gut.)
 - Freund: Klar. Um wie viel Uhr? (好啊。幾點？)
 - 你: Wie wäre es um drei? (三點怎麼樣？)
 - Freund: Treffen wir uns vor dem Bahnhof? (要在車站前面見嗎？)
 - 你: Ja, treffen wir uns vor dem Bahnhof. (好，我們在車站前面見。)
 - Freund: Super. Bis später. (好，等一下見。)
-- 你: Super. Bis später. (很好，等一下見。)
+- 你: Bis später, ich freue mich. (Bis später, ich freue mich.)
 
 ### Turn Review
 
 | Turn | NPC line | Correct learner line | Distractors / feedback | Friend hint | Formula |
 | :--- | :--- | :--- | :--- | :--- | :--- |
-| t1 | Möchtest du später einen Kaffee trinken? (等一下要一起喝咖啡嗎？) | Möchtest du später einen Kaffee trinken? (等一下要一起喝咖啡嗎？) | 1. Ich möchte später mein Zimmer wechseln. (等一下請幫我換房間。) [wrong_scenario_service] - feedback: Das passt nicht zu dieser Situation mit einem Freund.<br>2. Du musst heute mitkommen. (你今天一定要跟我來。) [too_pressuring] - feedback: Das klingt für einen Freund zu hart. | Respond naturally to the friend plan. |  |
-| t2 | Klar. Um wie viel Uhr? (好啊。幾點？) | Wie wäre es um drei? (三點怎麼樣？) | 1. Ich möchte später mein Zimmer wechseln. (等一下請幫我換房間。) [wrong_scenario_service] - feedback: Das passt nicht zu dieser Situation mit einem Freund.<br>2. Du musst heute mitkommen. (你今天一定要跟我來。) [too_pressuring] - feedback: Das klingt für einen Freund zu hart. | Respond naturally to the friend plan. |  |
-| t3 | Treffen wir uns vor dem Bahnhof? (要在車站前面見嗎？) | Ja, treffen wir uns vor dem Bahnhof. (好，我們在車站前面見。) | 1. Ich möchte später mein Zimmer wechseln. (等一下請幫我換房間。) [wrong_scenario_service] - feedback: Das passt nicht zu dieser Situation mit einem Freund.<br>2. Du musst heute mitkommen. (你今天一定要跟我來。) [too_pressuring] - feedback: Das klingt für einen Freund zu hart. | Respond naturally to the friend plan. |  |
-| t4 | Super. Bis später. (好，等一下見。) | Super. Bis später. (很好，等一下見。) | 1. Ich möchte später mein Zimmer wechseln. (等一下請幫我換房間。) [wrong_scenario_service] - feedback: Das passt nicht zu dieser Situation mit einem Freund.<br>2. Du musst heute mitkommen. (你今天一定要跟我來。) [too_pressuring] - feedback: Das klingt für einen Freund zu hart. | Respond naturally to the friend plan. |  |
+| t1 | Möchtest du später einen Kaffee trinken? (等一下要一起喝咖啡嗎？) | Ja, gern. Kaffee klingt gut. (Ja, gern. Kaffee klingt gut.) | 1. Ich möchte später mein Zimmer wechseln. (等一下請幫我換房間。) [wrong_scenario_service] - feedback: Das passt nicht zu dieser Situation mit einem Freund.<br>2. Du musst heute mitkommen. (你今天一定要跟我來。) [too_pressuring] - feedback: Das klingt für einen Freund zu hart. | Antworte locker auf die Einladung. |  |
+| t2 | Klar. Um wie viel Uhr? (好啊。幾點？) | Wie wäre es um drei? (三點怎麼樣？) | 1. Ich möchte später mein Zimmer wechseln. (等一下請幫我換房間。) [wrong_scenario_service] - feedback: Das passt nicht zu dieser Situation mit einem Freund.<br>2. Du musst heute mitkommen. (你今天一定要跟我來。) [too_pressuring] - feedback: Das klingt für einen Freund zu hart. | Schlag eine einfache Uhrzeit vor. |  |
+| t3 | Treffen wir uns vor dem Bahnhof? (要在車站前面見嗎？) | Ja, treffen wir uns vor dem Bahnhof. (好，我們在車站前面見。) | 1. Ich möchte später mein Zimmer wechseln. (等一下請幫我換房間。) [wrong_scenario_service] - feedback: Das passt nicht zu dieser Situation mit einem Freund.<br>2. Du musst heute mitkommen. (你今天一定要跟我來。) [too_pressuring] - feedback: Das klingt für einen Freund zu hart. | Bestätige den Treffpunkt. |  |
+| t4 | Super. Bis später. (好，等一下見。) | Bis später, ich freue mich. (Bis später, ich freue mich.) | 1. Ich möchte später mein Zimmer wechseln. (等一下請幫我換房間。) [wrong_scenario_service] - feedback: Das passt nicht zu dieser Situation mit einem Freund.<br>2. Du musst heute mitkommen. (你今天一定要跟我來。) [too_pressuring] - feedback: Das klingt für einen Freund zu hart. | Schließ den Plan freundlich ab. |  |
 
 ---
 
@@ -535,7 +535,7 @@ This export is for language/content review. It intentionally removes the interac
 - Level: A2
 - Language: German (de)
 - Scenario ID: a2_lost_item_followup_message
-- Setting: low-risk help message
+- Setting: Hilfenachricht
 - Source status: candidate_runtime_verified
 - Review state: ai_reviewed
 - Native review: native_pending
@@ -605,7 +605,7 @@ This export is for language/content review. It intentionally removes the interac
 - Level: A2
 - Language: German (de)
 - Scenario ID: a2_make_simple_plan_sequence
-- Setting: friend chat
+- Setting: Chat mit einem Freund
 - Source status: candidate_runtime_verified
 - Review state: ai_reviewed
 - Native review: native_pending
@@ -628,10 +628,10 @@ This export is for language/content review. It intentionally removes the interac
 
 | Turn | NPC line | Correct learner line | Distractors / feedback | Friend hint | Formula |
 | :--- | :--- | :--- | :--- | :--- | :--- |
-| t1 | Treffen wir uns zuerst am Bahnhof? (我們先在車站見，好嗎？) | Ja, zuerst treffen wir uns am Bahnhof. (好，我們先在車站見。) | 1. Ja, erstatte mir zuerst das Geld. (好，先退款給我。) [wrong_scenario_refund] - feedback: Das passt nicht zu dieser Situation mit einem Freund.<br>2. Nein, auf keinen Fall. (不，絕對不要。) [too_blunt] - feedback: Das klingt für einen Freund zu hart. | Keep the plan to two simple steps. |  |
-| t2 | Dann gehen wir zum Park? (接著去公園嗎？) | Gut. Dann gehen wir zum Park. (好，接著去公園。) | 1. Ja, erstatte mir zuerst das Geld. (好，先退款給我。) [wrong_scenario_refund] - feedback: Das passt nicht zu dieser Situation mit einem Freund.<br>2. Nein, auf keinen Fall. (不，絕對不要。) [too_blunt] - feedback: Das klingt für einen Freund zu hart. | Keep the plan to two simple steps. |  |
-| t3 | Also zuerst der Bahnhof, dann der Park? (所以先車站，接著公園，對嗎？) | Ja, zuerst der Bahnhof, dann der Park. (對，先車站，接著公園。) | 1. Ja, erstatte mir zuerst das Geld. (好，先退款給我。) [wrong_scenario_refund] - feedback: Das passt nicht zu dieser Situation mit einem Freund.<br>2. Nein, auf keinen Fall. (不，絕對不要。) [too_blunt] - feedback: Das klingt für einen Freund zu hart. | Keep the plan to two simple steps. |  |
-| t4 | Super. Bis Samstag um zwei. (好，星期六兩點見。) | Okay, bis Samstag um zwei. (好，星期六兩點見。) | 1. Ja, erstatte mir zuerst das Geld. (好，先退款給我。) [wrong_scenario_refund] - feedback: Das passt nicht zu dieser Situation mit einem Freund.<br>2. Nein, auf keinen Fall. (不，絕對不要。) [too_blunt] - feedback: Das klingt für einen Freund zu hart. | Keep the plan to two simple steps. |  |
+| t1 | Treffen wir uns zuerst am Bahnhof? (我們先在車站見，好嗎？) | Ja, zuerst treffen wir uns am Bahnhof. (好，我們先在車站見。) | 1. Ja, erstatte mir zuerst das Geld. (好，先退款給我。) [wrong_scenario_refund] - feedback: Das passt nicht zu dieser Situation mit einem Freund.<br>2. Nein, auf keinen Fall. (不，絕對不要。) [too_blunt] - feedback: Das klingt für einen Freund zu hart. | Halte den Plan bei zwei einfachen Schritten. |  |
+| t2 | Dann gehen wir zum Park? (接著去公園嗎？) | Gut. Dann gehen wir zum Park. (好，接著去公園。) | 1. Ja, erstatte mir zuerst das Geld. (好，先退款給我。) [wrong_scenario_refund] - feedback: Das passt nicht zu dieser Situation mit einem Freund.<br>2. Nein, auf keinen Fall. (不，絕對不要。) [too_blunt] - feedback: Das klingt für einen Freund zu hart. | Halte den Plan bei zwei einfachen Schritten. |  |
+| t3 | Also zuerst der Bahnhof, dann der Park? (所以先車站，接著公園，對嗎？) | Ja, zuerst der Bahnhof, dann der Park. (對，先車站，接著公園。) | 1. Ja, erstatte mir zuerst das Geld. (好，先退款給我。) [wrong_scenario_refund] - feedback: Das passt nicht zu dieser Situation mit einem Freund.<br>2. Nein, auf keinen Fall. (不，絕對不要。) [too_blunt] - feedback: Das klingt für einen Freund zu hart. | Halte den Plan bei zwei einfachen Schritten. |  |
+| t4 | Super. Bis Samstag um zwei. (好，星期六兩點見。) | Okay, bis Samstag um zwei. (好，星期六兩點見。) | 1. Ja, erstatte mir zuerst das Geld. (好，先退款給我。) [wrong_scenario_refund] - feedback: Das passt nicht zu dieser Situation mit einem Freund.<br>2. Nein, auf keinen Fall. (不，絕對不要。) [too_blunt] - feedback: Das klingt für einen Freund zu hart. | Halte den Plan bei zwei einfachen Schritten. |  |
 
 ---
 
@@ -762,7 +762,7 @@ This export is for language/content review. It intentionally removes the interac
 - Freund: Ja, vier passt. (可以，四點沒問題。)
 - Du: Super, dann bis vier. (太好了，那四點見。)
 - Freund: Okay, bis später. (好，晚點見。)
-- Du: Okay, bis später. (好，晚點見。)
+- Du: Alles klar, bis später. (Alles klar, bis später.)
 
 ### Turn Review
 
@@ -771,7 +771,7 @@ This export is for language/content review. It intentionally removes the interac
 | t1 | Wir treffen uns heute um drei, oder? (我們今天三點見，對吧？) | Entschuldige, können wir die Zeit ändern? (不好意思，我們可以改時間嗎？) | 1. Ja, wir haben uns gestern getroffen. (對，我們昨天見過了。) [wrong_time_past] - feedback: Dein Freund bestätigt den Plan für heute, nicht für gestern.<br>2. Ich bezahle mit Karte. (我會用卡付款。) [wrong_scenario_payment] - feedback: Das ist Bezahlsprache. Hier geht es um die Uhrzeit des Treffens. | Dein Freund bestätigt die alte Uhrzeit. Bitte darum, die Zeit zu ändern. |  |
 | t2 | Klar. Wann passt es dir? (可以。你幾點方便？) | Können wir uns um vier treffen? (我們可以四點見面嗎？) | 1. Nehmen wir Ausgang vier? (我們要走四號出口嗎？) [wrong_entity_exit_number] - feedback: Ausgang vier ist ein Ort. Dein Freund fragt nach einer neuen Uhrzeit.<br>2. Ich war um vier dort. (我四點在那裡了。) [wrong_time_past] - feedback: Das spricht über die Vergangenheit. Bitte um die neue Uhrzeit vier. | Nenne eine neue Uhrzeit. Bleib einfach. | Können wir ... um + Uhrzeit?<br>Mit können wir und um plus Uhrzeit fragst du hoeflich nach einer neuen Zeit.<br>Können wir uns um vier treffen? = 我們可以四點見面嗎？<br>Passt dir vier Uhr? = 四點你方便嗎？ |
 | t3 | Ja, vier passt. (可以，四點沒問題。) | Super, dann bis vier. (太好了，那四點見。) | 1. Super, dann bis drei. (太好了，那三點見。) [repeats_old_time] - feedback: Drei war die alte Uhrzeit. Ihr habt auf vier geändert.<br>2. Gib mir bitte die Zimmerkarte. (請給我房卡。) [wrong_scenario_hotel] - feedback: Das ist Hotelsprache. Hier bestätigst du die neue Uhrzeit. | Die neue Uhrzeit ist akzeptiert. Bestätige sie einmal. |  |
-| t4 | Okay, bis später. (好，晚點見。) | Okay, bis später. (好，晚點見。) | 1. Weil ich spät bin. (因為我遲到了。) [fragment_without_need] - feedback: Die Zeit ist schon geändert. Ein Grundfragment ist jetzt nicht nötig.<br>2. Ich habe es noch einmal gebucht. (我重新預約了。) [wrong_scenario_reservation] - feedback: Das klingt nach einer Buchung, nicht nach einem einfachen Treffen mit einem Freund. | Der Plan ist fertig. Schließ natürlich ab. |  |
+| t4 | Okay, bis später. (好，晚點見。) | Alles klar, bis später. (Alles klar, bis später.) | 1. Weil ich spät bin. (因為我遲到了。) [fragment_without_need] - feedback: Die Zeit ist schon geändert. Ein Grundfragment ist jetzt nicht nötig.<br>2. Ich habe es noch einmal gebucht. (我重新預約了。) [wrong_scenario_reservation] - feedback: Das klingt nach einer Buchung, nicht nach einem einfachen Treffen mit einem Freund. | Der Plan ist fertig. Schließ natürlich ab. |  |
 
 ---
 

@@ -2,7 +2,7 @@
   "schema_version": "scenario_pack.v1",
   "scenario_id": "a2_change_delivery_pickup_time",
   "title": "Changer l’Heure de Retrait",
-  "setting_label": "low-risk help message",
+  "setting_label": "message d’aide",
   "wrap_title": "Changer l’Heure de Retrait",
   "wrap_friend": "Bien. Tu as géré une aide numérique ou documentaire à faible risque avec seulement le détail nécessaire.",
   "language": "fr",

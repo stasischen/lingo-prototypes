@@ -2,7 +2,7 @@
   "schema_version": "scenario_pack.v1",
   "scenario_id": "a2_change_delivery_pickup_time",
   "title": "เปลี่ยนเวลารับของ",
-  "setting_label": "low-risk help message",
+  "setting_label": "ข้อความช่วยเหลือ",
   "wrap_title": "เปลี่ยนเวลารับของ",
   "wrap_friend": "ทำได้ดีค่ะ คุณจัดการงานดิจิทัลหรือเอกสารแบบความเสี่ยงต่ำโดยใช้เฉพาะข้อมูลที่จำเป็น",
   "language": "th",

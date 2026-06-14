@@ -63,16 +63,16 @@
       "speak": "今日、カフェに行かない？",
       "translation": "今天要不要去咖啡店？",
       "friend": {
-        "hint": "友だちを自然に誘います。行かない？ is a casual invitation."
+        "hint": "友だちの誘いに自然に返します。"
       },
       "reply_set": {
         "correct": "r1a",
         "choices": [
           {
             "id": "r1a",
-            "surface": "今日、カフェに行かない？",
-            "translation": "今天要不要去咖啡店？",
-            "speak": "今日、カフェに行かない？",
+            "surface": "いいね、行こう。",
+            "translation": "いいね、行こう。",
+            "speak": "いいね、行こう。",
             "learning_role": "production_target"
           },
           {
@@ -108,7 +108,7 @@
       "speak": "いいね。何時ごろ行く？",
       "translation": "好啊。大概幾點去？",
       "friend": {
-        "hint": "友だちは時間を聞いています。一つ簡単な時間を言いましょう。"
+        "hint": "短く時間を提案しましょう。"
       },
       "inline_explain": {
         "pattern_id": "ja.a2.social.invite.time_goro.v1",
@@ -168,7 +168,7 @@
       "speak": "うん、三時なら大丈夫。",
       "translation": "嗯，3 點可以。",
       "friend": {
-        "hint": "時間が決まりました。待ち合わせを短く確認しましょう。"
+        "hint": "待ち合わせ場所を確認しましょう。"
       },
       "reply_set": {
         "correct": "r3a",
@@ -211,7 +211,7 @@
       "speak": "いいよ。じゃあ、あとでね。",
       "translation": "好啊。那等一下見。",
       "friend": {
-        "hint": "予定が決まりました。自然に返して終わりましょう。"
+        "hint": "自然に予定を締めましょう。"
       },
       "reply_set": {
         "correct": "r4a",
@@ -258,7 +258,7 @@
     "incorrect": "友だちへの誘い、時間の提案、予定の確認に合う答えを選びましょう。"
   },
   "tts_segments": [
-    "今日、カフェに行かない？",
+    "いいね、行こう。",
     "3時ごろはどう？",
     "じゃあ、駅の前で会おう。",
     "うん、あとでね。"

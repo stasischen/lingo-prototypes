@@ -10,7 +10,7 @@ This export is for language/content review. It intentionally removes the interac
 - Level: A2
 - Language: English (en)
 - Scenario ID: a2_app_booking_confirmation
-- Setting: low-risk help message
+- Setting: help message
 - Source status: candidate_runtime_verified
 - Review state: ai_reviewed
 - Native review: native_pending
@@ -185,7 +185,7 @@ This export is for language/content review. It intentionally removes the interac
 - Level: A2
 - Language: English (en)
 - Scenario ID: a2_change_delivery_pickup_time
-- Setting: low-risk help message
+- Setting: help message
 - Source status: candidate_runtime_verified
 - Review state: ai_reviewed
 - Native review: native_pending
@@ -465,7 +465,7 @@ This export is for language/content review. It intentionally removes the interac
 - Level: A2
 - Language: English (en)
 - Scenario ID: a2_fill_simple_form_help
-- Setting: low-risk help message
+- Setting: help message
 - Source status: candidate_runtime_verified
 - Review state: ai_reviewed
 - Native review: native_pending
@@ -511,22 +511,22 @@ This export is for language/content review. It intentionally removes the interac
 ### Clean Dialogue Path
 
 - friend: Do you want to get coffee later? (等一下要一起喝咖啡嗎？)
-- 你: Do you want to get coffee later? (等一下要一起喝咖啡嗎？)
+- 你: Yes, coffee sounds good. (Yes, coffee sounds good.)
 - friend: Sure. What time works? (好啊。什麼時間可以？)
 - 你: How about three o’clock? (三點怎麼樣？)
 - friend: Should we meet in front of the station? (要在車站前面見嗎？)
 - 你: Yes, let’s meet in front of the station. (好，我們在車站前面見。)
 - friend: Great. See you later. (很好。等一下見。)
-- 你: Great. See you later. (很好。等一下見。)
+- 你: See you then. (See you then.)
 
 ### Turn Review
 
 | Turn | NPC line | Correct learner line | Distractors / feedback | Friend hint | Formula |
 | :--- | :--- | :--- | :--- | :--- | :--- |
-| t1 | Do you want to get coffee later? (等一下要一起喝咖啡嗎？) | Do you want to get coffee later? (等一下要一起喝咖啡嗎？) | 1. Please change my room later. (等一下請幫我換房間。) [wrong_scenario_service] - feedback: That is a service request, not a friend invitation.<br>2. You have to come with me today. (你今天一定要跟我來。) [too_pressuring] - feedback: That sounds too forceful for a friend invitation. | Invite your friend to a simple activity. |  |
+| t1 | Do you want to get coffee later? (等一下要一起喝咖啡嗎？) | Yes, coffee sounds good. (Yes, coffee sounds good.) | 1. Please change my room later. (等一下請幫我換房間。) [wrong_scenario_service] - feedback: That is a service request, not a friend invitation.<br>2. You have to come with me today. (你今天一定要跟我來。) [too_pressuring] - feedback: That sounds too forceful for a friend invitation. | Accept the invitation naturally. |  |
 | t2 | Sure. What time works? (好啊。什麼時間可以？) | How about three o’clock? (三點怎麼樣？) | 1. I went at three yesterday. (我昨天三點去了。) [wrong_time_past] - feedback: You are setting a future plan now.<br>2. How much is it? (多少錢？) [wrong_function_price] - feedback: This is not a price question. | Suggest a simple time. |  |
 | t3 | Should we meet in front of the station? (要在車站前面見嗎？) | Yes, let’s meet in front of the station. (好，我們在車站前面見。) | 1. Yes, let’s change trains. (好，我們換車。) [wrong_scenario_transport] - feedback: This is not a transfer plan.<br>2. No, I want a refund. (不，我想退款。) [wrong_scenario_refund] - feedback: Refunds are outside this friend plan. | Confirm the meeting place. |  |
-| t4 | Great. See you later. (很好。等一下見。) | Great. See you later. (很好。等一下見。) | 1. I need to cancel my booking. (我要取消預約。) [wrong_register_service] - feedback: That sounds like a booking task, not a friend plan.<br>2. That is too expensive. (那太貴了。) [wrong_detail_price] - feedback: No price was discussed. | Close the plan warmly. |  |
+| t4 | Great. See you later. (很好。等一下見。) | See you then. (See you then.) | 1. I need to cancel my booking. (我要取消預約。) [wrong_register_service] - feedback: That sounds like a booking task, not a friend plan.<br>2. That is too expensive. (那太貴了。) [wrong_detail_price] - feedback: No price was discussed. | Close the plan warmly. |  |
 
 ---
 
@@ -535,7 +535,7 @@ This export is for language/content review. It intentionally removes the interac
 - Level: A2
 - Language: English (en)
 - Scenario ID: a2_lost_item_followup_message
-- Setting: low-risk help message
+- Setting: help message
 - Source status: candidate_runtime_verified
 - Review state: ai_reviewed
 - Native review: native_pending

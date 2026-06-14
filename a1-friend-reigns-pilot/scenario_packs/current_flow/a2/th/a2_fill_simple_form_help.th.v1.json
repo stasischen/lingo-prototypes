@@ -2,7 +2,7 @@
   "schema_version": "scenario_pack.v1",
   "scenario_id": "a2_fill_simple_form_help",
   "title": "ขอความช่วยเหลือกับแบบฟอร์มง่าย ๆ",
-  "setting_label": "low-risk help message",
+  "setting_label": "ข้อความช่วยเหลือ",
   "wrap_title": "ขอความช่วยเหลือกับแบบฟอร์มง่าย ๆ",
   "wrap_friend": "ทำได้ดีค่ะ คุณจัดการงานดิจิทัลหรือเอกสารแบบความเสี่ยงต่ำโดยใช้เฉพาะข้อมูลที่จำเป็น",
   "language": "th",

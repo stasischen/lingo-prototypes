@@ -2,7 +2,7 @@
   "schema_version": "scenario_pack.v1",
   "scenario_id": "a2_fill_simple_form_help",
   "title": "Chiedere Aiuto per un Modulo Semplice",
-  "setting_label": "low-risk help message",
+  "setting_label": "messaggio di aiuto",
   "wrap_title": "Chiedere Aiuto per un Modulo Semplice",
   "wrap_friend": "Bene. Hai gestito un aiuto digitale o documentale a basso rischio con solo il dettaglio necessario.",
   "language": "it",

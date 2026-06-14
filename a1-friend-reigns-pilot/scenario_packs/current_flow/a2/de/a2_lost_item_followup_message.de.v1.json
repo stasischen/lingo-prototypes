@@ -2,7 +2,7 @@
   "schema_version": "scenario_pack.v1",
   "scenario_id": "a2_lost_item_followup_message",
   "title": "Nach Einem Verlorenen Gegenstand Fragen",
-  "setting_label": "low-risk help message",
+  "setting_label": "Hilfenachricht",
   "wrap_title": "Nach Einem Verlorenen Gegenstand Fragen",
   "wrap_friend": "Gut. Du hast eine risikoarme digitale oder Formular-Hilfe mit nur den nötigen Details erledigt.",
   "language": "de",

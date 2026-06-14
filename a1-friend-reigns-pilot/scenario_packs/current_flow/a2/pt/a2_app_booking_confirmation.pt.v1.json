@@ -2,7 +2,7 @@
   "schema_version": "scenario_pack.v1",
   "scenario_id": "a2_app_booking_confirmation",
   "title": "Confirmar uma Reserva no App",
-  "setting_label": "low-risk help message",
+  "setting_label": "mensagem de ajuda",
   "wrap_title": "Confirmar uma Reserva no App",
   "wrap_friend": "Muito bem. Você lidou com uma tarefa digital ou de formulário usando só o detalhe necessário.",
   "language": "pt",

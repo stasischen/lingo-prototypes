@@ -10,7 +10,7 @@ This export is for language/content review. It intentionally removes the interac
 - Level: A2
 - Language: Chinese (zh)
 - Scenario ID: a2_app_booking_confirmation
-- Setting: low-risk help message
+- Setting: 客服訊息
 - Source status: candidate_runtime_verified
 - Review state: ai_reviewed
 - Native review: native_pending
@@ -185,7 +185,7 @@ This export is for language/content review. It intentionally removes the interac
 - Level: A2
 - Language: Chinese (zh)
 - Scenario ID: a2_change_delivery_pickup_time
-- Setting: low-risk help message
+- Setting: 客服訊息
 - Source status: candidate_runtime_verified
 - Review state: ai_reviewed
 - Native review: native_pending
@@ -325,7 +325,7 @@ This export is for language/content review. It intentionally removes the interac
 - Level: A2
 - Language: Chinese (zh)
 - Scenario ID: a2_decline_with_reason
-- Setting: friend chat
+- Setting: 朋友聊天
 - Source status: candidate_runtime_verified
 - Review state: ai_reviewed
 - Native review: native_pending
@@ -360,7 +360,7 @@ This export is for language/content review. It intentionally removes the interac
 - Level: A2
 - Language: Chinese (zh)
 - Scenario ID: a2_describe_weekend_activity
-- Setting: friend chat
+- Setting: 朋友聊天
 - Source status: candidate_runtime_verified
 - Review state: ai_reviewed
 - Native review: native_pending
@@ -465,7 +465,7 @@ This export is for language/content review. It intentionally removes the interac
 - Level: A2
 - Language: Chinese (zh)
 - Scenario ID: a2_fill_simple_form_help
-- Setting: low-risk help message
+- Setting: 客服訊息
 - Source status: candidate_runtime_verified
 - Review state: ai_reviewed
 - Native review: native_pending
@@ -500,7 +500,7 @@ This export is for language/content review. It intentionally removes the interac
 - Level: A2
 - Language: Chinese (zh)
 - Scenario ID: a2_invite_friend_activity
-- Setting: friend chat
+- Setting: 朋友聊天
 - Source status: candidate_runtime_verified
 - Review state: ai_reviewed
 - Native review: native_pending
@@ -511,22 +511,22 @@ This export is for language/content review. It intentionally removes the interac
 ### Clean Dialogue Path
 
 - 朋友: 等一下要不要一起喝咖啡？ (等一下要一起喝咖啡嗎？)
-- 你: 等一下要不要一起喝咖啡？ (等一下要不要一起喝咖啡？)
+- 你: 好啊，一起去喝咖啡。 (好啊，一起去喝咖啡。)
 - 朋友: 好啊，幾點？ (好啊。幾點？)
 - 你: 三點左右可以嗎？ (三點左右可以嗎？)
 - 朋友: 要在車站前面見嗎？ (要在車站前面見嗎？)
 - 你: 好，我們在車站前面見。 (好，我們在車站前面見。)
 - 朋友: 好，等一下見。 (好，等一下見。)
-- 你: 好，等一下見。 (好，等一下見。)
+- 你: 好，那等一下見。 (好，那等一下見。)
 
 ### Turn Review
 
 | Turn | NPC line | Correct learner line | Distractors / feedback | Friend hint | Formula |
 | :--- | :--- | :--- | :--- | :--- | :--- |
-| t1 | 等一下要不要一起喝咖啡？ (等一下要一起喝咖啡嗎？) | 等一下要不要一起喝咖啡？ (等一下要不要一起喝咖啡？) | 1. 等一下請幫我換房間。 (等一下請幫我換房間。) [wrong_scenario_service] - feedback: 這不符合目前的朋友情境。<br>2. 你今天一定要跟我來。 (你今天一定要跟我來。) [too_pressuring] - feedback: 這樣對朋友來說太強硬。 | Respond naturally to the friend plan. |  |
-| t2 | 好啊，幾點？ (好啊。幾點？) | 三點左右可以嗎？ (三點左右可以嗎？) | 1. 等一下請幫我換房間。 (等一下請幫我換房間。) [wrong_scenario_service] - feedback: 這不符合目前的朋友情境。<br>2. 你今天一定要跟我來。 (你今天一定要跟我來。) [too_pressuring] - feedback: 這樣對朋友來說太強硬。 | Respond naturally to the friend plan. |  |
-| t3 | 要在車站前面見嗎？ (要在車站前面見嗎？) | 好，我們在車站前面見。 (好，我們在車站前面見。) | 1. 等一下請幫我換房間。 (等一下請幫我換房間。) [wrong_scenario_service] - feedback: 這不符合目前的朋友情境。<br>2. 你今天一定要跟我來。 (你今天一定要跟我來。) [too_pressuring] - feedback: 這樣對朋友來說太強硬。 | Respond naturally to the friend plan. |  |
-| t4 | 好，等一下見。 (好，等一下見。) | 好，等一下見。 (好，等一下見。) | 1. 等一下請幫我換房間。 (等一下請幫我換房間。) [wrong_scenario_service] - feedback: 這不符合目前的朋友情境。<br>2. 你今天一定要跟我來。 (你今天一定要跟我來。) [too_pressuring] - feedback: 這樣對朋友來說太強硬。 | Respond naturally to the friend plan. |  |
+| t1 | 等一下要不要一起喝咖啡？ (等一下要一起喝咖啡嗎？) | 好啊，一起去喝咖啡。 (好啊，一起去喝咖啡。) | 1. 等一下請幫我換房間。 (等一下請幫我換房間。) [wrong_scenario_service] - feedback: 這不符合目前的朋友情境。<br>2. 你今天一定要跟我來。 (你今天一定要跟我來。) [too_pressuring] - feedback: 這樣對朋友來說太強硬。 | 自然回應朋友的邀請。 |  |
+| t2 | 好啊，幾點？ (好啊。幾點？) | 三點左右可以嗎？ (三點左右可以嗎？) | 1. 等一下請幫我換房間。 (等一下請幫我換房間。) [wrong_scenario_service] - feedback: 這不符合目前的朋友情境。<br>2. 你今天一定要跟我來。 (你今天一定要跟我來。) [too_pressuring] - feedback: 這樣對朋友來說太強硬。 | 提出一個簡單的時間。 |  |
+| t3 | 要在車站前面見嗎？ (要在車站前面見嗎？) | 好，我們在車站前面見。 (好，我們在車站前面見。) | 1. 等一下請幫我換房間。 (等一下請幫我換房間。) [wrong_scenario_service] - feedback: 這不符合目前的朋友情境。<br>2. 你今天一定要跟我來。 (你今天一定要跟我來。) [too_pressuring] - feedback: 這樣對朋友來說太強硬。 | 確認見面地點。 |  |
+| t4 | 好，等一下見。 (好，等一下見。) | 好，那等一下見。 (好，那等一下見。) | 1. 等一下請幫我換房間。 (等一下請幫我換房間。) [wrong_scenario_service] - feedback: 這不符合目前的朋友情境。<br>2. 你今天一定要跟我來。 (你今天一定要跟我來。) [too_pressuring] - feedback: 這樣對朋友來說太強硬。 | 用朋友語氣自然收尾。 |  |
 
 ---
 
@@ -535,7 +535,7 @@ This export is for language/content review. It intentionally removes the interac
 - Level: A2
 - Language: Chinese (zh)
 - Scenario ID: a2_lost_item_followup_message
-- Setting: low-risk help message
+- Setting: 客服訊息
 - Source status: candidate_runtime_verified
 - Review state: ai_reviewed
 - Native review: native_pending
@@ -605,7 +605,7 @@ This export is for language/content review. It intentionally removes the interac
 - Level: A2
 - Language: Chinese (zh)
 - Scenario ID: a2_make_simple_plan_sequence
-- Setting: friend chat
+- Setting: 朋友聊天
 - Source status: candidate_runtime_verified
 - Review state: ai_reviewed
 - Native review: native_pending
@@ -622,16 +622,16 @@ This export is for language/content review. It intentionally removes the interac
 - 朋友: 所以先車站，接著公園，對嗎？ (所以先車站，接著公園，對嗎？)
 - 你: 對，先車站，接著公園。 (對，先車站，接著公園。)
 - 朋友: 好，星期六兩點見。 (好，星期六兩點見。)
-- 你: 好，星期六兩點見。 (好，星期六兩點見。)
+- 你: 好，那星期六兩點見。 (好，那星期六兩點見。)
 
 ### Turn Review
 
 | Turn | NPC line | Correct learner line | Distractors / feedback | Friend hint | Formula |
 | :--- | :--- | :--- | :--- | :--- | :--- |
-| t1 | 我們先在車站見，好嗎？ (我們先在車站見，好嗎？) | 好，我們先在車站見。 (好，我們先在車站見。) | 1. 好，請先退款給我。 (好，請先退款給我。) [wrong_scenario_refund] - feedback: 這不符合目前的朋友情境。<br>2. 不要，絕對不要。 (不要，絕對不要。) [too_blunt] - feedback: 這樣對朋友來說太強硬。 | Keep the plan to two simple steps. |  |
-| t2 | 接著去公園嗎？ (接著去公園嗎？) | 好，接著走去公園。 (好，接著走去公園。) | 1. 好，請先退款給我。 (好，請先退款給我。) [wrong_scenario_refund] - feedback: 這不符合目前的朋友情境。<br>2. 不要，絕對不要。 (不要，絕對不要。) [too_blunt] - feedback: 這樣對朋友來說太強硬。 | Keep the plan to two simple steps. |  |
-| t3 | 所以先車站，接著公園，對嗎？ (所以先車站，接著公園，對嗎？) | 對，先車站，接著公園。 (對，先車站，接著公園。) | 1. 好，請先退款給我。 (好，請先退款給我。) [wrong_scenario_refund] - feedback: 這不符合目前的朋友情境。<br>2. 不要，絕對不要。 (不要，絕對不要。) [too_blunt] - feedback: 這樣對朋友來說太強硬。 | Keep the plan to two simple steps. |  |
-| t4 | 好，星期六兩點見。 (好，星期六兩點見。) | 好，星期六兩點見。 (好，星期六兩點見。) | 1. 好，請先退款給我。 (好，請先退款給我。) [wrong_scenario_refund] - feedback: 這不符合目前的朋友情境。<br>2. 不要，絕對不要。 (不要，絕對不要。) [too_blunt] - feedback: 這樣對朋友來說太強硬。 | Keep the plan to two simple steps. |  |
+| t1 | 我們先在車站見，好嗎？ (我們先在車站見，好嗎？) | 好，我們先在車站見。 (好，我們先在車站見。) | 1. 好，請先退款給我。 (好，請先退款給我。) [wrong_scenario_refund] - feedback: 這不符合目前的朋友情境。<br>2. 不要，絕對不要。 (不要，絕對不要。) [too_blunt] - feedback: 這樣對朋友來說太強硬。 | 把計畫維持在兩個簡單步驟。 |  |
+| t2 | 接著去公園嗎？ (接著去公園嗎？) | 好，接著走去公園。 (好，接著走去公園。) | 1. 好，請先退款給我。 (好，請先退款給我。) [wrong_scenario_refund] - feedback: 這不符合目前的朋友情境。<br>2. 不要，絕對不要。 (不要，絕對不要。) [too_blunt] - feedback: 這樣對朋友來說太強硬。 | 把計畫維持在兩個簡單步驟。 |  |
+| t3 | 所以先車站，接著公園，對嗎？ (所以先車站，接著公園，對嗎？) | 對，先車站，接著公園。 (對，先車站，接著公園。) | 1. 好，請先退款給我。 (好，請先退款給我。) [wrong_scenario_refund] - feedback: 這不符合目前的朋友情境。<br>2. 不要，絕對不要。 (不要，絕對不要。) [too_blunt] - feedback: 這樣對朋友來說太強硬。 | 把計畫維持在兩個簡單步驟。 |  |
+| t4 | 好，星期六兩點見。 (好，星期六兩點見。) | 好，那星期六兩點見。 (好，那星期六兩點見。) | 1. 好，請先退款給我。 (好，請先退款給我。) [wrong_scenario_refund] - feedback: 這不符合目前的朋友情境。<br>2. 不要，絕對不要。 (不要，絕對不要。) [too_blunt] - feedback: 這樣對朋友來說太強硬。 | 把計畫維持在兩個簡單步驟。 |  |
 
 ---
 

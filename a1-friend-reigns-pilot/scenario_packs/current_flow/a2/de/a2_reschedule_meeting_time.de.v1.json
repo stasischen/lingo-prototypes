@@ -209,9 +209,9 @@
         "choices": [
           {
             "id": "r4a",
-            "surface": "Okay, bis später.",
-            "translation": "好，晚點見。",
-            "speak": "Okay, bis später."
+            "surface": "Alles klar, bis später.",
+            "translation": "Alles klar, bis später.",
+            "speak": "Alles klar, bis später."
           },
           {
             "id": "r4b",
@@ -244,7 +244,7 @@
     "Entschuldige, können wir die Zeit ändern?",
     "Können wir uns um vier treffen?",
     "Super, dann bis vier.",
-    "Okay, bis später."
+    "Alles klar, bis später."
   ],
   "formula_moments": [
     {

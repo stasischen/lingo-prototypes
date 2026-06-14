@@ -539,9 +539,11 @@
     function buildRounds(pack) {
       return pack.turns.map((turn) => {
         const correctId = turn.reply_set.correct;
+        const speaker = turn.speaker || (turn.learning_role === 'production_target' ? 'learner' : 'npc');
         return {
           id: turn.turn_id,
           act: turn.act,
+          speaker,
           learningRole: turn.learning_role,
           staffKo: turn.surface,
           staffZh: turn.translation,
@@ -616,7 +618,7 @@
       roundCommitted = false;
       document.getElementById('roundProgress').textContent = `${roundIndex + 1} / ${rounds.length}`;
       let addedStaff = false;
-      if (!transcript.some((turn) => turn.round === roundIndex && turn.kind === 'staff')) {
+      if (round.speaker !== 'learner' && !transcript.some((turn) => turn.round === roundIndex && turn.kind === 'staff')) {
         transcript.push({ round: roundIndex, kind: 'staff', role: npcLabel(), ko: round.staffKo, zh: round.staffZh, speak: round.staffSpeak || round.staffKo });
         addedStaff = true;
         if (round.inlineExplain) {
@@ -628,6 +630,14 @@
             formula: round.inlineExplain
           });
         }
+      } else if (round.speaker === 'learner' && round.inlineExplain && !transcript.some((turn) => turn.round === roundIndex && turn.kind === 'friend')) {
+        transcript.push({
+          round: roundIndex,
+          kind: 'friend',
+          role: 'Friend',
+          ko: round.inlineExplain.explain || round.inlineExplain.title,
+          formula: round.inlineExplain
+        });
       }
       friendText.textContent = showHints ? round.hint : supportText();
       const feedback = document.getElementById('dialogueFeedback');

@@ -500,7 +500,7 @@ This export is for language/content review. It intentionally removes the interac
 - Level: A2
 - Language: Korean (ko)
 - Scenario ID: a2_invite_friend_activity
-- Setting: 친구와 메시지 후 통화
+- Setting: 친구와 메시지
 - Source status: candidate_runtime_verified
 - Review state: ai_reviewed
 - Native review: native_pending
@@ -511,22 +511,22 @@ This export is for language/content review. It intentionally removes the interac
 ### Clean Dialogue Path
 
 - 친구: 오늘 오후에 같이 산책할래요? (今天下午要一起散步嗎？)
-- 你: 오늘 오후에 같이 산책할래요? (今天下午要一起散步嗎？)
+- 你: 좋아요. 같이 산책해요. (좋아요. 같이 산책해요.)
 - 친구: 좋아요. 몇 시에 만날까요? (好啊。幾點見？)
 - 你: 세 시쯤 어때요? (三點左右怎麼樣？)
 - 친구: 그럼 카페 앞에서 만나요? (那在咖啡店前面見嗎？)
 - 你: 네, 카페 앞에서 만나요. (好，在咖啡店前面見。)
 - 친구: 좋아요. 이따 봐요. (好，等一下見。)
-- 你: 좋아요. 이따 봐요. (好，等一下見。)
+- 你: 네, 이따 봐요. (네, 이따 봐요.)
 
 ### Turn Review
 
 | Turn | NPC line | Correct learner line | Distractors / feedback | Friend hint | Formula |
 | :--- | :--- | :--- | :--- | :--- | :--- |
-| t1 | 오늘 오후에 같이 산책할래요? (今天下午要一起散步嗎？) | 오늘 오후에 같이 산책할래요? (今天下午要一起散步嗎？) | 1. 오늘 오후에 방을 바꿔 주세요. (今天下午請幫我換房間。) [wrong_scenario_service] - feedback: 호텔 서비스 요청이라 친구 초대가 아니에요.<br>2. 오늘 꼭 와야 해요. (你今天一定要來。) [too_pressuring] - feedback: 친구에게 부담을 주는 말이에요. | 친구에게 부담 없는 활동을 제안하세요. |  |
-| t2 | 좋아요. 몇 시에 만날까요? (好啊。幾點見？) | 세 시쯤 어때요? (三點左右怎麼樣？) | 1. 어제 세 시에 갔어요. (我昨天三點去了。) [wrong_time_past] - feedback: 지금은 약속 시간을 정하는 중이에요.<br>2. 얼마예요? (多少錢？) [wrong_function_price] - feedback: 가격을 묻는 상황이 아니에요. | 친구가 시간을 묻고 있어요. 간단한 시간을 제안하세요. |  |
+| t1 | 오늘 오후에 같이 산책할래요? (今天下午要一起散步嗎？) | 좋아요. 같이 산책해요. (좋아요. 같이 산책해요.) | 1. 오늘 오후에 방을 바꿔 주세요. (今天下午請幫我換房間。) [wrong_scenario_service] - feedback: 호텔 서비스 요청이라 친구 초대가 아니에요.<br>2. 오늘 꼭 와야 해요. (你今天一定要來。) [too_pressuring] - feedback: 친구에게 부담을 주는 말이에요. | 친구의 제안에 자연스럽게 답하세요. |  |
+| t2 | 좋아요. 몇 시에 만날까요? (好啊。幾點見？) | 세 시쯤 어때요? (三點左右怎麼樣？) | 1. 어제 세 시에 갔어요. (我昨天三點去了。) [wrong_time_past] - feedback: 지금은 약속 시간을 정하는 중이에요.<br>2. 얼마예요? (多少錢？) [wrong_function_price] - feedback: 가격을 묻는 상황이 아니에요. | 간단한 시간을 제안하세요. |  |
 | t3 | 그럼 카페 앞에서 만나요? (那在咖啡店前面見嗎？) | 네, 카페 앞에서 만나요. (好，在咖啡店前面見。) | 1. 네, 기차를 갈아타요. (好，換火車。) [wrong_scenario_transport] - feedback: 교통 환승 이야기가 아니에요.<br>2. 아니요, 환불해 주세요. (不，請退款。) [wrong_scenario_refund] - feedback: 환불은 이 친구 약속 상황 밖이에요. | 만날 장소를 확인하세요. |  |
-| t4 | 좋아요. 이따 봐요. (好，等一下見。) | 좋아요. 이따 봐요. (好，等一下見。) | 1. 죄송하지만 예약을 취소할게요. (不好意思，我要取消預約。) [wrong_register_service] - feedback: 예약 취소 표현이라 친구 약속 마무리에 맞지 않아요.<br>2. 이건 너무 비싸요. (這太貴了。) [wrong_detail_price] - feedback: 가격 이야기는 나오지 않았어요. | 약속이 정해졌어요. 따뜻하게 마무리하세요. |  |
+| t4 | 좋아요. 이따 봐요. (好，等一下見。) | 네, 이따 봐요. (네, 이따 봐요.) | 1. 죄송하지만 예약을 취소할게요. (不好意思，我要取消預約。) [wrong_register_service] - feedback: 예약 취소 표현이라 친구 약속 마무리에 맞지 않아요.<br>2. 이건 너무 비싸요. (這太貴了。) [wrong_detail_price] - feedback: 가격 이야기는 나오지 않았어요. | 약속을 따뜻하게 마무리하세요. |  |
 
 ---
 

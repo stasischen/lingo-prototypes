@@ -2,7 +2,7 @@
   "schema_version": "scenario_pack.v1",
   "scenario_id": "a2_app_booking_confirmation",
   "title": "Eine App-Buchung Bestätigen",
-  "setting_label": "low-risk help message",
+  "setting_label": "Hilfenachricht",
   "wrap_title": "Eine App-Buchung Bestätigen",
   "wrap_friend": "Gut. Du hast eine risikoarme digitale oder Formular-Hilfe mit nur den nötigen Details erledigt.",
   "language": "de",

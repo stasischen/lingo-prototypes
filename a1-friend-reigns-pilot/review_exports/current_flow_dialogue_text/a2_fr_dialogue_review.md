@@ -10,7 +10,7 @@ This export is for language/content review. It intentionally removes the interac
 - Level: A2
 - Language: French (fr)
 - Scenario ID: a2_app_booking_confirmation
-- Setting: low-risk help message
+- Setting: message d’aide
 - Source status: candidate_runtime_verified
 - Review state: ai_reviewed
 - Native review: native_pending
@@ -185,7 +185,7 @@ This export is for language/content review. It intentionally removes the interac
 - Level: A2
 - Language: French (fr)
 - Scenario ID: a2_change_delivery_pickup_time
-- Setting: low-risk help message
+- Setting: message d’aide
 - Source status: candidate_runtime_verified
 - Review state: ai_reviewed
 - Native review: native_pending
@@ -325,7 +325,7 @@ This export is for language/content review. It intentionally removes the interac
 - Level: A2
 - Language: French (fr)
 - Scenario ID: a2_decline_with_reason
-- Setting: friend chat
+- Setting: message avec un ami
 - Source status: candidate_runtime_verified
 - Review state: ai_reviewed
 - Native review: native_pending
@@ -360,7 +360,7 @@ This export is for language/content review. It intentionally removes the interac
 - Level: A2
 - Language: French (fr)
 - Scenario ID: a2_describe_weekend_activity
-- Setting: friend chat
+- Setting: message avec un ami
 - Source status: candidate_runtime_verified
 - Review state: ai_reviewed
 - Native review: native_pending
@@ -465,7 +465,7 @@ This export is for language/content review. It intentionally removes the interac
 - Level: A2
 - Language: French (fr)
 - Scenario ID: a2_fill_simple_form_help
-- Setting: low-risk help message
+- Setting: message d’aide
 - Source status: candidate_runtime_verified
 - Review state: ai_reviewed
 - Native review: native_pending
@@ -500,7 +500,7 @@ This export is for language/content review. It intentionally removes the interac
 - Level: A2
 - Language: French (fr)
 - Scenario ID: a2_invite_friend_activity
-- Setting: friend chat
+- Setting: message avec un ami
 - Source status: candidate_runtime_verified
 - Review state: ai_reviewed
 - Native review: native_pending
@@ -511,7 +511,7 @@ This export is for language/content review. It intentionally removes the interac
 ### Clean Dialogue Path
 
 - ami: Tu veux prendre un café plus tard ? (等一下要一起喝咖啡嗎？)
-- 你: Tu veux prendre un café plus tard ? (等一下要一起喝咖啡嗎？)
+- 你: Oui, bonne idée. (Oui, bonne idée.)
 - ami: Bien sûr. À quelle heure ? (好啊。幾點？)
 - 你: Vers trois heures, ça te va ? (三點左右可以嗎？)
 - ami: On se retrouve devant la gare ? (要在車站前面見嗎？)
@@ -523,10 +523,10 @@ This export is for language/content review. It intentionally removes the interac
 
 | Turn | NPC line | Correct learner line | Distractors / feedback | Friend hint | Formula |
 | :--- | :--- | :--- | :--- | :--- | :--- |
-| t1 | Tu veux prendre un café plus tard ? (等一下要一起喝咖啡嗎？) | Tu veux prendre un café plus tard ? (等一下要一起喝咖啡嗎？) | 1. Change ma chambre plus tard, s’il vous plaît. (等一下請幫我換房間。) [wrong_scenario_service] - feedback: Cela ne correspond pas à cette situation avec un ami.<br>2. Tu dois venir avec moi aujourd’hui. (你今天一定要跟我來。) [too_pressuring] - feedback: C’est trop fort pour parler à un ami. | Respond naturally to the friend plan. |  |
-| t2 | Bien sûr. À quelle heure ? (好啊。幾點？) | Vers trois heures, ça te va ? (三點左右可以嗎？) | 1. Change ma chambre plus tard, s’il vous plaît. (等一下請幫我換房間。) [wrong_scenario_service] - feedback: Cela ne correspond pas à cette situation avec un ami.<br>2. Tu dois venir avec moi aujourd’hui. (你今天一定要跟我來。) [too_pressuring] - feedback: C’est trop fort pour parler à un ami. | Respond naturally to the friend plan. |  |
-| t3 | On se retrouve devant la gare ? (要在車站前面見嗎？) | Oui, on se retrouve devant la gare. (好，我們在車站前面見。) | 1. Change ma chambre plus tard, s’il vous plaît. (等一下請幫我換房間。) [wrong_scenario_service] - feedback: Cela ne correspond pas à cette situation avec un ami.<br>2. Tu dois venir avec moi aujourd’hui. (你今天一定要跟我來。) [too_pressuring] - feedback: C’est trop fort pour parler à un ami. | Respond naturally to the friend plan. |  |
-| t4 | Parfait. À tout à l’heure. (好，等一下見。) | Super. À tout à l’heure. (很好，等一下見。) | 1. Change ma chambre plus tard, s’il vous plaît. (等一下請幫我換房間。) [wrong_scenario_service] - feedback: Cela ne correspond pas à cette situation avec un ami.<br>2. Tu dois venir avec moi aujourd’hui. (你今天一定要跟我來。) [too_pressuring] - feedback: C’est trop fort pour parler à un ami. | Respond naturally to the friend plan. |  |
+| t1 | Tu veux prendre un café plus tard ? (等一下要一起喝咖啡嗎？) | Oui, bonne idée. (Oui, bonne idée.) | 1. Change ma chambre plus tard, s’il vous plaît. (等一下請幫我換房間。) [wrong_scenario_service] - feedback: Cela ne correspond pas à cette situation avec un ami.<br>2. Tu dois venir avec moi aujourd’hui. (你今天一定要跟我來。) [too_pressuring] - feedback: C’est trop fort pour parler à un ami. | Accepte l’invitation naturellement. |  |
+| t2 | Bien sûr. À quelle heure ? (好啊。幾點？) | Vers trois heures, ça te va ? (三點左右可以嗎？) | 1. Change ma chambre plus tard, s’il vous plaît. (等一下請幫我換房間。) [wrong_scenario_service] - feedback: Cela ne correspond pas à cette situation avec un ami.<br>2. Tu dois venir avec moi aujourd’hui. (你今天一定要跟我來。) [too_pressuring] - feedback: C’est trop fort pour parler à un ami. | Propose une heure simple. |  |
+| t3 | On se retrouve devant la gare ? (要在車站前面見嗎？) | Oui, on se retrouve devant la gare. (好，我們在車站前面見。) | 1. Change ma chambre plus tard, s’il vous plaît. (等一下請幫我換房間。) [wrong_scenario_service] - feedback: Cela ne correspond pas à cette situation avec un ami.<br>2. Tu dois venir avec moi aujourd’hui. (你今天一定要跟我來。) [too_pressuring] - feedback: C’est trop fort pour parler à un ami. | Confirme le lieu du rendez-vous. |  |
+| t4 | Parfait. À tout à l’heure. (好，等一下見。) | Super. À tout à l’heure. (很好，等一下見。) | 1. Change ma chambre plus tard, s’il vous plaît. (等一下請幫我換房間。) [wrong_scenario_service] - feedback: Cela ne correspond pas à cette situation avec un ami.<br>2. Tu dois venir avec moi aujourd’hui. (你今天一定要跟我來。) [too_pressuring] - feedback: C’est trop fort pour parler à un ami. | Termine l’échange amicalement. |  |
 
 ---
 
@@ -535,7 +535,7 @@ This export is for language/content review. It intentionally removes the interac
 - Level: A2
 - Language: French (fr)
 - Scenario ID: a2_lost_item_followup_message
-- Setting: low-risk help message
+- Setting: message d’aide
 - Source status: candidate_runtime_verified
 - Review state: ai_reviewed
 - Native review: native_pending
@@ -605,7 +605,7 @@ This export is for language/content review. It intentionally removes the interac
 - Level: A2
 - Language: French (fr)
 - Scenario ID: a2_make_simple_plan_sequence
-- Setting: friend chat
+- Setting: message avec un ami
 - Source status: candidate_runtime_verified
 - Review state: ai_reviewed
 - Native review: native_pending
@@ -628,10 +628,10 @@ This export is for language/content review. It intentionally removes the interac
 
 | Turn | NPC line | Correct learner line | Distractors / feedback | Friend hint | Formula |
 | :--- | :--- | :--- | :--- | :--- | :--- |
-| t1 | On se retrouve d’abord à la gare ? (我們先在車站見，好嗎？) | Oui, on se retrouve d’abord à la gare. (好，我們先在車站見。) | 1. Oui, rembourse-moi d’abord. (好，先退款給我。) [wrong_scenario_refund] - feedback: Cela ne correspond pas à cette situation avec un ami.<br>2. Non, absolument pas. (不，絕對不要。) [too_blunt] - feedback: C’est trop fort pour parler à un ami. | Keep the plan to two simple steps. |  |
-| t2 | Ensuite, on va au parc ? (接著去公園嗎？) | D’accord. Ensuite, on marche jusqu’au parc. (好，接著走去公園。) | 1. Oui, rembourse-moi d’abord. (好，先退款給我。) [wrong_scenario_refund] - feedback: Cela ne correspond pas à cette situation avec un ami.<br>2. Non, absolument pas. (不，絕對不要。) [too_blunt] - feedback: C’est trop fort pour parler à un ami. | Keep the plan to two simple steps. |  |
-| t3 | Donc, d’abord la gare, puis le parc ? (所以先車站，接著公園，對嗎？) | Oui, d’abord la gare, puis le parc. (對，先車站，接著公園。) | 1. Oui, rembourse-moi d’abord. (好，先退款給我。) [wrong_scenario_refund] - feedback: Cela ne correspond pas à cette situation avec un ami.<br>2. Non, absolument pas. (不，絕對不要。) [too_blunt] - feedback: C’est trop fort pour parler à un ami. | Keep the plan to two simple steps. |  |
-| t4 | Parfait. À samedi à deux heures. (好，星期六兩點見。) | D’accord, à samedi à deux heures. (好，星期六兩點見。) | 1. Oui, rembourse-moi d’abord. (好，先退款給我。) [wrong_scenario_refund] - feedback: Cela ne correspond pas à cette situation avec un ami.<br>2. Non, absolument pas. (不，絕對不要。) [too_blunt] - feedback: C’est trop fort pour parler à un ami. | Keep the plan to two simple steps. |  |
+| t1 | On se retrouve d’abord à la gare ? (我們先在車站見，好嗎？) | Oui, on se retrouve d’abord à la gare. (好，我們先在車站見。) | 1. Oui, rembourse-moi d’abord. (好，先退款給我。) [wrong_scenario_refund] - feedback: Cela ne correspond pas à cette situation avec un ami.<br>2. Non, absolument pas. (不，絕對不要。) [too_blunt] - feedback: C’est trop fort pour parler à un ami. | Garde le plan en deux étapes simples. |  |
+| t2 | Ensuite, on va au parc ? (接著去公園嗎？) | D’accord. Ensuite, on marche jusqu’au parc. (好，接著走去公園。) | 1. Oui, rembourse-moi d’abord. (好，先退款給我。) [wrong_scenario_refund] - feedback: Cela ne correspond pas à cette situation avec un ami.<br>2. Non, absolument pas. (不，絕對不要。) [too_blunt] - feedback: C’est trop fort pour parler à un ami. | Garde le plan en deux étapes simples. |  |
+| t3 | Donc, d’abord la gare, puis le parc ? (所以先車站，接著公園，對嗎？) | Oui, d’abord la gare, puis le parc. (對，先車站，接著公園。) | 1. Oui, rembourse-moi d’abord. (好，先退款給我。) [wrong_scenario_refund] - feedback: Cela ne correspond pas à cette situation avec un ami.<br>2. Non, absolument pas. (不，絕對不要。) [too_blunt] - feedback: C’est trop fort pour parler à un ami. | Garde le plan en deux étapes simples. |  |
+| t4 | Parfait. À samedi à deux heures. (好，星期六兩點見。) | D’accord, à samedi à deux heures. (好，星期六兩點見。) | 1. Oui, rembourse-moi d’abord. (好，先退款給我。) [wrong_scenario_refund] - feedback: Cela ne correspond pas à cette situation avec un ami.<br>2. Non, absolument pas. (不，絕對不要。) [too_blunt] - feedback: C’est trop fort pour parler à un ami. | Garde le plan en deux étapes simples. |  |
 
 ---
 

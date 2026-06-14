@@ -63,16 +63,16 @@
       "speak": "Do you want to get coffee later?",
       "translation": "等一下要一起喝咖啡嗎？",
       "friend": {
-        "hint": "Invite your friend to a simple activity."
+        "hint": "Accept the invitation naturally."
       },
       "reply_set": {
         "correct": "r1a",
         "choices": [
           {
             "id": "r1a",
-            "surface": "Do you want to get coffee later?",
-            "translation": "等一下要一起喝咖啡嗎？",
-            "speak": "Do you want to get coffee later?",
+            "surface": "Yes, coffee sounds good.",
+            "translation": "Yes, coffee sounds good.",
+            "speak": "Yes, coffee sounds good.",
             "learning_role": "production_target"
           },
           {
@@ -205,9 +205,9 @@
         "choices": [
           {
             "id": "r4a",
-            "surface": "Great. See you later.",
-            "translation": "很好。等一下見。",
-            "speak": "Great. See you later.",
+            "surface": "See you then.",
+            "translation": "See you then.",
+            "speak": "See you then.",
             "learning_role": "production_target"
           },
           {
@@ -238,10 +238,10 @@
   ],
   "feedback": "Distractors test social register, time/function/domain contrast, and A2 boundary without offering valid alternate answers.",
   "tts_segments": [
-    "Do you want to get coffee later?",
+    "Yes, coffee sounds good.",
     "How about three o’clock?",
     "Yes, let’s meet in front of the station.",
-    "Great. See you later."
+    "See you then."
   ],
   "formula_moments": [
     {

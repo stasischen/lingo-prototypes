@@ -2,7 +2,7 @@
   "schema_version": "scenario_pack.v1",
   "scenario_id": "a2_lost_item_followup_message",
   "title": "Follow Up About a Lost Item",
-  "setting_label": "low-risk help message",
+  "setting_label": "help message",
   "wrap_title": "Follow Up About a Lost Item",
   "wrap_friend": "Good. You handled a low-risk digital or document-help task with only the needed detail.",
   "language": "en",

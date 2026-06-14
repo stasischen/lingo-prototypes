@@ -10,7 +10,7 @@ This export is for language/content review. It intentionally removes the interac
 - Level: A2
 - Language: Thai (th)
 - Scenario ID: a2_app_booking_confirmation
-- Setting: low-risk help message
+- Setting: ข้อความช่วยเหลือ
 - Source status: candidate_runtime_verified
 - Review state: ai_reviewed
 - Native review: native_pending
@@ -185,7 +185,7 @@ This export is for language/content review. It intentionally removes the interac
 - Level: A2
 - Language: Thai (th)
 - Scenario ID: a2_change_delivery_pickup_time
-- Setting: low-risk help message
+- Setting: ข้อความช่วยเหลือ
 - Source status: candidate_runtime_verified
 - Review state: ai_reviewed
 - Native review: native_pending
@@ -465,7 +465,7 @@ This export is for language/content review. It intentionally removes the interac
 - Level: A2
 - Language: Thai (th)
 - Scenario ID: a2_fill_simple_form_help
-- Setting: low-risk help message
+- Setting: ข้อความช่วยเหลือ
 - Source status: candidate_runtime_verified
 - Review state: ai_reviewed
 - Native review: native_pending
@@ -500,7 +500,7 @@ This export is for language/content review. It intentionally removes the interac
 - Level: A2
 - Language: Thai (th)
 - Scenario ID: a2_invite_friend_activity
-- Setting: คุยกับเพื่อนทางแชต
+- Setting: แชตกับเพื่อน
 - Source status: candidate_runtime_verified
 - Review state: ai_reviewed
 - Native review: native_pending
@@ -511,22 +511,22 @@ This export is for language/content review. It intentionally removes the interac
 ### Clean Dialogue Path
 
 - เพื่อน: บ่ายนี้ไปดื่มกาแฟด้วยกันไหม (今天下午要一起喝咖啡嗎？)
-- 你: บ่ายนี้ไปดื่มกาแฟด้วยกันไหม (今天下午要一起喝咖啡嗎？)
+- 你: ได้สิ ไปดื่มกาแฟกัน (ได้สิ ไปดื่มกาแฟกัน)
 - เพื่อน: ได้สิ กี่โมงดี (好啊。幾點好？)
 - 你: ประมาณบ่ายสามดีไหม (三點左右好嗎？)
 - เพื่อน: เจอกันหน้าสถานีไหม (在車站前面見嗎？)
 - 你: ได้ เจอกันหน้าสถานี (好，在車站前面見。)
 - เพื่อน: ดีเลย เดี๋ยวเจอกันนะ (好，等一下見。)
-- 你: ดีเลย เดี๋ยวเจอกันนะ (好，等一下見。)
+- 你: ไว้เจอกันนะ (ไว้เจอกันนะ)
 
 ### Turn Review
 
 | Turn | NPC line | Correct learner line | Distractors / feedback | Friend hint | Formula |
 | :--- | :--- | :--- | :--- | :--- | :--- |
-| t1 | บ่ายนี้ไปดื่มกาแฟด้วยกันไหม (今天下午要一起喝咖啡嗎？) | บ่ายนี้ไปดื่มกาแฟด้วยกันไหม (今天下午要一起喝咖啡嗎？) | 1. บ่ายนี้ช่วยเปลี่ยนห้องให้หน่อยค่ะ (今天下午請幫我換房間。) [wrong_scenario_service] - feedback: นี่เป็นคำขอบริการ ไม่ใช่คำชวนเพื่อนค่ะ<br>2. วันนี้ต้องมากับฉันนะ (今天一定要跟我來。) [too_pressuring] - feedback: ประโยคนี้กดดันเพื่อนเกินไปค่ะ | ชวนเพื่อนไปกิจกรรมง่าย ๆ ค่ะ |  |
+| t1 | บ่ายนี้ไปดื่มกาแฟด้วยกันไหม (今天下午要一起喝咖啡嗎？) | ได้สิ ไปดื่มกาแฟกัน (ได้สิ ไปดื่มกาแฟกัน) | 1. บ่ายนี้ช่วยเปลี่ยนห้องให้หน่อยค่ะ (今天下午請幫我換房間。) [wrong_scenario_service] - feedback: นี่เป็นคำขอบริการ ไม่ใช่คำชวนเพื่อนค่ะ<br>2. วันนี้ต้องมากับฉันนะ (今天一定要跟我來。) [too_pressuring] - feedback: ประโยคนี้กดดันเพื่อนเกินไปค่ะ | ตอบรับคำชวนของเพื่อนแบบเป็นธรรมชาติค่ะ |  |
 | t2 | ได้สิ กี่โมงดี (好啊。幾點好？) | ประมาณบ่ายสามดีไหม (三點左右好嗎？) | 1. เมื่อวานไปตอนบ่ายสาม (昨天三點去了。) [wrong_time_past] - feedback: ตอนนี้กำลังนัดเวลาข้างหน้าค่ะ<br>2. ราคาเท่าไรคะ (多少錢？) [wrong_function_price] - feedback: นี่ไม่ใช่คำถามเรื่องราคาค่ะ | เสนอเวลาง่าย ๆ ค่ะ |  |
 | t3 | เจอกันหน้าสถานีไหม (在車站前面見嗎？) | ได้ เจอกันหน้าสถานี (好，在車站前面見。) | 1. ได้ เปลี่ยนรถไฟกัน (好，換火車。) [wrong_scenario_transport] - feedback: นี่ไม่ใช่แผนเปลี่ยนรถค่ะ<br>2. ไม่ค่ะ ขอคืนเงิน (不，請退款。) [wrong_scenario_refund] - feedback: การคืนเงินอยู่นอกสถานการณ์นัดเพื่อนค่ะ | ยืนยันสถานที่นัดค่ะ |  |
-| t4 | ดีเลย เดี๋ยวเจอกันนะ (好，等一下見。) | ดีเลย เดี๋ยวเจอกันนะ (好，等一下見。) | 1. ฉันต้องยกเลิกการจองค่ะ (我要取消預約。) [wrong_register_service] - feedback: เหมือนสถานการณ์จองบริการ ไม่ใช่นัดเพื่อนค่ะ<br>2. แพงเกินไปค่ะ (太貴了。) [wrong_detail_price] - feedback: ยังไม่ได้คุยเรื่องราคาค่ะ | ปิดแผนอย่างอบอุ่นค่ะ |  |
+| t4 | ดีเลย เดี๋ยวเจอกันนะ (好，等一下見。) | ไว้เจอกันนะ (ไว้เจอกันนะ) | 1. ฉันต้องยกเลิกการจองค่ะ (我要取消預約。) [wrong_register_service] - feedback: เหมือนสถานการณ์จองบริการ ไม่ใช่นัดเพื่อนค่ะ<br>2. แพงเกินไปค่ะ (太貴了。) [wrong_detail_price] - feedback: ยังไม่ได้คุยเรื่องราคาค่ะ | ปิดแผนแบบเป็นกันเองค่ะ |  |
 
 ---
 
@@ -535,7 +535,7 @@ This export is for language/content review. It intentionally removes the interac
 - Level: A2
 - Language: Thai (th)
 - Scenario ID: a2_lost_item_followup_message
-- Setting: low-risk help message
+- Setting: ข้อความช่วยเหลือ
 - Source status: candidate_runtime_verified
 - Review state: ai_reviewed
 - Native review: native_pending

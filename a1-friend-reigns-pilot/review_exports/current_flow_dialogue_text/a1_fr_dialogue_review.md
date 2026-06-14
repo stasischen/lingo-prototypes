@@ -92,7 +92,6 @@ This export is for language/content review. It intentionally removes the interac
 - ami: Oui, je suis prêt. (對，我準備好了。)
 - amie: Parfait. On va au café. (很好。我們去咖啡店。)
 - ami: Oui, on y va. (好，走吧。)
-- amie: Oui, on y va. (好，走吧。)
 - ami: Oui, on y va. (好，走吧。)
 - amie: Cool. (好。)
 
@@ -462,7 +461,6 @@ This export is for language/content review. It intentionally removes the interac
 - client: D'accord, je le prends. (好，我買這個。)
 - vendeur: Parfait. Ça fait cinq euros. (很好。總共五歐元。)
 - client: Merci. (謝謝。)
-- vendeur: Merci. (謝謝。)
 - client: Merci. (謝謝。)
 - vendeur: Merci à vous. (也謝謝您。)
 
