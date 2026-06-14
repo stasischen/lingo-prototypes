@@ -60,7 +60,6 @@ This export is for language/content review. It intentionally removes the interac
 - คุณ: กลับบ้านครับ ขอบคุณครับ (外帶，謝謝。)
 - พนักงาน: โอเค เรียบร้อยครับ (好的，完成了。)
 - คุณ: ขอบคุณครับ (謝謝。)
-- พนักงาน: โอเค เรียบร้อยครับ (好的，完成了。)
 
 ### Turn Review
 
@@ -92,8 +91,6 @@ This export is for language/content review. It intentionally removes the interac
 - คุณ: ใช่ ไปกัน (對，走吧。)
 - เพื่อน: พร้อมหรือยัง (準備好了嗎？)
 - คุณ: พร้อมแล้ว ไปกัน (準備好了，走吧。)
-- คุณ: พร้อมแล้ว ไปกัน (準備好了，走吧。)
-- เพื่อน: คุณเจอเพื่อนแล้ว และพร้อมไปต่อ (你見到朋友，也準備好出發了。)
 
 ### Turn Review
 
@@ -102,7 +99,6 @@ This export is for language/content review. It intentionally removes the interac
 | t1 | มาแล้วเหรอ (你來了啊？) | หวัดดี ดีใจที่เจอนะ (嗨，很高興見到你。) | 1. ขอเมนูค่ะ (請給我菜單。) [service_request_to_friend] - feedback: 這像是在跟店員說話，不是跟朋友打招呼。<br>2. อันนี้เท่าไหร่คะ (這個多少錢？) [shopping_price_in_friend_meeting] - feedback: 這是購物問題。現在是在和朋友碰面。 | 朋友用輕鬆語氣打招呼。 |  |
 | t2 | เราไปดูหนังกันใช่ไหม (我們要去看電影，對嗎？) | ใช่ ไปกัน (對，走吧。) | 1. จ่ายบัตรค่ะ (刷卡。) [payment_answer_to_plan_check] - feedback: 這是付款回答，不是在確認朋友的計畫。<br>2. สถานีอยู่ที่ไหนคะ (車站在哪裡？) [directions_instead_of_plan_confirmation] - feedback: 這是在問路。朋友問的是計畫。 | 朋友在確認計畫。用ใช่簡短回答。 | ใช่<br>ใช้ตอบยืนยันแผนกับเพื่อนแบบสั้นและธรรมชาติ<br>ใช่ ไปกัน = 對，走吧。 |
 | t3 | พร้อมหรือยัง (準備好了嗎？) | พร้อมแล้ว ไปกัน (準備好了，走吧。) | 1. ยินดีที่ได้รู้จักค่ะ (很高興認識你。) [first_meeting_greeting_for_known_friend] - feedback: 這像第一次見面。這裡是已約好的朋友。<br>2. ขอแซนด์วิชค่ะ (請給我三明治。) [food_order_in_friend_meeting] - feedback: 這是在點餐，不是在回答準備好了。 | 朋友問你準備好了沒。 |  |
-| t4 | พร้อมแล้ว ไปกัน (準備好了，走吧。) | พร้อมแล้ว ไปกัน (準備好了，走吧。) | 1. ยินดีที่ได้รู้จักค่ะ (很高興認識你。) [first_meeting_greeting_for_known_friend] - feedback: 這像第一次見面。這裡是已約好的朋友。<br>2. ขอแซนด์วิชค่ะ (請給我三明治。) [food_order_in_friend_meeting] - feedback: 這是在點餐，不是在回答準備好了。 | 朋友之間可以用พร้อมแล้ว ไปกัน。 |  |
 
 ---
 
@@ -161,7 +157,6 @@ This export is for language/content review. It intentionally removes the interac
 - คุณ: ยินดีที่ได้รู้จักเช่นกันครับ (我也很高興認識你。)
 - เพื่อนใหม่: ดีเลย เริ่มกันเลยนะ (很好，那我們開始吧。)
 - คุณ: ครับ ขอบคุณครับ (好的，謝謝。)
-- เพื่อนใหม่: ดีเลย เริ่มกันเลยนะ (很好，那我們開始吧。)
 
 ### Turn Review
 
@@ -258,7 +253,6 @@ This export is for language/content review. It intentionally removes the interac
 - คุณ: ขอเช็กบิลค่ะ (請結帳。)
 - พนักงาน: จ่ายบัตรหรือเงินสดคะ (刷卡還是現金？)
 - คุณ: จ่ายบัตรค่ะ (刷卡。)
-- คุณ: จ่ายบัตรค่ะ (刷卡。)
 - พนักงาน: เรียบร้อยค่ะ ขอบคุณค่ะ (好了，謝謝。)
 - คุณ: ขอบคุณค่ะ (謝謝。)
 - พนักงาน: คุณจ่ายเงินและปิดบทสนทนาได้สุภาพ (你完成付款並禮貌收尾。)
@@ -269,7 +263,6 @@ This export is for language/content review. It intentionally removes the interac
 | :--- | :--- | :--- | :--- | :--- | :--- |
 | t1 | ขอเช็กบิลค่ะ (請結帳。) | ขอเช็กบิลค่ะ (請結帳。) | 1. ขอกาแฟอีกแก้วค่ะ (請再給我一杯咖啡。) [ordering_more_when_payment_expected] - feedback: 這是在加點。現在目標是結帳。<br>2. อันนี้เท่าไหร่คะ (這個多少錢？) [shop_price_in_restaurant] - feedback: 這是店裡問商品價格，不是餐廳帳單。 | 在餐廳要帳單可用ขอเช็กบิลค่ะ。 | ขอเช็กบิลค่ะ<br>วลีสั้นและธรรมชาติสำหรับขอจ่ายเงินหลังอาหาร<br>ขอเช็กบิลค่ะ = 請結帳。 |
 | t2 | จ่ายบัตรหรือเงินสดคะ (刷卡還是現金？) | จ่ายบัตรค่ะ (刷卡。) | 1. ไม่เอาใบเสร็จค่ะ (不用收據。) [receipt_answer_to_payment_method] - feedback: 這是在回答收據問題。現在店員問的是卡或現金。<br>2. ทานที่นี่ค่ะ (內用。) [dine_in_answer_at_payment] - feedback: 這是點餐時回答內用。現在是在付款。 | 店員問付款方式。選一種回答。 |  |
-| t3 | จ่ายบัตรค่ะ (刷卡。) | จ่ายบัตรค่ะ (刷卡。) | 1. ไม่เอาใบเสร็จค่ะ (不用收據。) [receipt_answer_to_payment_method] - feedback: 這是在回答收據問題。現在店員問的是卡或現金。<br>2. ทานที่นี่ค่ะ (內用。) [dine_in_answer_at_payment] - feedback: 這是點餐時回答內用。現在是在付款。 | 用จ่ายบัตรค่ะ簡短回答。 |  |
 | t4 | เรียบร้อยค่ะ ขอบคุณค่ะ (好了，謝謝。) | ขอบคุณค่ะ (謝謝。) | 1. สถานีอยู่ที่ไหนคะ (車站在哪裡？) [directions_after_payment] - feedback: 這突然換成問路。付款完成時簡短道謝即可。<br>2. ขอแซนด์วิชค่ะ (請給我三明治。) [new_order_after_payment_close] - feedback: 這像重新點餐，不是結帳收尾。 | 付款完成。用謝謝收尾。 |  |
 
 ---
@@ -462,8 +455,6 @@ This export is for language/content review. It intentionally removes the interac
 - คุณ: อันนี้เท่าไหร่คะ (這個多少錢？)
 - พนักงานขาย: ห้าสิบบาทค่ะ (五十泰銖。)
 - คุณ: เอาอันนี้ค่ะ (我要這個。)
-- คุณ: เอาอันนี้ค่ะ (我要這個。)
-- พนักงานขาย: คุณฟังราคาแล้วตอบได้ชัดเจน (你聽懂價格並清楚回應了。)
 
 ### Turn Review
 
@@ -472,7 +463,6 @@ This export is for language/content review. It intentionally removes the interac
 | t1 | สวัสดีค่ะ ดูได้เลยค่ะ (你好，可以慢慢看。) | ขอโทษค่ะ (不好意思。) | 1. สถานีอยู่ที่ไหนคะ (車站在哪裡？) [directions_instead_of_shop_attention] - feedback: 這是在問路。現在是在店裡先叫住店員。<br>2. ขอกาแฟค่ะ (請給我咖啡。) [food_order_in_shop_price_scene] - feedback: 這像是在點飲料，不是在問商品價格。 | 店員在招呼。先用不好意思叫住對方。 | ขอโทษค่ะ<br>ใช้เรียกพนักงานอย่างสุภาพในร้านค้า<br>ขอโทษค่ะ = 不好意思。 |
 | t2 | อันนี้เท่าไหร่คะ (這個多少錢？) | อันนี้เท่าไหร่คะ (這個多少錢？) | 1. จ่ายบัตรได้ไหมคะ (可以刷卡嗎？) [payment_method_before_price] - feedback: 這是在問付款方式。先問價格比較自然。<br>2. เอาสองอันค่ะ (我要兩個。) [quantity_before_price] - feedback: 這是在說數量。現在要問一件商品的價格。 | อันนี้ 指這個；เท่าไหร่คะ 是禮貌問價格。 | อันนี้เท่าไหร่คะ<br>ประโยคสั้นและธรรมชาติสำหรับถามราคาของหนึ่งชิ้น<br>อันนี้เท่าไหร่คะ = 這個多少錢？ |
 | t3 | ห้าสิบบาทค่ะ (五十泰銖。) | เอาอันนี้ค่ะ (我要這個。) | 1. ห้องน้ำอยู่ที่ไหนคะ (洗手間在哪裡？) [directions_after_price] - feedback: 這突然換成問路。聽到價格後要買或道謝離開。<br>2. ขอเช็กบิลค่ะ (請結帳。) [restaurant_bill_in_shop] - feedback: 這是餐廳結帳用語，不是買店裡商品。 | 店員說價格：ห้าสิบบาท。 |  |
-| t4 | เอาอันนี้ค่ะ (我要這個。) | เอาอันนี้ค่ะ (我要這個。) | 1. ห้องน้ำอยู่ที่ไหนคะ (洗手間在哪裡？) [directions_after_price] - feedback: 這突然換成問路。聽到價格後要買或道謝離開。<br>2. ขอเช็กบิลค่ะ (請結帳。) [restaurant_bill_in_shop] - feedback: 這是餐廳結帳用語，不是買店裡商品。 | 要買時，用เอาอันนี้ค่ะ簡短自然。 |  |
 
 ---
 
@@ -664,7 +654,6 @@ This export is for language/content review. It intentionally removes the interac
 - คุณ: นี่ครับ ขอบคุณครับ (給你，謝謝。)
 - เจ้าหน้าที่: นี่ตั๋วครับ ชานชาลาสอง (這是票。二號月台。)
 - คุณ: ขอบคุณครับ (謝謝。)
-- เจ้าหน้าที่: นี่ตั๋วครับ ชานชาลาสอง (這是票。二號月台。)
 
 ### Turn Review
 

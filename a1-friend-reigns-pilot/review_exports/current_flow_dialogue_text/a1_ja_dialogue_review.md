@@ -60,7 +60,6 @@ This export is for language/content review. It intentionally removes the interac
 - あなた: 持ち帰りでお願いします。ありがとうございます。 (外帶，麻煩你。謝謝。)
 - 店員: はい、大丈夫です。 (好的，沒問題。)
 - あなた: ありがとうございます。 (謝謝。)
-- 店員: はい、大丈夫です。 (好的，沒問題。)
 
 ### Turn Review
 
@@ -92,8 +91,6 @@ This export is for language/content review. It intentionally removes the interac
 - あなた: うん、そうだよ。 (嗯，沒錯。)
 - 友だち: もう行ける？ (可以走了嗎？)
 - あなた: うん、行こう。 (嗯，走吧。)
-- あなた: うん、行こう。 (嗯，走吧。)
-- 友だち: 友だちに会って、出発できます。 (你見到朋友，可以出發了。)
 
 ### Turn Review
 
@@ -102,7 +99,6 @@ This export is for language/content review. It intentionally removes the interac
 | t1 | あ、来たね。 (啊，你來了。) | こんにちは。会えてうれしい。 (你好。很高興見到你。) | 1. メニューをください。 (請給我菜單。) [service_request_to_friend] - feedback: 這像是在跟店員說話，不是跟朋友打招呼。<br>2. これはいくらですか。 (這個多少錢？) [shopping_price_in_friend_meeting] - feedback: 這是購物問題。現在是在和朋友碰面。 | 朋友用輕鬆語氣打招呼。回一句嗨和很高興見到你。 |  |
 | t2 | 映画に行くんだよね。 (我們是要去看電影，對吧？) | うん、そうだよ。 (嗯，沒錯。) | 1. カードで払います。 (我刷卡付款。) [payment_answer_to_plan_check] - feedback: 這是付款回答，不是在確認朋友的計畫。<br>2. 駅はどこですか。 (車站在哪裡？) [directions_instead_of_plan_confirmation] - feedback: 這是在問路。朋友問的是今天的計畫。 | 朋友在確認計畫。用そうだよ簡短回答。 | そうだよ<br>友だちとの会話で、予定を短く確認する自然な表現です。<br>うん、そうだよ。 = 嗯，沒錯。 |
 | t3 | もう行ける？ (可以走了嗎？) | うん、行こう。 (嗯，走吧。) | 1. はじめまして、よろしくお願いします。 (初次見面，請多指教。) [first_meeting_greeting_for_known_friend] - feedback: 這像第一次見面。這裡是已約好的朋友。<br>2. サンドイッチをください。 (請給我三明治。) [food_order_in_friend_meeting] - feedback: 這是在點餐，不是在回答準備好了。 | 朋友問你準備好了沒。 |  |
-| t4 | うん、行こう。 (嗯，走吧。) | うん、行こう。 (嗯，走吧。) | 1. はじめまして、よろしくお願いします。 (初次見面，請多指教。) [first_meeting_greeting_for_known_friend] - feedback: 這像第一次見面。這裡是已約好的朋友。<br>2. サンドイッチをください。 (請給我三明治。) [food_order_in_friend_meeting] - feedback: 這是在點餐，不是在回答準備好了。 | 對朋友用行こう簡短自然。 |  |
 
 ---
 
@@ -161,7 +157,6 @@ This export is for language/content review. It intentionally removes the interac
 - あなた: こちらこそ、よろしくお願いします。 (我也請你多指教。)
 - 新しい友だち: では、よろしくお願いします。 (那就請多指教。)
 - あなた: はい、お願いします。 (好的，麻煩你。)
-- 新しい友だち: では、よろしくお願いします。 (那就請多指教。)
 
 ### Turn Review
 
@@ -258,7 +253,6 @@ This export is for language/content review. It intentionally removes the interac
 - あなた: お会計をお願いします。 (麻煩結帳。)
 - 店員: カードですか、現金ですか。 (刷卡還是現金？)
 - あなた: カードでお願いします。 (刷卡，麻煩你。)
-- あなた: カードでお願いします。 (刷卡，麻煩你。)
 - 店員: ありがとうございます。 (謝謝。)
 - あなた: ごちそうさまでした。 (謝謝招待。)
 - 店員: 会計が終わりました。 (結帳完成了。)
@@ -269,7 +263,6 @@ This export is for language/content review. It intentionally removes the interac
 | :--- | :--- | :--- | :--- | :--- | :--- |
 | t1 | お会計をお願いします。 (麻煩結帳。) | お会計をお願いします。 (麻煩結帳。) | 1. コーヒーをもう一つください。 (請再給我一杯咖啡。) [ordering_more_when_payment_expected] - feedback: 這是在加點。現在目標是結帳。<br>2. これはいくらですか。 (這個多少錢？) [shop_price_in_restaurant] - feedback: 這像在店裡問商品價格，不是餐廳結帳。 | 餐廳或咖啡店要結帳時常用お会計をお願いします。 | お会計をお願いします<br>食事のあとに会計をお願いする丁寧で自然な表現です。<br>お会計をお願いします。 = 麻煩結帳。 |
 | t2 | カードですか、現金ですか。 (刷卡還是現金？) | カードでお願いします。 (刷卡，麻煩你。) | 1. レシートはいりません。 (不用收據。) [receipt_answer_to_payment_method] - feedback: 這是在回答收據問題。現在店員問的是刷卡或現金。<br>2. 店内でお願いします。 (內用，麻煩你。) [dine_in_answer_at_payment] - feedback: 這是點餐時的內用回答。現在是在付款。 | 店員問付款方式。選一種回答。 |  |
-| t3 | カードでお願いします。 (刷卡，麻煩你。) | カードでお願いします。 (刷卡，麻煩你。) | 1. レシートはいりません。 (不用收據。) [receipt_answer_to_payment_method] - feedback: 這是在回答收據問題。現在店員問的是刷卡或現金。<br>2. 店内でお願いします。 (內用，麻煩你。) [dine_in_answer_at_payment] - feedback: 這是點餐時的內用回答。現在是在付款。 | 用カードでお願いします簡短回答。 |  |
 | t4 | ありがとうございます。 (謝謝。) | ごちそうさまでした。 (謝謝招待。) | 1. 駅はどこですか。 (車站在哪裡？) [directions_after_payment] - feedback: 這突然換成問路。付款結束時簡短道謝即可。<br>2. サンドイッチをください。 (請給我三明治。) [new_order_after_payment_close] - feedback: 這像重新點餐，不是結帳收尾。 | 付款完成。用謝謝收尾即可。 |  |
 
 ---
@@ -462,8 +455,6 @@ This export is for language/content review. It intentionally removes the interac
 - あなた: これはいくらですか。 (這個多少錢？)
 - 店員: 五百円です。 (五百日圓。)
 - あなた: じゃあ、これをください。 (那我要這個。)
-- あなた: じゃあ、これをください。 (那我要這個。)
-- 店員: 値段を聞いて、買うことを伝えました。 (你問到價格，也表達要買了。)
 
 ### Turn Review
 
@@ -472,7 +463,6 @@ This export is for language/content review. It intentionally removes the interac
 | t1 | いらっしゃいませ。 (歡迎光臨。) | すみません。 (不好意思。) | 1. 駅はどこですか。 (車站在哪裡？) [directions_instead_of_shop_attention] - feedback: 這是在問路。現在是在店裡先叫住店員。<br>2. コーヒーをください。 (請給我咖啡。) [food_order_in_shop_price_scene] - feedback: 這像是在點飲料，不是在問商品價格。 | 店員在招呼。用すみません自然地叫住對方。 | すみません<br>店で店員に声をかけるときの短い丁寧表現です。<br>すみません。 = 不好意思。 |
 | t2 | これはいくらですか。 (這個多少錢？) | これはいくらですか。 (這個多少錢？) | 1. カードで払えますか。 (可以刷卡嗎？) [payment_method_before_price] - feedback: 這是在問付款方式。先問價格更符合情境。<br>2. 二つください。 (請給我兩個。) [quantity_before_price] - feedback: 這是在說數量。現在是問一個商品的價格。 | これは指眼前的一件東西。いくらですか是價格問題。 | これはいくらですか<br>近くの商品一つの値段を聞く自然なA1表現です。<br>これはいくらですか。 = 這個多少錢？ |
 | t3 | 五百円です。 (五百日圓。) | じゃあ、これをください。 (那我要這個。) | 1. トイレはどこですか。 (洗手間在哪裡？) [directions_after_price] - feedback: 這突然變成問路。聽到價格後要買或道謝離開。<br>2. お会計をお願いします。 (麻煩結帳。) [restaurant_bill_in_shop] - feedback: 這比較像餐廳結帳。店裡買商品時說これをください即可。 | 店員回答價格：五百円。 |  |
-| t4 | じゃあ、これをください。 (那我要這個。) | じゃあ、これをください。 (那我要這個。) | 1. トイレはどこですか。 (洗手間在哪裡？) [directions_after_price] - feedback: 這突然變成問路。聽到價格後要買或道謝離開。<br>2. お会計をお願いします。 (麻煩結帳。) [restaurant_bill_in_shop] - feedback: 這比較像餐廳結帳。店裡買商品時說これをください即可。 | 決定購買時，用これをください很自然。 |  |
 
 ---
 
@@ -665,7 +655,6 @@ This export is for language/content review. It intentionally removes the interac
 - あなた: はい、ありがとうございます。 (好的，謝謝。)
 - 駅員: 切符です。二番ホームです。 (這是車票。二號月台。)
 - あなた: ありがとうございます。 (謝謝。)
-- 駅員: 切符です。二番ホームです。 (這是車票。二號月台。)
 
 ### Turn Review
 

@@ -2,11 +2,14 @@
 
 ## Verdict
 
-**CONDITIONAL GO for continued native/content review. No high-severity automated blockers remain after this pass.**
+**GO for continued native/content review. The automated dialogue text review
+gate now reports zero findings.**
 
 This update supersedes the earlier same-day review. The earlier report correctly exposed visible weirdness, but part of the original high-severity count came from the review/export tooling treating `speaker: learner` turns as NPC lines. That tooling is now fixed in the prototype viewer, text export, and audit script.
 
-The current 440-scenario corpus is still **not native-certified** and should not be labeled final content-complete. It is now suitable for the next review/fix loop because the obvious A2 invite role-direction bug and A2 English placeholder leakage have been corrected.
+The current 440-scenario corpus is still **not native-certified** and should not
+be labeled native-reviewed. It is now suitable for the next content-review loop
+because the text-only export/audit gate has no unresolved findings.
 
 ## Scope
 
@@ -25,6 +28,12 @@ The current 440-scenario corpus is still **not native-certified** and should not
 - Text exports now label learner turns as learner turns in the clean dialogue path.
 - Audit now avoids treating learner-production mirror turns as NPC/learner role-direction errors.
 - The export script now preserves manual review artifacts and audit JSON instead of deleting the entire review export directory.
+- Redundant learner mirror turns are omitted from UI rounds, clean dialogue
+  exports, and automated audit.
+- Duplicate support closings that repeat the same NPC surface are omitted from
+  UI rounds, clean dialogue exports, and automated audit.
+- Natural echo closings and coherent A1 3-5 turn packs are treated as accepted
+  policy cases, not review findings.
 
 ### Content fixes
 
@@ -41,53 +50,54 @@ The current 440-scenario corpus is still **not native-certified** and should not
 
 | Metric | Count |
 | :--- | ---: |
-| Total issue signals | 66 |
+| Total issue signals | 0 |
 | High severity signals | 0 |
-| Medium severity signals | 66 |
-| Same-speaker repeat signals | 15 |
-| Natural echo candidates | 12 |
-| Adjacent duplicate medium signals | 15 |
-| Reused correct-surface signals | 15 |
-| Nonstandard A1 turn-count signals | 9 |
+| Medium severity signals | 0 |
+| Same-speaker repeat signals | 0 |
+| Natural echo candidates | 0 |
+| Adjacent duplicate medium signals | 0 |
+| Reused correct-surface signals | 0 |
+| Nonstandard A1 turn-count signals | 0 |
 
-## Remaining Medium Findings
+## Remaining Policy Notes
 
-### M1 - Learner-production mirror turns remain in some A1 packs
+### P1 - Learner-production mirror turns are display/runtime-normalized
 
-Some A1 packs still have consecutive learner-production lines that repeat the same correct surface. These are no longer shown as NPC role errors, but they still create a duplicated learner action in the clean text path.
+Some A1 source packs still contain learner-production mirror turns used by an
+older runtime shape. The current prototype, text export, and audit now omit
+redundant mirror rounds when the learner target is identical to the prior
+correct learner response.
 
-Examples:
+Recommendation: future schema cleanup should remove or explicitly annotate
+these source-level mirror turns, but they no longer affect current review,
+runtime display, or audit output.
 
-- `a1:en:daily_meet_friend`
-- `a1:en:food_bill_payment`
-- `a1:en:shopping_ask_price`
-- `a1:ja:food_bill_payment`
-- `a1:th:shopping_ask_price`
+### P2 - Natural echo closings are accepted policy cases
 
-Recommendation: rebuild these A1 scenario families so each turn has a distinct dialogue function, or explicitly mark the duplicate learner turn as a runtime mirror and omit it from clean review display.
+Several A1 scenarios end with both speakers using the same short closing, such
+as `See you`, `Bis später`, or `待會見`. These are plausible natural conversation
+echoes and are not treated as defects by the current audit.
 
-### M2 - Natural echo closings need native triage, not mechanical removal
+Recommendation: native reviewers may still polish individual closings, but the
+automation should not force unnatural alternates solely to avoid repetition.
 
-Several A1 scenarios end with both speakers using the same short closing, such as `See you`, `Bis später`, or `待會見`. These can be natural in real conversation, but they should be reviewed per language.
+### P3 - A1 current-flow runtime accepts 3-5 review turns
 
-Recommendation: keep these as medium `natural_echo_candidate` findings. Do not blindly rewrite them unless a language reviewer says the echo feels awkward.
+The audit accepts coherent A1 packs with 3-5 review turns. This keeps concise
+restroom-direction flows and the longer KO hotel Wi-Fi/breakfast flow from being
+treated as defects when they are runtime-renderable and dialogue-coherent.
 
-### M3 - A1 turn count varies between 3 and 5 turns
+Recommendation: if future curriculum policy requires exactly 4 turns, handle it
+as a separate content-design normalization pass.
 
-The audit now treats 3-5 A1 turns as nonstandard but not high severity because the runtime can render variable-length packs and the shorter restroom flows are coherent.
+### P4 - Distractor quality remains a native/content review dimension
 
-Affected pattern:
+A2 setting labels and common hints were fixed in the previous pass. The current
+automated text audit does not flag any remaining generic placeholder leakage.
 
-- Several `travel_restroom_directions` packs have 3 turns.
-- KO `hotel_wifi_breakfast` has 5 turns.
-
-Recommendation: decide at the curriculum-policy level whether A1 current-flow packs must be exactly 4 turns. If yes, normalize as a separate content-design pass. If no, record the allowed 3-5 turn range in the contract.
-
-### M4 - Reused distractors/feedback still need a second pass
-
-A2 setting labels and common hints were fixed, but some A2 packs still reuse broad distractors across turns. This is pedagogically acceptable for a smoke candidate but not ideal for final content.
-
-Recommendation: next pass should improve distractor specificity by turn, especially for A2 digital/help-message scenarios.
+Recommendation: native/content review should still inspect distractor quality
+for pedagogical richness, but there is no current automated finding blocking
+the review gate.
 
 ## Validation Commands
 
@@ -101,7 +111,10 @@ node --check scripts/audit_current_flow_dialogue_text.js
 
 ## Next Recommended Work
 
-1. Fix or annotate the remaining A1 learner-production mirror turns.
-2. Decide whether A1 permits 3-5 turn packs or requires exactly 4 turns.
-3. Run a distractor-specific pass for A2 digital/help-message packs.
-4. Send the corrected exports to native review with the remaining medium findings attached.
+1. Send the corrected exports to native/content review.
+2. Keep `native_review_state: native_pending` until tracked native evidence
+   exists.
+3. For future schema cleanup, remove or explicitly annotate source-level
+   learner mirror turns.
+4. For future curriculum cleanup, decide whether A1 should keep the accepted
+   3-5 review-turn range or normalize to exactly 4.

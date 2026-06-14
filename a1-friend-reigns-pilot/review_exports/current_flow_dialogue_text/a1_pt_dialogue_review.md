@@ -92,8 +92,6 @@ This export is for language/content review. It intentionally removes the interac
 - amigo: Sim, estou pronto. (對，我準備好了。)
 - amiga: Ótimo. Vamos para o café. (太好了。我們去咖啡店吧。)
 - amigo: Vamos. (走吧。)
-- amigo: Vamos. (走吧。)
-- amiga: Beleza. (好。)
 
 ### Turn Review
 
@@ -102,7 +100,6 @@ This export is for language/content review. It intentionally removes the interac
 | t1 | Oi! Você é o Alex? (嗨！你是 Alex 嗎？) | Sou, sim. Sou o Alex. (對，我是 Alex。) | 1. A conta, por favor. (請結帳。) [wrong_scenario_payment] - feedback: 這是在餐廳結帳，不是和朋友確認身份。<br>2. Quanto custa isto? (這個多少錢？) [wrong_scenario_shopping] - feedback: 這是在問價格，不是回朋友的招呼。 | 朋友在確認是不是你。簡短回答。 |  |
 | t2 | Legal. Você está pronto? (太好了。你準備好了嗎？) | Sim, estou pronto. (對，我準備好了。) | 1. Quero um café. (我想要一杯咖啡。) [wrong_scenario_ordering] - feedback: 這是在點飲料。朋友問你是否準備好。<br>2. Onde fica a estação? (車站在哪裡？) [wrong_scenario_directions] - feedback: 這是在問路。現在只要回答準備好了。 | 朋友在問你可不可以出發。 | Estou pronto<br>和朋友碰面時，可以用 Estou pronto/pronta 表示準備好了。A1 先用 pronto。<br>Sim, estou pronto. = 對，我準備好了。<br>Vamos. = 走吧。 |
 | t3 | Ótimo. Vamos para o café. (太好了。我們去咖啡店吧。) | Vamos. (走吧。) | 1. Vou pagar com cartão. (我要用卡付款。) [wrong_scenario_payment] - feedback: 這是付款句。朋友只是說一起走。<br>2. Não sou o Alex. (我不是 Alex。) [wrong_identity_after_confirm] - feedback: 前面已經確認是 Alex，這會讓情境不成立。 | 朋友說下一步。用短句同意。 |  |
-| t4 | Vamos. (走吧。) | Vamos. (走吧。) | 1. Vou pagar com cartão. (我要用卡付款。) [wrong_scenario_payment] - feedback: 這是付款句。朋友只是說一起走。<br>2. Não sou o Alex. (我不是 Alex。) [wrong_identity_after_confirm] - feedback: 前面已經確認是 Alex，這會讓情境不成立。 | 用簡短自然的句子表示同意出發。 |  |
 
 ---
 
@@ -461,8 +458,6 @@ This export is for language/content review. It intentionally removes the interac
 - cliente: Tá bom. Vou levar. (好。我要買。)
 - vendedor: Certo. São dez reais. (好的。總共十雷亞爾。)
 - cliente: Obrigado. (謝謝。)
-- cliente: Obrigado. (謝謝。)
-- vendedor: Eu que agradeço. (是我謝謝您。)
 
 ### Turn Review
 
@@ -471,7 +466,6 @@ This export is for language/content review. It intentionally removes the interac
 | t1 | Oi, tudo bem? Posso ajudar? (嗨，您好嗎？需要幫忙嗎？) | Sim. Quanto custa isso? (是的。這個多少錢？) | 1. Onde fica o banheiro? (洗手間在哪裡？) [wrong_scenario_direction] - feedback: 這是在問路。你現在要問商品價格。<br>2. Um café, por favor. (請給我一杯咖啡。) [wrong_scenario_food] - feedback: 這像在點飲料，不是在問價格。 | 店員在招呼你。直接問這個多少錢。 |  |
 | t2 | Custa dez reais. (十雷亞爾。) | Tá bom. Vou levar. (好。我要買。) | 1. Vou pagar com cartão. (我要用卡付款。) [early_payment_method] - feedback: 這是付款方式。先說你要買比較自然。<br>2. Quero dois cafés. (我要兩杯咖啡。) [wrong_item_quantity] - feedback: 這換成點咖啡和數量了，不是回應價格。 | 聽到價格後，可以說你要買。 | Quanto custa isso?<br>巴西葡語問單一物品價格，可以說 Quanto custa isso?。A1 簡短自然。<br>Quanto custa isso? = 這個多少錢？<br>Custa dez reais. = 十雷亞爾。 |
 | t3 | Certo. São dez reais. (好的。總共十雷亞爾。) | Obrigado. (謝謝。) | 1. A conta, por favor. (請結帳。) [wrong_scenario_restaurant] - feedback: 這是在餐廳結帳，小店買商品不這樣說。<br>2. Vamos ao café. (我們去咖啡店吧。) [wrong_scenario_meeting] - feedback: 這是和朋友碰面的情境，不是購物。 | 交易要結束了，簡短道謝即可。 |  |
-| t4 | Obrigado. (謝謝。) | Obrigado. (謝謝。) | 1. A conta, por favor. (請結帳。) [wrong_scenario_restaurant] - feedback: 這是在餐廳結帳，小店買商品不這樣說。<br>2. Vamos ao café. (我們去咖啡店吧。) [wrong_scenario_meeting] - feedback: 這是和朋友碰面的情境，不是購物。 | 用簡短自然的句子結束購物互動。 |  |
 
 ---
 

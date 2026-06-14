@@ -26,7 +26,6 @@ This export is for language/content review. It intentionally removes the interac
 - 客人: 不用，謝謝。 (不用，謝謝。)
 - 店員: 好了，謝謝。 (好了，謝謝。)
 - 客人: 謝謝。 (謝謝。)
-- 店員: 
 
 ### Turn Review
 
@@ -60,7 +59,6 @@ This export is for language/content review. It intentionally removes the interac
 - 客人: 不用，謝謝。 (不用，謝謝。)
 - 店員: 好，這樣就可以了。 (好，這樣就可以了。)
 - 客人: 謝謝。 (謝謝。)
-- 店員: 
 
 ### Turn Review
 
@@ -94,7 +92,6 @@ This export is for language/content review. It intentionally removes the interac
 - 朋友: 好了。 (好了。)
 - 朋友: 太好了。走吧？ (太好了。走吧？)
 - 朋友: 走吧。 (走吧。)
-- 朋友: 
 
 ### Turn Review
 
@@ -128,7 +125,6 @@ This export is for language/content review. It intentionally removes the interac
 - 你: 好，三點見。 (好，三點見。)
 - 朋友: 待會見！ (待會見！)
 - 你: 待會見！ (待會見！)
-- 朋友: 
 
 ### Turn Review
 
@@ -162,7 +158,6 @@ This export is for language/content review. It intentionally removes the interac
 - 新參加者: 謝謝，我也很高興。 (謝謝，我也很高興。)
 - 新朋友: 等一下我們一起練習。 (等一下我們一起練習。)
 - 新參加者: 好，謝謝。 (好，謝謝。)
-- 新朋友: 
 
 ### Turn Review
 
@@ -196,7 +191,6 @@ This export is for language/content review. It intentionally removes the interac
 - 客人: 窗邊那裡嗎？ (窗邊那裡嗎？)
 - 工作人員: 對，就在那裡。 (對，就在那裡。)
 - 客人: 好的，謝謝。 (好的，謝謝。)
-- 工作人員: 
 
 ### Turn Review
 
@@ -230,7 +224,6 @@ This export is for language/content review. It intentionally removes the interac
 - 客人: 還是不行，連不上。 (還是不行，連不上。)
 - 工作人員: 請等一下，再試一次。 (請等一下，再試一次。)
 - 客人: 好的，謝謝。 (好的，謝謝。)
-- 工作人員: 
 
 ### Turn Review
 
@@ -264,7 +257,6 @@ This export is for language/content review. It intentionally removes the interac
 - 客人: 要，謝謝。 (要，謝謝。)
 - 店員: 這是您的發票，謝謝。 (這是您的發票，謝謝。)
 - 客人: 謝謝。 (謝謝。)
-- 店員: 
 
 ### Turn Review
 
@@ -298,7 +290,6 @@ This export is for language/content review. It intentionally removes the interac
 - 客人: 好的。 (好的。)
 - 店員: 請在旁邊稍等一下。 (請在旁邊稍等一下。)
 - 客人: 謝謝。 (謝謝。)
-- 店員: 
 
 ### Turn Review
 
@@ -332,7 +323,6 @@ This export is for language/content review. It intentionally removes the interac
 - 客人: 對，謝謝。 (對，謝謝。)
 - 店員: 好的，請稍等一下。 (好的，請稍等一下。)
 - 客人: 謝謝。 (謝謝。)
-- 店員: 
 
 ### Turn Review
 
@@ -366,7 +356,6 @@ This export is for language/content review. It intentionally removes the interac
 - 住客: 好，房卡在這裡。 (好，房卡在這裡。)
 - 櫃台人員: 好了，退房完成了。 (好了，退房完成了。)
 - 住客: 謝謝您。 (謝謝您。)
-- 櫃台人員: 
 
 ### Turn Review
 
@@ -434,7 +423,6 @@ This export is for language/content review. It intentionally removes the interac
 - 客人: 左邊的失物招領處嗎？ (左邊的失物招領處嗎？)
 - 工作人員: 對，請在那裡問。 (對，請在那裡問。)
 - 客人: 好的，謝謝。 (好的，謝謝。)
-- 工作人員: 
 
 ### Turn Review
 
@@ -468,7 +456,6 @@ This export is for language/content review. It intentionally removes the interac
 - 客人: 對，謝謝。 (對，謝謝。)
 - 店員: 好的，謝謝。 (好的，謝謝。)
 - 客人: 謝謝。 (謝謝。)
-- 店員: 
 
 ### Turn Review
 
@@ -502,7 +489,6 @@ This export is for language/content review. It intentionally removes the interac
 - 你: 謝謝你等我。 (謝謝你等我。)
 - 朋友: 待會見。 (待會見。)
 - 你: 待會見。 (待會見。)
-- 朋友: 
 
 ### Turn Review
 
@@ -536,7 +522,6 @@ This export is for language/content review. It intentionally removes the interac
 - 住客: 謝謝。 (謝謝。)
 - 櫃台人員: 這是您的房卡，房間是二零四號。 (這是您的房卡，房間是二零四號。)
 - 住客: 謝謝您。 (謝謝您。)
-- 櫃台人員: 
 
 ### Turn Review
 
@@ -570,7 +555,6 @@ This export is for language/content review. It intentionally removes the interac
 - 訪客: 謝謝。 (謝謝。)
 - 工作人員: 不客氣。 (不客氣。)
 - 訪客: 再見。 (再見。)
-- 工作人員: 
 
 ### Turn Review
 
@@ -604,7 +588,6 @@ This export is for language/content review. It intentionally removes the interac
 - 旅客: 好，謝謝。 (好，謝謝。)
 - 站務人員: 不客氣。 (不客氣。)
 - 旅客: 謝謝。 (謝謝。)
-- 站務人員: 
 
 ### Turn Review
 
@@ -638,7 +621,6 @@ This export is for language/content review. It intentionally removes the interac
 - 乘客: 好的。 (好的。)
 - 司機: 到了。 (到了。)
 - 乘客: 謝謝您。 (謝謝您。)
-- 司機: 
 
 ### Turn Review
 
@@ -672,7 +654,6 @@ This export is for language/content review. It intentionally removes the interac
 - 旅客: 刷卡，謝謝。 (刷卡，謝謝。)
 - 售票員: 這是您的車票。三號月台。 (這是您的車票。三號月台。)
 - 旅客: 謝謝。 (謝謝。)
-- 售票員: 
 
 ### Turn Review
 

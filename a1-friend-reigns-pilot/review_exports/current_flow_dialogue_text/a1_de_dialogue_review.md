@@ -26,7 +26,6 @@ This export is for language/content review. It intentionally removes the interac
 - Kunde/Kundin: Nein, danke. (不用，謝謝。)
 - Kassierer/in: Danke schön. Einen schönen Tag noch. (謝謝您。祝您今天愉快。)
 - Kunde/Kundin: Danke, ebenso. (謝謝，您也是。)
-- Kassierer/in: 
 
 ### Turn Review
 
@@ -60,7 +59,6 @@ This export is for language/content review. It intentionally removes the interac
 - Kunde: Nein, danke. (不用，謝謝。)
 - Mitarbeiter: Alles klar. (好的。)
 - Kunde: Danke. (謝謝。)
-- Mitarbeiter: 
 
 ### Turn Review
 
@@ -94,7 +92,6 @@ This export is for language/content review. It intentionally removes the interac
 - Freund: Ja, ich bin bereit. (對，我準備好了。)
 - Freund: Super. Gehen wir? (太好了。走吧？)
 - Freund: Los geht's. (走吧。)
-- Freund: 
 
 ### Turn Review
 
@@ -128,7 +125,6 @@ This export is for language/content review. It intentionally removes the interac
 - du: Super. (太好了。)
 - Freund/in: Bis später! (待會見！)
 - du: Bis später! (待會見！)
-- Freund/in: 
 
 ### Turn Review
 
@@ -162,7 +158,6 @@ This export is for language/content review. It intentionally removes the interac
 - Neuer Teilnehmer: Freut mich auch. (我也很高興。)
 - Teilnehmer: Willkommen in der Gruppe! (歡迎加入這個小組！)
 - Neuer Teilnehmer: Danke! (謝謝！)
-- Teilnehmer: 
 
 ### Turn Review
 
@@ -196,7 +191,6 @@ This export is for language/content review. It intentionally removes the interac
 - Gast: Am Tisch am Fenster? (窗邊的桌子那裡嗎？)
 - Mitarbeiter: Ja, genau dort. (對，就在那裡。)
 - Gast: Danke schön. (謝謝您。)
-- Mitarbeiter: 
 
 ### Turn Review
 
@@ -230,7 +224,6 @@ This export is for language/content review. It intentionally removes the interac
 - Gast: Nein, es verbindet sich nicht. (不，連不上。)
 - Mitarbeiter: Bitte versuchen Sie es in einer Minute noch einmal. (請一分鐘後再試一次。)
 - Gast: Okay, danke. (好的，謝謝。)
-- Mitarbeiter: 
 
 ### Turn Review
 
@@ -264,7 +257,6 @@ This export is for language/content review. It intentionally removes the interac
 - Gast: Ja, bitte. (要，謝謝。)
 - Kassierer: Hier ist Ihr Bon. Einen schönen Tag. (這是您的收據。祝您有美好的一天。)
 - Gast: Danke, gleichfalls. (謝謝，您也是。)
-- Kassierer: 
 
 ### Turn Review
 
@@ -298,7 +290,6 @@ This export is for language/content review. It intentionally removes the interac
 - Kunde/Kundin: Okay. (好的。)
 - Barista: Bitte warten Sie kurz dort. (請在那邊稍等。)
 - Kunde/Kundin: Danke. (謝謝。)
-- Barista: 
 
 ### Turn Review
 
@@ -332,7 +323,6 @@ This export is for language/content review. It intentionally removes the interac
 - Gast: Ja, danke. (是的，謝謝。)
 - Servicekraft: Sehr gern. Das kommt gleich. (好的。餐點馬上來。)
 - Gast: Danke. (謝謝。)
-- Servicekraft: 
 
 ### Turn Review
 
@@ -366,7 +356,6 @@ This export is for language/content review. It intentionally removes the interac
 - Gast: Ja, hier ist die Zimmerkarte. (有，房卡在這裡。)
 - Rezeption: Danke. Der Check-out ist erledigt. (謝謝。退房已完成。)
 - Gast: Vielen Dank. (非常謝謝。)
-- Rezeption: 
 
 ### Turn Review
 
@@ -434,7 +423,6 @@ This export is for language/content review. It intentionally removes the interac
 - Gast: Im Fundbüro, dort links? (左邊的失物招領處嗎？)
 - Mitarbeiter: Ja, genau. Fragen Sie dort. (對，沒錯。請在那裡問。)
 - Gast: Okay, danke schön. (好的，謝謝您。)
-- Mitarbeiter: 
 
 ### Turn Review
 
@@ -468,7 +456,6 @@ This export is for language/content review. It intentionally removes the interac
 - Kunde: Ja, danke. (是的，謝謝。)
 - Verkäuferin: Sehr gern. Danke. (好的，謝謝。)
 - Kunde: Danke. (謝謝。)
-- Verkäuferin: 
 
 ### Turn Review
 
@@ -502,7 +489,6 @@ This export is for language/content review. It intentionally removes the interac
 - Du: Danke fürs Warten. (謝謝你等我。)
 - Freund: Bis gleich. (待會見。)
 - Du: Bis gleich. (待會見。)
-- Freund: 
 
 ### Turn Review
 
@@ -536,7 +522,6 @@ This export is for language/content review. It intentionally removes the interac
 - Gast: Danke. (謝謝。)
 - Rezeption: Hier ist Ihre Zimmerkarte. Zimmer 204. (這是您的房卡。204 號房。)
 - Gast: Vielen Dank. (非常謝謝。)
-- Rezeption: 
 
 ### Turn Review
 
@@ -570,7 +555,6 @@ This export is for language/content review. It intentionally removes the interac
 - Besucher/in: Danke. (謝謝。)
 - Mitarbeiter/in: Gern. (不客氣。)
 - Besucher/in: Auf Wiedersehen. (再見。)
-- Mitarbeiter/in: 
 
 ### Turn Review
 
@@ -604,7 +588,6 @@ This export is for language/content review. It intentionally removes the interac
 - Reisende Person: Okay, danke. (好的，謝謝。)
 - Bahnhofspersonal: Gern. (不客氣。)
 - Reisende Person: Danke. (謝謝。)
-- Bahnhofspersonal: 
 
 ### Turn Review
 
@@ -638,7 +621,6 @@ This export is for language/content review. It intentionally removes the interac
 - Fahrgast: Alles klar. (了解。)
 - Fahrer: Wir sind da. (我們到了。)
 - Fahrgast: Vielen Dank. Auf Wiedersehen. (非常謝謝。再見。)
-- Fahrer: 
 
 ### Turn Review
 
@@ -672,7 +654,6 @@ This export is for language/content review. It intentionally removes the interac
 - Reisender: Mit Karte, bitte. (刷卡，謝謝。)
 - Mitarbeiter: Hier ist Ihre Fahrkarte. Gleis drei. (這是您的車票。三號月台。)
 - Reisender: Danke. (謝謝。)
-- Mitarbeiter: 
 
 ### Turn Review
 

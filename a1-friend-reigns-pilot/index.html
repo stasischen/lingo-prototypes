@@ -537,9 +537,20 @@
       return map[scenarioPack && scenarioPack.language] || 'ko-KR';
     }
     function buildRounds(pack) {
-      return pack.turns.map((turn) => {
+      function correctChoice(turn) {
+        const correctId = turn.reply_set.correct;
+        return turn.reply_set.choices.find((choice) => choice.id === correctId);
+      }
+      function isRedundantLearnerMirror(turn, previousTurn) {
+        if (!previousTurn || turn.speaker !== 'learner') return false;
+        const currentCorrect = correctChoice(turn);
+        const previousCorrect = correctChoice(previousTurn);
+        return currentCorrect && previousCorrect && normalize(currentCorrect.surface) === normalize(previousCorrect.surface);
+      }
+      return pack.turns.filter((turn, index) => !isRedundantLearnerMirror(turn, pack.turns[index - 1])).map((turn) => {
         const correctId = turn.reply_set.correct;
         const speaker = turn.speaker || (turn.learning_role === 'production_target' ? 'learner' : 'npc');
+        const showClosing = turn.closing && normalize(turn.closing.surface) !== normalize(turn.surface);
         return {
           id: turn.turn_id,
           act: turn.act,
@@ -560,7 +571,7 @@
             learningRole: choice.learning_role || null,
             contrastType: choice.contrast_type || null
           })),
-          closing: turn.closing ? {
+          closing: showClosing ? {
             ko: turn.closing.surface,
             zh: turn.closing.translation,
             speak: turn.closing.speak || turn.closing.surface

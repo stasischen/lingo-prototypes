@@ -60,7 +60,6 @@ This export is for language/content review. It intentionally removes the interac
 - You: To go, please. Thank you. (外帶，麻煩你。謝謝。)
 - Staff: All right. You're all set. (好的，這樣就可以了。)
 - You: Thank you. (謝謝。)
-- Staff: All right. You're all set. (好的，這樣就可以了。)
 
 ### Turn Review
 
@@ -92,8 +91,6 @@ This export is for language/content review. It intentionally removes the interac
 - You: Yes, that's right. (對，沒錯。)
 - Friend: Ready to go? (準備好了嗎？)
 - You: Yes, I'm ready. Let's go. (好了，我準備好了。我們走吧。)
-- You: Yes, I'm ready. Let's go. (好了，我準備好了。我們走吧。)
-- Friend: You found your friend and are ready to go. (你找到朋友，也準備好出發了。)
 
 ### Turn Review
 
@@ -102,7 +99,6 @@ This export is for language/content review. It intentionally removes the interac
 | t1 | Hey, you made it! (嘿，你到了！) | Hi! Good to see you. (嗨！很高興見到你。) | 1. Can I see the menu? (可以看菜單嗎？) [service_request_to_friend] - feedback: 這像是在跟店員說話，不是跟朋友打招呼。<br>2. How much is this? (這個多少錢？) [shopping_price_in_friend_meeting] - feedback: 這是購物問題。現在是在和朋友碰面。 | 朋友在打招呼。用自然的朋友語氣回應。 |  |
 | t2 | Are we going to the movie now? (我們現在要去看電影嗎？) | Yes, that's right. (對，沒錯。) | 1. I want to pay by card. (我想刷卡付款。) [payment_answer_to_plan_check] - feedback: 這是付款回答，不是在確認見面計畫。<br>2. Where is the restroom? (洗手間在哪裡？) [directions_instead_of_plan_confirmation] - feedback: 這是在問路。朋友問的是計畫。 | 朋友在確認計畫。簡短說 yes。 | Yes, that's right<br>Use a short confirmation when a friend checks the plan.<br>Yes, that's right. = 對，沒錯。 |
 | t3 | Ready to go? (準備好了嗎？) | Yes, I'm ready. Let's go. (好了，我準備好了。我們走吧。) | 1. Nice to meet you, sir. (先生，很高興認識您。) [overformal_business_greeting] - feedback: 這太正式，也像第一次見面。這裡是朋友碰面。<br>2. I'd like a sandwich. (我想要一份三明治。) [food_order_in_friend_meeting] - feedback: 這是在點餐，不是在回答準備好了。 | 朋友問你準備好了沒。用短句回答。 |  |
-| t4 | Yes, I'm ready. Let's go. (好了，我準備好了。我們走吧。) | Yes, I'm ready. Let's go. (好了，我準備好了。我們走吧。) | 1. Nice to meet you, sir. (先生，很高興認識您。) [overformal_business_greeting] - feedback: 這太正式，也像第一次見面。這裡是朋友碰面。<br>2. I'd like a sandwich. (我想要一份三明治。) [food_order_in_friend_meeting] - feedback: 這是在點餐，不是在回答準備好了。 | 用 I'm ready 回答，再用 Let's go 收尾。 |  |
 
 ---
 
@@ -161,7 +157,6 @@ This export is for language/content review. It intentionally removes the interac
 - You: Thanks. Nice to meet you. (謝謝。很高興認識你。)
 - New friend: Great. Let's get started. (太好了。我們開始吧。)
 - You: Okay, thanks. (好的，謝謝。)
-- New friend: Great. Let's get started. (太好了。我們開始吧。)
 
 ### Turn Review
 
@@ -258,7 +253,6 @@ This export is for language/content review. It intentionally removes the interac
 - You: Can I get the check, please? (可以給我帳單嗎？)
 - Server: Sure. Card or cash? (好的。刷卡還是現金？)
 - You: Card, please. (刷卡，謝謝。)
-- You: Card, please. (刷卡，謝謝。)
 - Server: All set. Thank you. (好了，謝謝。)
 - You: Thank you. (謝謝。)
 - Server: You paid and closed politely. (你完成付款並禮貌收尾。)
@@ -269,7 +263,6 @@ This export is for language/content review. It intentionally removes the interac
 | :--- | :--- | :--- | :--- | :--- | :--- |
 | t1 | Can I get the check, please? (可以給我帳單嗎？) | Can I get the check, please? (可以給我帳單嗎？) | 1. I'd like another coffee. (我想再要一杯咖啡。) [ordering_more_when_payment_expected] - feedback: 這是在加點。現在目標是結帳。<br>2. How much is this shirt? (這件襯衫多少錢？) [shop_price_in_restaurant] - feedback: 這是店裡問商品價格，不是餐廳帳單。 | 美式英文常用 check。句尾加 please 很自然。 | Can I get the check?<br>In US-style English, "check" is a common restaurant bill word.<br>Can I get the check, please? = 可以給我帳單嗎？ |
 | t2 | Sure. Card or cash? (好的。刷卡還是現金？) | Card, please. (刷卡，謝謝。) | 1. No receipt, please. (不用收據，謝謝。) [receipt_answer_to_payment_method] - feedback: 這是在回答收據問題。現在店員問的是卡或現金。<br>2. For here, please. (內用，謝謝。) [dine_in_answer_at_payment] - feedback: 這是點餐時的回答。現在是在付款。 | 店員問付款方式。選一個即可。 |  |
-| t3 | Card, please. (刷卡，謝謝。) | Card, please. (刷卡，謝謝。) | 1. No receipt, please. (不用收據，謝謝。) [receipt_answer_to_payment_method] - feedback: 這是在回答收據問題。現在店員問的是卡或現金。<br>2. For here, please. (內用，謝謝。) [dine_in_answer_at_payment] - feedback: 這是點餐時的回答。現在是在付款。 | 用 Card, please 簡短回答付款方式。 |  |
 | t4 | All set. Thank you. (好了，謝謝。) | Thank you. (謝謝。) | 1. Where is the station? (車站在哪裡？) [directions_after_payment] - feedback: 這突然換成問路。付款完成時簡短道謝即可。<br>2. One sandwich, please. (請給我一份三明治。) [new_order_after_payment_close] - feedback: 這像是重新點餐，不是結帳收尾。 | 付款完成。用一句謝謝收尾。 |  |
 
 ---
@@ -462,8 +455,6 @@ This export is for language/content review. It intentionally removes the interac
 - You: How much is this? (這個多少錢？)
 - Shop staff: It's five dollars. (五美元。)
 - You: Okay, I'll take it. (好，我要這個。)
-- You: Okay, I'll take it. (好，我要這個。)
-- Shop staff: You understood the price and answered clearly. (你聽懂價格並清楚回應了。)
 
 ### Turn Review
 
@@ -472,7 +463,6 @@ This export is for language/content review. It intentionally removes the interac
 | t1 | Hi there. Can I help you? (你好，需要幫忙嗎？) | Excuse me. (不好意思。) | 1. Where is the station? (車站在哪裡？) [directions_instead_of_shop_attention] - feedback: 這是在問路。現在是在店裡先引起注意。<br>2. Coffee, please. (請給我咖啡。) [food_order_in_shop_price_scene] - feedback: 這像是在點飲料，不是在問商品價格。 | 店員在打招呼。先用簡短禮貌句引起注意。 | Excuse me<br>Use "Excuse me" to politely get attention in a shop.<br>Excuse me. = 不好意思。 |
 | t2 | How much is this? (這個多少錢？) | How much is this? (這個多少錢？) | 1. Can I pay by card? (我可以刷卡嗎？) [payment_method_before_price] - feedback: 這是在問付款方式。先問價格比較符合情境。<br>2. Two, please. (請給我兩個。) [quantity_before_price] - feedback: 這是在說數量。現在目標是問一件商品的價格。 | 用 this 指眼前的一件商品，句子很短也自然。 | How much is this?<br>This is the most common A1 price question for one nearby item.<br>How much is this? = 這個多少錢？ |
 | t3 | It's five dollars. (五美元。) | Okay, I'll take it. (好，我要這個。) | 1. Where is the restroom? (洗手間在哪裡？) [directions_after_price] - feedback: 這突然換成問路。聽到價格後要買或道謝離開。<br>2. Can I get the check? (可以給我帳單嗎？) [restaurant_bill_in_shop] - feedback: 這是餐廳結帳用語，不是買店裡商品。 | 店員說價格。聽到 five dollars。 |  |
-| t4 | Okay, I'll take it. (好，我要這個。) | Okay, I'll take it. (好，我要這個。) | 1. Where is the restroom? (洗手間在哪裡？) [directions_after_price] - feedback: 這突然換成問路。聽到價格後要買或道謝離開。<br>2. Can I get the check? (可以給我帳單嗎？) [restaurant_bill_in_shop] - feedback: 這是餐廳結帳用語，不是買店裡商品。 | 如果要買，可以用 I'll take it。 |  |
 
 ---
 
@@ -665,7 +655,6 @@ This export is for language/content review. It intentionally removes the interac
 - You: Here you go. Thank you. (給你。謝謝。)
 - Ticket clerk: Here is your ticket. Platform two. (這是您的票。二號月台。)
 - You: Thank you. (謝謝。)
-- Ticket clerk: Here is your ticket. Platform two. (這是您的票。二號月台。)
 
 ### Turn Review
 

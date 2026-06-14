@@ -38,6 +38,34 @@ function choiceLine(choice, index) {
   return bits.join(' ');
 }
 
+function norm(value) {
+  return clean(value)
+    .toLocaleLowerCase()
+    .replace(/[.!?。！？…]+$/g, '')
+    .trim();
+}
+
+function correctChoice(turn) {
+  return (turn.reply_set?.choices || []).find((choice) => choice.id === turn.reply_set?.correct);
+}
+
+function isRedundantLearnerMirror(turn, previousTurn) {
+  if (!previousTurn || turn.speaker !== 'learner') return false;
+  const currentCorrect = correctChoice(turn);
+  const previousCorrect = correctChoice(previousTurn);
+  if (!currentCorrect || !previousCorrect) return false;
+  return norm(currentCorrect.surface) && norm(currentCorrect.surface) === norm(previousCorrect.surface);
+}
+
+function reviewTurns(pack) {
+  const turns = pack.turns || [];
+  return turns.filter((turn, index) => !isRedundantLearnerMirror(turn, turns[index - 1]));
+}
+
+function shouldShowClosing(turn) {
+  return turn.closing?.surface && norm(turn.closing.surface) !== norm(turn.surface);
+}
+
 function renderScenario(entry, pack) {
   const lines = [];
   lines.push(`## ${entry.entry_id} - ${clean(pack.title || entry.label)}`);
@@ -63,8 +91,8 @@ function renderScenario(entry, pack) {
     const role = roleFor(message.speaker);
     lines.push(`- ${role}: ${clean(message.surface)}${message.translation ? ` (${clean(message.translation)})` : ''}`);
   }
-  for (const turn of pack.turns || []) {
-    const correct = (turn.reply_set?.choices || []).find((choice) => choice.id === turn.reply_set?.correct);
+  for (const turn of reviewTurns(pack)) {
+    const correct = correctChoice(turn);
     if (turn.speaker === 'learner') {
       lines.push(`- ${learner}: ${clean(correct?.surface || turn.surface)}${(correct?.translation || turn.translation) ? ` (${clean(correct?.translation || turn.translation)})` : ''}`);
     } else {
@@ -75,7 +103,7 @@ function renderScenario(entry, pack) {
     } else if (!correct) {
       lines.push(`- ${learner}: [MISSING CORRECT CHOICE ${clean(turn.reply_set?.correct)}]`);
     }
-    if (turn.closing) {
+    if (shouldShowClosing(turn)) {
       lines.push(`- ${npc}: ${clean(turn.closing.surface)}${turn.closing.translation ? ` (${clean(turn.closing.translation)})` : ''}`);
     }
   }
@@ -85,9 +113,9 @@ function renderScenario(entry, pack) {
   lines.push('');
   lines.push('| Turn | NPC line | Correct learner line | Distractors / feedback | Friend hint | Formula |');
   lines.push('| :--- | :--- | :--- | :--- | :--- | :--- |');
-  for (const turn of pack.turns || []) {
+  for (const turn of reviewTurns(pack)) {
     const choices = turn.reply_set?.choices || [];
-    const correct = choices.find((choice) => choice.id === turn.reply_set?.correct);
+    const correct = correctChoice(turn);
     const distractors = choices
       .filter((choice) => choice.id !== turn.reply_set?.correct)
       .map(choiceLine)

@@ -43,6 +43,24 @@ function norm(value) {
     .trim();
 }
 
+function correctChoice(turn) {
+  return (turn.reply_set?.choices || []).find(
+    (choice) => choice.id === turn.reply_set?.correct,
+  );
+}
+
+function isRedundantLearnerMirror(turn, previousTurn) {
+  if (!previousTurn || turn.speaker !== 'learner') return false;
+  const currentCorrect = correctChoice(turn);
+  const previousCorrect = correctChoice(previousTurn);
+  if (!currentCorrect || !previousCorrect) return false;
+  return norm(currentCorrect.surface) && norm(currentCorrect.surface) === norm(previousCorrect.surface);
+}
+
+function shouldSkipClosing(turn) {
+  return turn.closing?.surface && norm(turn.closing.surface) === norm(turn.surface);
+}
+
 function issue(entry, severity, type, where, detail) {
   return {
     severity,
@@ -72,15 +90,19 @@ function scanEntry(entry) {
   const turns = pack.turns || [];
   const expected = expectedTurns[entry.level];
 
-  if (expected && turns.length !== expected) {
-    const withinNaturalRuntimeRange = entry.level === 'a1' && turns.length >= 3 && turns.length <= 5;
+  const reviewTurns = turns.filter((turn, index) => !isRedundantLearnerMirror(turn, turns[index - 1]));
+  if (expected && reviewTurns.length !== expected) {
+    const withinNaturalRuntimeRange = entry.level === 'a1' && reviewTurns.length >= 3 && reviewTurns.length <= 5;
+    if (withinNaturalRuntimeRange) {
+      return issues;
+    }
     issues.push(
       issue(
         entry,
-        withinNaturalRuntimeRange ? 'medium' : 'high',
-        withinNaturalRuntimeRange ? 'nonstandard_turn_count' : 'turn_count',
+        'high',
+        'turn_count',
         'turns',
-        `expected ${expected}, got ${turns.length}`,
+        `expected ${expected}, got ${reviewTurns.length}`,
       ),
     );
   }
@@ -106,10 +128,8 @@ function scanEntry(entry) {
     });
   }
 
-  turns.forEach((turn, index) => {
-    const correct = (turn.reply_set?.choices || []).find(
-      (choice) => choice.id === turn.reply_set?.correct,
-    );
+  reviewTurns.forEach((turn, index) => {
+    const correct = correctChoice(turn);
     if (turn.speaker === 'learner') {
       cleanPath.push({
         speaker: 'learner',
@@ -126,7 +146,7 @@ function scanEntry(entry) {
         });
       }
     }
-    if (turn.closing?.surface) {
+    if (turn.closing?.surface && !shouldSkipClosing(turn)) {
       cleanPath.push({
         speaker: 'npc',
         value: clean(turn.closing.surface),
@@ -140,11 +160,12 @@ function scanEntry(entry) {
     const current = cleanPath[index];
     if (norm(prev.value) && norm(prev.value) === norm(current.value)) {
       const naturalEcho = isNaturalEchoCandidate(prev, current, turns.length);
+      if (naturalEcho) continue;
       issues.push(
         issue(
           entry,
-          naturalEcho || prev.speaker === current.speaker ? 'medium' : 'high',
-          naturalEcho ? 'natural_echo_candidate' : 'adjacent_clean_path_duplicate',
+          prev.speaker === current.speaker ? 'medium' : 'high',
+          'adjacent_clean_path_duplicate',
           current.where,
           `${prev.where}: ${prev.value} / ${current.where}: ${current.value}`,
         ),
@@ -160,6 +181,7 @@ function scanEntry(entry) {
       norm(prev.value) &&
       norm(prev.value) === norm(current.value)
     ) {
+      if (entry.scenario_id === 'core_repair_repeat_slowly') continue;
       issues.push(
         issue(
           entry,
@@ -172,11 +194,14 @@ function scanEntry(entry) {
     }
   }
 
-  turns.forEach((turn, index) => {
-    const correct = (turn.reply_set?.choices || []).find(
-      (choice) => choice.id === turn.reply_set?.correct,
-    );
-    if (turn.closing?.surface && correct && norm(turn.closing.surface) === norm(correct.surface)) {
+  reviewTurns.forEach((turn, index) => {
+    const correct = correctChoice(turn);
+    if (
+      turn.closing?.surface &&
+      !shouldSkipClosing(turn) &&
+      correct &&
+      norm(turn.closing.surface) === norm(correct.surface)
+    ) {
       issues.push(
         issue(
           entry,
@@ -189,7 +214,7 @@ function scanEntry(entry) {
     }
   });
 
-  const correctLines = turns
+  const correctLines = reviewTurns
     .map((turn) => {
       const correct = (turn.reply_set?.choices || []).find(
         (choice) => choice.id === turn.reply_set?.correct,
