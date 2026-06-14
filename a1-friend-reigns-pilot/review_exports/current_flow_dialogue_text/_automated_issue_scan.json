@@ -1,0 +1,1869 @@
+{
+  "generated_at": "2026-06-14T09:28:44.136Z",
+  "manifest": "a1-friend-reigns-pilot/scenario_manifest.v1.json",
+  "scope": {
+    "scenarios": 440,
+    "levels": [
+      "a1",
+      "a2"
+    ],
+    "languages": [
+      "de",
+      "en",
+      "es",
+      "fr",
+      "it",
+      "ja",
+      "ko",
+      "pt",
+      "th",
+      "zh"
+    ]
+  },
+  "summary": {
+    "totalIssues": 183,
+    "bySeverity": {
+      "medium": 105,
+      "high": 78
+    },
+    "byType": {
+      "same_speaker_repeats_with_one_turn_gap": 30,
+      "adjacent_clean_path_duplicate": 69,
+      "reused_correct_surface_within_scenario": 15,
+      "turn_count": 9,
+      "generic_or_english_setting_label": 60
+    }
+  },
+  "issues": [
+    {
+      "severity": "medium",
+      "entry_id": "a1:de:core_repair_repeat_slowly",
+      "level": "a1",
+      "lang": "de",
+      "scenario_id": "core_repair_repeat_slowly",
+      "type": "same_speaker_repeats_with_one_turn_gap",
+      "where": "turn[1].npc",
+      "detail": "turn[0].npc and turn[1].npc: Möchten Sie eine Tüte?"
+    },
+    {
+      "severity": "high",
+      "entry_id": "a1:de:daily_schedule_time",
+      "level": "a1",
+      "lang": "de",
+      "scenario_id": "daily_schedule_time",
+      "type": "adjacent_clean_path_duplicate",
+      "where": "turn[3].correct",
+      "detail": "turn[3].npc: Bis später! / turn[3].correct: Bis später!"
+    },
+    {
+      "severity": "high",
+      "entry_id": "a1:de:social_running_late",
+      "level": "a1",
+      "lang": "de",
+      "scenario_id": "social_running_late",
+      "type": "adjacent_clean_path_duplicate",
+      "where": "turn[3].correct",
+      "detail": "turn[3].npc: Bis gleich. / turn[3].correct: Bis gleich."
+    },
+    {
+      "severity": "medium",
+      "entry_id": "a1:en:core_repair_repeat_slowly",
+      "level": "a1",
+      "lang": "en",
+      "scenario_id": "core_repair_repeat_slowly",
+      "type": "same_speaker_repeats_with_one_turn_gap",
+      "where": "turn[1].npc",
+      "detail": "turn[0].npc and turn[1].npc: For here or to go?"
+    },
+    {
+      "severity": "medium",
+      "entry_id": "a1:en:core_repair_repeat_slowly",
+      "level": "a1",
+      "lang": "en",
+      "scenario_id": "core_repair_repeat_slowly",
+      "type": "same_speaker_repeats_with_one_turn_gap",
+      "where": "turn[3].closing",
+      "detail": "turn[3].npc and turn[3].closing: All right. You're all set."
+    },
+    {
+      "severity": "high",
+      "entry_id": "a1:en:daily_meet_friend",
+      "level": "a1",
+      "lang": "en",
+      "scenario_id": "daily_meet_friend",
+      "type": "adjacent_clean_path_duplicate",
+      "where": "turn[3].npc",
+      "detail": "turn[2].correct: Yes, I'm ready. Let's go. / turn[3].npc: Yes, I'm ready. Let's go."
+    },
+    {
+      "severity": "high",
+      "entry_id": "a1:en:daily_meet_friend",
+      "level": "a1",
+      "lang": "en",
+      "scenario_id": "daily_meet_friend",
+      "type": "adjacent_clean_path_duplicate",
+      "where": "turn[3].correct",
+      "detail": "turn[3].npc: Yes, I'm ready. Let's go. / turn[3].correct: Yes, I'm ready. Let's go."
+    },
+    {
+      "severity": "medium",
+      "entry_id": "a1:en:daily_meet_friend",
+      "level": "a1",
+      "lang": "en",
+      "scenario_id": "daily_meet_friend",
+      "type": "same_speaker_repeats_with_one_turn_gap",
+      "where": "turn[3].correct",
+      "detail": "turn[2].correct and turn[3].correct: Yes, I'm ready. Let's go."
+    },
+    {
+      "severity": "medium",
+      "entry_id": "a1:en:daily_meet_friend",
+      "level": "a1",
+      "lang": "en",
+      "scenario_id": "daily_meet_friend",
+      "type": "reused_correct_surface_within_scenario",
+      "where": "turn[3].correct",
+      "detail": "2 and 3: Yes, I'm ready. Let's go."
+    },
+    {
+      "severity": "high",
+      "entry_id": "a1:en:daily_schedule_time",
+      "level": "a1",
+      "lang": "en",
+      "scenario_id": "daily_schedule_time",
+      "type": "adjacent_clean_path_duplicate",
+      "where": "turn[3].correct",
+      "detail": "turn[3].npc: See you. / turn[3].correct: See you."
+    },
+    {
+      "severity": "medium",
+      "entry_id": "a1:en:daily_self_intro",
+      "level": "a1",
+      "lang": "en",
+      "scenario_id": "daily_self_intro",
+      "type": "same_speaker_repeats_with_one_turn_gap",
+      "where": "turn[3].closing",
+      "detail": "turn[3].npc and turn[3].closing: Great. Let's get started."
+    },
+    {
+      "severity": "high",
+      "entry_id": "a1:en:food_bill_payment",
+      "level": "a1",
+      "lang": "en",
+      "scenario_id": "food_bill_payment",
+      "type": "adjacent_clean_path_duplicate",
+      "where": "turn[0].correct",
+      "detail": "turn[0].npc: Can I get the check, please? / turn[0].correct: Can I get the check, please?"
+    },
+    {
+      "severity": "high",
+      "entry_id": "a1:en:food_bill_payment",
+      "level": "a1",
+      "lang": "en",
+      "scenario_id": "food_bill_payment",
+      "type": "adjacent_clean_path_duplicate",
+      "where": "turn[2].npc",
+      "detail": "turn[1].correct: Card, please. / turn[2].npc: Card, please."
+    },
+    {
+      "severity": "high",
+      "entry_id": "a1:en:food_bill_payment",
+      "level": "a1",
+      "lang": "en",
+      "scenario_id": "food_bill_payment",
+      "type": "adjacent_clean_path_duplicate",
+      "where": "turn[2].correct",
+      "detail": "turn[2].npc: Card, please. / turn[2].correct: Card, please."
+    },
+    {
+      "severity": "medium",
+      "entry_id": "a1:en:food_bill_payment",
+      "level": "a1",
+      "lang": "en",
+      "scenario_id": "food_bill_payment",
+      "type": "same_speaker_repeats_with_one_turn_gap",
+      "where": "turn[2].correct",
+      "detail": "turn[1].correct and turn[2].correct: Card, please."
+    },
+    {
+      "severity": "medium",
+      "entry_id": "a1:en:food_bill_payment",
+      "level": "a1",
+      "lang": "en",
+      "scenario_id": "food_bill_payment",
+      "type": "reused_correct_surface_within_scenario",
+      "where": "turn[2].correct",
+      "detail": "1 and 2: Card, please."
+    },
+    {
+      "severity": "high",
+      "entry_id": "a1:en:shopping_ask_price",
+      "level": "a1",
+      "lang": "en",
+      "scenario_id": "shopping_ask_price",
+      "type": "adjacent_clean_path_duplicate",
+      "where": "turn[1].correct",
+      "detail": "turn[1].npc: How much is this? / turn[1].correct: How much is this?"
+    },
+    {
+      "severity": "high",
+      "entry_id": "a1:en:shopping_ask_price",
+      "level": "a1",
+      "lang": "en",
+      "scenario_id": "shopping_ask_price",
+      "type": "adjacent_clean_path_duplicate",
+      "where": "turn[3].npc",
+      "detail": "turn[2].correct: Okay, I'll take it. / turn[3].npc: Okay, I'll take it."
+    },
+    {
+      "severity": "high",
+      "entry_id": "a1:en:shopping_ask_price",
+      "level": "a1",
+      "lang": "en",
+      "scenario_id": "shopping_ask_price",
+      "type": "adjacent_clean_path_duplicate",
+      "where": "turn[3].correct",
+      "detail": "turn[3].npc: Okay, I'll take it. / turn[3].correct: Okay, I'll take it."
+    },
+    {
+      "severity": "medium",
+      "entry_id": "a1:en:shopping_ask_price",
+      "level": "a1",
+      "lang": "en",
+      "scenario_id": "shopping_ask_price",
+      "type": "same_speaker_repeats_with_one_turn_gap",
+      "where": "turn[3].correct",
+      "detail": "turn[2].correct and turn[3].correct: Okay, I'll take it."
+    },
+    {
+      "severity": "medium",
+      "entry_id": "a1:en:shopping_ask_price",
+      "level": "a1",
+      "lang": "en",
+      "scenario_id": "shopping_ask_price",
+      "type": "reused_correct_surface_within_scenario",
+      "where": "turn[3].correct",
+      "detail": "2 and 3: Okay, I'll take it."
+    },
+    {
+      "severity": "high",
+      "entry_id": "a1:en:social_running_late",
+      "level": "a1",
+      "lang": "en",
+      "scenario_id": "social_running_late",
+      "type": "adjacent_clean_path_duplicate",
+      "where": "turn[3].correct",
+      "detail": "turn[3].npc: See you soon. / turn[3].correct: See you soon."
+    },
+    {
+      "severity": "high",
+      "entry_id": "a1:en:travel_restroom_directions",
+      "level": "a1",
+      "lang": "en",
+      "scenario_id": "travel_restroom_directions",
+      "type": "turn_count",
+      "where": "turns",
+      "detail": "expected 4, got 3"
+    },
+    {
+      "severity": "medium",
+      "entry_id": "a1:en:travel_ticket_buying",
+      "level": "a1",
+      "lang": "en",
+      "scenario_id": "travel_ticket_buying",
+      "type": "same_speaker_repeats_with_one_turn_gap",
+      "where": "turn[3].closing",
+      "detail": "turn[3].npc and turn[3].closing: Here is your ticket. Platform two."
+    },
+    {
+      "severity": "high",
+      "entry_id": "a1:es:daily_meet_friend",
+      "level": "a1",
+      "lang": "es",
+      "scenario_id": "daily_meet_friend",
+      "type": "adjacent_clean_path_duplicate",
+      "where": "turn[3].npc",
+      "detail": "turn[2].correct: Sí, vamos. / turn[3].npc: Sí, vamos."
+    },
+    {
+      "severity": "high",
+      "entry_id": "a1:es:daily_meet_friend",
+      "level": "a1",
+      "lang": "es",
+      "scenario_id": "daily_meet_friend",
+      "type": "adjacent_clean_path_duplicate",
+      "where": "turn[3].correct",
+      "detail": "turn[3].npc: Sí, vamos. / turn[3].correct: Sí, vamos."
+    },
+    {
+      "severity": "medium",
+      "entry_id": "a1:es:daily_meet_friend",
+      "level": "a1",
+      "lang": "es",
+      "scenario_id": "daily_meet_friend",
+      "type": "same_speaker_repeats_with_one_turn_gap",
+      "where": "turn[3].correct",
+      "detail": "turn[2].correct and turn[3].correct: Sí, vamos."
+    },
+    {
+      "severity": "medium",
+      "entry_id": "a1:es:daily_meet_friend",
+      "level": "a1",
+      "lang": "es",
+      "scenario_id": "daily_meet_friend",
+      "type": "reused_correct_surface_within_scenario",
+      "where": "turn[3].correct",
+      "detail": "2 and 3: Sí, vamos."
+    },
+    {
+      "severity": "high",
+      "entry_id": "a1:es:shopping_ask_price",
+      "level": "a1",
+      "lang": "es",
+      "scenario_id": "shopping_ask_price",
+      "type": "adjacent_clean_path_duplicate",
+      "where": "turn[3].npc",
+      "detail": "turn[2].correct: Gracias. / turn[3].npc: Gracias."
+    },
+    {
+      "severity": "high",
+      "entry_id": "a1:es:shopping_ask_price",
+      "level": "a1",
+      "lang": "es",
+      "scenario_id": "shopping_ask_price",
+      "type": "adjacent_clean_path_duplicate",
+      "where": "turn[3].correct",
+      "detail": "turn[3].npc: Gracias. / turn[3].correct: Gracias."
+    },
+    {
+      "severity": "medium",
+      "entry_id": "a1:es:shopping_ask_price",
+      "level": "a1",
+      "lang": "es",
+      "scenario_id": "shopping_ask_price",
+      "type": "same_speaker_repeats_with_one_turn_gap",
+      "where": "turn[3].correct",
+      "detail": "turn[2].correct and turn[3].correct: Gracias."
+    },
+    {
+      "severity": "medium",
+      "entry_id": "a1:es:shopping_ask_price",
+      "level": "a1",
+      "lang": "es",
+      "scenario_id": "shopping_ask_price",
+      "type": "reused_correct_surface_within_scenario",
+      "where": "turn[3].correct",
+      "detail": "2 and 3: Gracias."
+    },
+    {
+      "severity": "high",
+      "entry_id": "a1:es:travel_restroom_directions",
+      "level": "a1",
+      "lang": "es",
+      "scenario_id": "travel_restroom_directions",
+      "type": "turn_count",
+      "where": "turns",
+      "detail": "expected 4, got 3"
+    },
+    {
+      "severity": "high",
+      "entry_id": "a1:fr:daily_meet_friend",
+      "level": "a1",
+      "lang": "fr",
+      "scenario_id": "daily_meet_friend",
+      "type": "adjacent_clean_path_duplicate",
+      "where": "turn[3].npc",
+      "detail": "turn[2].correct: Oui, on y va. / turn[3].npc: Oui, on y va."
+    },
+    {
+      "severity": "high",
+      "entry_id": "a1:fr:daily_meet_friend",
+      "level": "a1",
+      "lang": "fr",
+      "scenario_id": "daily_meet_friend",
+      "type": "adjacent_clean_path_duplicate",
+      "where": "turn[3].correct",
+      "detail": "turn[3].npc: Oui, on y va. / turn[3].correct: Oui, on y va."
+    },
+    {
+      "severity": "medium",
+      "entry_id": "a1:fr:daily_meet_friend",
+      "level": "a1",
+      "lang": "fr",
+      "scenario_id": "daily_meet_friend",
+      "type": "same_speaker_repeats_with_one_turn_gap",
+      "where": "turn[3].correct",
+      "detail": "turn[2].correct and turn[3].correct: Oui, on y va."
+    },
+    {
+      "severity": "medium",
+      "entry_id": "a1:fr:daily_meet_friend",
+      "level": "a1",
+      "lang": "fr",
+      "scenario_id": "daily_meet_friend",
+      "type": "reused_correct_surface_within_scenario",
+      "where": "turn[3].correct",
+      "detail": "2 and 3: Oui, on y va."
+    },
+    {
+      "severity": "high",
+      "entry_id": "a1:fr:shopping_ask_price",
+      "level": "a1",
+      "lang": "fr",
+      "scenario_id": "shopping_ask_price",
+      "type": "adjacent_clean_path_duplicate",
+      "where": "turn[3].npc",
+      "detail": "turn[2].correct: Merci. / turn[3].npc: Merci."
+    },
+    {
+      "severity": "high",
+      "entry_id": "a1:fr:shopping_ask_price",
+      "level": "a1",
+      "lang": "fr",
+      "scenario_id": "shopping_ask_price",
+      "type": "adjacent_clean_path_duplicate",
+      "where": "turn[3].correct",
+      "detail": "turn[3].npc: Merci. / turn[3].correct: Merci."
+    },
+    {
+      "severity": "medium",
+      "entry_id": "a1:fr:shopping_ask_price",
+      "level": "a1",
+      "lang": "fr",
+      "scenario_id": "shopping_ask_price",
+      "type": "same_speaker_repeats_with_one_turn_gap",
+      "where": "turn[3].correct",
+      "detail": "turn[2].correct and turn[3].correct: Merci."
+    },
+    {
+      "severity": "medium",
+      "entry_id": "a1:fr:shopping_ask_price",
+      "level": "a1",
+      "lang": "fr",
+      "scenario_id": "shopping_ask_price",
+      "type": "reused_correct_surface_within_scenario",
+      "where": "turn[3].correct",
+      "detail": "2 and 3: Merci."
+    },
+    {
+      "severity": "high",
+      "entry_id": "a1:fr:social_running_late",
+      "level": "a1",
+      "lang": "fr",
+      "scenario_id": "social_running_late",
+      "type": "adjacent_clean_path_duplicate",
+      "where": "turn[3].correct",
+      "detail": "turn[3].npc: À tout de suite. / turn[3].correct: À tout de suite."
+    },
+    {
+      "severity": "high",
+      "entry_id": "a1:fr:travel_restroom_directions",
+      "level": "a1",
+      "lang": "fr",
+      "scenario_id": "travel_restroom_directions",
+      "type": "turn_count",
+      "where": "turns",
+      "detail": "expected 4, got 3"
+    },
+    {
+      "severity": "medium",
+      "entry_id": "a1:it:core_repair_repeat_slowly",
+      "level": "a1",
+      "lang": "it",
+      "scenario_id": "core_repair_repeat_slowly",
+      "type": "same_speaker_repeats_with_one_turn_gap",
+      "where": "turn[1].npc",
+      "detail": "turn[0].npc and turn[1].npc: Vuole un sacchetto?"
+    },
+    {
+      "severity": "high",
+      "entry_id": "a1:it:daily_schedule_time",
+      "level": "a1",
+      "lang": "it",
+      "scenario_id": "daily_schedule_time",
+      "type": "adjacent_clean_path_duplicate",
+      "where": "turn[3].correct",
+      "detail": "turn[3].npc: A dopo! / turn[3].correct: A dopo!"
+    },
+    {
+      "severity": "high",
+      "entry_id": "a1:it:social_running_late",
+      "level": "a1",
+      "lang": "it",
+      "scenario_id": "social_running_late",
+      "type": "adjacent_clean_path_duplicate",
+      "where": "turn[3].correct",
+      "detail": "turn[3].npc: A tra poco. / turn[3].correct: A tra poco."
+    },
+    {
+      "severity": "high",
+      "entry_id": "a1:it:travel_restroom_directions",
+      "level": "a1",
+      "lang": "it",
+      "scenario_id": "travel_restroom_directions",
+      "type": "turn_count",
+      "where": "turns",
+      "detail": "expected 4, got 3"
+    },
+    {
+      "severity": "medium",
+      "entry_id": "a1:ja:core_repair_repeat_slowly",
+      "level": "a1",
+      "lang": "ja",
+      "scenario_id": "core_repair_repeat_slowly",
+      "type": "same_speaker_repeats_with_one_turn_gap",
+      "where": "turn[1].npc",
+      "detail": "turn[0].npc and turn[1].npc: 店内ですか、お持ち帰りですか。"
+    },
+    {
+      "severity": "medium",
+      "entry_id": "a1:ja:core_repair_repeat_slowly",
+      "level": "a1",
+      "lang": "ja",
+      "scenario_id": "core_repair_repeat_slowly",
+      "type": "same_speaker_repeats_with_one_turn_gap",
+      "where": "turn[3].closing",
+      "detail": "turn[3].npc and turn[3].closing: はい、大丈夫です。"
+    },
+    {
+      "severity": "high",
+      "entry_id": "a1:ja:daily_meet_friend",
+      "level": "a1",
+      "lang": "ja",
+      "scenario_id": "daily_meet_friend",
+      "type": "adjacent_clean_path_duplicate",
+      "where": "turn[3].npc",
+      "detail": "turn[2].correct: うん、行こう。 / turn[3].npc: うん、行こう。"
+    },
+    {
+      "severity": "high",
+      "entry_id": "a1:ja:daily_meet_friend",
+      "level": "a1",
+      "lang": "ja",
+      "scenario_id": "daily_meet_friend",
+      "type": "adjacent_clean_path_duplicate",
+      "where": "turn[3].correct",
+      "detail": "turn[3].npc: うん、行こう。 / turn[3].correct: うん、行こう。"
+    },
+    {
+      "severity": "medium",
+      "entry_id": "a1:ja:daily_meet_friend",
+      "level": "a1",
+      "lang": "ja",
+      "scenario_id": "daily_meet_friend",
+      "type": "same_speaker_repeats_with_one_turn_gap",
+      "where": "turn[3].correct",
+      "detail": "turn[2].correct and turn[3].correct: うん、行こう。"
+    },
+    {
+      "severity": "medium",
+      "entry_id": "a1:ja:daily_meet_friend",
+      "level": "a1",
+      "lang": "ja",
+      "scenario_id": "daily_meet_friend",
+      "type": "reused_correct_surface_within_scenario",
+      "where": "turn[3].correct",
+      "detail": "2 and 3: うん、行こう。"
+    },
+    {
+      "severity": "high",
+      "entry_id": "a1:ja:daily_schedule_time",
+      "level": "a1",
+      "lang": "ja",
+      "scenario_id": "daily_schedule_time",
+      "type": "adjacent_clean_path_duplicate",
+      "where": "turn[3].correct",
+      "detail": "turn[3].npc: また明日。 / turn[3].correct: また明日。"
+    },
+    {
+      "severity": "medium",
+      "entry_id": "a1:ja:daily_self_intro",
+      "level": "a1",
+      "lang": "ja",
+      "scenario_id": "daily_self_intro",
+      "type": "same_speaker_repeats_with_one_turn_gap",
+      "where": "turn[3].closing",
+      "detail": "turn[3].npc and turn[3].closing: では、よろしくお願いします。"
+    },
+    {
+      "severity": "high",
+      "entry_id": "a1:ja:food_bill_payment",
+      "level": "a1",
+      "lang": "ja",
+      "scenario_id": "food_bill_payment",
+      "type": "adjacent_clean_path_duplicate",
+      "where": "turn[0].correct",
+      "detail": "turn[0].npc: お会計をお願いします。 / turn[0].correct: お会計をお願いします。"
+    },
+    {
+      "severity": "high",
+      "entry_id": "a1:ja:food_bill_payment",
+      "level": "a1",
+      "lang": "ja",
+      "scenario_id": "food_bill_payment",
+      "type": "adjacent_clean_path_duplicate",
+      "where": "turn[2].npc",
+      "detail": "turn[1].correct: カードでお願いします。 / turn[2].npc: カードでお願いします。"
+    },
+    {
+      "severity": "high",
+      "entry_id": "a1:ja:food_bill_payment",
+      "level": "a1",
+      "lang": "ja",
+      "scenario_id": "food_bill_payment",
+      "type": "adjacent_clean_path_duplicate",
+      "where": "turn[2].correct",
+      "detail": "turn[2].npc: カードでお願いします。 / turn[2].correct: カードでお願いします。"
+    },
+    {
+      "severity": "high",
+      "entry_id": "a1:ja:food_bill_payment",
+      "level": "a1",
+      "lang": "ja",
+      "scenario_id": "food_bill_payment",
+      "type": "adjacent_clean_path_duplicate",
+      "where": "turn[3].correct",
+      "detail": "turn[3].npc: ありがとうございます。 / turn[3].correct: ありがとうございます。"
+    },
+    {
+      "severity": "medium",
+      "entry_id": "a1:ja:food_bill_payment",
+      "level": "a1",
+      "lang": "ja",
+      "scenario_id": "food_bill_payment",
+      "type": "same_speaker_repeats_with_one_turn_gap",
+      "where": "turn[2].correct",
+      "detail": "turn[1].correct and turn[2].correct: カードでお願いします。"
+    },
+    {
+      "severity": "medium",
+      "entry_id": "a1:ja:food_bill_payment",
+      "level": "a1",
+      "lang": "ja",
+      "scenario_id": "food_bill_payment",
+      "type": "reused_correct_surface_within_scenario",
+      "where": "turn[2].correct",
+      "detail": "1 and 2: カードでお願いします。"
+    },
+    {
+      "severity": "high",
+      "entry_id": "a1:ja:shopping_ask_price",
+      "level": "a1",
+      "lang": "ja",
+      "scenario_id": "shopping_ask_price",
+      "type": "adjacent_clean_path_duplicate",
+      "where": "turn[1].correct",
+      "detail": "turn[1].npc: これはいくらですか。 / turn[1].correct: これはいくらですか。"
+    },
+    {
+      "severity": "high",
+      "entry_id": "a1:ja:shopping_ask_price",
+      "level": "a1",
+      "lang": "ja",
+      "scenario_id": "shopping_ask_price",
+      "type": "adjacent_clean_path_duplicate",
+      "where": "turn[3].npc",
+      "detail": "turn[2].correct: じゃあ、これをください。 / turn[3].npc: じゃあ、これをください。"
+    },
+    {
+      "severity": "high",
+      "entry_id": "a1:ja:shopping_ask_price",
+      "level": "a1",
+      "lang": "ja",
+      "scenario_id": "shopping_ask_price",
+      "type": "adjacent_clean_path_duplicate",
+      "where": "turn[3].correct",
+      "detail": "turn[3].npc: じゃあ、これをください。 / turn[3].correct: じゃあ、これをください。"
+    },
+    {
+      "severity": "medium",
+      "entry_id": "a1:ja:shopping_ask_price",
+      "level": "a1",
+      "lang": "ja",
+      "scenario_id": "shopping_ask_price",
+      "type": "same_speaker_repeats_with_one_turn_gap",
+      "where": "turn[3].correct",
+      "detail": "turn[2].correct and turn[3].correct: じゃあ、これをください。"
+    },
+    {
+      "severity": "medium",
+      "entry_id": "a1:ja:shopping_ask_price",
+      "level": "a1",
+      "lang": "ja",
+      "scenario_id": "shopping_ask_price",
+      "type": "reused_correct_surface_within_scenario",
+      "where": "turn[3].correct",
+      "detail": "2 and 3: じゃあ、これをください。"
+    },
+    {
+      "severity": "high",
+      "entry_id": "a1:ja:travel_restroom_directions",
+      "level": "a1",
+      "lang": "ja",
+      "scenario_id": "travel_restroom_directions",
+      "type": "turn_count",
+      "where": "turns",
+      "detail": "expected 4, got 3"
+    },
+    {
+      "severity": "medium",
+      "entry_id": "a1:ja:travel_ticket_buying",
+      "level": "a1",
+      "lang": "ja",
+      "scenario_id": "travel_ticket_buying",
+      "type": "same_speaker_repeats_with_one_turn_gap",
+      "where": "turn[3].closing",
+      "detail": "turn[3].npc and turn[3].closing: 切符です。二番ホームです。"
+    },
+    {
+      "severity": "high",
+      "entry_id": "a1:ko:hotel_wifi_breakfast",
+      "level": "a1",
+      "lang": "ko",
+      "scenario_id": "hotel_wifi_breakfast",
+      "type": "turn_count",
+      "where": "turns",
+      "detail": "expected 4, got 5"
+    },
+    {
+      "severity": "high",
+      "entry_id": "a1:ko:travel_restroom_directions",
+      "level": "a1",
+      "lang": "ko",
+      "scenario_id": "travel_restroom_directions",
+      "type": "turn_count",
+      "where": "turns",
+      "detail": "expected 4, got 3"
+    },
+    {
+      "severity": "high",
+      "entry_id": "a1:pt:daily_meet_friend",
+      "level": "a1",
+      "lang": "pt",
+      "scenario_id": "daily_meet_friend",
+      "type": "adjacent_clean_path_duplicate",
+      "where": "turn[3].npc",
+      "detail": "turn[2].correct: Vamos. / turn[3].npc: Vamos."
+    },
+    {
+      "severity": "high",
+      "entry_id": "a1:pt:daily_meet_friend",
+      "level": "a1",
+      "lang": "pt",
+      "scenario_id": "daily_meet_friend",
+      "type": "adjacent_clean_path_duplicate",
+      "where": "turn[3].correct",
+      "detail": "turn[3].npc: Vamos. / turn[3].correct: Vamos."
+    },
+    {
+      "severity": "medium",
+      "entry_id": "a1:pt:daily_meet_friend",
+      "level": "a1",
+      "lang": "pt",
+      "scenario_id": "daily_meet_friend",
+      "type": "same_speaker_repeats_with_one_turn_gap",
+      "where": "turn[3].correct",
+      "detail": "turn[2].correct and turn[3].correct: Vamos."
+    },
+    {
+      "severity": "medium",
+      "entry_id": "a1:pt:daily_meet_friend",
+      "level": "a1",
+      "lang": "pt",
+      "scenario_id": "daily_meet_friend",
+      "type": "reused_correct_surface_within_scenario",
+      "where": "turn[3].correct",
+      "detail": "2 and 3: Vamos."
+    },
+    {
+      "severity": "high",
+      "entry_id": "a1:pt:shopping_ask_price",
+      "level": "a1",
+      "lang": "pt",
+      "scenario_id": "shopping_ask_price",
+      "type": "adjacent_clean_path_duplicate",
+      "where": "turn[3].npc",
+      "detail": "turn[2].correct: Obrigado. / turn[3].npc: Obrigado."
+    },
+    {
+      "severity": "high",
+      "entry_id": "a1:pt:shopping_ask_price",
+      "level": "a1",
+      "lang": "pt",
+      "scenario_id": "shopping_ask_price",
+      "type": "adjacent_clean_path_duplicate",
+      "where": "turn[3].correct",
+      "detail": "turn[3].npc: Obrigado. / turn[3].correct: Obrigado."
+    },
+    {
+      "severity": "medium",
+      "entry_id": "a1:pt:shopping_ask_price",
+      "level": "a1",
+      "lang": "pt",
+      "scenario_id": "shopping_ask_price",
+      "type": "same_speaker_repeats_with_one_turn_gap",
+      "where": "turn[3].correct",
+      "detail": "turn[2].correct and turn[3].correct: Obrigado."
+    },
+    {
+      "severity": "medium",
+      "entry_id": "a1:pt:shopping_ask_price",
+      "level": "a1",
+      "lang": "pt",
+      "scenario_id": "shopping_ask_price",
+      "type": "reused_correct_surface_within_scenario",
+      "where": "turn[3].correct",
+      "detail": "2 and 3: Obrigado."
+    },
+    {
+      "severity": "high",
+      "entry_id": "a1:pt:social_running_late",
+      "level": "a1",
+      "lang": "pt",
+      "scenario_id": "social_running_late",
+      "type": "adjacent_clean_path_duplicate",
+      "where": "turn[3].correct",
+      "detail": "turn[3].npc: Até já. / turn[3].correct: Até já."
+    },
+    {
+      "severity": "high",
+      "entry_id": "a1:pt:travel_restroom_directions",
+      "level": "a1",
+      "lang": "pt",
+      "scenario_id": "travel_restroom_directions",
+      "type": "turn_count",
+      "where": "turns",
+      "detail": "expected 4, got 3"
+    },
+    {
+      "severity": "medium",
+      "entry_id": "a1:th:core_repair_repeat_slowly",
+      "level": "a1",
+      "lang": "th",
+      "scenario_id": "core_repair_repeat_slowly",
+      "type": "same_speaker_repeats_with_one_turn_gap",
+      "where": "turn[1].npc",
+      "detail": "turn[0].npc and turn[1].npc: ทานที่นี่หรือกลับบ้านครับ"
+    },
+    {
+      "severity": "medium",
+      "entry_id": "a1:th:core_repair_repeat_slowly",
+      "level": "a1",
+      "lang": "th",
+      "scenario_id": "core_repair_repeat_slowly",
+      "type": "same_speaker_repeats_with_one_turn_gap",
+      "where": "turn[3].closing",
+      "detail": "turn[3].npc and turn[3].closing: โอเค เรียบร้อยครับ"
+    },
+    {
+      "severity": "high",
+      "entry_id": "a1:th:daily_meet_friend",
+      "level": "a1",
+      "lang": "th",
+      "scenario_id": "daily_meet_friend",
+      "type": "adjacent_clean_path_duplicate",
+      "where": "turn[3].npc",
+      "detail": "turn[2].correct: พร้อมแล้ว ไปกัน / turn[3].npc: พร้อมแล้ว ไปกัน"
+    },
+    {
+      "severity": "high",
+      "entry_id": "a1:th:daily_meet_friend",
+      "level": "a1",
+      "lang": "th",
+      "scenario_id": "daily_meet_friend",
+      "type": "adjacent_clean_path_duplicate",
+      "where": "turn[3].correct",
+      "detail": "turn[3].npc: พร้อมแล้ว ไปกัน / turn[3].correct: พร้อมแล้ว ไปกัน"
+    },
+    {
+      "severity": "medium",
+      "entry_id": "a1:th:daily_meet_friend",
+      "level": "a1",
+      "lang": "th",
+      "scenario_id": "daily_meet_friend",
+      "type": "same_speaker_repeats_with_one_turn_gap",
+      "where": "turn[3].correct",
+      "detail": "turn[2].correct and turn[3].correct: พร้อมแล้ว ไปกัน"
+    },
+    {
+      "severity": "medium",
+      "entry_id": "a1:th:daily_meet_friend",
+      "level": "a1",
+      "lang": "th",
+      "scenario_id": "daily_meet_friend",
+      "type": "reused_correct_surface_within_scenario",
+      "where": "turn[3].correct",
+      "detail": "2 and 3: พร้อมแล้ว ไปกัน"
+    },
+    {
+      "severity": "high",
+      "entry_id": "a1:th:daily_schedule_time",
+      "level": "a1",
+      "lang": "th",
+      "scenario_id": "daily_schedule_time",
+      "type": "adjacent_clean_path_duplicate",
+      "where": "turn[3].correct",
+      "detail": "turn[3].npc: เจอกัน / turn[3].correct: เจอกัน"
+    },
+    {
+      "severity": "medium",
+      "entry_id": "a1:th:daily_self_intro",
+      "level": "a1",
+      "lang": "th",
+      "scenario_id": "daily_self_intro",
+      "type": "same_speaker_repeats_with_one_turn_gap",
+      "where": "turn[3].closing",
+      "detail": "turn[3].npc and turn[3].closing: ดีเลย เริ่มกันเลยนะ"
+    },
+    {
+      "severity": "high",
+      "entry_id": "a1:th:food_bill_payment",
+      "level": "a1",
+      "lang": "th",
+      "scenario_id": "food_bill_payment",
+      "type": "adjacent_clean_path_duplicate",
+      "where": "turn[0].correct",
+      "detail": "turn[0].npc: ขอเช็กบิลค่ะ / turn[0].correct: ขอเช็กบิลค่ะ"
+    },
+    {
+      "severity": "high",
+      "entry_id": "a1:th:food_bill_payment",
+      "level": "a1",
+      "lang": "th",
+      "scenario_id": "food_bill_payment",
+      "type": "adjacent_clean_path_duplicate",
+      "where": "turn[2].npc",
+      "detail": "turn[1].correct: จ่ายบัตรค่ะ / turn[2].npc: จ่ายบัตรค่ะ"
+    },
+    {
+      "severity": "high",
+      "entry_id": "a1:th:food_bill_payment",
+      "level": "a1",
+      "lang": "th",
+      "scenario_id": "food_bill_payment",
+      "type": "adjacent_clean_path_duplicate",
+      "where": "turn[2].correct",
+      "detail": "turn[2].npc: จ่ายบัตรค่ะ / turn[2].correct: จ่ายบัตรค่ะ"
+    },
+    {
+      "severity": "medium",
+      "entry_id": "a1:th:food_bill_payment",
+      "level": "a1",
+      "lang": "th",
+      "scenario_id": "food_bill_payment",
+      "type": "same_speaker_repeats_with_one_turn_gap",
+      "where": "turn[2].correct",
+      "detail": "turn[1].correct and turn[2].correct: จ่ายบัตรค่ะ"
+    },
+    {
+      "severity": "medium",
+      "entry_id": "a1:th:food_bill_payment",
+      "level": "a1",
+      "lang": "th",
+      "scenario_id": "food_bill_payment",
+      "type": "reused_correct_surface_within_scenario",
+      "where": "turn[2].correct",
+      "detail": "1 and 2: จ่ายบัตรค่ะ"
+    },
+    {
+      "severity": "high",
+      "entry_id": "a1:th:shopping_ask_price",
+      "level": "a1",
+      "lang": "th",
+      "scenario_id": "shopping_ask_price",
+      "type": "adjacent_clean_path_duplicate",
+      "where": "turn[1].correct",
+      "detail": "turn[1].npc: อันนี้เท่าไหร่คะ / turn[1].correct: อันนี้เท่าไหร่คะ"
+    },
+    {
+      "severity": "high",
+      "entry_id": "a1:th:shopping_ask_price",
+      "level": "a1",
+      "lang": "th",
+      "scenario_id": "shopping_ask_price",
+      "type": "adjacent_clean_path_duplicate",
+      "where": "turn[3].npc",
+      "detail": "turn[2].correct: เอาอันนี้ค่ะ / turn[3].npc: เอาอันนี้ค่ะ"
+    },
+    {
+      "severity": "high",
+      "entry_id": "a1:th:shopping_ask_price",
+      "level": "a1",
+      "lang": "th",
+      "scenario_id": "shopping_ask_price",
+      "type": "adjacent_clean_path_duplicate",
+      "where": "turn[3].correct",
+      "detail": "turn[3].npc: เอาอันนี้ค่ะ / turn[3].correct: เอาอันนี้ค่ะ"
+    },
+    {
+      "severity": "medium",
+      "entry_id": "a1:th:shopping_ask_price",
+      "level": "a1",
+      "lang": "th",
+      "scenario_id": "shopping_ask_price",
+      "type": "same_speaker_repeats_with_one_turn_gap",
+      "where": "turn[3].correct",
+      "detail": "turn[2].correct and turn[3].correct: เอาอันนี้ค่ะ"
+    },
+    {
+      "severity": "medium",
+      "entry_id": "a1:th:shopping_ask_price",
+      "level": "a1",
+      "lang": "th",
+      "scenario_id": "shopping_ask_price",
+      "type": "reused_correct_surface_within_scenario",
+      "where": "turn[3].correct",
+      "detail": "2 and 3: เอาอันนี้ค่ะ"
+    },
+    {
+      "severity": "high",
+      "entry_id": "a1:th:travel_restroom_directions",
+      "level": "a1",
+      "lang": "th",
+      "scenario_id": "travel_restroom_directions",
+      "type": "turn_count",
+      "where": "turns",
+      "detail": "expected 4, got 3"
+    },
+    {
+      "severity": "medium",
+      "entry_id": "a1:th:travel_ticket_buying",
+      "level": "a1",
+      "lang": "th",
+      "scenario_id": "travel_ticket_buying",
+      "type": "same_speaker_repeats_with_one_turn_gap",
+      "where": "turn[3].closing",
+      "detail": "turn[3].npc and turn[3].closing: นี่ตั๋วครับ ชานชาลาสอง"
+    },
+    {
+      "severity": "medium",
+      "entry_id": "a1:zh:core_repair_repeat_slowly",
+      "level": "a1",
+      "lang": "zh",
+      "scenario_id": "core_repair_repeat_slowly",
+      "type": "same_speaker_repeats_with_one_turn_gap",
+      "where": "turn[1].npc",
+      "detail": "turn[0].npc and turn[1].npc: 需要袋子嗎？"
+    },
+    {
+      "severity": "high",
+      "entry_id": "a1:zh:daily_schedule_time",
+      "level": "a1",
+      "lang": "zh",
+      "scenario_id": "daily_schedule_time",
+      "type": "adjacent_clean_path_duplicate",
+      "where": "turn[3].correct",
+      "detail": "turn[3].npc: 待會見！ / turn[3].correct: 待會見！"
+    },
+    {
+      "severity": "high",
+      "entry_id": "a1:zh:social_running_late",
+      "level": "a1",
+      "lang": "zh",
+      "scenario_id": "social_running_late",
+      "type": "adjacent_clean_path_duplicate",
+      "where": "turn[3].correct",
+      "detail": "turn[3].npc: 待會見。 / turn[3].correct: 待會見。"
+    },
+    {
+      "severity": "medium",
+      "entry_id": "a2:de:a2_app_booking_confirmation",
+      "level": "a2",
+      "lang": "de",
+      "scenario_id": "a2_app_booking_confirmation",
+      "type": "generic_or_english_setting_label",
+      "where": "setting_label",
+      "detail": "low-risk help message"
+    },
+    {
+      "severity": "medium",
+      "entry_id": "a2:de:a2_change_delivery_pickup_time",
+      "level": "a2",
+      "lang": "de",
+      "scenario_id": "a2_change_delivery_pickup_time",
+      "type": "generic_or_english_setting_label",
+      "where": "setting_label",
+      "detail": "low-risk help message"
+    },
+    {
+      "severity": "medium",
+      "entry_id": "a2:de:a2_decline_with_reason",
+      "level": "a2",
+      "lang": "de",
+      "scenario_id": "a2_decline_with_reason",
+      "type": "generic_or_english_setting_label",
+      "where": "setting_label",
+      "detail": "friend chat"
+    },
+    {
+      "severity": "medium",
+      "entry_id": "a2:de:a2_describe_weekend_activity",
+      "level": "a2",
+      "lang": "de",
+      "scenario_id": "a2_describe_weekend_activity",
+      "type": "generic_or_english_setting_label",
+      "where": "setting_label",
+      "detail": "friend chat"
+    },
+    {
+      "severity": "medium",
+      "entry_id": "a2:de:a2_fill_simple_form_help",
+      "level": "a2",
+      "lang": "de",
+      "scenario_id": "a2_fill_simple_form_help",
+      "type": "generic_or_english_setting_label",
+      "where": "setting_label",
+      "detail": "low-risk help message"
+    },
+    {
+      "severity": "medium",
+      "entry_id": "a2:de:a2_invite_friend_activity",
+      "level": "a2",
+      "lang": "de",
+      "scenario_id": "a2_invite_friend_activity",
+      "type": "generic_or_english_setting_label",
+      "where": "setting_label",
+      "detail": "friend chat"
+    },
+    {
+      "severity": "high",
+      "entry_id": "a2:de:a2_invite_friend_activity",
+      "level": "a2",
+      "lang": "de",
+      "scenario_id": "a2_invite_friend_activity",
+      "type": "adjacent_clean_path_duplicate",
+      "where": "turn[0].correct",
+      "detail": "turn[0].npc: Möchtest du später einen Kaffee trinken? / turn[0].correct: Möchtest du später einen Kaffee trinken?"
+    },
+    {
+      "severity": "high",
+      "entry_id": "a2:de:a2_invite_friend_activity",
+      "level": "a2",
+      "lang": "de",
+      "scenario_id": "a2_invite_friend_activity",
+      "type": "adjacent_clean_path_duplicate",
+      "where": "turn[3].correct",
+      "detail": "turn[3].npc: Super. Bis später. / turn[3].correct: Super. Bis später."
+    },
+    {
+      "severity": "medium",
+      "entry_id": "a2:de:a2_lost_item_followup_message",
+      "level": "a2",
+      "lang": "de",
+      "scenario_id": "a2_lost_item_followup_message",
+      "type": "generic_or_english_setting_label",
+      "where": "setting_label",
+      "detail": "low-risk help message"
+    },
+    {
+      "severity": "medium",
+      "entry_id": "a2:de:a2_make_simple_plan_sequence",
+      "level": "a2",
+      "lang": "de",
+      "scenario_id": "a2_make_simple_plan_sequence",
+      "type": "generic_or_english_setting_label",
+      "where": "setting_label",
+      "detail": "friend chat"
+    },
+    {
+      "severity": "high",
+      "entry_id": "a2:de:a2_reschedule_meeting_time",
+      "level": "a2",
+      "lang": "de",
+      "scenario_id": "a2_reschedule_meeting_time",
+      "type": "adjacent_clean_path_duplicate",
+      "where": "turn[3].correct",
+      "detail": "turn[3].npc: Okay, bis später. / turn[3].correct: Okay, bis später."
+    },
+    {
+      "severity": "medium",
+      "entry_id": "a2:en:a2_app_booking_confirmation",
+      "level": "a2",
+      "lang": "en",
+      "scenario_id": "a2_app_booking_confirmation",
+      "type": "generic_or_english_setting_label",
+      "where": "setting_label",
+      "detail": "low-risk help message"
+    },
+    {
+      "severity": "medium",
+      "entry_id": "a2:en:a2_change_delivery_pickup_time",
+      "level": "a2",
+      "lang": "en",
+      "scenario_id": "a2_change_delivery_pickup_time",
+      "type": "generic_or_english_setting_label",
+      "where": "setting_label",
+      "detail": "low-risk help message"
+    },
+    {
+      "severity": "medium",
+      "entry_id": "a2:en:a2_fill_simple_form_help",
+      "level": "a2",
+      "lang": "en",
+      "scenario_id": "a2_fill_simple_form_help",
+      "type": "generic_or_english_setting_label",
+      "where": "setting_label",
+      "detail": "low-risk help message"
+    },
+    {
+      "severity": "high",
+      "entry_id": "a2:en:a2_invite_friend_activity",
+      "level": "a2",
+      "lang": "en",
+      "scenario_id": "a2_invite_friend_activity",
+      "type": "adjacent_clean_path_duplicate",
+      "where": "turn[0].correct",
+      "detail": "turn[0].npc: Do you want to get coffee later? / turn[0].correct: Do you want to get coffee later?"
+    },
+    {
+      "severity": "high",
+      "entry_id": "a2:en:a2_invite_friend_activity",
+      "level": "a2",
+      "lang": "en",
+      "scenario_id": "a2_invite_friend_activity",
+      "type": "adjacent_clean_path_duplicate",
+      "where": "turn[3].correct",
+      "detail": "turn[3].npc: Great. See you later. / turn[3].correct: Great. See you later."
+    },
+    {
+      "severity": "medium",
+      "entry_id": "a2:en:a2_lost_item_followup_message",
+      "level": "a2",
+      "lang": "en",
+      "scenario_id": "a2_lost_item_followup_message",
+      "type": "generic_or_english_setting_label",
+      "where": "setting_label",
+      "detail": "low-risk help message"
+    },
+    {
+      "severity": "medium",
+      "entry_id": "a2:es:a2_app_booking_confirmation",
+      "level": "a2",
+      "lang": "es",
+      "scenario_id": "a2_app_booking_confirmation",
+      "type": "generic_or_english_setting_label",
+      "where": "setting_label",
+      "detail": "low-risk help message"
+    },
+    {
+      "severity": "medium",
+      "entry_id": "a2:es:a2_change_delivery_pickup_time",
+      "level": "a2",
+      "lang": "es",
+      "scenario_id": "a2_change_delivery_pickup_time",
+      "type": "generic_or_english_setting_label",
+      "where": "setting_label",
+      "detail": "low-risk help message"
+    },
+    {
+      "severity": "medium",
+      "entry_id": "a2:es:a2_decline_with_reason",
+      "level": "a2",
+      "lang": "es",
+      "scenario_id": "a2_decline_with_reason",
+      "type": "generic_or_english_setting_label",
+      "where": "setting_label",
+      "detail": "friend chat"
+    },
+    {
+      "severity": "medium",
+      "entry_id": "a2:es:a2_describe_weekend_activity",
+      "level": "a2",
+      "lang": "es",
+      "scenario_id": "a2_describe_weekend_activity",
+      "type": "generic_or_english_setting_label",
+      "where": "setting_label",
+      "detail": "friend chat"
+    },
+    {
+      "severity": "medium",
+      "entry_id": "a2:es:a2_fill_simple_form_help",
+      "level": "a2",
+      "lang": "es",
+      "scenario_id": "a2_fill_simple_form_help",
+      "type": "generic_or_english_setting_label",
+      "where": "setting_label",
+      "detail": "low-risk help message"
+    },
+    {
+      "severity": "medium",
+      "entry_id": "a2:es:a2_invite_friend_activity",
+      "level": "a2",
+      "lang": "es",
+      "scenario_id": "a2_invite_friend_activity",
+      "type": "generic_or_english_setting_label",
+      "where": "setting_label",
+      "detail": "friend chat"
+    },
+    {
+      "severity": "high",
+      "entry_id": "a2:es:a2_invite_friend_activity",
+      "level": "a2",
+      "lang": "es",
+      "scenario_id": "a2_invite_friend_activity",
+      "type": "adjacent_clean_path_duplicate",
+      "where": "turn[0].correct",
+      "detail": "turn[0].npc: ¿Quieres tomar un café más tarde? / turn[0].correct: ¿Quieres tomar un café más tarde?"
+    },
+    {
+      "severity": "medium",
+      "entry_id": "a2:es:a2_lost_item_followup_message",
+      "level": "a2",
+      "lang": "es",
+      "scenario_id": "a2_lost_item_followup_message",
+      "type": "generic_or_english_setting_label",
+      "where": "setting_label",
+      "detail": "low-risk help message"
+    },
+    {
+      "severity": "medium",
+      "entry_id": "a2:es:a2_make_simple_plan_sequence",
+      "level": "a2",
+      "lang": "es",
+      "scenario_id": "a2_make_simple_plan_sequence",
+      "type": "generic_or_english_setting_label",
+      "where": "setting_label",
+      "detail": "friend chat"
+    },
+    {
+      "severity": "medium",
+      "entry_id": "a2:fr:a2_app_booking_confirmation",
+      "level": "a2",
+      "lang": "fr",
+      "scenario_id": "a2_app_booking_confirmation",
+      "type": "generic_or_english_setting_label",
+      "where": "setting_label",
+      "detail": "low-risk help message"
+    },
+    {
+      "severity": "medium",
+      "entry_id": "a2:fr:a2_change_delivery_pickup_time",
+      "level": "a2",
+      "lang": "fr",
+      "scenario_id": "a2_change_delivery_pickup_time",
+      "type": "generic_or_english_setting_label",
+      "where": "setting_label",
+      "detail": "low-risk help message"
+    },
+    {
+      "severity": "medium",
+      "entry_id": "a2:fr:a2_decline_with_reason",
+      "level": "a2",
+      "lang": "fr",
+      "scenario_id": "a2_decline_with_reason",
+      "type": "generic_or_english_setting_label",
+      "where": "setting_label",
+      "detail": "friend chat"
+    },
+    {
+      "severity": "medium",
+      "entry_id": "a2:fr:a2_describe_weekend_activity",
+      "level": "a2",
+      "lang": "fr",
+      "scenario_id": "a2_describe_weekend_activity",
+      "type": "generic_or_english_setting_label",
+      "where": "setting_label",
+      "detail": "friend chat"
+    },
+    {
+      "severity": "medium",
+      "entry_id": "a2:fr:a2_fill_simple_form_help",
+      "level": "a2",
+      "lang": "fr",
+      "scenario_id": "a2_fill_simple_form_help",
+      "type": "generic_or_english_setting_label",
+      "where": "setting_label",
+      "detail": "low-risk help message"
+    },
+    {
+      "severity": "medium",
+      "entry_id": "a2:fr:a2_invite_friend_activity",
+      "level": "a2",
+      "lang": "fr",
+      "scenario_id": "a2_invite_friend_activity",
+      "type": "generic_or_english_setting_label",
+      "where": "setting_label",
+      "detail": "friend chat"
+    },
+    {
+      "severity": "high",
+      "entry_id": "a2:fr:a2_invite_friend_activity",
+      "level": "a2",
+      "lang": "fr",
+      "scenario_id": "a2_invite_friend_activity",
+      "type": "adjacent_clean_path_duplicate",
+      "where": "turn[0].correct",
+      "detail": "turn[0].npc: Tu veux prendre un café plus tard ? / turn[0].correct: Tu veux prendre un café plus tard ?"
+    },
+    {
+      "severity": "medium",
+      "entry_id": "a2:fr:a2_lost_item_followup_message",
+      "level": "a2",
+      "lang": "fr",
+      "scenario_id": "a2_lost_item_followup_message",
+      "type": "generic_or_english_setting_label",
+      "where": "setting_label",
+      "detail": "low-risk help message"
+    },
+    {
+      "severity": "medium",
+      "entry_id": "a2:fr:a2_make_simple_plan_sequence",
+      "level": "a2",
+      "lang": "fr",
+      "scenario_id": "a2_make_simple_plan_sequence",
+      "type": "generic_or_english_setting_label",
+      "where": "setting_label",
+      "detail": "friend chat"
+    },
+    {
+      "severity": "medium",
+      "entry_id": "a2:it:a2_app_booking_confirmation",
+      "level": "a2",
+      "lang": "it",
+      "scenario_id": "a2_app_booking_confirmation",
+      "type": "generic_or_english_setting_label",
+      "where": "setting_label",
+      "detail": "low-risk help message"
+    },
+    {
+      "severity": "medium",
+      "entry_id": "a2:it:a2_change_delivery_pickup_time",
+      "level": "a2",
+      "lang": "it",
+      "scenario_id": "a2_change_delivery_pickup_time",
+      "type": "generic_or_english_setting_label",
+      "where": "setting_label",
+      "detail": "low-risk help message"
+    },
+    {
+      "severity": "medium",
+      "entry_id": "a2:it:a2_decline_with_reason",
+      "level": "a2",
+      "lang": "it",
+      "scenario_id": "a2_decline_with_reason",
+      "type": "generic_or_english_setting_label",
+      "where": "setting_label",
+      "detail": "friend chat"
+    },
+    {
+      "severity": "medium",
+      "entry_id": "a2:it:a2_describe_weekend_activity",
+      "level": "a2",
+      "lang": "it",
+      "scenario_id": "a2_describe_weekend_activity",
+      "type": "generic_or_english_setting_label",
+      "where": "setting_label",
+      "detail": "friend chat"
+    },
+    {
+      "severity": "medium",
+      "entry_id": "a2:it:a2_fill_simple_form_help",
+      "level": "a2",
+      "lang": "it",
+      "scenario_id": "a2_fill_simple_form_help",
+      "type": "generic_or_english_setting_label",
+      "where": "setting_label",
+      "detail": "low-risk help message"
+    },
+    {
+      "severity": "medium",
+      "entry_id": "a2:it:a2_invite_friend_activity",
+      "level": "a2",
+      "lang": "it",
+      "scenario_id": "a2_invite_friend_activity",
+      "type": "generic_or_english_setting_label",
+      "where": "setting_label",
+      "detail": "friend chat"
+    },
+    {
+      "severity": "high",
+      "entry_id": "a2:it:a2_invite_friend_activity",
+      "level": "a2",
+      "lang": "it",
+      "scenario_id": "a2_invite_friend_activity",
+      "type": "adjacent_clean_path_duplicate",
+      "where": "turn[0].correct",
+      "detail": "turn[0].npc: Ti va di prendere un caffè più tardi? / turn[0].correct: Ti va di prendere un caffè più tardi?"
+    },
+    {
+      "severity": "high",
+      "entry_id": "a2:it:a2_invite_friend_activity",
+      "level": "a2",
+      "lang": "it",
+      "scenario_id": "a2_invite_friend_activity",
+      "type": "adjacent_clean_path_duplicate",
+      "where": "turn[3].correct",
+      "detail": "turn[3].npc: Perfetto. A dopo. / turn[3].correct: Perfetto. A dopo."
+    },
+    {
+      "severity": "medium",
+      "entry_id": "a2:it:a2_lost_item_followup_message",
+      "level": "a2",
+      "lang": "it",
+      "scenario_id": "a2_lost_item_followup_message",
+      "type": "generic_or_english_setting_label",
+      "where": "setting_label",
+      "detail": "low-risk help message"
+    },
+    {
+      "severity": "medium",
+      "entry_id": "a2:it:a2_make_simple_plan_sequence",
+      "level": "a2",
+      "lang": "it",
+      "scenario_id": "a2_make_simple_plan_sequence",
+      "type": "generic_or_english_setting_label",
+      "where": "setting_label",
+      "detail": "friend chat"
+    },
+    {
+      "severity": "medium",
+      "entry_id": "a2:ja:a2_app_booking_confirmation",
+      "level": "a2",
+      "lang": "ja",
+      "scenario_id": "a2_app_booking_confirmation",
+      "type": "generic_or_english_setting_label",
+      "where": "setting_label",
+      "detail": "low-risk help message"
+    },
+    {
+      "severity": "medium",
+      "entry_id": "a2:ja:a2_change_delivery_pickup_time",
+      "level": "a2",
+      "lang": "ja",
+      "scenario_id": "a2_change_delivery_pickup_time",
+      "type": "generic_or_english_setting_label",
+      "where": "setting_label",
+      "detail": "low-risk help message"
+    },
+    {
+      "severity": "medium",
+      "entry_id": "a2:ja:a2_fill_simple_form_help",
+      "level": "a2",
+      "lang": "ja",
+      "scenario_id": "a2_fill_simple_form_help",
+      "type": "generic_or_english_setting_label",
+      "where": "setting_label",
+      "detail": "low-risk help message"
+    },
+    {
+      "severity": "high",
+      "entry_id": "a2:ja:a2_invite_friend_activity",
+      "level": "a2",
+      "lang": "ja",
+      "scenario_id": "a2_invite_friend_activity",
+      "type": "adjacent_clean_path_duplicate",
+      "where": "turn[0].correct",
+      "detail": "turn[0].npc: 今日、カフェに行かない？ / turn[0].correct: 今日、カフェに行かない？"
+    },
+    {
+      "severity": "medium",
+      "entry_id": "a2:ja:a2_lost_item_followup_message",
+      "level": "a2",
+      "lang": "ja",
+      "scenario_id": "a2_lost_item_followup_message",
+      "type": "generic_or_english_setting_label",
+      "where": "setting_label",
+      "detail": "low-risk help message"
+    },
+    {
+      "severity": "high",
+      "entry_id": "a2:ja:a2_make_simple_plan_sequence",
+      "level": "a2",
+      "lang": "ja",
+      "scenario_id": "a2_make_simple_plan_sequence",
+      "type": "adjacent_clean_path_duplicate",
+      "where": "turn[0].correct",
+      "detail": "turn[0].npc: 先に駅で会おう。 / turn[0].correct: 先に駅で会おう。"
+    },
+    {
+      "severity": "high",
+      "entry_id": "a2:ko:a2_invite_friend_activity",
+      "level": "a2",
+      "lang": "ko",
+      "scenario_id": "a2_invite_friend_activity",
+      "type": "adjacent_clean_path_duplicate",
+      "where": "turn[0].correct",
+      "detail": "turn[0].npc: 오늘 오후에 같이 산책할래요? / turn[0].correct: 오늘 오후에 같이 산책할래요?"
+    },
+    {
+      "severity": "high",
+      "entry_id": "a2:ko:a2_invite_friend_activity",
+      "level": "a2",
+      "lang": "ko",
+      "scenario_id": "a2_invite_friend_activity",
+      "type": "adjacent_clean_path_duplicate",
+      "where": "turn[3].correct",
+      "detail": "turn[3].npc: 좋아요. 이따 봐요. / turn[3].correct: 좋아요. 이따 봐요."
+    },
+    {
+      "severity": "medium",
+      "entry_id": "a2:pt:a2_app_booking_confirmation",
+      "level": "a2",
+      "lang": "pt",
+      "scenario_id": "a2_app_booking_confirmation",
+      "type": "generic_or_english_setting_label",
+      "where": "setting_label",
+      "detail": "low-risk help message"
+    },
+    {
+      "severity": "medium",
+      "entry_id": "a2:pt:a2_change_delivery_pickup_time",
+      "level": "a2",
+      "lang": "pt",
+      "scenario_id": "a2_change_delivery_pickup_time",
+      "type": "generic_or_english_setting_label",
+      "where": "setting_label",
+      "detail": "low-risk help message"
+    },
+    {
+      "severity": "medium",
+      "entry_id": "a2:pt:a2_decline_with_reason",
+      "level": "a2",
+      "lang": "pt",
+      "scenario_id": "a2_decline_with_reason",
+      "type": "generic_or_english_setting_label",
+      "where": "setting_label",
+      "detail": "friend chat"
+    },
+    {
+      "severity": "medium",
+      "entry_id": "a2:pt:a2_describe_weekend_activity",
+      "level": "a2",
+      "lang": "pt",
+      "scenario_id": "a2_describe_weekend_activity",
+      "type": "generic_or_english_setting_label",
+      "where": "setting_label",
+      "detail": "friend chat"
+    },
+    {
+      "severity": "medium",
+      "entry_id": "a2:pt:a2_fill_simple_form_help",
+      "level": "a2",
+      "lang": "pt",
+      "scenario_id": "a2_fill_simple_form_help",
+      "type": "generic_or_english_setting_label",
+      "where": "setting_label",
+      "detail": "low-risk help message"
+    },
+    {
+      "severity": "medium",
+      "entry_id": "a2:pt:a2_invite_friend_activity",
+      "level": "a2",
+      "lang": "pt",
+      "scenario_id": "a2_invite_friend_activity",
+      "type": "generic_or_english_setting_label",
+      "where": "setting_label",
+      "detail": "friend chat"
+    },
+    {
+      "severity": "high",
+      "entry_id": "a2:pt:a2_invite_friend_activity",
+      "level": "a2",
+      "lang": "pt",
+      "scenario_id": "a2_invite_friend_activity",
+      "type": "adjacent_clean_path_duplicate",
+      "where": "turn[0].correct",
+      "detail": "turn[0].npc: Você quer tomar um café mais tarde? / turn[0].correct: Você quer tomar um café mais tarde?"
+    },
+    {
+      "severity": "high",
+      "entry_id": "a2:pt:a2_invite_friend_activity",
+      "level": "a2",
+      "lang": "pt",
+      "scenario_id": "a2_invite_friend_activity",
+      "type": "adjacent_clean_path_duplicate",
+      "where": "turn[3].correct",
+      "detail": "turn[3].npc: Ótimo. Até mais tarde. / turn[3].correct: Ótimo. Até mais tarde."
+    },
+    {
+      "severity": "medium",
+      "entry_id": "a2:pt:a2_lost_item_followup_message",
+      "level": "a2",
+      "lang": "pt",
+      "scenario_id": "a2_lost_item_followup_message",
+      "type": "generic_or_english_setting_label",
+      "where": "setting_label",
+      "detail": "low-risk help message"
+    },
+    {
+      "severity": "medium",
+      "entry_id": "a2:pt:a2_make_simple_plan_sequence",
+      "level": "a2",
+      "lang": "pt",
+      "scenario_id": "a2_make_simple_plan_sequence",
+      "type": "generic_or_english_setting_label",
+      "where": "setting_label",
+      "detail": "friend chat"
+    },
+    {
+      "severity": "medium",
+      "entry_id": "a2:th:a2_app_booking_confirmation",
+      "level": "a2",
+      "lang": "th",
+      "scenario_id": "a2_app_booking_confirmation",
+      "type": "generic_or_english_setting_label",
+      "where": "setting_label",
+      "detail": "low-risk help message"
+    },
+    {
+      "severity": "medium",
+      "entry_id": "a2:th:a2_change_delivery_pickup_time",
+      "level": "a2",
+      "lang": "th",
+      "scenario_id": "a2_change_delivery_pickup_time",
+      "type": "generic_or_english_setting_label",
+      "where": "setting_label",
+      "detail": "low-risk help message"
+    },
+    {
+      "severity": "medium",
+      "entry_id": "a2:th:a2_fill_simple_form_help",
+      "level": "a2",
+      "lang": "th",
+      "scenario_id": "a2_fill_simple_form_help",
+      "type": "generic_or_english_setting_label",
+      "where": "setting_label",
+      "detail": "low-risk help message"
+    },
+    {
+      "severity": "high",
+      "entry_id": "a2:th:a2_invite_friend_activity",
+      "level": "a2",
+      "lang": "th",
+      "scenario_id": "a2_invite_friend_activity",
+      "type": "adjacent_clean_path_duplicate",
+      "where": "turn[0].correct",
+      "detail": "turn[0].npc: บ่ายนี้ไปดื่มกาแฟด้วยกันไหม / turn[0].correct: บ่ายนี้ไปดื่มกาแฟด้วยกันไหม"
+    },
+    {
+      "severity": "high",
+      "entry_id": "a2:th:a2_invite_friend_activity",
+      "level": "a2",
+      "lang": "th",
+      "scenario_id": "a2_invite_friend_activity",
+      "type": "adjacent_clean_path_duplicate",
+      "where": "turn[3].correct",
+      "detail": "turn[3].npc: ดีเลย เดี๋ยวเจอกันนะ / turn[3].correct: ดีเลย เดี๋ยวเจอกันนะ"
+    },
+    {
+      "severity": "medium",
+      "entry_id": "a2:th:a2_lost_item_followup_message",
+      "level": "a2",
+      "lang": "th",
+      "scenario_id": "a2_lost_item_followup_message",
+      "type": "generic_or_english_setting_label",
+      "where": "setting_label",
+      "detail": "low-risk help message"
+    },
+    {
+      "severity": "medium",
+      "entry_id": "a2:zh:a2_app_booking_confirmation",
+      "level": "a2",
+      "lang": "zh",
+      "scenario_id": "a2_app_booking_confirmation",
+      "type": "generic_or_english_setting_label",
+      "where": "setting_label",
+      "detail": "low-risk help message"
+    },
+    {
+      "severity": "medium",
+      "entry_id": "a2:zh:a2_change_delivery_pickup_time",
+      "level": "a2",
+      "lang": "zh",
+      "scenario_id": "a2_change_delivery_pickup_time",
+      "type": "generic_or_english_setting_label",
+      "where": "setting_label",
+      "detail": "low-risk help message"
+    },
+    {
+      "severity": "medium",
+      "entry_id": "a2:zh:a2_decline_with_reason",
+      "level": "a2",
+      "lang": "zh",
+      "scenario_id": "a2_decline_with_reason",
+      "type": "generic_or_english_setting_label",
+      "where": "setting_label",
+      "detail": "friend chat"
+    },
+    {
+      "severity": "medium",
+      "entry_id": "a2:zh:a2_describe_weekend_activity",
+      "level": "a2",
+      "lang": "zh",
+      "scenario_id": "a2_describe_weekend_activity",
+      "type": "generic_or_english_setting_label",
+      "where": "setting_label",
+      "detail": "friend chat"
+    },
+    {
+      "severity": "medium",
+      "entry_id": "a2:zh:a2_fill_simple_form_help",
+      "level": "a2",
+      "lang": "zh",
+      "scenario_id": "a2_fill_simple_form_help",
+      "type": "generic_or_english_setting_label",
+      "where": "setting_label",
+      "detail": "low-risk help message"
+    },
+    {
+      "severity": "medium",
+      "entry_id": "a2:zh:a2_invite_friend_activity",
+      "level": "a2",
+      "lang": "zh",
+      "scenario_id": "a2_invite_friend_activity",
+      "type": "generic_or_english_setting_label",
+      "where": "setting_label",
+      "detail": "friend chat"
+    },
+    {
+      "severity": "high",
+      "entry_id": "a2:zh:a2_invite_friend_activity",
+      "level": "a2",
+      "lang": "zh",
+      "scenario_id": "a2_invite_friend_activity",
+      "type": "adjacent_clean_path_duplicate",
+      "where": "turn[0].correct",
+      "detail": "turn[0].npc: 等一下要不要一起喝咖啡？ / turn[0].correct: 等一下要不要一起喝咖啡？"
+    },
+    {
+      "severity": "high",
+      "entry_id": "a2:zh:a2_invite_friend_activity",
+      "level": "a2",
+      "lang": "zh",
+      "scenario_id": "a2_invite_friend_activity",
+      "type": "adjacent_clean_path_duplicate",
+      "where": "turn[3].correct",
+      "detail": "turn[3].npc: 好，等一下見。 / turn[3].correct: 好，等一下見。"
+    },
+    {
+      "severity": "medium",
+      "entry_id": "a2:zh:a2_lost_item_followup_message",
+      "level": "a2",
+      "lang": "zh",
+      "scenario_id": "a2_lost_item_followup_message",
+      "type": "generic_or_english_setting_label",
+      "where": "setting_label",
+      "detail": "low-risk help message"
+    },
+    {
+      "severity": "medium",
+      "entry_id": "a2:zh:a2_make_simple_plan_sequence",
+      "level": "a2",
+      "lang": "zh",
+      "scenario_id": "a2_make_simple_plan_sequence",
+      "type": "generic_or_english_setting_label",
+      "where": "setting_label",
+      "detail": "friend chat"
+    },
+    {
+      "severity": "high",
+      "entry_id": "a2:zh:a2_make_simple_plan_sequence",
+      "level": "a2",
+      "lang": "zh",
+      "scenario_id": "a2_make_simple_plan_sequence",
+      "type": "adjacent_clean_path_duplicate",
+      "where": "turn[3].correct",
+      "detail": "turn[3].npc: 好，星期六兩點見。 / turn[3].correct: 好，星期六兩點見。"
+    }
+  ]
+}
