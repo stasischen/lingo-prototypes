@@ -508,6 +508,15 @@
     const browserState = { query: '', level: 'all', language: 'all' };
     const transcript = [];
     let missesByRound = [];
+    function escapeHtml(value) {
+      return String(value ?? '').replace(/[&<>"']/g, (char) => ({
+        '&': '&amp;',
+        '<': '&lt;',
+        '>': '&gt;',
+        '"': '&quot;',
+        "'": '&#39;'
+      })[char]);
+    }
     function normalize(text) { return text.normalize('NFC').replace(/[.,!?，。！？\s]/g, '').trim(); }
     function supportText() { return scenarioPack && scenarioPack.support_text ? scenarioPack.support_text : '聽聽看對方說什麼，挑一句回他。'; }
     function npcLabel() { return scenarioPack && scenarioPack.roles && scenarioPack.roles.npc ? scenarioPack.roles.npc.label : '對方'; }
@@ -642,7 +651,7 @@
         const button = document.createElement('button');
         button.className = 'choice';
         button.type = 'button';
-        button.innerHTML = `<span class="choice-ko">${choice.text}</span>${showTranslations && choice.zh ? `<span class="choice-zh">${choice.zh}</span>` : ''}`;
+        button.innerHTML = `<span class="choice-ko">${escapeHtml(choice.text)}</span>${showTranslations && choice.zh ? `<span class="choice-zh">${escapeHtml(choice.zh)}</span>` : ''}`;
         button.addEventListener('click', () => {
           if (roundCommitted) return;
           Array.from(hand.children).forEach((child) => child.classList.remove('selected', 'good', 'warn'));
@@ -660,16 +669,17 @@
       const list = document.getElementById('transcriptList');
       if (!list) return;
       if (!transcript.length) {
-        list.innerHTML = `<div class="message friend"><div class="ko">${supportText()}</div></div>`;
+        list.innerHTML = `<div class="message friend"><div class="ko">${escapeHtml(supportText())}</div></div>`;
         return;
       }
       list.innerHTML = transcript.map((turn) => {
         const roleClass = turn.kind || (turn.role === learnerLabel() ? 'learner' : (turn.role === 'Friend' ? 'friend' : 'staff'));
-        const zh = showTranslations && turn.zh ? `<div class="zh">${turn.zh}</div>` : '';
-        const action = turn.speak ? `<div class="message-actions"><button class="speak-link" type="button" data-speak="${turn.speak}">發音</button></div>` : '';
-        const formula = turn.formula ? `<div class="formula-inline">${turn.formula.items.map((item) => `<button class="formula-chip" type="button" data-speak="${item.speak}">${item.surface}<span>${item.translation}</span></button>`).join('')}</div>` : '';
-        const role = turn.role === 'Friend' ? '' : `<div class="role">${turn.role}</div>`;
-        return `<div class="message ${roleClass}">${role}<div class="ko">${turn.ko}</div>${zh}${formula}${action}</div>`;
+        const zh = showTranslations && turn.zh ? `<div class="zh">${escapeHtml(turn.zh)}</div>` : '';
+        const action = turn.speak ? `<div class="message-actions"><button class="speak-link" type="button" data-speak="${escapeHtml(turn.speak)}">發音</button></div>` : '';
+        const formulaItems = turn.formula && Array.isArray(turn.formula.items) ? turn.formula.items : [];
+        const formula = formulaItems.length ? `<div class="formula-inline">${formulaItems.map((item) => `<button class="formula-chip" type="button" data-speak="${escapeHtml(item.speak || item.surface)}">${escapeHtml(item.surface)}<span>${escapeHtml(item.translation)}</span></button>`).join('')}</div>` : '';
+        const role = turn.role === 'Friend' ? '' : `<div class="role">${escapeHtml(turn.role)}</div>`;
+        return `<div class="message ${escapeHtml(roleClass)}">${role}<div class="ko">${escapeHtml(turn.ko)}</div>${zh}${formula}${action}</div>`;
       }).join('');
       list.scrollTop = list.scrollHeight;
     }
@@ -878,7 +888,7 @@
           addItem(turn.closing.surface, turn.closing.translation);
         }
       });
-      list.innerHTML = items.map((item) => `<div class="wrap-item"><b>${item.surface}</b><div class="meta">${item.translation}</div></div>`).join('');
+      list.innerHTML = items.map((item) => `<div class="wrap-item"><b>${escapeHtml(item.surface)}</b><div class="meta">${escapeHtml(item.translation)}</div></div>`).join('');
     }
     function currentEntry() {
       if (!scenarioManifest) return null;
@@ -892,7 +902,7 @@
         button.textContent = '尚未選擇場景';
         return;
       }
-      button.innerHTML = `${entry.label}<small>${entry.level.toUpperCase()} · ${entry.language_label || entry.language} · ${entry.setting_label || entry.scenario_id}</small>`;
+      button.innerHTML = `${escapeHtml(entry.label)}<small>${escapeHtml(entry.level.toUpperCase())} · ${escapeHtml(entry.language_label || entry.language)} · ${escapeHtml(entry.setting_label || entry.scenario_id)}</small>`;
     }
     function setBrowserVisible(visible) {
       const browser = document.getElementById('scenarioBrowser');
@@ -907,8 +917,8 @@
       const levels = Array.from(new Set(scenarioManifest.scenarios.map((scenario) => scenario.level))).sort();
       const languages = Array.from(new Map(scenarioManifest.scenarios.map((scenario) => [scenario.language, scenario.language_label || scenario.language])).entries())
         .sort((a, b) => a[1].localeCompare(b[1]));
-      levelFilter.innerHTML = `<option value="all">全部級別</option>${levels.map((level) => `<option value="${level}">${level.toUpperCase()}</option>`).join('')}`;
-      languageFilter.innerHTML = `<option value="all">全部語言</option>${languages.map(([code, label]) => `<option value="${code}">${label}</option>`).join('')}`;
+      levelFilter.innerHTML = `<option value="all">全部級別</option>${levels.map((level) => `<option value="${escapeHtml(level)}">${escapeHtml(level.toUpperCase())}</option>`).join('')}`;
+      languageFilter.innerHTML = `<option value="all">全部語言</option>${languages.map(([code, label]) => `<option value="${escapeHtml(code)}">${escapeHtml(label)}</option>`).join('')}`;
       levelFilter.value = browserState.level;
       languageFilter.value = browserState.language;
     }
@@ -943,10 +953,10 @@
       grid.innerHTML = scenarios.map((scenario) => {
         const active = scenario.entry_id === currentEntryId ? ' active' : '';
         const status = scenario.source_status ? ` · ${scenario.source_status}` : '';
-        return `<button class="scenario-card${active}" type="button" data-entry-id="${scenario.entry_id}">
-          <b>${scenario.label}</b>
-          <div class="scenario-meta">${scenario.level.toUpperCase()} · ${scenario.language_label || scenario.language} · ${scenario.setting_label || scenario.scenario_id}</div>
-          <div class="scenario-meta">${scenario.turns || 0} turns${status}</div>
+        return `<button class="scenario-card${active}" type="button" data-entry-id="${escapeHtml(scenario.entry_id)}">
+          <b>${escapeHtml(scenario.label)}</b>
+          <div class="scenario-meta">${escapeHtml(scenario.level.toUpperCase())} · ${escapeHtml(scenario.language_label || scenario.language)} · ${escapeHtml(scenario.setting_label || scenario.scenario_id)}</div>
+          <div class="scenario-meta">${escapeHtml(scenario.turns || 0)} turns${escapeHtml(status)}</div>
         </button>`;
       }).join('');
     }
