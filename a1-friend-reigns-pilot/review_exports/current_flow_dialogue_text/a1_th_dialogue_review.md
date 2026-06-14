@@ -12,6 +12,8 @@ This export is for language/content review. It intentionally removes the interac
 - Scenario ID: convenience_payment_card_cash
 - Setting: เคาน์เตอร์ร้านสะดวกซื้อ
 - Source status: candidate_runtime_verified
+- Prototype text review: automated_text_review_passed
+- Prototype runtime walk: runtime_walk_passed
 - Review state: draft
 - Native review: native_pending
 - Support text: 你在泰國便利商店櫃台付款。聽店員問什麼，選一句自然接得上的泰文。
@@ -46,6 +48,8 @@ This export is for language/content review. It intentionally removes the interac
 - Scenario ID: core_repair_repeat_slowly
 - Setting: เคาน์เตอร์ร้านกาแฟ
 - Source status: candidate_runtime_verified
+- Prototype text review: automated_text_review_passed
+- Prototype runtime walk: runtime_walk_passed
 - Review state: draft
 - Native review: native_pending
 - Support text: 你在咖啡店櫃台沒聽清楚問題。選自然、簡短的泰文修復句。
@@ -79,6 +83,8 @@ This export is for language/content review. It intentionally removes the interac
 - Scenario ID: daily_meet_friend
 - Setting: หน้าร้านกาแฟ
 - Source status: candidate_runtime_verified
+- Prototype text review: automated_text_review_passed
+- Prototype runtime walk: runtime_walk_passed
 - Review state: draft
 - Native review: native_pending
 - Support text: 你在咖啡店門口和朋友碰面。選自然、簡短的泰文。
@@ -109,6 +115,8 @@ This export is for language/content review. It intentionally removes the interac
 - Scenario ID: daily_schedule_time
 - Setting: นัดกับเพื่อน
 - Source status: candidate_runtime_verified
+- Prototype text review: automated_text_review_passed
+- Prototype runtime walk: runtime_walk_passed
 - Review state: draft
 - Native review: native_pending
 - Support text: 你在和泰國朋友約時間。聽對方問什麼，選一句自然接得上的泰文。
@@ -143,6 +151,8 @@ This export is for language/content review. It intentionally removes the interac
 - Scenario ID: daily_self_intro
 - Setting: โต๊ะแลกเปลี่ยนภาษา
 - Source status: candidate_runtime_verified
+- Prototype text review: automated_text_review_passed
+- Prototype runtime walk: runtime_walk_passed
 - Review state: draft
 - Native review: native_pending
 - Support text: 你在語言交換桌第一次見到新朋友。選自然、簡短的泰文。
@@ -176,6 +186,8 @@ This export is for language/content review. It intentionally removes the interac
 - Scenario ID: digital_battery_charging
 - Setting: เคาน์เตอร์คาเฟ่
 - Source status: candidate_runtime_verified
+- Prototype text review: automated_text_review_passed
+- Prototype runtime walk: runtime_walk_passed
 - Review state: draft
 - Native review: native_pending
 - Support text: 你在泰國咖啡店想幫手機充電。選自然、簡短的泰文。
@@ -210,6 +222,8 @@ This export is for language/content review. It intentionally removes the interac
 - Scenario ID: digital_wifi_connect
 - Setting: เคาน์เตอร์คาเฟ่
 - Source status: candidate_runtime_verified
+- Prototype text review: automated_text_review_passed
+- Prototype runtime walk: runtime_walk_passed
 - Review state: draft
 - Native review: native_pending
 - Support text: 你在泰國咖啡店或飯店櫃台，需要連Wi-Fi。選自然、簡短的泰文。
@@ -244,6 +258,8 @@ This export is for language/content review. It intentionally removes the interac
 - Scenario ID: food_bill_payment
 - Setting: ร้านอาหารสบาย ๆ
 - Source status: candidate_runtime_verified
+- Prototype text review: automated_text_review_passed
+- Prototype runtime walk: runtime_walk_passed
 - Review state: draft
 - Native review: native_pending
 - Support text: 你在餐廳或咖啡店用餐後要結帳。選自然、簡短的泰文。
@@ -274,6 +290,8 @@ This export is for language/content review. It intentionally removes the interac
 - Scenario ID: food_coffee_ordering
 - Setting: เคาน์เตอร์คาเฟ่
 - Source status: candidate_runtime_verified
+- Prototype text review: automated_text_review_passed
+- Prototype runtime walk: runtime_walk_passed
 - Review state: draft
 - Native review: native_pending
 - Support text: 你在泰國咖啡店櫃台。聽店員問什麼，選一句自然接得上的泰文。
@@ -308,6 +326,8 @@ This export is for language/content review. It intentionally removes the interac
 - Scenario ID: food_restaurant_ordering
 - Setting: ร้านอาหารง่าย ๆ
 - Source status: candidate_runtime_verified
+- Prototype text review: automated_text_review_passed
+- Prototype runtime walk: runtime_walk_passed
 - Review state: draft
 - Native review: native_pending
 - Support text: 你在泰國的簡單餐廳用餐。聽店員問什麼，選一句自然接得上的泰文。
@@ -342,6 +362,8 @@ This export is for language/content review. It intentionally removes the interac
 - Scenario ID: hotel_checkout
 - Setting: แผนกต้อนรับโรงแรม
 - Source status: candidate_runtime_verified
+- Prototype text review: automated_text_review_passed
+- Prototype runtime walk: runtime_walk_passed
 - Review state: draft
 - Native review: native_pending
 - Support text: 你在泰國飯店櫃台退房。選自然、簡短的泰文。
@@ -376,6 +398,8 @@ This export is for language/content review. It intentionally removes the interac
 - Scenario ID: hotel_wifi_breakfast
 - Setting: แผนกต้อนรับโรงแรม
 - Source status: candidate_runtime_verified
+- Prototype text review: automated_text_review_passed
+- Prototype runtime walk: runtime_walk_passed
 - Review state: draft
 - Native review: native_pending
 - Support text: 你在泰國飯店櫃台。聽櫃台人員回答，選一句自然接得上的泰文。
@@ -410,6 +434,8 @@ This export is for language/content review. It intentionally removes the interac
 - Scenario ID: problem_lost_item
 - Setting: เคาน์เตอร์ประชาสัมพันธ์
 - Source status: candidate_runtime_verified
+- Prototype text review: automated_text_review_passed
+- Prototype runtime walk: runtime_walk_passed
 - Review state: draft
 - Native review: native_pending
 - Support text: 你在泰國服務台找遺失的小物。選自然、簡短的泰文。
@@ -444,6 +470,8 @@ This export is for language/content review. It intentionally removes the interac
 - Scenario ID: shopping_ask_price
 - Setting: ร้านเล็ก
 - Source status: candidate_runtime_verified
+- Prototype text review: automated_text_review_passed
+- Prototype runtime walk: runtime_walk_passed
 - Review state: draft
 - Native review: native_pending
 - Support text: 你在小店想問一件商品的價格。選自然、簡短的泰文。
@@ -473,6 +501,8 @@ This export is for language/content review. It intentionally removes the interac
 - Scenario ID: social_running_late
 - Setting: ข้อความถึงเพื่อน
 - Source status: candidate_runtime_verified
+- Prototype text review: automated_text_review_passed
+- Prototype runtime walk: runtime_walk_passed
 - Review state: draft
 - Native review: native_pending
 - Support text: 你要傳訊息給泰國朋友說會晚到。選自然、簡短的泰文。
@@ -507,6 +537,8 @@ This export is for language/content review. It intentionally removes the interac
 - Scenario ID: travel_hotel_checkin
 - Setting: เคาน์เตอร์โรงแรม
 - Source status: candidate_runtime_verified
+- Prototype text review: automated_text_review_passed
+- Prototype runtime walk: runtime_walk_passed
 - Review state: draft
 - Native review: native_pending
 - Support text: 你在泰國飯店櫃台。辦理入住、說名字，並聽懂下一步。
@@ -541,6 +573,8 @@ This export is for language/content review. It intentionally removes the interac
 - Scenario ID: travel_restroom_directions
 - Setting: ในคาเฟ่
 - Source status: candidate_runtime_verified
+- Prototype text review: automated_text_review_passed
+- Prototype runtime walk: runtime_walk_passed
 - Review state: draft
 - Native review: native_pending
 - Support text: 你在泰國的咖啡店或公共場所。禮貌開口，問洗手間在哪裡。
@@ -572,6 +606,8 @@ This export is for language/content review. It intentionally removes the interac
 - Scenario ID: travel_station_directions
 - Setting: สถานีรถไฟฟ้า
 - Source status: candidate_runtime_verified
+- Prototype text review: automated_text_review_passed
+- Prototype runtime walk: runtime_walk_passed
 - Review state: draft
 - Native review: native_pending
 - Support text: 你在泰國車站裡找出口。聽對方的方向提示，選一句自然接得上的泰文。
@@ -606,6 +642,8 @@ This export is for language/content review. It intentionally removes the interac
 - Scenario ID: travel_taxi_destination
 - Setting: ในแท็กซี่
 - Source status: candidate_runtime_verified
+- Prototype text review: automated_text_review_passed
+- Prototype runtime walk: runtime_walk_passed
 - Review state: draft
 - Native review: native_pending
 - Support text: 你在泰國搭計程車。聽司機說話，選一句自然接得上的泰文。
@@ -640,6 +678,8 @@ This export is for language/content review. It intentionally removes the interac
 - Scenario ID: travel_ticket_buying
 - Setting: เคาน์เตอร์ตั๋วรถไฟ
 - Source status: candidate_runtime_verified
+- Prototype text review: automated_text_review_passed
+- Prototype runtime walk: runtime_walk_passed
 - Review state: draft
 - Native review: native_pending
 - Support text: 你在火車售票櫃台買一張票。選自然、簡短的泰文。

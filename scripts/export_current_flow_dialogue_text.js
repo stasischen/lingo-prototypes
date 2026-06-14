@@ -75,8 +75,10 @@ function renderScenario(entry, pack) {
   lines.push(`- Scenario ID: ${entry.scenario_id}`);
   lines.push(`- Setting: ${clean(pack.setting_label || entry.setting_label)}`);
   lines.push(`- Source status: ${clean(pack.source_status || entry.source_status)}`);
+  lines.push(`- Prototype text review: ${clean(entry.prototype_text_review_state || 'not_recorded')}`);
+  lines.push(`- Prototype runtime walk: ${clean(entry.prototype_runtime_walk_state || 'not_recorded')}`);
   lines.push(`- Review state: ${clean(pack.review_state || '')}`);
-  lines.push(`- Native review: ${clean(pack.native_review_state || '')}`);
+  lines.push(`- Native review: ${clean(pack.native_review_state || entry.native_review_state || 'native_pending')}`);
   if (pack.scenario) lines.push(`- Scenario brief: ${clean(pack.scenario)}`);
   if (pack.learner_goal) lines.push(`- Learner goal: ${clean(pack.learner_goal)}`);
   if (pack.support_text) lines.push(`- Support text: ${clean(pack.support_text)}`);

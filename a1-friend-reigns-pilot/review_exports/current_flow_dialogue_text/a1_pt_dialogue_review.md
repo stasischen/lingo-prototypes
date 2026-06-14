@@ -12,6 +12,8 @@ This export is for language/content review. It intentionally removes the interac
 - Scenario ID: convenience_payment_card_cash
 - Setting: Caixa de loja pequena
 - Source status: candidate_runtime_verified
+- Prototype text review: automated_text_review_passed
+- Prototype runtime walk: runtime_walk_passed
 - Review state: draft
 - Native review: native_pending
 - Support text: 你在巴西葡語便利店或小商店櫃台。聽店員問付款方式，選一句自然接得上的葡萄牙語。
@@ -46,6 +48,8 @@ This export is for language/content review. It intentionally removes the interac
 - Scenario ID: core_repair_repeat_slowly
 - Setting: Balcão de uma cafeteria
 - Source status: candidate_runtime_verified
+- Prototype text review: automated_text_review_passed
+- Prototype runtime walk: runtime_walk_passed
 - Review state: draft
 - Native review: native_pending
 - Support text: 你在櫃台沒聽清楚問題。先修復對話，再回答。
@@ -80,6 +84,8 @@ This export is for language/content review. It intentionally removes the interac
 - Scenario ID: daily_meet_friend
 - Setting: Entrada de uma cafeteria
 - Source status: candidate_runtime_verified
+- Prototype text review: automated_text_review_passed
+- Prototype runtime walk: runtime_walk_passed
 - Review state: draft
 - Native review: native_pending
 - Support text: 你在咖啡店門口和朋友碰面。選一句自然的巴西葡語短句。
@@ -110,6 +116,8 @@ This export is for language/content review. It intentionally removes the interac
 - Scenario ID: daily_schedule_time
 - Setting: Plano com uma amiga
 - Source status: candidate_runtime_verified
+- Prototype text review: automated_text_review_passed
+- Prototype runtime walk: runtime_walk_passed
 - Review state: draft
 - Native review: native_pending
 - Support text: 你在用巴西葡語和朋友約時間。聽對方問什麼，選一個簡短自然的回答。
@@ -144,6 +152,8 @@ This export is for language/content review. It intentionally removes the interac
 - Scenario ID: daily_self_intro
 - Setting: Mesa de troca de idiomas
 - Source status: candidate_runtime_verified
+- Prototype text review: automated_text_review_passed
+- Prototype runtime walk: runtime_walk_passed
 - Review state: draft
 - Native review: native_pending
 - Support text: 你在語言交換活動第一次見到同桌的人。選一句自然、簡短的巴西葡語。
@@ -178,6 +188,8 @@ This export is for language/content review. It intentionally removes the interac
 - Scenario ID: digital_battery_charging
 - Setting: Cafeteria
 - Source status: candidate_runtime_verified
+- Prototype text review: automated_text_review_passed
+- Prototype runtime walk: runtime_walk_passed
 - Review state: draft
 - Native review: native_pending
 - Support text: 你在咖啡店。先問可不可以充手機，再問插座在哪裡，確認位置並道謝。
@@ -211,6 +223,8 @@ This export is for language/content review. It intentionally removes the interac
 - Scenario ID: digital_wifi_connect
 - Setting: Balcão
 - Source status: candidate_runtime_verified
+- Prototype text review: automated_text_review_passed
+- Prototype runtime walk: runtime_walk_passed
 - Review state: draft
 - Native review: native_pending
 - Support text: 你在櫃台。問 wifi 密碼，嘗試後說手機連不上，並謝謝對方。
@@ -244,6 +258,8 @@ This export is for language/content review. It intentionally removes the interac
 - Scenario ID: food_bill_payment
 - Setting: Cafeteria simples
 - Source status: candidate_runtime_verified
+- Prototype text review: automated_text_review_passed
+- Prototype runtime walk: runtime_walk_passed
 - Review state: draft
 - Native review: native_pending
 - Support text: 你在巴西葡語咖啡店用餐後要結帳。選一句自然短句。
@@ -278,6 +294,8 @@ This export is for language/content review. It intentionally removes the interac
 - Scenario ID: food_coffee_ordering
 - Setting: Balcão de cafeteria
 - Source status: candidate_runtime_verified
+- Prototype text review: automated_text_review_passed
+- Prototype runtime walk: runtime_walk_passed
 - Review state: draft
 - Native review: native_pending
 - Support text: 你在葡語咖啡店櫃台。聽店員問什麼，選一句自然接得上的葡萄牙語。
@@ -312,6 +330,8 @@ This export is for language/content review. It intentionally removes the interac
 - Scenario ID: food_restaurant_ordering
 - Setting: Mesa de restaurante simples
 - Source status: candidate_runtime_verified
+- Prototype text review: automated_text_review_passed
+- Prototype runtime walk: runtime_walk_passed
 - Review state: draft
 - Native review: native_pending
 - Support text: 你在巴西葡語餐廳。聽服務生問什麼，選一句自然的葡萄牙語短句。
@@ -346,6 +366,8 @@ This export is for language/content review. It intentionally removes the interac
 - Scenario ID: hotel_checkout
 - Setting: Recepção do hotel
 - Source status: candidate_runtime_verified
+- Prototype text review: automated_text_review_passed
+- Prototype runtime walk: runtime_walk_passed
 - Review state: draft
 - Native review: native_pending
 - Support text: 你在飯店櫃台退房。說要退房、房號、交回房卡，並道謝。
@@ -379,6 +401,8 @@ This export is for language/content review. It intentionally removes the interac
 - Scenario ID: hotel_wifi_breakfast
 - Setting: Recepção do hotel
 - Source status: candidate_runtime_verified
+- Prototype text review: automated_text_review_passed
+- Prototype runtime walk: runtime_walk_passed
 - Review state: draft
 - Native review: native_pending
 - Support text: 你在飯店櫃台。用巴西葡語短句問 wifi 密碼和早餐時間。
@@ -413,6 +437,8 @@ This export is for language/content review. It intentionally removes the interac
 - Scenario ID: problem_lost_item
 - Setting: Balcão de informações
 - Source status: candidate_runtime_verified
+- Prototype text review: automated_text_review_passed
+- Prototype runtime walk: runtime_walk_passed
 - Review state: draft
 - Native review: native_pending
 - Support text: 你在服務櫃台。說一個小物品不見了，回答可能在哪裡不見，確認下一步去哪裡問，最後道謝。
@@ -446,6 +472,8 @@ This export is for language/content review. It intentionally removes the interac
 - Scenario ID: shopping_ask_price
 - Setting: Loja simples
 - Source status: candidate_runtime_verified
+- Prototype text review: automated_text_review_passed
+- Prototype runtime walk: runtime_walk_passed
 - Review state: draft
 - Native review: native_pending
 - Support text: 你在巴西葡語小店。聽店員說什麼，選一句自然的葡萄牙語短句。
@@ -476,6 +504,8 @@ This export is for language/content review. It intentionally removes the interac
 - Scenario ID: social_running_late
 - Setting: Mensagem para um amigo
 - Source status: candidate_runtime_verified
+- Prototype text review: automated_text_review_passed
+- Prototype runtime walk: runtime_walk_passed
 - Review state: draft
 - Native review: native_pending
 - Support text: 你要和朋友見面，但會晚到。簡短說抱歉、幾分鐘後到、謝謝對方等待，最後說等一下見。
@@ -509,6 +539,8 @@ This export is for language/content review. It intentionally removes the interac
 - Scenario ID: travel_hotel_checkin
 - Setting: Recepção do hotel
 - Source status: candidate_runtime_verified
+- Prototype text review: automated_text_review_passed
+- Prototype runtime walk: runtime_walk_passed
 - Review state: draft
 - Native review: native_pending
 - Support text: 你在葡語飯店櫃台。辦理入住、說訂房姓名，並聽懂下一步。
@@ -543,6 +575,8 @@ This export is for language/content review. It intentionally removes the interac
 - Scenario ID: travel_restroom_directions
 - Setting: Lugar público
 - Source status: candidate_runtime_verified
+- Prototype text review: automated_text_review_passed
+- Prototype runtime walk: runtime_walk_passed
 - Review state: draft
 - Native review: native_pending
 - Support text: 你在葡語公共場所。禮貌開口，問洗手間在哪裡，並確認方向。
@@ -574,6 +608,8 @@ This export is for language/content review. It intentionally removes the interac
 - Scenario ID: travel_station_directions
 - Setting: Estação de metrô
 - Source status: candidate_runtime_verified
+- Prototype text review: automated_text_review_passed
+- Prototype runtime walk: runtime_walk_passed
 - Review state: draft
 - Native review: native_pending
 - Support text: 你在巴西葡語地鐵站。用短句問出口，聽懂直走和右轉。
@@ -608,6 +644,8 @@ This export is for language/content review. It intentionally removes the interac
 - Scenario ID: travel_taxi_destination
 - Setting: Táxi
 - Source status: candidate_runtime_verified
+- Prototype text review: automated_text_review_passed
+- Prototype runtime walk: runtime_walk_passed
 - Review state: draft
 - Native review: native_pending
 - Support text: 你在計程車上。用巴西葡語說目的地、確認地點，並聽懂大約時間。
@@ -641,6 +679,8 @@ This export is for language/content review. It intentionally removes the interac
 - Scenario ID: travel_ticket_buying
 - Setting: Guichê de metrô
 - Source status: candidate_runtime_verified
+- Prototype text review: automated_text_review_passed
+- Prototype runtime walk: runtime_walk_passed
 - Review state: draft
 - Native review: native_pending
 - Support text: 你在巴西葡語地鐵售票窗口買一張簡單車票。選一句自然短句。

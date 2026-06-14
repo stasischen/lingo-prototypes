@@ -12,6 +12,8 @@ This export is for language/content review. It intentionally removes the interac
 - Scenario ID: a2_app_booking_confirmation
 - Setting: help message
 - Source status: candidate_runtime_verified
+- Prototype text review: automated_text_review_passed
+- Prototype runtime walk: runtime_walk_passed
 - Review state: ai_reviewed
 - Native review: native_pending
 - Scenario brief: {"domain":"digital_documents_low_risk_help","review_slice":"digital_documents","interaction":"low_risk_confirmation_or_help","source_brief":"A2_DIGITAL_DOCUMENTS_NEUTRAL_ADAPTATION_BRIEFS_20260614","blueprint_source":"language_neutral_adaptation_brief","ko_pack_role":"mature_scenario_blueprint_not_translation_source"}
@@ -47,6 +49,8 @@ This export is for language/content review. It intentionally removes the interac
 - Scenario ID: a2_ask_ingredient_preference
 - Setting: restaurant counter
 - Source status: candidate_runtime_verified
+- Prototype text review: automated_text_review_passed
+- Prototype runtime walk: runtime_walk_passed
 - Review state: ai_reviewed
 - Native review: native_pending
 - Scenario brief: {"domain":"food_shopping_preferences","review_slice":"food_shopping","interaction":"service_preference_or_exchange","source_brief":"A2_FOOD_SHOPPING_NEUTRAL_ADAPTATION_BRIEFS_20260614","blueprint_source":"language_neutral_adaptation_brief","ko_pack_role":"mature_scenario_blueprint_not_translation_source"}
@@ -82,6 +86,8 @@ This export is for language/content review. It intentionally removes the interac
 - Scenario ID: a2_ask_late_checkout
 - Setting: At the hotel front desk
 - Source status: candidate_runtime_verified
+- Prototype text review: automated_text_review_passed
+- Prototype runtime walk: runtime_walk_passed
 - Review state: ai_reviewed
 - Native review: native_pending
 - Scenario brief: A hotel/accommodation service scenario: a2_ask_late_checkout.
@@ -117,6 +123,8 @@ This export is for language/content review. It intentionally removes the interac
 - Scenario ID: a2_ask_recommendation_budget
 - Setting: small shop
 - Source status: candidate_runtime_verified
+- Prototype text review: automated_text_review_passed
+- Prototype runtime walk: runtime_walk_passed
 - Review state: ai_reviewed
 - Native review: native_pending
 - Scenario brief: {"domain":"food_shopping_preferences","review_slice":"food_shopping","interaction":"service_preference_or_exchange","source_brief":"A2_FOOD_SHOPPING_NEUTRAL_ADAPTATION_BRIEFS_20260614","blueprint_source":"language_neutral_adaptation_brief","ko_pack_role":"mature_scenario_blueprint_not_translation_source"}
@@ -152,6 +160,8 @@ This export is for language/content review. It intentionally removes the interac
 - Scenario ID: a2_ask_transfer_platform
 - Setting: At a busy station
 - Source status: candidate_runtime_verified
+- Prototype text review: automated_text_review_passed
+- Prototype runtime walk: runtime_walk_passed
 - Review state: ai_reviewed
 - Native review: native_pending
 - Scenario brief: You need to transfer and ask a staff member for the right platform.
@@ -187,6 +197,8 @@ This export is for language/content review. It intentionally removes the interac
 - Scenario ID: a2_change_delivery_pickup_time
 - Setting: help message
 - Source status: candidate_runtime_verified
+- Prototype text review: automated_text_review_passed
+- Prototype runtime walk: runtime_walk_passed
 - Review state: ai_reviewed
 - Native review: native_pending
 - Scenario brief: {"domain":"digital_documents_low_risk_help","review_slice":"digital_documents","interaction":"low_risk_confirmation_or_help","source_brief":"A2_DIGITAL_DOCUMENTS_NEUTRAL_ADAPTATION_BRIEFS_20260614","blueprint_source":"language_neutral_adaptation_brief","ko_pack_role":"mature_scenario_blueprint_not_translation_source"}
@@ -222,6 +234,8 @@ This export is for language/content review. It intentionally removes the interac
 - Scenario ID: a2_change_ticket_time
 - Setting: At a station ticket counter
 - Source status: candidate_runtime_verified
+- Prototype text review: automated_text_review_passed
+- Prototype runtime walk: runtime_walk_passed
 - Review state: ai_reviewed
 - Native review: native_pending
 - Scenario brief: You want to change the time on a transport ticket.
@@ -257,6 +271,8 @@ This export is for language/content review. It intentionally removes the interac
 - Scenario ID: a2_compare_two_menu_options
 - Setting: restaurant counter
 - Source status: candidate_runtime_verified
+- Prototype text review: automated_text_review_passed
+- Prototype runtime walk: runtime_walk_passed
 - Review state: ai_reviewed
 - Native review: native_pending
 - Scenario brief: {"domain":"food_shopping_preferences","review_slice":"food_shopping","interaction":"service_preference_or_exchange","source_brief":"A2_FOOD_SHOPPING_NEUTRAL_ADAPTATION_BRIEFS_20260614","blueprint_source":"language_neutral_adaptation_brief","ko_pack_role":"mature_scenario_blueprint_not_translation_source"}
@@ -292,6 +308,8 @@ This export is for language/content review. It intentionally removes the interac
 - Scenario ID: a2_confirm_date_time_place
 - Setting: Checking a short message
 - Source status: candidate_runtime_verified
+- Prototype text review: automated_text_review_passed
+- Prototype runtime walk: runtime_walk_passed
 - Review state: ai_reviewed
 - Native review: native_pending
 - Scenario brief: You confirm date, time, and place from a short message.
@@ -327,6 +345,8 @@ This export is for language/content review. It intentionally removes the interac
 - Scenario ID: a2_decline_with_reason
 - Setting: message with a friend
 - Source status: candidate_runtime_verified
+- Prototype text review: automated_text_review_passed
+- Prototype runtime walk: runtime_walk_passed
 - Review state: ai_reviewed
 - Native review: native_pending
 - Scenario brief: {"domain":"daily_social_coordination","review_slice":"daily_social","interaction":"friend_social_coordination","source_brief":"A2_DAILY_SOCIAL_NEUTRAL_ADAPTATION_BRIEFS_20260614","blueprint_source":"language_neutral_adaptation_brief","ko_pack_role":"mature_scenario_blueprint_not_translation_source"}
@@ -362,6 +382,8 @@ This export is for language/content review. It intentionally removes the interac
 - Scenario ID: a2_describe_weekend_activity
 - Setting: Monday chat with a friend
 - Source status: candidate_runtime_verified
+- Prototype text review: automated_text_review_passed
+- Prototype runtime walk: runtime_walk_passed
 - Review state: ai_reviewed
 - Native review: native_pending
 - Scenario brief: {"domain":"daily_social_coordination","review_slice":"daily_social","interaction":"friend_social_coordination","source_brief":"A2_DAILY_SOCIAL_NEUTRAL_ADAPTATION_BRIEFS_20260614","blueprint_source":"language_neutral_adaptation_brief","ko_pack_role":"mature_scenario_blueprint_not_translation_source"}
@@ -397,6 +419,8 @@ This export is for language/content review. It intentionally removes the interac
 - Scenario ID: a2_exchange_wrong_item
 - Setting: shop counter
 - Source status: candidate_runtime_verified
+- Prototype text review: automated_text_review_passed
+- Prototype runtime walk: runtime_walk_passed
 - Review state: ai_reviewed
 - Native review: native_pending
 - Scenario brief: {"domain":"food_shopping_preferences","review_slice":"food_shopping","interaction":"service_preference_or_exchange","source_brief":"A2_FOOD_SHOPPING_NEUTRAL_ADAPTATION_BRIEFS_20260614","blueprint_source":"language_neutral_adaptation_brief","ko_pack_role":"mature_scenario_blueprint_not_translation_source"}
@@ -432,6 +456,8 @@ This export is for language/content review. It intentionally removes the interac
 - Scenario ID: a2_explain_simple_delay_reason
 - Setting: On the way to meet a friend
 - Source status: candidate_runtime_verified
+- Prototype text review: automated_text_review_passed
+- Prototype runtime walk: runtime_walk_passed
 - Review state: ai_reviewed
 - Native review: native_pending
 - Scenario brief: You are running a little late and need to explain the reason.
@@ -467,6 +493,8 @@ This export is for language/content review. It intentionally removes the interac
 - Scenario ID: a2_fill_simple_form_help
 - Setting: help message
 - Source status: candidate_runtime_verified
+- Prototype text review: automated_text_review_passed
+- Prototype runtime walk: runtime_walk_passed
 - Review state: ai_reviewed
 - Native review: native_pending
 - Scenario brief: {"domain":"digital_documents_low_risk_help","review_slice":"digital_documents","interaction":"low_risk_confirmation_or_help","source_brief":"A2_DIGITAL_DOCUMENTS_NEUTRAL_ADAPTATION_BRIEFS_20260614","blueprint_source":"language_neutral_adaptation_brief","ko_pack_role":"mature_scenario_blueprint_not_translation_source"}
@@ -502,6 +530,8 @@ This export is for language/content review. It intentionally removes the interac
 - Scenario ID: a2_invite_friend_activity
 - Setting: chat with a friend
 - Source status: candidate_runtime_verified
+- Prototype text review: automated_text_review_passed
+- Prototype runtime walk: runtime_walk_passed
 - Review state: ai_reviewed
 - Native review: native_pending
 - Scenario brief: {"domain":"daily_social_coordination","review_slice":"daily_social","interaction":"friend_social_coordination","source_brief":"A2_DAILY_SOCIAL_NEUTRAL_ADAPTATION_BRIEFS_20260614","blueprint_source":"language_neutral_adaptation_brief","ko_pack_role":"mature_scenario_blueprint_not_translation_source"}
@@ -537,6 +567,8 @@ This export is for language/content review. It intentionally removes the interac
 - Scenario ID: a2_lost_item_followup_message
 - Setting: help message
 - Source status: candidate_runtime_verified
+- Prototype text review: automated_text_review_passed
+- Prototype runtime walk: runtime_walk_passed
 - Review state: ai_reviewed
 - Native review: native_pending
 - Scenario brief: {"domain":"digital_documents_low_risk_help","review_slice":"digital_documents","interaction":"low_risk_confirmation_or_help","source_brief":"A2_DIGITAL_DOCUMENTS_NEUTRAL_ADAPTATION_BRIEFS_20260614","blueprint_source":"language_neutral_adaptation_brief","ko_pack_role":"mature_scenario_blueprint_not_translation_source"}
@@ -572,6 +604,8 @@ This export is for language/content review. It intentionally removes the interac
 - Scenario ID: a2_luggage_storage_pickup
 - Setting: At a station luggage counter
 - Source status: candidate_runtime_verified
+- Prototype text review: automated_text_review_passed
+- Prototype runtime walk: runtime_walk_passed
 - Review state: ai_reviewed
 - Native review: native_pending
 - Scenario brief: You want to store a bag at a station and pick it up later.
@@ -607,6 +641,8 @@ This export is for language/content review. It intentionally removes the interac
 - Scenario ID: a2_make_simple_plan_sequence
 - Setting: weekend plan call
 - Source status: candidate_runtime_verified
+- Prototype text review: automated_text_review_passed
+- Prototype runtime walk: runtime_walk_passed
 - Review state: ai_reviewed
 - Native review: native_pending
 - Scenario brief: {"domain":"daily_social_coordination","review_slice":"daily_social","interaction":"friend_social_coordination","source_brief":"A2_DAILY_SOCIAL_NEUTRAL_ADAPTATION_BRIEFS_20260614","blueprint_source":"language_neutral_adaptation_brief","ko_pack_role":"mature_scenario_blueprint_not_translation_source"}
@@ -642,6 +678,8 @@ This export is for language/content review. It intentionally removes the interac
 - Scenario ID: a2_plan_tomorrow_morning
 - Setting: Chat with a friend
 - Source status: candidate_runtime_verified
+- Prototype text review: automated_text_review_passed
+- Prototype runtime walk: runtime_walk_passed
 - Review state: ai_reviewed
 - Native review: native_pending
 - Scenario brief: A friend asks what you plan to do tomorrow morning.
@@ -677,6 +715,8 @@ This export is for language/content review. It intentionally removes the interac
 - Scenario ID: a2_report_room_problem
 - Setting: At the hotel front desk
 - Source status: candidate_runtime_verified
+- Prototype text review: automated_text_review_passed
+- Prototype runtime walk: runtime_walk_passed
 - Review state: ai_reviewed
 - Native review: native_pending
 - Scenario brief: A hotel/accommodation service scenario: a2_report_room_problem.
@@ -712,6 +752,8 @@ This export is for language/content review. It intentionally removes the interac
 - Scenario ID: a2_request_room_change
 - Setting: At the hotel front desk
 - Source status: candidate_runtime_verified
+- Prototype text review: automated_text_review_passed
+- Prototype runtime walk: runtime_walk_passed
 - Review state: ai_reviewed
 - Native review: native_pending
 - Scenario brief: A hotel/accommodation service scenario: a2_request_room_change.
@@ -747,6 +789,8 @@ This export is for language/content review. It intentionally removes the interac
 - Scenario ID: a2_reschedule_meeting_time
 - Setting: Changing plans with a friend
 - Source status: candidate_runtime_verified
+- Prototype text review: automated_text_review_passed
+- Prototype runtime walk: runtime_walk_passed
 - Review state: ai_reviewed
 - Native review: native_pending
 - Scenario brief: You need to ask a friend to move a meeting time.
@@ -782,6 +826,8 @@ This export is for language/content review. It intentionally removes the interac
 - Scenario ID: a2_transport_delay_announcement
 - Setting: At a train platform
 - Source status: candidate_runtime_verified
+- Prototype text review: automated_text_review_passed
+- Prototype runtime walk: runtime_walk_passed
 - Review state: ai_reviewed
 - Native review: native_pending
 - Scenario brief: You hear a short train delay announcement and need to decide what to do.
@@ -817,6 +863,8 @@ This export is for language/content review. It intentionally removes the interac
 - Scenario ID: a2_understand_hotel_notice
 - Setting: In the hotel lobby
 - Source status: candidate_runtime_verified
+- Prototype text review: automated_text_review_passed
+- Prototype runtime walk: runtime_walk_passed
 - Review state: ai_reviewed
 - Native review: native_pending
 - Scenario brief: A hotel/accommodation service scenario: a2_understand_hotel_notice.

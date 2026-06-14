@@ -12,6 +12,8 @@ This export is for language/content review. It intentionally removes the interac
 - Scenario ID: convenience_payment_card_cash
 - Setting: 便利商店櫃台
 - Source status: candidate_runtime_verified
+- Prototype text review: automated_text_review_passed
+- Prototype runtime walk: runtime_walk_passed
 - Review state: draft
 - Native review: native_pending
 - Support text: 你在便利商店櫃台結帳。用簡短中文回答要刷卡還是付現，並完成交易。
@@ -45,6 +47,8 @@ This export is for language/content review. It intentionally removes the interac
 - Scenario ID: core_repair_repeat_slowly
 - Setting: 服務櫃台
 - Source status: candidate_runtime_verified
+- Prototype text review: automated_text_review_passed
+- Prototype runtime walk: runtime_walk_passed
 - Review state: draft
 - Native review: native_pending
 - Support text: 你在櫃台沒聽懂一句簡短問題。先請對方再說一次，再請對方說慢一點，最後回答。
@@ -78,6 +82,8 @@ This export is for language/content review. It intentionally removes the interac
 - Scenario ID: daily_meet_friend
 - Setting: 咖啡店門口
 - Source status: candidate_runtime_verified
+- Prototype text review: automated_text_review_passed
+- Prototype runtime walk: runtime_walk_passed
 - Review state: draft
 - Native review: native_pending
 - Support text: 你在咖啡店門口和朋友見面。用朋友之間自然簡短的中文確認對方和計畫。
@@ -111,6 +117,8 @@ This export is for language/content review. It intentionally removes the interac
 - Scenario ID: daily_schedule_time
 - Setting: 朋友約見面
 - Source status: candidate_runtime_verified
+- Prototype text review: automated_text_review_passed
+- Prototype runtime walk: runtime_walk_passed
 - Review state: draft
 - Native review: native_pending
 - Support text: 你正在和朋友約見面時間。用簡短中文回答幾點，並確認安排。
@@ -144,6 +152,8 @@ This export is for language/content review. It intentionally removes the interac
 - Scenario ID: daily_self_intro
 - Setting: 語言交換活動
 - Source status: candidate_runtime_verified
+- Prototype text review: automated_text_review_passed
+- Prototype runtime walk: runtime_walk_passed
 - Review state: draft
 - Native review: native_pending
 - Support text: 你在語言交換活動第一次見到新朋友。只說名字和正在學的語言，不分享電話、地址或工作資訊。
@@ -177,6 +187,8 @@ This export is for language/content review. It intentionally removes the interac
 - Scenario ID: digital_battery_charging
 - Setting: 咖啡店櫃台
 - Source status: candidate_runtime_verified
+- Prototype text review: automated_text_review_passed
+- Prototype runtime walk: runtime_walk_passed
 - Review state: draft
 - Native review: native_pending
 - Support text: 你在咖啡店或大廳。先問可不可以充手機，再問插座在哪裡，確認位置並道謝。
@@ -210,6 +222,8 @@ This export is for language/content review. It intentionally removes the interac
 - Scenario ID: digital_wifi_connect
 - Setting: 咖啡店櫃台
 - Source status: candidate_runtime_verified
+- Prototype text review: automated_text_review_passed
+- Prototype runtime walk: runtime_walk_passed
 - Review state: draft
 - Native review: native_pending
 - Support text: 你在咖啡店或飯店大廳。詢問 Wi-Fi 密碼，試著連線，並說手機連不上。
@@ -243,6 +257,8 @@ This export is for language/content review. It intentionally removes the interac
 - Scenario ID: food_bill_payment
 - Setting: 咖啡店櫃台
 - Source status: candidate_runtime_verified
+- Prototype text review: automated_text_review_passed
+- Prototype runtime walk: runtime_walk_passed
 - Review state: draft
 - Native review: native_pending
 - Support text: 你在台灣常見的咖啡店或簡單餐廳結帳。回答刷卡或現金，最後道謝。
@@ -276,6 +292,8 @@ This export is for language/content review. It intentionally removes the interac
 - Scenario ID: food_coffee_ordering
 - Setting: 咖啡店櫃台
 - Source status: candidate_runtime_verified
+- Prototype text review: automated_text_review_passed
+- Prototype runtime walk: runtime_walk_passed
 - Review state: draft
 - Native review: native_pending
 - Support text: 你在咖啡店櫃台。用簡短、禮貌的中文點一杯飲料，並回答要在店裡喝還是帶走。
@@ -309,6 +327,8 @@ This export is for language/content review. It intentionally removes the interac
 - Scenario ID: food_restaurant_ordering
 - Setting: 餐廳座位
 - Source status: candidate_runtime_verified
+- Prototype text review: automated_text_review_passed
+- Prototype runtime walk: runtime_walk_passed
 - Review state: draft
 - Native review: native_pending
 - Support text: 你在台灣常見的簡單餐廳。用短句回答店員，點一道餐並確認。
@@ -342,6 +362,8 @@ This export is for language/content review. It intentionally removes the interac
 - Scenario ID: hotel_checkout
 - Setting: 飯店櫃台
 - Source status: candidate_runtime_verified
+- Prototype text review: automated_text_review_passed
+- Prototype runtime walk: runtime_walk_passed
 - Review state: draft
 - Native review: native_pending
 - Support text: 你在飯店櫃台退房。說明要退房、提供房號、交回房卡，最後道謝。
@@ -375,6 +397,8 @@ This export is for language/content review. It intentionally removes the interac
 - Scenario ID: hotel_wifi_breakfast
 - Setting: 飯店櫃台
 - Source status: candidate_runtime_verified
+- Prototype text review: automated_text_review_passed
+- Prototype runtime walk: runtime_walk_passed
 - Review state: draft
 - Native review: native_pending
 - Support text: 你在飯店櫃台。詢問 Wi-Fi 密碼和早餐時間地點，聽懂簡短回答後道謝。
@@ -409,6 +433,8 @@ This export is for language/content review. It intentionally removes the interac
 - Scenario ID: problem_lost_item
 - Setting: 服務櫃台
 - Source status: candidate_runtime_verified
+- Prototype text review: automated_text_review_passed
+- Prototype runtime walk: runtime_walk_passed
 - Review state: draft
 - Native review: native_pending
 - Support text: 你在服務櫃台。說一個小物品不見了，回答可能在哪裡不見，聽懂下一步去哪裡問，最後道謝。
@@ -442,6 +468,8 @@ This export is for language/content review. It intentionally removes the interac
 - Scenario ID: shopping_ask_price
 - Setting: 小店櫃台
 - Source status: candidate_runtime_verified
+- Prototype text review: automated_text_review_passed
+- Prototype runtime walk: runtime_walk_passed
 - Review state: draft
 - Native review: native_pending
 - Support text: 你在台灣常見的小店或攤位。用短句問這個東西多少錢，聽懂價格後回應。
@@ -475,6 +503,8 @@ This export is for language/content review. It intentionally removes the interac
 - Scenario ID: social_running_late
 - Setting: 傳訊息給朋友
 - Source status: candidate_runtime_verified
+- Prototype text review: automated_text_review_passed
+- Prototype runtime walk: runtime_walk_passed
 - Review state: draft
 - Native review: native_pending
 - Support text: 你要跟朋友見面，但會晚到。簡單說抱歉、晚一點到、幾分鐘、謝謝和待會見。
@@ -508,6 +538,8 @@ This export is for language/content review. It intentionally removes the interac
 - Scenario ID: travel_hotel_checkin
 - Setting: 飯店櫃台
 - Source status: candidate_runtime_verified
+- Prototype text review: automated_text_review_passed
+- Prototype runtime walk: runtime_walk_passed
 - Review state: draft
 - Native review: native_pending
 - Support text: 你到飯店櫃台辦理入住。用簡短中文說你有預訂，並回答姓名問題。
@@ -541,6 +573,8 @@ This export is for language/content review. It intentionally removes the interac
 - Scenario ID: travel_restroom_directions
 - Setting: 公共場所
 - Source status: candidate_runtime_verified
+- Prototype text review: automated_text_review_passed
+- Prototype runtime walk: runtime_walk_passed
 - Review state: draft
 - Native review: native_pending
 - Support text: 你在公共場所，需要問洗手間在哪裡。用簡短、禮貌的中文問路，並確認方向。
@@ -574,6 +608,8 @@ This export is for language/content review. It intentionally removes the interac
 - Scenario ID: travel_station_directions
 - Setting: 捷運站大廳
 - Source status: candidate_runtime_verified
+- Prototype text review: automated_text_review_passed
+- Prototype runtime walk: runtime_walk_passed
 - Review state: draft
 - Native review: native_pending
 - Support text: 你在台灣常見的捷運或車站大廳。禮貌詢問二號月台，並確認簡短方向。
@@ -607,6 +643,8 @@ This export is for language/content review. It intentionally removes the interac
 - Scenario ID: travel_taxi_destination
 - Setting: 計程車
 - Source status: candidate_runtime_verified
+- Prototype text review: automated_text_review_passed
+- Prototype runtime walk: runtime_walk_passed
 - Review state: draft
 - Native review: native_pending
 - Support text: 你上了計程車。用簡短中文說目的地、確認，並聽懂大概時間。
@@ -640,6 +678,8 @@ This export is for language/content review. It intentionally removes the interac
 - Scenario ID: travel_ticket_buying
 - Setting: 車站售票窗口
 - Source status: candidate_runtime_verified
+- Prototype text review: automated_text_review_passed
+- Prototype runtime walk: runtime_walk_passed
 - Review state: draft
 - Native review: native_pending
 - Support text: 你在台灣車站售票窗口。買一張到台中的車票，確認後付款或道謝。

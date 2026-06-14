@@ -12,6 +12,8 @@ This export is for language/content review. It intentionally removes the interac
 - Scenario ID: convenience_payment_card_cash
 - Setting: Cassa di un piccolo negozio
 - Source status: candidate_runtime_verified
+- Prototype text review: automated_text_review_passed
+- Prototype runtime walk: runtime_walk_passed
 - Review state: draft
 - Native review: native_pending
 - Support text: 你在義大利小店結帳。聽收銀員的問題，用短句回答要刷卡或付現。
@@ -46,6 +48,8 @@ This export is for language/content review. It intentionally removes the interac
 - Scenario ID: core_repair_repeat_slowly
 - Setting: Banco informazioni
 - Source status: candidate_runtime_verified
+- Prototype text review: automated_text_review_passed
+- Prototype runtime walk: runtime_walk_passed
 - Review state: draft
 - Native review: native_pending
 - Support text: 你在櫃台沒聽懂一句簡短問題。先請對方重複，再請對方說慢一點，最後簡短回答。
@@ -79,6 +83,8 @@ This export is for language/content review. It intentionally removes the interac
 - Scenario ID: daily_meet_friend
 - Setting: Davanti a un bar
 - Source status: candidate_runtime_verified
+- Prototype text review: automated_text_review_passed
+- Prototype runtime walk: runtime_walk_passed
 - Review state: draft
 - Native review: native_pending
 - Support text: 你在咖啡店門口遇到朋友。用朋友之間的簡短義大利語確認對方和計畫。
@@ -112,6 +118,8 @@ This export is for language/content review. It intentionally removes the interac
 - Scenario ID: daily_schedule_time
 - Setting: Chat per un incontro
 - Source status: candidate_runtime_verified
+- Prototype text review: automated_text_review_passed
+- Prototype runtime walk: runtime_walk_passed
 - Review state: draft
 - Native review: native_pending
 - Support text: 你正在和朋友約見面時間。用簡短義大利語回答幾點，並確認安排。
@@ -146,6 +154,8 @@ This export is for language/content review. It intentionally removes the interac
 - Scenario ID: daily_self_intro
 - Setting: Incontro linguistico
 - Source status: candidate_runtime_verified
+- Prototype text review: automated_text_review_passed
+- Prototype runtime walk: runtime_walk_passed
 - Review state: draft
 - Native review: native_pending
 - Support text: 你在語言交換活動第一次見到新同學。只說名字和正在學的語言，不分享私人聯絡方式。
@@ -179,6 +189,8 @@ This export is for language/content review. It intentionally removes the interac
 - Scenario ID: digital_battery_charging
 - Setting: Banco del bar
 - Source status: candidate_runtime_verified
+- Prototype text review: automated_text_review_passed
+- Prototype runtime walk: runtime_walk_passed
 - Review state: draft
 - Native review: native_pending
 - Support text: 你在咖啡吧或大廳。先問可不可以充手機，再問插座在哪裡，最後確認位置並道謝。
@@ -212,6 +224,8 @@ This export is for language/content review. It intentionally removes the interac
 - Scenario ID: digital_wifi_connect
 - Setting: Banco del bar
 - Source status: candidate_runtime_verified
+- Prototype text review: automated_text_review_passed
+- Prototype runtime walk: runtime_walk_passed
 - Review state: draft
 - Native review: native_pending
 - Support text: 你在咖啡吧或飯店大廳。詢問 Wi-Fi 密碼，試著連線，並說手機連不上。
@@ -245,6 +259,8 @@ This export is for language/content review. It intentionally removes the interac
 - Scenario ID: food_bill_payment
 - Setting: Cassa del bar
 - Source status: candidate_runtime_verified
+- Prototype text review: automated_text_review_passed
+- Prototype runtime walk: runtime_walk_passed
 - Review state: draft
 - Native review: native_pending
 - Support text: 你在義大利的咖啡館或簡單餐廳。用一句話請結帳，回答現金或刷卡，最後道謝。
@@ -278,6 +294,8 @@ This export is for language/content review. It intentionally removes the interac
 - Scenario ID: food_coffee_ordering
 - Setting: Bancone del bar
 - Source status: candidate_runtime_verified
+- Prototype text review: automated_text_review_passed
+- Prototype runtime walk: runtime_walk_passed
 - Review state: draft
 - Native review: native_pending
 - Support text: 你在義大利咖啡吧櫃台。聽店員的問題，選一個短而自然的義大利語回答。
@@ -312,6 +330,8 @@ This export is for language/content review. It intentionally removes the interac
 - Scenario ID: food_restaurant_ordering
 - Setting: Tavolo al ristorante
 - Source status: candidate_runtime_verified
+- Prototype text review: automated_text_review_passed
+- Prototype runtime walk: runtime_walk_passed
 - Review state: draft
 - Native review: native_pending
 - Support text: 你在義大利的一間簡單餐廳。用短句回答服務生，點一道餐點並確認。
@@ -345,6 +365,8 @@ This export is for language/content review. It intentionally removes the interac
 - Scenario ID: hotel_checkout
 - Setting: Reception dell'hotel
 - Source status: candidate_runtime_verified
+- Prototype text review: automated_text_review_passed
+- Prototype runtime walk: runtime_walk_passed
 - Review state: draft
 - Native review: native_pending
 - Support text: 你在飯店櫃台退房。說明要退房、提供房號、交回房卡，最後道謝。
@@ -378,6 +400,8 @@ This export is for language/content review. It intentionally removes the interac
 - Scenario ID: hotel_wifi_breakfast
 - Setting: Reception dell'hotel
 - Source status: candidate_runtime_verified
+- Prototype text review: automated_text_review_passed
+- Prototype runtime walk: runtime_walk_passed
 - Review state: draft
 - Native review: native_pending
 - Support text: 你在飯店櫃台。詢問 Wi-Fi 密碼和早餐時間，聽懂簡短回答後道謝。
@@ -412,6 +436,8 @@ This export is for language/content review. It intentionally removes the interac
 - Scenario ID: problem_lost_item
 - Setting: Banco informazioni
 - Source status: candidate_runtime_verified
+- Prototype text review: automated_text_review_passed
+- Prototype runtime walk: runtime_walk_passed
 - Review state: draft
 - Native review: native_pending
 - Support text: 你在服務櫃台。說一個小物品不見了，回答可能在哪裡不見，聽懂下一步去哪裡問，最後道謝。
@@ -445,6 +471,8 @@ This export is for language/content review. It intentionally removes the interac
 - Scenario ID: shopping_ask_price
 - Setting: Piccolo negozio
 - Source status: candidate_runtime_verified
+- Prototype text review: automated_text_review_passed
+- Prototype runtime walk: runtime_walk_passed
 - Review state: draft
 - Native review: native_pending
 - Support text: 你在義大利的小店或市場攤位。用一句話問這個東西多少錢，聽懂價格後簡短回應。
@@ -478,6 +506,8 @@ This export is for language/content review. It intentionally removes the interac
 - Scenario ID: social_running_late
 - Setting: Messaggio a un amico
 - Source status: candidate_runtime_verified
+- Prototype text review: automated_text_review_passed
+- Prototype runtime walk: runtime_walk_passed
 - Review state: draft
 - Native review: native_pending
 - Support text: 你要跟朋友見面，但會晚到。簡單說抱歉、晚一點到、幾分鐘、謝謝和待會見。
@@ -511,6 +541,8 @@ This export is for language/content review. It intentionally removes the interac
 - Scenario ID: travel_hotel_checkin
 - Setting: Reception dell'hotel
 - Source status: candidate_runtime_verified
+- Prototype text review: automated_text_review_passed
+- Prototype runtime walk: runtime_walk_passed
 - Review state: draft
 - Native review: native_pending
 - Support text: 你在飯店櫃台。說你有訂房，提供姓名，聽懂下一步。
@@ -545,6 +577,8 @@ This export is for language/content review. It intentionally removes the interac
 - Scenario ID: travel_restroom_directions
 - Setting: Luogo pubblico
 - Source status: candidate_runtime_verified
+- Prototype text review: automated_text_review_passed
+- Prototype runtime walk: runtime_walk_passed
 - Review state: draft
 - Native review: native_pending
 - Support text: 你在公共場所，需要找到洗手間。先禮貌開口，再聽懂簡單方向。
@@ -577,6 +611,8 @@ This export is for language/content review. It intentionally removes the interac
 - Scenario ID: travel_station_directions
 - Setting: Stazione ferroviaria
 - Source status: candidate_runtime_verified
+- Prototype text review: automated_text_review_passed
+- Prototype runtime walk: runtime_walk_passed
 - Review state: draft
 - Native review: native_pending
 - Support text: 你在義大利車站。先禮貌引起注意，再問二號月台在哪裡，並確認方向。
@@ -610,6 +646,8 @@ This export is for language/content review. It intentionally removes the interac
 - Scenario ID: travel_taxi_destination
 - Setting: Taxi
 - Source status: candidate_runtime_verified
+- Prototype text review: automated_text_review_passed
+- Prototype runtime walk: runtime_walk_passed
 - Review state: draft
 - Native review: native_pending
 - Support text: 你上了計程車。用簡短義大利語說目的地、確認，並聽懂大概時間。
@@ -643,6 +681,8 @@ This export is for language/content review. It intentionally removes the interac
 - Scenario ID: travel_ticket_buying
 - Setting: Biglietteria della stazione
 - Source status: candidate_runtime_verified
+- Prototype text review: automated_text_review_passed
+- Prototype runtime walk: runtime_walk_passed
 - Review state: draft
 - Native review: native_pending
 - Support text: 你在義大利車站售票窗口。買一張到米蘭的普通票，確認後付款或道謝。

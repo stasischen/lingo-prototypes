@@ -12,8 +12,10 @@ This export is for language/content review. It intentionally removes the interac
 - Scenario ID: convenience_payment_card_cash
 - Setting: 便利商店櫃台
 - Source status: pilot_authored_ai_review_pending
+- Prototype text review: automated_text_review_passed
+- Prototype runtime walk: runtime_walk_passed
 - Review state: draft
-- Native review: 
+- Native review: native_pending
 - Support text: 你在便利商店結帳。店員會說總金額，然後問你怎麼付款。
 
 ### Clean Dialogue Path
@@ -46,8 +48,10 @@ This export is for language/content review. It intentionally removes the interac
 - Scenario ID: core_repair_repeat_slowly
 - Setting: 便利商店櫃台
 - Source status: pilot_authored_ai_review_pending
+- Prototype text review: automated_text_review_passed
+- Prototype runtime walk: runtime_walk_passed
 - Review state: draft
-- Native review: 
+- Native review: native_pending
 - Support text: 你在便利商店結帳，店員問了一句你沒聽清楚的話。
 
 ### Clean Dialogue Path
@@ -80,8 +84,10 @@ This export is for language/content review. It intentionally removes the interac
 - Scenario ID: daily_meet_friend
 - Setting: 公園入口附近
 - Source status: pilot_authored_ai_review_pending
+- Prototype text review: automated_text_review_passed
+- Prototype runtime walk: runtime_walk_passed
 - Review state: draft
-- Native review: 
+- Native review: native_pending
 - Support text: 你到了約好的地方，朋友打訊息問你到了沒、在哪裡。
 
 ### Clean Dialogue Path
@@ -114,8 +120,10 @@ This export is for language/content review. It intentionally removes the interac
 - Scenario ID: daily_schedule_time
 - Setting: 和朋友約見面
 - Source status: pilot_authored_ai_review_pending
+- Prototype text review: automated_text_review_passed
+- Prototype runtime walk: runtime_walk_passed
 - Review state: draft
-- Native review: 
+- Native review: native_pending
 - Support text: 你和朋友今天要見面，正在約時間和地點。
 
 ### Clean Dialogue Path
@@ -147,8 +155,10 @@ This export is for language/content review. It intentionally removes the interac
 - Scenario ID: daily_self_intro
 - Setting: 語言交換活動
 - Source status: pilot_authored_ai_review_pending
+- Prototype text review: automated_text_review_passed
+- Prototype runtime walk: runtime_walk_passed
 - Review state: draft
-- Native review: 
+- Native review: native_pending
 - Support text: 你在語言交換活動遇到新朋友。用簡短句子介紹名字和來自哪裡，不交換個資。
 
 ### Clean Dialogue Path
@@ -180,8 +190,10 @@ This export is for language/content review. It intentionally removes the interac
 - Scenario ID: digital_battery_charging
 - Setting: 咖啡店座位區
 - Source status: pilot_authored_ai_review_pending
+- Prototype text review: automated_text_review_passed
+- Prototype runtime walk: runtime_walk_passed
 - Review state: draft
-- Native review: 
+- Native review: native_pending
 - Support text: 你的手機快沒電了。在店裡先問可不可以充電，再問插座位置。
 
 ### Clean Dialogue Path
@@ -213,8 +225,10 @@ This export is for language/content review. It intentionally removes the interac
 - Scenario ID: digital_wifi_connect
 - Setting: 咖啡店櫃台
 - Source status: pilot_authored_ai_review_pending
+- Prototype text review: automated_text_review_passed
+- Prototype runtime walk: runtime_walk_passed
 - Review state: draft
-- Native review: 
+- Native review: native_pending
 - Support text: 你在咖啡店想連 Wi-Fi。先問密碼，連不上時請店員協助。
 
 ### Clean Dialogue Path
@@ -246,8 +260,10 @@ This export is for language/content review. It intentionally removes the interac
 - Scenario ID: food_bill_payment
 - Setting: 餐廳櫃台
 - Source status: pilot_authored_ai_review_pending
+- Prototype text review: automated_text_review_passed
+- Prototype runtime walk: runtime_walk_passed
 - Review state: draft
-- Native review: 
+- Native review: native_pending
 - Support text: 你在餐廳吃完飯，要去櫃台結帳。
 
 ### Clean Dialogue Path
@@ -281,8 +297,10 @@ This export is for language/content review. It intentionally removes the interac
 - Scenario ID: food_coffee_ordering
 - Setting: 咖啡店櫃台
 - Source status: pilot_authored_ai_review_pending
+- Prototype text review: automated_text_review_passed
+- Prototype runtime walk: runtime_walk_passed
 - Review state: draft
-- Native review: 
+- Native review: native_pending
 - Support text: 你在咖啡店櫃台。聽店員問什麼，挑一句接得上的回應。
 
 ### Clean Dialogue Path
@@ -315,8 +333,10 @@ This export is for language/content review. It intentionally removes the interac
 - Scenario ID: food_restaurant_ordering
 - Setting: 餐廳
 - Source status: pilot_authored_ai_review_pending
+- Prototype text review: automated_text_review_passed
+- Prototype runtime walk: runtime_walk_passed
 - Review state: draft
-- Native review: 
+- Native review: native_pending
 - Support text: 你到餐廳吃飯。店員會先問幾位，再問要點什麼。
 
 ### Clean Dialogue Path
@@ -349,8 +369,10 @@ This export is for language/content review. It intentionally removes the interac
 - Scenario ID: hotel_checkout
 - Setting: 飯店櫃台
 - Source status: pilot_authored_ai_review_pending
+- Prototype text review: automated_text_review_passed
+- Prototype runtime walk: runtime_walk_passed
 - Review state: draft
-- Native review: 
+- Native review: native_pending
 - Support text: 你要離開飯店，到櫃台辦退房。
 
 ### Clean Dialogue Path
@@ -384,8 +406,10 @@ This export is for language/content review. It intentionally removes the interac
 - Scenario ID: hotel_wifi_breakfast
 - Setting: 飯店櫃台
 - Source status: pilot_authored_ai_review_pending
+- Prototype text review: automated_text_review_passed
+- Prototype runtime walk: runtime_walk_passed
 - Review state: draft
-- Native review: 
+- Native review: native_pending
 - Support text: 你已經入住飯店，回到櫃台想問 Wi-Fi 和早餐時間。
 
 ### Clean Dialogue Path
@@ -422,8 +446,10 @@ This export is for language/content review. It intentionally removes the interac
 - Scenario ID: problem_lost_item
 - Setting: 服務台
 - Source status: pilot_authored_ai_review_pending
+- Prototype text review: automated_text_review_passed
+- Prototype runtime walk: runtime_walk_passed
 - Review state: draft
-- Native review: 
+- Native review: native_pending
 - Support text: 你在服務台說明東西不見。這不是報案，只是先問服務人員。
 
 ### Clean Dialogue Path
@@ -457,8 +483,10 @@ This export is for language/content review. It intentionally removes the interac
 - Scenario ID: shopping_ask_price
 - Setting: 商店櫃台
 - Source status: pilot_authored_ai_review_pending
+- Prototype text review: automated_text_review_passed
+- Prototype runtime walk: runtime_walk_passed
 - Review state: draft
-- Native review: 
+- Native review: native_pending
 - Support text: 你在商店看到想買的東西。先問價格，再決定要買。
 
 ### Clean Dialogue Path
@@ -492,8 +520,10 @@ This export is for language/content review. It intentionally removes the interac
 - Scenario ID: social_running_late
 - Setting: 和朋友傳訊息
 - Source status: pilot_authored_ai_review_pending
+- Prototype text review: automated_text_review_passed
+- Prototype runtime walk: runtime_walk_passed
 - Review state: draft
-- Native review: 
+- Native review: native_pending
 - Support text: 你要和朋友見面，但路上慢了一點。先告訴朋友你會晚到。
 
 ### Clean Dialogue Path
@@ -525,8 +555,10 @@ This export is for language/content review. It intentionally removes the interac
 - Scenario ID: travel_hotel_checkin
 - Setting: 飯店櫃台
 - Source status: pilot_authored_derived
+- Prototype text review: automated_text_review_passed
+- Prototype runtime walk: runtime_walk_passed
 - Review state: ai_reviewed
-- Native review: 
+- Native review: native_pending
 - Support text: 到櫃台了。聽聽看他說什麼，挑一句回他。
 
 ### Clean Dialogue Path
@@ -559,8 +591,10 @@ This export is for language/content review. It intentionally removes the interac
 - Scenario ID: travel_restroom_directions
 - Setting: 店內問路
 - Source status: pilot_authored_ai_review_pending
+- Prototype text review: automated_text_review_passed
+- Prototype runtime walk: runtime_walk_passed
 - Review state: draft
-- Native review: 
+- Native review: native_pending
 - Support text: 你在店裡想找洗手間。先問一句，再聽對方指方向。
 
 ### Clean Dialogue Path
@@ -591,8 +625,10 @@ This export is for language/content review. It intentionally removes the interac
 - Scenario ID: travel_station_directions
 - Setting: 旅遊服務台
 - Source status: pilot_authored_ai_review_pending
+- Prototype text review: automated_text_review_passed
+- Prototype runtime walk: runtime_walk_passed
 - Review state: draft
-- Native review: 
+- Native review: native_pending
 - Support text: 你在旅遊服務台想找地鐵站。先問在哪裡，再聽方向和出口。
 
 ### Clean Dialogue Path
@@ -626,8 +662,10 @@ This export is for language/content review. It intentionally removes the interac
 - Scenario ID: travel_taxi_destination
 - Setting: 計程車上
 - Source status: pilot_authored_ai_review_pending
+- Prototype text review: automated_text_review_passed
+- Prototype runtime walk: runtime_walk_passed
 - Review state: draft
-- Native review: 
+- Native review: native_pending
 - Support text: 你上了計程車，要告訴司機去飯店。
 
 ### Clean Dialogue Path
@@ -659,8 +697,10 @@ This export is for language/content review. It intentionally removes the interac
 - Scenario ID: travel_ticket_buying
 - Setting: 車站售票窗口
 - Source status: pilot_authored_ai_review_pending
+- Prototype text review: automated_text_review_passed
+- Prototype runtime walk: runtime_walk_passed
 - Review state: draft
-- Native review: 
+- Native review: native_pending
 - Support text: 你在車站售票窗口，要買一張去首爾站的票。
 
 ### Clean Dialogue Path

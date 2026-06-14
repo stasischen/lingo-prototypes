@@ -12,6 +12,8 @@ This export is for language/content review. It intentionally removes the interac
 - Scenario ID: convenience_payment_card_cash
 - Setting: Kasse im kleinen Laden
 - Source status: candidate_runtime_verified
+- Prototype text review: automated_text_review_passed
+- Prototype runtime walk: runtime_walk_passed
 - Review state: draft
 - Native review: native_pending
 - Support text: 你在德語小店櫃台結帳。用簡短、禮貌的德文回答付款方式，並完成交易。
@@ -45,6 +47,8 @@ This export is for language/content review. It intentionally removes the interac
 - Scenario ID: core_repair_repeat_slowly
 - Setting: Serviceschalter
 - Source status: candidate_runtime_verified
+- Prototype text review: automated_text_review_passed
+- Prototype runtime walk: runtime_walk_passed
 - Review state: draft
 - Native review: native_pending
 - Support text: 你在服務櫃台沒聽懂一句簡短問題。先請對方重複，再請對方說慢一點，最後回答。
@@ -78,6 +82,8 @@ This export is for language/content review. It intentionally removes the interac
 - Scenario ID: daily_meet_friend
 - Setting: Vor dem Café
 - Source status: candidate_runtime_verified
+- Prototype text review: automated_text_review_passed
+- Prototype runtime walk: runtime_walk_passed
 - Review state: draft
 - Native review: native_pending
 - Support text: 你在咖啡店門口和朋友見面。這個場景使用朋友之間的 du 語氣。
@@ -111,6 +117,8 @@ This export is for language/content review. It intentionally removes the interac
 - Scenario ID: daily_schedule_time
 - Setting: Kurze Nachricht unter Freunden
 - Source status: candidate_runtime_verified
+- Prototype text review: automated_text_review_passed
+- Prototype runtime walk: runtime_walk_passed
 - Review state: draft
 - Native review: native_pending
 - Support text: 你和朋友正在約見面時間。用簡短自然的德文回答幾點，並確認安排。
@@ -144,6 +152,8 @@ This export is for language/content review. It intentionally removes the interac
 - Scenario ID: daily_self_intro
 - Setting: Sprachaustausch
 - Source status: candidate_runtime_verified
+- Prototype text review: automated_text_review_passed
+- Prototype runtime walk: runtime_walk_passed
 - Review state: draft
 - Native review: native_pending
 - Support text: 你在語言交換或課前休息區第一次見到同學。用友善的 du 語氣介紹名字和學習語言。
@@ -177,6 +187,8 @@ This export is for language/content review. It intentionally removes the interac
 - Scenario ID: digital_battery_charging
 - Setting: Cafe-Theke
 - Source status: candidate_runtime_verified
+- Prototype text review: automated_text_review_passed
+- Prototype runtime walk: runtime_walk_passed
 - Review state: draft
 - Native review: native_pending
 - Support text: 你在咖啡店或大廳。用 Sie 服務語域問可不可以充手機、插座在哪裡，確認位置並道謝。
@@ -210,6 +222,8 @@ This export is for language/content review. It intentionally removes the interac
 - Scenario ID: digital_wifi_connect
 - Setting: Cafe-Theke
 - Source status: candidate_runtime_verified
+- Prototype text review: automated_text_review_passed
+- Prototype runtime walk: runtime_walk_passed
 - Review state: draft
 - Native review: native_pending
 - Support text: 你在咖啡店或飯店大廳。用 Sie 服務語域詢問 Wi-Fi 密碼，並說手機連不上。
@@ -243,6 +257,8 @@ This export is for language/content review. It intentionally removes the interac
 - Scenario ID: food_bill_payment
 - Setting: Café-Kasse
 - Source status: candidate_runtime_verified
+- Prototype text review: automated_text_review_passed
+- Prototype runtime walk: runtime_walk_passed
 - Review state: draft
 - Native review: native_pending
 - Support text: 你在德語區咖啡館或簡單餐廳結帳。使用 Sie 服務語氣，回答現金或刷卡。
@@ -276,6 +292,8 @@ This export is for language/content review. It intentionally removes the interac
 - Scenario ID: food_coffee_ordering
 - Setting: Café-Theke
 - Source status: candidate_runtime_verified
+- Prototype text review: automated_text_review_passed
+- Prototype runtime walk: runtime_walk_passed
 - Review state: draft
 - Native review: native_pending
 - Support text: 你在咖啡店櫃台。用簡短、禮貌的德文點一杯飲料，並回答服務人員的選項問題。
@@ -309,6 +327,8 @@ This export is for language/content review. It intentionally removes the interac
 - Scenario ID: food_restaurant_ordering
 - Setting: Restauranttisch
 - Source status: candidate_runtime_verified
+- Prototype text review: automated_text_review_passed
+- Prototype runtime walk: runtime_walk_passed
 - Review state: draft
 - Native review: native_pending
 - Support text: 你在德語區的一間簡單餐廳。使用一致的 Sie 服務語氣，回答人數並點一道餐。
@@ -342,6 +362,8 @@ This export is for language/content review. It intentionally removes the interac
 - Scenario ID: hotel_checkout
 - Setting: Hotelrezeption
 - Source status: candidate_runtime_verified
+- Prototype text review: automated_text_review_passed
+- Prototype runtime walk: runtime_walk_passed
 - Review state: draft
 - Native review: native_pending
 - Support text: 你在飯店櫃台退房。用 Sie 服務語域說明要退房、提供房號、交回房卡。
@@ -375,6 +397,8 @@ This export is for language/content review. It intentionally removes the interac
 - Scenario ID: hotel_wifi_breakfast
 - Setting: Hotelrezeption
 - Source status: candidate_runtime_verified
+- Prototype text review: automated_text_review_passed
+- Prototype runtime walk: runtime_walk_passed
 - Review state: draft
 - Native review: native_pending
 - Support text: 你在飯店櫃台。用簡短德文詢問 WLAN 密碼和早餐時間地點。
@@ -409,6 +433,8 @@ This export is for language/content review. It intentionally removes the interac
 - Scenario ID: problem_lost_item
 - Setting: Infoschalter
 - Source status: candidate_runtime_verified
+- Prototype text review: automated_text_review_passed
+- Prototype runtime walk: runtime_walk_passed
 - Review state: draft
 - Native review: native_pending
 - Support text: 你在服務櫃台。用 Sie 服務語域說小物品不見了、回答可能在哪裡、確認下一步並道謝。
@@ -442,6 +468,8 @@ This export is for language/content review. It intentionally removes the interac
 - Scenario ID: shopping_ask_price
 - Setting: Kleiner Laden
 - Source status: candidate_runtime_verified
+- Prototype text review: automated_text_review_passed
+- Prototype runtime walk: runtime_walk_passed
 - Review state: draft
 - Native review: native_pending
 - Support text: 你在德語區的小店。用一致的 Sie 服務語氣問這個東西多少錢，並回應價格。
@@ -475,6 +503,8 @@ This export is for language/content review. It intentionally removes the interac
 - Scenario ID: social_running_late
 - Setting: Nachricht an einen Freund
 - Source status: candidate_runtime_verified
+- Prototype text review: automated_text_review_passed
+- Prototype runtime walk: runtime_walk_passed
 - Review state: draft
 - Native review: native_pending
 - Support text: 你要跟朋友見面，但會晚到。用朋友間 du 語域說抱歉、晚到、幾分鐘、謝謝和待會見。
@@ -508,6 +538,8 @@ This export is for language/content review. It intentionally removes the interac
 - Scenario ID: travel_hotel_checkin
 - Setting: Hotelrezeption
 - Source status: candidate_runtime_verified
+- Prototype text review: automated_text_review_passed
+- Prototype runtime walk: runtime_walk_passed
 - Review state: draft
 - Native review: native_pending
 - Support text: 你到飯店櫃台辦理入住。用簡短德文說你有預訂，並回答姓名問題。
@@ -541,6 +573,8 @@ This export is for language/content review. It intentionally removes the interac
 - Scenario ID: travel_restroom_directions
 - Setting: Öffentlicher Ort
 - Source status: candidate_runtime_verified
+- Prototype text review: automated_text_review_passed
+- Prototype runtime walk: runtime_walk_passed
 - Review state: draft
 - Native review: native_pending
 - Support text: 你在公共場所，需要問洗手間在哪裡。用簡短禮貌的德文問路，並理解簡單方向。
@@ -574,6 +608,8 @@ This export is for language/content review. It intentionally removes the interac
 - Scenario ID: travel_station_directions
 - Setting: Bahnhof
 - Source status: candidate_runtime_verified
+- Prototype text review: automated_text_review_passed
+- Prototype runtime walk: runtime_walk_passed
 - Review state: draft
 - Native review: native_pending
 - Support text: 你在德語區車站。用 Entschuldigung 開頭，詢問二號月台並確認簡短方向。
@@ -607,6 +643,8 @@ This export is for language/content review. It intentionally removes the interac
 - Scenario ID: travel_taxi_destination
 - Setting: Taxi
 - Source status: candidate_runtime_verified
+- Prototype text review: automated_text_review_passed
+- Prototype runtime walk: runtime_walk_passed
 - Review state: draft
 - Native review: native_pending
 - Support text: 你上了計程車。用 Sie 服務語域說目的地、確認，並聽懂大概時間。
@@ -640,6 +678,8 @@ This export is for language/content review. It intentionally removes the interac
 - Scenario ID: travel_ticket_buying
 - Setting: Bahnhofsschalter
 - Source status: candidate_runtime_verified
+- Prototype text review: automated_text_review_passed
+- Prototype runtime walk: runtime_walk_passed
 - Review state: draft
 - Native review: native_pending
 - Support text: 你在德語區火車站售票窗口。買一張到柏林的票，確認後付款或道謝。

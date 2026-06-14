@@ -25,6 +25,8 @@ browserless full-walk runtime simulator reaches completion for every scenario.
 
 ### Tooling fixes
 
+- Scenario manifest and text exports now separate source status from prototype
+  text-review state, prototype runtime-walk state, and native review state.
 - The web prototype now respects `turn.speaker === "learner"` and no longer renders learner-production turns as NPC/staff bubbles.
 - Text exports now label learner turns as learner turns in the clean dialogue path.
 - Audit now avoids treating learner-production mirror turns as NPC/learner role-direction errors.
