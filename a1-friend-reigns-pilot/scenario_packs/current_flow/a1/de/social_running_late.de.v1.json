@@ -1,0 +1,230 @@
+{
+  "schema_version": "scenario_pack.v1",
+  "scenario_id": "social_running_late",
+  "brief_id": "ml5_a1_019_social_running_late",
+  "source_neutral_brief": "release-aggregator/docs/tasks/A1_MULTILINGUAL_KO_B1_PARALLEL_ORCHESTRATION/work_products/ml0/ML5_NEUTRAL_ADAPTATION_BRIEFS_20260614.md#brief-ml5-a1-019-say-you-are-running-late",
+  "blueprint_ledger": "release-aggregator/docs/tasks/A1_MULTILINGUAL_KO_B1_PARALLEL_ORCHESTRATION/work_products/ml0/ML5_BLUEPRINT_LEDGER_20260614.md",
+  "repo": "content-de",
+  "staging_path": "content/core/content_assets/scenario_packs/current_flow/social_running_late.de.v1.json",
+  "title": "Sagen, dass du dich verspätest",
+  "setting_label": "Nachricht an einen Freund",
+  "wrap_title": "Verspätung gesagt",
+  "wrap_friend": "Du hast kurz Bescheid gesagt, eine Zeit genannt und freundlich geschlossen.",
+  "language": "de",
+  "ui_language": "zh_tw",
+  "source_status": "candidate_runtime_verified",
+  "review_state": "draft",
+  "review_status_framework_state": "candidate_runtime_verified",
+  "native_review_state": "native_pending",
+  "production_mode_default": {
+    "required": [
+      "choice"
+    ],
+    "optional_visible": [
+      "speaking"
+    ],
+    "optional_hidden": [
+      "typing"
+    ]
+  },
+  "support_text": "你要跟朋友見面，但會晚到。用朋友間 du 語域說抱歉、晚到、幾分鐘、謝謝和待會見。",
+  "roles": {
+    "npc": {
+      "label": "Freund"
+    },
+    "learner": {
+      "label": "Du"
+    }
+  },
+  "turns": [
+    {
+      "turn_id": "t1",
+      "speaker": "npc",
+      "act": "friend_check",
+      "act_slots": {
+        "topic": "arrival",
+        "keyword": "wo",
+        "gloss": "where"
+      },
+      "learning_role": "listen_only",
+      "surface": "Hey, wo bist du?",
+      "speak": "Hey, wo bist du?",
+      "translation": "嘿，你在哪？",
+      "friend": "朋友情境用 du。Sorry + ich komme später 很自然。",
+      "reply_set": {
+        "correct": "c1",
+        "choices": [
+          {
+            "id": "c1",
+            "surface": "Sorry, ich komme etwas später.",
+            "translation": "抱歉，我會晚一點到。",
+            "speak": "Sorry, ich komme etwas später.",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "c2",
+            "surface": "Die Rechnung, bitte.",
+            "translation": "請結帳。",
+            "speak": "Die Rechnung, bitte.",
+            "contrast_type": "payment_wrong_goal",
+            "feedback": "這是在餐廳付款，不是在告訴朋友會晚到。"
+          },
+          {
+            "id": "c3",
+            "surface": "Guten Tag. Wie kann ich Ihnen helfen?",
+            "translation": "您好。請問有什麼可以幫您？",
+            "speak": "Guten Tag. Wie kann ich Ihnen helfen?",
+            "contrast_type": "service_register_wrong_context",
+            "feedback": "這是 Sie 服務語域；朋友訊息要用自然的 du 語氣。"
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t2",
+      "speaker": "npc",
+      "act": "minutes_question",
+      "act_slots": {
+        "topic": "time estimate",
+        "keyword": "Minuten",
+        "gloss": "minutes"
+      },
+      "learning_role": "listen_only",
+      "surface": "Wie viele Minuten?",
+      "speak": "Wie viele Minuten?",
+      "translation": "幾分鐘？",
+      "friend": "用 Noch + 數字 + Minuten 回答很簡單。",
+      "reply_set": {
+        "correct": "c1",
+        "choices": [
+          {
+            "id": "c1",
+            "surface": "Noch zehn Minuten.",
+            "translation": "還要十分鐘。",
+            "speak": "Noch zehn Minuten.",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "c2",
+            "surface": "Gleis zwei.",
+            "translation": "第二月台。",
+            "speak": "Gleis zwei.",
+            "contrast_type": "place_number_wrong_answer",
+            "feedback": "對方問幾分鐘，不是問地點或月台。"
+          },
+          {
+            "id": "c3",
+            "surface": "Nein, danke.",
+            "translation": "不用，謝謝。",
+            "speak": "Nein, danke.",
+            "contrast_type": "refusal_wrong_answer",
+            "feedback": "這是在拒絕幫助，沒有回答時間。"
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t3",
+      "speaker": "npc",
+      "act": "friend_waits",
+      "act_slots": {
+        "topic": "waiting",
+        "keyword": "warte",
+        "gloss": "wait"
+      },
+      "learning_role": "listen_only",
+      "surface": "Okay, ich warte.",
+      "speak": "Okay, ich warte.",
+      "translation": "好，我等你。",
+      "friend": "朋友願意等時，用 Danke fürs Warten。",
+      "inline_explain": "warten = 等。",
+      "reply_set": {
+        "correct": "c1",
+        "choices": [
+          {
+            "id": "c1",
+            "surface": "Danke fürs Warten.",
+            "translation": "謝謝你等我。",
+            "speak": "Danke fürs Warten.",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "c2",
+            "surface": "Sorry, ich komme etwas später.",
+            "translation": "抱歉，我會晚一點到。",
+            "speak": "Sorry, ich komme etwas später.",
+            "contrast_type": "repeated_late_message",
+            "feedback": "已經說過會晚到了。現在要謝謝對方等你。"
+          },
+          {
+            "id": "c3",
+            "surface": "Danke für Ihren Service.",
+            "translation": "謝謝您的服務。",
+            "speak": "Danke für Ihren Service.",
+            "contrast_type": "overformal_service_thanks",
+            "feedback": "這是服務情境的 Sie 語氣，不像朋友間的感謝。"
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t4",
+      "speaker": "npc",
+      "act": "friend_close",
+      "act_slots": {
+        "topic": "close",
+        "keyword": "gleich",
+        "gloss": "soon"
+      },
+      "learning_role": "listen_only",
+      "surface": "Bis gleich.",
+      "speak": "Bis gleich.",
+      "translation": "待會見。",
+      "friend": "朋友結尾可以直接回 Bis gleich。",
+      "reply_set": {
+        "correct": "c1",
+        "choices": [
+          {
+            "id": "c1",
+            "surface": "Bis gleich.",
+            "translation": "待會見。",
+            "speak": "Bis gleich."
+          },
+          {
+            "id": "c2",
+            "surface": "Ich stehe vor der blauen Tür.",
+            "translation": "我站在藍色門前。",
+            "speak": "Ich stehe vor der blauen Tür.",
+            "contrast_type": "exact_location_out_of_scope",
+            "feedback": "本場景不練即時精準定位，只練晚到和時間。"
+          },
+          {
+            "id": "c3",
+            "surface": "Warum wartest du nicht?",
+            "translation": "你為什麼不等？",
+            "speak": "Warum wartest du nicht?",
+            "contrast_type": "conflict_blame_out_of_scope",
+            "feedback": "這會變成責怪或衝突；本場景要平和收尾。"
+          }
+        ]
+      },
+      "closing": true
+    }
+  ],
+  "formula_moments": [
+    {
+      "after_turn": "t1",
+      "pattern_id": "de.friend.sorry_spaeter"
+    },
+    {
+      "after_turn": "t2",
+      "pattern_id": "de.time.noch_zehn_minuten"
+    }
+  ],
+  "notes": {
+    "authoring_source": "Authored from ML-5 neutral brief ml5_a1_019_social_running_late; KO and other target-language packs were not used as translation sources.",
+    "review_policy": "AI-authored candidate only; keep review_state=draft, review_status_framework_state=candidate_needs_review, native_review_state=native_pending until tracked review evidence exists.",
+    "canonical_policy": "Staging current-flow candidate only. Do not add to manifests, production exports, schema, runtime, or frontend in this authoring lane.",
+    "german_voice_note": "Uses friend-register du context, unlike the service-register charging and lost-item packs."
+  }
+}

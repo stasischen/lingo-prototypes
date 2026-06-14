@@ -1,0 +1,264 @@
+{
+  "schema_version": "scenario_pack.v1",
+  "scenario_id": "a2_explain_simple_delay_reason",
+  "title": "Explicar um Pequeno Atraso",
+  "setting_label": "A caminho de encontrar uma amiga",
+  "wrap_title": "Motivo do atraso",
+  "wrap_friend": "你剛剛用簡單葡語說明會晚一點到，給出一個日常理由和時間估計。",
+  "language": "pt",
+  "ui_language": "zh_tw",
+  "cefr_level": "A2",
+  "source_status": "candidate_runtime_verified",
+  "review_state": "ai_reviewed",
+  "review_status_framework_state": "candidate_runtime_verified",
+  "native_review_state": "native_pending",
+  "scenario": "Você vai se atrasar um pouco e precisa explicar o motivo.",
+  "learner_goal": "Pedir desculpa, dar um motivo simples e estimar o atraso.",
+  "target_functions": [
+    "apology",
+    "simple_reason",
+    "delay_estimate"
+  ],
+  "register_notes": "Português brasileiro cotidiano e amigável. Atraso leve, sem emergência, trabalho, saúde ou desculpa formal.",
+  "production_mode_default": {
+    "required": [
+      "choice"
+    ],
+    "optional_visible": [
+      "speaking"
+    ],
+    "optional_hidden": [
+      "typing"
+    ]
+  },
+  "support_text": "Sua amiga pergunta onde você está. Peça desculpa, diga um motivo simples e dê uma estimativa curta.",
+  "roles": {
+    "npc": {
+      "label": "amiga"
+    },
+    "learner": {
+      "label": "você"
+    }
+  },
+  "turns": [
+    {
+      "turn_id": "t1",
+      "speaker": "npc",
+      "act": "location_check",
+      "act_slots": {
+        "topic": "onde você está",
+        "keyword": "perto",
+        "gloss": "快到了嗎"
+      },
+      "learning_role": "listen_only",
+      "surface": "Onde você está? Já está perto?",
+      "speak": "Onde você está? Já está perto?",
+      "translation": "你在哪裡？已經快到了嗎？",
+      "friend": {
+        "hint": "對方在確認你在哪裡。先道歉，再說會晚一點。"
+      },
+      "reply_set": {
+        "correct": "r1a",
+        "choices": [
+          {
+            "id": "r1a",
+            "surface": "Desculpa, vou chegar um pouco atrasado.",
+            "translation": "不好意思，我會晚一點到。",
+            "speak": "Desculpa, vou chegar um pouco atrasado.",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r1b",
+            "surface": "Sim, cheguei ontem.",
+            "translation": "對，我昨天到了。",
+            "speak": "Sim, cheguei ontem.",
+            "contrast_type": "wrong_time_past",
+            "feedback": "對方問的是現在，不是昨天。"
+          },
+          {
+            "id": "r1c",
+            "surface": "Você recomenda algum prato?",
+            "translation": "你推薦哪一道菜？",
+            "speak": "Você recomenda algum prato?",
+            "contrast_type": "wrong_scenario_restaurant",
+            "feedback": "這是餐廳用語。現在需要說明你會晚到。"
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t2",
+      "speaker": "npc",
+      "act": "reason_request",
+      "act_slots": {
+        "topic": "por que atrasou",
+        "keyword": "por quê",
+        "gloss": "為什麼"
+      },
+      "learning_role": "listen_only",
+      "surface": "Por quê? Aconteceu alguma coisa?",
+      "speak": "Por quê? Aconteceu alguma coisa?",
+      "translation": "為什麼？發生什麼事了嗎？",
+      "friend": {
+        "hint": "給一個日常、低風險的理由。保持簡短。"
+      },
+      "inline_explain": {
+        "pattern_id": "pt.a2.reason.delay.porque.v1",
+        "title": "porque + motivo",
+        "explain": "用 porque 接一個簡單理由。",
+        "items": [
+          {
+            "surface": "porque o ônibus atrasou",
+            "translation": "因為公車晚了",
+            "speak": "porque o ônibus atrasou"
+          },
+          {
+            "surface": "porque tem trânsito",
+            "translation": "因為塞車",
+            "speak": "porque tem trânsito"
+          }
+        ]
+      },
+      "reply_set": {
+        "correct": "r2a",
+        "choices": [
+          {
+            "id": "r2a",
+            "surface": "O ônibus atrasou.",
+            "translation": "公車晚了。",
+            "speak": "O ônibus atrasou.",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r2b",
+            "surface": "Eu gosto do ônibus.",
+            "translation": "我喜歡公車。",
+            "speak": "Eu gosto do ônibus.",
+            "contrast_type": "wrong_reason_semantics",
+            "feedback": "這沒有說明為什麼會晚到。"
+          },
+          {
+            "id": "r2c",
+            "surface": "Onde fica o ponto de ônibus?",
+            "translation": "公車站在哪裡？",
+            "speak": "Onde fica o ponto de ônibus?",
+            "contrast_type": "wrong_function_location_question",
+            "feedback": "對方問的是原因，不是在問地點。"
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t3",
+      "speaker": "npc",
+      "act": "delay_estimate_request",
+      "act_slots": {
+        "topic": "quanto atraso",
+        "keyword": "quanto tempo",
+        "gloss": "多久"
+      },
+      "learning_role": "listen_only",
+      "surface": "Você vai atrasar quanto tempo?",
+      "speak": "Você vai atrasar quanto tempo?",
+      "translation": "你會晚多久？",
+      "friend": {
+        "hint": "用 uns 加分鐘數，給一個簡單估計。"
+      },
+      "reply_set": {
+        "correct": "r3a",
+        "choices": [
+          {
+            "id": "r3a",
+            "surface": "Vou atrasar uns dez minutos.",
+            "translation": "我會晚大約十分鐘。",
+            "speak": "Vou atrasar uns dez minutos.",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r3b",
+            "surface": "O ônibus dez é bom.",
+            "translation": "十號公車不錯。",
+            "speak": "O ônibus dez é bom.",
+            "contrast_type": "wrong_entity_bus_number",
+            "feedback": "這裡的 dez 應該是十分鐘，不是十號公車。"
+          },
+          {
+            "id": "r3c",
+            "surface": "Não estou atrasado.",
+            "translation": "我沒有遲到。",
+            "speak": "Não estou atrasado.",
+            "contrast_type": "contradicts_context",
+            "feedback": "你已經說會晚到。現在要估計晚多久。"
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t4",
+      "speaker": "npc",
+      "act": "acceptance",
+      "act_slots": {
+        "topic": "esperar"
+      },
+      "learning_role": "listen_only",
+      "surface": "Tudo bem. Vai com calma.",
+      "speak": "Tudo bem. Vai com calma.",
+      "translation": "沒關係。慢慢來。",
+      "friend": {
+        "hint": "對方接受你晚到。道謝並自然收尾。"
+      },
+      "reply_set": {
+        "correct": "r4a",
+        "choices": [
+          {
+            "id": "r4a",
+            "surface": "Obrigado. Chego já.",
+            "translation": "謝謝。我很快就到。",
+            "speak": "Obrigado. Chego já."
+          },
+          {
+            "id": "r4b",
+            "surface": "Tenho uma reserva.",
+            "translation": "我有預約。",
+            "speak": "Tenho uma reserva.",
+            "contrast_type": "wrong_scenario_reservation",
+            "feedback": "這像是飯店或餐廳情境，不是在回覆晚到訊息。"
+          },
+          {
+            "id": "r4c",
+            "surface": "Posso pagar agora?",
+            "translation": "我現在可以付款嗎？",
+            "speak": "Posso pagar agora?",
+            "contrast_type": "wrong_scenario_payment",
+            "feedback": "這是付款句。這裡簡單道謝更自然。"
+          }
+        ]
+      }
+    }
+  ],
+  "choice_sets": [
+    "t1.reply_set",
+    "t2.reply_set",
+    "t3.reply_set",
+    "t4.reply_set"
+  ],
+  "feedback": "Distractors separate reason, time estimate, and unrelated scenario language.",
+  "tts_segments": [
+    "Desculpa, vou chegar um pouco atrasado.",
+    "O ônibus atrasou.",
+    "Vou atrasar uns dez minutos.",
+    "Obrigado. Chego já."
+  ],
+  "formula_moments": [
+    {
+      "after_turn": "t2",
+      "pattern_id": "pt.a2.reason.delay.porque.v1"
+    }
+  ],
+  "runtime_notes": "Fresh PT A2 candidate. Structural checks and two AI semantic review passes completed on 2026-06-14 before metadata promotion.",
+  "notes": {
+    "authoring_policy": "Fresh-authored from the neutral A2 brief. KO/JA/EN/TH were used only as schema-shape references.",
+    "a2_boundary": "Low-stakes delay with one reason and one estimate; avoids emergency, health, workplace, or formal excuse content.",
+    "gender_note": "Uses masculine atrasado/obrigado as the default learner surface; native review may decide whether to add a neutral variant policy later."
+  }
+}

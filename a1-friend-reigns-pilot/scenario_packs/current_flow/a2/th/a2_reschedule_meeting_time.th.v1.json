@@ -1,0 +1,266 @@
+{
+  "schema_version": "scenario_pack.v1",
+  "scenario_id": "a2_reschedule_meeting_time",
+  "brief_id": "a2_2_reschedule_meeting_time",
+  "source_neutral_brief": "release-aggregator/docs/tasks/A2_BASELINE_INVENTORY/A2_2_NEUTRAL_ADAPTATION_BRIEFS_20260614.md#brief-3-a2_reschedule_meeting_time",
+  "blueprint_ledger": "release-aggregator/docs/tasks/A2_BASELINE_INVENTORY/A2_2_BLUEPRINT_LEDGER_20260614.md",
+  "repo": "content-th",
+  "staging_path": "content/core/content_assets/scenario_packs/current_flow/a2/a2_reschedule_meeting_time.th.v1.json",
+  "title": "ขอเลื่อนเวลานัด",
+  "setting_label": "ปรับเวลานัดกับเพื่อน",
+  "wrap_title": "เปลี่ยนเวลานัด",
+  "wrap_friend": "คุณขอเปลี่ยนเวลานัด เสนอเวลาใหม่ และยืนยันเวลาใหม่ได้ชัดเจน",
+  "language": "th",
+  "ui_language": "zh_tw",
+  "cefr_level": "A2",
+  "source_status": "candidate_runtime_verified",
+  "review_state": "ai_reviewed",
+  "review_status_framework_state": "candidate_runtime_verified",
+  "native_review_state": "native_pending",
+  "scenario": "You need to ask a friend to move a meeting time.",
+  "learner_goal": "Ask to change a meeting time and confirm the new time.",
+  "target_functions": [
+    "reschedule_request",
+    "alternative_time",
+    "confirmation"
+  ],
+  "register_notes": "Friendly Thai with polite-soft ขอ...ได้ไหม. Low-stakes personal schedule; no negotiation loop or workplace context.",
+  "production_mode_default": {
+    "required": [
+      "choice"
+    ],
+    "optional_visible": [
+      "speaking"
+    ],
+    "optional_hidden": [
+      "typing"
+    ]
+  },
+  "support_text": "เวลานัดเดิมไม่สะดวกแล้ว ขอเปลี่ยนเวลา เสนอเวลาใหม่ และยืนยันกับเพื่อน",
+  "roles": {
+    "npc": {
+      "label": "เพื่อน"
+    },
+    "learner": {
+      "label": "คุณ"
+    }
+  },
+  "turns": [
+    {
+      "turn_id": "t1",
+      "speaker": "npc",
+      "act": "schedule_confirmation",
+      "act_slots": {
+        "topic": "three o'clock plan",
+        "keyword": "บ่ายสาม",
+        "gloss": "下午三點"
+      },
+      "learning_role": "listen_only",
+      "surface": "วันนี้เจอกันบ่ายสามใช่ไหม",
+      "speak": "วันนี้เจอกันบ่ายสาม ใช่ไหม",
+      "translation": "今天下午三點見，對嗎？",
+      "friend": {
+        "hint": "เพื่อนยืนยันเวลาเดิม คุณต้องขอเปลี่ยนเวลาอย่างสุภาพ"
+      },
+      "reply_set": {
+        "correct": "r1a",
+        "choices": [
+          {
+            "id": "r1a",
+            "surface": "ขอโทษนะ ขอเลื่อนเวลาได้ไหม",
+            "translation": "不好意思，可以改時間嗎？",
+            "speak": "ขอโทษนะ ขอเลื่อนเวลาได้ไหม",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r1b",
+            "surface": "ใช่ เมื่อวานเจอกันแล้ว",
+            "translation": "對，昨天已經見過了。",
+            "speak": "ใช่ เมื่อวานเจอกันแล้ว",
+            "contrast_type": "wrong_time_past",
+            "feedback": "เพื่อนพูดถึงนัดวันนี้ ไม่ใช่เมื่อวาน"
+          },
+          {
+            "id": "r1c",
+            "surface": "จ่ายด้วยบัตรได้ไหม",
+            "translation": "可以刷卡嗎？",
+            "speak": "จ่ายด้วยบัตรได้ไหม",
+            "contrast_type": "wrong_scenario_payment",
+            "feedback": "นี่เป็นเรื่องจ่ายเงิน แต่ตอนนี้ต้องขอเปลี่ยนเวลานัด"
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t2",
+      "speaker": "npc",
+      "act": "alternative_request",
+      "act_slots": {
+        "topic": "new time",
+        "keyword": "กี่โมง",
+        "gloss": "幾點"
+      },
+      "learning_role": "listen_only",
+      "surface": "ได้ แล้วอยากเลื่อนไปกี่โมง",
+      "speak": "ได้ แล้วอยากเลื่อนไปกี่โมง",
+      "translation": "可以，那想改到幾點？",
+      "friend": {
+        "hint": "เสนอเวลาใหม่ด้วย เลื่อนไป... ได้ไหม"
+      },
+      "inline_explain": {
+        "pattern_id": "th.a2.reschedule.lueanpai.v1",
+        "title": "เลื่อนไป + เวลา",
+        "explain": "เลื่อนไปสี่โมง means move it to four o'clock.",
+        "items": [
+          {
+            "surface": "เลื่อนไปสี่โมง",
+            "translation": "改到四點",
+            "speak": "เลื่อนไปสี่โมง"
+          },
+          {
+            "surface": "เลื่อนไปพรุ่งนี้",
+            "translation": "改到明天",
+            "speak": "เลื่อนไปพรุ่งนี้"
+          }
+        ]
+      },
+      "reply_set": {
+        "correct": "r2a",
+        "choices": [
+          {
+            "id": "r2a",
+            "surface": "เลื่อนไปสี่โมงได้ไหม",
+            "translation": "可以改到四點嗎？",
+            "speak": "เลื่อนไปสี่โมงได้ไหม",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r2b",
+            "surface": "ไปทางออกที่สี่ไหม",
+            "translation": "要去四號出口嗎？",
+            "speak": "ไปทางออกที่สี่ไหม",
+            "contrast_type": "wrong_entity_exit_number",
+            "feedback": "ทางออกที่สี่คือสถานที่ ไม่ใช่เวลาใหม่"
+          },
+          {
+            "id": "r2c",
+            "surface": "สี่โมงไปแล้ว",
+            "translation": "我四點已經去了。",
+            "speak": "สี่โมงไปแล้ว",
+            "contrast_type": "wrong_time_past",
+            "feedback": "นี่เป็นอดีต แต่ตอนนี้ต้องเสนอเวลาใหม่"
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t3",
+      "speaker": "npc",
+      "act": "accept_new_time",
+      "act_slots": {
+        "topic": "new time accepted"
+      },
+      "learning_role": "listen_only",
+      "surface": "ได้ สี่โมงก็โอเค",
+      "speak": "ได้ สี่โมงก็โอเค",
+      "translation": "可以，四點也可以。",
+      "friend": {
+        "hint": "เวลาใหม่ตกลงแล้ว ยืนยันอีกครั้งให้ชัด"
+      },
+      "reply_set": {
+        "correct": "r3a",
+        "choices": [
+          {
+            "id": "r3a",
+            "surface": "งั้นเจอกันสี่โมงนะ",
+            "translation": "那四點見。",
+            "speak": "งั้นเจอกันสี่โมงนะ"
+          },
+          {
+            "id": "r3b",
+            "surface": "งั้นเจอกันบ่ายสามนะ",
+            "translation": "那下午三點見。",
+            "speak": "งั้นเจอกันบ่ายสามนะ",
+            "contrast_type": "repeats_old_time",
+            "feedback": "เวลาเดิมคือบ่ายสาม แต่ตอนนี้เลื่อนไปสี่โมงแล้ว"
+          },
+          {
+            "id": "r3c",
+            "surface": "ขอกุญแจห้องหน่อย",
+            "translation": "請給我房間鑰匙。",
+            "speak": "ขอกุญแจห้องหน่อย",
+            "contrast_type": "wrong_scenario_hotel",
+            "feedback": "นี่เป็นสถานการณ์โรงแรม ไม่ใช่ยืนยันเวลานัดใหม่"
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t4",
+      "speaker": "npc",
+      "act": "closing",
+      "act_slots": {
+        "topic": "close plan"
+      },
+      "learning_role": "listen_only",
+      "surface": "โอเค แล้วเจอกัน",
+      "speak": "โอเค แล้วเจอกัน",
+      "translation": "好，到時見。",
+      "friend": {
+        "hint": "นัดใหม่เสร็จแล้ว ปิดบทสนทนาสั้น ๆ"
+      },
+      "reply_set": {
+        "correct": "r4a",
+        "choices": [
+          {
+            "id": "r4a",
+            "surface": "ได้ แล้วเจอกันนะ",
+            "translation": "可以，到時見。",
+            "speak": "ได้ แล้วเจอกันนะ"
+          },
+          {
+            "id": "r4b",
+            "surface": "เพราะสายแล้ว",
+            "translation": "因為已經晚了。",
+            "speak": "เพราะสายแล้ว",
+            "contrast_type": "fragment_without_need",
+            "feedback": "ตอนนี้ตกลงเวลาใหม่แล้ว ไม่ต้องเพิ่มเหตุผลสั้น ๆ"
+          },
+          {
+            "id": "r4c",
+            "surface": "จองใหม่แล้ว",
+            "translation": "我重新預約了。",
+            "speak": "จองใหม่แล้ว",
+            "contrast_type": "wrong_scenario_reservation",
+            "feedback": "นี่ไม่ใช่ระบบจอง เป็นการเลื่อนเวลานัดกับเพื่อน"
+          }
+        ]
+      }
+    }
+  ],
+  "choice_sets": [
+    "t1.reply_set",
+    "t2.reply_set",
+    "t3.reply_set",
+    "t4.reply_set"
+  ],
+  "feedback": "Distractors test old vs new time, place-number confusion, and unrelated scenario phrases.",
+  "tts_segments": [
+    "ขอโทษนะ ขอเลื่อนเวลาได้ไหม",
+    "เลื่อนไปสี่โมงได้ไหม",
+    "งั้นเจอกันสี่โมงนะ",
+    "ได้ แล้วเจอกันนะ"
+  ],
+  "formula_moments": [
+    {
+      "after_turn": "t2",
+      "pattern_id": "th.a2.reschedule.lueanpai.v1"
+    }
+  ],
+  "runtime_notes": "Thai A2 pilot candidate. Structural check passed locally on 2026-06-14; runtime smoke is represented by required shape only and still needs UI execution if available.",
+  "notes": {
+    "authoring_policy": "Fresh-authored from A2 neutral brief. KO pack was used only for schema shape.",
+    "a2_boundary": "Low-stakes friend rescheduling with one alternative time and final confirmation; avoids negotiation loops and long reasons.",
+    "thai_voice_note": "Uses natural Thai rescheduling wording and short TTS-friendly clauses."
+  }
+}

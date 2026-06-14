@@ -1,0 +1,254 @@
+{
+  "schema_version": "scenario_pack.v1",
+  "scenario_id": "food_restaurant_ordering",
+  "brief_id": "ml1_a1_006_food_restaurant_ordering",
+  "source_neutral_brief": "release-aggregator/docs/tasks/A1_MULTILINGUAL_KO_B1_PARALLEL_ORCHESTRATION/work_products/ml0/ML1_NEUTRAL_ADAPTATION_BRIEFS_20260614.md#brief-ml1-a1-006-restaurant-ordering",
+  "blueprint_ledger": "release-aggregator/docs/tasks/A1_MULTILINGUAL_KO_B1_PARALLEL_ORCHESTRATION/work_products/ml0/ML1_BLUEPRINT_LEDGER_20260614.md",
+  "repo": "content-de",
+  "staging_path": "content/core/content_assets/scenario_packs/current_flow/food_restaurant_ordering.de.v1.json",
+  "title": "Im Restaurant bestellen",
+  "setting_label": "Restauranttisch",
+  "wrap_title": "Bestellung bestätigt",
+  "wrap_friend": "你用 Sie 服務語氣完成餐廳點餐、確認餐點並禮貌收尾。",
+  "language": "de",
+  "ui_language": "zh_tw",
+  "source_status": "candidate_runtime_verified",
+  "review_state": "draft",
+  "review_status_framework_state": "candidate_runtime_verified",
+  "native_review_state": "native_pending",
+  "production_mode_default": {
+    "required": [
+      "choice"
+    ],
+    "optional_visible": [
+      "speaking"
+    ],
+    "optional_hidden": [
+      "typing"
+    ]
+  },
+  "support_text": "你在德語區的一間簡單餐廳。使用一致的 Sie 服務語氣，回答人數並點一道餐。",
+  "roles": {
+    "npc": {
+      "label": "Servicekraft"
+    },
+    "learner": {
+      "label": "Gast"
+    }
+  },
+  "turns": [
+    {
+      "turn_id": "t1",
+      "speaker": "npc",
+      "act": "readiness_party_size",
+      "act_slots": {
+        "topic": "party_size",
+        "keyword": "zu zweit",
+        "gloss": "two people"
+      },
+      "learning_role": "listen_only",
+      "surface": "Guten Abend. Sind Sie bereit zu bestellen?",
+      "speak": "Guten Abend. Sind Sie bereit zu bestellen?",
+      "translation": "晚上好。您準備好點餐了嗎？",
+      "friend": {
+        "hint": "服務人員用 Sie。回答時保持簡短禮貌。"
+      },
+      "reply_set": {
+        "correct": "r1a",
+        "choices": [
+          {
+            "id": "r1a",
+            "surface": "Ja, wir sind zu zweit.",
+            "translation": "是的，我們兩位。",
+            "speak": "Ja, wir sind zu zweit.",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r1b",
+            "surface": "Die Rechnung, bitte.",
+            "translation": "請結帳。",
+            "speak": "Die Rechnung, bitte.",
+            "contrast_type": "asking_bill_before_ordering",
+            "feedback": "這是在還沒點餐前就要結帳。現在要回答是否準備好。"
+          },
+          {
+            "id": "r1c",
+            "surface": "Einen Kaffee zum Mitnehmen, bitte.",
+            "translation": "一杯外帶咖啡，謝謝。",
+            "speak": "Einen Kaffee zum Mitnehmen, bitte.",
+            "contrast_type": "cafe_only_request",
+            "feedback": "這像咖啡店點飲料。現在是在餐廳回答服務人員。"
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t2",
+      "speaker": "npc",
+      "act": "ask_order",
+      "act_slots": {
+        "topic": "meal_order",
+        "keyword": "nehmen",
+        "gloss": "take/order"
+      },
+      "learning_role": "listen_only",
+      "surface": "Was möchten Sie essen?",
+      "speak": "Was möchten Sie essen?",
+      "translation": "您想吃什麼？",
+      "friend": {
+        "hint": "德文點餐可以用 Ich hätte gern...，禮貌又自然。"
+      },
+      "inline_explain": {
+        "pattern_id": "de.restaurant.ich_haette_gern.v1",
+        "formula_ref": null,
+        "title": "Ich hätte gern...",
+        "explain": "Ich hätte gern... 是德語點餐常用的禮貌句型。",
+        "items": [
+          {
+            "surface": "Ich hätte gern eine Suppe.",
+            "translation": "我想要一份湯。",
+            "speak": "Ich hätte gern eine Suppe."
+          },
+          {
+            "surface": "Ich nehme die Pasta.",
+            "translation": "我要義大利麵。",
+            "speak": "Ich nehme die Pasta."
+          }
+        ]
+      },
+      "reply_set": {
+        "correct": "r2a",
+        "choices": [
+          {
+            "id": "r2a",
+            "surface": "Ich hätte gern eine Suppe, bitte.",
+            "translation": "我想要一份湯，謝謝。",
+            "speak": "Ich hätte gern eine Suppe, bitte.",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r2b",
+            "surface": "Zum Mitnehmen, bitte.",
+            "translation": "外帶，謝謝。",
+            "speak": "Zum Mitnehmen, bitte.",
+            "contrast_type": "takeout_answer_in_dine_in_context",
+            "feedback": "這是在回答外帶選項，不是在點一道餐。"
+          },
+          {
+            "id": "r2c",
+            "surface": "Eine große Pizza, zwei Suppen, ohne Käse, ohne Salz und sehr schnell.",
+            "translation": "一個大披薩、兩份湯、不加起司、不加鹽，還要很快。",
+            "speak": "Eine große Pizza, zwei Suppen, ohne Käse, ohne Salz und sehr schnell.",
+            "contrast_type": "overlong_customization",
+            "feedback": "這太長，超出 A1 回合。先練習點一道簡單餐點。"
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t3",
+      "speaker": "npc",
+      "act": "order_confirmation",
+      "act_slots": {
+        "topic": "confirm_order",
+        "keyword": "richtig",
+        "gloss": "correct"
+      },
+      "learning_role": "listen_only",
+      "surface": "Eine Suppe, richtig?",
+      "speak": "Eine Suppe, richtig?",
+      "translation": "一份湯，對嗎？",
+      "friend": {
+        "hint": "餐點正確時，用 Ja, danke 確認即可。"
+      },
+      "reply_set": {
+        "correct": "r3a",
+        "choices": [
+          {
+            "id": "r3a",
+            "surface": "Ja, danke.",
+            "translation": "是的，謝謝。",
+            "speak": "Ja, danke."
+          },
+          {
+            "id": "r3b",
+            "surface": "Nein, einen Kaffee.",
+            "translation": "不是，一杯咖啡。",
+            "speak": "Nein, einen Kaffee.",
+            "contrast_type": "wrong_item_confirmation",
+            "feedback": "這把餐點換成咖啡了。若訂單正確，直接確認即可。"
+          },
+          {
+            "id": "r3c",
+            "surface": "Ich zahle mit Karte.",
+            "translation": "我用卡付款。",
+            "speak": "Ich zahle mit Karte.",
+            "contrast_type": "payment_answer_too_early",
+            "feedback": "這是付款資訊。現在服務人員只是在確認餐點。"
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t4",
+      "speaker": "npc",
+      "act": "service_close",
+      "act_slots": {
+        "topic": "order_accepted",
+        "keyword": "kommt gleich",
+        "gloss": "coming soon"
+      },
+      "learning_role": "listen_only",
+      "surface": "Sehr gern. Das kommt gleich.",
+      "speak": "Sehr gern. Das kommt gleich.",
+      "translation": "好的。餐點馬上來。",
+      "friend": {
+        "hint": "最後簡短道謝。"
+      },
+      "reply_set": {
+        "correct": "r4a",
+        "choices": [
+          {
+            "id": "r4a",
+            "surface": "Danke.",
+            "translation": "謝謝。",
+            "speak": "Danke."
+          },
+          {
+            "id": "r4b",
+            "surface": "Wo ist Gleis zwei?",
+            "translation": "二號月台在哪裡？",
+            "speak": "Wo ist Gleis zwei?",
+            "contrast_type": "wrong_scenario_request",
+            "feedback": "這是車站問路，不是餐廳點餐收尾。"
+          },
+          {
+            "id": "r4c",
+            "surface": "Wann gibt es Frühstück?",
+            "translation": "早餐什麼時候供應？",
+            "speak": "Wann gibt es Frühstück?",
+            "contrast_type": "hotel_question",
+            "feedback": "這是飯店早餐問題。餐點已確認，只要道謝。"
+          }
+        ]
+      },
+      "closing": true
+    }
+  ],
+  "formula_moments": [
+    {
+      "after_turn": "t1",
+      "pattern_id": "de.restaurant.wir_sind_zu_zweit.v1"
+    },
+    {
+      "after_turn": "t2",
+      "pattern_id": "de.restaurant.ich_haette_gern.v1"
+    }
+  ],
+  "notes": {
+    "authoring_source": "Authored from ML-1 neutral brief ml1_a1_006_food_restaurant_ordering; KO and other target-language packs were not used as translation sources.",
+    "review_policy": "AI-authored candidate only; keep review_state=draft, review_status_framework_state=candidate_needs_review, native_review_state=native_pending until tracked review evidence exists.",
+    "canonical_policy": "Staging current-flow candidate only. Do not add to manifests, production exports, schema, runtime, frontend, review artifacts, or legacy content.",
+    "german_voice_note": "Uses consistent Sie service register for staff speech and polite learner formulas; native review should check the singular/plural tension between Sie and wir sind zu zweit."
+  }
+}

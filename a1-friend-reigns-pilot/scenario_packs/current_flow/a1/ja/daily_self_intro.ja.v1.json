@@ -1,0 +1,241 @@
+{
+  "schema_version": "scenario_pack.v1",
+  "scenario_id": "daily_self_intro",
+  "brief_id": "ml3_a1_012_daily_self_intro",
+  "source_neutral_brief": "release-aggregator/docs/tasks/A1_MULTILINGUAL_KO_B1_PARALLEL_ORCHESTRATION/work_products/ml0/ML3_NEUTRAL_ADAPTATION_BRIEFS_20260614.md#brief-ml3-a1-012-daily-self-introduction",
+  "blueprint_ledger": "release-aggregator/docs/tasks/A1_MULTILINGUAL_KO_B1_PARALLEL_ORCHESTRATION/work_products/ml0/ML3_BLUEPRINT_LEDGER_20260614.md",
+  "repo": "content-ja",
+  "staging_path": "content/review/current_flow/scenario_pack.v1/ja/daily_self_intro.ja.v1.json",
+  "title": "自己紹介をする",
+  "setting_label": "語学交流のテーブル",
+  "wrap_title": "自己紹介できた",
+  "wrap_friend": "名前を言い、勉強していることを短く伝え、個人情報を出さずにあいさつできました。",
+  "language": "ja",
+  "ui_language": "zh_tw",
+  "source_status": "candidate_runtime_verified",
+  "review_state": "draft",
+  "review_status_framework_state": "candidate_runtime_verified",
+  "native_review_state": "native_pending",
+  "production_mode_default": {
+    "required": [
+      "choice"
+    ],
+    "optional_visible": [
+      "speaking"
+    ],
+    "optional_hidden": [
+      "typing"
+    ]
+  },
+  "support_text": "你在語言交流活動第一次見到新朋友。選自然、簡短的日文回應。",
+  "roles": {
+    "npc": {
+      "label": "新しい友だち"
+    },
+    "learner": {
+      "label": "あなた"
+    }
+  },
+  "turns": [
+    {
+      "turn_id": "t1",
+      "speaker": "npc",
+      "act": "first_meeting_greeting",
+      "learning_role": "listen_only",
+      "surface": "はじめまして。まやです。お名前は？",
+      "speak": "はじめまして。まやです。おなまえは？",
+      "translation": "初次見面。我是 Maya。你叫什麼名字？",
+      "friend": {
+        "hint": "對方先說名字。用です簡短介紹自己。"
+      },
+      "reply_set": {
+        "correct": "r1a",
+        "choices": [
+          {
+            "id": "r1a",
+            "surface": "はじめまして。アレックスです。",
+            "translation": "初次見面。我是 Alex。",
+            "speak": "はじめまして。アレックスです。",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r1b",
+            "surface": "切符を一枚ください。",
+            "translation": "請給我一張票。",
+            "speak": "きっぷを、いちまいください。",
+            "contrast_type": "travel_service_phrase_in_self_intro",
+            "feedback": "這是在買票，不是在介紹名字。"
+          },
+          {
+            "id": "r1c",
+            "surface": "電話番号はこれです。",
+            "translation": "這是我的電話號碼。",
+            "speak": "でんわばんごうは、これです。",
+            "contrast_type": "private_contact_detail",
+            "feedback": "自我介紹不需要提供私人聯絡資料。"
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t2",
+      "speaker": "npc",
+      "act": "ask_learning_language",
+      "learning_role": "listen_only",
+      "surface": "日本語を勉強していますか。",
+      "speak": "にほんごを、べんきょうしていますか。",
+      "translation": "你在學日文嗎？",
+      "friend": {
+        "hint": "對方問你是不是在學日文。用はい簡短回答。"
+      },
+      "inline_explain": {
+        "pattern_id": "ja.self_intro.learning_language.v1",
+        "formula_ref": null,
+        "title": "日本語を勉強しています",
+        "explain": "初対面で、勉強している言語を短く伝える自然な表現です。",
+        "items": [
+          {
+            "surface": "はい、日本語を勉強しています。",
+            "translation": "是的，我在學日文。",
+            "speak": "はい、にほんごを、べんきょうしています。"
+          }
+        ]
+      },
+      "reply_set": {
+        "correct": "r2a",
+        "choices": [
+          {
+            "id": "r2a",
+            "surface": "はい、日本語を勉強しています。",
+            "translation": "是的，我在學日文。",
+            "speak": "はい、にほんごを、べんきょうしています。",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r2b",
+            "surface": "アレックスです。",
+            "translation": "我是 Alex。",
+            "speak": "アレックスです。",
+            "contrast_type": "repeat_name_after_new_question",
+            "feedback": "你已經說過名字；現在要回答是不是在學日文。"
+          },
+          {
+            "id": "r2c",
+            "surface": "もう一度お願いします。",
+            "translation": "請再說一次。",
+            "speak": "もういちど、おねがいします。",
+            "contrast_type": "repair_when_understood",
+            "feedback": "這是聽不懂時用的修復句；這裡可以直接回答。"
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t3",
+      "speaker": "npc",
+      "act": "friendly_close",
+      "learning_role": "listen_only",
+      "surface": "いいですね。よろしくお願いします。",
+      "speak": "いいですね。よろしくおねがいします。",
+      "translation": "很好呢。請多指教。",
+      "friend": {
+        "hint": "對方友善收尾。用こちらこそ簡短回應。"
+      },
+      "reply_set": {
+        "correct": "r4a",
+        "choices": [
+          {
+            "id": "r4a",
+            "surface": "こちらこそ、よろしくお願いします。",
+            "translation": "我也請你多指教。",
+            "speak": "こちらこそ、よろしくおねがいします。",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r4b",
+            "surface": "コーヒーを一つください。",
+            "translation": "請給我一杯咖啡。",
+            "speak": "コーヒーを、ひとつください。",
+            "contrast_type": "food_order_in_self_intro",
+            "feedback": "這是在點餐，不是在回應初次見面。"
+          },
+          {
+            "id": "r4c",
+            "surface": "いつもお世話になっております。",
+            "translation": "一直承蒙照顧。",
+            "speak": "いつも、おせわになっております。",
+            "contrast_type": "overformal_business_greeting",
+            "feedback": "這太像商務信件或公司場合，不適合語言交流桌。"
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t4",
+      "speaker": "npc",
+      "act": "friendly_continue",
+      "learning_role": "listen_only",
+      "surface": "では、よろしくお願いします。",
+      "speak": "では、よろしくおねがいします。",
+      "translation": "那就請多指教。",
+      "friend": {
+        "hint": "對方準備開始活動。用「はい、お願いします」自然回應。"
+      },
+      "reply_set": {
+        "correct": "r4a",
+        "choices": [
+          {
+            "id": "r4a",
+            "surface": "はい、お願いします。",
+            "translation": "好的，麻煩你。",
+            "speak": "はい、おねがいします。",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r4b",
+            "surface": "コーヒーを一つください。",
+            "translation": "請給我一杯咖啡。",
+            "speak": "コーヒーを、ひとつください。",
+            "contrast_type": "food_order_in_self_intro",
+            "feedback": "這是在點餐，不是在回應初次見面。"
+          },
+          {
+            "id": "r4c",
+            "surface": "いつもお世話になっております。",
+            "translation": "一直承蒙照顧。",
+            "speak": "いつも、おせわになっております。",
+            "contrast_type": "overformal_business_greeting",
+            "feedback": "這太像商務信件或公司場合，不適合語言交流桌。"
+          }
+        ]
+      },
+      "closing": {
+        "act": "daily_self_intro_complete",
+        "learning_role": "listen_only",
+        "surface": "では、よろしくお願いします。",
+        "speak": "では、よろしくおねがいします。",
+        "translation": "那就請多指教。"
+      }
+    }
+  ],
+  "formula_moments": [
+    {
+      "after_turn": "t1",
+      "pattern_id": "ja.self_intro.name.v1"
+    },
+    {
+      "after_turn": "t2",
+      "pattern_id": "ja.self_intro.learning_language.v1"
+    },
+    {
+      "after_turn": "t4",
+      "pattern_id": "ja.self_intro.yoroshiku.v1"
+    }
+  ],
+  "notes": {
+    "authoring_source": "Authored from ML-3 neutral brief, not Korean surface text or another target-language pack.",
+    "review_policy": "AI-authored Japanese candidate. Requires AI review, runtime smoke, and tracked native review before any stronger status.",
+    "canonical_policy": "Staging candidate only. Do not write back to manifests, production exports, schemas, or legacy content.",
+    "register_note": "Beginner-safe first-meeting Japanese with polite desu/masu; avoids stiff business formulas."
+  }
+}

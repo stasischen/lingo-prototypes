@@ -1,0 +1,230 @@
+{
+  "schema_version": "scenario_pack.v1",
+  "scenario_id": "digital_battery_charging",
+  "brief_id": "ml5_a1_018_digital_battery_charging",
+  "source_neutral_brief": "release-aggregator/docs/tasks/A1_MULTILINGUAL_KO_B1_PARALLEL_ORCHESTRATION/work_products/ml0/ML5_NEUTRAL_ADAPTATION_BRIEFS_20260614.md#brief-ml5-a1-018-ask-permission-to-charge-a-phone",
+  "blueprint_ledger": "release-aggregator/docs/tasks/A1_MULTILINGUAL_KO_B1_PARALLEL_ORCHESTRATION/work_products/ml0/ML5_BLUEPRINT_LEDGER_20260614.md",
+  "repo": "content-it",
+  "staging_path": "content/core/content_assets/scenario_packs/current_flow/digital_battery_charging.it.v1.json",
+  "title": "Chiedere di caricare il telefono",
+  "setting_label": "Banco del bar",
+  "wrap_title": "Telefono in carica",
+  "wrap_friend": "Hai chiesto il permesso, hai trovato la presa e hai ringraziato.",
+  "language": "it",
+  "ui_language": "zh_tw",
+  "source_status": "candidate_runtime_verified",
+  "review_state": "draft",
+  "review_status_framework_state": "candidate_runtime_verified",
+  "native_review_state": "native_pending",
+  "production_mode_default": {
+    "required": [
+      "choice"
+    ],
+    "optional_visible": [
+      "speaking"
+    ],
+    "optional_hidden": [
+      "typing"
+    ]
+  },
+  "support_text": "你在咖啡吧或大廳。先問可不可以充手機，再問插座在哪裡，最後確認位置並道謝。",
+  "roles": {
+    "npc": {
+      "label": "Staff"
+    },
+    "learner": {
+      "label": "Cliente"
+    }
+  },
+  "turns": [
+    {
+      "turn_id": "t1",
+      "speaker": "npc",
+      "act": "service_offer",
+      "act_slots": {
+        "topic": "help offer",
+        "keyword": "aiuto",
+        "gloss": "help"
+      },
+      "learning_role": "listen_only",
+      "surface": "Buongiorno, posso aiutarla?",
+      "speak": "Buongiorno, posso aiutarla?",
+      "translation": "您好，我可以幫您嗎？",
+      "friend": "在服務情境，先用 posso chiedere / posso... 問可不可以。",
+      "reply_set": {
+        "correct": "c1",
+        "choices": [
+          {
+            "id": "c1",
+            "surface": "Posso caricare il telefono qui?",
+            "translation": "我可以在這裡充手機嗎？",
+            "speak": "Posso caricare il telefono qui?",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "c2",
+            "surface": "Qual è la password del Wi-Fi?",
+            "translation": "Wi-Fi 密碼是什麼？",
+            "speak": "Qual è la password del Wi-Fi?",
+            "contrast_type": "wifi_request_wrong_goal",
+            "feedback": "這是在問 Wi-Fi；現在目標是問能不能充手機。"
+          },
+          {
+            "id": "c3",
+            "surface": "Un caffè, per favore.",
+            "translation": "一杯咖啡，謝謝。",
+            "speak": "Un caffè, per favore.",
+            "contrast_type": "food_order_wrong_goal",
+            "feedback": "這是在點餐，不是在請求使用插座。"
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t2",
+      "speaker": "npc",
+      "act": "permission_granted",
+      "act_slots": {
+        "topic": "permission",
+        "keyword": "certo",
+        "gloss": "sure"
+      },
+      "learning_role": "listen_only",
+      "surface": "Sì, certo.",
+      "speak": "Sì, certo.",
+      "translation": "可以，當然。",
+      "friend": "得到同意後，問插座在哪裡。",
+      "reply_set": {
+        "correct": "c1",
+        "choices": [
+          {
+            "id": "c1",
+            "surface": "Dov'è una presa?",
+            "translation": "插座在哪裡？",
+            "speak": "Dov'è una presa?",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "c2",
+            "surface": "Posso caricare il telefono qui?",
+            "translation": "我可以在這裡充手機嗎？",
+            "speak": "Posso caricare il telefono qui?",
+            "contrast_type": "repeated_prior_question",
+            "feedback": "對方已經同意了。現在要問插座的位置。"
+          },
+          {
+            "id": "c3",
+            "surface": "Dov'è la stazione?",
+            "translation": "車站在哪裡？",
+            "speak": "Dov'è la stazione?",
+            "contrast_type": "station_directions_wrong_goal",
+            "feedback": "這是在問車站方向，不是問插座。"
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t3",
+      "speaker": "npc",
+      "act": "outlet_location",
+      "act_slots": {
+        "topic": "outlet location",
+        "keyword": "finestra",
+        "gloss": "window"
+      },
+      "learning_role": "listen_only",
+      "surface": "La presa è vicino alla finestra.",
+      "speak": "La presa è vicino alla finestra.",
+      "translation": "插座在窗邊。",
+      "friend": "確認位置時，用 lì vicino... 就夠了。",
+      "inline_explain": "presa = 插座。",
+      "reply_set": {
+        "correct": "c1",
+        "choices": [
+          {
+            "id": "c1",
+            "surface": "Lì vicino alla finestra?",
+            "translation": "窗邊那裡嗎？",
+            "speak": "Lì vicino alla finestra?",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "c2",
+            "surface": "Quanto costa?",
+            "translation": "多少錢？",
+            "speak": "Quanto costa?",
+            "contrast_type": "payment_dispute_out_of_scope",
+            "feedback": "本場景不談收費或費用爭議，只確認插座位置。"
+          },
+          {
+            "id": "c3",
+            "surface": "Sì, certo.",
+            "translation": "可以，當然。",
+            "speak": "Sì, certo.",
+            "contrast_type": "staff_role_sentence",
+            "feedback": "這是工作人員給同意的句子，不是學習者確認位置。"
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t4",
+      "speaker": "npc",
+      "act": "location_confirmed",
+      "act_slots": {
+        "topic": "confirmation",
+        "keyword": "proprio",
+        "gloss": "exactly"
+      },
+      "learning_role": "listen_only",
+      "surface": "Sì, proprio lì.",
+      "speak": "Sì, proprio lì.",
+      "translation": "對，就在那裡。",
+      "friend": "位置確認後，用 grazie 收尾。",
+      "reply_set": {
+        "correct": "c1",
+        "choices": [
+          {
+            "id": "c1",
+            "surface": "Grazie mille.",
+            "translation": "非常謝謝。",
+            "speak": "Grazie mille."
+          },
+          {
+            "id": "c2",
+            "surface": "Il telefono è rotto.",
+            "translation": "手機壞了。",
+            "speak": "Il telefono è rotto.",
+            "contrast_type": "damaged_device_out_of_scope",
+            "feedback": "這進入裝置故障；本場景只練借用插座和道謝。"
+          },
+          {
+            "id": "c3",
+            "surface": "Avete un adattatore?",
+            "translation": "你們有轉接頭嗎？",
+            "speak": "Avete un adattatore?",
+            "contrast_type": "adapter_specs_out_of_scope",
+            "feedback": "轉接頭和規格不在本場景範圍。"
+          }
+        ]
+      },
+      "closing": true
+    }
+  ],
+  "formula_moments": [
+    {
+      "after_turn": "t1",
+      "pattern_id": "it.permission.posso_caricare"
+    },
+    {
+      "after_turn": "t2",
+      "pattern_id": "it.location.dove_una_presa"
+    }
+  ],
+  "notes": {
+    "authoring_source": "Authored from ML-5 neutral brief ml5_a1_018_digital_battery_charging; KO and other target-language packs were not used as translation sources.",
+    "review_policy": "AI-authored candidate only; keep review_state=draft, review_status_framework_state=candidate_needs_review, native_review_state=native_pending until tracked review evidence exists.",
+    "canonical_policy": "Staging current-flow candidate only. Do not add to manifests, production exports, schema, runtime, or frontend in this authoring lane.",
+    "native_risk_note": "Native review should confirm whether 'presa' and 'Posso caricare il telefono qui?' are the best everyday A1 formulas for a cafe or lobby."
+  }
+}

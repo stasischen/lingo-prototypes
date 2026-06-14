@@ -1,0 +1,253 @@
+{
+  "schema_version": "scenario_pack.v1",
+  "scenario_id": "digital_wifi_connect",
+  "brief_id": "ml4_a1_017_digital_wifi_connect",
+  "source_neutral_brief": "release-aggregator/docs/tasks/A1_MULTILINGUAL_KO_B1_PARALLEL_ORCHESTRATION/work_products/ml0/ML4_NEUTRAL_ADAPTATION_BRIEFS_20260614.md#brief-ml4-a1-017-ask-for-wi-fi-and-say-it-will-not-connect",
+  "blueprint_ledger": "release-aggregator/docs/tasks/A1_MULTILINGUAL_KO_B1_PARALLEL_ORCHESTRATION/work_products/ml0/ML4_BLUEPRINT_LEDGER_20260614.md",
+  "repo": "content-ja",
+  "staging_path": "content/review/current_flow/scenario_pack.v1/ja/digital_wifi_connect.ja.v1.json",
+  "title": "Wi-Fiにつなぐ",
+  "setting_label": "カフェのカウンター",
+  "wrap_title": "Wi-Fiの問題を伝えられました",
+  "wrap_friend": "パスワードを聞き、試して、つながらないことを伝えてお礼を言えました。",
+  "language": "ja",
+  "ui_language": "zh_tw",
+  "source_status": "candidate_runtime_verified",
+  "review_state": "draft",
+  "review_status_framework_state": "candidate_runtime_verified",
+  "native_review_state": "native_pending",
+  "production_mode_default": {
+    "required": [
+      "choice"
+    ],
+    "optional_visible": [
+      "speaking"
+    ],
+    "optional_hidden": [
+      "typing"
+    ]
+  },
+  "support_text": "你在日本咖啡店或飯店櫃台，需要連Wi-Fi。選自然、簡短的日文。",
+  "roles": {
+    "npc": {
+      "label": "スタッフ"
+    },
+    "learner": {
+      "label": "あなた"
+    }
+  },
+  "turns": [
+    {
+      "turn_id": "t1",
+      "speaker": "npc",
+      "act": "offer_help",
+      "learning_role": "listen_only",
+      "surface": "何かお困りですか。",
+      "speak": "何かお困りですか。",
+      "translation": "有什麼需要幫忙嗎？",
+      "friend": {
+        "hint": "你需要Wi-Fi密碼。自然地請對方告訴你。"
+      },
+      "inline_explain": {
+        "pattern_id": "ja.digital.wifi_password.v1",
+        "formula_ref": null,
+        "title": "教えてください",
+        "explain": "請對方告訴你資訊時，可以用「教えてください」。",
+        "items": [
+          {
+            "surface": "Wi-Fiのパスワードを教えてください。",
+            "translation": "請告訴我Wi-Fi密碼。",
+            "speak": "Wi-Fiのパスワードを教えてください。"
+          }
+        ]
+      },
+      "reply_set": {
+        "correct": "r1a",
+        "choices": [
+          {
+            "id": "r1a",
+            "surface": "Wi-Fiのパスワードを教えてください。",
+            "translation": "請告訴我Wi-Fi密碼。",
+            "speak": "Wi-Fiのパスワードを教えてください。",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r1b",
+            "surface": "お会計お願いします。",
+            "translation": "我要結帳。",
+            "speak": "お会計お願いします。",
+            "contrast_type": "bill_payment_instead_of_wifi",
+            "feedback": "這是在付款或結帳。現在要問Wi-Fi密碼。"
+          },
+          {
+            "id": "r1c",
+            "surface": "トイレはどこですか。",
+            "translation": "廁所在哪裡？",
+            "speak": "トイレはどこですか。",
+            "contrast_type": "restroom_question_instead_of_wifi",
+            "feedback": "這是在問廁所。現在的目標是Wi-Fi。"
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t2",
+      "speaker": "npc",
+      "act": "give_password",
+      "learning_role": "listen_only",
+      "surface": "パスワードは cafe123 です。",
+      "speak": "パスワードは カフェ ワン ツー スリー です。",
+      "translation": "密碼是 cafe123。",
+      "friend": {
+        "hint": "你拿到密碼了。先說謝謝並試試看。"
+      },
+      "reply_set": {
+        "correct": "r2a",
+        "choices": [
+          {
+            "id": "r2a",
+            "surface": "ありがとうございます。やってみます。",
+            "translation": "謝謝，我試試看。",
+            "speak": "ありがとうございます。やってみます。",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r2b",
+            "surface": "パスワードを教えてください。",
+            "translation": "請告訴我密碼。",
+            "speak": "パスワードを教えてください。",
+            "contrast_type": "repeat_password_question_after_answer",
+            "feedback": "對方已經給了密碼。現在應該表示會試試看。"
+          },
+          {
+            "id": "r2c",
+            "surface": "コーヒーをください。",
+            "translation": "請給我咖啡。",
+            "speak": "コーヒーをください。",
+            "contrast_type": "coffee_order_after_password",
+            "feedback": "這是在點咖啡，不是回應Wi-Fi密碼。"
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t3",
+      "speaker": "npc",
+      "act": "ask_connection_status",
+      "learning_role": "listen_only",
+      "surface": "つながりましたか。",
+      "speak": "つながりましたか。",
+      "translation": "連上了嗎？",
+      "friend": {
+        "hint": "你的手機連不上。用簡短句說問題。"
+      },
+      "inline_explain": {
+        "pattern_id": "ja.digital.wont_connect.v1",
+        "formula_ref": null,
+        "title": "つながりません",
+        "explain": "說網路連不上時，可以說「つながりません」。",
+        "items": [
+          {
+            "surface": "すみません、つながりません。",
+            "translation": "不好意思，連不上。",
+            "speak": "すみません、つながりません。"
+          }
+        ]
+      },
+      "reply_set": {
+        "correct": "r3a",
+        "choices": [
+          {
+            "id": "r3a",
+            "surface": "すみません、つながりません。",
+            "translation": "不好意思，連不上。",
+            "speak": "すみません、つながりません。",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r3b",
+            "surface": "はい、つながりました。",
+            "translation": "是的，連上了。",
+            "speak": "はい、つながりました。",
+            "contrast_type": "success_answer_when_failure_expected",
+            "feedback": "情境是連不上。需要說問題，而不是說成功。"
+          },
+          {
+            "id": "r3c",
+            "surface": "充電できますか。",
+            "translation": "可以充電嗎？",
+            "speak": "充電できますか。",
+            "contrast_type": "charging_question_instead_of_connection_failure",
+            "feedback": "這是在問充電。現在要說Wi-Fi連不上。"
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t4",
+      "speaker": "npc",
+      "act": "simple_retry_instruction",
+      "learning_role": "listen_only",
+      "surface": "もう一度お願いします。",
+      "speak": "もう一度お願いします。",
+      "translation": "請再試一次。",
+      "friend": {
+        "hint": "對方給簡單建議。道謝即可。"
+      },
+      "reply_set": {
+        "correct": "r4a",
+        "choices": [
+          {
+            "id": "r4a",
+            "surface": "ありがとうございます。",
+            "translation": "謝謝。",
+            "speak": "ありがとうございます。"
+          },
+          {
+            "id": "r4b",
+            "surface": "はい、つながりました。",
+            "translation": "是的，連上了。",
+            "speak": "はい、つながりました。",
+            "contrast_type": "unsupported_success_after_retry_instruction",
+            "feedback": "對方只是叫你再試一次。先道謝比較自然。"
+          },
+          {
+            "id": "r4c",
+            "surface": "お会計お願いします。",
+            "translation": "我要結帳。",
+            "speak": "お会計お願いします。",
+            "contrast_type": "payment_phrase_after_wifi_help",
+            "feedback": "這是付款句。Wi-Fi協助後簡短道謝即可。"
+          }
+        ]
+      },
+      "closing": {
+        "act": "wifi_help_complete",
+        "learning_role": "listen_only",
+        "surface": "Wi-Fiのパスワードを聞き、問題も伝えました。",
+        "speak": "Wi-Fiのパスワードを聞き、問題も伝えました。",
+        "translation": "你問了Wi-Fi密碼，也說明了問題。"
+      }
+    }
+  ],
+  "formula_moments": [
+    {
+      "after_turn": "t1",
+      "pattern_id": "ja.digital.wifi_password.v1"
+    },
+    {
+      "after_turn": "t3",
+      "pattern_id": "ja.digital.wont_connect.v1"
+    },
+    {
+      "after_turn": "t4",
+      "pattern_id": "ja.digital.thanks.v1"
+    }
+  ],
+  "notes": {
+    "authoring_source": "Authored from ML-4 neutral brief, not Korean surface text or another target-language pack.",
+    "review_policy": "AI-authored Japanese candidate. Requires AI review, runtime smoke, and tracked native review before any stronger status.",
+    "canonical_policy": "Staging candidate only. Do not write back to manifests, production exports, schemas, runtime exports, frontend, or legacy content.",
+    "register_note": "Uses natural counter-service Japanese and avoids account, router, security, or technical diagnosis vocabulary."
+  }
+}

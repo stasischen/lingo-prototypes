@@ -1,0 +1,284 @@
+{
+  "schema_version": "scenario_pack.v1",
+  "scenario_id": "a2_ask_ingredient_preference",
+  "title": "Nach Einer Zutat Fragen",
+  "setting_label": "Restauranttheke",
+  "wrap_title": "Zutatenwunsch bestätigt",
+  "wrap_friend": "Gut. Sie haben eine Vorliebe und ein Detail in einer einfachen Essens- oder Einkaufssituation bestätigt.",
+  "language": "de",
+  "ui_language": "zh-Hant",
+  "cefr_level": "A2",
+  "source_status": "candidate_runtime_verified",
+  "review_state": "ai_reviewed",
+  "review_status_framework_state": "candidate_runtime_verified",
+  "native_review_state": "native_pending",
+  "scenario": {
+    "domain": "food_shopping_preferences",
+    "review_slice": "food_shopping",
+    "interaction": "service_preference_or_exchange",
+    "source_brief": "A2_FOOD_SHOPPING_NEUTRAL_ADAPTATION_BRIEFS_20260614",
+    "blueprint_source": "language_neutral_adaptation_brief",
+    "ko_pack_role": "mature_scenario_blueprint_not_translation_source"
+  },
+  "learner_goal": "Fragen Sie, ob eine häufige Zutat enthalten ist, und wählen Sie nach Vorliebe.",
+  "target_functions": [
+    "compare_or_state_preference",
+    "confirm_key_detail",
+    "make_polite_low_risk_request",
+    "close_with_correct_next_step"
+  ],
+  "register_notes": "German A2 food/shopping register: clear polite Sie service German, no allergy/medical/refund-dispute framing.",
+  "production_mode_default": {
+    "required": [
+      "choice"
+    ],
+    "optional_visible": [
+      "speaking"
+    ],
+    "optional_hidden": [
+      "typing"
+    ]
+  },
+  "support_text": "Fragen Sie, ob eine häufige Zutat enthalten ist, und wählen Sie nach Vorliebe.",
+  "roles": {
+    "npc": {
+      "label": "Mitarbeiter"
+    },
+    "learner": {
+      "label": "你"
+    }
+  },
+  "turns": [
+    {
+      "turn_id": "t1",
+      "speaker": "npc",
+      "act": "ask_ingredient",
+      "act_slots": {
+        "topic": "ask-ingredient-preference",
+        "keyword": "1",
+        "gloss": "A2 food/shopping"
+      },
+      "learning_role": "listen_only",
+      "surface": "Was möchten Sie bestellen?",
+      "speak": "Was möchten Sie bestellen?",
+      "translation": "您想點什麼？",
+      "friend": {
+        "hint": "Fragen Sie nach einer häufigen Zutat."
+      },
+      "reply_set": {
+        "correct": "r1a",
+        "choices": [
+          {
+            "id": "r1a",
+            "surface": "Ist in diesem Salat Zwiebel drin?",
+            "translation": "這個沙拉裡有洋蔥嗎？",
+            "speak": "Ist in diesem Salat Zwiebel drin?",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r1b",
+            "surface": "In welchem Stock ist dieser Salat?",
+            "translation": "這個沙拉在幾樓？",
+            "speak": "In welchem Stock ist dieser Salat?",
+            "contrast_type": "wrong_detail_or_domain",
+            "feedback": "Eine Etage passt nicht zu Zutaten."
+          },
+          {
+            "id": "r1c",
+            "surface": "Bitte ändern Sie meine Ticketzeit.",
+            "translation": "請幫我改票的時間。",
+            "speak": "Bitte ändern Sie meine Ticketzeit.",
+            "contrast_type": "forbidden_or_wrong_domain",
+            "feedback": "Das wechselt zu einem Ticketthema."
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t2",
+      "speaker": "npc",
+      "act": "answer_ingredient",
+      "act_slots": {
+        "topic": "ask-ingredient-preference",
+        "keyword": "2",
+        "gloss": "A2 food/shopping"
+      },
+      "learning_role": "listen_only",
+      "surface": "Ja, es ist ein wenig Zwiebel drin.",
+      "speak": "Ja, es ist ein wenig Zwiebel drin.",
+      "translation": "有，放一點洋蔥。",
+      "friend": {
+        "hint": "Bestätigen Sie die Zutateninformation."
+      },
+      "reply_set": {
+        "correct": "r2a",
+        "choices": [
+          {
+            "id": "r2a",
+            "surface": "Es ist ein wenig Zwiebel drin, richtig?",
+            "translation": "有一點洋蔥，對嗎？",
+            "speak": "Es ist ein wenig Zwiebel drin, richtig?",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r2b",
+            "surface": "Es ist viel Fleisch drin, richtig?",
+            "translation": "有很多肉，對嗎？",
+            "speak": "Es ist viel Fleisch drin, richtig?",
+            "contrast_type": "wrong_detail_or_domain",
+            "feedback": "Fleisch wurde nicht erwähnt."
+          },
+          {
+            "id": "r2c",
+            "surface": "Das Zimmer ist laut, richtig?",
+            "translation": "房間很吵，對嗎？",
+            "speak": "Das Zimmer ist laut, richtig?",
+            "contrast_type": "forbidden_or_wrong_domain",
+            "feedback": "Das wechselt zu einem Hotelproblem."
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t3",
+      "speaker": "npc",
+      "act": "choose_preference",
+      "act_slots": {
+        "topic": "ask-ingredient-preference",
+        "keyword": "3",
+        "gloss": "A2 food/shopping"
+      },
+      "learning_role": "listen_only",
+      "surface": "Wenn Sie möchten, können wir ihn ohne Zwiebel machen.",
+      "speak": "Wenn Sie möchten, können wir ihn ohne Zwiebel machen.",
+      "translation": "如果您想要，可以不加洋蔥。",
+      "friend": {
+        "hint": "Wählen Sie nur nach Vorliebe."
+      },
+      "reply_set": {
+        "correct": "r3a",
+        "choices": [
+          {
+            "id": "r3a",
+            "surface": "Ja, bitte ohne Zwiebel.",
+            "translation": "好的，請不要加洋蔥。",
+            "speak": "Ja, bitte ohne Zwiebel.",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r3b",
+            "surface": "Ja, geben Sie mir bitte Allergiemedizin.",
+            "translation": "好的，請給我過敏藥。",
+            "speak": "Ja, geben Sie mir bitte Allergiemedizin.",
+            "contrast_type": "wrong_detail_or_domain",
+            "feedback": "Medizin/Allergie liegt außerhalb dieser Aufgabe."
+          },
+          {
+            "id": "r3c",
+            "surface": "Ja, erstatten Sie es bitte.",
+            "translation": "好的，請退款。",
+            "speak": "Ja, erstatten Sie es bitte.",
+            "contrast_type": "forbidden_or_wrong_domain",
+            "feedback": "Das ist keine Erstattungsanfrage."
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t4",
+      "speaker": "npc",
+      "act": "confirm_order",
+      "act_slots": {
+        "topic": "ask-ingredient-preference",
+        "keyword": "4",
+        "gloss": "A2 food/shopping"
+      },
+      "learning_role": "listen_only",
+      "surface": "Gerne. Ich bereite ihn ohne Zwiebel vor.",
+      "speak": "Gerne. Ich bereite ihn ohne Zwiebel vor.",
+      "translation": "可以，我會準備不加洋蔥的。",
+      "friend": {
+        "hint": "Schließen Sie mit der Bestätigung der Bestellung."
+      },
+      "reply_set": {
+        "correct": "r4a",
+        "choices": [
+          {
+            "id": "r4a",
+            "surface": "Danke. Bitte so vorbereiten.",
+            "translation": "謝謝，請這樣做。",
+            "speak": "Danke. Bitte so vorbereiten.",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r4b",
+            "surface": "Sagen Sie mir bitte meine Passnummer.",
+            "translation": "請告訴我護照號碼。",
+            "speak": "Sagen Sie mir bitte meine Passnummer.",
+            "contrast_type": "wrong_detail_or_domain",
+            "feedback": "Passdaten sind nicht nötig."
+          },
+          {
+            "id": "r4c",
+            "surface": "Ich möchte mein Gepäck aufbewahren.",
+            "translation": "我想寄放行李。",
+            "speak": "Ich möchte mein Gepäck aufbewahren.",
+            "contrast_type": "forbidden_or_wrong_domain",
+            "feedback": "Das wechselt zur Gepäckaufbewahrung."
+          }
+        ]
+      }
+    }
+  ],
+  "choice_sets": {
+    "count_per_turn": 3,
+    "correct_path": [
+      "r1a",
+      "r2a",
+      "r3a",
+      "r4a"
+    ],
+    "distractor_policy": "one near-domain wrong detail plus one out-of-scope/unsafe-domain option per turn"
+  },
+  "feedback": {
+    "correct": "Gut. Bleiben Sie in der Essens- oder Einkaufsaufgabe.",
+    "incorrect": "Wählen Sie die Antwort, die zum Menü, zur Zutat, zum Umtausch oder zur Budgetempfehlung passt."
+  },
+  "tts_segments": [
+    "Was möchten Sie bestellen?",
+    "Ist in diesem Salat Zwiebel drin?",
+    "In welchem Stock ist dieser Salat?",
+    "Bitte ändern Sie meine Ticketzeit.",
+    "Ja, es ist ein wenig Zwiebel drin.",
+    "Es ist ein wenig Zwiebel drin, richtig?",
+    "Es ist viel Fleisch drin, richtig?",
+    "Das Zimmer ist laut, richtig?",
+    "Wenn Sie möchten, können wir ihn ohne Zwiebel machen.",
+    "Ja, bitte ohne Zwiebel.",
+    "Ja, geben Sie mir bitte Allergiemedizin.",
+    "Ja, erstatten Sie es bitte.",
+    "Gerne. Ich bereite ihn ohne Zwiebel vor.",
+    "Danke. Bitte so vorbereiten.",
+    "Sagen Sie mir bitte meine Passnummer.",
+    "Ich möchte mein Gepäck aufbewahren."
+  ],
+  "formula_moments": [
+    {
+      "after_turn": "t2",
+      "pattern_id": "de.a2.food.ingredient.preference.v1",
+      "label": "Ist + Zutat + drin?",
+      "learner_takeaway": "ohne + Zutat"
+    }
+  ],
+  "runtime_notes": {
+    "expected_turns": 4,
+    "expected_choices_per_turn": 3,
+    "full_walk_required": true,
+    "expected_final_screen": "Wrap"
+  },
+  "notes": {
+    "generated_at": "2026-06-14",
+    "authoring_scope": "A2 food/shopping DE adaptation",
+    "native_review_state": "native_pending"
+  }
+}

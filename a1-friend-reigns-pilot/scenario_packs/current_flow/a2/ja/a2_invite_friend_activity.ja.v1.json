@@ -1,0 +1,285 @@
+{
+  "schema_version": "scenario_pack.v1",
+  "scenario_id": "a2_invite_friend_activity",
+  "title": "友だちを気軽に誘う",
+  "setting_label": "友だちとのチャット",
+  "wrap_title": "友だちへの誘い",
+  "wrap_friend": "よくできました。自然な友だち言葉で誘い、時間を決めて予定を確認しました。",
+  "language": "ja",
+  "ui_language": "zh-Hant",
+  "cefr_level": "A2",
+  "source_status": "candidate_runtime_verified",
+  "review_state": "ai_reviewed",
+  "review_status_framework_state": "candidate_runtime_verified",
+  "native_review_state": "native_pending",
+  "scenario": {
+    "domain": "daily_social_coordination",
+    "review_slice": "daily_social",
+    "interaction": "friend_activity_invitation",
+    "source_brief": "A2_DAILY_SOCIAL_NEUTRAL_ADAPTATION_BRIEFS_20260614",
+    "blueprint_source": "language_neutral_adaptation_brief",
+    "ko_pack_role": "not_used_as_translation_source"
+  },
+  "learner_goal": "友だちを普通の活動に誘い、簡単な時間を決めます。",
+  "target_functions": [
+    "invite_friend",
+    "state_simple_time",
+    "confirm_social_plan",
+    "close_warmly"
+  ],
+  "register_notes": "Japanese A2 daily/social register: casual friend wording with plain/casual forms, warm but not pushy, not service or business phrasing.",
+  "production_mode_default": {
+    "required": [
+      "choice"
+    ],
+    "optional_visible": [
+      "speaking"
+    ],
+    "optional_hidden": [
+      "typing"
+    ]
+  },
+  "support_text": "友だちを気軽な活動に誘い、いつ行くかを短く決めます。",
+  "roles": {
+    "npc": {
+      "label": "友だち"
+    },
+    "learner": {
+      "label": "你"
+    }
+  },
+  "turns": [
+    {
+      "turn_id": "t1",
+      "speaker": "learner",
+      "act": "invite_activity",
+      "act_slots": {
+        "topic": "invite for coffee",
+        "keyword": "カフェ",
+        "gloss": "咖啡店"
+      },
+      "learning_role": "production_target",
+      "surface": "今日、カフェに行かない？",
+      "speak": "今日、カフェに行かない？",
+      "translation": "今天要不要去咖啡店？",
+      "friend": {
+        "hint": "友だちを自然に誘います。行かない？ is a casual invitation."
+      },
+      "reply_set": {
+        "correct": "r1a",
+        "choices": [
+          {
+            "id": "r1a",
+            "surface": "今日、カフェに行かない？",
+            "translation": "今天要不要去咖啡店？",
+            "speak": "今日、カフェに行かない？",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r1b",
+            "surface": "お客様、カフェにご案内します。",
+            "translation": "客人，我帶您去咖啡店。",
+            "speak": "お客様、カフェにご案内します。",
+            "contrast_type": "wrong_register_service",
+            "feedback": "これは店員のような言い方です。友だちには自然な誘いにしましょう。"
+          },
+          {
+            "id": "r1c",
+            "surface": "昨日、カフェに行った？",
+            "translation": "你昨天去了咖啡店嗎？",
+            "speak": "昨日、カフェに行った？",
+            "contrast_type": "wrong_time_past_question",
+            "feedback": "過去の質問ではなく、今から一緒に行く誘いです。"
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t2",
+      "speaker": "npc",
+      "act": "ask_time",
+      "act_slots": {
+        "topic": "availability",
+        "keyword": "何時",
+        "gloss": "幾點"
+      },
+      "learning_role": "listen_only",
+      "surface": "いいね。何時ごろ行く？",
+      "speak": "いいね。何時ごろ行く？",
+      "translation": "好啊。大概幾點去？",
+      "friend": {
+        "hint": "友だちは時間を聞いています。一つ簡単な時間を言いましょう。"
+      },
+      "inline_explain": {
+        "pattern_id": "ja.a2.social.invite.time_goro.v1",
+        "title": "何時ごろ = 大概幾點",
+        "explain": "Use time + ごろ for an approximate meeting time.",
+        "items": [
+          {
+            "surface": "3時ごろ",
+            "translation": "3 點左右",
+            "speak": "三時ごろ"
+          },
+          {
+            "surface": "夕方ごろ",
+            "translation": "傍晚左右",
+            "speak": "夕方ごろ"
+          }
+        ]
+      },
+      "reply_set": {
+        "correct": "r2a",
+        "choices": [
+          {
+            "id": "r2a",
+            "surface": "3時ごろはどう？",
+            "translation": "3 點左右怎麼樣？",
+            "speak": "三時ごろはどう？",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r2b",
+            "surface": "3番の席でお願いします。",
+            "translation": "請安排 3 號座位。",
+            "speak": "三番の席でお願いします。",
+            "contrast_type": "wrong_domain_service_seat",
+            "feedback": "席の指定ではありません。友だちと時間を決めています。"
+          },
+          {
+            "id": "r2c",
+            "surface": "3時に終わった。",
+            "translation": "3 點結束了。",
+            "speak": "三時に終わった。",
+            "contrast_type": "wrong_function_past_statement",
+            "feedback": "ここでは行く時間を提案します。"
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t3",
+      "speaker": "npc",
+      "act": "accept_time",
+      "act_slots": {
+        "topic": "time accepted"
+      },
+      "learning_role": "listen_only",
+      "surface": "うん、3時なら大丈夫。",
+      "speak": "うん、三時なら大丈夫。",
+      "translation": "嗯，3 點可以。",
+      "friend": {
+        "hint": "時間が決まりました。待ち合わせを短く確認しましょう。"
+      },
+      "reply_set": {
+        "correct": "r3a",
+        "choices": [
+          {
+            "id": "r3a",
+            "surface": "じゃあ、駅の前で会おう。",
+            "translation": "那在車站前見吧。",
+            "speak": "じゃあ、駅の前で会おう。",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r3b",
+            "surface": "じゃあ、レジで払おう。",
+            "translation": "那在收銀台付款吧。",
+            "speak": "じゃあ、レジで払おう。",
+            "contrast_type": "wrong_domain_payment",
+            "feedback": "支払いではなく、待ち合わせを確認する流れです。"
+          },
+          {
+            "id": "r3c",
+            "surface": "じゃあ、毎日3時に会おう。",
+            "translation": "那每天 3 點見吧。",
+            "speak": "じゃあ、毎日三時に会おう。",
+            "contrast_type": "too_much_commitment",
+            "feedback": "毎日の約束は重すぎます。今回の予定だけを確認しましょう。"
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t4",
+      "speaker": "npc",
+      "act": "confirm_plan",
+      "act_slots": {
+        "topic": "plan confirmed"
+      },
+      "learning_role": "listen_only",
+      "surface": "いいよ。じゃあ、あとでね。",
+      "speak": "いいよ。じゃあ、あとでね。",
+      "translation": "好啊。那等一下見。",
+      "friend": {
+        "hint": "予定が決まりました。自然に返して終わりましょう。"
+      },
+      "reply_set": {
+        "correct": "r4a",
+        "choices": [
+          {
+            "id": "r4a",
+            "surface": "うん、あとでね。",
+            "translation": "嗯，等一下見。",
+            "speak": "うん、あとでね。",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r4b",
+            "surface": "申し訳ございません。",
+            "translation": "非常抱歉。",
+            "speak": "申し訳ございません。",
+            "contrast_type": "wrong_register_formal_apology",
+            "feedback": "友だちとの予定確認には少し硬すぎます。"
+          },
+          {
+            "id": "r4c",
+            "surface": "予約をキャンセルします。",
+            "translation": "我要取消預約。",
+            "speak": "予約をキャンセルします。",
+            "contrast_type": "wrong_domain_reservation",
+            "feedback": "予約の話ではありません。友だちとの予定が決まっています。"
+          }
+        ]
+      }
+    }
+  ],
+  "choice_sets": {
+    "count_per_turn": 3,
+    "correct_path": [
+      "r1a",
+      "r2a",
+      "r3a",
+      "r4a"
+    ],
+    "distractor_policy": "wrong register, wrong time/function, or out-of-domain contrast; no valid alternate answer"
+  },
+  "feedback": {
+    "correct": "いいですね。友だちを自然に誘って、時間と待ち合わせを決められました。",
+    "incorrect": "友だちへの誘い、時間の提案、予定の確認に合う答えを選びましょう。"
+  },
+  "tts_segments": [
+    "今日、カフェに行かない？",
+    "3時ごろはどう？",
+    "じゃあ、駅の前で会おう。",
+    "うん、あとでね。"
+  ],
+  "formula_moments": [
+    {
+      "after_turn": "t2",
+      "pattern_id": "ja.a2.social.invite.time_goro.v1",
+      "label": "time + ごろ",
+      "learner_takeaway": "3時ごろはどう？"
+    }
+  ],
+  "runtime_notes": {
+    "expected_turns": 4,
+    "expected_choices_per_turn": 3,
+    "full_walk_required": true,
+    "expected_final_screen": "Wrap"
+  },
+  "notes": {
+    "generated_at": "2026-06-14",
+    "authoring_scope": "A2 daily/social JA adaptation",
+    "native_review_state": "native_pending"
+  }
+}

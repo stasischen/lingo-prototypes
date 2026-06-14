@@ -1,0 +1,253 @@
+{
+  "schema_version": "scenario_pack.v1",
+  "scenario_id": "a2_describe_weekend_activity",
+  "title": "주말에 한 일 말하기",
+  "setting_label": "친구와 월요일 대화",
+  "wrap_title": "주말 활동 말하기",
+  "wrap_friend": "잘했어요. 주말에 한 일을 짧게 말하고 간단한 질문에도 답했어요.",
+  "language": "ko",
+  "ui_language": "zh-Hant",
+  "cefr_level": "A2",
+  "source_status": "candidate_runtime_verified",
+  "review_state": "ai_reviewed",
+  "review_status_framework_state": "candidate_runtime_verified",
+  "native_review_state": "native_pending",
+  "scenario": {
+    "domain": "daily_social_coordination",
+    "review_slice": "daily_social",
+    "interaction": "friend_social_coordination",
+    "source_brief": "A2_DAILY_SOCIAL_NEUTRAL_ADAPTATION_BRIEFS_20260614",
+    "blueprint_source": "language_neutral_adaptation_brief",
+    "ko_pack_role": "mature_scenario_blueprint_not_translation_source_after_gate"
+  },
+  "learner_goal": "주말에 한 일을 한두 문장으로 짧게 말해 보세요.",
+  "target_functions": [
+    "friend_invitation_or_response",
+    "simple_reason_or_past_event",
+    "two_step_plan_or_confirmation",
+    "close_with_relationship_maintenance"
+  ],
+  "register_notes": "Korean A2 friend register: friendly polite-casual -요, short recent-past narration, no long emotional story.",
+  "production_mode_default": {
+    "required": [
+      "choice"
+    ],
+    "optional_visible": [
+      "speaking"
+    ],
+    "optional_hidden": [
+      "typing"
+    ]
+  },
+  "support_text": "친구가 주말 이야기를 물어봐요. 짧은 과거 표현으로 답해 보세요.",
+  "roles": {
+    "npc": {
+      "label": "친구"
+    },
+    "learner": {
+      "label": "你"
+    }
+  },
+  "turns": [
+    {
+      "turn_id": "t1",
+      "speaker": "npc",
+      "act": "ask_weekend",
+      "act_slots": {
+        "topic": "weekend activity",
+        "keyword": "주말",
+        "gloss": "A2 daily/social"
+      },
+      "learning_role": "listen_only",
+      "surface": "주말에 뭐 했어요?",
+      "speak": "주말에 뭐 했어요?",
+      "translation": "週末做了什麼？",
+      "friend": {
+        "hint": "주말에 한 일을 짧게 말하세요."
+      },
+      "reply_set": {
+        "correct": "r1a",
+        "choices": [
+          {
+            "id": "r1a",
+            "surface": "친구를 만나서 점심을 먹었어요.",
+            "translation": "我見了朋友，吃了午餐。",
+            "speak": "친구를 만나서 점심을 먹었어요."
+          },
+          {
+            "id": "r1b",
+            "surface": "내일 친구를 만날 거예요.",
+            "translation": "我明天要見朋友。",
+            "speak": "내일 친구를 만날 거예요.",
+            "contrast_type": "wrong_time_future",
+            "feedback": "주말에 이미 한 일을 묻고 있어요."
+          },
+          {
+            "id": "r1c",
+            "surface": "몇 번 플랫폼으로 가요?",
+            "translation": "要去幾號月台？",
+            "speak": "몇 번 플랫폼으로 가요?",
+            "contrast_type": "wrong_scenario_transport",
+            "feedback": "교통 상황이 아니에요."
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t2",
+      "speaker": "npc",
+      "act": "ask_place",
+      "act_slots": {
+        "topic": "place followup",
+        "keyword": "어디",
+        "gloss": "A2 daily/social"
+      },
+      "learning_role": "listen_only",
+      "surface": "어디에서 만났어요?",
+      "speak": "어디에서 만났어요?",
+      "translation": "在哪裡見面？",
+      "friend": {
+        "hint": "장소를 짧게 말하세요."
+      },
+      "reply_set": {
+        "correct": "r2a",
+        "choices": [
+          {
+            "id": "r2a",
+            "surface": "집 근처 카페에서 만났어요.",
+            "translation": "在家附近的咖啡店見面。",
+            "speak": "집 근처 카페에서 만났어요."
+          },
+          {
+            "id": "r2b",
+            "surface": "카페에서 만날까요?",
+            "translation": "要在咖啡店見嗎？",
+            "speak": "카페에서 만날까요?",
+            "contrast_type": "wrong_function_invite",
+            "feedback": "이미 지난 일을 말하는 중이에요."
+          },
+          {
+            "id": "r2c",
+            "surface": "방이 너무 추웠어요.",
+            "translation": "房間太冷了。",
+            "speak": "방이 너무 추웠어요.",
+            "contrast_type": "wrong_scenario_hotel",
+            "feedback": "호텔 문제 상황이 아니에요."
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t3",
+      "speaker": "npc",
+      "act": "ask_feeling",
+      "act_slots": {
+        "topic": "simple followup",
+        "keyword": "어땠어요",
+        "gloss": "A2 daily/social"
+      },
+      "learning_role": "listen_only",
+      "surface": "좋았어요?",
+      "speak": "좋았어요?",
+      "translation": "好玩嗎？",
+      "friend": {
+        "hint": "긴 감상 말고 짧게 느낌을 말하세요."
+      },
+      "reply_set": {
+        "correct": "r3a",
+        "choices": [
+          {
+            "id": "r3a",
+            "surface": "네, 조용하고 좋았어요.",
+            "translation": "嗯，很安靜，也很好。",
+            "speak": "네, 조용하고 좋았어요."
+          },
+          {
+            "id": "r3b",
+            "surface": "그래서 사회 문제에 대해 생각했어요.",
+            "translation": "所以我思考了社會問題。",
+            "speak": "그래서 사회 문제에 대해 생각했어요.",
+            "contrast_type": "too_advanced_or_abstract",
+            "feedback": "A2 주말 대화에는 너무 추상적이에요."
+          },
+          {
+            "id": "r3c",
+            "surface": "아니요, 환불하고 싶어요.",
+            "translation": "不，我想退款。",
+            "speak": "아니요, 환불하고 싶어요.",
+            "contrast_type": "wrong_scenario_refund",
+            "feedback": "환불 상황이 아니에요."
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t4",
+      "speaker": "npc",
+      "act": "close_weekend",
+      "act_slots": {
+        "topic": "close",
+        "keyword": "다음",
+        "gloss": "A2 daily/social"
+      },
+      "learning_role": "listen_only",
+      "surface": "좋네요. 다음에는 저도 같이 가요.",
+      "speak": "좋네요. 다음에는 저도 같이 가요.",
+      "translation": "不錯。下次我也一起去。",
+      "friend": {
+        "hint": "친구의 말에 자연스럽게 답하세요."
+      },
+      "reply_set": {
+        "correct": "r4a",
+        "choices": [
+          {
+            "id": "r4a",
+            "surface": "좋아요. 다음에 같이 가요.",
+            "translation": "好，下次一起去。",
+            "speak": "좋아요. 다음에 같이 가요."
+          },
+          {
+            "id": "r4b",
+            "surface": "다음 역에서 내려요.",
+            "translation": "下一站下車。",
+            "speak": "다음 역에서 내려요.",
+            "contrast_type": "wrong_scenario_transport",
+            "feedback": "교통 안내가 아니에요."
+          },
+          {
+            "id": "r4c",
+            "surface": "신분증을 보여드릴게요.",
+            "translation": "我會出示身分證。",
+            "speak": "신분증을 보여드릴게요.",
+            "contrast_type": "wrong_scenario_document",
+            "feedback": "서류 상황이 아니에요."
+          }
+        ]
+      }
+    }
+  ],
+  "choice_sets": [
+    "t1.reply_set",
+    "t2.reply_set",
+    "t3.reply_set",
+    "t4.reply_set"
+  ],
+  "feedback": "Distractors test future/past confusion, wrong function, wrong scenario, and B1 abstract drift.",
+  "tts_segments": [
+    "친구를 만나서 점심을 먹었어요.",
+    "집 근처 카페에서 만났어요.",
+    "네, 조용하고 좋았어요.",
+    "좋아요. 다음에 같이 가요."
+  ],
+  "formula_moments": [
+    {
+      "after_turn": "t1",
+      "pattern_id": "ko.a2.daily.past_activity.eosseoyo.v1"
+    }
+  ],
+  "runtime_notes": "Fresh KO A2 daily/social candidate. Requires full-walk runtime before closeout evidence is recorded.",
+  "notes": {
+    "authoring_policy": "Fresh-authored from A2 daily/social neutral adaptation brief. Legacy A2 lines were not copied or paraphrased.",
+    "a2_boundary": "Uses short recent-past narration only; avoids long story, emotional reflection, or complex sequencing."
+  }
+}

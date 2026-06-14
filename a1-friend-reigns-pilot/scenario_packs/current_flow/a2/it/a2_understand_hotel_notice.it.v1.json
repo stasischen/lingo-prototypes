@@ -1,0 +1,273 @@
+{
+  "schema_version": "scenario_pack.v1",
+  "scenario_id": "a2_understand_hotel_notice",
+  "title": "Capire un Avviso dell’Hotel",
+  "setting_label": "hall dell’hotel",
+  "wrap_title": "Avviso dell’hotel confermato",
+  "wrap_friend": "你剛剛完成了一段 A2 住宿服務情境，說明需求、聽懂回覆，並確認下一步。",
+  "language": "it",
+  "ui_language": "zh-Hant",
+  "cefr_level": "A2",
+  "source_status": "candidate_runtime_verified",
+  "review_state": "ai_reviewed",
+  "review_status_framework_state": "candidate_runtime_verified",
+  "native_review_state": "native_pending",
+  "scenario": "A hotel/accommodation service scenario: a2_understand_hotel_notice.",
+  "learner_goal": "Understand a short hotel notice and confirm time, place, and rule details.",
+  "target_functions": [
+    "notice_comprehension",
+    "time_place_rule_confirmation",
+    "simple_clarification"
+  ],
+  "register_notes": "it A2 accommodation register: polite, practical, low-risk hotel-service language; language-specific adaptation from the neutral brief, not a KO translation.",
+  "production_mode_default": {
+    "required": [
+      "choice"
+    ],
+    "optional_visible": [
+      "speaking"
+    ],
+    "optional_hidden": [
+      "typing"
+    ]
+  },
+  "support_text": "Capisci un breve avviso dell’hotel e conferma ora, luogo e regola.",
+  "roles": {
+    "npc": {
+      "label": "Empleado del hotel"
+    },
+    "learner": {
+      "label": "Tú"
+    }
+  },
+  "turns": [
+    {
+      "turn_id": "t1",
+      "speaker": "npc",
+      "act": "notice_time",
+      "act_slots": {
+        "topic": "understand-hotel-notice",
+        "keyword": "1",
+        "gloss": "A2 accommodation"
+      },
+      "learning_role": "listen_only",
+      "surface": "Per favore, guardi l’avviso. La colazione è dalle sette alle nove del mattino.",
+      "speak": "Per favore, guardi l’avviso. La colazione è dalle sette alle nove del mattino.",
+      "translation": "請看這張通知。早餐時間是早上七點到九點。",
+      "friend": {
+        "hint": "Confermi la fascia oraria."
+      },
+      "reply_set": {
+        "correct": "r1a",
+        "choices": [
+          {
+            "id": "r1a",
+            "surface": "La colazione è dalle sette alle nove del mattino, giusto?",
+            "translation": "早餐是早上七點到九點，對嗎？",
+            "speak": "La colazione è dalle sette alle nove del mattino, giusto?",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r1b",
+            "surface": "La colazione è dalle sette alle nove di sera, giusto?",
+            "translation": "早餐是晚上七點到九點，對嗎？",
+            "speak": "La colazione è dalle sette alle nove di sera, giusto?",
+            "contrast_type": "wrong_detail_or_domain",
+            "feedback": "Sera è il momento sbagliato."
+          },
+          {
+            "id": "r1c",
+            "surface": "Il check-out è alle nove del mattino, giusto?",
+            "translation": "退房時間是早上九點，對嗎？",
+            "speak": "Il check-out è alle nove del mattino, giusto?",
+            "contrast_type": "forbidden_or_wrong_domain",
+            "feedback": "Check-out è un’informazione diversa."
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t2",
+      "speaker": "npc",
+      "act": "notice_place",
+      "act_slots": {
+        "topic": "understand-hotel-notice",
+        "keyword": "2",
+        "gloss": "A2 accommodation"
+      },
+      "learning_role": "listen_only",
+      "surface": "È nel ristorante al secondo piano.",
+      "speak": "È nel ristorante al secondo piano.",
+      "translation": "地點在二樓餐廳。",
+      "friend": {
+        "hint": "Confermi il luogo."
+      },
+      "reply_set": {
+        "correct": "r2a",
+        "choices": [
+          {
+            "id": "r2a",
+            "surface": "Vado al ristorante al secondo piano, giusto?",
+            "translation": "我要去二樓餐廳，對嗎？",
+            "speak": "Vado al ristorante al secondo piano, giusto?",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r2b",
+            "surface": "Vado in una camera al terzo piano, giusto?",
+            "translation": "我要去三樓的房間，對嗎？",
+            "speak": "Vado in una camera al terzo piano, giusto?",
+            "contrast_type": "wrong_detail_or_domain",
+            "feedback": "Terzo piano è sbagliato."
+          },
+          {
+            "id": "r2c",
+            "surface": "Mostro il passaporto, giusto?",
+            "translation": "我要出示護照，對嗎？",
+            "speak": "Mostro il passaporto, giusto?",
+            "contrast_type": "forbidden_or_wrong_domain",
+            "feedback": "Il passaporto non è richiesto."
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t3",
+      "speaker": "npc",
+      "act": "notice_rule",
+      "act_slots": {
+        "topic": "understand-hotel-notice",
+        "keyword": "3",
+        "gloss": "A2 accommodation"
+      },
+      "learning_role": "listen_only",
+      "surface": "All’ingresso dica solo il numero della camera.",
+      "speak": "All’ingresso dica solo il numero della camera.",
+      "translation": "入口只要說房號就可以。",
+      "friend": {
+        "hint": "Confermi la regola semplice."
+      },
+      "reply_set": {
+        "correct": "r3a",
+        "choices": [
+          {
+            "id": "r3a",
+            "surface": "All’ingresso dico solo il numero della camera, giusto?",
+            "translation": "我在入口只要說房號，對嗎？",
+            "speak": "All’ingresso dico solo il numero della camera, giusto?",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r3b",
+            "surface": "All’ingresso parlo con la polizia, giusto?",
+            "translation": "我在入口找警察說話，對嗎？",
+            "speak": "All’ingresso parlo con la polizia, giusto?",
+            "contrast_type": "wrong_detail_or_domain",
+            "feedback": "Polizia è fuori contesto."
+          },
+          {
+            "id": "r3c",
+            "surface": "All’ingresso ricevo un rimborso, giusto?",
+            "translation": "我在入口拿退款，對嗎？",
+            "speak": "All’ingresso ricevo un rimborso, giusto?",
+            "contrast_type": "forbidden_or_wrong_domain",
+            "feedback": "Rimborso non è menzionato."
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t4",
+      "speaker": "npc",
+      "act": "confirm_summary",
+      "act_slots": {
+        "topic": "understand-hotel-notice",
+        "keyword": "4",
+        "gloss": "A2 accommodation"
+      },
+      "learning_role": "listen_only",
+      "surface": "Sì, venga domani mattina.",
+      "speak": "Sì, venga domani mattina.",
+      "translation": "對，請明天早上過來。",
+      "friend": {
+        "hint": "Riassuma ora e luogo."
+      },
+      "reply_set": {
+        "correct": "r4a",
+        "choices": [
+          {
+            "id": "r4a",
+            "surface": "Va bene. Domani mattina vado al ristorante al secondo piano.",
+            "translation": "好的，我明天早上去二樓餐廳。",
+            "speak": "Va bene. Domani mattina vado al ristorante al secondo piano.",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r4b",
+            "surface": "Va bene. Stasera ritiro il bucato.",
+            "translation": "好的，我今天晚上拿洗好的衣服。",
+            "speak": "Va bene. Stasera ritiro il bucato.",
+            "contrast_type": "wrong_detail_or_domain",
+            "feedback": "Bucato è un altro servizio."
+          },
+          {
+            "id": "r4c",
+            "surface": "Va bene. Scrivo un rapporto di incidente.",
+            "translation": "好的，我寫事故報告。",
+            "speak": "Va bene. Scrivo un rapporto di incidente.",
+            "contrast_type": "forbidden_or_wrong_domain",
+            "feedback": "Rapporto di incidente è fuori dominio."
+          }
+        ]
+      }
+    }
+  ],
+  "choice_sets": {
+    "count_per_turn": 3,
+    "correct_path": [
+      "r1a",
+      "r2a",
+      "r3a",
+      "r4a"
+    ],
+    "distractor_policy": "one near-domain wrong detail plus one out-of-scope/over-escalated option per turn"
+  },
+  "feedback": "Los distractores prueban tiempo, lugar, servicio equivocado o una petición fuera del alcance A2.",
+  "tts_segments": [
+    "Per favore, guardi l’avviso. La colazione è dalle sette alle nove del mattino.",
+    "La colazione è dalle sette alle nove del mattino, giusto?",
+    "La colazione è dalle sette alle nove di sera, giusto?",
+    "Il check-out è alle nove del mattino, giusto?",
+    "È nel ristorante al secondo piano.",
+    "Vado al ristorante al secondo piano, giusto?",
+    "Vado in una camera al terzo piano, giusto?",
+    "Mostro il passaporto, giusto?",
+    "All’ingresso dica solo il numero della camera.",
+    "All’ingresso dico solo il numero della camera, giusto?",
+    "All’ingresso parlo con la polizia, giusto?",
+    "All’ingresso ricevo un rimborso, giusto?",
+    "Sì, venga domani mattina.",
+    "Va bene. Domani mattina vado al ristorante al secondo piano.",
+    "Va bene. Stasera ritiro il bucato.",
+    "Va bene. Scrivo un rapporto di incidente."
+  ],
+  "formula_moments": [
+    {
+      "after_turn": "t2",
+      "pattern_id": "it.a2.accommodation.notice.time_place.v1",
+      "label": "time range + place + rule",
+      "learner_takeaway": "dalle sette alle nove"
+    }
+  ],
+  "runtime_notes": {
+    "expected_turns": 4,
+    "expected_choices_per_turn": 3,
+    "full_walk_required": true,
+    "expected_final_screen": "Wrap"
+  },
+  "notes": {
+    "generated_at": "2026-06-14",
+    "authoring_scope": "A2 accommodation remaining six-language wave",
+    "native_review_state": "native_pending"
+  }
+}

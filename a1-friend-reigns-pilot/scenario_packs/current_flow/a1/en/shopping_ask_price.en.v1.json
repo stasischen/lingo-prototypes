@@ -1,0 +1,251 @@
+{
+  "schema_version": "scenario_pack.v1",
+  "scenario_id": "shopping_ask_price",
+  "brief_id": "ml2_a1_009_shopping_ask_price",
+  "source_neutral_brief": "release-aggregator/docs/tasks/A1_MULTILINGUAL_KO_B1_PARALLEL_ORCHESTRATION/work_products/ml0/ML2_NEUTRAL_ADAPTATION_BRIEFS_20260614.md#brief-ml2-a1-009-shopping-ask-price",
+  "blueprint_ledger": "release-aggregator/docs/tasks/A1_MULTILINGUAL_KO_B1_PARALLEL_ORCHESTRATION/work_products/ml0/ML2_BLUEPRINT_LEDGER_20260614.md",
+  "repo": "content-en",
+  "staging_path": "curriculum/a1_travel_v1/staging/scenario_pack.v1/shopping_ask_price.en.v1.json",
+  "title": "Asking the Price",
+  "setting_label": "Small shop counter",
+  "wrap_title": "You asked the price",
+  "wrap_friend": "You got attention, asked the price of one item, understood it, and answered naturally.",
+  "language": "en",
+  "ui_language": "zh_tw",
+  "source_status": "candidate_runtime_verified",
+  "review_state": "draft",
+  "review_status_framework_state": "candidate_runtime_verified",
+  "native_review_state": "native_pending",
+  "production_mode_default": {
+    "required": [
+      "choice"
+    ],
+    "optional_visible": [
+      "speaking"
+    ],
+    "optional_hidden": [
+      "typing"
+    ]
+  },
+  "support_text": "你在小店看到一件東西。選一句自然的英文問價格並回應。",
+  "roles": {
+    "npc": {
+      "label": "Shop staff"
+    },
+    "learner": {
+      "label": "You"
+    }
+  },
+  "turns": [
+    {
+      "turn_id": "t1",
+      "speaker": "npc",
+      "act": "shop_greeting",
+      "learning_role": "listen_only",
+      "surface": "Hi there. Can I help you?",
+      "speak": "Hi there. Can I help you?",
+      "translation": "你好，需要幫忙嗎？",
+      "friend": {
+        "hint": "店員在打招呼。先用簡短禮貌句引起注意。"
+      },
+      "inline_explain": {
+        "pattern_id": "en.shopping.attention.v1",
+        "formula_ref": null,
+        "title": "Excuse me",
+        "explain": "Use \"Excuse me\" to politely get attention in a shop.",
+        "items": [
+          {
+            "surface": "Excuse me.",
+            "translation": "不好意思。",
+            "speak": "Excuse me."
+          }
+        ]
+      },
+      "reply_set": {
+        "correct": "r1a",
+        "choices": [
+          {
+            "id": "r1a",
+            "surface": "Excuse me.",
+            "translation": "不好意思。",
+            "speak": "Excuse me.",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r1b",
+            "surface": "Where is the station?",
+            "translation": "車站在哪裡？",
+            "speak": "Where is the station?",
+            "contrast_type": "directions_instead_of_shop_attention",
+            "feedback": "這是在問路。現在是在店裡先引起注意。"
+          },
+          {
+            "id": "r1c",
+            "surface": "Coffee, please.",
+            "translation": "請給我咖啡。",
+            "speak": "Coffee, please.",
+            "contrast_type": "food_order_in_shop_price_scene",
+            "feedback": "這像是在點飲料，不是在問商品價格。"
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t2",
+      "speaker": "learner",
+      "act": "ask_item_price",
+      "learning_role": "production_target",
+      "surface": "How much is this?",
+      "speak": "How much is this?",
+      "translation": "這個多少錢？",
+      "friend": {
+        "hint": "用 this 指眼前的一件商品，句子很短也自然。"
+      },
+      "inline_explain": {
+        "pattern_id": "en.shopping.price_question.v1",
+        "formula_ref": null,
+        "title": "How much is this?",
+        "explain": "This is the most common A1 price question for one nearby item.",
+        "items": [
+          {
+            "surface": "How much is this?",
+            "translation": "這個多少錢？",
+            "speak": "How much is this?"
+          }
+        ]
+      },
+      "reply_set": {
+        "correct": "r2a",
+        "choices": [
+          {
+            "id": "r2a",
+            "surface": "How much is this?",
+            "translation": "這個多少錢？",
+            "speak": "How much is this?",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r2b",
+            "surface": "Can I pay by card?",
+            "translation": "我可以刷卡嗎？",
+            "speak": "Can I pay by card?",
+            "contrast_type": "payment_method_before_price",
+            "feedback": "這是在問付款方式。先問價格比較符合情境。"
+          },
+          {
+            "id": "r2c",
+            "surface": "Two, please.",
+            "translation": "請給我兩個。",
+            "speak": "Two, please.",
+            "contrast_type": "quantity_before_price",
+            "feedback": "這是在說數量。現在目標是問一件商品的價格。"
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t3",
+      "speaker": "npc",
+      "act": "give_price",
+      "learning_role": "listen_only",
+      "surface": "It's five dollars.",
+      "speak": "It's five dollars.",
+      "translation": "五美元。",
+      "friend": {
+        "hint": "店員說價格。聽到 five dollars。"
+      },
+      "reply_set": {
+        "correct": "r4a",
+        "choices": [
+          {
+            "id": "r4a",
+            "surface": "Okay, I'll take it.",
+            "translation": "好，我要這個。",
+            "speak": "Okay, I'll take it.",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r4b",
+            "surface": "Where is the restroom?",
+            "translation": "洗手間在哪裡？",
+            "speak": "Where is the restroom?",
+            "contrast_type": "directions_after_price",
+            "feedback": "這突然換成問路。聽到價格後要買或道謝離開。"
+          },
+          {
+            "id": "r4c",
+            "surface": "Can I get the check?",
+            "translation": "可以給我帳單嗎？",
+            "speak": "Can I get the check?",
+            "contrast_type": "restaurant_bill_in_shop",
+            "feedback": "這是餐廳結帳用語，不是買店裡商品。"
+          }
+        ]
+      },
+      "runtime_note": "Reply choices mirror the next learner response so the current prototype can render every round."
+    },
+    {
+      "turn_id": "t4",
+      "speaker": "learner",
+      "act": "accept_or_close",
+      "learning_role": "production_target",
+      "surface": "Okay, I'll take it.",
+      "speak": "Okay, I'll take it.",
+      "translation": "好，我要這個。",
+      "friend": {
+        "hint": "如果要買，可以用 I'll take it。"
+      },
+      "reply_set": {
+        "correct": "r4a",
+        "choices": [
+          {
+            "id": "r4a",
+            "surface": "Okay, I'll take it.",
+            "translation": "好，我要這個。",
+            "speak": "Okay, I'll take it.",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r4b",
+            "surface": "Where is the restroom?",
+            "translation": "洗手間在哪裡？",
+            "speak": "Where is the restroom?",
+            "contrast_type": "directions_after_price",
+            "feedback": "這突然換成問路。聽到價格後要買或道謝離開。"
+          },
+          {
+            "id": "r4c",
+            "surface": "Can I get the check?",
+            "translation": "可以給我帳單嗎？",
+            "speak": "Can I get the check?",
+            "contrast_type": "restaurant_bill_in_shop",
+            "feedback": "這是餐廳結帳用語，不是買店裡商品。"
+          }
+        ]
+      },
+      "closing": {
+        "act": "price_understood",
+        "learning_role": "listen_only",
+        "surface": "You understood the price and answered clearly.",
+        "speak": "You understood the price and answered clearly.",
+        "translation": "你聽懂價格並清楚回應了。"
+      }
+    }
+  ],
+  "formula_moments": [
+    {
+      "after_turn": "t1",
+      "pattern_id": "en.shopping.attention.v1"
+    },
+    {
+      "after_turn": "t2",
+      "pattern_id": "en.shopping.price_question.v1"
+    }
+  ],
+  "notes": {
+    "authoring_source": "Authored from ML-2 neutral brief, not Korean surface text or another target-language pack.",
+    "review_policy": "AI-authored English candidate. Requires AI review, runtime smoke, and tracked native review before any stronger status.",
+    "canonical_policy": "Staging candidate only. Do not write back to manifests, production exports, schemas, or legacy content.",
+    "register_note": "Everyday retail English with a broad US-friendly dollar example."
+  }
+}

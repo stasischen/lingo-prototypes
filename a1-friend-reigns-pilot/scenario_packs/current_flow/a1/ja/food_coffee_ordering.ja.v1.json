@@ -1,0 +1,255 @@
+{
+  "schema_version": "scenario_pack.v1",
+  "scenario_id": "food_coffee_ordering",
+  "brief_id": "ml0_a1_001_food_coffee_ordering",
+  "source_neutral_brief": "release-aggregator/docs/tasks/A1_MULTILINGUAL_KO_B1_PARALLEL_ORCHESTRATION/work_products/ml0/ML0_NEUTRAL_ADAPTATION_BRIEFS_20260613.md#brief-ml0-a1-001-coffee-ordering",
+  "blueprint_ledger": "release-aggregator/docs/tasks/A1_MULTILINGUAL_KO_B1_PARALLEL_ORCHESTRATION/work_products/ml0/ML0_BLUEPRINT_LEDGER_20260613.md",
+  "repo": "content-ja",
+  "staging_path": "content/review/current_flow/scenario_pack.v1/ja/food_coffee_ordering.ja.v1.json",
+  "title": "カフェで注文する",
+  "setting_label": "カフェのレジ",
+  "wrap_title": "カフェで注文できました",
+  "wrap_friend": "短い言い方で飲み物を注文し、選択肢にも答えられました。次は同じ形で別の飲み物にも言えます。",
+  "language": "ja",
+  "ui_language": "zh_tw",
+  "source_status": "candidate_runtime_verified",
+  "review_state": "draft",
+  "review_status_framework_state": "candidate_runtime_verified",
+  "native_review_state": "native_pending",
+  "production_mode_default": {
+    "required": [
+      "choice"
+    ],
+    "optional_visible": [
+      "speaking"
+    ],
+    "optional_hidden": [
+      "typing"
+    ]
+  },
+  "support_text": "你在日本咖啡店櫃台。聽店員問什麼，選一句自然接得上的日文。",
+  "roles": {
+    "npc": {
+      "label": "店員"
+    },
+    "learner": {
+      "label": "あなた"
+    }
+  },
+  "turns": [
+    {
+      "turn_id": "t1",
+      "speaker": "npc",
+      "act": "service_opening",
+      "act_slots": {
+        "topic": "注文開始",
+        "keyword": "ご注文",
+        "gloss": "點餐"
+      },
+      "learning_role": "listen_only",
+      "surface": "いらっしゃいませ。ご注文をどうぞ。",
+      "speak": "いらっしゃいませ。ご注文をどうぞ。",
+      "translation": "歡迎光臨。請點餐。",
+      "friend": {
+        "hint": "店員在請你點餐。想要某個飲料時，可以用「〜をください」。"
+      },
+      "reply_set": {
+        "correct": "r1a",
+        "choices": [
+          {
+            "id": "r1a",
+            "surface": "アイスコーヒーをください。",
+            "translation": "請給我冰咖啡。",
+            "speak": "アイスコーヒーをください。",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r1b",
+            "surface": "トイレはどこですか。",
+            "translation": "洗手間在哪裡？",
+            "speak": "トイレはどこですか。",
+            "contrast_type": "wrong_scenario_request",
+            "feedback": "這句是在問洗手間。現在店員等你點飲料。"
+          },
+          {
+            "id": "r1c",
+            "surface": "大丈夫です。",
+            "translation": "不用了／沒關係。",
+            "speak": "大丈夫です。",
+            "contrast_type": "wrong_act_refusal",
+            "feedback": "這樣像是在說不用點。要點飲料時，用「〜をください」。"
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t2",
+      "speaker": "npc",
+      "act": "choice_question",
+      "act_slots": {
+        "topic": "內用或外帶",
+        "keyword": "店内",
+        "gloss": "店內"
+      },
+      "learning_role": "listen_only",
+      "surface": "店内でお召し上がりですか、お持ち帰りですか。",
+      "speak": "店内でお召し上がりですか、お持ち帰りですか。",
+      "translation": "內用還是外帶？",
+      "friend": {
+        "hint": "店内是內用，お持ち帰り是外帶。選一個回答就好。"
+      },
+      "inline_explain": {
+        "pattern_id": "ja.cafe.for_here.to_go.v1",
+        "formula_ref": null,
+        "title": "店内 / お持ち帰り",
+        "explain": "「店内」是內用，「お持ち帰り」是外帶。",
+        "items": [
+          {
+            "surface": "店内",
+            "translation": "內用",
+            "speak": "店内"
+          },
+          {
+            "surface": "お持ち帰り",
+            "translation": "外帶",
+            "speak": "お持ち帰り"
+          }
+        ]
+      },
+      "reply_set": {
+        "correct": "r2a",
+        "choices": [
+          {
+            "id": "r2a",
+            "surface": "お持ち帰りでお願いします。",
+            "translation": "麻煩外帶。",
+            "speak": "お持ち帰りでお願いします。",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r2b",
+            "surface": "アイスコーヒーをください。",
+            "translation": "請給我冰咖啡。",
+            "speak": "アイスコーヒーをください。",
+            "contrast_type": "repeated_prior_answer",
+            "feedback": "飲料已經點了。這裡是在問內用還是外帶。"
+          },
+          {
+            "id": "r2c",
+            "surface": "はい、そうです。",
+            "translation": "是的，沒錯。",
+            "speak": "はい、そうです。",
+            "contrast_type": "wrong_act_confirmation",
+            "feedback": "這句是確認用的，但店員給你兩個選項，要選一個。"
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t3",
+      "speaker": "npc",
+      "act": "confirmation",
+      "act_slots": {
+        "topic": "訂單確認",
+        "keyword": "よろしいですか",
+        "gloss": "可以嗎"
+      },
+      "learning_role": "listen_only",
+      "surface": "アイスコーヒーをお持ち帰りで、よろしいですか。",
+      "speak": "アイスコーヒーをお持ち帰りで、よろしいですか。",
+      "translation": "冰咖啡外帶，可以嗎？",
+      "friend": {
+        "hint": "店員在確認訂單。沒問題時，用「はい、お願いします」。"
+      },
+      "reply_set": {
+        "correct": "r3a",
+        "choices": [
+          {
+            "id": "r3a",
+            "surface": "はい、お願いします。",
+            "translation": "好的，麻煩了。",
+            "speak": "はい、お願いします。"
+          },
+          {
+            "id": "r3b",
+            "surface": "いいえ、大丈夫です。",
+            "translation": "不用了，沒關係。",
+            "speak": "いいえ、大丈夫です。",
+            "contrast_type": "wrong_act_refusal",
+            "feedback": "這樣像是在取消。訂單沒問題時，可以說「はい、お願いします」。"
+          },
+          {
+            "id": "r3c",
+            "surface": "トイレはどこですか。",
+            "translation": "洗手間在哪裡？",
+            "speak": "トイレはどこですか。",
+            "contrast_type": "off_topic_statement",
+            "feedback": "先確認飲料。問洗手間是另一個場景。"
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t4",
+      "speaker": "npc",
+      "act": "payment",
+      "act_slots": {
+        "topic": "付款",
+        "keyword": "お会計",
+        "gloss": "結帳"
+      },
+      "learning_role": "listen_only",
+      "surface": "お会計は300円です。こちらでお待ちください。",
+      "speak": "お会計は300円です。こちらでお待ちください。",
+      "translation": "總共三百日圓。請在這邊稍等。",
+      "friend": {
+        "hint": "店員說價格，也請你在這邊等。簡短回答「はい」就可以。"
+      },
+      "reply_set": {
+        "correct": "r4a",
+        "choices": [
+          {
+            "id": "r4a",
+            "surface": "はい。",
+            "translation": "好。",
+            "speak": "はい。"
+          },
+          {
+            "id": "r4b",
+            "surface": "持ち帰りでお願いします。",
+            "translation": "麻煩外帶。",
+            "speak": "持ち帰りでお願いします。",
+            "contrast_type": "repeated_prior_answer",
+            "feedback": "外帶剛剛已經說過了。現在是付款和等待。"
+          },
+          {
+            "id": "r4c",
+            "surface": "アイスコーヒーをください。",
+            "translation": "請給我冰咖啡。",
+            "speak": "アイスコーヒーをください。",
+            "contrast_type": "repeated_prior_answer",
+            "feedback": "飲料已經點好了，現在接著付款或等待。"
+          }
+        ]
+      },
+      "closing": {
+        "act": "handover",
+        "learning_role": "listen_only",
+        "surface": "お待たせしました。アイスコーヒーです。",
+        "speak": "お待たせしました。アイスコーヒーです。",
+        "translation": "久等了。這是您的冰咖啡。"
+      }
+    }
+  ],
+  "formula_moments": [
+    {
+      "after_turn": "t2",
+      "pattern_id": "ja.cafe.for_here.to_go.v1"
+    }
+  ],
+  "notes": {
+    "authoring_source": "Authored from ML-0 neutral brief, not Korean surface text.",
+    "review_policy": "AI review required before closed pilot; native review pending.",
+    "canonical_policy": "Pilot-authored staging candidate only; do not write back to canonical schema."
+  }
+}

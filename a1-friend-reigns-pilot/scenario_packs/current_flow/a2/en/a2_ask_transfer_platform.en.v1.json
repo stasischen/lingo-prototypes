@@ -1,0 +1,263 @@
+{
+  "schema_version": "scenario_pack.v1",
+  "scenario_id": "a2_ask_transfer_platform",
+  "title": "Ask for the Transfer Platform",
+  "setting_label": "At a busy station",
+  "wrap_title": "Transfer Platform",
+  "wrap_friend": "你剛剛用簡單英文詢問轉乘月台，聽懂短指示，並確認下一步。",
+  "language": "en",
+  "ui_language": "zh_tw",
+  "cefr_level": "A2",
+  "source_status": "candidate_runtime_verified",
+  "review_state": "ai_reviewed",
+  "review_status_framework_state": "candidate_runtime_verified",
+  "native_review_state": "native_pending",
+  "scenario": "You need to transfer and ask a staff member for the right platform.",
+  "learner_goal": "Ask where to transfer, understand the platform, and repeat a short two-step direction.",
+  "target_functions": [
+    "transfer_question",
+    "platform_information",
+    "two_step_confirmation"
+  ],
+  "register_notes": "Polite everyday station English. Directions are short and safe; no long route chain or emergency rerouting.",
+  "production_mode_default": {
+    "required": [
+      "choice"
+    ],
+    "optional_visible": [
+      "speaking"
+    ],
+    "optional_hidden": [
+      "typing"
+    ]
+  },
+  "support_text": "Ask where to transfer. Listen for the platform and repeat the short direction.",
+  "roles": {
+    "npc": {
+      "label": "Station Staff"
+    },
+    "learner": {
+      "label": "You"
+    }
+  },
+  "turns": [
+    {
+      "turn_id": "t1",
+      "speaker": "npc",
+      "act": "service_prompt",
+      "act_slots": {
+        "topic": "station help",
+        "keyword": "help",
+        "gloss": "幫忙"
+      },
+      "learning_role": "listen_only",
+      "surface": "Hi. Do you need help?",
+      "speak": "Hi. Do you need help?",
+      "translation": "嗨。你需要幫忙嗎？",
+      "friend": {
+        "hint": "Ask where to transfer for the airport train."
+      },
+      "reply_set": {
+        "correct": "r1a",
+        "choices": [
+          {
+            "id": "r1a",
+            "surface": "Where do I transfer for the airport train?",
+            "translation": "我要在哪裡轉乘機場列車？",
+            "speak": "Where do I transfer for the airport train?",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r1b",
+            "surface": "Where do I cook the airport train?",
+            "translation": "我要在哪裡煮機場列車？",
+            "speak": "Where do I cook the airport train?",
+            "contrast_type": "wrong_verb",
+            "feedback": "Use transfer for changing trains. Cook does not fit here."
+          },
+          {
+            "id": "r1c",
+            "surface": "Can I order coffee here?",
+            "translation": "我可以在這裡點咖啡嗎？",
+            "speak": "Can I order coffee here?",
+            "contrast_type": "wrong_scenario_cafe",
+            "feedback": "This is cafe language. Here you need transfer information."
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t2",
+      "speaker": "npc",
+      "act": "platform_instruction",
+      "act_slots": {
+        "topic": "platform",
+        "keyword": "platform three",
+        "gloss": "三號月台"
+      },
+      "learning_role": "listen_only",
+      "surface": "Transfer at platform three. Go down the stairs and turn left.",
+      "speak": "Transfer at platform three. Go down the stairs and turn left.",
+      "translation": "在三號月台轉乘。下樓梯後左轉。",
+      "friend": {
+        "hint": "Confirm the platform and the two short steps."
+      },
+      "inline_explain": {
+        "pattern_id": "en.a2.transport.transfer.at_platform.v1",
+        "title": "transfer at + platform",
+        "explain": "Use transfer at to say where to change transport.",
+        "items": [
+          {
+            "surface": "transfer at platform three",
+            "translation": "在三號月台轉乘",
+            "speak": "transfer at platform three"
+          },
+          {
+            "surface": "go down the stairs",
+            "translation": "下樓梯",
+            "speak": "go down the stairs"
+          }
+        ]
+      },
+      "reply_set": {
+        "correct": "r2a",
+        "choices": [
+          {
+            "id": "r2a",
+            "surface": "Platform three, down the stairs and left.",
+            "translation": "三號月台，下樓梯後左轉。",
+            "speak": "Platform three, down the stairs and left.",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r2b",
+            "surface": "Platform thirteen, up the stairs and right.",
+            "translation": "十三號月台，上樓梯後右轉。",
+            "speak": "Platform thirteen, up the stairs and right.",
+            "contrast_type": "wrong_platform_direction",
+            "feedback": "The staff said platform three, down the stairs, and left."
+          },
+          {
+            "id": "r2c",
+            "surface": "Seat three, near the window.",
+            "translation": "三號座位，靠窗。",
+            "speak": "Seat three, near the window.",
+            "contrast_type": "wrong_entity_seat",
+            "feedback": "This is about a platform, not a seat."
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t3",
+      "speaker": "npc",
+      "act": "confirmation_prompt",
+      "act_slots": {
+        "topic": "route check",
+        "keyword": "left",
+        "gloss": "左轉"
+      },
+      "learning_role": "listen_only",
+      "surface": "That's right. After you turn left, follow the airport train sign.",
+      "speak": "That's right. After you turn left, follow the airport train sign.",
+      "translation": "沒錯。左轉後，跟著機場列車標誌走。",
+      "friend": {
+        "hint": "Confirm the next step with the sign."
+      },
+      "reply_set": {
+        "correct": "r3a",
+        "choices": [
+          {
+            "id": "r3a",
+            "surface": "Okay, I will follow the airport train sign.",
+            "translation": "好的，我會跟著機場列車標誌走。",
+            "speak": "Okay, I will follow the airport train sign.",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r3b",
+            "surface": "Okay, I will follow the dinner menu.",
+            "translation": "好的，我會跟著晚餐菜單走。",
+            "speak": "Okay, I will follow the dinner menu.",
+            "contrast_type": "wrong_noun_menu",
+            "feedback": "Follow the airport train sign, not a menu."
+          },
+          {
+            "id": "r3c",
+            "surface": "Okay, I will stay on this train forever.",
+            "translation": "好的，我會永遠待在這班車上。",
+            "speak": "Okay, I will stay on this train forever.",
+            "contrast_type": "wrong_action",
+            "feedback": "You need to transfer, so follow the sign."
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t4",
+      "speaker": "npc",
+      "act": "closing",
+      "act_slots": {
+        "topic": "route confirmed"
+      },
+      "learning_role": "listen_only",
+      "surface": "Yes. Platform three is just over there.",
+      "speak": "Yes. Platform three is just over there.",
+      "translation": "對。三號月台就在那邊。",
+      "friend": {
+        "hint": "You have the direction now. Close politely."
+      },
+      "reply_set": {
+        "correct": "r4a",
+        "choices": [
+          {
+            "id": "r4a",
+            "surface": "Great, thank you for your help.",
+            "translation": "太好了，謝謝你的幫忙。",
+            "speak": "Great, thank you for your help."
+          },
+          {
+            "id": "r4b",
+            "surface": "Great, please call the police.",
+            "translation": "太好了，請報警。",
+            "speak": "Great, please call the police.",
+            "contrast_type": "forbidden_emergency",
+            "feedback": "Emergency language is outside this practice. A simple thank you is enough."
+          },
+          {
+            "id": "r4c",
+            "surface": "Great, I want to buy a shirt.",
+            "translation": "太好了，我想買一件襯衫。",
+            "speak": "Great, I want to buy a shirt.",
+            "contrast_type": "wrong_scenario_shopping",
+            "feedback": "This is shopping language. Here you are closing a station direction."
+          }
+        ]
+      }
+    }
+  ],
+  "choice_sets": [
+    "t1.reply_set",
+    "t2.reply_set",
+    "t3.reply_set",
+    "t4.reply_set"
+  ],
+  "feedback": "Distractors test platform number, direction sequence, wrong transport nouns, and unrelated scenario language.",
+  "tts_segments": [
+    "Where do I transfer for the airport train?",
+    "Platform three, down the stairs and left.",
+    "Okay, I will follow the airport train sign.",
+    "Great, thank you for your help."
+  ],
+  "formula_moments": [
+    {
+      "after_turn": "t2",
+      "pattern_id": "en.a2.transport.transfer.at_platform.v1"
+    }
+  ],
+  "runtime_notes": "Fresh EN A2 transport candidate. Structural checks and two AI semantic review passes completed on 2026-06-14 before metadata promotion.",
+  "notes": {
+    "authoring_policy": "Fresh-authored in English from the neutral A2 transport brief. KO was used only as schema-shape reference.",
+    "a2_boundary": "Short platform transfer instruction with two steps; avoids long route chains, emergency rerouting, or unsafe travel advice."
+  }
+}

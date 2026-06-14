@@ -1,0 +1,242 @@
+{
+  "schema_version": "scenario_pack.v1",
+  "scenario_id": "a2_ask_transfer_platform",
+  "title": "Demander le Quai de Correspondance",
+  "setting_label": "Au point information",
+  "wrap_title": "Quai de correspondance",
+  "wrap_friend": "你剛剛完成了一段 A2 交通服務情境，確認重點並做出簡單回應。",
+  "language": "fr",
+  "ui_language": "zh_tw",
+  "cefr_level": "A2",
+  "source_status": "candidate_runtime_verified",
+  "review_state": "ai_reviewed",
+  "review_status_framework_state": "candidate_runtime_verified",
+  "native_review_state": "native_pending",
+  "scenario": "A2 transport scenario: a2_ask_transfer_platform.",
+  "learner_goal": "Ask where to transfer and confirm a short two-step direction.",
+  "target_functions": [
+    "transfer_question",
+    "platform_confirmation",
+    "two_step_direction"
+  ],
+  "register_notes": "French public transport/service language with polite everyday responses; no refund, legal, medical, police, or identity-sensitive handling.",
+  "production_mode_default": {
+    "required": [
+      "choice"
+    ],
+    "optional_visible": [
+      "speaking"
+    ],
+    "optional_hidden": [
+      "typing"
+    ]
+  },
+  "support_text": "Demandez où faire la correspondance, écoutez la station et le quai, puis confirmez.",
+  "roles": {
+    "npc": {
+      "label": "Agent"
+    },
+    "learner": {
+      "label": "Vous"
+    }
+  },
+  "turns": [
+    {
+      "turn_id": "t1",
+      "speaker": "npc",
+      "act": "destination_prompt",
+      "act_slots": {
+        "topic": "destination_prompt"
+      },
+      "learning_role": "listen_only",
+      "surface": "Vous allez où ?",
+      "speak": "Vous allez où ?",
+      "translation": "您要去哪裡？",
+      "friend": {
+        "hint": "詢問轉乘"
+      },
+      "reply_set": {
+        "correct": "r1a",
+        "choices": [
+          {
+            "id": "r1a",
+            "surface": "Je vais à l’aéroport. Où est-ce que je change ?",
+            "translation": "詢問轉乘",
+            "speak": "Je vais à l’aéroport. Où est-ce que je change ?",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r1b",
+            "surface": "Je suis allé à l’aéroport hier.",
+            "translation": "我昨天去了機場。",
+            "speak": "Je suis allé à l’aéroport hier.",
+            "learning_role": "wrong_time_or_detail",
+            "feedback": "Demandez la correspondance pour maintenant, pas pour hier."
+          },
+          {
+            "id": "r1c",
+            "surface": "Je voudrais déposer un bagage.",
+            "translation": "我想寄放行李。",
+            "speak": "Je voudrais déposer un bagage.",
+            "learning_role": "wrong_scenario_or_escalation",
+            "feedback": "C’est une consigne à bagages, pas une correspondance."
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t2",
+      "speaker": "npc",
+      "act": "transfer_instruction",
+      "act_slots": {
+        "topic": "transfer_instruction"
+      },
+      "learning_role": "listen_only",
+      "surface": "Descendez à Central, puis allez au quai trois.",
+      "speak": "Descendez à Central, puis allez au quai trois.",
+      "translation": "請在 Central 下車，然後到 3 號月台。",
+      "friend": {
+        "hint": "確認兩步指示"
+      },
+      "reply_set": {
+        "correct": "r2a",
+        "choices": [
+          {
+            "id": "r2a",
+            "surface": "Je descends à Central et je vais au quai trois, c’est ça ?",
+            "translation": "確認路線",
+            "speak": "Je descends à Central et je vais au quai trois, c’est ça ?",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r2b",
+            "surface": "Je prends un café à Central, c’est ça ?",
+            "translation": "我在 Central 喝咖啡，對嗎？",
+            "speak": "Je prends un café à Central, c’est ça ?",
+            "learning_role": "wrong_time_or_detail",
+            "feedback": "La consigne est d’aller au quai trois."
+          },
+          {
+            "id": "r2c",
+            "surface": "La chambre trois, c’est ça ?",
+            "translation": "3 號房，對嗎？",
+            "speak": "La chambre trois, c’est ça ?",
+            "learning_role": "wrong_scenario_or_escalation",
+            "feedback": "C’est un quai, pas une chambre."
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t3",
+      "speaker": "npc",
+      "act": "platform_detail",
+      "act_slots": {
+        "topic": "platform_detail"
+      },
+      "learning_role": "listen_only",
+      "surface": "Au quai trois, prenez le train pour l’aéroport.",
+      "speak": "Au quai trois, prenez le train pour l’aéroport.",
+      "translation": "在 3 號月台搭往機場的車。",
+      "friend": {
+        "hint": "確認方向"
+      },
+      "reply_set": {
+        "correct": "r3a",
+        "choices": [
+          {
+            "id": "r3a",
+            "surface": "Au quai trois, je prends le train pour l’aéroport, c’est bien ça ?",
+            "translation": "確認月台與方向",
+            "speak": "Au quai trois, je prends le train pour l’aéroport, c’est bien ça ?",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r3b",
+            "surface": "Le train pour l’aéroport est arrivé hier.",
+            "translation": "往機場的車昨天到了。",
+            "speak": "Le train pour l’aéroport est arrivé hier.",
+            "learning_role": "wrong_time_or_detail",
+            "feedback": "Confirmez le train dont vous avez besoin maintenant."
+          },
+          {
+            "id": "r3c",
+            "surface": "Où dois-je aller en cas d’urgence ?",
+            "translation": "緊急時我要去哪裡？",
+            "speak": "Où dois-je aller en cas d’urgence ?",
+            "learning_role": "wrong_scenario_or_escalation",
+            "feedback": "Les consignes d’urgence sont hors du périmètre."
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t4",
+      "speaker": "npc",
+      "act": "route_confirmation",
+      "act_slots": {
+        "topic": "route_confirmation"
+      },
+      "learning_role": "listen_only",
+      "surface": "Oui, changez à Central.",
+      "speak": "Oui, changez à Central.",
+      "translation": "對，請在 Central 轉乘。",
+      "friend": {
+        "hint": "收尾"
+      },
+      "reply_set": {
+        "correct": "r4a",
+        "choices": [
+          {
+            "id": "r4a",
+            "surface": "Merci. Je change à Central.",
+            "translation": "禮貌收尾",
+            "speak": "Merci. Je change à Central.",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r4b",
+            "surface": "Je voudrais changer l’heure de mon billet.",
+            "translation": "我想更改票的時間。",
+            "speak": "Je voudrais changer l’heure de mon billet.",
+            "learning_role": "wrong_time_or_detail",
+            "feedback": "Ce n’est pas un changement de billet."
+          },
+          {
+            "id": "r4c",
+            "surface": "Je vais voir la police à l’aéroport.",
+            "translation": "我要去機場找警察。",
+            "speak": "Je vais voir la police à l’aéroport.",
+            "learning_role": "wrong_scenario_or_escalation",
+            "feedback": "Les démarches de police sont hors du périmètre."
+          }
+        ]
+      }
+    }
+  ],
+  "choice_sets": [
+    "t1.reply_set",
+    "t2.reply_set",
+    "t3.reply_set",
+    "t4.reply_set"
+  ],
+  "feedback": "Les distracteurs testent une mauvaise heure, un mauvais contexte ou une demande hors du périmètre A2.",
+  "tts_segments": [
+    "Vous allez où ?",
+    "Descendez à Central, puis allez au quai trois.",
+    "Au quai trois, prenez le train pour l’aéroport.",
+    "Oui, changez à Central."
+  ],
+  "formula_moments": [
+    {
+      "after_turn": "t2",
+      "pattern_id": "fr.a2.transport.transfer.v1"
+    }
+  ],
+  "runtime_notes": "FR A2 transport candidate. Full-walk runtime gate required before final closeout; target-language surfaces and feedback localized on 2026-06-14.",
+  "notes": {
+    "authoring_policy": "Fresh-authored from the neutral A2 transport brief. KO surfaces were used only as scenario blueprint, not as translation source.",
+    "a2_boundary": "Low-risk A2 transport/service task; avoids refund, compensation, emergency, identity-sensitive, legal, medical, banking, immigration, or police handling.",
+    "language_specific_adaptation": "NPC lines, learner targets, distractors, feedback, support text, and translations are adapted for this language; native review remains pending."
+  }
+}

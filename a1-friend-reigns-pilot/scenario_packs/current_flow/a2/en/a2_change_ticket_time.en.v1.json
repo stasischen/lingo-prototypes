@@ -1,0 +1,263 @@
+{
+  "schema_version": "scenario_pack.v1",
+  "scenario_id": "a2_change_ticket_time",
+  "title": "Change a Ticket Time",
+  "setting_label": "At a station ticket counter",
+  "wrap_title": "New Ticket Time",
+  "wrap_friend": "你剛剛用簡單英文詢問改票時間，聽懂可用時間，並確認新的時間。",
+  "language": "en",
+  "ui_language": "zh_tw",
+  "cefr_level": "A2",
+  "source_status": "candidate_runtime_verified",
+  "review_state": "ai_reviewed",
+  "review_status_framework_state": "candidate_runtime_verified",
+  "native_review_state": "native_pending",
+  "scenario": "You want to change the time on a transport ticket.",
+  "learner_goal": "Ask to change the ticket time, choose an available time, and confirm it.",
+  "target_functions": [
+    "ticket_time_change",
+    "availability",
+    "new_time_confirmation"
+  ],
+  "register_notes": "Polite everyday counter English. No refund, fare penalty, booking identity, or complaint language.",
+  "production_mode_default": {
+    "required": [
+      "choice"
+    ],
+    "optional_visible": [
+      "speaking"
+    ],
+    "optional_hidden": [
+      "typing"
+    ]
+  },
+  "support_text": "Ask to change your ticket time. Listen for the available time and confirm it.",
+  "roles": {
+    "npc": {
+      "label": "Ticket Staff"
+    },
+    "learner": {
+      "label": "You"
+    }
+  },
+  "turns": [
+    {
+      "turn_id": "t1",
+      "speaker": "npc",
+      "act": "service_prompt",
+      "act_slots": {
+        "topic": "ticket help",
+        "keyword": "help",
+        "gloss": "幫忙"
+      },
+      "learning_role": "listen_only",
+      "surface": "Hello. How can I help you?",
+      "speak": "Hello. How can I help you?",
+      "translation": "你好。我可以怎麼幫你？",
+      "friend": {
+        "hint": "Ask politely to change the time on your ticket."
+      },
+      "reply_set": {
+        "correct": "r1a",
+        "choices": [
+          {
+            "id": "r1a",
+            "surface": "Can I change my ticket time?",
+            "translation": "我可以改票的時間嗎？",
+            "speak": "Can I change my ticket time?",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r1b",
+            "surface": "Can I change my hotel room?",
+            "translation": "我可以換飯店房間嗎？",
+            "speak": "Can I change my hotel room?",
+            "contrast_type": "wrong_scenario_hotel",
+            "feedback": "This is hotel language. You need to ask about your ticket time."
+          },
+          {
+            "id": "r1c",
+            "surface": "Can I bought my ticket time?",
+            "translation": "我可以買了我的票時間嗎？",
+            "speak": "Can I bought my ticket time?",
+            "contrast_type": "grammar_wrong_request",
+            "feedback": "Use Can I change my ticket time? for a polite request."
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t2",
+      "speaker": "npc",
+      "act": "available_time_offer",
+      "act_slots": {
+        "topic": "available time",
+        "keyword": "four thirty",
+        "gloss": "四點半"
+      },
+      "learning_role": "listen_only",
+      "surface": "The next available time is four thirty.",
+      "speak": "The next available time is four thirty.",
+      "translation": "下一個可用時間是四點半。",
+      "friend": {
+        "hint": "The staff offers four thirty. Accept that time."
+      },
+      "inline_explain": {
+        "pattern_id": "en.a2.transport.ticket.available_time.v1",
+        "title": "available time",
+        "explain": "Available means you can choose that time.",
+        "items": [
+          {
+            "surface": "The next available time is four thirty.",
+            "translation": "下一個可用時間是四點半。",
+            "speak": "The next available time is four thirty."
+          },
+          {
+            "surface": "Is five o'clock available?",
+            "translation": "五點有位置嗎？",
+            "speak": "Is five o'clock available?"
+          }
+        ]
+      },
+      "reply_set": {
+        "correct": "r2a",
+        "choices": [
+          {
+            "id": "r2a",
+            "surface": "Four thirty is fine.",
+            "translation": "四點半可以。",
+            "speak": "Four thirty is fine.",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r2b",
+            "surface": "Four thirty is yesterday.",
+            "translation": "四點半是昨天。",
+            "speak": "Four thirty is yesterday.",
+            "contrast_type": "wrong_time_expression",
+            "feedback": "Four thirty is a clock time. Accept it with Four thirty is fine."
+          },
+          {
+            "id": "r2c",
+            "surface": "I want platform four.",
+            "translation": "我要四號月台。",
+            "speak": "I want platform four.",
+            "contrast_type": "wrong_entity_platform",
+            "feedback": "The staff gave a time, not a platform number."
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t3",
+      "speaker": "npc",
+      "act": "new_time_check",
+      "act_slots": {
+        "topic": "confirm new time",
+        "keyword": "change it",
+        "gloss": "改成"
+      },
+      "learning_role": "listen_only",
+      "surface": "Okay. Should I change it to four thirty?",
+      "speak": "Okay. Should I change it to four thirty?",
+      "translation": "好的。我要把它改成四點半嗎？",
+      "friend": {
+        "hint": "Confirm the new ticket time."
+      },
+      "reply_set": {
+        "correct": "r3a",
+        "choices": [
+          {
+            "id": "r3a",
+            "surface": "Yes, please change it to four thirty.",
+            "translation": "是的，請改成四點半。",
+            "speak": "Yes, please change it to four thirty.",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r3b",
+            "surface": "Yes, please change it to fourteen days.",
+            "translation": "是的，請改成十四天。",
+            "speak": "Yes, please change it to fourteen days.",
+            "contrast_type": "wrong_time_unit",
+            "feedback": "The new ticket time is four thirty, not fourteen days."
+          },
+          {
+            "id": "r3c",
+            "surface": "No, please bring my luggage.",
+            "translation": "不用，請拿我的行李。",
+            "speak": "No, please bring my luggage.",
+            "contrast_type": "wrong_scenario_luggage",
+            "feedback": "This is luggage language. Here you need to confirm the ticket time."
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t4",
+      "speaker": "npc",
+      "act": "final_confirmation",
+      "act_slots": {
+        "topic": "ticket changed"
+      },
+      "learning_role": "listen_only",
+      "surface": "Done. Your ticket is now for four thirty.",
+      "speak": "Done. Your ticket is now for four thirty.",
+      "translation": "好了。你的票現在是四點半。",
+      "friend": {
+        "hint": "The change is complete. Acknowledge and close."
+      },
+      "reply_set": {
+        "correct": "r4a",
+        "choices": [
+          {
+            "id": "r4a",
+            "surface": "Thank you. That works for me.",
+            "translation": "謝謝。這個時間我可以。",
+            "speak": "Thank you. That works for me."
+          },
+          {
+            "id": "r4b",
+            "surface": "Thank you. I need my money back.",
+            "translation": "謝謝。我需要退錢。",
+            "speak": "Thank you. I need my money back.",
+            "contrast_type": "forbidden_refund",
+            "feedback": "Refund language is outside this practice. A simple thank you is enough."
+          },
+          {
+            "id": "r4c",
+            "surface": "Thank you. I am at the wrong cafe.",
+            "translation": "謝謝。我在錯的咖啡店。",
+            "speak": "Thank you. I am at the wrong cafe.",
+            "contrast_type": "wrong_scenario_cafe",
+            "feedback": "This changes the situation. Here the ticket time is confirmed."
+          }
+        ]
+      }
+    }
+  ],
+  "choice_sets": [
+    "t1.reply_set",
+    "t2.reply_set",
+    "t3.reply_set",
+    "t4.reply_set"
+  ],
+  "feedback": "Distractors test ticket versus hotel/luggage contexts, time availability, and number-time confusion.",
+  "tts_segments": [
+    "Can I change my ticket time?",
+    "Four thirty is fine.",
+    "Yes, please change it to four thirty.",
+    "Thank you. That works for me."
+  ],
+  "formula_moments": [
+    {
+      "after_turn": "t2",
+      "pattern_id": "en.a2.transport.ticket.available_time.v1"
+    }
+  ],
+  "runtime_notes": "Fresh EN A2 transport candidate. Structural checks and two AI semantic review passes completed on 2026-06-14 before metadata promotion.",
+  "notes": {
+    "authoring_policy": "Fresh-authored in English from the neutral A2 transport brief. KO was used only as schema-shape reference.",
+    "a2_boundary": "Simple ticket time change with one available alternative; avoids refund rules, fare penalties, identity-sensitive booking details, or complaint handling."
+  }
+}

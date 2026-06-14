@@ -1,0 +1,257 @@
+{
+  "schema_version": "scenario_pack.v1",
+  "scenario_id": "a2_app_booking_confirmation",
+  "title": "Confirm an App Booking",
+  "setting_label": "low-risk help message",
+  "wrap_title": "Confirm an App Booking",
+  "wrap_friend": "Good. You handled a low-risk digital or document-help task with only the needed detail.",
+  "language": "en",
+  "ui_language": "zh-Hant",
+  "cefr_level": "A2",
+  "source_status": "candidate_runtime_verified",
+  "review_state": "ai_reviewed",
+  "review_status_framework_state": "candidate_runtime_verified",
+  "native_review_state": "native_pending",
+  "scenario": {
+    "domain": "digital_documents_low_risk_help",
+    "review_slice": "digital_documents",
+    "interaction": "low_risk_confirmation_or_help",
+    "source_brief": "A2_DIGITAL_DOCUMENTS_NEUTRAL_ADAPTATION_BRIEFS_20260614",
+    "blueprint_source": "language_neutral_adaptation_brief",
+    "ko_pack_role": "mature_scenario_blueprint_not_translation_source"
+  },
+  "learner_goal": "Handle a low-risk digital or simple document-help task in short A2 turns.",
+  "target_functions": [
+    "confirm_booking_or_message",
+    "request_simple_change",
+    "ask_simple_form_help",
+    "follow_up_low_risk_item"
+  ],
+  "register_notes": "English A2 low-risk digital/documents register: clear everyday help/service language, no passwords, payment, ID, medical, legal, police, or immigration framing.",
+  "production_mode_default": {
+    "required": [
+      "choice"
+    ],
+    "optional_visible": [
+      "speaking"
+    ],
+    "optional_hidden": [
+      "typing"
+    ]
+  },
+  "support_text": "Keep the task low-risk. Do not give passwords, payment details, sensitive ID, or legal/medical information.",
+  "roles": {
+    "npc": {
+      "label": "staff"
+    },
+    "learner": {
+      "label": "你"
+    }
+  },
+  "turns": [
+    {
+      "turn_id": "t1",
+      "speaker": "npc",
+      "act": "start",
+      "act_slots": {
+        "topic": "a2_app_booking_confirmation",
+        "keyword": "1",
+        "gloss": "A2 digital/documents"
+      },
+      "learning_role": "listen_only",
+      "surface": "Your booking is confirmed for 3 p.m. today.",
+      "speak": "Your booking is confirmed for 3 p.m. today.",
+      "translation": "預約確認為今天下午三點。",
+      "friend": {
+        "hint": "Check only the needed low-risk detail."
+      },
+      "reply_set": {
+        "correct": "r1a",
+        "choices": [
+          {
+            "id": "r1a",
+            "surface": "Where is the place?",
+            "translation": "地點在哪裡？",
+            "speak": "Where is the place?",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r1b",
+            "surface": "I will tell you my password.",
+            "translation": "我會告訴你密碼。",
+            "speak": "I will tell you my password.",
+            "contrast_type": "forbidden_sensitive",
+            "feedback": "Sensitive password information is outside this A2 task."
+          },
+          {
+            "id": "r1c",
+            "surface": "Please refund me.",
+            "translation": "請退款。",
+            "speak": "Please refund me.",
+            "contrast_type": "wrong_dispute_domain",
+            "feedback": "Refunds or disputes are outside this task."
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t2",
+      "speaker": "npc",
+      "act": "clarify",
+      "act_slots": {
+        "topic": "a2_app_booking_confirmation",
+        "keyword": "2",
+        "gloss": "A2 digital/documents"
+      },
+      "learning_role": "listen_only",
+      "surface": "It is on the second floor of the cafe.",
+      "speak": "It is on the second floor of the cafe.",
+      "translation": "在咖啡店二樓。",
+      "friend": {
+        "hint": "Check only the needed low-risk detail."
+      },
+      "reply_set": {
+        "correct": "r2a",
+        "choices": [
+          {
+            "id": "r2a",
+            "surface": "So, the second floor of the cafe?",
+            "translation": "是在咖啡店二樓，對嗎？",
+            "speak": "So, the second floor of the cafe?",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r2b",
+            "surface": "I will tell you my password.",
+            "translation": "我會告訴你密碼。",
+            "speak": "I will tell you my password.",
+            "contrast_type": "forbidden_sensitive",
+            "feedback": "Sensitive password information is outside this A2 task."
+          },
+          {
+            "id": "r2c",
+            "surface": "Please refund me.",
+            "translation": "請退款。",
+            "speak": "Please refund me.",
+            "contrast_type": "wrong_dispute_domain",
+            "feedback": "Refunds or disputes are outside this task."
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t3",
+      "speaker": "npc",
+      "act": "confirm_detail",
+      "act_slots": {
+        "topic": "a2_app_booking_confirmation",
+        "keyword": "3",
+        "gloss": "A2 digital/documents"
+      },
+      "learning_role": "listen_only",
+      "surface": "Yes, the booking name is Mina.",
+      "speak": "Yes, the booking name is Mina.",
+      "translation": "對，預約姓名是 Mina。",
+      "friend": {
+        "hint": "Check only the needed low-risk detail."
+      },
+      "reply_set": {
+        "correct": "r3a",
+        "choices": [
+          {
+            "id": "r3a",
+            "surface": "Yes, that is my name.",
+            "translation": "對，是我的名字。",
+            "speak": "Yes, that is my name.",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r3b",
+            "surface": "I will tell you my password.",
+            "translation": "我會告訴你密碼。",
+            "speak": "I will tell you my password.",
+            "contrast_type": "forbidden_sensitive",
+            "feedback": "Sensitive password information is outside this A2 task."
+          },
+          {
+            "id": "r3c",
+            "surface": "Please refund me.",
+            "translation": "請退款。",
+            "speak": "Please refund me.",
+            "contrast_type": "wrong_dispute_domain",
+            "feedback": "Refunds or disputes are outside this task."
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t4",
+      "speaker": "npc",
+      "act": "close",
+      "act_slots": {
+        "topic": "a2_app_booking_confirmation",
+        "keyword": "4",
+        "gloss": "A2 digital/documents"
+      },
+      "learning_role": "listen_only",
+      "surface": "Then we will see you at 3 p.m.",
+      "speak": "Then we will see you at 3 p.m.",
+      "translation": "那下午三點見。",
+      "friend": {
+        "hint": "Check only the needed low-risk detail."
+      },
+      "reply_set": {
+        "correct": "r4a",
+        "choices": [
+          {
+            "id": "r4a",
+            "surface": "Okay, I will come at 3 p.m.",
+            "translation": "好，我下午三點會去。",
+            "speak": "Okay, I will come at 3 p.m.",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r4b",
+            "surface": "I will tell you my password.",
+            "translation": "我會告訴你密碼。",
+            "speak": "I will tell you my password.",
+            "contrast_type": "forbidden_sensitive",
+            "feedback": "Sensitive password information is outside this A2 task."
+          },
+          {
+            "id": "r4c",
+            "surface": "Please refund me.",
+            "translation": "請退款。",
+            "speak": "Please refund me.",
+            "contrast_type": "wrong_dispute_domain",
+            "feedback": "Refunds or disputes are outside this task."
+          }
+        ]
+      }
+    }
+  ],
+  "choice_sets": [
+    "t1.reply_set",
+    "t2.reply_set",
+    "t3.reply_set",
+    "t4.reply_set"
+  ],
+  "feedback": "Keep the task low-risk. Do not give passwords, payment details, sensitive ID, or legal/medical information.",
+  "tts_segments": [
+    "Where is the place?",
+    "So, the second floor of the cafe?",
+    "Yes, that is my name.",
+    "Okay, I will come at 3 p.m."
+  ],
+  "formula_moments": [
+    {
+      "after_turn": "t2",
+      "pattern_id": "en.a2.digital.app_booking_confirmation.v1"
+    }
+  ],
+  "runtime_notes": "Fresh A2 digital/documents candidate. Requires full-walk runtime before closeout evidence is recorded.",
+  "notes": {
+    "authoring_policy": "Fresh-authored from A2 digital/documents neutral adaptation brief. KO surface text was not copied or translated.",
+    "a2_boundary": "Low-risk confirmation/help only; avoids sensitive identity, payment, legal, medical, police, and immigration workflows."
+  }
+}

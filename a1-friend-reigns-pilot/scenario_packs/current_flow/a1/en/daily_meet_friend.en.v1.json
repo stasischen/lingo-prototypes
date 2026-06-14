@@ -1,0 +1,238 @@
+{
+  "schema_version": "scenario_pack.v1",
+  "scenario_id": "daily_meet_friend",
+  "brief_id": "ml2_a1_010_daily_meet_friend",
+  "source_neutral_brief": "release-aggregator/docs/tasks/A1_MULTILINGUAL_KO_B1_PARALLEL_ORCHESTRATION/work_products/ml0/ML2_NEUTRAL_ADAPTATION_BRIEFS_20260614.md#brief-ml2-a1-010-meet-a-friend",
+  "blueprint_ledger": "release-aggregator/docs/tasks/A1_MULTILINGUAL_KO_B1_PARALLEL_ORCHESTRATION/work_products/ml0/ML2_BLUEPRINT_LEDGER_20260614.md",
+  "repo": "content-en",
+  "staging_path": "curriculum/a1_travel_v1/staging/scenario_pack.v1/daily_meet_friend.en.v1.json",
+  "title": "Meeting a Friend",
+  "setting_label": "Cafe entrance",
+  "wrap_title": "You met your friend",
+  "wrap_friend": "You greeted your friend, confirmed the plan, answered that you were ready, and moved on.",
+  "language": "en",
+  "ui_language": "zh_tw",
+  "source_status": "candidate_runtime_verified",
+  "review_state": "draft",
+  "review_status_framework_state": "candidate_runtime_verified",
+  "native_review_state": "native_pending",
+  "production_mode_default": {
+    "required": [
+      "choice"
+    ],
+    "optional_visible": [
+      "speaking"
+    ],
+    "optional_hidden": [
+      "typing"
+    ]
+  },
+  "support_text": "你在咖啡店門口和朋友碰面。選自然、簡短的英文回應。",
+  "roles": {
+    "npc": {
+      "label": "Friend"
+    },
+    "learner": {
+      "label": "You"
+    }
+  },
+  "turns": [
+    {
+      "turn_id": "t1",
+      "speaker": "npc",
+      "act": "friend_greeting",
+      "learning_role": "listen_only",
+      "surface": "Hey, you made it!",
+      "speak": "Hey, you made it!",
+      "translation": "嘿，你到了！",
+      "friend": {
+        "hint": "朋友在打招呼。用自然的朋友語氣回應。"
+      },
+      "reply_set": {
+        "correct": "r1a",
+        "choices": [
+          {
+            "id": "r1a",
+            "surface": "Hi! Good to see you.",
+            "translation": "嗨！很高興見到你。",
+            "speak": "Hi! Good to see you.",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r1b",
+            "surface": "Can I see the menu?",
+            "translation": "可以看菜單嗎？",
+            "speak": "Can I see the menu?",
+            "contrast_type": "service_request_to_friend",
+            "feedback": "這像是在跟店員說話，不是跟朋友打招呼。"
+          },
+          {
+            "id": "r1c",
+            "surface": "How much is this?",
+            "translation": "這個多少錢？",
+            "speak": "How much is this?",
+            "contrast_type": "shopping_price_in_friend_meeting",
+            "feedback": "這是購物問題。現在是在和朋友碰面。"
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t2",
+      "speaker": "npc",
+      "act": "confirm_plan",
+      "learning_role": "listen_only",
+      "surface": "Are we going to the movie now?",
+      "speak": "Are we going to the movie now?",
+      "translation": "我們現在要去看電影嗎？",
+      "friend": {
+        "hint": "朋友在確認計畫。簡短說 yes。"
+      },
+      "inline_explain": {
+        "pattern_id": "en.friend.plan_confirm.v1",
+        "formula_ref": null,
+        "title": "Yes, that's right",
+        "explain": "Use a short confirmation when a friend checks the plan.",
+        "items": [
+          {
+            "surface": "Yes, that's right.",
+            "translation": "對，沒錯。",
+            "speak": "Yes, that's right."
+          }
+        ]
+      },
+      "reply_set": {
+        "correct": "r2a",
+        "choices": [
+          {
+            "id": "r2a",
+            "surface": "Yes, that's right.",
+            "translation": "對，沒錯。",
+            "speak": "Yes, that's right.",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r2b",
+            "surface": "I want to pay by card.",
+            "translation": "我想刷卡付款。",
+            "speak": "I want to pay by card.",
+            "contrast_type": "payment_answer_to_plan_check",
+            "feedback": "這是付款回答，不是在確認見面計畫。"
+          },
+          {
+            "id": "r2c",
+            "surface": "Where is the restroom?",
+            "translation": "洗手間在哪裡？",
+            "speak": "Where is the restroom?",
+            "contrast_type": "directions_instead_of_plan_confirmation",
+            "feedback": "這是在問路。朋友問的是計畫。"
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t3",
+      "speaker": "npc",
+      "act": "ask_ready",
+      "learning_role": "listen_only",
+      "surface": "Ready to go?",
+      "speak": "Ready to go?",
+      "translation": "準備好了嗎？",
+      "friend": {
+        "hint": "朋友問你準備好了沒。用短句回答。"
+      },
+      "reply_set": {
+        "correct": "r4a",
+        "choices": [
+          {
+            "id": "r4a",
+            "surface": "Yes, I'm ready. Let's go.",
+            "translation": "好了，我準備好了。我們走吧。",
+            "speak": "Yes, I'm ready. Let's go.",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r4b",
+            "surface": "Nice to meet you, sir.",
+            "translation": "先生，很高興認識您。",
+            "speak": "Nice to meet you, sir.",
+            "contrast_type": "overformal_business_greeting",
+            "feedback": "這太正式，也像第一次見面。這裡是朋友碰面。"
+          },
+          {
+            "id": "r4c",
+            "surface": "I'd like a sandwich.",
+            "translation": "我想要一份三明治。",
+            "speak": "I'd like a sandwich.",
+            "contrast_type": "food_order_in_friend_meeting",
+            "feedback": "這是在點餐，不是在回答準備好了。"
+          }
+        ]
+      },
+      "runtime_note": "Reply choices mirror the next learner response so the current prototype can render every round."
+    },
+    {
+      "turn_id": "t4",
+      "speaker": "learner",
+      "act": "ready_close",
+      "learning_role": "production_target",
+      "surface": "Yes, I'm ready. Let's go.",
+      "speak": "Yes, I'm ready. Let's go.",
+      "translation": "好了，我準備好了。我們走吧。",
+      "friend": {
+        "hint": "用 I'm ready 回答，再用 Let's go 收尾。"
+      },
+      "reply_set": {
+        "correct": "r4a",
+        "choices": [
+          {
+            "id": "r4a",
+            "surface": "Yes, I'm ready. Let's go.",
+            "translation": "好了，我準備好了。我們走吧。",
+            "speak": "Yes, I'm ready. Let's go.",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r4b",
+            "surface": "Nice to meet you, sir.",
+            "translation": "先生，很高興認識您。",
+            "speak": "Nice to meet you, sir.",
+            "contrast_type": "overformal_business_greeting",
+            "feedback": "這太正式，也像第一次見面。這裡是朋友碰面。"
+          },
+          {
+            "id": "r4c",
+            "surface": "I'd like a sandwich.",
+            "translation": "我想要一份三明治。",
+            "speak": "I'd like a sandwich.",
+            "contrast_type": "food_order_in_friend_meeting",
+            "feedback": "這是在點餐，不是在回答準備好了。"
+          }
+        ]
+      },
+      "closing": {
+        "act": "meeting_complete",
+        "learning_role": "listen_only",
+        "surface": "You found your friend and are ready to go.",
+        "speak": "You found your friend and are ready to go.",
+        "translation": "你找到朋友，也準備好出發了。"
+      }
+    }
+  ],
+  "formula_moments": [
+    {
+      "after_turn": "t1",
+      "pattern_id": "en.friend.greeting.v1"
+    },
+    {
+      "after_turn": "t4",
+      "pattern_id": "en.friend.ready_go.v1"
+    }
+  ],
+  "notes": {
+    "authoring_source": "Authored from ML-2 neutral brief, not Korean surface text or another target-language pack.",
+    "review_policy": "AI-authored English candidate. Requires AI review, runtime smoke, and tracked native review before any stronger status.",
+    "canonical_policy": "Staging candidate only. Do not write back to manifests, production exports, schemas, or legacy content.",
+    "register_note": "Casual friend English with short A1 phrases."
+  }
+}

@@ -1,0 +1,254 @@
+{
+  "schema_version": "scenario_pack.v1",
+  "scenario_id": "food_restaurant_ordering",
+  "brief_id": "ml1_a1_006_food_restaurant_ordering",
+  "source_neutral_brief": "release-aggregator/docs/tasks/A1_MULTILINGUAL_KO_B1_PARALLEL_ORCHESTRATION/work_products/ml0/ML1_NEUTRAL_ADAPTATION_BRIEFS_20260614.md#brief-ml1-a1-006-restaurant-ordering",
+  "blueprint_ledger": "release-aggregator/docs/tasks/A1_MULTILINGUAL_KO_B1_PARALLEL_ORCHESTRATION/work_products/ml0/ML1_BLUEPRINT_LEDGER_20260614.md",
+  "repo": "content-it",
+  "staging_path": "content/core/content_assets/scenario_packs/current_flow/food_restaurant_ordering.it.v1.json",
+  "title": "Ordinare al ristorante",
+  "setting_label": "Tavolo al ristorante",
+  "wrap_title": "Ordine confermato",
+  "wrap_friend": "你用簡短自然的義大利語回答人數、點一道菜，並確認訂單。",
+  "language": "it",
+  "ui_language": "zh_tw",
+  "source_status": "candidate_runtime_verified",
+  "review_state": "draft",
+  "review_status_framework_state": "candidate_runtime_verified",
+  "native_review_state": "native_pending",
+  "production_mode_default": {
+    "required": [
+      "choice"
+    ],
+    "optional_visible": [
+      "speaking"
+    ],
+    "optional_hidden": [
+      "typing"
+    ]
+  },
+  "support_text": "你在義大利的一間簡單餐廳。用短句回答服務生，點一道餐點並確認。",
+  "roles": {
+    "npc": {
+      "label": "Cameriere"
+    },
+    "learner": {
+      "label": "Cliente"
+    }
+  },
+  "turns": [
+    {
+      "turn_id": "t1",
+      "speaker": "npc",
+      "act": "readiness_party_size",
+      "act_slots": {
+        "topic": "party_size",
+        "keyword": "in due",
+        "gloss": "two people"
+      },
+      "learning_role": "listen_only",
+      "surface": "Buonasera. Siete pronti?",
+      "speak": "Buonasera. Siete pronti?",
+      "translation": "晚上好。你們準備好點餐了嗎？",
+      "friend": {
+        "hint": "先簡短回答準備好了，也可以補上兩位。"
+      },
+      "reply_set": {
+        "correct": "r1a",
+        "choices": [
+          {
+            "id": "r1a",
+            "surface": "Sì, siamo in due.",
+            "translation": "是的，我們兩位。",
+            "speak": "Sì, siamo in due.",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r1b",
+            "surface": "Il conto, per favore.",
+            "translation": "請結帳。",
+            "speak": "Il conto, per favore.",
+            "contrast_type": "asking_bill_before_ordering",
+            "feedback": "這是在還沒點餐前就要結帳。現在要回答是否準備好點餐。"
+          },
+          {
+            "id": "r1c",
+            "surface": "Un cappuccino, per favore.",
+            "translation": "一杯卡布奇諾，謝謝。",
+            "speak": "Un cappuccino, per favore.",
+            "contrast_type": "cafe_only_request",
+            "feedback": "這像咖啡吧點飲料。餐廳服務生先在確認你們是否準備好。"
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t2",
+      "speaker": "npc",
+      "act": "ask_order",
+      "act_slots": {
+        "topic": "meal_order",
+        "keyword": "prendere",
+        "gloss": "order"
+      },
+      "learning_role": "listen_only",
+      "surface": "Che cosa prendete?",
+      "speak": "Che cosa prendete?",
+      "translation": "你們要點什麼？",
+      "friend": {
+        "hint": "義大利餐廳點一道菜，可以用 Prendo... 或 Vorrei..."
+      },
+      "inline_explain": {
+        "pattern_id": "it.restaurant.prendo_un_piatto.v1",
+        "formula_ref": null,
+        "title": "Prendo...",
+        "explain": "Prendo una... 表示「我要一份...」，在餐廳點餐自然又簡短。",
+        "items": [
+          {
+            "surface": "Prendo una pasta al pomodoro.",
+            "translation": "我要一份番茄義大利麵。",
+            "speak": "Prendo una pasta al pomodoro."
+          },
+          {
+            "surface": "Vorrei una pasta, per favore.",
+            "translation": "我想要一份義大利麵，謝謝。",
+            "speak": "Vorrei una pasta, per favore."
+          }
+        ]
+      },
+      "reply_set": {
+        "correct": "r2a",
+        "choices": [
+          {
+            "id": "r2a",
+            "surface": "Prendo una pasta al pomodoro, per favore.",
+            "translation": "我要一份番茄義大利麵，謝謝。",
+            "speak": "Prendo una pasta al pomodoro, per favore.",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r2b",
+            "surface": "Da portare via, per favore.",
+            "translation": "外帶，謝謝。",
+            "speak": "Da portare via, per favore.",
+            "contrast_type": "takeout_answer_in_dine_in_context",
+            "feedback": "這是在回答外帶選項，不是在點一道餐點。"
+          },
+          {
+            "id": "r2c",
+            "surface": "Una pizza grande, due zuppe, senza formaggio e senza sale.",
+            "translation": "一個大披薩、兩份湯、不加起司也不加鹽。",
+            "speak": "Una pizza grande, due zuppe, senza formaggio e senza sale.",
+            "contrast_type": "overlong_customization",
+            "feedback": "資訊太多，超出這個 A1 回合。先練習點一道簡單餐點。"
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t3",
+      "speaker": "npc",
+      "act": "order_confirmation",
+      "act_slots": {
+        "topic": "confirm_order",
+        "keyword": "giusto",
+        "gloss": "right"
+      },
+      "learning_role": "listen_only",
+      "surface": "Una pasta al pomodoro, giusto?",
+      "speak": "Una pasta al pomodoro, giusto?",
+      "translation": "一份番茄義大利麵，對嗎？",
+      "friend": {
+        "hint": "訂單正確時，用 Sì, grazie 確認。"
+      },
+      "reply_set": {
+        "correct": "r3a",
+        "choices": [
+          {
+            "id": "r3a",
+            "surface": "Sì, grazie.",
+            "translation": "是的，謝謝。",
+            "speak": "Sì, grazie."
+          },
+          {
+            "id": "r3b",
+            "surface": "No, un caffè.",
+            "translation": "不是，一杯咖啡。",
+            "speak": "No, un caffè.",
+            "contrast_type": "wrong_item_confirmation",
+            "feedback": "這把餐點換成咖啡了。若訂單正確，直接確認即可。"
+          },
+          {
+            "id": "r3c",
+            "surface": "Pago con carta.",
+            "translation": "我用卡付款。",
+            "speak": "Pago con carta.",
+            "contrast_type": "payment_answer_too_early",
+            "feedback": "這是付款資訊。現在服務生只是在確認餐點。"
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t4",
+      "speaker": "npc",
+      "act": "service_close",
+      "act_slots": {
+        "topic": "order_accepted",
+        "keyword": "arriva",
+        "gloss": "it is coming"
+      },
+      "learning_role": "listen_only",
+      "surface": "Perfetto. Arriva subito.",
+      "speak": "Perfetto. Arriva subito.",
+      "translation": "好的。馬上為您準備。",
+      "friend": {
+        "hint": "最後用 grazie 收尾很自然。"
+      },
+      "reply_set": {
+        "correct": "r4a",
+        "choices": [
+          {
+            "id": "r4a",
+            "surface": "Grazie.",
+            "translation": "謝謝。",
+            "speak": "Grazie."
+          },
+          {
+            "id": "r4b",
+            "surface": "Dov'è il binario due?",
+            "translation": "二號月台在哪裡？",
+            "speak": "Dov'è il binario due?",
+            "contrast_type": "wrong_scenario_request",
+            "feedback": "這是車站問路，不是餐廳點餐收尾。"
+          },
+          {
+            "id": "r4c",
+            "surface": "A che ora è la colazione?",
+            "translation": "早餐幾點？",
+            "speak": "A che ora è la colazione?",
+            "contrast_type": "hotel_question",
+            "feedback": "這是飯店早餐問題。現在餐點已確認，只要道謝。"
+          }
+        ]
+      },
+      "closing": true
+    }
+  ],
+  "formula_moments": [
+    {
+      "after_turn": "t1",
+      "pattern_id": "it.restaurant.siamo_in_due.v1"
+    },
+    {
+      "after_turn": "t2",
+      "pattern_id": "it.restaurant.prendo_un_piatto.v1"
+    }
+  ],
+  "notes": {
+    "authoring_source": "Authored from ML-1 neutral brief ml1_a1_006_food_restaurant_ordering; KO and other target-language packs were not used as translation sources.",
+    "review_policy": "AI-authored candidate only; keep review_state=draft, review_status_framework_state=candidate_needs_review, native_review_state=native_pending until tracked review evidence exists.",
+    "canonical_policy": "Staging current-flow candidate only. Do not add to manifests, production exports, schema, runtime, frontend, review artifacts, or legacy content.",
+    "italian_voice_note": "Uses everyday restaurant formulas with a simple dine-in table-service frame; native review should check whether plural Siete/prendete is acceptable for the intended party-size framing."
+  }
+}

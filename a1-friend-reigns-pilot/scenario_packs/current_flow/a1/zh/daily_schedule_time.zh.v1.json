@@ -1,0 +1,229 @@
+{
+  "schema_version": "scenario_pack.v1",
+  "scenario_id": "daily_schedule_time",
+  "brief_id": "ml0_a1_005_daily_schedule_time",
+  "source_neutral_brief": "release-aggregator/docs/tasks/A1_MULTILINGUAL_KO_B1_PARALLEL_ORCHESTRATION/work_products/ml0/ML0_NEUTRAL_ADAPTATION_BRIEFS_20260613.md#ml0-a1-005",
+  "blueprint_ledger": "release-aggregator/docs/tasks/A1_MULTILINGUAL_KO_B1_PARALLEL_ORCHESTRATION/work_products/ml0/ML0_BLUEPRINT_LEDGER_20260613.md",
+  "repo": "content-zh",
+  "staging_path": "content/core/content_assets/scenario_packs/current_flow/daily_schedule_time.zh.v1.json",
+  "title": "約見面時間",
+  "setting_label": "朋友約見面",
+  "wrap_title": "時間確認好了",
+  "wrap_friend": "你已經用簡短自然的中文回答時間，也確認了見面安排。",
+  "language": "zh",
+  "ui_language": "zh_tw",
+  "source_status": "candidate_runtime_verified",
+  "review_state": "draft",
+  "review_status_framework_state": "candidate_runtime_verified",
+  "native_review_state": "native_pending",
+  "production_mode_default": {
+    "required": [
+      "choice"
+    ],
+    "optional_visible": [
+      "speaking"
+    ],
+    "optional_hidden": [
+      "typing"
+    ]
+  },
+  "support_text": "你正在和朋友約見面時間。用簡短中文回答幾點，並確認安排。",
+  "roles": {
+    "npc": {
+      "label": "朋友"
+    },
+    "learner": {
+      "label": "你"
+    }
+  },
+  "turns": [
+    {
+      "turn_id": "t1",
+      "speaker": "npc",
+      "act": "ask_time",
+      "act_slots": {
+        "topic": "meeting_time",
+        "keyword": "幾點",
+        "gloss": "what time"
+      },
+      "learning_role": "listen_only",
+      "surface": "我們幾點見？",
+      "speak": "我們幾點見？",
+      "translation": "我們幾點見？",
+      "friend": "朋友之間可以這樣簡短問時間。回答一個時間即可。",
+      "reply_set": {
+        "correct": "c1",
+        "choices": [
+          {
+            "id": "c1",
+            "surface": "三點可以。",
+            "translation": "三點可以。",
+            "speak": "三點可以。",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "c2",
+            "surface": "在車站前面。",
+            "translation": "在車站前面。",
+            "speak": "在車站前面。",
+            "contrast_type": "location_answer_when_time_requested",
+            "feedback": "這是在回答地點。對方問的是幾點。"
+          },
+          {
+            "id": "c3",
+            "surface": "刷卡，謝謝。",
+            "translation": "刷卡，謝謝。",
+            "speak": "刷卡，謝謝。",
+            "contrast_type": "wrong_scenario_payment",
+            "feedback": "這是付款情境，不是約見面時間。"
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t2",
+      "speaker": "npc",
+      "act": "availability_check",
+      "act_slots": {
+        "topic": "availability",
+        "keyword": "可以",
+        "gloss": "okay"
+      },
+      "learning_role": "listen_only",
+      "surface": "今天可以嗎？",
+      "speak": "今天可以嗎？",
+      "translation": "今天可以嗎？",
+      "friend": "如果今天可以，直接說可以，今天可以。",
+      "inline_explain": "三點可以表示三點這個時間可以。今天可以表示今天能見面。",
+      "reply_set": {
+        "correct": "c1",
+        "choices": [
+          {
+            "id": "c1",
+            "surface": "可以，今天可以。",
+            "translation": "可以，今天可以。",
+            "speak": "可以，今天可以。",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "c2",
+            "surface": "不行，永遠不要。",
+            "translation": "不行，永遠不要。",
+            "speak": "不行，永遠不要。",
+            "contrast_type": "refusal_when_confirmation_expected",
+            "feedback": "這會取消安排，而且語氣太強。這裡要確認今天可以。"
+          },
+          {
+            "id": "c3",
+            "surface": "請給我一間房。",
+            "translation": "請給我一間房。",
+            "speak": "請給我一間房。",
+            "contrast_type": "wrong_scenario_hotel",
+            "feedback": "這是飯店情境，不是朋友約時間。"
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t3",
+      "speaker": "npc",
+      "act": "plan_confirmation",
+      "act_slots": {
+        "topic": "confirmed_plan",
+        "keyword": "那",
+        "gloss": "then"
+      },
+      "learning_role": "listen_only",
+      "surface": "好，那三點見。",
+      "speak": "好，那三點見。",
+      "translation": "好，那三點見。",
+      "friend": "安排正確時，用好，三點見簡短確認。",
+      "reply_set": {
+        "correct": "c1",
+        "choices": [
+          {
+            "id": "c1",
+            "surface": "好，三點見。",
+            "translation": "好，三點見。",
+            "speak": "好，三點見。"
+          },
+          {
+            "id": "c2",
+            "surface": "洗手間在哪裡？",
+            "translation": "洗手間在哪裡？",
+            "speak": "洗手間在哪裡？",
+            "contrast_type": "wrong_scenario_directions",
+            "feedback": "這換成問路情境了。現在只要確認三點見。"
+          },
+          {
+            "id": "c3",
+            "surface": "不用發票。",
+            "translation": "不用發票。",
+            "speak": "不用發票。",
+            "contrast_type": "wrong_scenario_payment",
+            "feedback": "這是結帳時的回答，不是確認見面時間。"
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t4",
+      "speaker": "npc",
+      "act": "casual_close",
+      "act_slots": {
+        "topic": "closing",
+        "keyword": "待會",
+        "gloss": "later"
+      },
+      "learning_role": "listen_only",
+      "surface": "待會見！",
+      "speak": "待會見！",
+      "translation": "待會見！",
+      "friend": "朋友道別時，也可以回待會見。",
+      "reply_set": {
+        "correct": "c1",
+        "choices": [
+          {
+            "id": "c1",
+            "surface": "待會見！",
+            "translation": "待會見！",
+            "speak": "待會見！"
+          },
+          {
+            "id": "c2",
+            "surface": "我要一杯咖啡。",
+            "translation": "我要一杯咖啡。",
+            "speak": "我要一杯咖啡。",
+            "contrast_type": "wrong_scenario_ordering",
+            "feedback": "這是在點飲料。朋友道別時，用待會見收尾。"
+          },
+          {
+            "id": "c3",
+            "surface": "請問刷卡還是付現？",
+            "translation": "請問刷卡還是付現？",
+            "speak": "請問刷卡還是付現？",
+            "contrast_type": "wrong_role_cashier_line",
+            "feedback": "這像店員在問客人，不符合朋友聊天情境。"
+          }
+        ]
+      },
+      "closing": true
+    }
+  ],
+  "formula_moments": [
+    {
+      "after_turn": "t1",
+      "pattern_id": "zh_schedule_three_oclock"
+    },
+    {
+      "after_turn": "t2",
+      "pattern_id": "zh_schedule_today_ok"
+    }
+  ],
+  "notes": {
+    "authoring_source": "Authored from ML-0 neutral brief ml0_a1_005_daily_schedule_time; KO packs and other language packs were not used as source strings.",
+    "review_policy": "AI-authored candidate only; keep review_state=draft, review_status_framework_state=candidate_needs_review, native_review_state=native_pending until tracked review evidence exists.",
+    "canonical_policy": "Staging current-flow candidate only. Do not add to manifests, production exports, schema, runtime, or frontend in this authoring lane.",
+    "chinese_voice_note": "Uses Traditional-character Mandarin with casual friend register and same-day planning closure."
+  }
+}

@@ -1,0 +1,264 @@
+{
+  "schema_version": "scenario_pack.v1",
+  "scenario_id": "a2_ask_transfer_platform",
+  "title": "환승 플랫폼 묻기",
+  "setting_label": "기차역 환승 안내",
+  "wrap_title": "환승 플랫폼 확인",
+  "wrap_friend": "你剛剛問了在哪裡轉乘，並確認了月台和下一步。",
+  "language": "ko",
+  "ui_language": "zh_tw",
+  "cefr_level": "A2",
+  "source_status": "candidate_runtime_verified",
+  "review_state": "ai_reviewed",
+  "review_status_framework_state": "candidate_runtime_verified",
+  "native_review_state": "native_pending",
+  "scenario": "A traveler asks station staff where to transfer and which platform to use.",
+  "learner_goal": "Ask for a transfer point and confirm a short two-step direction.",
+  "target_functions": [
+    "transfer_question",
+    "platform_confirmation",
+    "two_step_direction"
+  ],
+  "register_notes": "Polite station-service Korean with short direction confirmation; no emergency or complex route planning.",
+  "production_mode_default": {
+    "required": [
+      "choice"
+    ],
+    "optional_visible": [
+      "speaking"
+    ],
+    "optional_hidden": [
+      "typing"
+    ]
+  },
+  "support_text": "환승할 곳과 플랫폼을 물어보고, 짧게 확인해 보세요.",
+  "roles": {
+    "npc": {
+      "label": "역무원"
+    },
+    "learner": {
+      "label": "你"
+    }
+  },
+  "turns": [
+    {
+      "turn_id": "t1",
+      "speaker": "npc",
+      "act": "destination_prompt",
+      "act_slots": {
+        "topic": "destination",
+        "keyword": "어디까지",
+        "gloss": "到哪裡"
+      },
+      "learning_role": "listen_only",
+      "surface": "어디까지 가세요?",
+      "speak": "어디까지 가세요?",
+      "translation": "您要到哪裡？",
+      "friend": {
+        "hint": "你要問去機場在哪裡轉乘。"
+      },
+      "reply_set": {
+        "correct": "r1a",
+        "choices": [
+          {
+            "id": "r1a",
+            "surface": "공항에 가는데 어디서 갈아타요?",
+            "translation": "我要去機場，在哪裡轉乘？",
+            "speak": "공항에 가는데 어디서 갈아타요?",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r1b",
+            "surface": "공항에 어제 갔어요.",
+            "translation": "我昨天去了機場。",
+            "speak": "공항에 어제 갔어요.",
+            "contrast_type": "wrong_time_past",
+            "feedback": "現在要問轉乘，不是說昨天去過。"
+          },
+          {
+            "id": "r1c",
+            "surface": "짐을 맡기고 싶어요.",
+            "translation": "我想寄放行李。",
+            "speak": "짐을 맡기고 싶어요.",
+            "contrast_type": "wrong_scenario_luggage",
+            "feedback": "寄放行李是另一個服務。這裡要問轉乘。"
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t2",
+      "speaker": "npc",
+      "act": "transfer_instruction",
+      "act_slots": {
+        "station": "City Hall",
+        "platform": "3",
+        "keyword": "3번 플랫폼",
+        "gloss": "3 號月台"
+      },
+      "learning_role": "listen_only",
+      "surface": "시청역에서 내려서 3번 플랫폼으로 가세요.",
+      "speak": "시청역에서 내려서 삼 번 플랫폼으로 가세요.",
+      "translation": "請在市廳站下車，去 3 號月台。",
+      "friend": {
+        "hint": "這是一個兩步指示：先下車，再去 3 號月台。"
+      },
+      "inline_explain": {
+        "pattern_id": "ko.a2.transfer.sequence.seo.v1",
+        "title": "-서 = 然後",
+        "explain": "내려서 가세요 可以把兩個簡單動作接起來。",
+        "items": [
+          {
+            "surface": "내려서",
+            "translation": "下車後",
+            "speak": "내려서"
+          },
+          {
+            "surface": "3번 플랫폼으로",
+            "translation": "往 3 號月台",
+            "speak": "삼 번 플랫폼으로"
+          }
+        ]
+      },
+      "reply_set": {
+        "correct": "r2a",
+        "choices": [
+          {
+            "id": "r2a",
+            "surface": "시청역에서 내려서 3번 플랫폼으로 가면 돼요?",
+            "translation": "在市廳站下車後去 3 號月台就可以嗎？",
+            "speak": "시청역에서 내려서 삼 번 플랫폼으로 가면 돼요?",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r2b",
+            "surface": "시청역에서 커피를 마시면 돼요?",
+            "translation": "在市廳站喝咖啡就可以嗎？",
+            "speak": "시청역에서 커피를 마시면 돼요?",
+            "contrast_type": "wrong_action_cafe",
+            "feedback": "직원은 커피가 아니라 3번 플랫폼으로 가라고 했어요."
+          },
+          {
+            "id": "r2c",
+            "surface": "3번 방으로 가면 돼요?",
+            "translation": "去 3 號房就可以嗎？",
+            "speak": "삼 번 방으로 가면 돼요?",
+            "contrast_type": "wrong_location_room",
+            "feedback": "방이 아니라 플랫폼이에요."
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t3",
+      "speaker": "npc",
+      "act": "platform_detail",
+      "act_slots": {
+        "train": "airport train",
+        "keyword": "공항행",
+        "gloss": "往機場"
+      },
+      "learning_role": "listen_only",
+      "surface": "3번 플랫폼에서 공항행 열차를 타시면 돼요.",
+      "speak": "삼 번 플랫폼에서 공항행 열차를 타시면 돼요.",
+      "translation": "在 3 號月台搭往機場的列車就可以了。",
+      "friend": {
+        "hint": "確認平台和方向，避免搭錯。"
+      },
+      "reply_set": {
+        "correct": "r3a",
+        "choices": [
+          {
+            "id": "r3a",
+            "surface": "3번 플랫폼에서 공항행 열차를 타면 되죠?",
+            "translation": "在 3 號月台搭往機場的列車，對吧？",
+            "speak": "삼 번 플랫폼에서 공항행 열차를 타면 되죠?",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r3b",
+            "surface": "공항행 열차가 어제 왔죠?",
+            "translation": "往機場的列車昨天來了吧？",
+            "speak": "공항행 열차가 어제 왔죠?",
+            "contrast_type": "wrong_time_past",
+            "feedback": "現在要確認要搭的列車，不是昨天的事。"
+          },
+          {
+            "id": "r3c",
+            "surface": "응급 상황이면 어디로 가요?",
+            "translation": "緊急狀況要去哪裡？",
+            "speak": "응급 상황이면 어디로 가요?",
+            "contrast_type": "forbidden_emergency_reroute",
+            "feedback": "緊急狀況超出這個 A2 轉乘練習。"
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t4",
+      "speaker": "npc",
+      "act": "route_confirmation",
+      "act_slots": {
+        "route": "City Hall then platform 3"
+      },
+      "learning_role": "listen_only",
+      "surface": "네, 시청역에서 갈아타시면 됩니다.",
+      "speak": "네, 시청역에서 갈아타시면 됩니다.",
+      "translation": "對，在市廳站轉乘即可。",
+      "friend": {
+        "hint": "路線確認了，簡單道謝。"
+      },
+      "reply_set": {
+        "correct": "r4a",
+        "choices": [
+          {
+            "id": "r4a",
+            "surface": "감사합니다. 시청역에서 갈아탈게요.",
+            "translation": "謝謝。我會在市廳站轉乘。",
+            "speak": "감사합니다. 시청역에서 갈아탈게요."
+          },
+          {
+            "id": "r4b",
+            "surface": "표 시간을 바꿀게요.",
+            "translation": "我要改票的時間。",
+            "speak": "표 시간을 바꿀게요.",
+            "contrast_type": "wrong_scenario_ticket_change",
+            "feedback": "這是在轉乘確認，不是在改票。"
+          },
+          {
+            "id": "r4c",
+            "surface": "공항에서 신고할게요.",
+            "translation": "我會在機場報案。",
+            "speak": "공항에서 신고할게요.",
+            "contrast_type": "forbidden_police_domain",
+            "feedback": "報案不是這個低風險轉乘任務的一部分。"
+          }
+        ]
+      }
+    }
+  ],
+  "choice_sets": [
+    "t1.reply_set",
+    "t2.reply_set",
+    "t3.reply_set",
+    "t4.reply_set"
+  ],
+  "feedback": "Distractors test wrong action, wrong location word, wrong time, and out-of-scope emergency/police domains.",
+  "tts_segments": [
+    "어디까지 가세요?",
+    "공항에 가는데 어디서 갈아타요?",
+    "시청역에서 내려서 삼 번 플랫폼으로 가세요.",
+    "삼 번 플랫폼에서 공항행 열차를 타면 되죠?"
+  ],
+  "formula_moments": [
+    {
+      "after_turn": "t2",
+      "pattern_id": "ko.a2.transfer.sequence.seo.v1"
+    }
+  ],
+  "runtime_notes": "Fresh KO A2 transport candidate. Requires full-walk runtime gate before final closeout.",
+  "notes": {
+    "authoring_policy": "Fresh-authored from A2 transport neutral brief. No KO legacy lines copied.",
+    "a2_boundary": "Uses platform and short two-step transfer confirmation; avoids complex rerouting and emergency content."
+  }
+}

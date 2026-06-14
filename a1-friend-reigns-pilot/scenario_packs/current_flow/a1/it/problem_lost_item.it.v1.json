@@ -1,0 +1,230 @@
+{
+  "schema_version": "scenario_pack.v1",
+  "scenario_id": "problem_lost_item",
+  "brief_id": "ml5_a1_020_problem_lost_item",
+  "source_neutral_brief": "release-aggregator/docs/tasks/A1_MULTILINGUAL_KO_B1_PARALLEL_ORCHESTRATION/work_products/ml0/ML5_NEUTRAL_ADAPTATION_BRIEFS_20260614.md#brief-ml5-a1-020-say-a-small-item-is-lost",
+  "blueprint_ledger": "release-aggregator/docs/tasks/A1_MULTILINGUAL_KO_B1_PARALLEL_ORCHESTRATION/work_products/ml0/ML5_BLUEPRINT_LEDGER_20260614.md",
+  "repo": "content-it",
+  "staging_path": "content/core/content_assets/scenario_packs/current_flow/problem_lost_item.it.v1.json",
+  "title": "Dire che hai perso un oggetto",
+  "setting_label": "Banco informazioni",
+  "wrap_title": "Oggetto perso segnalato",
+  "wrap_friend": "Hai detto cosa hai perso, dove forse l'hai perso, e dove chiedere.",
+  "language": "it",
+  "ui_language": "zh_tw",
+  "source_status": "candidate_runtime_verified",
+  "review_state": "draft",
+  "review_status_framework_state": "candidate_runtime_verified",
+  "native_review_state": "native_pending",
+  "production_mode_default": {
+    "required": [
+      "choice"
+    ],
+    "optional_visible": [
+      "speaking"
+    ],
+    "optional_hidden": [
+      "typing"
+    ]
+  },
+  "support_text": "你在服務櫃台。說一個小物品不見了，回答可能在哪裡不見，聽懂下一步去哪裡問，最後道謝。",
+  "roles": {
+    "npc": {
+      "label": "Staff"
+    },
+    "learner": {
+      "label": "Cliente"
+    }
+  },
+  "turns": [
+    {
+      "turn_id": "t1",
+      "speaker": "npc",
+      "act": "service_offer",
+      "act_slots": {
+        "topic": "help offer",
+        "keyword": "aiuto",
+        "gloss": "help"
+      },
+      "learning_role": "listen_only",
+      "surface": "Buongiorno, mi dica.",
+      "speak": "Buongiorno, mi dica.",
+      "translation": "您好，請說。",
+      "friend": "說小物品不見了，可以用 Ho perso...。",
+      "reply_set": {
+        "correct": "c1",
+        "choices": [
+          {
+            "id": "c1",
+            "surface": "Ho perso il mio cappello.",
+            "translation": "我的帽子不見了。",
+            "speak": "Ho perso il mio cappello.",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "c2",
+            "surface": "Quanto costa?",
+            "translation": "多少錢？",
+            "speak": "Quanto costa?",
+            "contrast_type": "price_question_wrong_goal",
+            "feedback": "這是在問價格，不是在說遺失物品。"
+          },
+          {
+            "id": "c3",
+            "surface": "Vorrei un caffè.",
+            "translation": "我想要一杯咖啡。",
+            "speak": "Vorrei un caffè.",
+            "contrast_type": "food_order_wrong_goal",
+            "feedback": "這是在點餐，不是在尋找遺失物。"
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t2",
+      "speaker": "npc",
+      "act": "lost_location_question",
+      "act_slots": {
+        "topic": "lost location",
+        "keyword": "dove",
+        "gloss": "where"
+      },
+      "learning_role": "listen_only",
+      "surface": "Dove l'ha perso?",
+      "speak": "Dove l'ha perso?",
+      "translation": "您在哪裡弄丟的？",
+      "friend": "回答簡單地點即可，不需要解釋細節。",
+      "reply_set": {
+        "correct": "c1",
+        "choices": [
+          {
+            "id": "c1",
+            "surface": "Forse al bar.",
+            "translation": "可能在咖啡吧。",
+            "speak": "Forse al bar.",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "c2",
+            "surface": "Alle tre.",
+            "translation": "三點。",
+            "speak": "Alle tre.",
+            "contrast_type": "time_answer_wrong_slot",
+            "feedback": "對方問地點，不是問時間。"
+          },
+          {
+            "id": "c3",
+            "surface": "No, grazie.",
+            "translation": "不用，謝謝。",
+            "speak": "No, grazie.",
+            "contrast_type": "refusal_wrong_answer",
+            "feedback": "這是在拒絕，沒有回答可能遺失的地點。"
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t3",
+      "speaker": "npc",
+      "act": "next_desk_location",
+      "act_slots": {
+        "topic": "next step",
+        "keyword": "informazioni",
+        "gloss": "information"
+      },
+      "learning_role": "listen_only",
+      "surface": "Chieda al banco informazioni, a sinistra.",
+      "speak": "Chieda al banco informazioni, a sinistra.",
+      "translation": "請到左邊的服務台問問。",
+      "friend": "聽到下一步後，確認位置。",
+      "inline_explain": "banco informazioni = 服務台。",
+      "reply_set": {
+        "correct": "c1",
+        "choices": [
+          {
+            "id": "c1",
+            "surface": "Al banco informazioni, a sinistra?",
+            "translation": "左邊的服務台嗎？",
+            "speak": "Al banco informazioni, a sinistra?",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "c2",
+            "surface": "Ho perso il mio cappello.",
+            "translation": "我的帽子不見了。",
+            "speak": "Ho perso il mio cappello.",
+            "contrast_type": "repeated_lost_statement",
+            "feedback": "已經說過物品不見了。現在要確認去哪裡問。"
+          },
+          {
+            "id": "c3",
+            "surface": "Devo chiamare la polizia?",
+            "translation": "我需要報警嗎？",
+            "speak": "Devo chiamare la polizia?",
+            "contrast_type": "police_report_out_of_scope",
+            "feedback": "本場景不處理報案，只練低風險失物詢問。"
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t4",
+      "speaker": "npc",
+      "act": "next_step_confirmed",
+      "act_slots": {
+        "topic": "confirmation",
+        "keyword": "sì",
+        "gloss": "yes"
+      },
+      "learning_role": "listen_only",
+      "surface": "Sì, chieda lì.",
+      "speak": "Sì, chieda lì.",
+      "translation": "對，請在那裡問。",
+      "friend": "最後用 grazie 收尾。",
+      "reply_set": {
+        "correct": "c1",
+        "choices": [
+          {
+            "id": "c1",
+            "surface": "Va bene, grazie.",
+            "translation": "好的，謝謝。",
+            "speak": "Va bene, grazie."
+          },
+          {
+            "id": "c2",
+            "surface": "Qualcuno l'ha rubato.",
+            "translation": "有人偷了它。",
+            "speak": "Qualcuno l'ha rubato.",
+            "contrast_type": "theft_accusation_out_of_scope",
+            "feedback": "不要把低風險失物場景變成偷竊指控。"
+          },
+          {
+            "id": "c3",
+            "surface": "Mi deve pagare.",
+            "translation": "您必須賠我。",
+            "speak": "Mi deve pagare.",
+            "contrast_type": "compensation_out_of_scope",
+            "feedback": "賠償或責任爭議不在本 A1 場景範圍。"
+          }
+        ]
+      },
+      "closing": true
+    }
+  ],
+  "formula_moments": [
+    {
+      "after_turn": "t1",
+      "pattern_id": "it.problem.ho_perso"
+    },
+    {
+      "after_turn": "t3",
+      "pattern_id": "it.service.banco_informazioni"
+    }
+  ],
+  "notes": {
+    "authoring_source": "Authored from ML-5 neutral brief ml5_a1_020_problem_lost_item; KO and other target-language packs were not used as translation sources.",
+    "review_policy": "AI-authored candidate only; keep review_state=draft, review_status_framework_state=candidate_needs_review, native_review_state=native_pending until tracked review evidence exists.",
+    "canonical_policy": "Staging current-flow candidate only. Do not add to manifests, production exports, schema, runtime, or frontend in this authoring lane.",
+    "native_risk_note": "Native review should confirm whether 'banco informazioni' is the most natural low-stakes venue term for the selected setting."
+  }
+}

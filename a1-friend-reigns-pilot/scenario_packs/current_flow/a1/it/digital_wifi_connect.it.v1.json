@@ -1,0 +1,230 @@
+{
+  "schema_version": "scenario_pack.v1",
+  "scenario_id": "digital_wifi_connect",
+  "brief_id": "ml4_a1_017_digital_wifi_connect",
+  "source_neutral_brief": "release-aggregator/docs/tasks/A1_MULTILINGUAL_KO_B1_PARALLEL_ORCHESTRATION/work_products/ml0/ML4_NEUTRAL_ADAPTATION_BRIEFS_20260614.md#brief-ml4-a1-017-ask-for-wi-fi-and-say-it-will-not-connect",
+  "blueprint_ledger": "release-aggregator/docs/tasks/A1_MULTILINGUAL_KO_B1_PARALLEL_ORCHESTRATION/work_products/ml0/ML4_BLUEPRINT_LEDGER_20260614.md",
+  "repo": "content-it",
+  "staging_path": "content/core/content_assets/scenario_packs/current_flow/digital_wifi_connect.it.v1.json",
+  "title": "Chiedere la password del Wi-Fi",
+  "setting_label": "Banco del bar",
+  "wrap_title": "Wi-Fi chiesto",
+  "wrap_friend": "Hai chiesto la password, hai provato, e hai detto in modo semplice che non si connette.",
+  "language": "it",
+  "ui_language": "zh_tw",
+  "source_status": "candidate_runtime_verified",
+  "review_state": "draft",
+  "review_status_framework_state": "candidate_runtime_verified",
+  "native_review_state": "native_pending",
+  "production_mode_default": {
+    "required": [
+      "choice"
+    ],
+    "optional_visible": [
+      "speaking"
+    ],
+    "optional_hidden": [
+      "typing"
+    ]
+  },
+  "support_text": "你在咖啡吧或飯店大廳。詢問 Wi-Fi 密碼，試著連線，並說手機連不上。",
+  "roles": {
+    "npc": {
+      "label": "Staff"
+    },
+    "learner": {
+      "label": "Cliente"
+    }
+  },
+  "turns": [
+    {
+      "turn_id": "t1",
+      "speaker": "npc",
+      "act": "service_offer",
+      "act_slots": {
+        "topic": "help offer",
+        "keyword": "aiuto",
+        "gloss": "help"
+      },
+      "learning_role": "listen_only",
+      "surface": "Ciao, dimmi pure.",
+      "speak": "Ciao, dimmi pure.",
+      "translation": "你好，請說。",
+      "friend": "在輕鬆服務情境，可以直接問 Wi-Fi 密碼。",
+      "reply_set": {
+        "correct": "c1",
+        "choices": [
+          {
+            "id": "c1",
+            "surface": "Qual è la password del Wi-Fi?",
+            "translation": "Wi-Fi 密碼是什麼？",
+            "speak": "Qual è la password del Wi-Fi?",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "c2",
+            "surface": "Il conto, per favore.",
+            "translation": "請結帳。",
+            "speak": "Il conto, per favore.",
+            "contrast_type": "bill_request_wrong_goal",
+            "feedback": "這是在結帳，不是在問 Wi-Fi。"
+          },
+          {
+            "id": "c3",
+            "surface": "Un caffè, per favore.",
+            "translation": "一杯咖啡，謝謝。",
+            "speak": "Un caffè, per favore.",
+            "contrast_type": "food_order_wrong_goal",
+            "feedback": "這是在點餐。現在目標是取得 Wi-Fi 密碼。"
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t2",
+      "speaker": "npc",
+      "act": "password_given",
+      "act_slots": {
+        "topic": "password",
+        "keyword": "password",
+        "gloss": "password"
+      },
+      "learning_role": "listen_only",
+      "surface": "Certo. La password è casa2026.",
+      "speak": "Certo. La password è casa duemilaventisei.",
+      "translation": "可以。密碼是 casa2026。",
+      "friend": "聽到密碼後，說你試一下。",
+      "reply_set": {
+        "correct": "c1",
+        "choices": [
+          {
+            "id": "c1",
+            "surface": "Grazie, provo subito.",
+            "translation": "謝謝，我馬上試試。",
+            "speak": "Grazie, provo subito.",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "c2",
+            "surface": "Qual è la password del Wi-Fi?",
+            "translation": "Wi-Fi 密碼是什麼？",
+            "speak": "Qual è la password del Wi-Fi?",
+            "contrast_type": "repeated_prior_question",
+            "feedback": "對方已經給密碼了。現在要表示你會試試看。"
+          },
+          {
+            "id": "c3",
+            "surface": "Dov'è il bagno?",
+            "translation": "洗手間在哪裡？",
+            "speak": "Dov'è il bagno?",
+            "contrast_type": "directions_request_wrong_goal",
+            "feedback": "這是在問洗手間，偏離 Wi-Fi 連線流程。"
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t3",
+      "speaker": "npc",
+      "act": "connection_check",
+      "act_slots": {
+        "topic": "connection status",
+        "keyword": "funziona",
+        "gloss": "works"
+      },
+      "learning_role": "listen_only",
+      "surface": "Funziona?",
+      "speak": "Funziona?",
+      "translation": "可以用嗎？",
+      "friend": "連不上時，用 Non si connette 很簡單。",
+      "inline_explain": "Non si connette = 連不上。",
+      "reply_set": {
+        "correct": "c1",
+        "choices": [
+          {
+            "id": "c1",
+            "surface": "No, non si connette.",
+            "translation": "不，連不上。",
+            "speak": "No, non si connette.",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "c2",
+            "surface": "Sì, grazie.",
+            "translation": "可以，謝謝。",
+            "speak": "Sì, grazie.",
+            "contrast_type": "false_confirmation",
+            "feedback": "如果實際連不上，不能回答可以。要說明連線失敗。"
+          },
+          {
+            "id": "c3",
+            "surface": "Posso pagare?",
+            "translation": "我可以付款嗎？",
+            "speak": "Posso pagare?",
+            "contrast_type": "payment_request_wrong_goal",
+            "feedback": "這是付款問題，不是回報 Wi-Fi 連不上。"
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t4",
+      "speaker": "npc",
+      "act": "simple_retry_instruction",
+      "act_slots": {
+        "topic": "retry",
+        "keyword": "riprovi",
+        "gloss": "try again"
+      },
+      "learning_role": "listen_only",
+      "surface": "Capisco. Riprovi tra un minuto, per favore.",
+      "speak": "Capisco. Riprovi tra un minuto, per favore.",
+      "translation": "我了解。請一分鐘後再試一次。",
+      "friend": "得到簡單指示後，用 grazie 收尾。",
+      "reply_set": {
+        "correct": "c1",
+        "choices": [
+          {
+            "id": "c1",
+            "surface": "Va bene, grazie.",
+            "translation": "好的，謝謝。",
+            "speak": "Va bene, grazie."
+          },
+          {
+            "id": "c2",
+            "surface": "Il router è sicuro?",
+            "translation": "路由器安全嗎？",
+            "speak": "Il router è sicuro?",
+            "contrast_type": "technical_security_out_of_scope",
+            "feedback": "這進入技術與安全設定；本場景只練簡單連不上和道謝。"
+          },
+          {
+            "id": "c3",
+            "surface": "Vorrei fare il check-out.",
+            "translation": "我想退房。",
+            "speak": "Vorrei fare il check-out.",
+            "contrast_type": "hotel_checkout_wrong_scenario",
+            "feedback": "這是飯店退房句，不是 Wi-Fi 協助結尾。"
+          }
+        ]
+      },
+      "closing": true
+    }
+  ],
+  "formula_moments": [
+    {
+      "after_turn": "t1",
+      "pattern_id": "it.wifi.qual_e_la_password"
+    },
+    {
+      "after_turn": "t3",
+      "pattern_id": "it.digital.non_si_connette"
+    }
+  ],
+  "notes": {
+    "authoring_source": "Authored from ML-4 neutral brief ml4_a1_017_digital_wifi_connect; KO and other target-language packs were not used as translation sources.",
+    "review_policy": "AI-authored candidate only; keep review_state=draft, review_status_framework_state=candidate_needs_review, native_review_state=native_pending until tracked review evidence exists.",
+    "canonical_policy": "Staging current-flow candidate only. Do not add to manifests, production exports, schema, runtime, or frontend in this authoring lane.",
+    "native_risk_note": "Native review should confirm whether Ciao/dimmi pure is suitable for the selected cafe or lobby setting, or if Buongiorno is preferable."
+  }
+}

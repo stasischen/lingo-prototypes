@@ -1,0 +1,263 @@
+{
+  "schema_version": "scenario_pack.v1",
+  "scenario_id": "a2_explain_simple_delay_reason",
+  "title": "Explain a Small Delay",
+  "setting_label": "On the way to meet a friend",
+  "wrap_title": "Delay Reason",
+  "wrap_friend": "你剛剛用簡單英文說明會晚一點到，並給出一個日常理由。",
+  "language": "en",
+  "ui_language": "zh_tw",
+  "cefr_level": "A2",
+  "source_status": "candidate_runtime_verified",
+  "review_state": "ai_reviewed",
+  "review_status_framework_state": "candidate_runtime_verified",
+  "native_review_state": "native_pending",
+  "scenario": "You are running a little late and need to explain the reason.",
+  "learner_goal": "Apologize, give one simple reason, and estimate the delay.",
+  "target_functions": [
+    "apology",
+    "simple_reason",
+    "delay_estimate"
+  ],
+  "register_notes": "Friendly everyday English. Low-stakes delay only; no emergency, workplace, medical, or formal excuse.",
+  "production_mode_default": {
+    "required": [
+      "choice"
+    ],
+    "optional_visible": [
+      "speaking"
+    ],
+    "optional_hidden": [
+      "typing"
+    ]
+  },
+  "support_text": "Your friend asks where you are. Say you are sorry, explain the simple reason, and give a short time estimate.",
+  "roles": {
+    "npc": {
+      "label": "Friend"
+    },
+    "learner": {
+      "label": "You"
+    }
+  },
+  "turns": [
+    {
+      "turn_id": "t1",
+      "speaker": "npc",
+      "act": "location_check",
+      "act_slots": {
+        "topic": "where are you",
+        "keyword": "close",
+        "gloss": "快到了嗎"
+      },
+      "learning_role": "listen_only",
+      "surface": "Where are you? Are you close?",
+      "speak": "Where are you? Are you close?",
+      "translation": "你在哪裡？快到了嗎？",
+      "friend": {
+        "hint": "Your friend is checking where you are. Start with sorry and say you will be a little late."
+      },
+      "reply_set": {
+        "correct": "r1a",
+        "choices": [
+          {
+            "id": "r1a",
+            "surface": "Sorry, I am going to be a little late.",
+            "translation": "不好意思，我會晚一點。",
+            "speak": "Sorry, I am going to be a little late.",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r1b",
+            "surface": "Yes, I arrived yesterday.",
+            "translation": "對，我昨天到了。",
+            "speak": "Yes, I arrived yesterday.",
+            "contrast_type": "wrong_time_past",
+            "feedback": "Your friend asks about now, not yesterday."
+          },
+          {
+            "id": "r1c",
+            "surface": "Can you recommend a menu item?",
+            "translation": "你可以推薦一道菜嗎？",
+            "speak": "Can you recommend a menu item?",
+            "contrast_type": "wrong_scenario_restaurant",
+            "feedback": "This is restaurant language. Here you need to explain that you are late."
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t2",
+      "speaker": "npc",
+      "act": "reason_request",
+      "act_slots": {
+        "topic": "why late",
+        "keyword": "why",
+        "gloss": "為什麼"
+      },
+      "learning_role": "listen_only",
+      "surface": "Why? What happened?",
+      "speak": "Why? What happened?",
+      "translation": "為什麼？怎麼了？",
+      "friend": {
+        "hint": "Give one simple everyday reason. Keep it short."
+      },
+      "inline_explain": {
+        "pattern_id": "en.a2.reason.delay.because.v1",
+        "title": "because + reason",
+        "explain": "Use because to give a simple reason.",
+        "items": [
+          {
+            "surface": "because the bus is late",
+            "translation": "因為公車晚了",
+            "speak": "because the bus is late"
+          },
+          {
+            "surface": "because there is traffic",
+            "translation": "因為塞車",
+            "speak": "because there is traffic"
+          }
+        ]
+      },
+      "reply_set": {
+        "correct": "r2a",
+        "choices": [
+          {
+            "id": "r2a",
+            "surface": "The bus is late.",
+            "translation": "公車晚了。",
+            "speak": "The bus is late.",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r2b",
+            "surface": "I like the bus.",
+            "translation": "我喜歡公車。",
+            "speak": "I like the bus.",
+            "contrast_type": "wrong_reason_semantics",
+            "feedback": "This does not explain why you are late."
+          },
+          {
+            "id": "r2c",
+            "surface": "Where is the bus stop?",
+            "translation": "公車站在哪裡？",
+            "speak": "Where is the bus stop?",
+            "contrast_type": "wrong_function_location_question",
+            "feedback": "Your friend asks for the reason, not for a location."
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t3",
+      "speaker": "npc",
+      "act": "delay_estimate_request",
+      "act_slots": {
+        "topic": "how late",
+        "keyword": "how late",
+        "gloss": "會晚多久"
+      },
+      "learning_role": "listen_only",
+      "surface": "How late will you be?",
+      "speak": "How late will you be?",
+      "translation": "你會晚多久？",
+      "friend": {
+        "hint": "Use about plus minutes for a simple estimate."
+      },
+      "reply_set": {
+        "correct": "r3a",
+        "choices": [
+          {
+            "id": "r3a",
+            "surface": "I will be about ten minutes late.",
+            "translation": "我會晚大約十分鐘。",
+            "speak": "I will be about ten minutes late.",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r3b",
+            "surface": "Bus number ten is good.",
+            "translation": "十號公車很好。",
+            "speak": "Bus number ten is good.",
+            "contrast_type": "wrong_entity_bus_number",
+            "feedback": "Ten here should be minutes, not a bus number."
+          },
+          {
+            "id": "r3c",
+            "surface": "I am not late.",
+            "translation": "我沒有遲到。",
+            "speak": "I am not late.",
+            "contrast_type": "contradicts_context",
+            "feedback": "You already said you will be late. Now estimate the time."
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t4",
+      "speaker": "npc",
+      "act": "acceptance",
+      "act_slots": {
+        "topic": "wait"
+      },
+      "learning_role": "listen_only",
+      "surface": "Okay. Take your time.",
+      "speak": "Okay. Take your time.",
+      "translation": "好。慢慢來。",
+      "friend": {
+        "hint": "Your friend accepts the delay. Say thanks and close naturally."
+      },
+      "reply_set": {
+        "correct": "r4a",
+        "choices": [
+          {
+            "id": "r4a",
+            "surface": "Thanks. I will be there soon.",
+            "translation": "謝謝。我很快就到。",
+            "speak": "Thanks. I will be there soon."
+          },
+          {
+            "id": "r4b",
+            "surface": "I have a reservation.",
+            "translation": "我有預約。",
+            "speak": "I have a reservation.",
+            "contrast_type": "wrong_scenario_reservation",
+            "feedback": "This sounds like a hotel or restaurant situation, not a delay message."
+          },
+          {
+            "id": "r4c",
+            "surface": "Can I pay now?",
+            "translation": "我現在可以付款嗎？",
+            "speak": "Can I pay now?",
+            "contrast_type": "wrong_scenario_payment",
+            "feedback": "This is a payment sentence. A simple thanks is better here."
+          }
+        ]
+      }
+    }
+  ],
+  "choice_sets": [
+    "t1.reply_set",
+    "t2.reply_set",
+    "t3.reply_set",
+    "t4.reply_set"
+  ],
+  "feedback": "Distractors separate reason, time estimate, and unrelated scenario language.",
+  "tts_segments": [
+    "Sorry, I am going to be a little late.",
+    "The bus is late.",
+    "I will be about ten minutes late.",
+    "Thanks. I will be there soon."
+  ],
+  "formula_moments": [
+    {
+      "after_turn": "t2",
+      "pattern_id": "en.a2.reason.delay.because.v1"
+    }
+  ],
+  "runtime_notes": "Fresh EN A2 candidate. Structural checks and two AI semantic review passes completed on 2026-06-14 before metadata promotion.",
+  "notes": {
+    "authoring_policy": "Fresh-authored from the neutral A2 brief. KO was used only as schema-shape reference.",
+    "a2_boundary": "Low-stakes delay with one reason and one estimate; avoids emergency, health, workplace, or formal excuse content."
+  }
+}

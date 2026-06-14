@@ -1,0 +1,242 @@
+{
+  "schema_version": "scenario_pack.v1",
+  "scenario_id": "a2_ask_transfer_platform",
+  "title": "詢問轉乘月台",
+  "setting_label": "車站服務台",
+  "wrap_title": "轉乘月台確認",
+  "wrap_friend": "你剛剛完成了一段 A2 交通服務情境，確認重點並做出簡單回應。",
+  "language": "zh",
+  "ui_language": "zh_tw",
+  "cefr_level": "A2",
+  "source_status": "candidate_runtime_verified",
+  "review_state": "ai_reviewed",
+  "review_status_framework_state": "candidate_runtime_verified",
+  "native_review_state": "native_pending",
+  "scenario": "A2 transport scenario: a2_ask_transfer_platform.",
+  "learner_goal": "Ask where to transfer and confirm a short two-step direction.",
+  "target_functions": [
+    "transfer_question",
+    "platform_confirmation",
+    "two_step_direction"
+  ],
+  "register_notes": "Taiwan-leaning Traditional Mandarin public transport/service language; no refund, legal, medical, police, or identity-sensitive handling.",
+  "production_mode_default": {
+    "required": [
+      "choice"
+    ],
+    "optional_visible": [
+      "speaking"
+    ],
+    "optional_hidden": [
+      "typing"
+    ]
+  },
+  "support_text": "詢問在哪裡轉乘，聽懂站名和月台，並確認簡短路線。",
+  "roles": {
+    "npc": {
+      "label": "站務人員"
+    },
+    "learner": {
+      "label": "你"
+    }
+  },
+  "turns": [
+    {
+      "turn_id": "t1",
+      "speaker": "npc",
+      "act": "destination_prompt",
+      "act_slots": {
+        "topic": "destination_prompt"
+      },
+      "learning_role": "listen_only",
+      "surface": "您要去哪裡？",
+      "speak": "您要去哪裡？",
+      "translation": "您要去哪裡？",
+      "friend": {
+        "hint": "詢問轉乘"
+      },
+      "reply_set": {
+        "correct": "r1a",
+        "choices": [
+          {
+            "id": "r1a",
+            "surface": "我要去機場，請問在哪裡轉乘？",
+            "translation": "詢問轉乘",
+            "speak": "我要去機場，請問在哪裡轉乘？",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r1b",
+            "surface": "我昨天去了機場。",
+            "translation": "錯誤時間",
+            "speak": "我昨天去了機場。",
+            "learning_role": "wrong_time_or_detail",
+            "feedback": "干擾選項測試錯誤時間、錯誤情境，或超出 A2 範圍的服務升級。"
+          },
+          {
+            "id": "r1c",
+            "surface": "我想寄放行李。",
+            "translation": "錯誤情境",
+            "speak": "我想寄放行李。",
+            "learning_role": "wrong_scenario_or_escalation",
+            "feedback": "干擾選項測試錯誤時間、錯誤情境，或超出 A2 範圍的服務升級。"
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t2",
+      "speaker": "npc",
+      "act": "transfer_instruction",
+      "act_slots": {
+        "topic": "transfer_instruction"
+      },
+      "learning_role": "listen_only",
+      "surface": "請在 Central 下車，然後到三號月台。",
+      "speak": "請在 Central 下車，然後到三號月台。",
+      "translation": "請在 Central 下車，然後到 3 號月台。",
+      "friend": {
+        "hint": "確認兩步指示"
+      },
+      "reply_set": {
+        "correct": "r2a",
+        "choices": [
+          {
+            "id": "r2a",
+            "surface": "在 Central 下車，然後到三號月台，對嗎？",
+            "translation": "確認路線",
+            "speak": "在 Central 下車，然後到三號月台，對嗎？",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r2b",
+            "surface": "在 Central 喝咖啡，對嗎？",
+            "translation": "錯誤動作",
+            "speak": "在 Central 喝咖啡，對嗎？",
+            "learning_role": "wrong_time_or_detail",
+            "feedback": "干擾選項測試錯誤時間、錯誤情境，或超出 A2 範圍的服務升級。"
+          },
+          {
+            "id": "r2c",
+            "surface": "去三號房，對嗎？",
+            "translation": "錯誤地點",
+            "speak": "去三號房，對嗎？",
+            "learning_role": "wrong_scenario_or_escalation",
+            "feedback": "干擾選項測試錯誤時間、錯誤情境，或超出 A2 範圍的服務升級。"
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t3",
+      "speaker": "npc",
+      "act": "platform_detail",
+      "act_slots": {
+        "topic": "platform_detail"
+      },
+      "learning_role": "listen_only",
+      "surface": "在三號月台搭往機場的車。",
+      "speak": "在三號月台搭往機場的車。",
+      "translation": "在 3 號月台搭往機場的車。",
+      "friend": {
+        "hint": "確認方向"
+      },
+      "reply_set": {
+        "correct": "r3a",
+        "choices": [
+          {
+            "id": "r3a",
+            "surface": "我在三號月台搭往機場的車，對嗎？",
+            "translation": "確認月台與方向",
+            "speak": "我在三號月台搭往機場的車，對嗎？",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r3b",
+            "surface": "往機場的車昨天來了。",
+            "translation": "錯誤時間",
+            "speak": "往機場的車昨天來了。",
+            "learning_role": "wrong_time_or_detail",
+            "feedback": "干擾選項測試錯誤時間、錯誤情境，或超出 A2 範圍的服務升級。"
+          },
+          {
+            "id": "r3c",
+            "surface": "緊急時要去哪裡？",
+            "translation": "超出範圍",
+            "speak": "緊急時要去哪裡？",
+            "learning_role": "wrong_scenario_or_escalation",
+            "feedback": "干擾選項測試錯誤時間、錯誤情境，或超出 A2 範圍的服務升級。"
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t4",
+      "speaker": "npc",
+      "act": "route_confirmation",
+      "act_slots": {
+        "topic": "route_confirmation"
+      },
+      "learning_role": "listen_only",
+      "surface": "對，請在 Central 轉乘。",
+      "speak": "對，請在 Central 轉乘。",
+      "translation": "對，請在 Central 轉乘。",
+      "friend": {
+        "hint": "收尾"
+      },
+      "reply_set": {
+        "correct": "r4a",
+        "choices": [
+          {
+            "id": "r4a",
+            "surface": "謝謝，我會在 Central 轉乘。",
+            "translation": "禮貌收尾",
+            "speak": "謝謝，我會在 Central 轉乘。",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r4b",
+            "surface": "我要改票時間。",
+            "translation": "錯誤情境",
+            "speak": "我要改票時間。",
+            "learning_role": "wrong_time_or_detail",
+            "feedback": "干擾選項測試錯誤時間、錯誤情境，或超出 A2 範圍的服務升級。"
+          },
+          {
+            "id": "r4c",
+            "surface": "我會在機場報警。",
+            "translation": "超出範圍",
+            "speak": "我會在機場報警。",
+            "learning_role": "wrong_scenario_or_escalation",
+            "feedback": "干擾選項測試錯誤時間、錯誤情境，或超出 A2 範圍的服務升級。"
+          }
+        ]
+      }
+    }
+  ],
+  "choice_sets": [
+    "t1.reply_set",
+    "t2.reply_set",
+    "t3.reply_set",
+    "t4.reply_set"
+  ],
+  "feedback": "干擾選項測試錯誤時間、錯誤情境，或超出 A2 範圍的服務升級。",
+  "tts_segments": [
+    "您要去哪裡？",
+    "請在 Central 下車，然後到三號月台。",
+    "在三號月台搭往機場的車。",
+    "對，請在 Central 轉乘。"
+  ],
+  "formula_moments": [
+    {
+      "after_turn": "t2",
+      "pattern_id": "zh.a2.transport.transfer.v1"
+    }
+  ],
+  "runtime_notes": "ZH A2 transport candidate. Full-walk runtime gate required before final closeout; target-language surfaces and feedback localized on 2026-06-14.",
+  "notes": {
+    "authoring_policy": "Fresh-authored from the neutral A2 transport brief. KO surfaces were used only as scenario blueprint, not as translation source.",
+    "a2_boundary": "Low-risk A2 transport/service task; avoids refund, compensation, emergency, identity-sensitive, legal, medical, banking, immigration, or police handling.",
+    "language_specific_adaptation": "NPC lines, learner targets, distractors, feedback, support text, and translations are adapted for this language; native review remains pending."
+  }
+}

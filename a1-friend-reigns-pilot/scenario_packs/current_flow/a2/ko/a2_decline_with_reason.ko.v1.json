@@ -1,0 +1,253 @@
+{
+  "schema_version": "scenario_pack.v1",
+  "scenario_id": "a2_decline_with_reason",
+  "title": "간단한 이유로 정중히 거절하기",
+  "setting_label": "친구와 메시지",
+  "wrap_title": "부드러운 거절",
+  "wrap_friend": "잘했어요. 짧은 이유를 말하면서도 친구 관계를 부드럽게 유지했어요.",
+  "language": "ko",
+  "ui_language": "zh-Hant",
+  "cefr_level": "A2",
+  "source_status": "candidate_runtime_verified",
+  "review_state": "ai_reviewed",
+  "review_status_framework_state": "candidate_runtime_verified",
+  "native_review_state": "native_pending",
+  "scenario": {
+    "domain": "daily_social_coordination",
+    "review_slice": "daily_social",
+    "interaction": "friend_social_coordination",
+    "source_brief": "A2_DAILY_SOCIAL_NEUTRAL_ADAPTATION_BRIEFS_20260614",
+    "blueprint_source": "language_neutral_adaptation_brief",
+    "ko_pack_role": "mature_scenario_blueprint_not_translation_source_after_gate"
+  },
+  "learner_goal": "친구의 제안을 부드럽게 거절하고, 간단한 이유와 다음 기회를 말해 보세요.",
+  "target_functions": [
+    "friend_invitation_or_response",
+    "simple_reason_or_past_event",
+    "two_step_plan_or_confirmation",
+    "close_with_relationship_maintenance"
+  ],
+  "register_notes": "Korean A2 friend register: soft refusal with 미안하지만/오늘은 어려워요, no blunt 안 돼요, no heavy personal disclosure.",
+  "production_mode_default": {
+    "required": [
+      "choice"
+    ],
+    "optional_visible": [
+      "speaking"
+    ],
+    "optional_hidden": [
+      "typing"
+    ]
+  },
+  "support_text": "친구의 초대를 거절해야 할 때, 짧고 따뜻하게 이유를 말해 보세요.",
+  "roles": {
+    "npc": {
+      "label": "친구"
+    },
+    "learner": {
+      "label": "你"
+    }
+  },
+  "turns": [
+    {
+      "turn_id": "t1",
+      "speaker": "npc",
+      "act": "receive_invite",
+      "act_slots": {
+        "topic": "friend invite",
+        "keyword": "영화",
+        "gloss": "A2 daily/social"
+      },
+      "learning_role": "listen_only",
+      "surface": "오늘 저녁에 영화 볼래요?",
+      "speak": "오늘 저녁에 영화 볼래요?",
+      "translation": "今天晚上要看電影嗎？",
+      "friend": {
+        "hint": "친구가 초대했어요. 부드럽게 거절을 시작하세요."
+      },
+      "reply_set": {
+        "correct": "r1a",
+        "choices": [
+          {
+            "id": "r1a",
+            "surface": "미안하지만 오늘은 어려워요.",
+            "translation": "不好意思，今天不太方便。",
+            "speak": "미안하지만 오늘은 어려워요."
+          },
+          {
+            "id": "r1b",
+            "surface": "아니요, 싫어요.",
+            "translation": "不要，我不喜歡。",
+            "speak": "아니요, 싫어요.",
+            "contrast_type": "too_blunt",
+            "feedback": "친구에게 너무 차갑게 들려요."
+          },
+          {
+            "id": "r1c",
+            "surface": "영수증을 다시 주세요.",
+            "translation": "請再給我收據。",
+            "speak": "영수증을 다시 주세요.",
+            "contrast_type": "wrong_scenario_shop",
+            "feedback": "상점 상황으로 바뀌었어요."
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t2",
+      "speaker": "npc",
+      "act": "ask_reason",
+      "act_slots": {
+        "topic": "simple reason",
+        "keyword": "왜",
+        "gloss": "A2 daily/social"
+      },
+      "learning_role": "listen_only",
+      "surface": "괜찮아요. 무슨 일 있어요?",
+      "speak": "괜찮아요. 무슨 일 있어요?",
+      "translation": "沒關係。有什麼事嗎？",
+      "friend": {
+        "hint": "무거운 설명 말고 간단한 이유를 말하세요."
+      },
+      "reply_set": {
+        "correct": "r2a",
+        "choices": [
+          {
+            "id": "r2a",
+            "surface": "오늘은 일이 조금 있어요.",
+            "translation": "今天有一點事。",
+            "speak": "오늘은 일이 조금 있어요."
+          },
+          {
+            "id": "r2b",
+            "surface": "큰 사고가 있었어요.",
+            "translation": "發生了大事故。",
+            "speak": "큰 사고가 있었어요.",
+            "contrast_type": "too_heavy_or_sensitive",
+            "feedback": "이 A2 과제에는 너무 무겁고 자세한 이유예요."
+          },
+          {
+            "id": "r2c",
+            "surface": "어제 영화가 재미있었어요.",
+            "translation": "昨天的電影很好看。",
+            "speak": "어제 영화가 재미있었어요.",
+            "contrast_type": "wrong_time_or_function",
+            "feedback": "오늘 못 가는 이유가 아니에요."
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t3",
+      "speaker": "npc",
+      "act": "maintain_relation",
+      "act_slots": {
+        "topic": "another time",
+        "keyword": "다음",
+        "gloss": "A2 daily/social"
+      },
+      "learning_role": "listen_only",
+      "surface": "그럼 다음에 갈까요?",
+      "speak": "그럼 다음에 갈까요?",
+      "translation": "那下次去嗎？",
+      "friend": {
+        "hint": "관계를 유지하면서 다음 기회를 제안하세요."
+      },
+      "reply_set": {
+        "correct": "r3a",
+        "choices": [
+          {
+            "id": "r3a",
+            "surface": "네, 다음 주말은 괜찮아요.",
+            "translation": "好，下週末可以。",
+            "speak": "네, 다음 주말은 괜찮아요."
+          },
+          {
+            "id": "r3b",
+            "surface": "아니요, 다시 묻지 마세요.",
+            "translation": "不要，不要再問我。",
+            "speak": "아니요, 다시 묻지 마세요.",
+            "contrast_type": "too_cold",
+            "feedback": "친구 관계를 유지하기 어려운 말이에요."
+          },
+          {
+            "id": "r3c",
+            "surface": "네, 방을 바꿀게요.",
+            "translation": "好，我要換房間。",
+            "speak": "네, 방을 바꿀게요.",
+            "contrast_type": "wrong_scenario_hotel",
+            "feedback": "호텔 상황이 아니에요."
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t4",
+      "speaker": "npc",
+      "act": "close_warmly",
+      "act_slots": {
+        "topic": "close refusal",
+        "keyword": "고마워요",
+        "gloss": "A2 daily/social"
+      },
+      "learning_role": "listen_only",
+      "surface": "좋아요. 그럼 다음 주말에 이야기해요.",
+      "speak": "좋아요. 그럼 다음 주말에 이야기해요.",
+      "translation": "好，那下週末再說。",
+      "friend": {
+        "hint": "따뜻하게 고마움을 전하며 마무리하세요."
+      },
+      "reply_set": {
+        "correct": "r4a",
+        "choices": [
+          {
+            "id": "r4a",
+            "surface": "고마워요. 다음 주말에 봐요.",
+            "translation": "謝謝，下週末見。",
+            "speak": "고마워요. 다음 주말에 봐요."
+          },
+          {
+            "id": "r4b",
+            "surface": "지금 바로 결제할게요.",
+            "translation": "我現在馬上付款。",
+            "speak": "지금 바로 결제할게요.",
+            "contrast_type": "wrong_scenario_payment",
+            "feedback": "결제 상황이 아니에요."
+          },
+          {
+            "id": "r4c",
+            "surface": "그럼 오늘 밤에 꼭 갈게요.",
+            "translation": "那我今晚一定去。",
+            "speak": "그럼 오늘 밤에 꼭 갈게요.",
+            "contrast_type": "contradicts_decline",
+            "feedback": "처음에 오늘은 어렵다고 했어요."
+          }
+        ]
+      }
+    }
+  ],
+  "choice_sets": [
+    "t1.reply_set",
+    "t2.reply_set",
+    "t3.reply_set",
+    "t4.reply_set"
+  ],
+  "feedback": "Distractors test blunt refusal, overly heavy reason, wrong scenario, and contradiction.",
+  "tts_segments": [
+    "미안하지만 오늘은 어려워요.",
+    "오늘은 일이 조금 있어요.",
+    "네, 다음 주말은 괜찮아요.",
+    "고마워요. 다음 주말에 봐요."
+  ],
+  "formula_moments": [
+    {
+      "after_turn": "t1",
+      "pattern_id": "ko.a2.daily.soft_decline.oryeowoyo.v1"
+    }
+  ],
+  "runtime_notes": "Fresh KO A2 daily/social candidate. Requires full-walk runtime before closeout evidence is recorded.",
+  "notes": {
+    "authoring_policy": "Fresh-authored from A2 daily/social neutral adaptation brief. Legacy A2 lines were not copied or paraphrased.",
+    "a2_boundary": "Keeps refusal ordinary and relationship-maintaining; avoids medical, crisis, conflict, or guilt-heavy reasons."
+  }
+}

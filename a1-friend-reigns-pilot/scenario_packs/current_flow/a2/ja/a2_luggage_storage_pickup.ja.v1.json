@@ -1,0 +1,264 @@
+{
+  "schema_version": "scenario_pack.v1",
+  "scenario_id": "a2_luggage_storage_pickup",
+  "title": "荷物を預けて受け取り時間を確認する",
+  "setting_label": "駅の荷物預かり所",
+  "wrap_title": "荷物の受け取り時間",
+  "wrap_friend": "你剛剛用日文寄放行李，確認了取件時間和寄物單。",
+  "language": "ja",
+  "ui_language": "zh_tw",
+  "cefr_level": "A2",
+  "source_status": "candidate_runtime_verified",
+  "review_state": "ai_reviewed",
+  "review_status_framework_state": "candidate_runtime_verified",
+  "native_review_state": "native_pending",
+  "scenario": "A traveler stores luggage and confirms pickup time with a receipt.",
+  "learner_goal": "Ask to store luggage and confirm pickup time/receipt.",
+  "target_functions": [
+    "polite_service_request",
+    "pickup_time",
+    "receipt_confirmation"
+  ],
+  "register_notes": "Polite luggage-counter Japanese. No lost-property claim, compensation, passport, or ID handling.",
+  "production_mode_default": {
+    "required": [
+      "choice"
+    ],
+    "optional_visible": [
+      "speaking"
+    ],
+    "optional_hidden": [
+      "typing"
+    ]
+  },
+  "support_text": "駅で荷物を預けます。いつ受け取れるか、何を見せるかを確認しましょう。",
+  "roles": {
+    "npc": {
+      "label": "スタッフ"
+    },
+    "learner": {
+      "label": "你"
+    }
+  },
+  "turns": [
+    {
+      "turn_id": "t1",
+      "speaker": "npc",
+      "act": "service_opening",
+      "act_slots": {
+        "topic": "luggage storage",
+        "keyword": "荷物",
+        "gloss": "行李"
+      },
+      "learning_role": "listen_only",
+      "surface": "荷物をお預かりしましょうか。",
+      "speak": "荷物をお預かりしましょうか。",
+      "translation": "需要幫您寄放行李嗎？",
+      "friend": {
+        "hint": "このバッグを預けたいと言いましょう。"
+      },
+      "reply_set": {
+        "correct": "r1a",
+        "choices": [
+          {
+            "id": "r1a",
+            "surface": "はい、このバッグを預けたいです。",
+            "translation": "是的，我想寄放這個包包。",
+            "speak": "はい、このバッグを預けたいです。",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r1b",
+            "surface": "昨日このバッグを受け取りました。",
+            "translation": "我昨天領了這個包包。",
+            "speak": "昨日このバッグを受け取りました。",
+            "contrast_type": "wrong_time_past",
+            "feedback": "今は荷物を預ける場面です。昨日の話ではありません。"
+          },
+          {
+            "id": "r1c",
+            "surface": "ホームはどこですか。",
+            "translation": "月台在哪裡？",
+            "speak": "ホームはどこですか。",
+            "contrast_type": "wrong_scenario_platform",
+            "feedback": "ここは荷物預かり所です。ホームを聞く場面ではありません。"
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t2",
+      "speaker": "npc",
+      "act": "pickup_time_info",
+      "act_slots": {
+        "pickup_time": "before 7 p.m.",
+        "keyword": "7時まで",
+        "gloss": "7 點前"
+      },
+      "learning_role": "listen_only",
+      "surface": "今日の夜7時までに受け取りに来てください。",
+      "speak": "今日の夜七時までに受け取りに来てください。",
+      "translation": "請今天晚上 7 點以前來取。",
+      "friend": {
+        "hint": "受け取りの締め切りは夜7時までです。"
+      },
+      "inline_explain": {
+        "pattern_id": "ja.a2.luggage.deadline.madeni.v1",
+        "title": "〜までに = 在...之前",
+        "explain": "7時までに means by/before 7 o'clock.",
+        "items": [
+          {
+            "surface": "7時までに",
+            "translation": "7 點前",
+            "speak": "七時までに"
+          },
+          {
+            "surface": "受け取りに来ます",
+            "translation": "來領取",
+            "speak": "受け取りに来ます"
+          }
+        ]
+      },
+      "reply_set": {
+        "correct": "r2a",
+        "choices": [
+          {
+            "id": "r2a",
+            "surface": "夜7時までに受け取ればいいですね。",
+            "translation": "晚上 7 點前來取就可以，對吧？",
+            "speak": "夜七時までに受け取ればいいですね。",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r2b",
+            "surface": "朝7時に預ければいいですね。",
+            "translation": "早上 7 點寄放就可以，對吧？",
+            "speak": "朝七時に預ければいいですね。",
+            "contrast_type": "wrong_time_pickup",
+            "feedback": "スタッフは夜7時までに受け取りに来てくださいと言いました。"
+          },
+          {
+            "id": "r2c",
+            "surface": "返金はどこでもらえますか。",
+            "translation": "退款在哪裡拿？",
+            "speak": "返金はどこでもらえますか。",
+            "contrast_type": "forbidden_refund_domain",
+            "feedback": "返金はこの荷物預かり練習の内容ではありません。"
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t3",
+      "speaker": "npc",
+      "act": "receipt_instruction",
+      "act_slots": {
+        "receipt": "claim ticket",
+        "keyword": "控え",
+        "gloss": "收據／取件單"
+      },
+      "learning_role": "listen_only",
+      "surface": "受け取るときは、この控えを見せてください。",
+      "speak": "受け取るときは、この控えを見せてください。",
+      "translation": "取件時請出示這張取件單。",
+      "friend": {
+        "hint": "受け取るときに何を見せますか。"
+      },
+      "reply_set": {
+        "correct": "r3a",
+        "choices": [
+          {
+            "id": "r3a",
+            "surface": "はい、受け取るときに控えを見せます。",
+            "translation": "好，取件時我會出示取件單。",
+            "speak": "はい、受け取るときに控えを見せます。",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r3b",
+            "surface": "控えは捨ててもいいですか。",
+            "translation": "取件單可以丟掉嗎？",
+            "speak": "控えは捨ててもいいですか。",
+            "contrast_type": "wrong_instruction",
+            "feedback": "スタッフは控えを見せてくださいと言いました。捨てないほうがいいです。"
+          },
+          {
+            "id": "r3c",
+            "surface": "パスポートを見せます。",
+            "translation": "我會出示護照。",
+            "speak": "パスポートを見せます。",
+            "contrast_type": "forbidden_identity_detail",
+            "feedback": "この場面ではパスポートではなく控えを見せます。"
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t4",
+      "speaker": "npc",
+      "act": "service_close",
+      "act_slots": {
+        "pickup": "before 7 p.m.",
+        "receipt": "claim ticket"
+      },
+      "learning_role": "listen_only",
+      "surface": "はい。7時までにお越しください。",
+      "speak": "はい。七時までにお越しください。",
+      "translation": "好的。請 7 點前過來。",
+      "friend": {
+        "hint": "時間と控えを確認しました。短くお礼を言いましょう。"
+      },
+      "reply_set": {
+        "correct": "r4a",
+        "choices": [
+          {
+            "id": "r4a",
+            "surface": "ありがとうございます。7時までに来ます。",
+            "translation": "謝謝。我會 7 點前來。",
+            "speak": "ありがとうございます。七時までに来ます。"
+          },
+          {
+            "id": "r4b",
+            "surface": "電車が10分遅れます。",
+            "translation": "電車會晚 10 分鐘。",
+            "speak": "電車が十分遅れます。",
+            "contrast_type": "wrong_scenario_delay",
+            "feedback": "これは遅延案内の場面です。今は荷物の受け取り時間を確認しています。"
+          },
+          {
+            "id": "r4c",
+            "surface": "なくした荷物を届けたいです。",
+            "translation": "我想申報遺失行李。",
+            "speak": "なくした荷物を届けたいです。",
+            "contrast_type": "forbidden_lost_property_claim",
+            "feedback": "遺失物の届け出はこの低リスクな預かり・受け取り練習の範囲外です。"
+          }
+        ]
+      }
+    }
+  ],
+  "choice_sets": [
+    "t1.reply_set",
+    "t2.reply_set",
+    "t3.reply_set",
+    "t4.reply_set"
+  ],
+  "feedback": "Distractors test wrong time, wrong document handling, wrong transport context, and out-of-scope lost-property/identity/refund content.",
+  "tts_segments": [
+    "はい、このバッグを預けたいです。",
+    "今日の夜七時までに受け取りに来てください。",
+    "はい、受け取るときに控えを見せます。",
+    "ありがとうございます。七時までに来ます。"
+  ],
+  "formula_moments": [
+    {
+      "after_turn": "t2",
+      "pattern_id": "ja.a2.luggage.deadline.madeni.v1"
+    }
+  ],
+  "runtime_notes": "JA A2 transport candidate. Full-walk runtime gate required before final closeout.",
+  "notes": {
+    "authoring_policy": "Fresh-authored from the neutral A2 transport brief. KO surfaces were not translated.",
+    "a2_boundary": "Uses luggage storage, pickup deadline, and claim ticket confirmation; avoids lost-property, compensation, passport, or ID handling."
+  }
+}

@@ -1,0 +1,250 @@
+{
+  "schema_version": "scenario_pack.v1",
+  "scenario_id": "travel_taxi_destination",
+  "brief_id": "ml4_a1_015_travel_taxi_destination",
+  "source_neutral_brief": "release-aggregator/docs/tasks/A1_MULTILINGUAL_KO_B1_PARALLEL_ORCHESTRATION/work_products/ml0/ML4_NEUTRAL_ADAPTATION_BRIEFS_20260614.md#brief-ml4-a1-015-taxi-destination",
+  "blueprint_ledger": "release-aggregator/docs/tasks/A1_MULTILINGUAL_KO_B1_PARALLEL_ORCHESTRATION/work_products/ml0/ML4_BLUEPRINT_LEDGER_20260614.md",
+  "repo": "content-pt",
+  "staging_path": "content/core/content_assets/scenario_packs/current_flow/travel_taxi_destination.pt.v1.json",
+  "title": "Dizer o destino no táxi",
+  "setting_label": "Táxi",
+  "wrap_title": "Você já pode dizer um destino no táxi",
+  "wrap_friend": "Você disse o destino, confirmou o lugar, entendeu o tempo aproximado e agradeceu.",
+  "language": "pt",
+  "ui_language": "zh_tw",
+  "source_status": "candidate_runtime_verified",
+  "review_state": "draft",
+  "review_status_framework_state": "candidate_runtime_verified",
+  "native_review_state": "native_pending",
+  "production_mode_default": {
+    "required": [
+      "choice"
+    ],
+    "optional_visible": [
+      "speaking"
+    ],
+    "optional_hidden": [
+      "typing"
+    ]
+  },
+  "support_text": "你在計程車上。用巴西葡語說目的地、確認地點，並聽懂大約時間。",
+  "roles": {
+    "npc": {
+      "label": "motorista"
+    },
+    "learner": {
+      "label": "passageiro"
+    }
+  },
+  "turns": [
+    {
+      "turn_id": "t1",
+      "speaker": "npc",
+      "act": "ask_destination",
+      "act_slots": {
+        "topic": "destino",
+        "keyword": "onde",
+        "gloss": "哪裡"
+      },
+      "learning_role": "listen_only",
+      "surface": "Boa tarde, para onde vamos?",
+      "speak": "Boa tarde, para onde vamos?",
+      "translation": "午安，我們要去哪裡？",
+      "friend": {
+        "hint": "司機在問目的地。用 Para o... 加地點。"
+      },
+      "reply_set": {
+        "correct": "r1a",
+        "choices": [
+          {
+            "id": "r1a",
+            "surface": "Para o Hotel Central, por favor.",
+            "translation": "到中央飯店，謝謝。",
+            "speak": "Para o Hotel Central, por favor.",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r1b",
+            "surface": "Onde fica o banheiro?",
+            "translation": "洗手間在哪裡？",
+            "speak": "Onde fica o banheiro?",
+            "contrast_type": "wrong_scenario_directions",
+            "feedback": "這是在問洗手間方向。司機現在需要目的地。"
+          },
+          {
+            "id": "r1c",
+            "surface": "Uma passagem, por favor.",
+            "translation": "一張票，謝謝。",
+            "speak": "Uma passagem, por favor.",
+            "contrast_type": "wrong_scenario_ticket",
+            "feedback": "這是在買票，不是在計程車上說目的地。"
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t2",
+      "speaker": "npc",
+      "act": "confirm_destination",
+      "act_slots": {
+        "topic": "confirmar destino",
+        "keyword": "certo",
+        "gloss": "對嗎"
+      },
+      "learning_role": "listen_only",
+      "surface": "Para o Hotel Central, certo?",
+      "speak": "Para o Hotel Central, certo?",
+      "translation": "到中央飯店，對嗎？",
+      "friend": {
+        "hint": "司機在確認目的地。正確時，用 Sim 確認。"
+      },
+      "inline_explain": {
+        "pattern_id": "pt.taxi.destination_confirm.v1",
+        "formula_ref": null,
+        "title": "Para o... / Sim, para o...",
+        "explain": "搭計程車說目的地時，常用 Para o / Para a 加地點；確認時用 Sim, para o...",
+        "items": [
+          {
+            "surface": "Para o Hotel Central, por favor.",
+            "translation": "到中央飯店，謝謝。",
+            "speak": "Para o Hotel Central, por favor."
+          },
+          {
+            "surface": "Sim, para o Hotel Central.",
+            "translation": "對，到中央飯店。",
+            "speak": "Sim, para o Hotel Central."
+          }
+        ]
+      },
+      "reply_set": {
+        "correct": "r2a",
+        "choices": [
+          {
+            "id": "r2a",
+            "surface": "Sim, para o Hotel Central.",
+            "translation": "對，到中央飯店。",
+            "speak": "Sim, para o Hotel Central.",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r2b",
+            "surface": "Não, obrigado.",
+            "translation": "不用了，謝謝。",
+            "speak": "Não, obrigado.",
+            "contrast_type": "wrong_act_refusal",
+            "feedback": "這像是在拒絕。地點正確時要確認目的地。"
+          },
+          {
+            "id": "r2c",
+            "surface": "Quero um café.",
+            "translation": "我想要一杯咖啡。",
+            "speak": "Quero um café.",
+            "contrast_type": "wrong_scenario_order",
+            "feedback": "這是點咖啡。現在是在確認計程車目的地。"
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t3",
+      "speaker": "npc",
+      "act": "short_duration",
+      "act_slots": {
+        "topic": "duração",
+        "keyword": "minutos",
+        "gloss": "分鐘"
+      },
+      "learning_role": "listen_only",
+      "surface": "Dá uns dez minutos.",
+      "speak": "Dá uns dez minutos.",
+      "translation": "大約十分鐘。",
+      "friend": {
+        "hint": "司機說大約十分鐘。簡短回應就好。"
+      },
+      "reply_set": {
+        "correct": "r3a",
+        "choices": [
+          {
+            "id": "r3a",
+            "surface": "Certo, obrigado.",
+            "translation": "好的，謝謝。",
+            "speak": "Certo, obrigado.",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r3b",
+            "surface": "Para a estação, por favor.",
+            "translation": "到車站，謝謝。",
+            "speak": "Para a estação, por favor.",
+            "contrast_type": "changed_destination",
+            "feedback": "你已經確認飯店了。現在只要回應時間資訊。"
+          },
+          {
+            "id": "r3c",
+            "surface": "A conta, por favor.",
+            "translation": "請結帳。",
+            "speak": "A conta, por favor.",
+            "contrast_type": "wrong_scenario_bill",
+            "feedback": "這是餐廳結帳句。司機剛剛說的是車程時間。"
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t4",
+      "speaker": "npc",
+      "act": "arrival_notice",
+      "act_slots": {
+        "topic": "chegada",
+        "keyword": "chegamos",
+        "gloss": "到了"
+      },
+      "learning_role": "listen_only",
+      "surface": "Chegamos.",
+      "speak": "Chegamos.",
+      "translation": "我們到了。",
+      "friend": {
+        "hint": "已經到目的地。用 Muito obrigado 結束。"
+      },
+      "reply_set": {
+        "correct": "r4a",
+        "choices": [
+          {
+            "id": "r4a",
+            "surface": "Muito obrigado.",
+            "translation": "非常謝謝。",
+            "speak": "Muito obrigado."
+          },
+          {
+            "id": "r4b",
+            "surface": "Qual é a senha do wifi?",
+            "translation": "wifi 密碼是什麼？",
+            "speak": "Qual é a senha do wifi?",
+            "contrast_type": "wrong_scenario_wifi",
+            "feedback": "這是問 wifi。計程車已經到目的地，現在道謝即可。"
+          },
+          {
+            "id": "r4c",
+            "surface": "Tenho uma reserva.",
+            "translation": "我有訂房。",
+            "speak": "Tenho uma reserva.",
+            "contrast_type": "wrong_scenario_hotel",
+            "feedback": "這是飯店櫃台句。現在是在計程車上結束行程。"
+          }
+        ]
+      }
+    }
+  ],
+  "formula_moments": [
+    {
+      "after_turn": "t2",
+      "pattern_id": "pt.taxi.destination_confirm.v1"
+    }
+  ],
+  "notes": {
+    "authoring_source": "Authored from ML-4 neutral brief, not Korean surface text or another target-language pack.",
+    "review_policy": "AI-authored Portuguese candidate. Requires AI review, runtime smoke, and tracked native review before any stronger status.",
+    "canonical_policy": "Staging candidate only. Do not write back to manifests, production exports, schemas, or legacy content.",
+    "portuguese_locale_note": "Brazilian Portuguese baseline with concise taxi formulas."
+  }
+}

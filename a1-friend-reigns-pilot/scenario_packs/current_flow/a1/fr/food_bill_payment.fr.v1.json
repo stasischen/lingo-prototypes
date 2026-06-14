@@ -1,0 +1,257 @@
+{
+  "schema_version": "scenario_pack.v1",
+  "scenario_id": "food_bill_payment",
+  "brief_id": "ml2_a1_011_food_bill_payment",
+  "source_neutral_brief": "release-aggregator/docs/tasks/A1_MULTILINGUAL_KO_B1_PARALLEL_ORCHESTRATION/work_products/ml0/ML2_NEUTRAL_ADAPTATION_BRIEFS_20260614.md#brief-ml2-a1-011-pay-the-bill",
+  "blueprint_ledger": "release-aggregator/docs/tasks/A1_MULTILINGUAL_KO_B1_PARALLEL_ORCHESTRATION/work_products/ml0/ML2_BLUEPRINT_LEDGER_20260614.md",
+  "repo": "content-fr",
+  "staging_path": "content/core/content_assets/scenario_packs/current_flow/food_bill_payment.fr.v1.json",
+  "title": "Payer l'addition",
+  "setting_label": "Café simple",
+  "wrap_title": "Tu peux demander et payer l'addition",
+  "wrap_friend": "你請服務生結帳、回答付款方式，並用短句道謝離開。",
+  "language": "fr",
+  "ui_language": "zh_tw",
+  "source_status": "candidate_runtime_verified",
+  "review_state": "draft",
+  "review_status_framework_state": "candidate_runtime_verified",
+  "native_review_state": "native_pending",
+  "production_mode_default": {
+    "required": [
+      "choice"
+    ],
+    "optional_visible": [
+      "speaking"
+    ],
+    "optional_hidden": [
+      "typing"
+    ]
+  },
+  "support_text": "你在法語咖啡店用餐後要結帳。選一句簡短自然的法語。",
+  "roles": {
+    "npc": {
+      "label": "serveur"
+    },
+    "learner": {
+      "label": "client"
+    }
+  },
+  "turns": [
+    {
+      "turn_id": "t1",
+      "speaker": "npc",
+      "act": "service_check",
+      "act_slots": {
+        "topic": "voir la table",
+        "keyword": "autre",
+        "gloss": "其他"
+      },
+      "learning_role": "listen_only",
+      "surface": "Tout va bien ? Vous désirez autre chose ?",
+      "speak": "Tout va bien ? Vous désirez autre chose ?",
+      "translation": "都還好嗎？您還需要別的嗎？",
+      "friend": {
+        "hint": "你已經吃完了。現在可以請服務生拿帳單。"
+      },
+      "reply_set": {
+        "correct": "r1a",
+        "choices": [
+          {
+            "id": "r1a",
+            "surface": "L'addition, s'il vous plaît.",
+            "translation": "請結帳。",
+            "speak": "L'addition, s'il vous plaît.",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r1b",
+            "surface": "Je prends une autre soupe.",
+            "translation": "我再要一份湯。",
+            "speak": "Je prends une autre soupe.",
+            "contrast_type": "wrong_sequence_more_food",
+            "feedback": "這是在加點食物。現在的目標是結帳。"
+          },
+          {
+            "id": "r1c",
+            "surface": "Où est la gare ?",
+            "translation": "車站在哪裡？",
+            "speak": "Où est la gare ?",
+            "contrast_type": "wrong_scenario_directions",
+            "feedback": "這是在問路，不是在餐廳結帳。"
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t2",
+      "speaker": "npc",
+      "act": "payment_prompt",
+      "act_slots": {
+        "topic": "moyen de paiement",
+        "keyword": "carte",
+        "gloss": "卡"
+      },
+      "learning_role": "listen_only",
+      "surface": "Bien sûr. Vous payez par carte ou en espèces ?",
+      "speak": "Bien sûr. Vous payez par carte ou en espèces ?",
+      "translation": "當然。您用卡還是現金付款？",
+      "friend": {
+        "hint": "服務生在問付款方式。選一個短回答。"
+      },
+      "inline_explain": {
+        "pattern_id": "fr.restaurant.bill_payment.v1",
+        "formula_ref": null,
+        "title": "L'addition + paiement",
+        "explain": "在法語餐廳要結帳，可以說 L'addition, s'il vous plaît。付款時說 Par carte 或 En espèces。",
+        "items": [
+          {
+            "surface": "L'addition, s'il vous plaît.",
+            "translation": "請結帳。",
+            "speak": "L'addition, s'il vous plaît."
+          },
+          {
+            "surface": "Par carte, s'il vous plaît.",
+            "translation": "請用卡。",
+            "speak": "Par carte, s'il vous plaît."
+          }
+        ]
+      },
+      "reply_set": {
+        "correct": "r2a",
+        "choices": [
+          {
+            "id": "r2a",
+            "surface": "Par carte, s'il vous plaît.",
+            "translation": "請用卡。",
+            "speak": "Par carte, s'il vous plaît.",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r2b",
+            "surface": "Sans reçu, merci.",
+            "translation": "不用收據，謝謝。",
+            "speak": "Sans reçu, merci.",
+            "contrast_type": "wrong_prompt_receipt",
+            "feedback": "這是在回答收據問題。現在問的是付款方式。"
+          },
+          {
+            "id": "r2c",
+            "surface": "C'est combien ?",
+            "translation": "這個多少錢？",
+            "speak": "C'est combien ?",
+            "contrast_type": "wrong_scenario_shopping",
+            "feedback": "這是在商店問商品價格，不是餐廳付帳。"
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t3",
+      "speaker": "npc",
+      "act": "receipt_prompt",
+      "act_slots": {
+        "topic": "reçu",
+        "keyword": "reçu",
+        "gloss": "收據"
+      },
+      "learning_role": "listen_only",
+      "surface": "Très bien. Vous voulez un reçu ?",
+      "speak": "Très bien. Vous voulez un reçu ?",
+      "translation": "好的。您要收據嗎？",
+      "friend": {
+        "hint": "如果不需要收據，簡短說不用。"
+      },
+      "reply_set": {
+        "correct": "r3a",
+        "choices": [
+          {
+            "id": "r3a",
+            "surface": "Non, merci.",
+            "translation": "不用，謝謝。",
+            "speak": "Non, merci.",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r3b",
+            "surface": "Nous sommes deux.",
+            "translation": "我們是兩位。",
+            "speak": "Nous sommes deux.",
+            "contrast_type": "wrong_prior_context",
+            "feedback": "人數不是現在的問題。服務生問你要不要收據。"
+          },
+          {
+            "id": "r3c",
+            "surface": "On se retrouve ici.",
+            "translation": "我們在這裡見。",
+            "speak": "On se retrouve ici.",
+            "contrast_type": "wrong_scenario_meeting",
+            "feedback": "這是朋友碰面情境，不是付款收據。"
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t4",
+      "speaker": "npc",
+      "act": "payment_close",
+      "act_slots": {
+        "topic": "terminer paiement",
+        "keyword": "merci",
+        "gloss": "謝謝"
+      },
+      "learning_role": "listen_only",
+      "surface": "C'est bon, merci beaucoup.",
+      "speak": "C'est bon, merci beaucoup.",
+      "translation": "好了，非常謝謝。",
+      "friend": {
+        "hint": "交易完成了，禮貌回謝即可。"
+      },
+      "reply_set": {
+        "correct": "r4a",
+        "choices": [
+          {
+            "id": "r4a",
+            "surface": "Merci. Au revoir.",
+            "translation": "謝謝。再見。",
+            "speak": "Merci. Au revoir."
+          },
+          {
+            "id": "r4b",
+            "surface": "Je prends un café.",
+            "translation": "我要一杯咖啡。",
+            "speak": "Je prends un café.",
+            "contrast_type": "wrong_sequence_ordering",
+            "feedback": "付款已完成，現在不是再點餐。"
+          },
+          {
+            "id": "r4c",
+            "surface": "C'est combien ?",
+            "translation": "這個多少錢？",
+            "speak": "C'est combien ?",
+            "contrast_type": "wrong_scenario_shopping",
+            "feedback": "這是購物問價，不是結帳結尾。"
+          }
+        ]
+      },
+      "closing": {
+        "act": "server_close",
+        "learning_role": "listen_only",
+        "surface": "Au revoir.",
+        "speak": "Au revoir.",
+        "translation": "再見。"
+      }
+    }
+  ],
+  "formula_moments": [
+    {
+      "after_turn": "t2",
+      "pattern_id": "fr.restaurant.bill_payment.v1"
+    }
+  ],
+  "notes": {
+    "authoring_source": "Authored from ML-2 neutral brief, not Korean surface text or another target-language pack.",
+    "review_policy": "AI-authored French candidate. Requires AI review, runtime smoke, and tracked native review before any stronger status.",
+    "canonical_policy": "Staging candidate only. Do not write back to manifests, production exports, schemas, or legacy content.",
+    "french_register_note": "Uses concise restaurant service French with vous and common addition/payment formulas."
+  }
+}

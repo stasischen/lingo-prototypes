@@ -1,0 +1,256 @@
+{
+  "schema_version": "scenario_pack.v1",
+  "scenario_id": "convenience_payment_card_cash",
+  "brief_id": "ml0_a1_004_convenience_payment_card_cash",
+  "source_neutral_brief": "release-aggregator/docs/tasks/A1_MULTILINGUAL_KO_B1_PARALLEL_ORCHESTRATION/work_products/ml0/ML0_NEUTRAL_ADAPTATION_BRIEFS_20260613.md#brief-ml0-a1-004-convenience-store-payment",
+  "blueprint_ledger": "release-aggregator/docs/tasks/A1_MULTILINGUAL_KO_B1_PARALLEL_ORCHESTRATION/work_products/ml0/ML0_BLUEPRINT_LEDGER_20260613.md",
+  "repo": "content-pt",
+  "staging_path": "content/core/content_assets/scenario_packs/current_flow/convenience_payment_card_cash.pt.v1.json",
+  "title": "Pagar no caixa",
+  "setting_label": "Caixa de loja pequena",
+  "wrap_title": "Você já pode pagar no caixa",
+  "wrap_friend": "Você escolheu cartão, seguiu a instrução do caixa e fechou a compra com frases curtas.",
+  "language": "pt",
+  "ui_language": "zh_tw",
+  "source_status": "candidate_runtime_verified",
+  "review_state": "draft",
+  "review_status_framework_state": "candidate_runtime_verified",
+  "native_review_state": "native_pending",
+  "production_mode_default": {
+    "required": [
+      "choice"
+    ],
+    "optional_visible": [
+      "speaking"
+    ],
+    "optional_hidden": [
+      "typing"
+    ]
+  },
+  "support_text": "你在巴西葡語便利店或小商店櫃台。聽店員問付款方式，選一句自然接得上的葡萄牙語。",
+  "roles": {
+    "npc": {
+      "label": "caixa"
+    },
+    "learner": {
+      "label": "cliente"
+    }
+  },
+  "turns": [
+    {
+      "turn_id": "t1",
+      "speaker": "npc",
+      "act": "payment_method_question",
+      "act_slots": {
+        "topic": "forma de pagamento",
+        "keyword": "cartão",
+        "gloss": "卡片"
+      },
+      "learning_role": "listen_only",
+      "surface": "Deu doze reais. Vai pagar no cartão ou em dinheiro?",
+      "speak": "Deu doze reais. Vai pagar no cartão ou em dinheiro?",
+      "translation": "十二雷亞爾。刷卡還是付現？",
+      "friend": {
+        "hint": "店員在問付款方式。巴西葡語裡可以說「No cartão」或「Em dinheiro」。"
+      },
+      "inline_explain": {
+        "pattern_id": "pt.store.cartao.dinheiro.v1",
+        "formula_ref": null,
+        "title": "no cartão / em dinheiro",
+        "explain": "「no cartão」是用卡付款，「em dinheiro」是付現。",
+        "items": [
+          {
+            "surface": "No cartão, por favor.",
+            "translation": "刷卡，謝謝。",
+            "speak": "No cartão, por favor."
+          },
+          {
+            "surface": "Em dinheiro, por favor.",
+            "translation": "付現，謝謝。",
+            "speak": "Em dinheiro, por favor."
+          }
+        ]
+      },
+      "reply_set": {
+        "correct": "r1a",
+        "choices": [
+          {
+            "id": "r1a",
+            "surface": "No cartão, por favor.",
+            "translation": "刷卡，謝謝。",
+            "speak": "No cartão, por favor.",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r1b",
+            "surface": "Um café com leite, por favor.",
+            "translation": "一杯牛奶咖啡，謝謝。",
+            "speak": "Um café com leite, por favor.",
+            "contrast_type": "wrong_scenario_request",
+            "feedback": "這句是在點咖啡。現在是在商店櫃台付款。"
+          },
+          {
+            "id": "r1c",
+            "surface": "Onde fica o banheiro?",
+            "translation": "洗手間在哪裡？",
+            "speak": "Onde fica o banheiro?",
+            "contrast_type": "wrong_scenario_request",
+            "feedback": "這句是在問洗手間。店員現在問你怎麼付款。"
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t2",
+      "speaker": "npc",
+      "act": "payment_instruction",
+      "act_slots": {
+        "topic": "aproximar cartão",
+        "keyword": "aproximar",
+        "gloss": "感應"
+      },
+      "learning_role": "listen_only",
+      "surface": "Pode aproximar o cartão.",
+      "speak": "Pode aproximar o cartão.",
+      "translation": "可以感應卡片。",
+      "friend": {
+        "hint": "店員請你感應卡片。簡短確認就好。"
+      },
+      "reply_set": {
+        "correct": "r2a",
+        "choices": [
+          {
+            "id": "r2a",
+            "surface": "Tudo bem.",
+            "translation": "好的。",
+            "speak": "Tudo bem."
+          },
+          {
+            "id": "r2b",
+            "surface": "Em dinheiro, por favor.",
+            "translation": "付現，謝謝。",
+            "speak": "Em dinheiro, por favor.",
+            "contrast_type": "wrong_payment_method_switch",
+            "feedback": "你剛剛選了刷卡。現在店員在請你用卡付款。"
+          },
+          {
+            "id": "r2c",
+            "surface": "Para viagem, por favor.",
+            "translation": "外帶，謝謝。",
+            "speak": "Para viagem, por favor.",
+            "contrast_type": "wrong_scenario_response",
+            "feedback": "這是餐點外帶時用的句子。現在是付款流程。"
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t3",
+      "speaker": "npc",
+      "act": "receipt_question",
+      "act_slots": {
+        "topic": "nota fiscal",
+        "keyword": "nota",
+        "gloss": "收據"
+      },
+      "learning_role": "listen_only",
+      "surface": "Quer a nota?",
+      "speak": "Quer a nota?",
+      "translation": "要收據嗎？",
+      "friend": {
+        "hint": "要或不要都可以。這裡先練不用的短答。"
+      },
+      "reply_set": {
+        "correct": "r3a",
+        "choices": [
+          {
+            "id": "r3a",
+            "surface": "Não precisa.",
+            "translation": "不用了。",
+            "speak": "Não precisa.",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r3b",
+            "surface": "No cartão, por favor.",
+            "translation": "刷卡，謝謝。",
+            "speak": "No cartão, por favor.",
+            "contrast_type": "repeated_prior_answer",
+            "feedback": "付款方式已經說過了。現在店員問你要不要收據。"
+          },
+          {
+            "id": "r3c",
+            "surface": "Às três.",
+            "translation": "三點。",
+            "speak": "Às três.",
+            "contrast_type": "wrong_scenario_response",
+            "feedback": "這是在回答時間。現在問題是要不要收據。"
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t4",
+      "speaker": "npc",
+      "act": "transaction_close",
+      "act_slots": {
+        "topic": "finalizar compra",
+        "keyword": "pronto",
+        "gloss": "完成"
+      },
+      "learning_role": "listen_only",
+      "surface": "Pronto, tudo certo.",
+      "speak": "Pronto, tudo certo.",
+      "translation": "好了，沒問題。",
+      "friend": {
+        "hint": "交易完成了。回一句謝謝就可以。"
+      },
+      "reply_set": {
+        "correct": "r4a",
+        "choices": [
+          {
+            "id": "r4a",
+            "surface": "Tudo certo.",
+            "translation": "好的。",
+            "speak": "Tudo certo."
+          },
+          {
+            "id": "r4b",
+            "surface": "Tenho uma reserva.",
+            "translation": "我有訂房。",
+            "speak": "Tenho uma reserva.",
+            "contrast_type": "wrong_scenario_response",
+            "feedback": "這是飯店入住用的句子。現在你已經完成付款。"
+          },
+          {
+            "id": "r4c",
+            "surface": "Não quero nada.",
+            "translation": "我什麼都不要。",
+            "speak": "Não quero nada.",
+            "contrast_type": "wrong_act_refusal",
+            "feedback": "這樣像是在拒絕購買。付款完成後，說謝謝就好。"
+          }
+        ]
+      },
+      "closing": {
+        "act": "handover",
+        "learning_role": "context_support",
+        "surface": "Aqui está a sacola.",
+        "speak": "Aqui está a sacola.",
+        "translation": "這是袋子。"
+      }
+    }
+  ],
+  "formula_moments": [
+    {
+      "after_turn": "t1",
+      "pattern_id": "pt.store.cartao.dinheiro.v1"
+    }
+  ],
+  "notes": {
+    "authoring_source": "Authored from ML-0 neutral brief, not Korean surface text.",
+    "review_policy": "AI-authored Portuguese candidate. Requires AI review, runtime smoke, and tracked native review before any stronger status.",
+    "canonical_policy": "Staging candidate only. Do not write back to manifests, production exports, schemas, or legacy content.",
+    "portuguese_locale_note": "Uses Brazilian Portuguese with reais, cartão, dinheiro, nota, and sacola. Learner replies avoid fixed-gender obrigado/obrigada forms."
+  }
+}

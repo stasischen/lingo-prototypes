@@ -1,0 +1,261 @@
+{
+  "schema_version": "scenario_pack.v1",
+  "scenario_id": "a2_understand_hotel_notice",
+  "title": "Comprendre un Avis de l’Hôtel",
+  "setting_label": "Dans le hall de l’hôtel",
+  "wrap_title": "Avis de l’hôtel confirmé",
+  "wrap_friend": "你剛剛完成了一段 A2 住宿服務情境，說明需求、聽懂回覆，並確認下一步。",
+  "language": "fr",
+  "ui_language": "zh_tw",
+  "cefr_level": "A2",
+  "source_status": "candidate_runtime_verified",
+  "review_state": "ai_reviewed",
+  "review_status_framework_state": "candidate_runtime_verified",
+  "native_review_state": "native_pending",
+  "scenario": "A hotel/accommodation service scenario: a2_understand_hotel_notice.",
+  "learner_goal": "Understand a short hotel notice and confirm time, place, and rule details.",
+  "target_functions": [
+    "notice_comprehension",
+    "time_place_rule_confirmation",
+    "simple_clarification"
+  ],
+  "register_notes": "Natural French hotel-service register with polite vous forms; no complaint escalation.",
+  "production_mode_default": {
+    "required": [
+      "choice"
+    ],
+    "optional_visible": [
+      "speaking"
+    ],
+    "optional_hidden": [
+      "typing"
+    ]
+  },
+  "support_text": "Comprenez un court avis de l’hôtel et confirmez l’heure, le lieu et la règle.",
+  "roles": {
+    "npc": {
+      "label": "Agent de l’hôtel"
+    },
+    "learner": {
+      "label": "Vous"
+    }
+  },
+  "turns": [
+    {
+      "turn_id": "t1",
+      "speaker": "npc",
+      "act": "notice_intro",
+      "act_slots": {
+        "topic": "notice_intro",
+        "keyword": "desayuno",
+        "gloss": "早餐"
+      },
+      "learning_role": "listen_only",
+      "surface": "Veuillez regarder l’avis. Le petit-déjeuner est de sept heures à neuf heures du matin.",
+      "speak": "Veuillez regarder l’avis. Le petit-déjeuner est de sept heures à neuf heures du matin.",
+      "translation": "請看公告。早餐是早上七點到九點。",
+      "friend": {
+        "hint": "Busque la hora en el aviso."
+      },
+      "reply_set": {
+        "correct": "r1a",
+        "choices": [
+          {
+            "id": "r1a",
+            "surface": "Le petit-déjeuner est de sept à neuf heures du matin, c’est ça ?",
+            "translation": "早餐是早上七點到九點，對嗎？",
+            "speak": "Le petit-déjeuner est de sept à neuf heures du matin, c’est ça ?",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r1b",
+            "surface": "Le petit-déjeuner est de sept à neuf heures du soir, c’est ça ?",
+            "translation": "早餐是晚上七點到九點，對嗎？",
+            "speak": "Le petit-déjeuner est de sept à neuf heures du soir, c’est ça ?",
+            "contrast_type": "wrong_detail_or_domain",
+            "feedback": "L’avis dit le matin."
+          },
+          {
+            "id": "r1c",
+            "surface": "Le check-out est à neuf heures du matin, c’est ça ?",
+            "translation": "退房是早上九點，對嗎？",
+            "speak": "Le check-out est à neuf heures du matin, c’est ça ?",
+            "contrast_type": "forbidden_or_wrong_domain",
+            "feedback": "Cet avis parle du petit-déjeuner, pas du check-out."
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t2",
+      "speaker": "npc",
+      "act": "place_detail",
+      "act_slots": {
+        "topic": "place_detail",
+        "keyword": "restaurante del segundo piso",
+        "gloss": "二樓餐廳"
+      },
+      "learning_role": "listen_only",
+      "surface": "C’est au restaurant du deuxième étage.",
+      "speak": "C’est au restaurant du deuxième étage.",
+      "translation": "地點是二樓餐廳。",
+      "friend": {
+        "hint": "Confirme el lugar."
+      },
+      "inline_explain": {
+        "pattern_id": "fr.a2.accommodation.notice.time_place.v1",
+        "title": "Formule A2",
+        "explain": "Expression courte utile dans cette situation d’hôtel.",
+        "items": [
+          {
+            "surface": "restaurante del segundo piso",
+            "translation": "二樓餐廳",
+            "speak": "restaurante del segundo piso"
+          }
+        ]
+      },
+      "reply_set": {
+        "correct": "r2a",
+        "choices": [
+          {
+            "id": "r2a",
+            "surface": "Je vais au restaurant du deuxième étage, c’est ça ?",
+            "translation": "去二樓餐廳就可以，對嗎？",
+            "speak": "Je vais au restaurant du deuxième étage, c’est ça ?",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r2b",
+            "surface": "Je vais dans une chambre au troisième étage, c’est ça ?",
+            "translation": "去三樓房間就可以，對嗎？",
+            "speak": "Je vais dans une chambre au troisième étage, c’est ça ?",
+            "contrast_type": "wrong_detail_or_domain",
+            "feedback": "Le lieu est le restaurant du deuxième étage."
+          },
+          {
+            "id": "r2c",
+            "surface": "Je montre mon passeport, c’est ça ?",
+            "translation": "給您看護照就可以，對嗎？",
+            "speak": "Je montre mon passeport, c’est ça ?",
+            "contrast_type": "forbidden_or_wrong_domain",
+            "feedback": "Le passeport n’est pas nécessaire pour cet avis."
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t3",
+      "speaker": "npc",
+      "act": "clarification",
+      "act_slots": {
+        "topic": "clarification",
+        "keyword": "número de habitación",
+        "gloss": "房號"
+      },
+      "learning_role": "listen_only",
+      "surface": "À l’entrée, dites seulement votre numéro de chambre.",
+      "speak": "À l’entrée, dites seulement votre numéro de chambre.",
+      "translation": "入口只要告知房號即可。",
+      "friend": {
+        "hint": "Confirme la condición sencilla."
+      },
+      "reply_set": {
+        "correct": "r3a",
+        "choices": [
+          {
+            "id": "r3a",
+            "surface": "Je dis seulement mon numéro de chambre à l’entrée, c’est ça ?",
+            "translation": "入口只要說房號就可以，對嗎？",
+            "speak": "Je dis seulement mon numéro de chambre à l’entrée, c’est ça ?",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r3b",
+            "surface": "Je parle à la police à l’entrée, c’est ça ?",
+            "translation": "入口要跟警察說，對嗎？",
+            "speak": "Je parle à la police à l’entrée, c’est ça ?",
+            "contrast_type": "wrong_detail_or_domain",
+            "feedback": "C’est un avis de petit-déjeuner, pas une démarche de police."
+          },
+          {
+            "id": "r3c",
+            "surface": "Je reçois un remboursement à l’entrée, c’est ça ?",
+            "translation": "入口可以拿退款，對嗎？",
+            "speak": "Je reçois un remboursement à l’entrée, c’est ça ?",
+            "contrast_type": "forbidden_or_wrong_domain",
+            "feedback": "Les remboursements ne correspondent pas à cet avis."
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t4",
+      "speaker": "npc",
+      "act": "close",
+      "act_slots": {
+        "topic": "close",
+        "keyword": "mañana por la mañana",
+        "gloss": "明天早上"
+      },
+      "learning_role": "listen_only",
+      "surface": "Oui, venez demain matin.",
+      "speak": "Oui, venez demain matin.",
+      "translation": "對，明天早上來就可以。",
+      "friend": {
+        "hint": "Confirme lo que hará."
+      },
+      "reply_set": {
+        "correct": "r4a",
+        "choices": [
+          {
+            "id": "r4a",
+            "surface": "D’accord. Demain matin, je vais au restaurant du deuxième étage.",
+            "translation": "好，我明天早上去二樓餐廳。",
+            "speak": "D’accord. Demain matin, je vais au restaurant du deuxième étage.",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r4b",
+            "surface": "D’accord. Ce soir, je récupère le linge.",
+            "translation": "好，我今晚去拿洗衣。",
+            "speak": "D’accord. Ce soir, je récupère le linge.",
+            "contrast_type": "wrong_detail_or_domain",
+            "feedback": "C’est le petit-déjeuner, pas la laverie."
+          },
+          {
+            "id": "r4c",
+            "surface": "D’accord. J’écris un rapport d’accident.",
+            "translation": "好，我會寫事故報告。",
+            "speak": "D’accord. J’écris un rapport d’accident.",
+            "contrast_type": "forbidden_or_wrong_domain",
+            "feedback": "Les rapports d’accident sont hors du périmètre."
+          }
+        ]
+      }
+    }
+  ],
+  "choice_sets": [
+    "t1.reply_set",
+    "t2.reply_set",
+    "t3.reply_set",
+    "t4.reply_set"
+  ],
+  "feedback": "Les distracteurs vérifient une mauvaise heure, un mauvais lieu, un mauvais service ou une demande hors du périmètre A2.",
+  "tts_segments": [
+    "Veuillez regarder l’avis. Le petit-déjeuner est de sept heures à neuf heures du matin.",
+    "C’est au restaurant du deuxième étage.",
+    "À l’entrée, dites seulement votre numéro de chambre.",
+    "Oui, venez demain matin."
+  ],
+  "formula_moments": [
+    {
+      "after_turn": "t2",
+      "pattern_id": "fr.a2.accommodation.notice.time_place.v1"
+    }
+  ],
+  "runtime_notes": "FR A2 accommodation candidate. Full-walk runtime gate required before final closeout.",
+  "notes": {
+    "authoring_policy": "Fresh-authored from the neutral A2 accommodation brief. KO surfaces were not translated.",
+    "a2_boundary": "Low-risk accommodation/service task; avoids compensation, emergency, legal, medical, police, immigration, banking, insurance, or identity-sensitive handling."
+  }
+}

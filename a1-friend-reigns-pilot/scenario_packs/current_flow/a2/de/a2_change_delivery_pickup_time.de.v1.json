@@ -1,0 +1,257 @@
+{
+  "schema_version": "scenario_pack.v1",
+  "scenario_id": "a2_change_delivery_pickup_time",
+  "title": "Eine Abholzeit Ändern",
+  "setting_label": "low-risk help message",
+  "wrap_title": "Eine Abholzeit Ändern",
+  "wrap_friend": "Gut. Du hast eine risikoarme digitale oder Formular-Hilfe mit nur den nötigen Details erledigt.",
+  "language": "de",
+  "ui_language": "zh-Hant",
+  "cefr_level": "A2",
+  "source_status": "candidate_runtime_verified",
+  "review_state": "ai_reviewed",
+  "review_status_framework_state": "candidate_runtime_verified",
+  "native_review_state": "native_pending",
+  "scenario": {
+    "domain": "digital_documents_low_risk_help",
+    "review_slice": "digital_documents",
+    "interaction": "low_risk_confirmation_or_help",
+    "source_brief": "A2_DIGITAL_DOCUMENTS_NEUTRAL_ADAPTATION_BRIEFS_20260614",
+    "blueprint_source": "language_neutral_adaptation_brief",
+    "ko_pack_role": "mature_scenario_blueprint_not_translation_source"
+  },
+  "learner_goal": "Eine digitale oder einfache Formular-Aufgabe mit geringem Risiko in kurzen A2-Sätzen bewältigen.",
+  "target_functions": [
+    "confirm_booking_or_message",
+    "request_simple_change",
+    "ask_simple_form_help",
+    "follow_up_low_risk_item"
+  ],
+  "register_notes": "German A2 low-risk digital/documents register: concise polite Sie service/help language, no passwords, payment, ID, medical, legal, police, or immigration framing.",
+  "production_mode_default": {
+    "required": [
+      "choice"
+    ],
+    "optional_visible": [
+      "speaking"
+    ],
+    "optional_hidden": [
+      "typing"
+    ]
+  },
+  "support_text": "Halte die Aufgabe risikoarm. Keine Passwörter, Zahlungsdaten, sensiblen IDs oder rechtlichen/medizinischen Informationen.",
+  "roles": {
+    "npc": {
+      "label": "Mitarbeiter"
+    },
+    "learner": {
+      "label": "你"
+    }
+  },
+  "turns": [
+    {
+      "turn_id": "t1",
+      "speaker": "npc",
+      "act": "start",
+      "act_slots": {
+        "topic": "a2_change_delivery_pickup_time",
+        "keyword": "1",
+        "gloss": "A2 digital/documents"
+      },
+      "learning_role": "listen_only",
+      "surface": "Die Abholung ist heute um 16 Uhr.",
+      "speak": "Die Abholung ist heute um 16 Uhr.",
+      "translation": "今天四點取貨。",
+      "friend": {
+        "hint": "Prüfe nur das nötige risikoarme Detail."
+      },
+      "reply_set": {
+        "correct": "r1a",
+        "choices": [
+          {
+            "id": "r1a",
+            "surface": "Kann ich die Abholzeit ändern?",
+            "translation": "可以改取貨時間嗎？",
+            "speak": "Kann ich die Abholzeit ändern?",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r1b",
+            "surface": "Ich nenne mein Passwort.",
+            "translation": "我會告訴你密碼。",
+            "speak": "Ich nenne mein Passwort.",
+            "contrast_type": "forbidden_sensitive",
+            "feedback": "Passwörter gehören nicht zu dieser A2-Aufgabe."
+          },
+          {
+            "id": "r1c",
+            "surface": "Ich möchte eine Erstattung.",
+            "translation": "請退款。",
+            "speak": "Ich möchte eine Erstattung.",
+            "contrast_type": "wrong_dispute_domain",
+            "feedback": "Erstattungen oder Streitfälle gehören nicht zu dieser Aufgabe."
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t2",
+      "speaker": "npc",
+      "act": "clarify",
+      "act_slots": {
+        "topic": "a2_change_delivery_pickup_time",
+        "keyword": "2",
+        "gloss": "A2 digital/documents"
+      },
+      "learning_role": "listen_only",
+      "surface": "Ja, 17 Uhr ist möglich.",
+      "speak": "Ja, 17 Uhr ist möglich.",
+      "translation": "可以，五點可以。",
+      "friend": {
+        "hint": "Prüfe nur das nötige risikoarme Detail."
+      },
+      "reply_set": {
+        "correct": "r2a",
+        "choices": [
+          {
+            "id": "r2a",
+            "surface": "Dann bitte um 17 Uhr.",
+            "translation": "那請改成五點。",
+            "speak": "Dann bitte um 17 Uhr.",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r2b",
+            "surface": "Ich nenne mein Passwort.",
+            "translation": "我會告訴你密碼。",
+            "speak": "Ich nenne mein Passwort.",
+            "contrast_type": "forbidden_sensitive",
+            "feedback": "Passwörter gehören nicht zu dieser A2-Aufgabe."
+          },
+          {
+            "id": "r2c",
+            "surface": "Ich möchte eine Erstattung.",
+            "translation": "請退款。",
+            "speak": "Ich möchte eine Erstattung.",
+            "contrast_type": "wrong_dispute_domain",
+            "feedback": "Erstattungen oder Streitfälle gehören nicht zu dieser Aufgabe."
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t3",
+      "speaker": "npc",
+      "act": "confirm_detail",
+      "act_slots": {
+        "topic": "a2_change_delivery_pickup_time",
+        "keyword": "3",
+        "gloss": "A2 digital/documents"
+      },
+      "learning_role": "listen_only",
+      "surface": "Also ändern wir auf 17 Uhr?",
+      "speak": "Also ändern wir auf 17 Uhr?",
+      "translation": "改成五點嗎？",
+      "friend": {
+        "hint": "Prüfe nur das nötige risikoarme Detail."
+      },
+      "reply_set": {
+        "correct": "r3a",
+        "choices": [
+          {
+            "id": "r3a",
+            "surface": "Ja, 17 Uhr passt.",
+            "translation": "對，五點可以。",
+            "speak": "Ja, 17 Uhr passt.",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r3b",
+            "surface": "Ich nenne mein Passwort.",
+            "translation": "我會告訴你密碼。",
+            "speak": "Ich nenne mein Passwort.",
+            "contrast_type": "forbidden_sensitive",
+            "feedback": "Passwörter gehören nicht zu dieser A2-Aufgabe."
+          },
+          {
+            "id": "r3c",
+            "surface": "Ich möchte eine Erstattung.",
+            "translation": "請退款。",
+            "speak": "Ich möchte eine Erstattung.",
+            "contrast_type": "wrong_dispute_domain",
+            "feedback": "Erstattungen oder Streitfälle gehören nicht zu dieser Aufgabe."
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t4",
+      "speaker": "npc",
+      "act": "close",
+      "act_slots": {
+        "topic": "a2_change_delivery_pickup_time",
+        "keyword": "4",
+        "gloss": "A2 digital/documents"
+      },
+      "learning_role": "listen_only",
+      "surface": "Okay, ich ändere es auf 17 Uhr.",
+      "speak": "Okay, ich ändere es auf 17 Uhr.",
+      "translation": "好的，我會改成五點。",
+      "friend": {
+        "hint": "Prüfe nur das nötige risikoarme Detail."
+      },
+      "reply_set": {
+        "correct": "r4a",
+        "choices": [
+          {
+            "id": "r4a",
+            "surface": "Danke. Ich komme um 17 Uhr.",
+            "translation": "謝謝，我五點會去。",
+            "speak": "Danke. Ich komme um 17 Uhr.",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r4b",
+            "surface": "Ich nenne mein Passwort.",
+            "translation": "我會告訴你密碼。",
+            "speak": "Ich nenne mein Passwort.",
+            "contrast_type": "forbidden_sensitive",
+            "feedback": "Passwörter gehören nicht zu dieser A2-Aufgabe."
+          },
+          {
+            "id": "r4c",
+            "surface": "Ich möchte eine Erstattung.",
+            "translation": "請退款。",
+            "speak": "Ich möchte eine Erstattung.",
+            "contrast_type": "wrong_dispute_domain",
+            "feedback": "Erstattungen oder Streitfälle gehören nicht zu dieser Aufgabe."
+          }
+        ]
+      }
+    }
+  ],
+  "choice_sets": [
+    "t1.reply_set",
+    "t2.reply_set",
+    "t3.reply_set",
+    "t4.reply_set"
+  ],
+  "feedback": "Halte die Aufgabe risikoarm. Keine Passwörter, Zahlungsdaten, sensiblen IDs oder rechtlichen/medizinischen Informationen.",
+  "tts_segments": [
+    "Kann ich die Abholzeit ändern?",
+    "Dann bitte um 17 Uhr.",
+    "Ja, 17 Uhr passt.",
+    "Danke. Ich komme um 17 Uhr."
+  ],
+  "formula_moments": [
+    {
+      "after_turn": "t2",
+      "pattern_id": "de.a2.digital.change_delivery_pickup_time.v1"
+    }
+  ],
+  "runtime_notes": "Fresh A2 digital/documents candidate. Requires full-walk runtime before closeout evidence is recorded.",
+  "notes": {
+    "authoring_policy": "Fresh-authored from A2 digital/documents neutral adaptation brief. KO surface text was not copied or translated.",
+    "a2_boundary": "Low-risk confirmation/help only; avoids sensitive identity, payment, legal, medical, police, and immigration workflows."
+  }
+}

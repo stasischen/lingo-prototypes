@@ -1,0 +1,242 @@
+{
+  "schema_version": "scenario_pack.v1",
+  "scenario_id": "a2_change_ticket_time",
+  "title": "Cambiar la Hora de un Boleto",
+  "setting_label": "En la taquilla de la estación",
+  "wrap_title": "Nueva hora del boleto",
+  "wrap_friend": "你剛剛完成了一段 A2 交通服務情境，確認重點並做出簡單回應。",
+  "language": "es",
+  "ui_language": "zh_tw",
+  "cefr_level": "A2",
+  "source_status": "candidate_runtime_verified",
+  "review_state": "ai_reviewed",
+  "review_status_framework_state": "candidate_runtime_verified",
+  "native_review_state": "native_pending",
+  "scenario": "A2 transport scenario: a2_change_ticket_time.",
+  "learner_goal": "Ask to change a ticket time and confirm the new time.",
+  "target_functions": [
+    "polite_change_request",
+    "alternative_time",
+    "confirmation"
+  ],
+  "register_notes": "Spanish public transport/service language with polite everyday responses; no refund, legal, medical, police, or identity-sensitive handling.",
+  "production_mode_default": {
+    "required": [
+      "choice"
+    ],
+    "optional_visible": [
+      "speaking"
+    ],
+    "optional_hidden": [
+      "typing"
+    ]
+  },
+  "support_text": "Pide cambiar la hora de un boleto, escucha la hora disponible y confirma la nueva salida.",
+  "roles": {
+    "npc": {
+      "label": "Empleado"
+    },
+    "learner": {
+      "label": "Tú"
+    }
+  },
+  "turns": [
+    {
+      "turn_id": "t1",
+      "speaker": "npc",
+      "act": "service_opening",
+      "act_slots": {
+        "topic": "service_opening"
+      },
+      "learning_role": "listen_only",
+      "surface": "Hola. ¿En qué puedo ayudarle?",
+      "speak": "Hola. ¿En qué puedo ayudarle?",
+      "translation": "您好，我可以怎麼幫您？",
+      "friend": {
+        "hint": "提出改時間"
+      },
+      "reply_set": {
+        "correct": "r1a",
+        "choices": [
+          {
+            "id": "r1a",
+            "surface": "Quiero cambiar la hora del boleto.",
+            "translation": "提出請求",
+            "speak": "Quiero cambiar la hora del boleto.",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r1b",
+            "surface": "El boleto era de ayer.",
+            "translation": "票是昨天的。",
+            "speak": "El boleto era de ayer.",
+            "learning_role": "wrong_time_or_detail",
+            "feedback": "Los distractores prueban tiempo equivocado, escenario equivocado o una escalada fuera del alcance A2."
+          },
+          {
+            "id": "r1c",
+            "surface": "Un café, por favor.",
+            "translation": "請給我一杯咖啡。",
+            "speak": "Un café, por favor.",
+            "learning_role": "wrong_scenario_or_escalation",
+            "feedback": "Los distractores prueban tiempo equivocado, escenario equivocado o una escalada fuera del alcance A2."
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t2",
+      "speaker": "npc",
+      "act": "alternative_offer",
+      "act_slots": {
+        "topic": "alternative_offer"
+      },
+      "learning_role": "listen_only",
+      "surface": "Puede cambiarlo al tren de las tres de la tarde.",
+      "speak": "Puede cambiarlo al tren de las tres de la tarde.",
+      "translation": "可以改成下午 3 點的車。",
+      "friend": {
+        "hint": "接受可用時間"
+      },
+      "reply_set": {
+        "correct": "r2a",
+        "choices": [
+          {
+            "id": "r2a",
+            "surface": "Sí, por favor, al tren de las tres.",
+            "translation": "接受新時間",
+            "speak": "Sí, por favor, al tren de las tres.",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r2b",
+            "surface": "¿Hay una habitación a las tres?",
+            "translation": "3 點有房間嗎？",
+            "speak": "¿Hay una habitación a las tres?",
+            "learning_role": "wrong_time_or_detail",
+            "feedback": "Los distractores prueban tiempo equivocado, escenario equivocado o una escalada fuera del alcance A2."
+          },
+          {
+            "id": "r2c",
+            "surface": "Ayer viajé a las tres.",
+            "translation": "我昨天 3 點搭了。",
+            "speak": "Ayer viajé a las tres.",
+            "learning_role": "wrong_scenario_or_escalation",
+            "feedback": "Los distractores prueban tiempo equivocado, escenario equivocado o una escalada fuera del alcance A2."
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t3",
+      "speaker": "npc",
+      "act": "confirmation_question",
+      "act_slots": {
+        "topic": "confirmation_question"
+      },
+      "learning_role": "listen_only",
+      "surface": "Entonces, queda para las tres de la tarde, ¿correcto?",
+      "speak": "Entonces, queda para las tres de la tarde, ¿correcto?",
+      "translation": "那就改成下午 3 點，對嗎？",
+      "friend": {
+        "hint": "確認時間"
+      },
+      "reply_set": {
+        "correct": "r3a",
+        "choices": [
+          {
+            "id": "r3a",
+            "surface": "Sí, las tres está bien.",
+            "translation": "確認時間",
+            "speak": "Sí, las tres está bien.",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r3b",
+            "surface": "No, las tres fue ayer.",
+            "translation": "不，3 點是昨天。",
+            "speak": "No, las tres fue ayer.",
+            "learning_role": "wrong_time_or_detail",
+            "feedback": "Los distractores prueban tiempo equivocado, escenario equivocado o una escalada fuera del alcance A2."
+          },
+          {
+            "id": "r3c",
+            "surface": "Explíqueme las reglas de reembolso, por favor.",
+            "translation": "請說明退款規則。",
+            "speak": "Explíqueme las reglas de reembolso, por favor.",
+            "learning_role": "wrong_scenario_or_escalation",
+            "feedback": "Los distractores prueban tiempo equivocado, escenario equivocado o una escalada fuera del alcance A2."
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t4",
+      "speaker": "npc",
+      "act": "service_close",
+      "act_slots": {
+        "topic": "service_close"
+      },
+      "learning_role": "listen_only",
+      "surface": "Ya está cambiado. Tome el tren de las tres, por favor.",
+      "speak": "Ya está cambiado. Tome el tren de las tres, por favor.",
+      "translation": "已經改好了，請搭 3 點那班車。",
+      "friend": {
+        "hint": "收尾"
+      },
+      "reply_set": {
+        "correct": "r4a",
+        "choices": [
+          {
+            "id": "r4a",
+            "surface": "Gracias. Tomo el tren de las tres.",
+            "translation": "禮貌收尾",
+            "speak": "Gracias. Tomo el tren de las tres.",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r4b",
+            "surface": "Mañana voy a tomar café.",
+            "translation": "我明天要喝咖啡。",
+            "speak": "Mañana voy a tomar café.",
+            "learning_role": "wrong_time_or_detail",
+            "feedback": "Los distractores prueban tiempo equivocado, escenario equivocado o una escalada fuera del alcance A2."
+          },
+          {
+            "id": "r4c",
+            "surface": "¿Cuál es mi número de pasaporte?",
+            "translation": "我的護照號碼是什麼？",
+            "speak": "¿Cuál es mi número de pasaporte?",
+            "learning_role": "wrong_scenario_or_escalation",
+            "feedback": "Los distractores prueban tiempo equivocado, escenario equivocado o una escalada fuera del alcance A2."
+          }
+        ]
+      }
+    }
+  ],
+  "choice_sets": [
+    "t1.reply_set",
+    "t2.reply_set",
+    "t3.reply_set",
+    "t4.reply_set"
+  ],
+  "feedback": "Los distractores prueban tiempo equivocado, escenario equivocado o una escalada fuera del alcance A2.",
+  "tts_segments": [
+    "Hola. ¿En qué puedo ayudarle?",
+    "Puede cambiarlo al tren de las tres de la tarde.",
+    "Entonces, queda para las tres de la tarde, ¿correcto?",
+    "Ya está cambiado. Tome el tren de las tres, por favor."
+  ],
+  "formula_moments": [
+    {
+      "after_turn": "t2",
+      "pattern_id": "es.a2.transport.ticket.v1"
+    }
+  ],
+  "runtime_notes": "ES A2 transport candidate. Full-walk runtime gate required before final closeout; target-language surfaces and feedback localized on 2026-06-14.",
+  "notes": {
+    "authoring_policy": "Fresh-authored from the neutral A2 transport brief. KO surfaces were used only as scenario blueprint, not as translation source.",
+    "a2_boundary": "Low-risk A2 transport/service task; avoids refund, compensation, emergency, identity-sensitive, legal, medical, banking, immigration, or police handling.",
+    "language_specific_adaptation": "NPC lines, learner targets, distractors, feedback, support text, and translations are adapted for this language; native review remains pending."
+  }
+}

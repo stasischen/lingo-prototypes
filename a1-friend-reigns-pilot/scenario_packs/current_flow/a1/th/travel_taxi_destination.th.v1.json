@@ -1,0 +1,240 @@
+{
+  "schema_version": "scenario_pack.v1",
+  "scenario_id": "travel_taxi_destination",
+  "brief_id": "ml4_a1_015_travel_taxi_destination",
+  "source_neutral_brief": "release-aggregator/docs/tasks/A1_MULTILINGUAL_KO_B1_PARALLEL_ORCHESTRATION/work_products/ml0/ML4_NEUTRAL_ADAPTATION_BRIEFS_20260614.md#brief-ml4-a1-015-taxi-destination",
+  "blueprint_ledger": "release-aggregator/docs/tasks/A1_MULTILINGUAL_KO_B1_PARALLEL_ORCHESTRATION/work_products/ml0/ML4_BLUEPRINT_LEDGER_20260614.md",
+  "repo": "content-th",
+  "staging_path": "content/core/content_assets/scenario_packs/current_flow/travel_taxi_destination.th.v1.json",
+  "title": "บอกปลายทางในแท็กซี่",
+  "setting_label": "ในแท็กซี่",
+  "wrap_title": "บอกปลายทางได้แล้ว",
+  "wrap_friend": "คุณบอกปลายทาง ยืนยันกับคนขับ เข้าใจเวลาสั้น ๆ และขอบคุณได้",
+  "language": "th",
+  "ui_language": "zh_tw",
+  "source_status": "candidate_runtime_verified",
+  "review_state": "draft",
+  "review_status_framework_state": "candidate_runtime_verified",
+  "native_review_state": "native_pending",
+  "production_mode_default": {
+    "required": [
+      "choice"
+    ],
+    "optional_visible": [
+      "speaking"
+    ],
+    "optional_hidden": [
+      "typing"
+    ]
+  },
+  "support_text": "你在泰國搭計程車。聽司機說話，選一句自然接得上的泰文。",
+  "roles": {
+    "npc": {
+      "label": "คนขับ"
+    },
+    "learner": {
+      "label": "คุณ"
+    }
+  },
+  "turns": [
+    {
+      "turn_id": "t1",
+      "speaker": "npc",
+      "act": "ask_destination",
+      "learning_role": "listen_only",
+      "surface": "ไปที่ไหนครับ",
+      "speak": "ไปที่ไหนครับ",
+      "translation": "要去哪裡？",
+      "friend": {
+        "hint": "司機問目的地。用泰文說去這間飯店。"
+      },
+      "inline_explain": {
+        "pattern_id": "th.taxi.destination_request.v1",
+        "formula_ref": null,
+        "title": "ไปโรงแรมนี้ค่ะ",
+        "explain": "搭計程車時，用 `ไป` 加目的地很自然。",
+        "items": [
+          {
+            "surface": "ไปโรงแรมนี้ค่ะ",
+            "translation": "去這間飯店。",
+            "speak": "ไปโรงแรมนี้ค่ะ"
+          }
+        ]
+      },
+      "reply_set": {
+        "correct": "r1a",
+        "choices": [
+          {
+            "id": "r1a",
+            "surface": "ไปโรงแรมนี้ค่ะ",
+            "translation": "去這間飯店。",
+            "speak": "ไปโรงแรมนี้ค่ะ",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r1b",
+            "surface": "ห้องน้ำอยู่ที่ไหนคะ",
+            "translation": "廁所在哪裡？",
+            "speak": "ห้องน้ำอยู่ที่ไหนคะ",
+            "contrast_type": "directions_question_instead_of_destination",
+            "feedback": "這是在問路。現在要告訴司機目的地。"
+          },
+          {
+            "id": "r1c",
+            "surface": "ขอกาแฟค่ะ",
+            "translation": "請給我咖啡。",
+            "speak": "ขอกาแฟค่ะ",
+            "contrast_type": "food_order_in_taxi",
+            "feedback": "這是點餐，不是計程車目的地。"
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t2",
+      "speaker": "npc",
+      "act": "confirm_destination",
+      "learning_role": "listen_only",
+      "surface": "โรงแรมนี้นะครับ",
+      "speak": "โรงแรมนี้นะครับ",
+      "translation": "這間飯店對吧？",
+      "friend": {
+        "hint": "司機確認目的地。簡短回答是的。"
+      },
+      "reply_set": {
+        "correct": "r2a",
+        "choices": [
+          {
+            "id": "r2a",
+            "surface": "ใช่ค่ะ",
+            "translation": "是的。",
+            "speak": "ใช่ค่ะ",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r2b",
+            "surface": "ไม่ค่ะ ยกเลิกค่ะ",
+            "translation": "不用，取消。",
+            "speak": "ไม่ค่ะ ยกเลิกค่ะ",
+            "contrast_type": "cancel_when_confirmation_expected",
+            "feedback": "司機確認的是正確目的地，這裡不需要取消。"
+          },
+          {
+            "id": "r2c",
+            "surface": "ไปโรงแรมนี้ค่ะ",
+            "translation": "去這間飯店。",
+            "speak": "ไปโรงแรมนี้ค่ะ",
+            "contrast_type": "repeat_destination_when_confirmation_expected",
+            "feedback": "目的地已經說過了。現在自然回覆是確認。"
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t3",
+      "speaker": "npc",
+      "act": "give_duration",
+      "learning_role": "listen_only",
+      "surface": "ประมาณสิบ นาทีครับ",
+      "speak": "ประมาณสิบ นาทีครับ",
+      "translation": "大約十分鐘。",
+      "friend": {
+        "hint": "聽到車程時間。表示知道並道謝。"
+      },
+      "reply_set": {
+        "correct": "r3a",
+        "choices": [
+          {
+            "id": "r3a",
+            "surface": "โอเคค่ะ ขอบคุณค่ะ",
+            "translation": "好的，謝謝。",
+            "speak": "โอเคค่ะ ขอบคุณค่ะ",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r3b",
+            "surface": "ขอตั๋วหนึ่งใบค่ะ",
+            "translation": "請給我一張票。",
+            "speak": "ขอตั๋วหนึ่งใบค่ะ",
+            "contrast_type": "ticket_purchase_in_taxi",
+            "feedback": "這是在買票。現在是在計程車裡聽車程時間。"
+          },
+          {
+            "id": "r3c",
+            "surface": "ไปที่ไหนครับ",
+            "translation": "要去哪裡？",
+            "speak": "ไปที่ไหนครับ",
+            "contrast_type": "driver_role_sentence_by_learner",
+            "feedback": "這是司機問乘客的話，不是乘客回覆。"
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t4",
+      "speaker": "npc",
+      "act": "arrival",
+      "learning_role": "listen_only",
+      "surface": "ถึงแล้วครับ",
+      "speak": "ถึงแล้วครับ",
+      "translation": "到了。",
+      "friend": {
+        "hint": "已經到目的地。簡短道謝。"
+      },
+      "reply_set": {
+        "correct": "r4a",
+        "choices": [
+          {
+            "id": "r4a",
+            "surface": "ขอบคุณค่ะ",
+            "translation": "謝謝。",
+            "speak": "ขอบคุณค่ะ"
+          },
+          {
+            "id": "r4b",
+            "surface": "โรงแรมนี้นะครับ",
+            "translation": "這間飯店對吧？",
+            "speak": "โรงแรมนี้นะครับ",
+            "contrast_type": "driver_confirmation_reused_by_learner",
+            "feedback": "這像司機確認目的地。到達後乘客說謝謝更自然。"
+          },
+          {
+            "id": "r4c",
+            "surface": "อาหารเช้ากี่โมงคะ",
+            "translation": "早餐幾點？",
+            "speak": "อาหารเช้ากี่โมงคะ",
+            "contrast_type": "hotel_question_in_taxi_closing",
+            "feedback": "這是飯店櫃台問題，不是計程車到達後的收尾。"
+          }
+        ]
+      },
+      "closing": {
+        "act": "taxi_destination_complete",
+        "learning_role": "listen_only",
+        "surface": "คุณบอกปลายทางและมาถึงแล้ว",
+        "speak": "คุณบอกปลายทางและมาถึงแล้ว",
+        "translation": "你說出目的地並到達了。"
+      }
+    }
+  ],
+  "formula_moments": [
+    {
+      "after_turn": "t1",
+      "pattern_id": "th.taxi.destination_request.v1"
+    },
+    {
+      "after_turn": "t2",
+      "pattern_id": "th.taxi.confirm_yes.v1"
+    },
+    {
+      "after_turn": "t4",
+      "pattern_id": "th.taxi.thanks.v1"
+    }
+  ],
+  "notes": {
+    "authoring_source": "Authored from ML-4 neutral brief, not Korean surface text or another target-language pack.",
+    "review_policy": "AI-authored Thai candidate. Requires AI review, runtime smoke, and tracked native review before any stronger status.",
+    "canonical_policy": "Staging candidate only. Do not write back to manifests, production exports, schemas, runtime exports, frontend, or legacy content.",
+    "thai_voice_note": "Uses Thai script, phrase-group spacing, staff ครับ and learner ค่ะ; avoids fare, route, safety, and payment details."
+  }
+}

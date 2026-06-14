@@ -1,0 +1,263 @@
+{
+  "schema_version": "scenario_pack.v1",
+  "scenario_id": "convenience_payment_card_cash",
+  "brief_id": "ml0_a1_004_convenience_payment_card_cash",
+  "source_neutral_brief": "release-aggregator/docs/tasks/A1_MULTILINGUAL_KO_B1_PARALLEL_ORCHESTRATION/work_products/ml0/ML0_NEUTRAL_ADAPTATION_BRIEFS_20260613.md#brief-ml0-a1-004-convenience-store-payment",
+  "blueprint_ledger": "release-aggregator/docs/tasks/A1_MULTILINGUAL_KO_B1_PARALLEL_ORCHESTRATION/work_products/ml0/ML0_BLUEPRINT_LEDGER_20260613.md",
+  "repo": "content-en",
+  "staging_path": "curriculum/a1_travel_v1/staging/scenario_pack.v1/convenience_payment_card_cash.en.v1.json",
+  "title": "Paying at a Convenience Store",
+  "setting_label": "Convenience store counter",
+  "wrap_title": "You paid at the counter",
+  "wrap_friend": "You answered the payment question, followed the card prompt, and closed the short checkout politely.",
+  "language": "en",
+  "ui_language": "en",
+  "source_status": "candidate_runtime_verified",
+  "review_state": "draft",
+  "review_status_framework_state": "candidate_runtime_verified",
+  "native_review_state": "native_pending",
+  "production_mode_default": {
+    "required": [
+      "choice"
+    ],
+    "optional_visible": [
+      "speaking"
+    ],
+    "optional_hidden": [
+      "typing"
+    ]
+  },
+  "support_text": "You are paying for a small item at a convenience store. Listen to the cashier and choose a short reply that fits checkout.",
+  "roles": {
+    "npc": {
+      "label": "Cashier"
+    },
+    "learner": {
+      "label": "You"
+    }
+  },
+  "turns": [
+    {
+      "turn_id": "t1",
+      "speaker": "npc",
+      "act": "payment_method_question",
+      "act_slots": {
+        "topic": "payment method",
+        "keyword": "card or cash",
+        "gloss": "choose how to pay"
+      },
+      "learning_role": "listen_only",
+      "surface": "That comes to $6. Card or cash?",
+      "speak": "That comes to six dollars. Card or cash?",
+      "translation": "The cashier is asking how you want to pay.",
+      "friend": {
+        "hint": "They are asking for a payment method. A short answer is enough."
+      },
+      "inline_explain": {
+        "pattern_id": "en.store.payment.card_cash.v1",
+        "formula_ref": null,
+        "title": "Card / cash",
+        "explain": "Say \"Card, please\" to pay by card, or \"Cash, please\" to pay with cash.",
+        "items": [
+          {
+            "surface": "Card, please.",
+            "translation": "I want to pay by card.",
+            "speak": "Card, please."
+          },
+          {
+            "surface": "Cash, please.",
+            "translation": "I want to pay with cash.",
+            "speak": "Cash, please."
+          }
+        ]
+      },
+      "reply_set": {
+        "correct": "r1a",
+        "choices": [
+          {
+            "id": "r1a",
+            "surface": "Card, please.",
+            "translation": "I want to pay by card.",
+            "speak": "Card, please.",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r1b",
+            "surface": "Can I get a coffee?",
+            "translation": "I am ordering a drink.",
+            "speak": "Can I get a coffee?",
+            "contrast_type": "wrong_scenario_ordering",
+            "feedback": "This is for ordering. You are already at checkout, so answer card or cash."
+          },
+          {
+            "id": "r1c",
+            "surface": "Where is the restroom?",
+            "translation": "I am asking for a restroom.",
+            "speak": "Where is the restroom?",
+            "contrast_type": "wrong_scenario_request",
+            "feedback": "This asks for directions. The cashier is asking how you want to pay."
+          },
+          {
+            "id": "r1d",
+            "surface": "Cash, please.",
+            "translation": "I want to pay with cash.",
+            "speak": "Cash, please.",
+            "contrast_type": "wrong_payment_method",
+            "feedback": "That is a payment method, but this practice path is for paying by card."
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t2",
+      "speaker": "npc",
+      "act": "payment_instruction",
+      "act_slots": {
+        "topic": "card payment",
+        "keyword": "tap",
+        "gloss": "use the card reader"
+      },
+      "learning_role": "listen_only",
+      "surface": "Please tap your card here.",
+      "speak": "Please tap your card here.",
+      "translation": "The cashier is telling you where to use the card.",
+      "friend": {
+        "hint": "You only need to acknowledge the card prompt."
+      },
+      "reply_set": {
+        "correct": "r2a",
+        "choices": [
+          {
+            "id": "r2a",
+            "surface": "Okay.",
+            "translation": "I understand.",
+            "speak": "Okay."
+          },
+          {
+            "id": "r2b",
+            "surface": "Card, please.",
+            "translation": "I want to pay by card.",
+            "speak": "Card, please.",
+            "contrast_type": "repeated_prior_answer",
+            "feedback": "You already chose card. Now follow the cashier's payment instruction."
+          },
+          {
+            "id": "r2c",
+            "surface": "How much is it?",
+            "translation": "I am asking the price.",
+            "speak": "How much is it?",
+            "contrast_type": "wrong_act_price_question",
+            "feedback": "The price was already given. This step is about tapping the card."
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t3",
+      "speaker": "npc",
+      "act": "receipt_question",
+      "act_slots": {
+        "topic": "receipt",
+        "keyword": "receipt",
+        "gloss": "paper proof of payment"
+      },
+      "learning_role": "listen_only",
+      "surface": "Do you need a receipt?",
+      "speak": "Do you need a receipt?",
+      "translation": "The cashier is asking if you want a receipt.",
+      "friend": {
+        "hint": "If you do not need it, say no receipt."
+      },
+      "reply_set": {
+        "correct": "r3a",
+        "choices": [
+          {
+            "id": "r3a",
+            "surface": "No receipt, thanks.",
+            "translation": "I do not need a receipt.",
+            "speak": "No receipt, thanks.",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r3b",
+            "surface": "Card, please.",
+            "translation": "I want to pay by card.",
+            "speak": "Card, please.",
+            "contrast_type": "repeated_prior_answer",
+            "feedback": "The card payment is already done. Now answer the receipt question."
+          },
+          {
+            "id": "r3c",
+            "surface": "At the station.",
+            "translation": "I am giving a place.",
+            "speak": "At the station.",
+            "contrast_type": "wrong_scenario_schedule",
+            "feedback": "This sounds like planning a meetup. The cashier is asking about a receipt."
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t4",
+      "speaker": "npc",
+      "act": "transaction_close",
+      "act_slots": {
+        "topic": "checkout closing",
+        "keyword": "all set",
+        "gloss": "finished"
+      },
+      "learning_role": "listen_only",
+      "surface": "All set. Have a good day.",
+      "speak": "All set. Have a good day.",
+      "translation": "The cashier says the checkout is finished.",
+      "friend": {
+        "hint": "Checkout is done. A short thanks is natural."
+      },
+      "reply_set": {
+        "correct": "r4a",
+        "choices": [
+          {
+            "id": "r4a",
+            "surface": "Thanks, you too.",
+            "translation": "I am thanking the cashier.",
+            "speak": "Thanks, you too."
+          },
+          {
+            "id": "r4b",
+            "surface": "Can I get a coffee?",
+            "translation": "I am ordering a drink.",
+            "speak": "Can I get a coffee?",
+            "contrast_type": "wrong_scenario_ordering",
+            "feedback": "This starts a new order. Checkout is finished, so close politely."
+          },
+          {
+            "id": "r4c",
+            "surface": "No receipt, thanks.",
+            "translation": "I do not need a receipt.",
+            "speak": "No receipt, thanks.",
+            "contrast_type": "repeated_prior_answer",
+            "feedback": "You already answered about the receipt. Now just thank the cashier."
+          }
+        ]
+      },
+      "closing": {
+        "act": "handover",
+        "learning_role": "context_support",
+        "surface": "The payment is complete.",
+        "speak": "The payment is complete.",
+        "translation": "Checkout is finished."
+      }
+    }
+  ],
+  "formula_moments": [
+    {
+      "after_turn": "t1",
+      "pattern_id": "en.store.payment.card_cash.v1"
+    }
+  ],
+  "notes": {
+    "review_policy": "AI-authored candidate. Requires AI review, runtime smoke, and tracked native review before any stronger status.",
+    "canonical_policy": "Staging candidate only. Do not write back to manifests, production exports, schemas, or legacy content.",
+    "authoring_source": "Authored from ML-0 neutral brief, not Korean surface text."
+  }
+}

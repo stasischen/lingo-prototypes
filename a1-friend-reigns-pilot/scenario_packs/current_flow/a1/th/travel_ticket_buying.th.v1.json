@@ -1,0 +1,241 @@
+{
+  "schema_version": "scenario_pack.v1",
+  "scenario_id": "travel_ticket_buying",
+  "brief_id": "ml3_a1_013_travel_ticket_buying",
+  "source_neutral_brief": "release-aggregator/docs/tasks/A1_MULTILINGUAL_KO_B1_PARALLEL_ORCHESTRATION/work_products/ml0/ML3_NEUTRAL_ADAPTATION_BRIEFS_20260614.md#brief-ml3-a1-013-buy-a-ticket",
+  "blueprint_ledger": "release-aggregator/docs/tasks/A1_MULTILINGUAL_KO_B1_PARALLEL_ORCHESTRATION/work_products/ml0/ML3_BLUEPRINT_LEDGER_20260614.md",
+  "repo": "content-th",
+  "staging_path": "content/core/content_assets/scenario_packs/current_flow/travel_ticket_buying.th.v1.json",
+  "title": "ซื้อตั๋ว",
+  "setting_label": "เคาน์เตอร์ตั๋วรถไฟ",
+  "wrap_title": "ซื้อตั๋วได้แล้ว",
+  "wrap_friend": "คุณบอกปลายทาง ยืนยันจำนวนตั๋ว และขอบคุณเจ้าหน้าที่",
+  "language": "th",
+  "ui_language": "zh_tw",
+  "source_status": "candidate_runtime_verified",
+  "review_state": "draft",
+  "review_status_framework_state": "candidate_runtime_verified",
+  "native_review_state": "native_pending",
+  "production_mode_default": {
+    "required": [
+      "choice"
+    ],
+    "optional_visible": [
+      "speaking"
+    ],
+    "optional_hidden": [
+      "typing"
+    ]
+  },
+  "support_text": "你在火車售票櫃台買一張票。選自然、簡短的泰文。",
+  "roles": {
+    "npc": {
+      "label": "เจ้าหน้าที่"
+    },
+    "learner": {
+      "label": "คุณ"
+    }
+  },
+  "turns": [
+    {
+      "turn_id": "t1",
+      "speaker": "npc",
+      "act": "offer_help",
+      "learning_role": "listen_only",
+      "surface": "ไปไหนครับ",
+      "speak": "ไปไหนครับ",
+      "translation": "要去哪裡？",
+      "friend": {
+        "hint": "售票員問目的地。說ขอตั๋วหนึ่งใบไป加地名。"
+      },
+      "reply_set": {
+        "correct": "r1a",
+        "choices": [
+          {
+            "id": "r1a",
+            "surface": "ขอตั๋วหนึ่งใบไปสถานีกลางครับ",
+            "translation": "請給我一張到中央車站的票。",
+            "speak": "ขอตั๋วหนึ่งใบ / ไปสถานีกลางครับ",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r1b",
+            "surface": "สถานีกลางอยู่ที่ไหนครับ",
+            "translation": "中央車站在哪裡？",
+            "speak": "สถานีกลาง / อยู่ที่ไหนครับ",
+            "contrast_type": "directions_instead_of_ticket_purchase",
+            "feedback": "這是在問路，不是在買票。"
+          },
+          {
+            "id": "r1c",
+            "surface": "ขอแซนด์วิชครับ",
+            "translation": "請給我三明治。",
+            "speak": "ขอแซนด์วิชครับ",
+            "contrast_type": "food_order_at_ticket_counter",
+            "feedback": "這是在點餐，不適合售票櫃台。"
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t2",
+      "speaker": "npc",
+      "act": "confirm_destination_quantity",
+      "learning_role": "listen_only",
+      "surface": "หนึ่งใบไปสถานีกลางนะครับ",
+      "speak": "หนึ่งใบ / ไปสถานีกลางนะครับ",
+      "translation": "一張到中央車站，對嗎？",
+      "friend": {
+        "hint": "售票員確認資訊。用ใช่ครับ簡短回答。"
+      },
+      "inline_explain": {
+        "pattern_id": "th.ticket.confirm.v1",
+        "formula_ref": null,
+        "title": "ใช่ครับ",
+        "explain": "ใช้ตอบยืนยันกับเจ้าหน้าที่แบบสั้นและสุภาพ",
+        "items": [
+          {
+            "surface": "ใช่ครับ",
+            "translation": "是的。",
+            "speak": "ใช่ครับ"
+          }
+        ]
+      },
+      "reply_set": {
+        "correct": "r2a",
+        "choices": [
+          {
+            "id": "r2a",
+            "surface": "ใช่ครับ",
+            "translation": "是的。",
+            "speak": "ใช่ครับ",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r2b",
+            "surface": "ไม่เอาแล้วครับ",
+            "translation": "不用了。",
+            "speak": "ไม่เอาแล้วครับ",
+            "contrast_type": "cancel_when_confirmation_expected",
+            "feedback": "售票員確認的是正確資訊；這裡不該取消。"
+          },
+          {
+            "id": "r2c",
+            "surface": "สองใบไปสนามบินครับ",
+            "translation": "兩張到機場。",
+            "speak": "สองใบ / ไปสนามบินครับ",
+            "contrast_type": "wrong_quantity_and_destination",
+            "feedback": "這改變了張數和目的地，和前一句不一致。"
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t3",
+      "speaker": "npc",
+      "act": "handover_ticket",
+      "learning_role": "listen_only",
+      "surface": "สามสิบบาท ชานชาลาสองครับ",
+      "speak": "สามสิบบาท / ชานชาลาสองครับ",
+      "translation": "三十泰銖。二號月台。",
+      "friend": {
+        "hint": "售票員說價格和月台。付款並道謝。"
+      },
+      "reply_set": {
+        "correct": "r4a",
+        "choices": [
+          {
+            "id": "r4a",
+            "surface": "นี่ครับ ขอบคุณครับ",
+            "translation": "給你，謝謝。",
+            "speak": "นี่ครับ / ขอบคุณครับ",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r4b",
+            "surface": "คุณไปสถานีกลางไหมครับ",
+            "translation": "你要去中央車站嗎？",
+            "speak": "คุณไปสถานีกลางไหมครับ",
+            "contrast_type": "staff_role_sentence_by_customer",
+            "feedback": "這像售票員問旅客，不是旅客付款收尾。"
+          },
+          {
+            "id": "r4c",
+            "surface": "ยินดีที่ได้รู้จักครับ",
+            "translation": "很高興認識你。",
+            "speak": "ยินดีที่ได้รู้จักครับ",
+            "contrast_type": "social_greeting_at_ticket_counter",
+            "feedback": "這是社交初次見面語，不是買票收尾。"
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t4",
+      "speaker": "npc",
+      "act": "ticket_handover",
+      "learning_role": "listen_only",
+      "surface": "นี่ตั๋วครับ ชานชาลาสอง",
+      "speak": "นี่ตั๋วครับ / ชานชาลาสอง",
+      "translation": "這是票。二號月台。",
+      "friend": {
+        "hint": "拿到票和月台資訊後，簡短道謝。"
+      },
+      "reply_set": {
+        "correct": "r4a",
+        "choices": [
+          {
+            "id": "r4a",
+            "surface": "ขอบคุณครับ",
+            "translation": "謝謝。",
+            "speak": "ขอบคุณครับ",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r4b",
+            "surface": "ขอกาแฟหนึ่งแก้วครับ",
+            "translation": "請給我一杯咖啡。",
+            "speak": "ขอกาแฟ / หนึ่งแก้วครับ",
+            "contrast_type": "food_order_at_ticket_counter",
+            "feedback": "這是在點咖啡，不是售票窗口收尾。"
+          },
+          {
+            "id": "r4c",
+            "surface": "ยินดีที่ได้รู้จักครับ",
+            "translation": "很高興認識你。",
+            "speak": "ยินดีที่ได้รู้จักครับ",
+            "contrast_type": "social_closing_at_ticket_counter",
+            "feedback": "這是社交初次見面語，不是買票收尾。"
+          }
+        ]
+      },
+      "closing": {
+        "act": "travel_ticket_buying_complete",
+        "learning_role": "listen_only",
+        "surface": "นี่ตั๋วครับ ชานชาลาสอง",
+        "speak": "นี่ตั๋วครับ / ชานชาลาสอง",
+        "translation": "這是票。二號月台。"
+      }
+    }
+  ],
+  "formula_moments": [
+    {
+      "after_turn": "t1",
+      "pattern_id": "th.ticket.destination_quantity.v1"
+    },
+    {
+      "after_turn": "t2",
+      "pattern_id": "th.ticket.confirm_yes.v1"
+    },
+    {
+      "after_turn": "t4",
+      "pattern_id": "th.ticket.thanks.v1"
+    }
+  ],
+  "notes": {
+    "authoring_source": "Authored from ML-3 neutral brief, not Korean surface text or another target-language pack.",
+    "review_policy": "AI-authored Thai candidate. Requires AI review, runtime smoke, and tracked native review before any stronger status.",
+    "canonical_policy": "Staging candidate only. Do not write back to manifests, production exports, schemas, or legacy content.",
+    "register_note": "Polite Thai ticket-counter register with simple destination and quantity."
+  }
+}

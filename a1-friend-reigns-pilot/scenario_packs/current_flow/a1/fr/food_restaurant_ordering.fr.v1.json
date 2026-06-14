@@ -1,0 +1,257 @@
+{
+  "schema_version": "scenario_pack.v1",
+  "scenario_id": "food_restaurant_ordering",
+  "brief_id": "ml1_a1_006_food_restaurant_ordering",
+  "source_neutral_brief": "release-aggregator/docs/tasks/A1_MULTILINGUAL_KO_B1_PARALLEL_ORCHESTRATION/work_products/ml0/ML1_NEUTRAL_ADAPTATION_BRIEFS_20260614.md#brief-ml1-a1-006-restaurant-ordering",
+  "blueprint_ledger": "release-aggregator/docs/tasks/A1_MULTILINGUAL_KO_B1_PARALLEL_ORCHESTRATION/work_products/ml0/ML1_BLUEPRINT_LEDGER_20260614.md",
+  "repo": "content-fr",
+  "staging_path": "content/core/content_assets/scenario_packs/current_flow/food_restaurant_ordering.fr.v1.json",
+  "title": "Commander au restaurant",
+  "setting_label": "Table de restaurant simple",
+  "wrap_title": "Tu peux commander un plat",
+  "wrap_friend": "你回答已準備好、點了一道菜，並用短句確認餐點。",
+  "language": "fr",
+  "ui_language": "zh_tw",
+  "source_status": "candidate_runtime_verified",
+  "review_state": "draft",
+  "review_status_framework_state": "candidate_runtime_verified",
+  "native_review_state": "native_pending",
+  "production_mode_default": {
+    "required": [
+      "choice"
+    ],
+    "optional_visible": [
+      "speaking"
+    ],
+    "optional_hidden": [
+      "typing"
+    ]
+  },
+  "support_text": "你在法語餐廳。聽服務生問什麼，選一句簡短自然的法語回答。",
+  "roles": {
+    "npc": {
+      "label": "serveur"
+    },
+    "learner": {
+      "label": "client"
+    }
+  },
+  "turns": [
+    {
+      "turn_id": "t1",
+      "speaker": "npc",
+      "act": "readiness_question",
+      "act_slots": {
+        "topic": "commencer la commande",
+        "keyword": "choisi",
+        "gloss": "選好了"
+      },
+      "learning_role": "listen_only",
+      "surface": "Bonjour. Vous avez choisi ?",
+      "speak": "Bonjour. Vous avez choisi ?",
+      "translation": "您好。您選好了嗎？",
+      "friend": {
+        "hint": "服務生在問你是否準備好點餐。簡短回答 Oui。"
+      },
+      "reply_set": {
+        "correct": "r1a",
+        "choices": [
+          {
+            "id": "r1a",
+            "surface": "Oui, j'ai choisi.",
+            "translation": "是的，我選好了。",
+            "speak": "Oui, j'ai choisi.",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r1b",
+            "surface": "L'addition, s'il vous plaît.",
+            "translation": "請結帳。",
+            "speak": "L'addition, s'il vous plaît.",
+            "contrast_type": "wrong_sequence_bill",
+            "feedback": "這是在用餐後結帳。現在才要開始點餐。"
+          },
+          {
+            "id": "r1c",
+            "surface": "Un café à emporter.",
+            "translation": "一杯咖啡外帶。",
+            "speak": "Un café à emporter.",
+            "contrast_type": "wrong_setting_cafe",
+            "feedback": "這像咖啡店外帶。餐廳點餐先回答你準備好了。"
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t2",
+      "speaker": "npc",
+      "act": "order_request",
+      "act_slots": {
+        "topic": "commander un plat",
+        "keyword": "prendre",
+        "gloss": "點餐"
+      },
+      "learning_role": "listen_only",
+      "surface": "Très bien. Qu'est-ce que vous prenez ?",
+      "speak": "Très bien. Qu'est-ce que vous prenez ?",
+      "translation": "很好。您要點什麼？",
+      "friend": {
+        "hint": "用 Je prends 加一道菜，最後加 s'il vous plaît。"
+      },
+      "inline_explain": {
+        "pattern_id": "fr.restaurant.order_dish.v1",
+        "formula_ref": null,
+        "title": "Je prends + un plat",
+        "explain": "在餐廳點餐，Je prends... 是自然又簡短的說法。",
+        "items": [
+          {
+            "surface": "Je prends une soupe, s'il vous plaît.",
+            "translation": "我點一份湯，謝謝。",
+            "speak": "Je prends une soupe, s'il vous plaît."
+          },
+          {
+            "surface": "Une salade, s'il vous plaît.",
+            "translation": "一份沙拉，謝謝。",
+            "speak": "Une salade, s'il vous plaît."
+          }
+        ]
+      },
+      "reply_set": {
+        "correct": "r2a",
+        "choices": [
+          {
+            "id": "r2a",
+            "surface": "Je prends une soupe, s'il vous plaît.",
+            "translation": "我點一份湯，謝謝。",
+            "speak": "Je prends une soupe, s'il vous plaît.",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r2b",
+            "surface": "Nous sommes deux.",
+            "translation": "我們是兩位。",
+            "speak": "Nous sommes deux.",
+            "contrast_type": "wrong_prior_context",
+            "feedback": "現在不是在問人數。服務生正在問你要點哪一道菜。"
+          },
+          {
+            "id": "r2c",
+            "surface": "Je paie par carte.",
+            "translation": "我用卡付款。",
+            "speak": "Je paie par carte.",
+            "contrast_type": "wrong_sequence_payment",
+            "feedback": "付款還太早。現在要先點餐。"
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t3",
+      "speaker": "npc",
+      "act": "order_confirmation",
+      "act_slots": {
+        "topic": "confirmer le plat",
+        "keyword": "autre",
+        "gloss": "其他"
+      },
+      "learning_role": "listen_only",
+      "surface": "Une soupe, très bien. Autre chose ?",
+      "speak": "Une soupe, très bien. Autre chose ?",
+      "translation": "一份湯，很好。還要別的嗎？",
+      "friend": {
+        "hint": "餐點正確且不加點時，說 Non, merci。"
+      },
+      "reply_set": {
+        "correct": "r3a",
+        "choices": [
+          {
+            "id": "r3a",
+            "surface": "Non, merci. C'est tout.",
+            "translation": "不用了，謝謝。就這樣。",
+            "speak": "Non, merci. C'est tout.",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r3b",
+            "surface": "Je prends trois soupes.",
+            "translation": "我要三份湯。",
+            "speak": "Je prends trois soupes.",
+            "contrast_type": "wrong_quantity",
+            "feedback": "服務生確認的是一份湯。沒有改數量時，不要說三份。"
+          },
+          {
+            "id": "r3c",
+            "surface": "Où est la station ?",
+            "translation": "車站在哪裡？",
+            "speak": "Où est la station ?",
+            "contrast_type": "wrong_scenario_request",
+            "feedback": "這是問路。現在是在確認餐廳訂單。"
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t4",
+      "speaker": "npc",
+      "act": "service_close",
+      "act_slots": {
+        "topic": "commande reçue",
+        "keyword": "minutes",
+        "gloss": "分鐘"
+      },
+      "learning_role": "listen_only",
+      "surface": "Parfait. Votre soupe arrive dans quelques minutes.",
+      "speak": "Parfait. Votre soupe arrive dans quelques minutes.",
+      "translation": "太好了。您的湯幾分鐘後會送來。",
+      "friend": {
+        "hint": "服務生說餐點會來。簡短道謝就好。"
+      },
+      "reply_set": {
+        "correct": "r4a",
+        "choices": [
+          {
+            "id": "r4a",
+            "surface": "Merci.",
+            "translation": "謝謝。",
+            "speak": "Merci."
+          },
+          {
+            "id": "r4b",
+            "surface": "L'addition, s'il vous plaît.",
+            "translation": "請結帳。",
+            "speak": "L'addition, s'il vous plaît.",
+            "contrast_type": "wrong_sequence_bill",
+            "feedback": "你還沒吃完。服務生只是說餐點會送來。"
+          },
+          {
+            "id": "r4c",
+            "surface": "J'ai besoin du mot de passe wifi.",
+            "translation": "我需要 wifi 密碼。",
+            "speak": "J'ai besoin du mot de passe wifi.",
+            "contrast_type": "wrong_scenario_hotel",
+            "feedback": "這是飯店或 wifi 問題，不是餐廳點餐結尾。"
+          }
+        ]
+      },
+      "closing": {
+        "act": "kitchen_acknowledgement",
+        "learning_role": "listen_only",
+        "surface": "Avec plaisir.",
+        "speak": "Avec plaisir.",
+        "translation": "不客氣。"
+      }
+    }
+  ],
+  "formula_moments": [
+    {
+      "after_turn": "t2",
+      "pattern_id": "fr.restaurant.order_dish.v1"
+    }
+  ],
+  "notes": {
+    "authoring_source": "Authored from ML-1 neutral brief, not Korean surface text or another target-language pack.",
+    "review_policy": "AI-authored French candidate. Requires AI review, runtime smoke, and tracked native review before any stronger status.",
+    "canonical_policy": "Staging candidate only. Do not write back to manifests, production exports, schemas, or legacy content.",
+    "french_register_note": "Uses concise service French with vous; learner outputs stay A1-sized."
+  }
+}

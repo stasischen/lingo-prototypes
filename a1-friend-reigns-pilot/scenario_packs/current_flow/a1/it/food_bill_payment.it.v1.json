@@ -1,0 +1,236 @@
+{
+  "schema_version": "scenario_pack.v1",
+  "scenario_id": "food_bill_payment",
+  "brief_id": "ml2_a1_011_food_bill_payment",
+  "source_neutral_brief": "release-aggregator/docs/tasks/A1_MULTILINGUAL_KO_B1_PARALLEL_ORCHESTRATION/work_products/ml0/ML2_NEUTRAL_ADAPTATION_BRIEFS_20260614.md#brief-ml2-a1-011-pay-the-bill",
+  "blueprint_ledger": "release-aggregator/docs/tasks/A1_MULTILINGUAL_KO_B1_PARALLEL_ORCHESTRATION/work_products/ml0/ML2_BLUEPRINT_LEDGER_20260614.md",
+  "repo": "content-it",
+  "staging_path": "content/core/content_assets/scenario_packs/current_flow/food_bill_payment.it.v1.json",
+  "title": "Pagare il conto",
+  "setting_label": "Cassa del bar",
+  "wrap_title": "Pagamento chiuso",
+  "wrap_friend": "你用簡短自然的義大利語請結帳、回答付款方式，並禮貌收尾。",
+  "language": "it",
+  "ui_language": "zh_tw",
+  "source_status": "candidate_runtime_verified",
+  "review_state": "draft",
+  "review_status_framework_state": "candidate_runtime_verified",
+  "native_review_state": "native_pending",
+  "production_mode_default": {
+    "required": [
+      "choice"
+    ],
+    "optional_visible": [
+      "speaking"
+    ],
+    "optional_hidden": [
+      "typing"
+    ]
+  },
+  "support_text": "你在義大利的咖啡館或簡單餐廳。用一句話請結帳，回答現金或刷卡，最後道謝。",
+  "roles": {
+    "npc": {
+      "label": "Cassiere"
+    },
+    "learner": {
+      "label": "Cliente"
+    }
+  },
+  "turns": [
+    {
+      "turn_id": "t1",
+      "speaker": "npc",
+      "act": "payment_attention",
+      "act_slots": {
+        "topic": "attention",
+        "keyword": "dica",
+        "gloss": "tell me"
+      },
+      "learning_role": "listen_only",
+      "surface": "Mi dica pure.",
+      "speak": "Mi dica pure.",
+      "translation": "請說。",
+      "friend": {
+        "hint": "要結帳時，用 Il conto, per favore。"
+      },
+      "reply_set": {
+        "correct": "r1a",
+        "choices": [
+          {
+            "id": "r1a",
+            "surface": "Il conto, per favore.",
+            "translation": "請結帳。",
+            "speak": "Il conto, per favore.",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r1b",
+            "surface": "Vorrei un cappuccino.",
+            "translation": "我想要一杯卡布奇諾。",
+            "speak": "Vorrei un cappuccino.",
+            "contrast_type": "ordering_more_food",
+            "feedback": "這是在繼續點東西。現在目標是請結帳。"
+          },
+          {
+            "id": "r1c",
+            "surface": "Dov'è la stazione?",
+            "translation": "車站在哪裡？",
+            "speak": "Dov'è la stazione?",
+            "contrast_type": "directions_request",
+            "feedback": "這是在問路，不是在餐飲場所結帳。"
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t2",
+      "speaker": "npc",
+      "act": "payment_method_prompt",
+      "act_slots": {
+        "topic": "payment_method",
+        "keyword": "carta",
+        "gloss": "card"
+      },
+      "learning_role": "listen_only",
+      "surface": "Certo. Carta o contanti?",
+      "speak": "Certo. Carta o contanti?",
+      "translation": "好的。刷卡還是現金？",
+      "friend": {
+        "hint": "回答付款方式即可。"
+      },
+      "reply_set": {
+        "correct": "r2a",
+        "choices": [
+          {
+            "id": "r2a",
+            "surface": "Con carta, grazie.",
+            "translation": "刷卡，謝謝。",
+            "speak": "Con carta, grazie.",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r2b",
+            "surface": "Quanto costa questo?",
+            "translation": "這個多少錢？",
+            "speak": "Quanto costa questo?",
+            "contrast_type": "shopping_price_question",
+            "feedback": "這是在商店問商品價格。現在收銀員問付款方式。"
+          },
+          {
+            "id": "r2c",
+            "surface": "Vorrei dividere il conto in quattro parti uguali.",
+            "translation": "我想把帳單平均分成四份。",
+            "speak": "Vorrei dividere il conto in quattro parti uguali.",
+            "contrast_type": "overlong_split_bill",
+            "feedback": "這太複雜，超出這個 A1 付款回合。"
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t3",
+      "speaker": "npc",
+      "act": "receipt_prompt",
+      "act_slots": {
+        "topic": "receipt",
+        "keyword": "scontrino",
+        "gloss": "receipt"
+      },
+      "learning_role": "listen_only",
+      "surface": "Vuole lo scontrino?",
+      "speak": "Vuole lo scontrino?",
+      "translation": "您要收據嗎？",
+      "friend": {
+        "hint": "可以簡短回答 sì 或 no。"
+      },
+      "reply_set": {
+        "correct": "r3a",
+        "choices": [
+          {
+            "id": "r3a",
+            "surface": "Sì, grazie.",
+            "translation": "要，謝謝。",
+            "speak": "Sì, grazie."
+          },
+          {
+            "id": "r3b",
+            "surface": "Un tavolo per due.",
+            "translation": "兩人桌。",
+            "speak": "Un tavolo per due.",
+            "contrast_type": "restaurant_arrival_phrase",
+            "feedback": "這是進餐廳時說的，不是在回答是否要收據。"
+          },
+          {
+            "id": "r3c",
+            "surface": "A che ora è la colazione?",
+            "translation": "早餐幾點？",
+            "speak": "A che ora è la colazione?",
+            "contrast_type": "hotel_breakfast_question",
+            "feedback": "這是飯店早餐問題，和結帳收據無關。"
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t4",
+      "speaker": "npc",
+      "act": "payment_close",
+      "act_slots": {
+        "topic": "close",
+        "keyword": "arrivederci",
+        "gloss": "goodbye"
+      },
+      "learning_role": "listen_only",
+      "surface": "Ecco a lei. Arrivederci.",
+      "speak": "Ecco a lei. Arrivederci.",
+      "translation": "給您。再見。",
+      "friend": {
+        "hint": "用 Grazie, arrivederci 收尾。"
+      },
+      "reply_set": {
+        "correct": "r4a",
+        "choices": [
+          {
+            "id": "r4a",
+            "surface": "Grazie, arrivederci.",
+            "translation": "謝謝，再見。",
+            "speak": "Grazie, arrivederci."
+          },
+          {
+            "id": "r4b",
+            "surface": "Ci vediamo al museo.",
+            "translation": "我們博物館見。",
+            "speak": "Ci vediamo al museo.",
+            "contrast_type": "friend_meeting_close",
+            "feedback": "這是朋友見面安排，不是和收銀員結帳收尾。"
+          },
+          {
+            "id": "r4c",
+            "surface": "Lo prendo.",
+            "translation": "我買這個。",
+            "speak": "Lo prendo.",
+            "contrast_type": "shopping_purchase_phrase",
+            "feedback": "這是購物時確認購買，不是餐飲結帳後道別。"
+          }
+        ]
+      },
+      "closing": true
+    }
+  ],
+  "formula_moments": [
+    {
+      "after_turn": "t1",
+      "pattern_id": "it.payment.il_conto_per_favore.v1"
+    },
+    {
+      "after_turn": "t2",
+      "pattern_id": "it.payment.con_carta.v1"
+    }
+  ],
+  "notes": {
+    "authoring_source": "Authored from ML-2 neutral brief ml2_a1_011_food_bill_payment; KO and other target-language packs were not used as translation sources.",
+    "review_policy": "AI-authored candidate only; keep review_state=draft, review_status_framework_state=candidate_needs_review, native_review_state=native_pending until tracked review evidence exists.",
+    "canonical_policy": "Staging current-flow candidate only. Do not add to manifests, production exports, schema, runtime, frontend, review artifacts, or legacy content.",
+    "italian_voice_note": "Uses common Italian bar/restaurant payment formulas with a consistent polite service register; native review should confirm whether this level of formality matches the target venue."
+  }
+}

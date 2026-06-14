@@ -1,0 +1,261 @@
+{
+  "schema_version": "scenario_pack.v1",
+  "scenario_id": "a2_ask_late_checkout",
+  "title": "Ask for Late Checkout",
+  "setting_label": "At the hotel front desk",
+  "wrap_title": "Checkout Time Confirmed",
+  "wrap_friend": "你剛剛完成了一段 A2 住宿服務情境，說明需求、聽懂回覆，並確認下一步。",
+  "language": "en",
+  "ui_language": "zh_tw",
+  "cefr_level": "A2",
+  "source_status": "candidate_runtime_verified",
+  "review_state": "ai_reviewed",
+  "review_status_framework_state": "candidate_runtime_verified",
+  "native_review_state": "native_pending",
+  "scenario": "A hotel/accommodation service scenario: a2_ask_late_checkout.",
+  "learner_goal": "Ask if late checkout is possible and confirm the allowed time.",
+  "target_functions": [
+    "late_checkout_request",
+    "availability_time",
+    "polite_confirmation"
+  ],
+  "register_notes": "Broad everyday English hotel-service register; polite, short A2 responses; no complaint escalation.",
+  "production_mode_default": {
+    "required": [
+      "choice"
+    ],
+    "optional_visible": [
+      "speaking"
+    ],
+    "optional_hidden": [
+      "typing"
+    ]
+  },
+  "support_text": "Ask if late checkout is possible and confirm the final checkout time.",
+  "roles": {
+    "npc": {
+      "label": "Hotel Staff"
+    },
+    "learner": {
+      "label": "You"
+    }
+  },
+  "turns": [
+    {
+      "turn_id": "t1",
+      "speaker": "npc",
+      "act": "service_prompt",
+      "act_slots": {
+        "topic": "service_prompt",
+        "keyword": "help",
+        "gloss": "協助"
+      },
+      "learning_role": "listen_only",
+      "surface": "How can I help you?",
+      "speak": "How can I help you?",
+      "translation": "我可以怎麼幫您？",
+      "friend": {
+        "hint": "Ask about late checkout."
+      },
+      "reply_set": {
+        "correct": "r1a",
+        "choices": [
+          {
+            "id": "r1a",
+            "surface": "Can I check out a little later?",
+            "translation": "我可以晚一點退房嗎？",
+            "speak": "Can I check out a little later?",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r1b",
+            "surface": "Can I check in a little later?",
+            "translation": "我可以晚一點入住嗎？",
+            "speak": "Can I check in a little later?",
+            "contrast_type": "wrong_detail_or_domain",
+            "feedback": "This is checkout, not check-in."
+          },
+          {
+            "id": "r1c",
+            "surface": "Please lower the price.",
+            "translation": "請幫我降價。",
+            "speak": "Please lower the price.",
+            "contrast_type": "forbidden_or_wrong_domain",
+            "feedback": "Price negotiation is outside this A2 task."
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t2",
+      "speaker": "npc",
+      "act": "availability_offer",
+      "act_slots": {
+        "topic": "availability_offer",
+        "keyword": "one o’clock",
+        "gloss": "一點"
+      },
+      "learning_role": "listen_only",
+      "surface": "Today, you can check out by one o’clock.",
+      "speak": "Today, you can check out by one o’clock.",
+      "translation": "今天可以一點前退房。",
+      "friend": {
+        "hint": "Listen for the allowed time."
+      },
+      "inline_explain": {
+        "pattern_id": "en.a2.accommodation.checkout.until.v1",
+        "title": "A2 pattern",
+        "explain": "A useful pattern for this accommodation situation.",
+        "items": [
+          {
+            "surface": "one o’clock",
+            "translation": "一點",
+            "speak": "one o’clock"
+          }
+        ]
+      },
+      "reply_set": {
+        "correct": "r2a",
+        "choices": [
+          {
+            "id": "r2a",
+            "surface": "One o’clock is okay, right?",
+            "translation": "一點可以，對嗎？",
+            "speak": "One o’clock is okay, right?",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r2b",
+            "surface": "Ten o’clock is okay, right?",
+            "translation": "十點可以，對嗎？",
+            "speak": "Ten o’clock is okay, right?",
+            "contrast_type": "wrong_detail_or_domain",
+            "feedback": "The staff said one o’clock."
+          },
+          {
+            "id": "r2c",
+            "surface": "I will book a new room.",
+            "translation": "我要重新訂房。",
+            "speak": "I will book a new room.",
+            "contrast_type": "forbidden_or_wrong_domain",
+            "feedback": "This is checkout time confirmation, not a new booking."
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t3",
+      "speaker": "npc",
+      "act": "condition_notice",
+      "act_slots": {
+        "topic": "condition_notice",
+        "keyword": "room card",
+        "gloss": "房卡"
+      },
+      "learning_role": "listen_only",
+      "surface": "Please show your room card at the desk before noon.",
+      "speak": "Please show your room card at the desk before noon.",
+      "translation": "請在中午前把房卡拿到櫃台。",
+      "friend": {
+        "hint": "Confirm the simple condition."
+      },
+      "reply_set": {
+        "correct": "r3a",
+        "choices": [
+          {
+            "id": "r3a",
+            "surface": "I show my card before noon, right?",
+            "translation": "中午前拿房卡給您看，對嗎？",
+            "speak": "I show my card before noon, right?",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r3b",
+            "surface": "I tell you my passport number, right?",
+            "translation": "告訴您護照號碼，對嗎？",
+            "speak": "I tell you my passport number, right?",
+            "contrast_type": "wrong_detail_or_domain",
+            "feedback": "Passport details are not needed here."
+          },
+          {
+            "id": "r3c",
+            "surface": "I pick up my luggage at seven, right?",
+            "translation": "七點領行李，對嗎？",
+            "speak": "I pick up my luggage at seven, right?",
+            "contrast_type": "forbidden_or_wrong_domain",
+            "feedback": "This is checkout, not luggage pickup."
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t4",
+      "speaker": "npc",
+      "act": "close",
+      "act_slots": {
+        "topic": "close",
+        "keyword": "one o’clock checkout",
+        "gloss": "一點退房"
+      },
+      "learning_role": "listen_only",
+      "surface": "Okay, I will mark checkout for one o’clock.",
+      "speak": "Okay, I will mark checkout for one o’clock.",
+      "translation": "好的，我幫您確認一點退房。",
+      "friend": {
+        "hint": "Confirm the final time."
+      },
+      "reply_set": {
+        "correct": "r4a",
+        "choices": [
+          {
+            "id": "r4a",
+            "surface": "Thank you. I will check out at one.",
+            "translation": "謝謝。我一點退房。",
+            "speak": "Thank you. I will check out at one.",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r4b",
+            "surface": "I will ask for a refund.",
+            "translation": "我要申請退款。",
+            "speak": "I will ask for a refund.",
+            "contrast_type": "wrong_detail_or_domain",
+            "feedback": "Refunds are outside this situation."
+          },
+          {
+            "id": "r4c",
+            "surface": "I will take the train tomorrow morning.",
+            "translation": "我明天早上會搭火車。",
+            "speak": "I will take the train tomorrow morning.",
+            "contrast_type": "forbidden_or_wrong_domain",
+            "feedback": "This is checkout confirmation, not transport."
+          }
+        ]
+      }
+    }
+  ],
+  "choice_sets": [
+    "t1.reply_set",
+    "t2.reply_set",
+    "t3.reply_set",
+    "t4.reply_set"
+  ],
+  "feedback": "Distractors test wrong time, place, service domain, or out-of-scope escalation while preserving A2 boundaries.",
+  "tts_segments": [
+    "How can I help you?",
+    "Today, you can check out by one o’clock.",
+    "Please show your room card at the desk before noon.",
+    "Okay, I will mark checkout for one o’clock."
+  ],
+  "formula_moments": [
+    {
+      "after_turn": "t2",
+      "pattern_id": "en.a2.accommodation.checkout.until.v1"
+    }
+  ],
+  "runtime_notes": "EN A2 accommodation candidate. Full-walk runtime gate required before final closeout.",
+  "notes": {
+    "authoring_policy": "Fresh-authored from the neutral A2 accommodation brief. KO surfaces were not translated.",
+    "a2_boundary": "Low-risk accommodation/service task; avoids compensation, emergency, legal, medical, police, immigration, banking, insurance, or identity-sensitive handling."
+  }
+}

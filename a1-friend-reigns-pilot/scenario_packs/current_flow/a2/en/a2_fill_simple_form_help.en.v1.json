@@ -1,0 +1,257 @@
+{
+  "schema_version": "scenario_pack.v1",
+  "scenario_id": "a2_fill_simple_form_help",
+  "title": "Get Help with a Simple Form",
+  "setting_label": "low-risk help message",
+  "wrap_title": "Get Help with a Simple Form",
+  "wrap_friend": "Good. You handled a low-risk digital or document-help task with only the needed detail.",
+  "language": "en",
+  "ui_language": "zh-Hant",
+  "cefr_level": "A2",
+  "source_status": "candidate_runtime_verified",
+  "review_state": "ai_reviewed",
+  "review_status_framework_state": "candidate_runtime_verified",
+  "native_review_state": "native_pending",
+  "scenario": {
+    "domain": "digital_documents_low_risk_help",
+    "review_slice": "digital_documents",
+    "interaction": "low_risk_confirmation_or_help",
+    "source_brief": "A2_DIGITAL_DOCUMENTS_NEUTRAL_ADAPTATION_BRIEFS_20260614",
+    "blueprint_source": "language_neutral_adaptation_brief",
+    "ko_pack_role": "mature_scenario_blueprint_not_translation_source"
+  },
+  "learner_goal": "Handle a low-risk digital or simple document-help task in short A2 turns.",
+  "target_functions": [
+    "confirm_booking_or_message",
+    "request_simple_change",
+    "ask_simple_form_help",
+    "follow_up_low_risk_item"
+  ],
+  "register_notes": "English A2 low-risk digital/documents register: clear everyday help/service language, no passwords, payment, ID, medical, legal, police, or immigration framing.",
+  "production_mode_default": {
+    "required": [
+      "choice"
+    ],
+    "optional_visible": [
+      "speaking"
+    ],
+    "optional_hidden": [
+      "typing"
+    ]
+  },
+  "support_text": "Keep the task low-risk. Do not give passwords, payment details, sensitive ID, or legal/medical information.",
+  "roles": {
+    "npc": {
+      "label": "staff"
+    },
+    "learner": {
+      "label": "你"
+    }
+  },
+  "turns": [
+    {
+      "turn_id": "t1",
+      "speaker": "npc",
+      "act": "start",
+      "act_slots": {
+        "topic": "a2_fill_simple_form_help",
+        "keyword": "1",
+        "gloss": "A2 digital/documents"
+      },
+      "learning_role": "listen_only",
+      "surface": "Please fill in this form first.",
+      "speak": "Please fill in this form first.",
+      "translation": "請先填這張表。",
+      "friend": {
+        "hint": "Check only the needed low-risk detail."
+      },
+      "reply_set": {
+        "correct": "r1a",
+        "choices": [
+          {
+            "id": "r1a",
+            "surface": "What should I write in this box?",
+            "translation": "這一欄要填什麼？",
+            "speak": "What should I write in this box?",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r1b",
+            "surface": "I will tell you my password.",
+            "translation": "我會告訴你密碼。",
+            "speak": "I will tell you my password.",
+            "contrast_type": "forbidden_sensitive",
+            "feedback": "Sensitive password information is outside this A2 task."
+          },
+          {
+            "id": "r1c",
+            "surface": "Please refund me.",
+            "translation": "請退款。",
+            "speak": "Please refund me.",
+            "contrast_type": "wrong_dispute_domain",
+            "feedback": "Refunds or disputes are outside this task."
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t2",
+      "speaker": "npc",
+      "act": "clarify",
+      "act_slots": {
+        "topic": "a2_fill_simple_form_help",
+        "keyword": "2",
+        "gloss": "A2 digital/documents"
+      },
+      "learning_role": "listen_only",
+      "surface": "Please write your name here.",
+      "speak": "Please write your name here.",
+      "translation": "這裡請填姓名。",
+      "friend": {
+        "hint": "Check only the needed low-risk detail."
+      },
+      "reply_set": {
+        "correct": "r2a",
+        "choices": [
+          {
+            "id": "r2a",
+            "surface": "Just my name?",
+            "translation": "只填姓名就可以嗎？",
+            "speak": "Just my name?",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r2b",
+            "surface": "I will tell you my password.",
+            "translation": "我會告訴你密碼。",
+            "speak": "I will tell you my password.",
+            "contrast_type": "forbidden_sensitive",
+            "feedback": "Sensitive password information is outside this A2 task."
+          },
+          {
+            "id": "r2c",
+            "surface": "Please refund me.",
+            "translation": "請退款。",
+            "speak": "Please refund me.",
+            "contrast_type": "wrong_dispute_domain",
+            "feedback": "Refunds or disputes are outside this task."
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t3",
+      "speaker": "npc",
+      "act": "confirm_detail",
+      "act_slots": {
+        "topic": "a2_fill_simple_form_help",
+        "keyword": "3",
+        "gloss": "A2 digital/documents"
+      },
+      "learning_role": "listen_only",
+      "surface": "Yes, the phone number goes below.",
+      "speak": "Yes, the phone number goes below.",
+      "translation": "對，電話在下面那一欄。",
+      "friend": {
+        "hint": "Check only the needed low-risk detail."
+      },
+      "reply_set": {
+        "correct": "r3a",
+        "choices": [
+          {
+            "id": "r3a",
+            "surface": "Okay, I will write it below.",
+            "translation": "知道了，我會寫在下面。",
+            "speak": "Okay, I will write it below.",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r3b",
+            "surface": "I will tell you my password.",
+            "translation": "我會告訴你密碼。",
+            "speak": "I will tell you my password.",
+            "contrast_type": "forbidden_sensitive",
+            "feedback": "Sensitive password information is outside this A2 task."
+          },
+          {
+            "id": "r3c",
+            "surface": "Please refund me.",
+            "translation": "請退款。",
+            "speak": "Please refund me.",
+            "contrast_type": "wrong_dispute_domain",
+            "feedback": "Refunds or disputes are outside this task."
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t4",
+      "speaker": "npc",
+      "act": "close",
+      "act_slots": {
+        "topic": "a2_fill_simple_form_help",
+        "keyword": "4",
+        "gloss": "A2 digital/documents"
+      },
+      "learning_role": "listen_only",
+      "surface": "Yes, that is enough.",
+      "speak": "Yes, that is enough.",
+      "translation": "對，這樣就夠了。",
+      "friend": {
+        "hint": "Check only the needed low-risk detail."
+      },
+      "reply_set": {
+        "correct": "r4a",
+        "choices": [
+          {
+            "id": "r4a",
+            "surface": "Thanks. I finished it.",
+            "translation": "謝謝，我填好了。",
+            "speak": "Thanks. I finished it.",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r4b",
+            "surface": "I will tell you my password.",
+            "translation": "我會告訴你密碼。",
+            "speak": "I will tell you my password.",
+            "contrast_type": "forbidden_sensitive",
+            "feedback": "Sensitive password information is outside this A2 task."
+          },
+          {
+            "id": "r4c",
+            "surface": "Please refund me.",
+            "translation": "請退款。",
+            "speak": "Please refund me.",
+            "contrast_type": "wrong_dispute_domain",
+            "feedback": "Refunds or disputes are outside this task."
+          }
+        ]
+      }
+    }
+  ],
+  "choice_sets": [
+    "t1.reply_set",
+    "t2.reply_set",
+    "t3.reply_set",
+    "t4.reply_set"
+  ],
+  "feedback": "Keep the task low-risk. Do not give passwords, payment details, sensitive ID, or legal/medical information.",
+  "tts_segments": [
+    "What should I write in this box?",
+    "Just my name?",
+    "Okay, I will write it below.",
+    "Thanks. I finished it."
+  ],
+  "formula_moments": [
+    {
+      "after_turn": "t2",
+      "pattern_id": "en.a2.digital.fill_simple_form_help.v1"
+    }
+  ],
+  "runtime_notes": "Fresh A2 digital/documents candidate. Requires full-walk runtime before closeout evidence is recorded.",
+  "notes": {
+    "authoring_policy": "Fresh-authored from A2 digital/documents neutral adaptation brief. KO surface text was not copied or translated.",
+    "a2_boundary": "Low-risk confirmation/help only; avoids sensitive identity, payment, legal, medical, police, and immigration workflows."
+  }
+}

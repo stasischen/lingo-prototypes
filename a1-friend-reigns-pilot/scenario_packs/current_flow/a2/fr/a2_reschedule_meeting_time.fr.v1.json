@@ -1,0 +1,265 @@
+{
+  "schema_version": "scenario_pack.v1",
+  "scenario_id": "a2_reschedule_meeting_time",
+  "title": "Changer l'heure d'un rendez-vous",
+  "setting_label": "Message entre amis",
+  "wrap_title": "Proposer une nouvelle heure",
+  "wrap_friend": "你剛剛用簡單法語請朋友改時間，提出新時間，並確認舊時間和新時間。",
+  "language": "fr",
+  "ui_language": "zh_tw",
+  "cefr_level": "A2",
+  "source_status": "candidate_runtime_verified",
+  "review_state": "ai_reviewed",
+  "review_status_framework_state": "candidate_runtime_verified",
+  "native_review_state": "native_pending",
+  "scenario": "Une amie confirme l'heure originale d'un rendez-vous personnel.",
+  "learner_goal": "Demander de changer l'heure et confirmer la nouvelle heure.",
+  "target_functions": [
+    "rescheduling_request",
+    "alternative_time",
+    "old_new_time_confirmation"
+  ],
+  "register_notes": "Français amical et poli avec tu. La demande reste courte et personnelle.",
+  "production_mode_default": {
+    "required": [
+      "choice"
+    ],
+    "optional_visible": [
+      "speaking"
+    ],
+    "optional_hidden": [
+      "typing"
+    ]
+  },
+  "support_text": "Ton amie confirme l'heure du rendez-vous. Demande poliment de changer l'heure, propose une nouvelle heure, puis confirme.",
+  "roles": {
+    "npc": {
+      "label": "amie"
+    },
+    "learner": {
+      "label": "toi"
+    }
+  },
+  "turns": [
+    {
+      "turn_id": "t1",
+      "speaker": "npc",
+      "act": "original_time_confirmation",
+      "act_slots": {
+        "topic": "heure originale",
+        "keyword": "trois heures",
+        "gloss": "三點"
+      },
+      "learning_role": "listen_only",
+      "surface": "On se voit toujours à trois heures ?",
+      "speak": "On se voit toujours à trois heures ?",
+      "translation": "我們還是三點見嗎？",
+      "friend": {
+        "hint": "Ton amie confirme l'ancienne heure. Demande simplement si vous pouvez changer."
+      },
+      "reply_set": {
+        "correct": "r1a",
+        "choices": [
+          {
+            "id": "r1a",
+            "surface": "On peut changer l'heure, s'il te plaît ?",
+            "translation": "可以改時間嗎？",
+            "speak": "On peut changer l'heure, s'il te plaît ?",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r1b",
+            "surface": "Oui, à trois heures.",
+            "translation": "對，三點。",
+            "speak": "Oui, à trois heures.",
+            "contrast_type": "old_time_repetition",
+            "feedback": "Cette phrase garde l'ancienne heure. Tu dois demander a changer l'heure."
+          },
+          {
+            "id": "r1c",
+            "surface": "On se voit à la gare ?",
+            "translation": "我們在車站見嗎？",
+            "speak": "On se voit à la gare ?",
+            "contrast_type": "wrong_focus_place",
+            "feedback": "Cette phrase change le lieu. Le probleme est l'heure."
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t2",
+      "speaker": "npc",
+      "act": "alternative_prompt",
+      "act_slots": {
+        "topic": "nouvelle heure",
+        "keyword": "quelle heure",
+        "gloss": "幾點"
+      },
+      "learning_role": "listen_only",
+      "surface": "Oui, quelle heure te va ?",
+      "speak": "Oui, quelle heure te va ?",
+      "translation": "可以，幾點適合你？",
+      "friend": {
+        "hint": "Propose une seule nouvelle heure."
+      },
+      "inline_explain": {
+        "pattern_id": "fr.a2.reschedule.a_la_place.v1",
+        "title": "a la place",
+        "explain": "Pour proposer une autre option, tu peux dire à quatre heures à la place.",
+        "items": [
+          {
+            "surface": "À quatre heures, c'est possible ?",
+            "translation": "四點可以嗎？",
+            "speak": "À quatre heures, c'est possible ?"
+          },
+          {
+            "surface": "Pas à trois heures, mais à quatre heures.",
+            "translation": "不是三點，而是四點。",
+            "speak": "Pas à trois heures, mais à quatre heures."
+          }
+        ]
+      },
+      "reply_set": {
+        "correct": "r2a",
+        "choices": [
+          {
+            "id": "r2a",
+            "surface": "À quatre heures, c'est possible ?",
+            "translation": "四點可以嗎？",
+            "speak": "À quatre heures, c'est possible ?",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r2b",
+            "surface": "À trois heures, c'est possible ?",
+            "translation": "三點可以嗎？",
+            "speak": "À trois heures, c'est possible ?",
+            "contrast_type": "old_time_repetition",
+            "feedback": "Trois heures est l'ancienne heure. Tu dois proposer une nouvelle heure."
+          },
+          {
+            "id": "r2c",
+            "surface": "Quatre personnes, c'est possible ?",
+            "translation": "四個人可以嗎？",
+            "speak": "Quatre personnes, c'est possible ?",
+            "contrast_type": "number_confusion",
+            "feedback": "Cette phrase parle du nombre de personnes, pas de l'heure."
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t3",
+      "speaker": "npc",
+      "act": "new_time_acceptance",
+      "act_slots": {
+        "topic": "acceptation",
+        "keyword": "quatre heures",
+        "gloss": "四點"
+      },
+      "learning_role": "listen_only",
+      "surface": "D'accord, quatre heures me va.",
+      "speak": "D'accord, quatre heures me va.",
+      "translation": "好，四點適合我。",
+      "friend": {
+        "hint": "Confirme clairement l'ancienne heure et la nouvelle heure."
+      },
+      "reply_set": {
+        "correct": "r3a",
+        "choices": [
+          {
+            "id": "r3a",
+            "surface": "Donc pas trois heures, mais quatre heures.",
+            "translation": "所以不是三點，而是四點。",
+            "speak": "Donc pas trois heures, mais quatre heures.",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r3b",
+            "surface": "Donc pas quatre heures, mais trois heures.",
+            "translation": "所以不是四點，而是三點。",
+            "speak": "Donc pas quatre heures, mais trois heures.",
+            "contrast_type": "old_new_reversed",
+            "feedback": "Cette phrase inverse l'ancienne et la nouvelle heure."
+          },
+          {
+            "id": "r3c",
+            "surface": "Donc pas au café, mais à la gare.",
+            "translation": "所以不是咖啡店，而是車站。",
+            "speak": "Donc pas au café, mais à la gare.",
+            "contrast_type": "wrong_focus_place",
+            "feedback": "Cette phrase change le lieu. Ici, tu dois confirmer l'heure."
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t4",
+      "speaker": "npc",
+      "act": "closing_confirmation",
+      "act_slots": {
+        "topic": "nouvelle heure confirmee"
+      },
+      "learning_role": "listen_only",
+      "surface": "Parfait, à quatre heures alors.",
+      "speak": "Parfait, à quatre heures alors.",
+      "translation": "太好了，那就四點。",
+      "friend": {
+        "hint": "Termine avec une courte confirmation amicale."
+      },
+      "reply_set": {
+        "correct": "r4a",
+        "choices": [
+          {
+            "id": "r4a",
+            "surface": "Merci, à tout à l'heure.",
+            "translation": "謝謝，待會見。",
+            "speak": "Merci, à tout à l'heure.",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r4b",
+            "surface": "Je suis en retard de dix minutes.",
+            "translation": "我遲到十分鐘。",
+            "speak": "Je suis en retard de dix minutes.",
+            "contrast_type": "wrong_function_delay",
+            "feedback": "Cette phrase explique un retard. Ici, la nouvelle heure est deja confirmee."
+          },
+          {
+            "id": "r4c",
+            "surface": "Je vais commander un café.",
+            "translation": "我打算點一杯咖啡。",
+            "speak": "Je vais commander un café.",
+            "contrast_type": "wrong_scenario_ordering",
+            "feedback": "Cette phrase parle de commander. Elle ne ferme pas le changement d'heure."
+          }
+        ]
+      }
+    }
+  ],
+  "choice_sets": [
+    "t1.reply_set",
+    "t2.reply_set",
+    "t3.reply_set",
+    "t4.reply_set"
+  ],
+  "feedback": "Les distracteurs gardent l'ancienne heure, inversent ancienne/nouvelle heure, ou changent de sujet.",
+  "tts_segments": [
+    "On peut changer l'heure, s'il te plaît ?",
+    "À quatre heures, c'est possible ?",
+    "Donc pas trois heures, mais quatre heures.",
+    "Merci, à tout à l'heure."
+  ],
+  "formula_moments": [
+    {
+      "after_turn": "t2",
+      "pattern_id": "fr.a2.reschedule.a_la_place.v1"
+    }
+  ],
+  "runtime_notes": "Fresh FR A2 candidate. Structural checks and two AI semantic review passes completed on 2026-06-14 before metadata promotion.",
+  "notes": {
+    "authoring_policy": "Fresh-authored from the neutral A2 brief. KO, JA, EN, and TH packs were not used as translation sources.",
+    "a2_boundary": "Keeps a personal low-stakes reschedule request with one alternative time and no negotiation loop.",
+    "native_review_boundary": "AI-reviewed only; native_review_state remains native_pending."
+  }
+}

@@ -1,0 +1,270 @@
+{
+  "schema_version": "scenario_pack.v1",
+  "scenario_id": "a2_confirm_date_time_place",
+  "brief_id": "a2_2_confirm_date_time_place",
+  "source_neutral_brief": "release-aggregator/docs/tasks/A2_BASELINE_INVENTORY/A2_2_NEUTRAL_ADAPTATION_BRIEFS_20260614.md#brief-4-a2_confirm_date_time_place",
+  "blueprint_ledger": "release-aggregator/docs/tasks/A2_BASELINE_INVENTORY/A2_2_BLUEPRINT_LEDGER_20260614.md",
+  "repo": "content-th",
+  "staging_path": "content/core/content_assets/scenario_packs/current_flow/a2/a2_confirm_date_time_place.th.v1.json",
+  "title": "ยืนยันวัน เวลา และสถานที่",
+  "setting_label": "อ่านข้อความสั้นจากเพื่อน",
+  "wrap_title": "ยืนยันรายละเอียดนัด",
+  "wrap_friend": "คุณอ่านข้อความสั้น แล้วดึงวัน เวลา และสถานที่มายืนยันกับเพื่อนได้",
+  "language": "th",
+  "ui_language": "zh_tw",
+  "cefr_level": "A2",
+  "source_status": "candidate_runtime_verified",
+  "review_state": "ai_reviewed",
+  "review_status_framework_state": "candidate_runtime_verified",
+  "native_review_state": "native_pending",
+  "scenario": "You confirm date, time, and place from a short message.",
+  "learner_goal": "Understand a short message and confirm the date, time, and place.",
+  "target_functions": [
+    "message_comprehension",
+    "date_time_place_confirmation",
+    "repair_check"
+  ],
+  "register_notes": "Friendly Thai. Message is concise and natural; no map-reading or multi-step directions.",
+  "input_message": {
+    "surface": "พรุ่งนี้สิบโมงเช้า เจอกันหน้าห้างนะ",
+    "translation": "明天上午十點，在商場前面見。"
+  },
+  "production_mode_default": {
+    "required": [
+      "choice"
+    ],
+    "optional_visible": [
+      "speaking"
+    ],
+    "optional_hidden": [
+      "typing"
+    ]
+  },
+  "support_text": "อ่านข้อความสั้นจากเพื่อน แล้วยืนยันวัน เวลา และสถานที่ด้วยประโยคสั้น ๆ",
+  "roles": {
+    "npc": {
+      "label": "เพื่อน"
+    },
+    "learner": {
+      "label": "คุณ"
+    }
+  },
+  "turns": [
+    {
+      "turn_id": "t1",
+      "speaker": "npc",
+      "act": "message_reference",
+      "act_slots": {
+        "topic": "sent message",
+        "keyword": "ข้อความ",
+        "gloss": "訊息"
+      },
+      "learning_role": "listen_only",
+      "surface": "เห็นข้อความที่ส่งไปหรือยัง",
+      "speak": "เห็นข้อความที่ส่งไปหรือยัง",
+      "translation": "你看到我傳的訊息了嗎？",
+      "friend": {
+        "hint": "ข้อความคือ พรุ่งนี้สิบโมงเช้า เจอกันหน้าห้างนะ เริ่มจากยืนยันวันและเวลา"
+      },
+      "reply_set": {
+        "correct": "r1a",
+        "choices": [
+          {
+            "id": "r1a",
+            "surface": "เห็นแล้ว พรุ่งนี้สิบโมงเช้าใช่ไหม",
+            "translation": "看到了，明天上午十點對嗎？",
+            "speak": "เห็นแล้ว พรุ่งนี้สิบโมงเช้าใช่ไหม",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r1b",
+            "surface": "เห็นแล้ว วันนี้สี่ทุ่มใช่ไหม",
+            "translation": "看到了，今天晚上十點對嗎？",
+            "speak": "เห็นแล้ว วันนี้สี่ทุ่มใช่ไหม",
+            "contrast_type": "wrong_date_time",
+            "feedback": "ข้อความบอกพรุ่งนี้สิบโมงเช้า ไม่ใช่วันนี้สี่ทุ่ม"
+          },
+          {
+            "id": "r1c",
+            "surface": "เห็นแล้ว เมนูนี้ใช่ไหม",
+            "translation": "看到了，是這個菜單對嗎？",
+            "speak": "เห็นแล้ว เมนูนี้ใช่ไหม",
+            "contrast_type": "wrong_scenario_menu",
+            "feedback": "ข้อความไม่ใช่เมนู แต่เป็นเวลานัดและสถานที่"
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t2",
+      "speaker": "npc",
+      "act": "place_prompt",
+      "act_slots": {
+        "topic": "place",
+        "keyword": "ที่ไหน",
+        "gloss": "哪裡"
+      },
+      "learning_role": "listen_only",
+      "surface": "ใช่ แล้วสถานที่คือที่ไหนนะ",
+      "speak": "ใช่ แล้วสถานที่คือที่ไหนนะ",
+      "translation": "對，那地點是哪裡？",
+      "friend": {
+        "hint": "ข้อความบอกว่า หน้าห้าง คือ商場前面"
+      },
+      "inline_explain": {
+        "pattern_id": "th.a2.confirm.place.na.v1",
+        "title": "หน้า + สถานที่",
+        "explain": "หน้า means in front of a place.",
+        "items": [
+          {
+            "surface": "หน้าห้าง",
+            "translation": "商場前面",
+            "speak": "หน้าห้าง"
+          },
+          {
+            "surface": "หน้าคาเฟ่",
+            "translation": "咖啡店前面",
+            "speak": "หน้าคาเฟ่"
+          }
+        ]
+      },
+      "reply_set": {
+        "correct": "r2a",
+        "choices": [
+          {
+            "id": "r2a",
+            "surface": "เจอกันหน้าห้างนะ",
+            "translation": "在商場前面見。",
+            "speak": "เจอกันหน้าห้างนะ",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r2b",
+            "surface": "เจอกันในห้างนะ",
+            "translation": "在商場裡面見。",
+            "speak": "เจอกันในห้างนะ",
+            "contrast_type": "wrong_place_relation",
+            "feedback": "ข้อความบอกว่า หน้า คือ前面 ไม่ใช่ ใน คือ裡面"
+          },
+          {
+            "id": "r2c",
+            "surface": "จะพักอยู่บ้านนะ",
+            "translation": "我會在家休息。",
+            "speak": "จะพักอยู่บ้านนะ",
+            "contrast_type": "wrong_function_plan",
+            "feedback": "นี่เป็นการบอกแผนของตัวเอง ไม่ใช่ยืนยันสถานที่นัด"
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t3",
+      "speaker": "npc",
+      "act": "small_change_notice",
+      "act_slots": {
+        "topic": "small change"
+      },
+      "learning_role": "listen_only",
+      "surface": "ถ้าฉันไปช้า จะส่งข้อความบอกนะ",
+      "speak": "ถ้าฉันไปช้า จะส่งข้อความบอกนะ",
+      "translation": "如果我晚到，我會傳訊息告訴你。",
+      "friend": {
+        "hint": "เพื่อนบอกเงื่อนไขง่าย ๆ ตอบรับสั้น ๆ ก็พอ"
+      },
+      "reply_set": {
+        "correct": "r3a",
+        "choices": [
+          {
+            "id": "r3a",
+            "surface": "โอเค รับทราบนะ",
+            "translation": "好，知道了。",
+            "speak": "โอเค รับทราบนะ"
+          },
+          {
+            "id": "r3b",
+            "surface": "โอเค ฉันไปช้าแล้ว",
+            "translation": "好，我已經晚到了。",
+            "speak": "โอเค ฉันไปช้าแล้ว",
+            "contrast_type": "wrong_subject_status",
+            "feedback": "เพื่อนพูดถึงตัวเขาเองถ้าไปช้า ไม่ใช่ว่าคุณสายแล้ว"
+          },
+          {
+            "id": "r3c",
+            "surface": "ถ้ารถเมล์ช้า ฉันจะโทรหา",
+            "translation": "如果公車晚了，我會打電話。",
+            "speak": "ถ้ารถเมล์ช้า ฉันจะโทรหา",
+            "contrast_type": "wrong_focus_self_delay",
+            "feedback": "คำนี้เปลี่ยนเป็นเรื่องของคุณเอง แต่เพื่อนแค่บอกว่าจะส่งข้อความถ้าเขาช้า"
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t4",
+      "speaker": "npc",
+      "act": "final_confirmation",
+      "act_slots": {
+        "topic": "final check"
+      },
+      "learning_role": "listen_only",
+      "surface": "งั้นเจอกันพรุ่งนี้นะ",
+      "speak": "งั้นเจอกันพรุ่งนี้นะ",
+      "translation": "那明天見。",
+      "friend": {
+        "hint": "รายละเอียดครบแล้ว ปิดด้วยคำว่าเจอกันพรุ่งนี้"
+      },
+      "reply_set": {
+        "correct": "r4a",
+        "choices": [
+          {
+            "id": "r4a",
+            "surface": "ได้ เจอกันพรุ่งนี้นะ",
+            "translation": "好，明天見。",
+            "speak": "ได้ เจอกันพรุ่งนี้นะ"
+          },
+          {
+            "id": "r4b",
+            "surface": "ได้ เจอกันเมื่อวานนะ",
+            "translation": "好，昨天見。",
+            "speak": "ได้ เจอกันเมื่อวานนะ",
+            "contrast_type": "wrong_time_expression",
+            "feedback": "เมื่อวานคือ昨天 ใช้ไม่ได้กับการนัดเจอในอนาคต"
+          },
+          {
+            "id": "r4c",
+            "surface": "ขอบิลหน่อย",
+            "translation": "請給我帳單。",
+            "speak": "ขอบิลหน่อย",
+            "contrast_type": "wrong_scenario_payment",
+            "feedback": "นี่เป็นคำพูดตอนจ่ายเงิน แต่ตอนนี้แค่ปิดบทสนทนานัดหมาย"
+          }
+        ]
+      }
+    }
+  ],
+  "choice_sets": [
+    "t1.reply_set",
+    "t2.reply_set",
+    "t3.reply_set",
+    "t4.reply_set"
+  ],
+  "feedback": "Distractors test wrong date/time, wrong place relation, wrong subject, and unrelated scenario.",
+  "tts_segments": [
+    "เห็นแล้ว พรุ่งนี้สิบโมงเช้าใช่ไหม",
+    "เจอกันหน้าห้างนะ",
+    "โอเค รับทราบนะ",
+    "ได้ เจอกันพรุ่งนี้นะ"
+  ],
+  "formula_moments": [
+    {
+      "after_turn": "t2",
+      "pattern_id": "th.a2.confirm.place.na.v1"
+    }
+  ],
+  "runtime_notes": "Thai A2 pilot candidate. Structural check passed locally on 2026-06-14; runtime smoke is represented by required shape only and still needs UI execution if available.",
+  "notes": {
+    "authoring_policy": "Fresh-authored from A2 neutral brief. KO pack was used only for schema shape.",
+    "a2_boundary": "Short message comprehension with date, time, and place confirmation; avoids directions or multi-step navigation.",
+    "thai_voice_note": "Uses natural Thai message wording and short clauses for TTS-friendly playback."
+  }
+}

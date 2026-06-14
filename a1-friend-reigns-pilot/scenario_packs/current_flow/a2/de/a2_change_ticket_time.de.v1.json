@@ -1,0 +1,242 @@
+{
+  "schema_version": "scenario_pack.v1",
+  "scenario_id": "a2_change_ticket_time",
+  "title": "Eine Ticketzeit Ändern",
+  "setting_label": "Am Fahrkartenschalter",
+  "wrap_title": "Neue Ticketzeit",
+  "wrap_friend": "你剛剛完成了一段 A2 交通服務情境，確認重點並做出簡單回應。",
+  "language": "de",
+  "ui_language": "zh_tw",
+  "cefr_level": "A2",
+  "source_status": "candidate_runtime_verified",
+  "review_state": "ai_reviewed",
+  "review_status_framework_state": "candidate_runtime_verified",
+  "native_review_state": "native_pending",
+  "scenario": "A2 transport scenario: a2_change_ticket_time.",
+  "learner_goal": "Ask to change a ticket time and confirm the new time.",
+  "target_functions": [
+    "polite_change_request",
+    "alternative_time",
+    "confirmation"
+  ],
+  "register_notes": "German public transport/service language with polite everyday responses; no refund, legal, medical, police, or identity-sensitive handling.",
+  "production_mode_default": {
+    "required": [
+      "choice"
+    ],
+    "optional_visible": [
+      "speaking"
+    ],
+    "optional_hidden": [
+      "typing"
+    ]
+  },
+  "support_text": "Bitten Sie darum, die Ticketzeit zu ändern, hören Sie die verfügbare Zeit und bestätigen Sie.",
+  "roles": {
+    "npc": {
+      "label": "Mitarbeiter"
+    },
+    "learner": {
+      "label": "Sie"
+    }
+  },
+  "turns": [
+    {
+      "turn_id": "t1",
+      "speaker": "npc",
+      "act": "service_opening",
+      "act_slots": {
+        "topic": "service_opening"
+      },
+      "learning_role": "listen_only",
+      "surface": "Guten Tag. Wie kann ich Ihnen helfen?",
+      "speak": "Guten Tag. Wie kann ich Ihnen helfen?",
+      "translation": "您好，我可以怎麼幫您？",
+      "friend": {
+        "hint": "提出改時間"
+      },
+      "reply_set": {
+        "correct": "r1a",
+        "choices": [
+          {
+            "id": "r1a",
+            "surface": "Ich möchte die Uhrzeit meines Tickets ändern.",
+            "translation": "提出請求",
+            "speak": "Ich möchte die Uhrzeit meines Tickets ändern.",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r1b",
+            "surface": "Das Ticket war für gestern.",
+            "translation": "票是昨天的。",
+            "speak": "Das Ticket war für gestern.",
+            "learning_role": "wrong_time_or_detail",
+            "feedback": "Die Ablenker prüfen falsche Zeit, falschen Kontext oder eine Eskalation außerhalb von A2."
+          },
+          {
+            "id": "r1c",
+            "surface": "Einen Kaffee, bitte.",
+            "translation": "請給我一杯咖啡。",
+            "speak": "Einen Kaffee, bitte.",
+            "learning_role": "wrong_scenario_or_escalation",
+            "feedback": "Die Ablenker prüfen falsche Zeit, falschen Kontext oder eine Eskalation außerhalb von A2."
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t2",
+      "speaker": "npc",
+      "act": "alternative_offer",
+      "act_slots": {
+        "topic": "alternative_offer"
+      },
+      "learning_role": "listen_only",
+      "surface": "Sie können es auf den Zug um fünfzehn Uhr ändern.",
+      "speak": "Sie können es auf den Zug um fünfzehn Uhr ändern.",
+      "translation": "可以改成下午 3 點的車。",
+      "friend": {
+        "hint": "接受可用時間"
+      },
+      "reply_set": {
+        "correct": "r2a",
+        "choices": [
+          {
+            "id": "r2a",
+            "surface": "Ja, bitte auf den Zug um fünfzehn Uhr.",
+            "translation": "接受新時間",
+            "speak": "Ja, bitte auf den Zug um fünfzehn Uhr.",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r2b",
+            "surface": "Gibt es um fünfzehn Uhr ein Zimmer?",
+            "translation": "15 點有房間嗎？",
+            "speak": "Gibt es um fünfzehn Uhr ein Zimmer?",
+            "learning_role": "wrong_time_or_detail",
+            "feedback": "Es geht um ein Ticket, nicht um ein Zimmer."
+          },
+          {
+            "id": "r2c",
+            "surface": "Gestern bin ich um fünfzehn Uhr gefahren.",
+            "translation": "我昨天 15 點搭了。",
+            "speak": "Gestern bin ich um fünfzehn Uhr gefahren.",
+            "learning_role": "wrong_scenario_or_escalation",
+            "feedback": "Die verfügbare Zeit gilt für die Änderung heute."
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t3",
+      "speaker": "npc",
+      "act": "confirmation_question",
+      "act_slots": {
+        "topic": "confirmation_question"
+      },
+      "learning_role": "listen_only",
+      "surface": "Also, fünfzehn Uhr ist richtig?",
+      "speak": "Also, fünfzehn Uhr ist richtig?",
+      "translation": "那就改成 15 點，對嗎？",
+      "friend": {
+        "hint": "確認時間"
+      },
+      "reply_set": {
+        "correct": "r3a",
+        "choices": [
+          {
+            "id": "r3a",
+            "surface": "Ja, fünfzehn Uhr ist richtig.",
+            "translation": "確認時間",
+            "speak": "Ja, fünfzehn Uhr ist richtig.",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r3b",
+            "surface": "Nein, fünfzehn Uhr war gestern.",
+            "translation": "不，15 點是昨天。",
+            "speak": "Nein, fünfzehn Uhr war gestern.",
+            "learning_role": "wrong_time_or_detail",
+            "feedback": "Hier sollen Sie die neue Uhrzeit bestätigen."
+          },
+          {
+            "id": "r3c",
+            "surface": "Bitte erklären Sie die Erstattungsregeln.",
+            "translation": "請說明退款規則。",
+            "speak": "Bitte erklären Sie die Erstattungsregeln.",
+            "learning_role": "wrong_scenario_or_escalation",
+            "feedback": "Erstattungsregeln liegen außerhalb dieser A2-Aufgabe."
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t4",
+      "speaker": "npc",
+      "act": "service_close",
+      "act_slots": {
+        "topic": "service_close"
+      },
+      "learning_role": "listen_only",
+      "surface": "Es ist geändert. Bitte nehmen Sie den Zug um fünfzehn Uhr.",
+      "speak": "Es ist geändert. Bitte nehmen Sie den Zug um fünfzehn Uhr.",
+      "translation": "已經改好了，請搭 15 點那班車。",
+      "friend": {
+        "hint": "收尾"
+      },
+      "reply_set": {
+        "correct": "r4a",
+        "choices": [
+          {
+            "id": "r4a",
+            "surface": "Danke. Ich nehme den Zug um fünfzehn Uhr.",
+            "translation": "禮貌收尾",
+            "speak": "Danke. Ich nehme den Zug um fünfzehn Uhr.",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r4b",
+            "surface": "Morgen trinke ich Kaffee.",
+            "translation": "我明天要喝咖啡。",
+            "speak": "Morgen trinke ich Kaffee.",
+            "learning_role": "wrong_time_or_detail",
+            "feedback": "Das schließt den Ticketwechsel nicht ab."
+          },
+          {
+            "id": "r4c",
+            "surface": "Wie lautet meine Passnummer?",
+            "translation": "我的護照號碼是什麼？",
+            "speak": "Wie lautet meine Passnummer?",
+            "learning_role": "wrong_scenario_or_escalation",
+            "feedback": "Identitätsdaten sind hier nicht nötig."
+          }
+        ]
+      }
+    }
+  ],
+  "choice_sets": [
+    "t1.reply_set",
+    "t2.reply_set",
+    "t3.reply_set",
+    "t4.reply_set"
+  ],
+  "feedback": "Die Ablenker prüfen falsche Zeit, falschen Kontext oder eine Eskalation außerhalb von A2.",
+  "tts_segments": [
+    "Guten Tag. Wie kann ich Ihnen helfen?",
+    "Sie können es auf den Zug um fünfzehn Uhr ändern.",
+    "Also, fünfzehn Uhr ist richtig?",
+    "Es ist geändert. Bitte nehmen Sie den Zug um fünfzehn Uhr."
+  ],
+  "formula_moments": [
+    {
+      "after_turn": "t2",
+      "pattern_id": "de.a2.transport.ticket.v1"
+    }
+  ],
+  "runtime_notes": "DE A2 transport candidate. Full-walk runtime gate required before final closeout; target-language surfaces and feedback localized on 2026-06-14.",
+  "notes": {
+    "authoring_policy": "Fresh-authored from the neutral A2 transport brief. KO surfaces were used only as scenario blueprint, not as translation source.",
+    "a2_boundary": "Low-risk A2 transport/service task; avoids refund, compensation, emergency, identity-sensitive, legal, medical, banking, immigration, or police handling.",
+    "language_specific_adaptation": "NPC lines, learner targets, distractors, feedback, support text, and translations are adapted for this language; native review remains pending."
+  }
+}

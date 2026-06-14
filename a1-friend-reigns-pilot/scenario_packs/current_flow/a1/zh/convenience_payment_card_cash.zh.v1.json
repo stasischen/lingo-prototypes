@@ -1,0 +1,229 @@
+{
+  "schema_version": "scenario_pack.v1",
+  "scenario_id": "convenience_payment_card_cash",
+  "brief_id": "ml0_a1_004_convenience_payment_card_cash",
+  "source_neutral_brief": "release-aggregator/docs/tasks/A1_MULTILINGUAL_KO_B1_PARALLEL_ORCHESTRATION/work_products/ml0/ML0_NEUTRAL_ADAPTATION_BRIEFS_20260613.md#ml0-a1-004",
+  "blueprint_ledger": "release-aggregator/docs/tasks/A1_MULTILINGUAL_KO_B1_PARALLEL_ORCHESTRATION/work_products/ml0/ML0_BLUEPRINT_LEDGER_20260613.md",
+  "repo": "content-zh",
+  "staging_path": "content/core/content_assets/scenario_packs/current_flow/convenience_payment_card_cash.zh.v1.json",
+  "title": "在便利商店付款",
+  "setting_label": "便利商店櫃台",
+  "wrap_title": "付款完成",
+  "wrap_friend": "你已經用簡短自然的中文回答付款方式，也完成了結帳收尾。",
+  "language": "zh",
+  "ui_language": "zh_tw",
+  "source_status": "candidate_runtime_verified",
+  "review_state": "draft",
+  "review_status_framework_state": "candidate_runtime_verified",
+  "native_review_state": "native_pending",
+  "production_mode_default": {
+    "required": [
+      "choice"
+    ],
+    "optional_visible": [
+      "speaking"
+    ],
+    "optional_hidden": [
+      "typing"
+    ]
+  },
+  "support_text": "你在便利商店櫃台結帳。用簡短中文回答要刷卡還是付現，並完成交易。",
+  "roles": {
+    "npc": {
+      "label": "店員"
+    },
+    "learner": {
+      "label": "客人"
+    }
+  },
+  "turns": [
+    {
+      "turn_id": "t1",
+      "speaker": "npc",
+      "act": "payment_method_question",
+      "act_slots": {
+        "topic": "payment_method",
+        "keyword": "刷卡",
+        "gloss": "pay by card"
+      },
+      "learning_role": "listen_only",
+      "surface": "請問刷卡還是付現？",
+      "speak": "請問刷卡還是付現？",
+      "translation": "請問刷卡還是付現？",
+      "friend": "這是便利商店常見的付款問題。回答付款方式就好。",
+      "reply_set": {
+        "correct": "c1",
+        "choices": [
+          {
+            "id": "c1",
+            "surface": "刷卡，謝謝。",
+            "translation": "刷卡，謝謝。",
+            "speak": "刷卡，謝謝。",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "c2",
+            "surface": "我要一杯咖啡。",
+            "translation": "我要一杯咖啡。",
+            "speak": "我要一杯咖啡。",
+            "contrast_type": "ordering_food_instead_of_paying",
+            "feedback": "這是在點飲料。現在店員問的是付款方式。"
+          },
+          {
+            "id": "c3",
+            "surface": "請問洗手間在哪裡？",
+            "translation": "請問洗手間在哪裡？",
+            "speak": "請問洗手間在哪裡？",
+            "contrast_type": "asking_directions_instead_of_paying",
+            "feedback": "這是在問位置，不是在結帳付款。"
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t2",
+      "speaker": "npc",
+      "act": "cashier_instruction",
+      "act_slots": {
+        "topic": "card_payment",
+        "keyword": "感應",
+        "gloss": "tap"
+      },
+      "learning_role": "listen_only",
+      "surface": "好，請在這裡感應。",
+      "speak": "好，請在這裡感應。",
+      "translation": "好，請在這裡感應。",
+      "friend": "聽到付款指示時，用好的確認即可。",
+      "inline_explain": "刷卡 = 用卡付款。付現 = 用現金付款。",
+      "reply_set": {
+        "correct": "c1",
+        "choices": [
+          {
+            "id": "c1",
+            "surface": "好的。",
+            "translation": "好的。",
+            "speak": "好的。",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "c2",
+            "surface": "刷卡，謝謝。",
+            "translation": "刷卡，謝謝。",
+            "speak": "刷卡，謝謝。",
+            "contrast_type": "repeated_prior_answer",
+            "feedback": "你已經回答刷卡了。現在只要確認付款動作。"
+          },
+          {
+            "id": "c3",
+            "surface": "我有預訂。",
+            "translation": "我有預訂。",
+            "speak": "我有預訂。",
+            "contrast_type": "wrong_scenario_hotel",
+            "feedback": "這是飯店入住句，不是便利商店結帳。"
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t3",
+      "speaker": "npc",
+      "act": "receipt_prompt",
+      "act_slots": {
+        "topic": "receipt",
+        "keyword": "發票",
+        "gloss": "receipt"
+      },
+      "learning_role": "listen_only",
+      "surface": "需要發票嗎？",
+      "speak": "需要發票嗎？",
+      "translation": "需要發票嗎？",
+      "friend": "如果不要，用不用，謝謝就很自然。",
+      "reply_set": {
+        "correct": "c1",
+        "choices": [
+          {
+            "id": "c1",
+            "surface": "不用，謝謝。",
+            "translation": "不用，謝謝。",
+            "speak": "不用，謝謝。"
+          },
+          {
+            "id": "c2",
+            "surface": "三點可以。",
+            "translation": "三點可以。",
+            "speak": "三點可以。",
+            "contrast_type": "schedule_answer_to_receipt_prompt",
+            "feedback": "這是在回答時間。現在店員問的是要不要發票。"
+          },
+          {
+            "id": "c3",
+            "surface": "付現，謝謝。",
+            "translation": "付現，謝謝。",
+            "speak": "付現，謝謝。",
+            "contrast_type": "wrong_payment_method_switch",
+            "feedback": "你前面已經選了刷卡。現在要回答發票問題。"
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t4",
+      "speaker": "npc",
+      "act": "transaction_close",
+      "act_slots": {
+        "topic": "closing",
+        "keyword": "謝謝",
+        "gloss": "thanks"
+      },
+      "learning_role": "listen_only",
+      "surface": "好了，謝謝。",
+      "speak": "好了，謝謝。",
+      "translation": "好了，謝謝。",
+      "friend": "結帳完成時，回謝謝就可以。",
+      "reply_set": {
+        "correct": "c1",
+        "choices": [
+          {
+            "id": "c1",
+            "surface": "謝謝。",
+            "translation": "謝謝。",
+            "speak": "謝謝。"
+          },
+          {
+            "id": "c2",
+            "surface": "我要退房。",
+            "translation": "我要退房。",
+            "speak": "我要退房。",
+            "contrast_type": "wrong_scenario_hotel",
+            "feedback": "這是飯店情境，不是便利商店付款結尾。"
+          },
+          {
+            "id": "c3",
+            "surface": "往前走，然後右轉。",
+            "translation": "往前走，然後右轉。",
+            "speak": "往前走，然後右轉。",
+            "contrast_type": "wrong_scenario_directions",
+            "feedback": "這是在指路，不是在結帳收尾。"
+          }
+        ]
+      },
+      "closing": true
+    }
+  ],
+  "formula_moments": [
+    {
+      "after_turn": "t1",
+      "pattern_id": "zh_payment_card_cash"
+    },
+    {
+      "after_turn": "t2",
+      "pattern_id": "zh_short_confirmation_hao_de"
+    }
+  ],
+  "notes": {
+    "authoring_source": "Authored from ML-0 neutral brief ml0_a1_004_convenience_payment_card_cash; KO packs and other language packs were not used as source strings.",
+    "review_policy": "AI-authored candidate only; keep review_state=draft, review_status_framework_state=candidate_needs_review, native_review_state=native_pending until tracked review evidence exists.",
+    "canonical_policy": "Staging current-flow candidate only. Do not add to manifests, production exports, schema, runtime, or frontend in this authoring lane.",
+    "chinese_voice_note": "Uses Traditional-character Mandarin with Taiwan-leaning convenience-store terms such as 發票 and 感應; native review should confirm this locale choice."
+  }
+}

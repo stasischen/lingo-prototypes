@@ -1,0 +1,230 @@
+{
+  "schema_version": "scenario_pack.v1",
+  "scenario_id": "problem_lost_item",
+  "brief_id": "ml5_a1_020_problem_lost_item",
+  "source_neutral_brief": "release-aggregator/docs/tasks/A1_MULTILINGUAL_KO_B1_PARALLEL_ORCHESTRATION/work_products/ml0/ML5_NEUTRAL_ADAPTATION_BRIEFS_20260614.md#brief-ml5-a1-020-say-a-small-item-is-lost",
+  "blueprint_ledger": "release-aggregator/docs/tasks/A1_MULTILINGUAL_KO_B1_PARALLEL_ORCHESTRATION/work_products/ml0/ML5_BLUEPRINT_LEDGER_20260614.md",
+  "repo": "content-zh",
+  "staging_path": "content/core/content_assets/scenario_packs/current_flow/problem_lost_item.zh.v1.json",
+  "title": "說小物品不見了",
+  "setting_label": "服務櫃台",
+  "wrap_title": "失物詢問完成",
+  "wrap_friend": "你已經說明物品不見了、回答可能地點，並聽懂下一步去哪裡問。",
+  "language": "zh",
+  "ui_language": "zh_tw",
+  "source_status": "candidate_runtime_verified",
+  "review_state": "draft",
+  "review_status_framework_state": "candidate_runtime_verified",
+  "native_review_state": "native_pending",
+  "production_mode_default": {
+    "required": [
+      "choice"
+    ],
+    "optional_visible": [
+      "speaking"
+    ],
+    "optional_hidden": [
+      "typing"
+    ]
+  },
+  "support_text": "你在服務櫃台。說一個小物品不見了，回答可能在哪裡不見，聽懂下一步去哪裡問，最後道謝。",
+  "roles": {
+    "npc": {
+      "label": "工作人員"
+    },
+    "learner": {
+      "label": "客人"
+    }
+  },
+  "turns": [
+    {
+      "turn_id": "t1",
+      "speaker": "npc",
+      "act": "service_offer",
+      "act_slots": {
+        "topic": "help offer",
+        "keyword": "幫忙",
+        "gloss": "help"
+      },
+      "learning_role": "listen_only",
+      "surface": "您好，需要幫忙嗎？",
+      "speak": "您好，需要幫忙嗎？",
+      "translation": "您好，需要幫忙嗎？",
+      "friend": "低風險小物品可以說 我的...不見了。",
+      "reply_set": {
+        "correct": "c1",
+        "choices": [
+          {
+            "id": "c1",
+            "surface": "我的帽子不見了。",
+            "translation": "我的帽子不見了。",
+            "speak": "我的帽子不見了。",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "c2",
+            "surface": "這個多少錢？",
+            "translation": "這個多少錢？",
+            "speak": "這個多少錢？",
+            "contrast_type": "price_question_wrong_goal",
+            "feedback": "這是在問價格，不是在說遺失物品。"
+          },
+          {
+            "id": "c3",
+            "surface": "我要一杯咖啡。",
+            "translation": "我要一杯咖啡。",
+            "speak": "我要一杯咖啡。",
+            "contrast_type": "food_order_wrong_goal",
+            "feedback": "這是在點餐，不是在尋找遺失物。"
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t2",
+      "speaker": "npc",
+      "act": "lost_location_question",
+      "act_slots": {
+        "topic": "lost location",
+        "keyword": "哪裡",
+        "gloss": "where"
+      },
+      "learning_role": "listen_only",
+      "surface": "可能在哪裡不見的？",
+      "speak": "可能在哪裡不見的？",
+      "translation": "可能在哪裡不見的？",
+      "friend": "回答簡單地點即可，不需要解釋細節。",
+      "reply_set": {
+        "correct": "c1",
+        "choices": [
+          {
+            "id": "c1",
+            "surface": "可能在咖啡店。",
+            "translation": "可能在咖啡店。",
+            "speak": "可能在咖啡店。",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "c2",
+            "surface": "三點。",
+            "translation": "三點。",
+            "speak": "三點。",
+            "contrast_type": "time_answer_wrong_slot",
+            "feedback": "對方問地點，不是問時間。"
+          },
+          {
+            "id": "c3",
+            "surface": "不用，謝謝。",
+            "translation": "不用，謝謝。",
+            "speak": "不用，謝謝。",
+            "contrast_type": "refusal_wrong_answer",
+            "feedback": "這是在拒絕，沒有回答可能遺失的地點。"
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t3",
+      "speaker": "npc",
+      "act": "next_desk_location",
+      "act_slots": {
+        "topic": "next step",
+        "keyword": "失物招領",
+        "gloss": "lost and found"
+      },
+      "learning_role": "listen_only",
+      "surface": "請到左邊的失物招領處問問。",
+      "speak": "請到左邊的失物招領處問問。",
+      "translation": "請到左邊的失物招領處問問。",
+      "friend": "聽到下一步後，確認位置。",
+      "inline_explain": "失物招領處 = 詢問遺失物品的地方。",
+      "reply_set": {
+        "correct": "c1",
+        "choices": [
+          {
+            "id": "c1",
+            "surface": "左邊的失物招領處嗎？",
+            "translation": "左邊的失物招領處嗎？",
+            "speak": "左邊的失物招領處嗎？",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "c2",
+            "surface": "我的帽子不見了。",
+            "translation": "我的帽子不見了。",
+            "speak": "我的帽子不見了。",
+            "contrast_type": "repeated_lost_statement",
+            "feedback": "已經說過物品不見了。現在要確認去哪裡問。"
+          },
+          {
+            "id": "c3",
+            "surface": "需要報案嗎？",
+            "translation": "需要報案嗎？",
+            "speak": "需要報案嗎？",
+            "contrast_type": "police_report_out_of_scope",
+            "feedback": "本場景不處理報案，只練低風險失物詢問。"
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t4",
+      "speaker": "npc",
+      "act": "next_step_confirmed",
+      "act_slots": {
+        "topic": "confirmation",
+        "keyword": "對",
+        "gloss": "yes"
+      },
+      "learning_role": "listen_only",
+      "surface": "對，請在那裡問。",
+      "speak": "對，請在那裡問。",
+      "translation": "對，請在那裡問。",
+      "friend": "最後用好的，謝謝收尾。",
+      "reply_set": {
+        "correct": "c1",
+        "choices": [
+          {
+            "id": "c1",
+            "surface": "好的，謝謝。",
+            "translation": "好的，謝謝。",
+            "speak": "好的，謝謝。"
+          },
+          {
+            "id": "c2",
+            "surface": "有人偷走了。",
+            "translation": "有人偷走了。",
+            "speak": "有人偷走了。",
+            "contrast_type": "theft_accusation_out_of_scope",
+            "feedback": "不要把低風險失物場景變成偷竊指控。"
+          },
+          {
+            "id": "c3",
+            "surface": "你們要賠我。",
+            "translation": "你們要賠我。",
+            "speak": "你們要賠我。",
+            "contrast_type": "compensation_out_of_scope",
+            "feedback": "賠償或責任爭議不在本 A1 場景範圍。"
+          }
+        ]
+      },
+      "closing": true
+    }
+  ],
+  "formula_moments": [
+    {
+      "after_turn": "t1",
+      "pattern_id": "zh.problem.bujian_le"
+    },
+    {
+      "after_turn": "t3",
+      "pattern_id": "zh.service.shiwu_zhaoling"
+    }
+  ],
+  "notes": {
+    "authoring_source": "Authored from ML-5 neutral brief ml5_a1_020_problem_lost_item; KO and other target-language packs were not used as translation sources.",
+    "review_policy": "AI-authored candidate only; keep review_state=draft, review_status_framework_state=candidate_needs_review, native_review_state=native_pending until tracked review evidence exists.",
+    "canonical_policy": "Staging current-flow candidate only. Do not add to manifests, production exports, schema, runtime, or frontend in this authoring lane.",
+    "chinese_voice_note": "Uses Traditional-character Mandarin with Taiwan-compatible `不見了` and `失物招領處`; avoids police, theft, identity, compensation, and money-dispute framing."
+  }
+}

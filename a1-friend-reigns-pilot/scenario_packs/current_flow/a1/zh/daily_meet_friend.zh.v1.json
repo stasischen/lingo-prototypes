@@ -1,0 +1,237 @@
+{
+  "schema_version": "scenario_pack.v1",
+  "scenario_id": "daily_meet_friend",
+  "brief_id": "ml2_a1_010_daily_meet_friend",
+  "source_neutral_brief": "release-aggregator/docs/tasks/A1_MULTILINGUAL_KO_B1_PARALLEL_ORCHESTRATION/work_products/ml0/ML2_NEUTRAL_ADAPTATION_BRIEFS_20260614.md#brief-ml2-a1-010-meet-a-friend",
+  "blueprint_ledger": "release-aggregator/docs/tasks/A1_MULTILINGUAL_KO_B1_PARALLEL_ORCHESTRATION/work_products/ml0/ML2_BLUEPRINT_LEDGER_20260614.md",
+  "repo": "content-zh",
+  "staging_path": "content/core/content_assets/scenario_packs/current_flow/daily_meet_friend.zh.v1.json",
+  "title": "和朋友見面",
+  "setting_label": "咖啡店門口",
+  "wrap_title": "見面完成",
+  "wrap_friend": "你用自然的繁體中文和朋友打招呼、確認計畫，並說可以走了。",
+  "language": "zh",
+  "ui_language": "zh_tw",
+  "source_status": "candidate_runtime_verified",
+  "review_state": "draft",
+  "review_status_framework_state": "candidate_runtime_verified",
+  "native_review_state": "native_pending",
+  "production_mode_default": {
+    "required": [
+      "choice"
+    ],
+    "optional_visible": [
+      "speaking"
+    ],
+    "optional_hidden": [
+      "typing"
+    ]
+  },
+  "support_text": "你在咖啡店門口和朋友見面。用朋友之間自然簡短的中文確認對方和計畫。",
+  "roles": {
+    "npc": {
+      "label": "朋友"
+    },
+    "learner": {
+      "label": "朋友"
+    }
+  },
+  "turns": [
+    {
+      "turn_id": "t1",
+      "speaker": "npc",
+      "act": "friend_greeting",
+      "act_slots": {
+        "topic": "greeting",
+        "keyword": "嗨",
+        "gloss": "hi"
+      },
+      "learning_role": "listen_only",
+      "surface": "嗨，你到了！",
+      "speak": "嗨，你到了！",
+      "translation": "嗨，你到了！",
+      "friend": {
+        "hint": "朋友之間可以用嗨，再叫名字。"
+      },
+      "reply_set": {
+        "correct": "r1a",
+        "choices": [
+          {
+            "id": "r1a",
+            "surface": "嗨，小安！",
+            "translation": "嗨，小安！",
+            "speak": "嗨，小安！",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r1b",
+            "surface": "您好，我要結帳。",
+            "translation": "您好，我要結帳。",
+            "speak": "您好，我要結帳。",
+            "contrast_type": "service_counter_payment",
+            "feedback": "這是對店員付款的語氣，不像朋友見面。"
+          },
+          {
+            "id": "r1c",
+            "surface": "這個多少錢？",
+            "translation": "這個多少錢？",
+            "speak": "這個多少錢？",
+            "contrast_type": "shopping_price_question",
+            "feedback": "這是在商店問價格，不是在和朋友打招呼。"
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t2",
+      "speaker": "npc",
+      "act": "confirm_plan",
+      "act_slots": {
+        "topic": "meeting_plan",
+        "keyword": "美術館",
+        "gloss": "art museum"
+      },
+      "learning_role": "listen_only",
+      "surface": "我們去美術館，對嗎？",
+      "speak": "我們去美術館，對嗎？",
+      "translation": "我們去美術館，對嗎？",
+      "friend": {
+        "hint": "計畫正確時，用短句確認。"
+      },
+      "reply_set": {
+        "correct": "r2a",
+        "choices": [
+          {
+            "id": "r2a",
+            "surface": "對，去美術館。",
+            "translation": "對，去美術館。",
+            "speak": "對，去美術館。",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r2b",
+            "surface": "兩位，謝謝。",
+            "translation": "兩位，謝謝。",
+            "speak": "兩位，謝謝。",
+            "contrast_type": "restaurant_service_phrase",
+            "feedback": "這像在餐廳報人數，不是在確認朋友計畫。"
+          },
+          {
+            "id": "r2c",
+            "surface": "不是，您是我的主管。",
+            "translation": "不是，您是我的主管。",
+            "speak": "不是，您是我的主管。",
+            "contrast_type": "overly_formal_wrong_relationship",
+            "feedback": "這換成正式工作關係，和朋友見面不一致。"
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t3",
+      "speaker": "npc",
+      "act": "readiness_question",
+      "act_slots": {
+        "topic": "ready",
+        "keyword": "準備好了",
+        "gloss": "ready"
+      },
+      "learning_role": "listen_only",
+      "surface": "你準備好了嗎？",
+      "speak": "你準備好了嗎？",
+      "translation": "你準備好了嗎？",
+      "friend": {
+        "hint": "準備好了可說好了。"
+      },
+      "reply_set": {
+        "correct": "r3a",
+        "choices": [
+          {
+            "id": "r3a",
+            "surface": "好了。",
+            "translation": "好了。",
+            "speak": "好了。",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r3b",
+            "surface": "洗手間在哪裡？",
+            "translation": "洗手間在哪裡？",
+            "speak": "洗手間在哪裡？",
+            "contrast_type": "directions_instead_of_readiness",
+            "feedback": "這是在問地點，不是在回答準備好了沒有。"
+          },
+          {
+            "id": "r3c",
+            "surface": "我要結帳，謝謝。",
+            "translation": "我要結帳，謝謝。",
+            "speak": "我要結帳，謝謝。",
+            "contrast_type": "restaurant_bill_request",
+            "feedback": "這是餐廳結帳，不是朋友問你是否準備好。"
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t4",
+      "speaker": "npc",
+      "act": "next_step",
+      "act_slots": {
+        "topic": "go",
+        "keyword": "走吧",
+        "gloss": "let's go"
+      },
+      "learning_role": "listen_only",
+      "surface": "太好了。走吧？",
+      "speak": "太好了。走吧？",
+      "translation": "太好了。走吧？",
+      "friend": {
+        "hint": "朋友之間可以直接說走吧。"
+      },
+      "reply_set": {
+        "correct": "r4a",
+        "choices": [
+          {
+            "id": "r4a",
+            "surface": "走吧。",
+            "translation": "走吧。",
+            "speak": "走吧。"
+          },
+          {
+            "id": "r4b",
+            "surface": "可以便宜一點嗎？",
+            "translation": "可以便宜一點嗎？",
+            "speak": "可以便宜一點嗎？",
+            "contrast_type": "shopping_bargaining",
+            "feedback": "這是購物議價，不是朋友準備出發。"
+          },
+          {
+            "id": "r4c",
+            "surface": "刷卡還是現金？",
+            "translation": "刷卡還是現金？",
+            "speak": "刷卡還是現金？",
+            "contrast_type": "cashier_payment_prompt",
+            "feedback": "這是收銀員付款問題，不是朋友之間的下一步。"
+          }
+        ]
+      },
+      "closing": true
+    }
+  ],
+  "formula_moments": [
+    {
+      "after_turn": "t1",
+      "pattern_id": "zh.friend.hai_name.v1"
+    },
+    {
+      "after_turn": "t4",
+      "pattern_id": "zh.friend.zouba.v1"
+    }
+  ],
+  "notes": {
+    "authoring_source": "Authored from ML-2 neutral brief ml2_a1_010_daily_meet_friend; KO and other target-language packs were not used as translation sources.",
+    "review_policy": "AI-authored candidate only; keep review_state=draft, review_status_framework_state=candidate_needs_review, native_review_state=native_pending until tracked review evidence exists.",
+    "canonical_policy": "Staging current-flow candidate only. Do not add to manifests, production exports, schema, runtime, frontend, review artifacts, or legacy content.",
+    "chinese_voice_note": "Uses Traditional-character Mandarin with Taiwan-leaning everyday friend speech; native review should confirm 小安 as a neutral placeholder name."
+  }
+}

@@ -1,0 +1,269 @@
+{
+  "schema_version": "scenario_pack.v1",
+  "scenario_id": "a2_explain_simple_delay_reason",
+  "brief_id": "a2_2_explain_simple_delay_reason",
+  "source_neutral_brief": "release-aggregator/docs/tasks/A2_BASELINE_INVENTORY/A2_2_NEUTRAL_ADAPTATION_BRIEFS_20260614.md#brief-2-a2_explain_simple_delay_reason",
+  "blueprint_ledger": "release-aggregator/docs/tasks/A2_BASELINE_INVENTORY/A2_2_BLUEPRINT_LEDGER_20260614.md",
+  "repo": "content-th",
+  "staging_path": "content/core/content_assets/scenario_packs/current_flow/a2/a2_explain_simple_delay_reason.th.v1.json",
+  "title": "บอกเหตุผลง่าย ๆ ว่าจะไปสาย",
+  "setting_label": "กำลังไปหาเพื่อน",
+  "wrap_title": "บอกว่าจะสาย",
+  "wrap_friend": "คุณขอโทษ บอกเหตุผลง่าย ๆ และประเมินเวลาที่จะสายได้อย่างเป็นธรรมชาติ",
+  "language": "th",
+  "ui_language": "zh_tw",
+  "cefr_level": "A2",
+  "source_status": "candidate_runtime_verified",
+  "review_state": "ai_reviewed",
+  "review_status_framework_state": "candidate_runtime_verified",
+  "native_review_state": "native_pending",
+  "scenario": "You are running a little late and need to explain the reason.",
+  "learner_goal": "Apologize, give one simple reason, and estimate the delay.",
+  "target_functions": [
+    "apology",
+    "simple_reason",
+    "delay_estimate"
+  ],
+  "register_notes": "Friendly, low-stakes Thai. Uses ขอโทษนะ and short everyday reason; avoids emergency, workplace, or formal-excuse framing.",
+  "production_mode_default": {
+    "required": [
+      "choice"
+    ],
+    "optional_visible": [
+      "speaking"
+    ],
+    "optional_hidden": [
+      "typing"
+    ]
+  },
+  "support_text": "เพื่อนถามว่าคุณอยู่ไหน บอกสั้น ๆ ว่าจะสาย เพราะอะไร และสายประมาณกี่นาที",
+  "roles": {
+    "npc": {
+      "label": "เพื่อน"
+    },
+    "learner": {
+      "label": "คุณ"
+    }
+  },
+  "turns": [
+    {
+      "turn_id": "t1",
+      "speaker": "npc",
+      "act": "location_check",
+      "act_slots": {
+        "topic": "where are you",
+        "keyword": "ใกล้ถึง",
+        "gloss": "快到了"
+      },
+      "learning_role": "listen_only",
+      "surface": "ถึงไหนแล้ว ใกล้ถึงหรือยัง",
+      "speak": "ถึงไหนแล้ว ใกล้ถึงหรือยัง",
+      "translation": "你到哪了？快到了嗎？",
+      "friend": {
+        "hint": "เริ่มด้วยคำขอโทษ แล้วบอกว่าจะสายหน่อย"
+      },
+      "reply_set": {
+        "correct": "r1a",
+        "choices": [
+          {
+            "id": "r1a",
+            "surface": "ขอโทษนะ น่าจะไปสายหน่อย",
+            "translation": "不好意思，我可能會晚一點。",
+            "speak": "ขอโทษนะ น่าจะไปสายหน่อย",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r1b",
+            "surface": "ถึงตั้งแต่เมื่อวานแล้ว",
+            "translation": "我昨天就到了。",
+            "speak": "ถึงตั้งแต่เมื่อวานแล้ว",
+            "contrast_type": "wrong_time_past",
+            "feedback": "เพื่อนถามตอนนี้ ไม่ใช่เมื่อวาน"
+          },
+          {
+            "id": "r1c",
+            "surface": "ช่วยแนะนำเมนูหน่อย",
+            "translation": "請推薦菜單。",
+            "speak": "ช่วยแนะนำเมนูหน่อย",
+            "contrast_type": "wrong_scenario_restaurant",
+            "feedback": "นี่เป็นคำพูดในร้านอาหาร ตอนนี้ต้องบอกว่าคุณจะสาย"
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t2",
+      "speaker": "npc",
+      "act": "reason_request",
+      "act_slots": {
+        "topic": "why late",
+        "keyword": "ทำไม",
+        "gloss": "為什麼"
+      },
+      "learning_role": "listen_only",
+      "surface": "ทำไมเหรอ",
+      "speak": "ทำไมเหรอ",
+      "translation": "為什麼？",
+      "friend": {
+        "hint": "ใช้ เพราะ... เพื่อให้เหตุผลง่าย ๆ"
+      },
+      "inline_explain": {
+        "pattern_id": "th.a2.reason.delay.phro.v1",
+        "title": "เพราะ = 因為",
+        "explain": "เพราะ introduces a simple reason in Thai.",
+        "items": [
+          {
+            "surface": "เพราะรถติด",
+            "translation": "因為塞車",
+            "speak": "เพราะรถติด"
+          },
+          {
+            "surface": "เพราะรถเมล์มาช้า",
+            "translation": "因為公車來晚了",
+            "speak": "เพราะรถเมล์มาช้า"
+          }
+        ]
+      },
+      "reply_set": {
+        "correct": "r2a",
+        "choices": [
+          {
+            "id": "r2a",
+            "surface": "เพราะรถเมล์มาช้านิดหน่อย",
+            "translation": "因為公車稍微晚了一點。",
+            "speak": "เพราะรถเมล์มาช้านิดหน่อย",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r2b",
+            "surface": "เพราะชอบนั่งรถเมล์",
+            "translation": "因為我喜歡搭公車。",
+            "speak": "เพราะชอบนั่งรถเมล์",
+            "contrast_type": "wrong_reason_semantics",
+            "feedback": "นี่ไม่ใช่เหตุผลว่าทำไมถึงสาย"
+          },
+          {
+            "id": "r2c",
+            "surface": "รถเมล์อยู่ที่ไหน",
+            "translation": "公車在哪裡？",
+            "speak": "รถเมล์อยู่ที่ไหน",
+            "contrast_type": "wrong_function_location_question",
+            "feedback": "เพื่อนถามเหตุผล ไม่ได้ถามว่ารถเมล์อยู่ที่ไหน"
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t3",
+      "speaker": "npc",
+      "act": "delay_estimate_request",
+      "act_slots": {
+        "topic": "how late",
+        "keyword": "กี่นาที",
+        "gloss": "幾分鐘"
+      },
+      "learning_role": "listen_only",
+      "surface": "แล้วจะสายประมาณกี่นาที",
+      "speak": "แล้วจะสายประมาณกี่นาที",
+      "translation": "那你大概會晚幾分鐘？",
+      "friend": {
+        "hint": "ตอบเป็นเวลาสั้น ๆ เช่น ประมาณสิบนาที"
+      },
+      "reply_set": {
+        "correct": "r3a",
+        "choices": [
+          {
+            "id": "r3a",
+            "surface": "ประมาณสิบนาทีนะ",
+            "translation": "大約十分鐘。",
+            "speak": "ประมาณสิบนาทีนะ",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r3b",
+            "surface": "รถเมล์สายสิบดีนะ",
+            "translation": "十號公車不錯。",
+            "speak": "รถเมล์สายสิบดีนะ",
+            "contrast_type": "wrong_entity_bus_number",
+            "feedback": "สายสิบคือรถเมล์เลขสิบ แต่เพื่อนถามว่าจะสายกี่นาที"
+          },
+          {
+            "id": "r3c",
+            "surface": "ไม่ได้สายนะ",
+            "translation": "我沒有晚。",
+            "speak": "ไม่ได้สายนะ",
+            "contrast_type": "contradicts_context",
+            "feedback": "ก่อนหน้านี้คุณบอกว่าจะสายแล้ว ตอนนี้ต้องประเมินเวลา"
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t4",
+      "speaker": "npc",
+      "act": "acceptance",
+      "act_slots": {
+        "topic": "wait"
+      },
+      "learning_role": "listen_only",
+      "surface": "โอเค ไม่เป็นไร ค่อย ๆ มา",
+      "speak": "โอเค ไม่เป็นไร ค่อย ๆ มา",
+      "translation": "好，沒關係，慢慢來。",
+      "friend": {
+        "hint": "เพื่อนรับรู้แล้ว ขอบคุณและบอกว่าจะรีบไปแบบสั้น ๆ"
+      },
+      "reply_set": {
+        "correct": "r4a",
+        "choices": [
+          {
+            "id": "r4a",
+            "surface": "ขอบใจนะ เดี๋ยวรีบไป",
+            "translation": "謝謝，我等一下趕過去。",
+            "speak": "ขอบใจนะ เดี๋ยวรีบไป"
+          },
+          {
+            "id": "r4b",
+            "surface": "จองไว้แล้ว",
+            "translation": "我已經預約了。",
+            "speak": "จองไว้แล้ว",
+            "contrast_type": "wrong_scenario_reservation",
+            "feedback": "นี่เป็นเรื่องการจอง ไม่ใช่การบอกว่าจะไปสาย"
+          },
+          {
+            "id": "r4c",
+            "surface": "คิดเงินหน่อย",
+            "translation": "請結帳。",
+            "speak": "คิดเงินหน่อย",
+            "contrast_type": "wrong_scenario_payment",
+            "feedback": "นี่เป็นคำพูดตอนจ่ายเงิน ไม่ใช่ปิดบทสนทนาเรื่องไปสาย"
+          }
+        ]
+      }
+    }
+  ],
+  "choice_sets": [
+    "t1.reply_set",
+    "t2.reply_set",
+    "t3.reply_set",
+    "t4.reply_set"
+  ],
+  "feedback": "Distractors separate apology, reason, time estimate, and unrelated scenarios.",
+  "tts_segments": [
+    "ขอโทษนะ น่าจะไปสายหน่อย",
+    "เพราะรถเมล์มาช้านิดหน่อย",
+    "ประมาณสิบนาทีนะ",
+    "ขอบใจนะ เดี๋ยวรีบไป"
+  ],
+  "formula_moments": [
+    {
+      "after_turn": "t2",
+      "pattern_id": "th.a2.reason.delay.phro.v1"
+    }
+  ],
+  "runtime_notes": "Thai A2 pilot candidate. Structural check passed locally on 2026-06-14; runtime smoke is represented by required shape only and still needs UI execution if available.",
+  "notes": {
+    "authoring_policy": "Fresh-authored from A2 neutral brief. KO pack was used only for schema shape.",
+    "a2_boundary": "Low-stakes delay with one everyday reason and one short estimate; no emergency, illness, workplace, or formal excuse.",
+    "thai_voice_note": "Keeps friendly particles light and natural; segmented with spaces for TTS-friendly pauses."
+  }
+}

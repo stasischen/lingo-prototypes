@@ -1,0 +1,284 @@
+{
+  "schema_version": "scenario_pack.v1",
+  "scenario_id": "a2_ask_ingredient_preference",
+  "title": "ถามเรื่องวัตถุดิบที่ชอบ",
+  "setting_label": "เคาน์เตอร์ร้านอาหาร",
+  "wrap_title": "ยืนยันความชอบเรื่องวัตถุดิบแล้ว",
+  "wrap_friend": "ทำได้ดีค่ะ คุณยืนยันความชอบและรายละเอียดในสถานการณ์อาหารหรือซื้อของแบบความเสี่ยงต่ำได้ชัดเจน",
+  "language": "th",
+  "ui_language": "zh-Hant",
+  "cefr_level": "A2",
+  "source_status": "candidate_runtime_verified",
+  "review_state": "ai_reviewed",
+  "review_status_framework_state": "candidate_runtime_verified",
+  "native_review_state": "native_pending",
+  "scenario": {
+    "domain": "food_shopping_preferences",
+    "review_slice": "food_shopping",
+    "interaction": "service_preference_or_exchange",
+    "source_brief": "A2_FOOD_SHOPPING_NEUTRAL_ADAPTATION_BRIEFS_20260614",
+    "blueprint_source": "language_neutral_adaptation_brief",
+    "ko_pack_role": "mature_scenario_blueprint_not_translation_source"
+  },
+  "learner_goal": "ถามว่ามีวัตถุดิบทั่วไปไหม แล้วเลือกตามความชอบค่ะ",
+  "target_functions": [
+    "compare_or_state_preference",
+    "confirm_key_detail",
+    "make_polite_low_risk_request",
+    "close_with_correct_next_step"
+  ],
+  "register_notes": "Thai A2 food/shopping register: short polite service Thai with ค่ะ, TTS-friendly segmentation, no allergy/medical/refund-dispute framing.",
+  "production_mode_default": {
+    "required": [
+      "choice"
+    ],
+    "optional_visible": [
+      "speaking"
+    ],
+    "optional_hidden": [
+      "typing"
+    ]
+  },
+  "support_text": "ถามว่ามีวัตถุดิบทั่วไปไหม แล้วเลือกตามความชอบค่ะ",
+  "roles": {
+    "npc": {
+      "label": "พนักงาน"
+    },
+    "learner": {
+      "label": "你"
+    }
+  },
+  "turns": [
+    {
+      "turn_id": "t1",
+      "speaker": "npc",
+      "act": "ask_ingredient",
+      "act_slots": {
+        "topic": "ask-ingredient-preference",
+        "keyword": "1",
+        "gloss": "A2 food/shopping"
+      },
+      "learning_role": "listen_only",
+      "surface": "จะสั่งอะไรดีคะ",
+      "speak": "จะสั่งอะไรดีคะ",
+      "translation": "您想點什麼？",
+      "friend": {
+        "hint": "ถามว่ามีวัตถุดิบทั่วไปไหมค่ะ"
+      },
+      "reply_set": {
+        "correct": "r1a",
+        "choices": [
+          {
+            "id": "r1a",
+            "surface": "สลัดนี้มีหัวหอมไหมคะ",
+            "translation": "這個沙拉有洋蔥嗎？",
+            "speak": "สลัดนี้มีหัวหอมไหมคะ",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r1b",
+            "surface": "สลัดนี้อยู่ชั้นไหนคะ",
+            "translation": "這個沙拉在幾樓？",
+            "speak": "สลัดนี้อยู่ชั้นไหนคะ",
+            "contrast_type": "wrong_detail_or_domain",
+            "feedback": "คำถามเรื่องชั้นไม่เกี่ยวกับวัตถุดิบค่ะ"
+          },
+          {
+            "id": "r1c",
+            "surface": "ช่วยเปลี่ยนเวลาตั๋วให้หน่อยค่ะ",
+            "translation": "請幫我改票的時間。",
+            "speak": "ช่วยเปลี่ยนเวลาตั๋วให้หน่อยค่ะ",
+            "contrast_type": "forbidden_or_wrong_domain",
+            "feedback": "เปลี่ยนไปเรื่องตั๋วค่ะ"
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t2",
+      "speaker": "npc",
+      "act": "answer_ingredient",
+      "act_slots": {
+        "topic": "ask-ingredient-preference",
+        "keyword": "2",
+        "gloss": "A2 food/shopping"
+      },
+      "learning_role": "listen_only",
+      "surface": "มีนิดหน่อยค่ะ",
+      "speak": "มีนิดหน่อยค่ะ",
+      "translation": "有一點。",
+      "friend": {
+        "hint": "ยืนยันข้อมูลวัตถุดิบค่ะ"
+      },
+      "reply_set": {
+        "correct": "r2a",
+        "choices": [
+          {
+            "id": "r2a",
+            "surface": "มีหัวหอมนิดหน่อยใช่ไหมคะ",
+            "translation": "有一點洋蔥，對嗎？",
+            "speak": "มีหัวหอมนิดหน่อยใช่ไหมคะ",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r2b",
+            "surface": "มีเนื้อเยอะใช่ไหมคะ",
+            "translation": "有很多肉，對嗎？",
+            "speak": "มีเนื้อเยอะใช่ไหมคะ",
+            "contrast_type": "wrong_detail_or_domain",
+            "feedback": "ไม่ได้พูดเรื่องเนื้อค่ะ"
+          },
+          {
+            "id": "r2c",
+            "surface": "ห้องเสียงดังใช่ไหมคะ",
+            "translation": "房間很吵，對嗎？",
+            "speak": "ห้องเสียงดังใช่ไหมคะ",
+            "contrast_type": "forbidden_or_wrong_domain",
+            "feedback": "เปลี่ยนไปปัญหาโรงแรมค่ะ"
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t3",
+      "speaker": "npc",
+      "act": "choose_preference",
+      "act_slots": {
+        "topic": "ask-ingredient-preference",
+        "keyword": "3",
+        "gloss": "A2 food/shopping"
+      },
+      "learning_role": "listen_only",
+      "surface": "ถ้าต้องการ ทำแบบไม่ใส่หัวหอมได้ค่ะ",
+      "speak": "ถ้าต้องการ ทำแบบไม่ใส่หัวหอมได้ค่ะ",
+      "translation": "如果需要，可以做不加洋蔥的。",
+      "friend": {
+        "hint": "เลือกตามความชอบ ไม่ใช่เรื่องแพทย์ค่ะ"
+      },
+      "reply_set": {
+        "correct": "r3a",
+        "choices": [
+          {
+            "id": "r3a",
+            "surface": "ค่ะ ไม่ใส่หัวหอมค่ะ",
+            "translation": "好的，不加洋蔥。",
+            "speak": "ค่ะ ไม่ใส่หัวหอมค่ะ",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r3b",
+            "surface": "ค่ะ ขอยาแก้แพ้ค่ะ",
+            "translation": "好的，請給我過敏藥。",
+            "speak": "ค่ะ ขอยาแก้แพ้ค่ะ",
+            "contrast_type": "wrong_detail_or_domain",
+            "feedback": "ยา/ภูมิแพ้อยู่นอกงานนี้ค่ะ"
+          },
+          {
+            "id": "r3c",
+            "surface": "ค่ะ ขอคืนเงินค่ะ",
+            "translation": "好的，請退款。",
+            "speak": "ค่ะ ขอคืนเงินค่ะ",
+            "contrast_type": "forbidden_or_wrong_domain",
+            "feedback": "นี่ไม่ใช่การขอคืนเงินค่ะ"
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t4",
+      "speaker": "npc",
+      "act": "confirm_order",
+      "act_slots": {
+        "topic": "ask-ingredient-preference",
+        "keyword": "4",
+        "gloss": "A2 food/shopping"
+      },
+      "learning_role": "listen_only",
+      "surface": "ได้ค่ะ จะเตรียมแบบไม่ใส่หัวหอมให้นะคะ",
+      "speak": "ได้ค่ะ จะเตรียมแบบไม่ใส่หัวหอมให้นะคะ",
+      "translation": "可以，我會準備不加洋蔥的。",
+      "friend": {
+        "hint": "ปิดด้วยการยืนยันออร์เดอร์ค่ะ"
+      },
+      "reply_set": {
+        "correct": "r4a",
+        "choices": [
+          {
+            "id": "r4a",
+            "surface": "ขอบคุณค่ะ เอาแบบนั้นค่ะ",
+            "translation": "謝謝，我要那樣。",
+            "speak": "ขอบคุณค่ะ เอาแบบนั้นค่ะ",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r4b",
+            "surface": "บอกเลขพาสปอร์ตให้หน่อยค่ะ",
+            "translation": "請告訴我護照號碼。",
+            "speak": "บอกเลขพาสปอร์ตให้หน่อยค่ะ",
+            "contrast_type": "wrong_detail_or_domain",
+            "feedback": "ไม่ต้องใช้ข้อมูลพาสปอร์ตค่ะ"
+          },
+          {
+            "id": "r4c",
+            "surface": "อยากฝากกระเป๋าค่ะ",
+            "translation": "我想寄放行李。",
+            "speak": "อยากฝากกระเป๋าค่ะ",
+            "contrast_type": "forbidden_or_wrong_domain",
+            "feedback": "เปลี่ยนไปเรื่องฝากกระเป๋าค่ะ"
+          }
+        ]
+      }
+    }
+  ],
+  "choice_sets": {
+    "count_per_turn": 3,
+    "correct_path": [
+      "r1a",
+      "r2a",
+      "r3a",
+      "r4a"
+    ],
+    "distractor_policy": "one near-domain wrong detail plus one out-of-scope/unsafe-domain option per turn"
+  },
+  "feedback": {
+    "correct": "ดีค่ะ ตอบตรงกับสถานการณ์อาหารหรือซื้อของ",
+    "incorrect": "เลือกคำตอบที่ตรงกับเมนู วัตถุดิบ การเปลี่ยนของ หรือคำแนะนำตามงบค่ะ"
+  },
+  "tts_segments": [
+    "จะสั่งอะไรดีคะ",
+    "สลัดนี้มีหัวหอมไหมคะ",
+    "สลัดนี้อยู่ชั้นไหนคะ",
+    "ช่วยเปลี่ยนเวลาตั๋วให้หน่อยค่ะ",
+    "มีนิดหน่อยค่ะ",
+    "มีหัวหอมนิดหน่อยใช่ไหมคะ",
+    "มีเนื้อเยอะใช่ไหมคะ",
+    "ห้องเสียงดังใช่ไหมคะ",
+    "ถ้าต้องการ ทำแบบไม่ใส่หัวหอมได้ค่ะ",
+    "ค่ะ ไม่ใส่หัวหอมค่ะ",
+    "ค่ะ ขอยาแก้แพ้ค่ะ",
+    "ค่ะ ขอคืนเงินค่ะ",
+    "ได้ค่ะ จะเตรียมแบบไม่ใส่หัวหอมให้นะคะ",
+    "ขอบคุณค่ะ เอาแบบนั้นค่ะ",
+    "บอกเลขพาสปอร์ตให้หน่อยค่ะ",
+    "อยากฝากกระเป๋าค่ะ"
+  ],
+  "formula_moments": [
+    {
+      "after_turn": "t2",
+      "pattern_id": "th.a2.food.ingredient.preference.v1",
+      "label": "มี + ingredient + ไหม",
+      "learner_takeaway": "ไม่ใส่ + ingredient"
+    }
+  ],
+  "runtime_notes": {
+    "expected_turns": 4,
+    "expected_choices_per_turn": 3,
+    "full_walk_required": true,
+    "expected_final_screen": "Wrap"
+  },
+  "notes": {
+    "generated_at": "2026-06-14",
+    "authoring_scope": "A2 food/shopping TH adaptation",
+    "native_review_state": "native_pending"
+  }
+}

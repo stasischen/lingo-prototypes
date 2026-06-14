@@ -1,0 +1,257 @@
+{
+  "schema_version": "scenario_pack.v1",
+  "scenario_id": "a2_change_delivery_pickup_time",
+  "title": "Changer l’Heure de Retrait",
+  "setting_label": "low-risk help message",
+  "wrap_title": "Changer l’Heure de Retrait",
+  "wrap_friend": "Bien. Tu as géré une aide numérique ou documentaire à faible risque avec seulement le détail nécessaire.",
+  "language": "fr",
+  "ui_language": "zh-Hant",
+  "cefr_level": "A2",
+  "source_status": "candidate_runtime_verified",
+  "review_state": "ai_reviewed",
+  "review_status_framework_state": "candidate_runtime_verified",
+  "native_review_state": "native_pending",
+  "scenario": {
+    "domain": "digital_documents_low_risk_help",
+    "review_slice": "digital_documents",
+    "interaction": "low_risk_confirmation_or_help",
+    "source_brief": "A2_DIGITAL_DOCUMENTS_NEUTRAL_ADAPTATION_BRIEFS_20260614",
+    "blueprint_source": "language_neutral_adaptation_brief",
+    "ko_pack_role": "mature_scenario_blueprint_not_translation_source"
+  },
+  "learner_goal": "Gérer une tâche numérique ou un formulaire simple à faible risque avec des phrases courtes de niveau A2.",
+  "target_functions": [
+    "confirm_booking_or_message",
+    "request_simple_change",
+    "ask_simple_form_help",
+    "follow_up_low_risk_item"
+  ],
+  "register_notes": "French A2 low-risk digital/documents register: concise polite help/service French, no passwords, payment, ID, medical, legal, police, or immigration framing.",
+  "production_mode_default": {
+    "required": [
+      "choice"
+    ],
+    "optional_visible": [
+      "speaking"
+    ],
+    "optional_hidden": [
+      "typing"
+    ]
+  },
+  "support_text": "Garde la tâche à faible risque. Ne donne pas de mot de passe, paiement, ID sensible, information juridique ou médicale.",
+  "roles": {
+    "npc": {
+      "label": "personnel"
+    },
+    "learner": {
+      "label": "你"
+    }
+  },
+  "turns": [
+    {
+      "turn_id": "t1",
+      "speaker": "npc",
+      "act": "start",
+      "act_slots": {
+        "topic": "a2_change_delivery_pickup_time",
+        "keyword": "1",
+        "gloss": "A2 digital/documents"
+      },
+      "learning_role": "listen_only",
+      "surface": "Le retrait est prévu aujourd’hui à quatre heures.",
+      "speak": "Le retrait est prévu aujourd’hui à quatre heures.",
+      "translation": "今天四點取貨。",
+      "friend": {
+        "hint": "Vérifie seulement le détail nécessaire et à faible risque."
+      },
+      "reply_set": {
+        "correct": "r1a",
+        "choices": [
+          {
+            "id": "r1a",
+            "surface": "Je peux changer l’heure de retrait ?",
+            "translation": "可以改取貨時間嗎？",
+            "speak": "Je peux changer l’heure de retrait ?",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r1b",
+            "surface": "Je donne mon mot de passe.",
+            "translation": "我會告訴你密碼。",
+            "speak": "Je donne mon mot de passe.",
+            "contrast_type": "forbidden_sensitive",
+            "feedback": "Le mot de passe est hors de cette tâche A2."
+          },
+          {
+            "id": "r1c",
+            "surface": "Je veux un remboursement.",
+            "translation": "請退款。",
+            "speak": "Je veux un remboursement.",
+            "contrast_type": "wrong_dispute_domain",
+            "feedback": "Les remboursements ou litiges sont hors de cette tâche."
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t2",
+      "speaker": "npc",
+      "act": "clarify",
+      "act_slots": {
+        "topic": "a2_change_delivery_pickup_time",
+        "keyword": "2",
+        "gloss": "A2 digital/documents"
+      },
+      "learning_role": "listen_only",
+      "surface": "Oui, cinq heures est possible.",
+      "speak": "Oui, cinq heures est possible.",
+      "translation": "可以，五點可以。",
+      "friend": {
+        "hint": "Vérifie seulement le détail nécessaire et à faible risque."
+      },
+      "reply_set": {
+        "correct": "r2a",
+        "choices": [
+          {
+            "id": "r2a",
+            "surface": "Alors cinq heures, s’il vous plaît.",
+            "translation": "那請改成五點。",
+            "speak": "Alors cinq heures, s’il vous plaît.",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r2b",
+            "surface": "Je donne mon mot de passe.",
+            "translation": "我會告訴你密碼。",
+            "speak": "Je donne mon mot de passe.",
+            "contrast_type": "forbidden_sensitive",
+            "feedback": "Le mot de passe est hors de cette tâche A2."
+          },
+          {
+            "id": "r2c",
+            "surface": "Je veux un remboursement.",
+            "translation": "請退款。",
+            "speak": "Je veux un remboursement.",
+            "contrast_type": "wrong_dispute_domain",
+            "feedback": "Les remboursements ou litiges sont hors de cette tâche."
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t3",
+      "speaker": "npc",
+      "act": "confirm_detail",
+      "act_slots": {
+        "topic": "a2_change_delivery_pickup_time",
+        "keyword": "3",
+        "gloss": "A2 digital/documents"
+      },
+      "learning_role": "listen_only",
+      "surface": "On change pour cinq heures ?",
+      "speak": "On change pour cinq heures ?",
+      "translation": "改成五點嗎？",
+      "friend": {
+        "hint": "Vérifie seulement le détail nécessaire et à faible risque."
+      },
+      "reply_set": {
+        "correct": "r3a",
+        "choices": [
+          {
+            "id": "r3a",
+            "surface": "Oui, cinq heures me va.",
+            "translation": "對，五點可以。",
+            "speak": "Oui, cinq heures me va.",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r3b",
+            "surface": "Je donne mon mot de passe.",
+            "translation": "我會告訴你密碼。",
+            "speak": "Je donne mon mot de passe.",
+            "contrast_type": "forbidden_sensitive",
+            "feedback": "Le mot de passe est hors de cette tâche A2."
+          },
+          {
+            "id": "r3c",
+            "surface": "Je veux un remboursement.",
+            "translation": "請退款。",
+            "speak": "Je veux un remboursement.",
+            "contrast_type": "wrong_dispute_domain",
+            "feedback": "Les remboursements ou litiges sont hors de cette tâche."
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t4",
+      "speaker": "npc",
+      "act": "close",
+      "act_slots": {
+        "topic": "a2_change_delivery_pickup_time",
+        "keyword": "4",
+        "gloss": "A2 digital/documents"
+      },
+      "learning_role": "listen_only",
+      "surface": "D’accord, je change pour cinq heures.",
+      "speak": "D’accord, je change pour cinq heures.",
+      "translation": "好的，我會改成五點。",
+      "friend": {
+        "hint": "Vérifie seulement le détail nécessaire et à faible risque."
+      },
+      "reply_set": {
+        "correct": "r4a",
+        "choices": [
+          {
+            "id": "r4a",
+            "surface": "Merci. Je viens à cinq heures.",
+            "translation": "謝謝，我五點會去。",
+            "speak": "Merci. Je viens à cinq heures.",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r4b",
+            "surface": "Je donne mon mot de passe.",
+            "translation": "我會告訴你密碼。",
+            "speak": "Je donne mon mot de passe.",
+            "contrast_type": "forbidden_sensitive",
+            "feedback": "Le mot de passe est hors de cette tâche A2."
+          },
+          {
+            "id": "r4c",
+            "surface": "Je veux un remboursement.",
+            "translation": "請退款。",
+            "speak": "Je veux un remboursement.",
+            "contrast_type": "wrong_dispute_domain",
+            "feedback": "Les remboursements ou litiges sont hors de cette tâche."
+          }
+        ]
+      }
+    }
+  ],
+  "choice_sets": [
+    "t1.reply_set",
+    "t2.reply_set",
+    "t3.reply_set",
+    "t4.reply_set"
+  ],
+  "feedback": "Garde la tâche à faible risque. Ne donne pas de mot de passe, paiement, ID sensible, information juridique ou médicale.",
+  "tts_segments": [
+    "Je peux changer l’heure de retrait ?",
+    "Alors cinq heures, s’il vous plaît.",
+    "Oui, cinq heures me va.",
+    "Merci. Je viens à cinq heures."
+  ],
+  "formula_moments": [
+    {
+      "after_turn": "t2",
+      "pattern_id": "fr.a2.digital.change_delivery_pickup_time.v1"
+    }
+  ],
+  "runtime_notes": "Fresh A2 digital/documents candidate. Requires full-walk runtime before closeout evidence is recorded.",
+  "notes": {
+    "authoring_policy": "Fresh-authored from A2 digital/documents neutral adaptation brief. KO surface text was not copied or translated.",
+    "a2_boundary": "Low-risk confirmation/help only; avoids sensitive identity, payment, legal, medical, police, and immigration workflows."
+  }
+}

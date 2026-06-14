@@ -1,0 +1,242 @@
+{
+  "schema_version": "scenario_pack.v1",
+  "scenario_id": "a2_transport_delay_announcement",
+  "title": "Eine Verspätungsansage Verstehen",
+  "setting_label": "Am Bahnsteig",
+  "wrap_title": "Verspätung bestätigt",
+  "wrap_friend": "你剛剛完成了一段 A2 交通服務情境，確認重點並做出簡單回應。",
+  "language": "de",
+  "ui_language": "zh_tw",
+  "cefr_level": "A2",
+  "source_status": "candidate_runtime_verified",
+  "review_state": "ai_reviewed",
+  "review_status_framework_state": "candidate_runtime_verified",
+  "native_review_state": "native_pending",
+  "scenario": "A2 transport scenario: a2_transport_delay_announcement.",
+  "learner_goal": "Understand a delay duration and choose whether to wait.",
+  "target_functions": [
+    "delay_comprehension",
+    "duration_confirmation",
+    "simple_travel_choice"
+  ],
+  "register_notes": "German public transport/service language with polite everyday responses; no refund, legal, medical, police, or identity-sensitive handling.",
+  "production_mode_default": {
+    "required": [
+      "choice"
+    ],
+    "optional_visible": [
+      "speaking"
+    ],
+    "optional_hidden": [
+      "typing"
+    ]
+  },
+  "support_text": "Hören Sie die Ansage am Bahnhof, bestätigen Sie die Verspätung und wählen Sie eine einfache Reaktion.",
+  "roles": {
+    "npc": {
+      "label": "Mitarbeiter"
+    },
+    "learner": {
+      "label": "Sie"
+    }
+  },
+  "turns": [
+    {
+      "turn_id": "t1",
+      "speaker": "npc",
+      "act": "delay_announcement",
+      "act_slots": {
+        "topic": "delay_announcement"
+      },
+      "learning_role": "listen_only",
+      "surface": "Achtung bitte. Der Zug nach Central hat fünfzehn Minuten Verspätung.",
+      "speak": "Achtung bitte. Der Zug nach Central hat fünfzehn Minuten Verspätung.",
+      "translation": "請注意，開往 Central 的列車晚 15 分鐘。",
+      "friend": {
+        "hint": "聽懂延誤時間"
+      },
+      "reply_set": {
+        "correct": "r1a",
+        "choices": [
+          {
+            "id": "r1a",
+            "surface": "Der Zug hat fünfzehn Minuten Verspätung, richtig?",
+            "translation": "確認延誤時間",
+            "speak": "Der Zug hat fünfzehn Minuten Verspätung, richtig?",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r1b",
+            "surface": "Der Zug fährt in fünf Minuten ab, richtig?",
+            "translation": "錯誤時間",
+            "speak": "Der Zug fährt in fünf Minuten ab, richtig?",
+            "learning_role": "wrong_time_or_detail",
+            "feedback": "Die Ablenker prüfen falsche Zeit, falschen Kontext oder eine Eskalation außerhalb von A2."
+          },
+          {
+            "id": "r1c",
+            "surface": "Kann ich meinen Sitzplatz wechseln?",
+            "translation": "我可以換座位嗎？",
+            "speak": "Kann ich meinen Sitzplatz wechseln?",
+            "learning_role": "wrong_scenario_or_escalation",
+            "feedback": "Die Ablenker prüfen falsche Zeit, falschen Kontext oder eine Eskalation außerhalb von A2."
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t2",
+      "speaker": "npc",
+      "act": "choice_prompt",
+      "act_slots": {
+        "topic": "choice_prompt"
+      },
+      "learning_role": "listen_only",
+      "surface": "Wenn es fünfzehn Minuten sind, möchten Sie warten oder den Bus nehmen?",
+      "speak": "Wenn es fünfzehn Minuten sind, möchten Sie warten oder den Bus nehmen?",
+      "translation": "如果是 15 分鐘，您要等，還是搭公車？",
+      "friend": {
+        "hint": "做出簡單選擇"
+      },
+      "reply_set": {
+        "correct": "r2a",
+        "choices": [
+          {
+            "id": "r2a",
+            "surface": "Wenn es fünfzehn Minuten sind, warte ich.",
+            "translation": "選擇等待",
+            "speak": "Wenn es fünfzehn Minuten sind, warte ich.",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r2b",
+            "surface": "Gestern habe ich gewartet.",
+            "translation": "我昨天等了。",
+            "speak": "Gestern habe ich gewartet.",
+            "learning_role": "wrong_time_or_detail",
+            "feedback": "Die Ablenker prüfen falsche Zeit, falschen Kontext oder eine Eskalation außerhalb von A2."
+          },
+          {
+            "id": "r2c",
+            "surface": "Eine Quittung, bitte.",
+            "translation": "請給我收據。",
+            "speak": "Eine Quittung, bitte.",
+            "learning_role": "wrong_scenario_or_escalation",
+            "feedback": "Die Ablenker prüfen falsche Zeit, falschen Kontext oder eine Eskalation außerhalb von A2."
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t3",
+      "speaker": "npc",
+      "act": "next_departure_info",
+      "act_slots": {
+        "topic": "next_departure_info"
+      },
+      "learning_role": "listen_only",
+      "surface": "Der nächste Zug kommt gegen zehn Uhr zwanzig.",
+      "speak": "Der nächste Zug kommt gegen zehn Uhr zwanzig.",
+      "translation": "下一班車大約 10 點 20 分到。",
+      "friend": {
+        "hint": "確認下一班時間"
+      },
+      "reply_set": {
+        "correct": "r3a",
+        "choices": [
+          {
+            "id": "r3a",
+            "surface": "Dann nehme ich den Zug um zehn Uhr zwanzig.",
+            "translation": "確認搭下一班",
+            "speak": "Dann nehme ich den Zug um zehn Uhr zwanzig.",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r3b",
+            "surface": "Schließt der Laden um zehn Uhr zwanzig?",
+            "translation": "店 10 點 20 分關門嗎？",
+            "speak": "Schließt der Laden um zehn Uhr zwanzig?",
+            "learning_role": "wrong_time_or_detail",
+            "feedback": "Diese Uhrzeit betrifft den Zug, nicht einen Laden."
+          },
+          {
+            "id": "r3c",
+            "surface": "Ich möchte mein Busticket erstatten lassen.",
+            "translation": "我想退公車票。",
+            "speak": "Ich möchte mein Busticket erstatten lassen.",
+            "learning_role": "wrong_scenario_or_escalation",
+            "feedback": "Erstattungen liegen außerhalb dieser A2-Aufgabe."
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t4",
+      "speaker": "npc",
+      "act": "platform_wait_confirmation",
+      "act_slots": {
+        "topic": "platform_wait_confirmation"
+      },
+      "learning_role": "listen_only",
+      "surface": "Gut. Bitte warten Sie auf diesem Bahnsteig.",
+      "speak": "Gut. Bitte warten Sie auf diesem Bahnsteig.",
+      "translation": "好的，請在這個月台等。",
+      "friend": {
+        "hint": "禮貌收尾"
+      },
+      "reply_set": {
+        "correct": "r4a",
+        "choices": [
+          {
+            "id": "r4a",
+            "surface": "Alles klar, ich warte hier.",
+            "translation": "確認等待",
+            "speak": "Alles klar, ich warte hier.",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r4b",
+            "surface": "Bitte wechseln Sie mein Zimmer.",
+            "translation": "請幫我換房間。",
+            "speak": "Bitte wechseln Sie mein Zimmer.",
+            "learning_role": "wrong_time_or_detail",
+            "feedback": "Die Ablenker prüfen falsche Zeit, falschen Kontext oder eine Eskalation außerhalb von A2."
+          },
+          {
+            "id": "r4c",
+            "surface": "Ich möchte einen Termin im Krankenhaus machen.",
+            "translation": "我想預約醫院。",
+            "speak": "Ich möchte einen Termin im Krankenhaus machen.",
+            "learning_role": "wrong_scenario_or_escalation",
+            "feedback": "Die Ablenker prüfen falsche Zeit, falschen Kontext oder eine Eskalation außerhalb von A2."
+          }
+        ]
+      }
+    }
+  ],
+  "choice_sets": [
+    "t1.reply_set",
+    "t2.reply_set",
+    "t3.reply_set",
+    "t4.reply_set"
+  ],
+  "feedback": "Die Ablenker prüfen falsche Zeit, falschen Kontext oder eine Eskalation außerhalb von A2.",
+  "tts_segments": [
+    "Achtung bitte. Der Zug nach Central hat fünfzehn Minuten Verspätung.",
+    "Wenn es fünfzehn Minuten sind, möchten Sie warten oder den Bus nehmen?",
+    "Der nächste Zug kommt gegen zehn Uhr zwanzig.",
+    "Gut. Bitte warten Sie auf diesem Bahnsteig."
+  ],
+  "formula_moments": [
+    {
+      "after_turn": "t2",
+      "pattern_id": "de.a2.transport.delay.v1"
+    }
+  ],
+  "runtime_notes": "DE A2 transport candidate. Full-walk runtime gate required before final closeout; target-language surfaces and feedback localized on 2026-06-14.",
+  "notes": {
+    "authoring_policy": "Fresh-authored from the neutral A2 transport brief. KO surfaces were used only as scenario blueprint, not as translation source.",
+    "a2_boundary": "Low-risk A2 transport/service task; avoids refund, compensation, emergency, identity-sensitive, legal, medical, banking, immigration, or police handling.",
+    "language_specific_adaptation": "NPC lines, learner targets, distractors, feedback, support text, and translations are adapted for this language; native review remains pending."
+  }
+}

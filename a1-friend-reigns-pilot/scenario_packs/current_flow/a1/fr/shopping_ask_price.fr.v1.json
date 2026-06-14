@@ -1,0 +1,256 @@
+{
+  "schema_version": "scenario_pack.v1",
+  "scenario_id": "shopping_ask_price",
+  "brief_id": "ml2_a1_009_shopping_ask_price",
+  "source_neutral_brief": "release-aggregator/docs/tasks/A1_MULTILINGUAL_KO_B1_PARALLEL_ORCHESTRATION/work_products/ml0/ML2_NEUTRAL_ADAPTATION_BRIEFS_20260614.md#brief-ml2-a1-009-shopping-ask-price",
+  "blueprint_ledger": "release-aggregator/docs/tasks/A1_MULTILINGUAL_KO_B1_PARALLEL_ORCHESTRATION/work_products/ml0/ML2_BLUEPRINT_LEDGER_20260614.md",
+  "repo": "content-fr",
+  "staging_path": "content/core/content_assets/scenario_packs/current_flow/shopping_ask_price.fr.v1.json",
+  "title": "Demander le prix",
+  "setting_label": "Petit stand de marché",
+  "wrap_title": "Tu peux demander un prix",
+  "wrap_friend": "你招呼店員、問了價格，並用短句回應。",
+  "language": "fr",
+  "ui_language": "zh_tw",
+  "source_status": "candidate_runtime_verified",
+  "review_state": "draft",
+  "review_status_framework_state": "candidate_runtime_verified",
+  "native_review_state": "native_pending",
+  "production_mode_default": {
+    "required": [
+      "choice"
+    ],
+    "optional_visible": [
+      "speaking"
+    ],
+    "optional_hidden": [
+      "typing"
+    ]
+  },
+  "support_text": "你在法語小店。聽店員說什麼，選一句簡短自然的法語回答。",
+  "roles": {
+    "npc": {
+      "label": "vendeur"
+    },
+    "learner": {
+      "label": "client"
+    }
+  },
+  "turns": [
+    {
+      "turn_id": "t1",
+      "speaker": "npc",
+      "act": "seller_attention",
+      "act_slots": {
+        "topic": "accueillir client",
+        "keyword": "bonjour",
+        "gloss": "您好"
+      },
+      "learning_role": "listen_only",
+      "surface": "Bonjour. Je peux vous aider ?",
+      "speak": "Bonjour. Je peux vous aider ?",
+      "translation": "您好。需要幫忙嗎？",
+      "friend": {
+        "hint": "店員在招呼你。禮貌地問這個多少錢。"
+      },
+      "reply_set": {
+        "correct": "r1a",
+        "choices": [
+          {
+            "id": "r1a",
+            "surface": "Oui. C'est combien ?",
+            "translation": "是的。這個多少錢？",
+            "speak": "Oui. C'est combien ?",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r1b",
+            "surface": "Où sont les toilettes ?",
+            "translation": "洗手間在哪裡？",
+            "speak": "Où sont les toilettes ?",
+            "contrast_type": "wrong_scenario_direction",
+            "feedback": "這是在問路。這裡要問商品價格。"
+          },
+          {
+            "id": "r1c",
+            "surface": "Un café, s'il vous plaît.",
+            "translation": "請給我一杯咖啡。",
+            "speak": "Un café, s'il vous plaît.",
+            "contrast_type": "wrong_scenario_food",
+            "feedback": "這像在點飲料，不是在問商品價格。"
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t2",
+      "speaker": "npc",
+      "act": "price_answer",
+      "act_slots": {
+        "topic": "donner le prix",
+        "keyword": "euros",
+        "gloss": "歐元"
+      },
+      "learning_role": "listen_only",
+      "surface": "C'est cinq euros.",
+      "speak": "C'est cinq euros.",
+      "translation": "五歐元。",
+      "friend": {
+        "hint": "聽到價格後，可以說你要買。"
+      },
+      "inline_explain": {
+        "pattern_id": "fr.shopping.ask_price.v1",
+        "formula_ref": null,
+        "title": "C'est combien ?",
+        "explain": "在口語購物情境，問價格可以簡短說 C'est combien ?。更完整可說 Ça coûte combien ?。",
+        "items": [
+          {
+            "surface": "C'est combien ?",
+            "translation": "這個多少錢？",
+            "speak": "C'est combien ?"
+          },
+          {
+            "surface": "C'est cinq euros.",
+            "translation": "五歐元。",
+            "speak": "C'est cinq euros."
+          }
+        ]
+      },
+      "reply_set": {
+        "correct": "r2a",
+        "choices": [
+          {
+            "id": "r2a",
+            "surface": "D'accord, je le prends.",
+            "translation": "好，我買這個。",
+            "speak": "D'accord, je le prends.",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r2b",
+            "surface": "Je paie par carte.",
+            "translation": "我用卡付款。",
+            "speak": "Je paie par carte.",
+            "contrast_type": "early_payment_method",
+            "feedback": "這是付款方式。先說你要不要買比較自然。"
+          },
+          {
+            "id": "r2c",
+            "surface": "Je prends deux cafés.",
+            "translation": "我要兩杯咖啡。",
+            "speak": "Je prends deux cafés.",
+            "contrast_type": "wrong_item_quantity",
+            "feedback": "這換成點咖啡和數量了，不是回應商品價格。"
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t3",
+      "speaker": "npc",
+      "act": "purchase_confirm",
+      "act_slots": {
+        "topic": "confirmer achat",
+        "keyword": "parfait",
+        "gloss": "很好"
+      },
+      "learning_role": "listen_only",
+      "surface": "Parfait. Ça fait cinq euros.",
+      "speak": "Parfait. Ça fait cinq euros.",
+      "translation": "很好。總共五歐元。",
+      "friend": {
+        "hint": "交易要結束了，簡短道謝即可。"
+      },
+      "reply_set": {
+        "correct": "r3a",
+        "choices": [
+          {
+            "id": "r3a",
+            "surface": "Merci.",
+            "translation": "謝謝。",
+            "speak": "Merci."
+          },
+          {
+            "id": "r3b",
+            "surface": "L'addition, s'il vous plaît.",
+            "translation": "請結帳。",
+            "speak": "L'addition, s'il vous plaît.",
+            "contrast_type": "wrong_scenario_restaurant",
+            "feedback": "這通常在餐廳用。小店買商品不這樣說。"
+          },
+          {
+            "id": "r3c",
+            "surface": "On va au café.",
+            "translation": "我們去咖啡店。",
+            "speak": "On va au café.",
+            "contrast_type": "wrong_scenario_meeting",
+            "feedback": "這是朋友碰面的情境，不是購物。"
+          }
+        ]
+      },
+      "runtime_note": "Reply choices mirror the next learner response so the current prototype can render every round."
+    },
+    {
+      "turn_id": "t4",
+      "speaker": "learner",
+      "act": "thanks_close",
+      "learning_role": "production_target",
+      "surface": "Merci.",
+      "speak": "Merci.",
+      "translation": "謝謝。",
+      "friend": {
+        "hint": "用簡短自然的句子結束購物互動。"
+      },
+      "reply_set": {
+        "correct": "r3a",
+        "choices": [
+          {
+            "id": "r3a",
+            "surface": "Merci.",
+            "translation": "謝謝。",
+            "speak": "Merci."
+          },
+          {
+            "id": "r3b",
+            "surface": "L'addition, s'il vous plaît.",
+            "translation": "請結帳。",
+            "speak": "L'addition, s'il vous plaît.",
+            "contrast_type": "wrong_scenario_restaurant",
+            "feedback": "這通常在餐廳用。小店買商品不這樣說。"
+          },
+          {
+            "id": "r3c",
+            "surface": "On va au café.",
+            "translation": "我們去咖啡店。",
+            "speak": "On va au café.",
+            "contrast_type": "wrong_scenario_meeting",
+            "feedback": "這是朋友碰面的情境，不是購物。"
+          }
+        ]
+      },
+      "closing": {
+        "act": "seller_close",
+        "learning_role": "listen_only",
+        "surface": "Merci à vous.",
+        "speak": "Merci à vous.",
+        "translation": "也謝謝您。"
+      }
+    }
+  ],
+  "formula_moments": [
+    {
+      "after_turn": "t2",
+      "pattern_id": "fr.shopping.ask_price.v1"
+    },
+    {
+      "after_turn": "t4",
+      "pattern_id": "fr.shopping.thanks_close.v1"
+    }
+  ],
+  "notes": {
+    "authoring_source": "Authored from ML-2 neutral brief, not Korean surface text or another target-language pack.",
+    "review_policy": "AI-authored French candidate. Requires AI review, runtime smoke, and tracked native review before any stronger status.",
+    "canonical_policy": "Staging candidate only. Do not write back to manifests, production exports, schemas, or legacy content.",
+    "french_register_note": "Concise spoken French retail service with vous from staff and A1-sized learner replies."
+  }
+}

@@ -1,0 +1,242 @@
+{
+  "schema_version": "scenario_pack.v1",
+  "scenario_id": "a2_luggage_storage_pickup",
+  "title": "寄放並領取行李",
+  "setting_label": "車站寄物處",
+  "wrap_title": "行李領取確認",
+  "wrap_friend": "你剛剛完成了一段 A2 交通服務情境，確認重點並做出簡單回應。",
+  "language": "zh",
+  "ui_language": "zh_tw",
+  "cefr_level": "A2",
+  "source_status": "candidate_runtime_verified",
+  "review_state": "ai_reviewed",
+  "review_status_framework_state": "candidate_runtime_verified",
+  "native_review_state": "native_pending",
+  "scenario": "A2 transport scenario: a2_luggage_storage_pickup.",
+  "learner_goal": "Ask to store luggage and confirm pickup time and receipt.",
+  "target_functions": [
+    "polite_service_request",
+    "pickup_time",
+    "receipt_confirmation"
+  ],
+  "register_notes": "Taiwan-leaning Traditional Mandarin public transport/service language; no refund, legal, medical, police, or identity-sensitive handling.",
+  "production_mode_default": {
+    "required": [
+      "choice"
+    ],
+    "optional_visible": [
+      "speaking"
+    ],
+    "optional_hidden": [
+      "typing"
+    ]
+  },
+  "support_text": "寄放行李，聽懂領取期限，並確認領取時需要的單據。",
+  "roles": {
+    "npc": {
+      "label": "站務人員"
+    },
+    "learner": {
+      "label": "你"
+    }
+  },
+  "turns": [
+    {
+      "turn_id": "t1",
+      "speaker": "npc",
+      "act": "service_opening",
+      "act_slots": {
+        "topic": "service_opening"
+      },
+      "learning_role": "listen_only",
+      "surface": "要寄放行李嗎？",
+      "speak": "要寄放行李嗎？",
+      "translation": "您要寄放行李嗎？",
+      "friend": {
+        "hint": "寄放行李"
+      },
+      "reply_set": {
+        "correct": "r1a",
+        "choices": [
+          {
+            "id": "r1a",
+            "surface": "我想寄放這個行李。",
+            "translation": "寄放行李",
+            "speak": "我想寄放這個行李。",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r1b",
+            "surface": "我昨天領了這個行李。",
+            "translation": "錯誤時間",
+            "speak": "我昨天領了這個行李。",
+            "learning_role": "wrong_time_or_detail",
+            "feedback": "干擾選項測試錯誤時間、錯誤情境，或超出 A2 範圍的服務升級。"
+          },
+          {
+            "id": "r1c",
+            "surface": "月台在哪裡？",
+            "translation": "錯誤情境",
+            "speak": "月台在哪裡？",
+            "learning_role": "wrong_scenario_or_escalation",
+            "feedback": "干擾選項測試錯誤時間、錯誤情境，或超出 A2 範圍的服務升級。"
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t2",
+      "speaker": "npc",
+      "act": "pickup_time_info",
+      "act_slots": {
+        "topic": "pickup_time_info"
+      },
+      "learning_role": "listen_only",
+      "surface": "今天晚上七點前可以來領。",
+      "speak": "今天晚上七點前可以來領。",
+      "translation": "今天晚上領取期限前可以來領。",
+      "friend": {
+        "hint": "確認取件時間"
+      },
+      "reply_set": {
+        "correct": "r2a",
+        "choices": [
+          {
+            "id": "r2a",
+            "surface": "晚上七點前來領就可以，對嗎？",
+            "translation": "確認取件時間",
+            "speak": "晚上七點前來領就可以，對嗎？",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r2b",
+            "surface": "早上七點寄放就可以，對嗎？",
+            "translation": "錯誤時間",
+            "speak": "早上七點寄放就可以，對嗎？",
+            "learning_role": "wrong_time_or_detail",
+            "feedback": "干擾選項測試錯誤時間、錯誤情境，或超出 A2 範圍的服務升級。"
+          },
+          {
+            "id": "r2c",
+            "surface": "退款在哪裡拿？",
+            "translation": "超出範圍",
+            "speak": "退款在哪裡拿？",
+            "learning_role": "wrong_scenario_or_escalation",
+            "feedback": "干擾選項測試錯誤時間、錯誤情境，或超出 A2 範圍的服務升級。"
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t3",
+      "speaker": "npc",
+      "act": "receipt_instruction",
+      "act_slots": {
+        "topic": "receipt_instruction"
+      },
+      "learning_role": "listen_only",
+      "surface": "領取時請出示這張寄物單。",
+      "speak": "領取時請出示這張寄物單。",
+      "translation": "領取時請出示這張收據。",
+      "friend": {
+        "hint": "確認寄物單"
+      },
+      "reply_set": {
+        "correct": "r3a",
+        "choices": [
+          {
+            "id": "r3a",
+            "surface": "好，領取時我會出示寄物單。",
+            "translation": "確認文件",
+            "speak": "好，領取時我會出示寄物單。",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r3b",
+            "surface": "寄物單可以丟掉嗎？",
+            "translation": "錯誤指示",
+            "speak": "寄物單可以丟掉嗎？",
+            "learning_role": "wrong_time_or_detail",
+            "feedback": "干擾選項測試錯誤時間、錯誤情境，或超出 A2 範圍的服務升級。"
+          },
+          {
+            "id": "r3c",
+            "surface": "我會出示護照。",
+            "translation": "超出範圍",
+            "speak": "我會出示護照。",
+            "learning_role": "wrong_scenario_or_escalation",
+            "feedback": "干擾選項測試錯誤時間、錯誤情境，或超出 A2 範圍的服務升級。"
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t4",
+      "speaker": "npc",
+      "act": "service_close",
+      "act_slots": {
+        "topic": "service_close"
+      },
+      "learning_role": "listen_only",
+      "surface": "好的，請七點前回來。",
+      "speak": "好的，請七點前回來。",
+      "translation": "好的，請在期限前回來。",
+      "friend": {
+        "hint": "收尾"
+      },
+      "reply_set": {
+        "correct": "r4a",
+        "choices": [
+          {
+            "id": "r4a",
+            "surface": "謝謝，我七點前會回來。",
+            "translation": "禮貌收尾",
+            "speak": "謝謝，我七點前會回來。",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r4b",
+            "surface": "火車晚十五分鐘。",
+            "translation": "錯誤情境",
+            "speak": "火車晚十五分鐘。",
+            "learning_role": "wrong_time_or_detail",
+            "feedback": "干擾選項測試錯誤時間、錯誤情境，或超出 A2 範圍的服務升級。"
+          },
+          {
+            "id": "r4c",
+            "surface": "我想申報行李遺失。",
+            "translation": "超出範圍",
+            "speak": "我想申報行李遺失。",
+            "learning_role": "wrong_scenario_or_escalation",
+            "feedback": "干擾選項測試錯誤時間、錯誤情境，或超出 A2 範圍的服務升級。"
+          }
+        ]
+      }
+    }
+  ],
+  "choice_sets": [
+    "t1.reply_set",
+    "t2.reply_set",
+    "t3.reply_set",
+    "t4.reply_set"
+  ],
+  "feedback": "干擾選項測試錯誤時間、錯誤情境，或超出 A2 範圍的服務升級。",
+  "tts_segments": [
+    "要寄放行李嗎？",
+    "今天晚上七點前可以來領。",
+    "領取時請出示這張寄物單。",
+    "好的，請七點前回來。"
+  ],
+  "formula_moments": [
+    {
+      "after_turn": "t2",
+      "pattern_id": "zh.a2.transport.luggage.v1"
+    }
+  ],
+  "runtime_notes": "ZH A2 transport candidate. Full-walk runtime gate required before final closeout; target-language surfaces and feedback localized on 2026-06-14.",
+  "notes": {
+    "authoring_policy": "Fresh-authored from the neutral A2 transport brief. KO surfaces were used only as scenario blueprint, not as translation source.",
+    "a2_boundary": "Low-risk A2 transport/service task; avoids refund, compensation, emergency, identity-sensitive, legal, medical, banking, immigration, or police handling.",
+    "language_specific_adaptation": "NPC lines, learner targets, distractors, feedback, support text, and translations are adapted for this language; native review remains pending."
+  }
+}

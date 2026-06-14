@@ -1,0 +1,254 @@
+{
+  "schema_version": "scenario_pack.v1",
+  "scenario_id": "travel_station_directions",
+  "brief_id": "ml1_a1_007_travel_station_directions",
+  "source_neutral_brief": "release-aggregator/docs/tasks/A1_MULTILINGUAL_KO_B1_PARALLEL_ORCHESTRATION/work_products/ml0/ML1_NEUTRAL_ADAPTATION_BRIEFS_20260614.md#brief-ml1-a1-007-station-or-exit-directions",
+  "blueprint_ledger": "release-aggregator/docs/tasks/A1_MULTILINGUAL_KO_B1_PARALLEL_ORCHESTRATION/work_products/ml0/ML1_BLUEPRINT_LEDGER_20260614.md",
+  "repo": "content-it",
+  "staging_path": "content/core/content_assets/scenario_packs/current_flow/travel_station_directions.it.v1.json",
+  "title": "Chiedere indicazioni in stazione",
+  "setting_label": "Stazione ferroviaria",
+  "wrap_title": "Indicazioni capite",
+  "wrap_friend": "你用簡短義大利語問到月台方向，也確認了關鍵路線。",
+  "language": "it",
+  "ui_language": "zh_tw",
+  "source_status": "candidate_runtime_verified",
+  "review_state": "draft",
+  "review_status_framework_state": "candidate_runtime_verified",
+  "native_review_state": "native_pending",
+  "production_mode_default": {
+    "required": [
+      "choice"
+    ],
+    "optional_visible": [
+      "speaking"
+    ],
+    "optional_hidden": [
+      "typing"
+    ]
+  },
+  "support_text": "你在義大利車站。先禮貌引起注意，再問二號月台在哪裡，並確認方向。",
+  "roles": {
+    "npc": {
+      "label": "Addetto"
+    },
+    "learner": {
+      "label": "Viaggiatore"
+    }
+  },
+  "turns": [
+    {
+      "turn_id": "t1",
+      "speaker": "npc",
+      "act": "attention_opening",
+      "act_slots": {
+        "topic": "offer_help",
+        "keyword": "sì",
+        "gloss": "yes"
+      },
+      "learning_role": "listen_only",
+      "surface": "Sì, mi dica.",
+      "speak": "Sì, mi dica.",
+      "translation": "好的，請說。",
+      "friend": {
+        "hint": "問路先用 Mi scusi 開頭很自然。"
+      },
+      "reply_set": {
+        "correct": "r1a",
+        "choices": [
+          {
+            "id": "r1a",
+            "surface": "Mi scusi, dov'è il binario due?",
+            "translation": "不好意思，二號月台在哪裡？",
+            "speak": "Mi scusi, dov'è il binario due?",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r1b",
+            "surface": "Dov'è il bagno?",
+            "translation": "洗手間在哪裡？",
+            "speak": "Dov'è il bagno?",
+            "contrast_type": "restroom_question_wrong_goal",
+            "feedback": "這是在問洗手間。你的目標是找到二號月台。"
+          },
+          {
+            "id": "r1c",
+            "surface": "Un taxi per il centro, per favore.",
+            "translation": "請叫一台去市中心的計程車。",
+            "speak": "Un taxi per il centro, per favore.",
+            "contrast_type": "taxi_destination_answer",
+            "feedback": "這換成搭計程車的情境了。現在要問車站月台方向。"
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t2",
+      "speaker": "npc",
+      "act": "give_direction",
+      "act_slots": {
+        "topic": "short_direction",
+        "keyword": "dritto",
+        "gloss": "straight"
+      },
+      "learning_role": "listen_only",
+      "surface": "Vada dritto e poi a destra.",
+      "speak": "Vada dritto e poi a destra.",
+      "translation": "請直走，然後往右。",
+      "friend": {
+        "hint": "抓住 dritto 和 destra 兩個方向詞。"
+      },
+      "inline_explain": {
+        "pattern_id": "it.station.dritto_destra.v1",
+        "formula_ref": null,
+        "title": "Dritto / a destra",
+        "explain": "dritto 是直走，a destra 是往右。",
+        "items": [
+          {
+            "surface": "Vada dritto.",
+            "translation": "請直走。",
+            "speak": "Vada dritto."
+          },
+          {
+            "surface": "Poi a destra.",
+            "translation": "然後往右。",
+            "speak": "Poi a destra."
+          }
+        ]
+      },
+      "reply_set": {
+        "correct": "r2a",
+        "choices": [
+          {
+            "id": "r2a",
+            "surface": "Dritto e poi a destra.",
+            "translation": "直走，然後往右。",
+            "speak": "Dritto e poi a destra.",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r2b",
+            "surface": "A sinistra e poi giù.",
+            "translation": "往左，然後下樓。",
+            "speak": "A sinistra e poi giù.",
+            "contrast_type": "wrong_direction",
+            "feedback": "方向聽錯了。服務人員說的是直走，然後往右。"
+          },
+          {
+            "id": "r2c",
+            "surface": "Pago con la carta.",
+            "translation": "我用卡付款。",
+            "speak": "Pago con la carta.",
+            "contrast_type": "payment_answer",
+            "feedback": "這是付款句，不是在確認方向。"
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t3",
+      "speaker": "npc",
+      "act": "platform_detail",
+      "act_slots": {
+        "topic": "platform_location",
+        "keyword": "scale",
+        "gloss": "stairs"
+      },
+      "learning_role": "listen_only",
+      "surface": "Poi prenda le scale.",
+      "speak": "Poi prenda le scale.",
+      "translation": "然後走樓梯。",
+      "friend": {
+        "hint": "如果聽懂了，可以用 Va bene 簡短確認。"
+      },
+      "reply_set": {
+        "correct": "r3a",
+        "choices": [
+          {
+            "id": "r3a",
+            "surface": "Va bene, grazie.",
+            "translation": "好的，謝謝。",
+            "speak": "Va bene, grazie."
+          },
+          {
+            "id": "r3b",
+            "surface": "Il binario cinque, giusto?",
+            "translation": "五號月台，對嗎？",
+            "speak": "Il binario cinque, giusto?",
+            "contrast_type": "wrong_platform_number",
+            "feedback": "月台號碼變錯了。你問的是二號月台。"
+          },
+          {
+            "id": "r3c",
+            "surface": "Devo cambiare treno, comprare un biglietto e andare al centro.",
+            "translation": "我要換車、買票，然後去市中心。",
+            "speak": "Devo cambiare treno, comprare un biglietto e andare al centro.",
+            "contrast_type": "over_detailed_route",
+            "feedback": "這太長，也不是本回合需要的確認。先用短句確認方向。"
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t4",
+      "speaker": "npc",
+      "act": "close_help",
+      "act_slots": {
+        "topic": "closing",
+        "keyword": "prego",
+        "gloss": "you are welcome"
+      },
+      "learning_role": "listen_only",
+      "surface": "Prego.",
+      "speak": "Prego.",
+      "translation": "不客氣。",
+      "friend": {
+        "hint": "問路結尾再道謝即可。"
+      },
+      "reply_set": {
+        "correct": "r4a",
+        "choices": [
+          {
+            "id": "r4a",
+            "surface": "Grazie.",
+            "translation": "謝謝。",
+            "speak": "Grazie."
+          },
+          {
+            "id": "r4b",
+            "surface": "Vorrei una pasta.",
+            "translation": "我想要一份義大利麵。",
+            "speak": "Vorrei una pasta.",
+            "contrast_type": "restaurant_order",
+            "feedback": "這是餐廳點餐，不是車站問路結尾。"
+          },
+          {
+            "id": "r4c",
+            "surface": "Qual è la password del Wi-Fi?",
+            "translation": "Wi-Fi 密碼是什麼？",
+            "speak": "Qual è la password del Wi-Fi?",
+            "contrast_type": "hotel_question",
+            "feedback": "這是飯店問題。你已經拿到車站方向，只要道謝。"
+          }
+        ]
+      },
+      "closing": true
+    }
+  ],
+  "formula_moments": [
+    {
+      "after_turn": "t1",
+      "pattern_id": "it.station.mi_scusi_dove.v1"
+    },
+    {
+      "after_turn": "t2",
+      "pattern_id": "it.station.dritto_destra.v1"
+    }
+  ],
+  "notes": {
+    "authoring_source": "Authored from ML-1 neutral brief ml1_a1_007_travel_station_directions; KO and other target-language packs were not used as translation sources.",
+    "review_policy": "AI-authored candidate only; keep review_state=draft, review_status_framework_state=candidate_needs_review, native_review_state=native_pending until tracked review evidence exists.",
+    "canonical_policy": "Staging current-flow candidate only. Do not add to manifests, production exports, schema, runtime, frontend, review artifacts, or legacy content.",
+    "italian_voice_note": "Uses polite station-staff directions with Lei imperative in staff speech and short learner confirmations."
+  }
+}

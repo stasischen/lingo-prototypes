@@ -1,0 +1,261 @@
+{
+  "schema_version": "scenario_pack.v1",
+  "scenario_id": "a2_understand_hotel_notice",
+  "title": "호텔 안내문 이해하기",
+  "setting_label": "호텔 로비",
+  "wrap_title": "호텔 안내 확인",
+  "wrap_friend": "你剛剛完成了一段 A2 住宿服務情境，用簡短韓文說明需求、聽懂回覆，並確認下一步。",
+  "language": "ko",
+  "ui_language": "zh_tw",
+  "cefr_level": "A2",
+  "source_status": "candidate_runtime_verified",
+  "review_state": "ai_reviewed",
+  "review_status_framework_state": "candidate_runtime_verified",
+  "native_review_state": "native_pending",
+  "scenario": "A hotel/accommodation service scenario: a2_understand_hotel_notice.",
+  "learner_goal": "Understand a short hotel notice and confirm time, place, and simple rule details.",
+  "target_functions": [
+    "notice_comprehension",
+    "time_place_rule_confirmation",
+    "simple_clarification"
+  ],
+  "register_notes": "Clear hotel notice Korean; short rule/time comprehension, no emergency/security workflow.",
+  "production_mode_default": {
+    "required": [
+      "choice"
+    ],
+    "optional_visible": [
+      "speaking"
+    ],
+    "optional_hidden": [
+      "typing"
+    ]
+  },
+  "support_text": "호텔 안내문에서 시간과 규칙을 확인하고, 내가 어떻게 하면 되는지 말해 보세요.",
+  "roles": {
+    "npc": {
+      "label": "호텔 직원"
+    },
+    "learner": {
+      "label": "你"
+    }
+  },
+  "turns": [
+    {
+      "turn_id": "t1",
+      "speaker": "npc",
+      "act": "notice_intro",
+      "act_slots": {
+        "topic": "notice_intro",
+        "keyword": "조식 시간",
+        "gloss": "早餐時間"
+      },
+      "learning_role": "listen_only",
+      "surface": "안내문을 봐 주세요. 조식은 아침 일곱 시부터 아홉 시까지입니다.",
+      "speak": "안내문을 봐 주세요. 조식은 아침 일곱 시부터 아홉 시까지입니다.",
+      "translation": "請看公告。早餐是早上七點到九點。",
+      "friend": {
+        "hint": "안내문에서 시간을 찾아요."
+      },
+      "reply_set": {
+        "correct": "r1a",
+        "choices": [
+          {
+            "id": "r1a",
+            "surface": "조식은 아침 일곱 시부터 아홉 시까지군요.",
+            "translation": "早餐是早上七點到九點，對嗎？",
+            "speak": "조식은 아침 일곱 시부터 아홉 시까지군요.",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r1b",
+            "surface": "조식은 밤 일곱 시부터 아홉 시까지군요.",
+            "translation": "早餐是晚上七點到九點，對嗎？",
+            "speak": "조식은 밤 일곱 시부터 아홉 시까지군요.",
+            "contrast_type": "wrong_detail_or_domain",
+            "feedback": "안내문은 아침 일곱 시부터 아홉 시까지라고 했어요."
+          },
+          {
+            "id": "r1c",
+            "surface": "체크아웃은 아침 아홉 시군요.",
+            "translation": "退房是早上九點，對嗎？",
+            "speak": "체크아웃은 아침 아홉 시군요.",
+            "contrast_type": "forbidden_or_wrong_domain",
+            "feedback": "이 안내문은 체크아웃이 아니라 조식 시간이에요."
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t2",
+      "speaker": "npc",
+      "act": "place_detail",
+      "act_slots": {
+        "topic": "place_detail",
+        "keyword": "2층 식당",
+        "gloss": "二樓餐廳"
+      },
+      "learning_role": "listen_only",
+      "surface": "장소는 2층 식당입니다.",
+      "speak": "장소는 이층 식당입니다.",
+      "translation": "地點是二樓餐廳。",
+      "friend": {
+        "hint": "장소를 확인해요."
+      },
+      "reply_set": {
+        "correct": "r2a",
+        "choices": [
+          {
+            "id": "r2a",
+            "surface": "2층 식당으로 가면 되죠?",
+            "translation": "去二樓餐廳就可以，對嗎？",
+            "speak": "이층 식당으로 가면 되죠?",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r2b",
+            "surface": "삼 층 객실로 가면 되죠?",
+            "translation": "去三樓客房就可以，對嗎？",
+            "speak": "삼 층 객실로 가면 되죠?",
+            "contrast_type": "wrong_detail_or_domain",
+            "feedback": "장소는 삼 층 객실이 아니라 이 층 식당이에요."
+          },
+          {
+            "id": "r2c",
+            "surface": "여권을 보여 드리면 되죠?",
+            "translation": "給您看護照就可以，對嗎？",
+            "speak": "여권을 보여 드리면 되죠?",
+            "contrast_type": "forbidden_or_wrong_domain",
+            "feedback": "여권 같은 신분 정보는 이 안내 확인에 필요하지 않아요."
+          }
+        ]
+      },
+      "inline_explain": {
+        "pattern_id": "ko.a2.accommodation.notice.time_place.v1",
+        "title": "-부터 -까지 = 從...到...",
+        "explain": "이 상황에서 자주 쓰는 A2 표현입니다.",
+        "items": [
+          {
+            "surface": "2층 식당",
+            "translation": "二樓餐廳",
+            "speak": "이층 식당"
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t3",
+      "speaker": "npc",
+      "act": "clarification",
+      "act_slots": {
+        "topic": "clarification",
+        "keyword": "객실 번호",
+        "gloss": "房號"
+      },
+      "learning_role": "listen_only",
+      "surface": "입구에서 객실 번호만 말씀해 주세요.",
+      "speak": "입구에서 객실 번호만 말씀해 주세요.",
+      "translation": "入口只要告知房號即可。",
+      "friend": {
+        "hint": "간단한 조건을 확인해요."
+      },
+      "reply_set": {
+        "correct": "r3a",
+        "choices": [
+          {
+            "id": "r3a",
+            "surface": "입구에서 객실 번호만 말하면 되네요.",
+            "translation": "入口只要說房號就可以，對嗎？",
+            "speak": "입구에서 객실 번호만 말하면 되네요.",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r3b",
+            "surface": "입구에서 경찰에게 말하면 되네요.",
+            "translation": "入口要跟警察說，對嗎？",
+            "speak": "입구에서 경찰에게 말하면 되네요.",
+            "contrast_type": "wrong_detail_or_domain",
+            "feedback": "경찰 절차가 아니라 호텔 조식 안내예요."
+          },
+          {
+            "id": "r3c",
+            "surface": "입구에서 환불을 받으면 되네요.",
+            "translation": "入口可以拿退款，對嗎？",
+            "speak": "입구에서 환불을 받으면 되네요.",
+            "contrast_type": "forbidden_or_wrong_domain",
+            "feedback": "환불은 이 안내문 이해 과제와 맞지 않아요."
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t4",
+      "speaker": "npc",
+      "act": "close",
+      "act_slots": {
+        "topic": "close",
+        "keyword": "내일 아침",
+        "gloss": "明天早上"
+      },
+      "learning_role": "listen_only",
+      "surface": "네, 내일 아침에 오시면 됩니다.",
+      "speak": "네, 내일 아침에 오시면 됩니다.",
+      "translation": "對，明天早上來就可以。",
+      "friend": {
+        "hint": "무엇을 할지 확인하고 마무리해요."
+      },
+      "reply_set": {
+        "correct": "r4a",
+        "choices": [
+          {
+            "id": "r4a",
+            "surface": "네, 내일 아침에 2층 식당으로 갈게요.",
+            "translation": "好，我明天早上去二樓餐廳。",
+            "speak": "네, 내일 아침에 이층 식당으로 갈게요.",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r4b",
+            "surface": "네, 오늘 밤에 세탁물을 찾을게요.",
+            "translation": "好，我今晚去拿洗衣。",
+            "speak": "네, 오늘 밤에 세탁물을 찾을게요.",
+            "contrast_type": "wrong_detail_or_domain",
+            "feedback": "세탁물이 아니라 조식 안내문이에요."
+          },
+          {
+            "id": "r4c",
+            "surface": "네, 사고 신고서를 쓸게요.",
+            "translation": "好，我會寫事故報告。",
+            "speak": "네, 사고 신고서를 쓸게요.",
+            "contrast_type": "forbidden_or_wrong_domain",
+            "feedback": "사고 신고나 법적 문서는 이 과제 범위를 넘어가요."
+          }
+        ]
+      }
+    }
+  ],
+  "choice_sets": [
+    "t1.reply_set",
+    "t2.reply_set",
+    "t3.reply_set",
+    "t4.reply_set"
+  ],
+  "feedback": "오답은 시간, 장소, 서비스 영역을 잘못 이해하거나 A2 범위를 넘는 요청으로 흐르는지를 확인합니다.",
+  "tts_segments": [
+    "안내문을 봐 주세요. 조식은 아침 일곱 시부터 아홉 시까지입니다.",
+    "장소는 이층 식당입니다.",
+    "입구에서 객실 번호만 말씀해 주세요.",
+    "네, 내일 아침에 오시면 됩니다."
+  ],
+  "formula_moments": [
+    {
+      "after_turn": "t2",
+      "pattern_id": "ko.a2.accommodation.notice.time_place.v1"
+    }
+  ],
+  "runtime_notes": "KO A2 accommodation candidate. Full-walk runtime gate required before final closeout.",
+  "notes": {
+    "authoring_policy": "Fresh-authored from the neutral A2 accommodation brief. Legacy KO A2 was not used as a line source.",
+    "a2_boundary": "Low-risk accommodation/service task; avoids compensation, emergency, legal, medical, police, immigration, banking, insurance, or identity-sensitive handling."
+  }
+}

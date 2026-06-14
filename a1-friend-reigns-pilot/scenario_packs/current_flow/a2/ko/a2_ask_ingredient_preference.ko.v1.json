@@ -1,0 +1,284 @@
+{
+  "schema_version": "scenario_pack.v1",
+  "scenario_id": "a2_ask_ingredient_preference",
+  "title": "재료 선호 말하기",
+  "setting_label": "식당 카운터",
+  "wrap_title": "재료 선택 확인",
+  "wrap_friend": "잘했어요. 낮은 위험의 음식/쇼핑 상황에서 필요한 정보를 확인하고 정중하게 선택했어요.",
+  "language": "ko",
+  "ui_language": "zh-Hant",
+  "cefr_level": "A2",
+  "source_status": "candidate_runtime_verified",
+  "review_state": "ai_reviewed",
+  "review_status_framework_state": "candidate_runtime_verified",
+  "native_review_state": "native_pending",
+  "scenario": {
+    "domain": "food_shopping_preferences",
+    "review_slice": "food_shopping",
+    "interaction": "service_preference_or_exchange",
+    "source_brief": "A2_FOOD_SHOPPING_NEUTRAL_ADAPTATION_BRIEFS_20260614",
+    "blueprint_source": "language_neutral_adaptation_brief",
+    "ko_pack_role": "mature_scenario_blueprint_not_translation_source_after_gate"
+  },
+  "learner_goal": "일반적인 재료가 들어가는지 묻고, 선호에 맞게 선택해 보세요.",
+  "target_functions": [
+    "compare_or_state_preference",
+    "confirm_key_detail",
+    "make_polite_low_risk_request",
+    "close_with_correct_next_step"
+  ],
+  "register_notes": "Korean A2 food/shopping register: polite -요/-드릴게요 service language, concise learner replies, no allergy/medical/refund-dispute framing.",
+  "production_mode_default": {
+    "required": [
+      "choice"
+    ],
+    "optional_visible": [
+      "speaking"
+    ],
+    "optional_hidden": [
+      "typing"
+    ]
+  },
+  "support_text": "일반적인 재료가 들어가는지 묻고, 선호에 맞게 선택해 보세요.",
+  "roles": {
+    "npc": {
+      "label": "호텔 직원"
+    },
+    "learner": {
+      "label": "你"
+    }
+  },
+  "turns": [
+    {
+      "turn_id": "t1",
+      "speaker": "npc",
+      "act": "ask_ingredient",
+      "act_slots": {
+        "topic": "ask-ingredient-preference",
+        "keyword": "1",
+        "gloss": "A2 food/shopping"
+      },
+      "learning_role": "listen_only",
+      "surface": "무엇을 주문하시겠어요?",
+      "speak": "무엇을 주문하시겠어요?",
+      "translation": "您想點什麼？",
+      "friend": {
+        "hint": "일반적인 재료가 들어가는지 물어보세요."
+      },
+      "reply_set": {
+        "correct": "r1a",
+        "choices": [
+          {
+            "id": "r1a",
+            "surface": "이 샐러드에 양파가 들어가요?",
+            "translation": "這個沙拉裡有洋蔥嗎？",
+            "speak": "이 샐러드에 양파가 들어가요?",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r1b",
+            "surface": "이 샐러드는 몇 층이에요?",
+            "translation": "這個沙拉在幾樓？",
+            "speak": "이 샐러드는 몇 층이에요?",
+            "contrast_type": "wrong_detail_or_domain",
+            "feedback": "층수는 음식 재료와 관련이 없어요."
+          },
+          {
+            "id": "r1c",
+            "surface": "제 표 시간을 바꿔 주세요.",
+            "translation": "請幫我改票的時間。",
+            "speak": "제 표 시간을 바꿔 주세요.",
+            "contrast_type": "forbidden_or_wrong_domain",
+            "feedback": "교통/표 상황으로 바뀌었어요."
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t2",
+      "speaker": "npc",
+      "act": "answer_ingredient",
+      "act_slots": {
+        "topic": "ask-ingredient-preference",
+        "keyword": "2",
+        "gloss": "A2 food/shopping"
+      },
+      "learning_role": "listen_only",
+      "surface": "네, 조금 들어가요.",
+      "speak": "네, 조금 들어가요.",
+      "translation": "有，放一點洋蔥。",
+      "friend": {
+        "hint": "재료 정보를 확인하세요."
+      },
+      "reply_set": {
+        "correct": "r2a",
+        "choices": [
+          {
+            "id": "r2a",
+            "surface": "양파가 조금 들어가는군요.",
+            "translation": "有一點洋蔥，對嗎？",
+            "speak": "양파가 조금 들어가는군요.",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r2b",
+            "surface": "고기가 많이 들어가는군요.",
+            "translation": "有很多肉，對嗎？",
+            "speak": "고기가 많이 들어가는군요.",
+            "contrast_type": "wrong_detail_or_domain",
+            "feedback": "고기는 말하지 않았어요."
+          },
+          {
+            "id": "r2c",
+            "surface": "방이 시끄럽군요.",
+            "translation": "房間很吵，對嗎？",
+            "speak": "방이 시끄럽군요.",
+            "contrast_type": "forbidden_or_wrong_domain",
+            "feedback": "호텔 문제로 바뀌었어요."
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t3",
+      "speaker": "npc",
+      "act": "choose_preference",
+      "act_slots": {
+        "topic": "ask-ingredient-preference",
+        "keyword": "3",
+        "gloss": "A2 food/shopping"
+      },
+      "learning_role": "listen_only",
+      "surface": "원하시면 양파 없이 해 드릴 수 있어요.",
+      "speak": "원하시면 양파 없이 해 드릴 수 있어요.",
+      "translation": "如果您想要，可以不加洋蔥。",
+      "friend": {
+        "hint": "선호로 말하고 선택하세요."
+      },
+      "reply_set": {
+        "correct": "r3a",
+        "choices": [
+          {
+            "id": "r3a",
+            "surface": "네, 양파 없이 해 주세요.",
+            "translation": "好的，請不要加洋蔥。",
+            "speak": "네, 양파 없이 해 주세요.",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r3b",
+            "surface": "네, 알레르기 약을 주세요.",
+            "translation": "好的，請給我過敏藥。",
+            "speak": "네, 알레르기 약을 주세요.",
+            "contrast_type": "wrong_detail_or_domain",
+            "feedback": "의료/알레르기 처방은 금지예요."
+          },
+          {
+            "id": "r3c",
+            "surface": "네, 환불해 주세요.",
+            "translation": "好的，請退款。",
+            "speak": "네, 환불해 주세요.",
+            "contrast_type": "forbidden_or_wrong_domain",
+            "feedback": "환불 요청이 아니에요."
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t4",
+      "speaker": "npc",
+      "act": "confirm_order",
+      "act_slots": {
+        "topic": "ask-ingredient-preference",
+        "keyword": "4",
+        "gloss": "A2 food/shopping"
+      },
+      "learning_role": "listen_only",
+      "surface": "알겠습니다. 양파 없이 준비해 드릴게요.",
+      "speak": "알겠습니다. 양파 없이 준비해 드릴게요.",
+      "translation": "了解，我幫您準備不加洋蔥的。",
+      "friend": {
+        "hint": "주문 확인으로 마무리하세요."
+      },
+      "reply_set": {
+        "correct": "r4a",
+        "choices": [
+          {
+            "id": "r4a",
+            "surface": "감사합니다. 그렇게 해 주세요.",
+            "translation": "謝謝，請這樣準備。",
+            "speak": "감사합니다. 그렇게 해 주세요.",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r4b",
+            "surface": "제 여권 번호를 알려 주세요.",
+            "translation": "請告訴我護照號碼。",
+            "speak": "제 여권 번호를 알려 주세요.",
+            "contrast_type": "wrong_detail_or_domain",
+            "feedback": "여권 정보는 필요하지 않아요."
+          },
+          {
+            "id": "r4c",
+            "surface": "짐을 맡기고 싶어요.",
+            "translation": "我想寄放行李。",
+            "speak": "짐을 맡기고 싶어요.",
+            "contrast_type": "forbidden_or_wrong_domain",
+            "feedback": "짐 보관 상황이 아니에요."
+          }
+        ]
+      }
+    }
+  ],
+  "choice_sets": {
+    "count_per_turn": 3,
+    "correct_path": [
+      "r1a",
+      "r2a",
+      "r3a",
+      "r4a"
+    ],
+    "distractor_policy": "one near-domain wrong detail plus one out-of-scope/unsafe-domain option per turn"
+  },
+  "feedback": {
+    "correct": "좋아요. 음식/쇼핑 상황 안에서 필요한 정보를 확인했어요.",
+    "incorrect": "이 상황의 메뉴, 재료, 교환, 예산 추천에 맞는 답을 고르세요."
+  },
+  "tts_segments": [
+    "무엇을 주문하시겠어요?",
+    "이 샐러드에 양파가 들어가요?",
+    "이 샐러드는 몇 층이에요?",
+    "제 표 시간을 바꿔 주세요.",
+    "네, 조금 들어가요.",
+    "양파가 조금 들어가는군요.",
+    "고기가 많이 들어가는군요.",
+    "방이 시끄럽군요.",
+    "원하시면 양파 없이 해 드릴 수 있어요.",
+    "네, 양파 없이 해 주세요.",
+    "네, 알레르기 약을 주세요.",
+    "네, 환불해 주세요.",
+    "알겠습니다. 양파 없이 준비해 드릴게요.",
+    "감사합니다. 그렇게 해 주세요.",
+    "제 여권 번호를 알려 주세요.",
+    "짐을 맡기고 싶어요."
+  ],
+  "formula_moments": [
+    {
+      "after_turn": "t2",
+      "pattern_id": "ko.a2.food.ingredient.preference.v1",
+      "label": "ingredient + 들어가요?",
+      "learner_takeaway": "빼고 가능해요?"
+    }
+  ],
+  "runtime_notes": {
+    "expected_turns": 4,
+    "expected_choices_per_turn": 3,
+    "full_walk_required": true,
+    "expected_final_screen": "Wrap"
+  },
+  "notes": {
+    "generated_at": "2026-06-14",
+    "authoring_scope": "A2 food/shopping KO authoring",
+    "native_review_state": "native_pending"
+  }
+}

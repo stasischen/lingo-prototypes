@@ -1,0 +1,261 @@
+{
+  "schema_version": "scenario_pack.v1",
+  "scenario_id": "a2_request_room_change",
+  "title": "部屋の変更をお願いする",
+  "setting_label": "ホテルのフロント",
+  "wrap_title": "部屋変更の確認",
+  "wrap_friend": "你剛剛完成了一段 A2 住宿服務情境，說明需求、聽懂回覆，並確認下一步。",
+  "language": "ja",
+  "ui_language": "zh_tw",
+  "cefr_level": "A2",
+  "source_status": "candidate_runtime_verified",
+  "review_state": "ai_reviewed",
+  "review_status_framework_state": "candidate_runtime_verified",
+  "native_review_state": "native_pending",
+  "scenario": "A hotel/accommodation service scenario: a2_request_room_change.",
+  "learner_goal": "Ask for a room change with a simple reason and confirm the move timing.",
+  "target_functions": [
+    "room_change_request",
+    "simple_reason",
+    "alternative_room_confirmation"
+  ],
+  "register_notes": "Natural Japanese hotel-service register with polite です/ます responses; no complaint escalation.",
+  "production_mode_default": {
+    "required": [
+      "choice"
+    ],
+    "optional_visible": [
+      "speaking"
+    ],
+    "optional_hidden": [
+      "typing"
+    ]
+  },
+  "support_text": "簡単な理由を言って、部屋を変えられるか確認しましょう。",
+  "roles": {
+    "npc": {
+      "label": "ホテルスタッフ"
+    },
+    "learner": {
+      "label": "あなた"
+    }
+  },
+  "turns": [
+    {
+      "turn_id": "t1",
+      "speaker": "npc",
+      "act": "service_prompt",
+      "act_slots": {
+        "topic": "service_prompt",
+        "keyword": "どうされましたか",
+        "gloss": "怎麼了"
+      },
+      "learning_role": "listen_only",
+      "surface": "どうされましたか。",
+      "speak": "どうされましたか。",
+      "translation": "請問怎麼了？",
+      "friend": {
+        "hint": "部屋変更と理由を短く言います。"
+      },
+      "reply_set": {
+        "correct": "r1a",
+        "choices": [
+          {
+            "id": "r1a",
+            "surface": "部屋が少しうるさいので、変えられますか。",
+            "translation": "房間有點吵，可以換房嗎？",
+            "speak": "部屋が少しうるさいので、変えられますか。",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r1b",
+            "surface": "レストランの席を変えられますか。",
+            "translation": "可以換餐廳座位嗎？",
+            "speak": "レストランの席を変えられますか。",
+            "contrast_type": "wrong_detail_or_domain",
+            "feedback": "レストランの席ではなくホテルの部屋です。"
+          },
+          {
+            "id": "r1c",
+            "surface": "正式に通報します。",
+            "translation": "我要正式通報。",
+            "speak": "正式に通報します。",
+            "contrast_type": "forbidden_or_wrong_domain",
+            "feedback": "正式な通報や法的手続きはA2範囲外です。"
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t2",
+      "speaker": "npc",
+      "act": "alternative_offer",
+      "act_slots": {
+        "topic": "alternative_offer",
+        "keyword": "別のお部屋",
+        "gloss": "另一間房"
+      },
+      "learning_role": "listen_only",
+      "surface": "確認しました。別のお部屋が一つあります。",
+      "speak": "確認しました。別のお部屋が一つあります。",
+      "translation": "我確認了，有另一間房。",
+      "friend": {
+        "hint": "可能な代案を聞きます。"
+      },
+      "inline_explain": {
+        "pattern_id": "ja.a2.accommodation.room_change.reason.v1",
+        "title": "A2で使う表現",
+        "explain": "この宿泊場面で使いやすい短い表現です。",
+        "items": [
+          {
+            "surface": "別のお部屋",
+            "translation": "另一間房",
+            "speak": "別のお部屋"
+          }
+        ]
+      },
+      "reply_set": {
+        "correct": "r2a",
+        "choices": [
+          {
+            "id": "r2a",
+            "surface": "別の部屋が一つあるんですね。",
+            "translation": "有另一間房，對嗎？",
+            "speak": "別の部屋が一つあるんですね。",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r2b",
+            "surface": "別のチケットが一つあるんですね。",
+            "translation": "有另一張票，對嗎？",
+            "speak": "別のチケットが一つあるんですね。",
+            "contrast_type": "wrong_detail_or_domain",
+            "feedback": "チケットではなく部屋の話です。"
+          },
+          {
+            "id": "r2c",
+            "surface": "補償も受けられますか。",
+            "translation": "也可以得到賠償嗎？",
+            "speak": "補償も受けられますか。",
+            "contrast_type": "forbidden_or_wrong_domain",
+            "feedback": "補償の依頼はこの課題の範囲外です。"
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t3",
+      "speaker": "npc",
+      "act": "move_time",
+      "act_slots": {
+        "topic": "move_time",
+        "keyword": "三十分後",
+        "gloss": "三十分鐘後"
+      },
+      "learning_role": "listen_only",
+      "surface": "三十分後に新しいお部屋へ移れます。",
+      "speak": "三十分後に新しいお部屋へ移れます。",
+      "translation": "三十分鐘後可以搬到新房間。",
+      "friend": {
+        "hint": "移動できる時間を確認します。"
+      },
+      "reply_set": {
+        "correct": "r3a",
+        "choices": [
+          {
+            "id": "r3a",
+            "surface": "三十分後に移れるんですね。",
+            "translation": "三十分鐘後可以搬，對嗎？",
+            "speak": "三十分後に移れるんですね。",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r3b",
+            "surface": "三時間後にチェックアウトですね。",
+            "translation": "三小時後退房，對嗎？",
+            "speak": "三時間後にチェックアウトですね。",
+            "contrast_type": "wrong_detail_or_domain",
+            "feedback": "スタッフは三十分後に移れると言っています。"
+          },
+          {
+            "id": "r3c",
+            "surface": "病院に行くので移ります。",
+            "translation": "因為要去醫院，所以要換。",
+            "speak": "病院に行くので移ります。",
+            "contrast_type": "forbidden_or_wrong_domain",
+            "feedback": "医療理由はこの課題に入れません。"
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t4",
+      "speaker": "npc",
+      "act": "close",
+      "act_slots": {
+        "topic": "close",
+        "keyword": "新しいカードキー",
+        "gloss": "新房卡"
+      },
+      "learning_role": "listen_only",
+      "surface": "準備できたら新しいカードキーをお渡しします。",
+      "speak": "準備できたら新しいカードキーをお渡しします。",
+      "translation": "準備好後，我們會給您新房卡。",
+      "friend": {
+        "hint": "受け入れて終えます。"
+      },
+      "reply_set": {
+        "correct": "r4a",
+        "choices": [
+          {
+            "id": "r4a",
+            "surface": "はい、準備できたらカードキーを受け取ります。",
+            "translation": "好，準備好後我拿新房卡。",
+            "speak": "はい、準備できたらカードキーを受け取ります。",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r4b",
+            "surface": "いいえ、電車の時間を変えます。",
+            "translation": "不，我要改電車時間。",
+            "speak": "いいえ、電車の時間を変えます。",
+            "contrast_type": "wrong_detail_or_domain",
+            "feedback": "交通チケットではなく部屋変更です。"
+          },
+          {
+            "id": "r4c",
+            "surface": "すぐ警察に話します。",
+            "translation": "我會馬上告訴警察。",
+            "speak": "すぐ警察に話します。",
+            "contrast_type": "forbidden_or_wrong_domain",
+            "feedback": "警察手続きはこのA2課題の範囲外です。"
+          }
+        ]
+      }
+    }
+  ],
+  "choice_sets": [
+    "t1.reply_set",
+    "t2.reply_set",
+    "t3.reply_set",
+    "t4.reply_set"
+  ],
+  "feedback": "誤答は、時間・場所・サービス内容の取り違え、またはA2範囲外の依頼に進んでいないかを確認します。",
+  "tts_segments": [
+    "どうされましたか。",
+    "確認しました。別のお部屋が一つあります。",
+    "三十分後に新しいお部屋へ移れます。",
+    "準備できたら新しいカードキーをお渡しします。"
+  ],
+  "formula_moments": [
+    {
+      "after_turn": "t2",
+      "pattern_id": "ja.a2.accommodation.room_change.reason.v1"
+    }
+  ],
+  "runtime_notes": "JA A2 accommodation candidate. Full-walk runtime gate required before final closeout.",
+  "notes": {
+    "authoring_policy": "Fresh-authored from the neutral A2 accommodation brief. KO surfaces were not translated.",
+    "a2_boundary": "Low-risk accommodation/service task; avoids compensation, emergency, legal, medical, police, immigration, banking, insurance, or identity-sensitive handling."
+  }
+}

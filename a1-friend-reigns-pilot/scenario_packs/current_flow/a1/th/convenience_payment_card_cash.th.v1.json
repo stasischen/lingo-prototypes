@@ -1,0 +1,264 @@
+{
+  "schema_version": "scenario_pack.v1",
+  "scenario_id": "convenience_payment_card_cash",
+  "brief_id": "ml0_a1_004_convenience_payment_card_cash",
+  "source_neutral_brief": "release-aggregator/docs/tasks/A1_MULTILINGUAL_KO_B1_PARALLEL_ORCHESTRATION/work_products/ml0/ML0_NEUTRAL_ADAPTATION_BRIEFS_20260613.md#brief-ml0-a1-004-convenience-store-payment",
+  "blueprint_ledger": "release-aggregator/docs/tasks/A1_MULTILINGUAL_KO_B1_PARALLEL_ORCHESTRATION/work_products/ml0/ML0_BLUEPRINT_LEDGER_20260613.md",
+  "repo": "content-th",
+  "staging_path": "content/core/content_assets/scenario_packs/current_flow/convenience_payment_card_cash.th.v1.json",
+  "title": "จ่ายเงินที่ร้านสะดวกซื้อ",
+  "setting_label": "เคาน์เตอร์ร้านสะดวกซื้อ",
+  "wrap_title": "จ่ายเงินที่เคาน์เตอร์ได้แล้ว",
+  "wrap_friend": "คุณบอกวิธีจ่ายเงิน ทำตามคำบอกเรื่องบัตร และตอบเรื่องถุงได้ด้วยประโยคสั้น ๆ",
+  "language": "th",
+  "ui_language": "zh_tw",
+  "source_status": "candidate_runtime_verified",
+  "review_state": "draft",
+  "review_status_framework_state": "candidate_runtime_verified",
+  "native_review_state": "native_pending",
+  "production_mode_default": {
+    "required": [
+      "choice"
+    ],
+    "optional_visible": [
+      "speaking"
+    ],
+    "optional_hidden": [
+      "typing"
+    ]
+  },
+  "support_text": "你在泰國便利商店櫃台付款。聽店員問什麼，選一句自然接得上的泰文。",
+  "roles": {
+    "npc": {
+      "label": "พนักงาน"
+    },
+    "learner": {
+      "label": "คุณ"
+    }
+  },
+  "turns": [
+    {
+      "turn_id": "t1",
+      "speaker": "npc",
+      "act": "payment_method_question",
+      "act_slots": {
+        "topic": "วิธีจ่ายเงิน",
+        "keyword": "เงินสดหรือบัตร",
+        "gloss": "現金或卡片"
+      },
+      "learning_role": "listen_only",
+      "surface": "ทั้งหมดหนึ่งร้อยยี่สิบบาทค่ะ จ่ายเงินสดหรือบัตรคะ",
+      "speak": "ทั้งหมดหนึ่งร้อยยี่สิบบาทค่ะ จ่ายเงินสดหรือบัตรคะ",
+      "translation": "總共一百二十泰銖。付現金還是刷卡？",
+      "friend": {
+        "hint": "店員在問付款方式。要刷卡時，可以短短說「บัตรค่ะ」。"
+      },
+      "inline_explain": {
+        "pattern_id": "th.store.payment.card_cash.v1",
+        "formula_ref": null,
+        "title": "เงินสด / บัตร",
+        "explain": "「เงินสด」是現金，「บัตร」是卡片。回答時加上 `ค่ะ` 保持禮貌。",
+        "items": [
+          {
+            "surface": "บัตรค่ะ",
+            "translation": "卡片，謝謝。",
+            "speak": "บัตรค่ะ"
+          },
+          {
+            "surface": "เงินสดค่ะ",
+            "translation": "現金，謝謝。",
+            "speak": "เงินสดค่ะ"
+          }
+        ]
+      },
+      "reply_set": {
+        "correct": "r1a",
+        "choices": [
+          {
+            "id": "r1a",
+            "surface": "บัตรค่ะ",
+            "translation": "卡片，謝謝。",
+            "speak": "บัตรค่ะ",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r1b",
+            "surface": "เอากาแฟเย็นค่ะ",
+            "translation": "我要冰咖啡。",
+            "speak": "เอากาแฟเย็นค่ะ",
+            "contrast_type": "wrong_scenario_ordering",
+            "feedback": "這句是在點飲料。現在商品已經結帳，店員在問付款方式。"
+          },
+          {
+            "id": "r1c",
+            "surface": "ห้องน้ำอยู่ที่ไหนคะ",
+            "translation": "洗手間在哪裡？",
+            "speak": "ห้องน้ำอยู่ที่ไหนคะ",
+            "contrast_type": "wrong_scenario_request",
+            "feedback": "這句是在問方向。現在要回答現金或卡片。"
+          },
+          {
+            "id": "r1d",
+            "surface": "เงินสดค่ะ",
+            "translation": "現金，謝謝。",
+            "speak": "เงินสดค่ะ",
+            "contrast_type": "wrong_payment_method",
+            "feedback": "這也是付款方式，但這一輪要練習刷卡時的回答。"
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t2",
+      "speaker": "npc",
+      "act": "payment_instruction",
+      "act_slots": {
+        "topic": "แตะบัตร",
+        "keyword": "แตะบัตร",
+        "gloss": "感應卡片"
+      },
+      "learning_role": "listen_only",
+      "surface": "แตะบัตรตรงนี้นะคะ",
+      "speak": "แตะบัตรตรงนี้นะคะ",
+      "translation": "請在這裡感應卡片。",
+      "friend": {
+        "hint": "店員要你在這裡感應卡片。簡短回答「ได้ค่ะ」就可以。"
+      },
+      "reply_set": {
+        "correct": "r2a",
+        "choices": [
+          {
+            "id": "r2a",
+            "surface": "ได้ค่ะ",
+            "translation": "好的。",
+            "speak": "ได้ค่ะ"
+          },
+          {
+            "id": "r2b",
+            "surface": "บัตรค่ะ",
+            "translation": "卡片，謝謝。",
+            "speak": "บัตรค่ะ",
+            "contrast_type": "repeated_prior_answer",
+            "feedback": "付款方式已經說了。現在店員在告訴你感應卡片。"
+          },
+          {
+            "id": "r2c",
+            "surface": "เท่าไหร่คะ",
+            "translation": "多少錢？",
+            "speak": "เท่าไหร่คะ",
+            "contrast_type": "wrong_act_price_question",
+            "feedback": "價格剛剛已經說了。這裡先照店員指示付款。"
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t3",
+      "speaker": "npc",
+      "act": "bag_question",
+      "act_slots": {
+        "topic": "ถุง",
+        "keyword": "รับถุงไหม",
+        "gloss": "要袋子嗎"
+      },
+      "learning_role": "listen_only",
+      "surface": "รับถุงไหมคะ",
+      "speak": "รับถุงไหมคะ",
+      "translation": "需要袋子嗎？",
+      "friend": {
+        "hint": "ถุง 是袋子。不要袋子時，可以說「ไม่รับค่ะ」。"
+      },
+      "reply_set": {
+        "correct": "r3a",
+        "choices": [
+          {
+            "id": "r3a",
+            "surface": "ไม่รับค่ะ",
+            "translation": "不用袋子。",
+            "speak": "ไม่รับค่ะ",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r3b",
+            "surface": "บัตรค่ะ",
+            "translation": "卡片，謝謝。",
+            "speak": "บัตรค่ะ",
+            "contrast_type": "repeated_prior_answer",
+            "feedback": "刷卡已經完成了。現在店員在問要不要袋子。"
+          },
+          {
+            "id": "r3c",
+            "surface": "ที่สถานีค่ะ",
+            "translation": "在車站。",
+            "speak": "ที่สถานีค่ะ",
+            "contrast_type": "wrong_scenario_schedule",
+            "feedback": "這像是在約地點。現在是便利商店櫃台，要回答袋子的問題。"
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t4",
+      "speaker": "npc",
+      "act": "transaction_close",
+      "act_slots": {
+        "topic": "จบการจ่ายเงิน",
+        "keyword": "เรียบร้อย",
+        "gloss": "完成"
+      },
+      "learning_role": "listen_only",
+      "surface": "เรียบร้อยค่ะ ขอบคุณค่ะ",
+      "speak": "เรียบร้อยค่ะ ขอบคุณค่ะ",
+      "translation": "好了，謝謝。",
+      "friend": {
+        "hint": "交易結束了。用謝謝收尾就好。"
+      },
+      "reply_set": {
+        "correct": "r4a",
+        "choices": [
+          {
+            "id": "r4a",
+            "surface": "ขอบคุณค่ะ",
+            "translation": "謝謝。",
+            "speak": "ขอบคุณค่ะ"
+          },
+          {
+            "id": "r4b",
+            "surface": "เอากาแฟเย็นค่ะ",
+            "translation": "我要冰咖啡。",
+            "speak": "เอากาแฟเย็นค่ะ",
+            "contrast_type": "wrong_scenario_ordering",
+            "feedback": "結帳已經結束了。這裡用謝謝收尾比較自然。"
+          },
+          {
+            "id": "r4c",
+            "surface": "ไม่รับค่ะ",
+            "translation": "不用袋子。",
+            "speak": "ไม่รับค่ะ",
+            "contrast_type": "repeated_prior_answer",
+            "feedback": "袋子的問題已經回答過了。現在店員在結束交易。"
+          }
+        ]
+      },
+      "closing": {
+        "act": "handover",
+        "learning_role": "listen_only",
+        "surface": "รับของได้เลยค่ะ",
+        "speak": "รับของได้เลยค่ะ",
+        "translation": "可以拿商品了。"
+      }
+    }
+  ],
+  "formula_moments": [
+    {
+      "after_turn": "t1",
+      "pattern_id": "th.store.payment.card_cash.v1"
+    }
+  ],
+  "notes": {
+    "authoring_source": "Authored from ML-0 neutral brief, not Korean surface text.",
+    "review_policy": "AI-authored Thai candidate. Requires AI review, runtime smoke, and tracked native review before any stronger status.",
+    "canonical_policy": "Staging candidate only. Do not write back to manifests, production exports, schemas, or legacy content.",
+    "thai_voice_note": "Pilot uses ค่ะ/คะ consistently in the service payment scenario and avoids slash-form TTS."
+  }
+}

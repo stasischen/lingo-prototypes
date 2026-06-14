@@ -1,0 +1,263 @@
+{
+  "schema_version": "scenario_pack.v1",
+  "scenario_id": "a2_explain_simple_delay_reason",
+  "title": "Explicar un pequeño retraso",
+  "setting_label": "Mensaje a una amiga",
+  "wrap_title": "Retraso explicado",
+  "wrap_friend": "你剛剛用西班牙語道歉，說會晚一點，並給了一個簡單原因和時間估計。",
+  "language": "es",
+  "ui_language": "zh_tw",
+  "cefr_level": "A2",
+  "source_status": "candidate_runtime_verified",
+  "review_state": "ai_reviewed",
+  "review_status_framework_state": "candidate_runtime_verified",
+  "native_review_state": "native_pending",
+  "scenario": "Una amiga pregunta si ya estás cerca y necesitas explicar un pequeño retraso.",
+  "learner_goal": "Disculparse, decir que llegas un poco tarde y dar una razón simple con una estimación.",
+  "target_functions": [
+    "apology",
+    "simple_reason",
+    "delay_estimate"
+  ],
+  "register_notes": "Registro amistoso y cotidiano. El retraso es leve y seguro, sin excusas formales ni emergencia.",
+  "production_mode_default": {
+    "required": [
+      "choice"
+    ],
+    "optional_visible": [
+      "speaking"
+    ],
+    "optional_hidden": [
+      "typing"
+    ]
+  },
+  "support_text": "你的朋友問你到了沒。用西班牙語簡短道歉，說你會晚一點，並給一個日常原因。",
+  "roles": {
+    "npc": {
+      "label": "amiga"
+    },
+    "learner": {
+      "label": "tú"
+    }
+  },
+  "turns": [
+    {
+      "turn_id": "t1",
+      "speaker": "npc",
+      "act": "location_check",
+      "act_slots": {
+        "topic": "arrival",
+        "keyword": "cerca",
+        "gloss": "附近"
+      },
+      "learning_role": "listen_only",
+      "surface": "¿Ya estás cerca?",
+      "speak": "¿Ya estás cerca?",
+      "translation": "你已經在附近了嗎？",
+      "friend": {
+        "hint": "對方在確認你是否快到了。先用自然的道歉開頭。"
+      },
+      "reply_set": {
+        "correct": "r1a",
+        "choices": [
+          {
+            "id": "r1a",
+            "surface": "Perdón, voy a llegar un poco tarde.",
+            "translation": "抱歉，我會晚一點到。",
+            "speak": "Perdón, voy a llegar un poco tarde.",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r1b",
+            "surface": "Sí, llegué ayer.",
+            "translation": "對，我昨天到了。",
+            "speak": "Sí, llegué ayer.",
+            "contrast_type": "wrong_time_past",
+            "feedback": "對方問現在是否快到了，不是昨天。"
+          },
+          {
+            "id": "r1c",
+            "surface": "Quiero pedir un café.",
+            "translation": "我想點一杯咖啡。",
+            "speak": "Quiero pedir un café.",
+            "contrast_type": "wrong_scenario_ordering",
+            "feedback": "這是點餐情境。現在要說你會晚到。"
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t2",
+      "speaker": "npc",
+      "act": "delay_question",
+      "act_slots": {
+        "topic": "delay amount",
+        "keyword": "cuánto",
+        "gloss": "多久"
+      },
+      "learning_role": "listen_only",
+      "surface": "No pasa nada. ¿Cuánto tardas?",
+      "speak": "No pasa nada. ¿Cuánto tardas?",
+      "translation": "沒關係。你還要多久？",
+      "friend": {
+        "hint": "對方問晚多久。用「unos minutos」說簡單估計。"
+      },
+      "inline_explain": {
+        "pattern_id": "es.a2.delay.un_poco_tarde.v1",
+        "title": "un poco tarde",
+        "explain": "說小延誤時，可以用「voy a llegar un poco tarde」加上原因或時間。",
+        "items": [
+          {
+            "surface": "Voy a llegar un poco tarde.",
+            "translation": "我會晚一點到。",
+            "speak": "Voy a llegar un poco tarde."
+          },
+          {
+            "surface": "Llego en unos diez minutos.",
+            "translation": "我大約十分鐘後到。",
+            "speak": "Llego en unos diez minutos."
+          }
+        ]
+      },
+      "reply_set": {
+        "correct": "r2a",
+        "choices": [
+          {
+            "id": "r2a",
+            "surface": "Llego en unos diez minutos.",
+            "translation": "我大約十分鐘後到。",
+            "speak": "Llego en unos diez minutos.",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r2b",
+            "surface": "Son las diez.",
+            "translation": "現在十點。",
+            "speak": "Son las diez.",
+            "contrast_type": "wrong_function_clock_time",
+            "feedback": "這是在報時間，不是在說你還要多久到。"
+          },
+          {
+            "id": "r2c",
+            "surface": "A las diez en la entrada.",
+            "translation": "十點在入口。",
+            "speak": "A las diez en la entrada.",
+            "contrast_type": "wrong_scenario_meeting_plan",
+            "feedback": "這像是在約時間地點。對方問的是延誤多久。"
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t3",
+      "speaker": "npc",
+      "act": "reason_prompt",
+      "act_slots": {
+        "topic": "reason",
+        "keyword": "por qué",
+        "gloss": "為什麼"
+      },
+      "learning_role": "listen_only",
+      "surface": "¿Por qué? ¿Va todo bien?",
+      "speak": "¿Por qué? ¿Va todo bien?",
+      "translation": "為什麼？一切還好嗎？",
+      "friend": {
+        "hint": "給一個低風險、日常的原因就好。"
+      },
+      "reply_set": {
+        "correct": "r3a",
+        "choices": [
+          {
+            "id": "r3a",
+            "surface": "Sí, el autobús va lento.",
+            "translation": "沒事，公車開得慢。",
+            "speak": "Sí, el autobús va lento."
+          },
+          {
+            "id": "r3b",
+            "surface": "Necesito comprar un billete.",
+            "translation": "我需要買一張票。",
+            "speak": "Necesito comprar un billete.",
+            "contrast_type": "wrong_scenario_ticket",
+            "feedback": "這像是在買票。這裡只需要說為什麼會晚到。"
+          },
+          {
+            "id": "r3c",
+            "surface": "Quiero cambiar la reserva.",
+            "translation": "我想改訂位。",
+            "speak": "Quiero cambiar la reserva.",
+            "contrast_type": "wrong_scenario_reservation",
+            "feedback": "這是在改預約。現在要解釋為什麼晚到。"
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t4",
+      "speaker": "npc",
+      "act": "closing_acceptance",
+      "act_slots": {
+        "topic": "wait confirmation"
+      },
+      "learning_role": "listen_only",
+      "surface": "Vale, te espero dentro.",
+      "speak": "Vale, te espero dentro.",
+      "translation": "好，我在裡面等你。",
+      "friend": {
+        "hint": "對方接受了。簡短回覆並再次確認就可以。"
+      },
+      "reply_set": {
+        "correct": "r4a",
+        "choices": [
+          {
+            "id": "r4a",
+            "surface": "Gracias, llego enseguida.",
+            "translation": "謝謝，我馬上到。",
+            "speak": "Gracias, llego enseguida."
+          },
+          {
+            "id": "r4b",
+            "surface": "La cuenta, por favor.",
+            "translation": "請結帳。",
+            "speak": "La cuenta, por favor.",
+            "contrast_type": "wrong_scenario_restaurant",
+            "feedback": "這是餐廳用語。朋友只是在說會等你。"
+          },
+          {
+            "id": "r4c",
+            "surface": "Mañana por la mañana voy a la biblioteca.",
+            "translation": "明天早上我去圖書館。",
+            "speak": "Mañana por la mañana voy a la biblioteca.",
+            "contrast_type": "wrong_scenario_plan",
+            "feedback": "這是在說明天計畫，不是在回覆現在晚到的情境。"
+          }
+        ]
+      }
+    }
+  ],
+  "choice_sets": [
+    "t1.reply_set",
+    "t2.reply_set",
+    "t3.reply_set",
+    "t4.reply_set"
+  ],
+  "feedback": "Distractors contrast wrong time estimate and wrong scenario while preserving one clearly correct A2 response.",
+  "tts_segments": [
+    "Perdón, voy a llegar un poco tarde.",
+    "Llego en unos diez minutos.",
+    "Sí, el autobús va lento.",
+    "Gracias, llego enseguida."
+  ],
+  "formula_moments": [
+    {
+      "after_turn": "t2",
+      "pattern_id": "es.a2.delay.un_poco_tarde.v1"
+    }
+  ],
+  "runtime_notes": "Fresh ES A2 candidate. Structural checks and two AI semantic review passes completed on 2026-06-14 before metadata promotion.",
+  "notes": {
+    "authoring_policy": "Fresh-authored from the neutral A2 brief. KO, JA, EN, and TH packs were not used as translation sources.",
+    "a2_boundary": "Uses apology, simple reason, and short time estimate; avoids restricted high-risk or formal excuse workflows.",
+    "spanish_register_note": "Uses low-stakes informal tú messaging with Perdón and No pasa nada."
+  }
+}

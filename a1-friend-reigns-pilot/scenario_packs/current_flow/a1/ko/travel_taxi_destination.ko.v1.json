@@ -1,0 +1,239 @@
+{
+  "schema_version": "scenario_pack.v1",
+  "scenario_id": "travel_taxi_destination",
+  "title": "搭計程車說目的地情境",
+  "setting_label": "計程車上",
+  "wrap_title": "今天這段搭計程車",
+  "wrap_friend": "你剛剛說出目的地，也確認可以到飯店。搭車時先能說去哪裡，再聽懂大概時間就很實用。",
+  "language": "ko",
+  "ui_language": "zh_tw",
+  "source_status": "pilot_authored_ai_review_pending",
+  "review_state": "draft",
+  "production_mode_default": {
+    "required": [
+      "choice"
+    ],
+    "optional_visible": [
+      "speaking"
+    ],
+    "optional_hidden": [
+      "typing"
+    ]
+  },
+  "support_text": "你上了計程車，要告訴司機去飯店。",
+  "roles": {
+    "npc": {
+      "label": "司機"
+    },
+    "learner": {
+      "label": "你"
+    }
+  },
+  "turns": [
+    {
+      "turn_id": "t1",
+      "speaker": "npc",
+      "act": "info_request",
+      "act_slots": {
+        "topic": "destination",
+        "keyword": "어디",
+        "gloss": "哪裡"
+      },
+      "learning_role": "listen_only",
+      "surface": "어디로 가세요?",
+      "speak": "어디로 가세요?",
+      "translation": "您要去哪裡？",
+      "friend": {
+        "hint": "어디로 가세요? 是問去哪裡。可以說 飯店名 + 으로 가 주세요。"
+      },
+      "inline_explain": {
+        "pattern_id": "ko.taxi.destination.euro.ga_juseyo.v1",
+        "formula_ref": null,
+        "title": "目的地 + 으로 가 주세요",
+        "explain": "으로 가 주세요 是請去某個地方。",
+        "items": [
+          {
+            "surface": "이 호텔로 가 주세요.",
+            "translation": "請去這間飯店。",
+            "speak": "이 호텔로 가 주세요."
+          },
+          {
+            "surface": "서울역으로 가 주세요.",
+            "translation": "請去首爾站。",
+            "speak": "서울역으로 가 주세요."
+          }
+        ]
+      },
+      "reply_set": {
+        "correct": "r1a",
+        "choices": [
+          {
+            "id": "r1a",
+            "surface": "이 호텔로 가 주세요.",
+            "translation": "請去這間飯店。",
+            "speak": "이 호텔로 가 주세요.",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r1b",
+            "surface": "화장실이 어디예요?",
+            "translation": "洗手間在哪裡？",
+            "speak": "화장실이 어디예요?",
+            "contrast_type": "wrong_scenario_request",
+            "feedback": "這句是在問路。現在司機問你目的地。"
+          },
+          {
+            "id": "r1c",
+            "surface": "비빔밥 하나 주세요.",
+            "translation": "請給我一份拌飯。",
+            "speak": "비빔밥 하나 주세요.",
+            "contrast_type": "wrong_scenario_request",
+            "feedback": "這句是在餐廳點餐。現在是在搭計程車。"
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t2",
+      "speaker": "npc",
+      "act": "confirmation",
+      "act_slots": {
+        "topic": "hotel destination",
+        "keyword": "호텔",
+        "gloss": "飯店"
+      },
+      "learning_role": "listen_only",
+      "surface": "이 호텔 맞으세요?",
+      "speak": "이 호텔 맞으세요?",
+      "translation": "是這間飯店沒錯嗎？",
+      "friend": {
+        "hint": "맞으세요 是確認。目的地沒錯時可以說 네, 맞아요。"
+      },
+      "reply_set": {
+        "correct": "r2a",
+        "choices": [
+          {
+            "id": "r2a",
+            "surface": "네, 맞아요.",
+            "translation": "對，沒錯。",
+            "speak": "네, 맞아요.",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r2b",
+            "surface": "이 호텔로 가 주세요.",
+            "translation": "請去這間飯店。",
+            "speak": "이 호텔로 가 주세요.",
+            "contrast_type": "repeated_prior_answer",
+            "feedback": "目的地已經說過了。現在是在確認。"
+          },
+          {
+            "id": "r2c",
+            "surface": "아니요, 괜찮아요.",
+            "translation": "不用了，沒關係。",
+            "speak": "아니요, 괜찮아요.",
+            "contrast_type": "wrong_act_refusal",
+            "feedback": "這樣像是不搭了。目的地正確時說 네, 맞아요。"
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t3",
+      "speaker": "npc",
+      "act": "info_response",
+      "act_slots": {
+        "topic": "duration",
+        "keyword": "15분",
+        "gloss": "15 分鐘"
+      },
+      "learning_role": "listen_only",
+      "surface": "15분 정도 걸려요.",
+      "speak": "십오 분 정도 걸려요.",
+      "translation": "大概要 15 分鐘。",
+      "friend": {
+        "hint": "걸려요 是需要花時間。15분 정도 是大概 15 分鐘。"
+      },
+      "reply_set": {
+        "correct": "r3a",
+        "choices": [
+          {
+            "id": "r3a",
+            "surface": "네, 알겠어요.",
+            "translation": "好，我知道了。",
+            "speak": "네, 알겠어요."
+          },
+          {
+            "id": "r3b",
+            "surface": "10분 정도요.",
+            "translation": "大概 10 分鐘。",
+            "speak": "십 분 정도요.",
+            "contrast_type": "wrong_entity",
+            "feedback": "司機說的是 15분，15 分鐘。這裡不用改成 10 分鐘。"
+          },
+          {
+            "id": "r3c",
+            "surface": "카드로 할게요.",
+            "translation": "我用卡。",
+            "speak": "카드로 할게요.",
+            "contrast_type": "wrong_act_payment",
+            "feedback": "還沒到付款。現在先聽懂大概多久。"
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t4",
+      "speaker": "npc",
+      "act": "handover",
+      "act_slots": {
+        "topic": "arrival"
+      },
+      "learning_role": "listen_only",
+      "surface": "도착했습니다.",
+      "speak": "도착했습니다.",
+      "translation": "到了。",
+      "friend": {
+        "hint": "到了之後可以道謝。付款方式先保留 choice-only。"
+      },
+      "reply_set": {
+        "correct": "r4a",
+        "choices": [
+          {
+            "id": "r4a",
+            "surface": "감사합니다.",
+            "translation": "謝謝。",
+            "speak": "감사합니다."
+          },
+          {
+            "id": "r4b",
+            "surface": "이 호텔로 가 주세요.",
+            "translation": "請去這間飯店。",
+            "speak": "이 호텔로 가 주세요.",
+            "contrast_type": "repeated_prior_answer",
+            "feedback": "已經到了，不需要再說目的地。這裡道謝。"
+          },
+          {
+            "id": "r4c",
+            "surface": "영수증 드릴까요?",
+            "translation": "需要收據嗎？",
+            "speak": "영수증 드릴까요?",
+            "contrast_type": "wrong_speaker_role",
+            "feedback": "這是司機或店員會問你的句子，不是你要回的句子。"
+          }
+        ]
+      }
+    }
+  ],
+  "formula_moments": [
+    {
+      "after_turn": "t1",
+      "pattern_id": "ko.taxi.destination.euro.ga_juseyo.v1"
+    }
+  ],
+  "notes": {
+    "practice_plan": "Primary production target is 이 호텔로 가 주세요. Optional support is 네, 맞아요. Duration acknowledgement and thanks are choice-only practiced.",
+    "review_policy": "AI review pass 1 recorded in travel_taxi_destination.review.ai_20260613.md; second independent AI review and native review remain pending.",
+    "canonical_policy": "Pilot-authored derived fixture only; do not write back to canonical schema."
+  }
+}

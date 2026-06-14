@@ -1,0 +1,257 @@
+{
+  "schema_version": "scenario_pack.v1",
+  "scenario_id": "a2_make_simple_plan_sequence",
+  "title": "วางแผนสองขั้นตอนง่าย ๆ",
+  "setting_label": "โทรคุยแผนสุดสัปดาห์",
+  "wrap_title": "ยืนยันแผนสองขั้นตอนแล้ว",
+  "wrap_friend": "ทำได้ดีค่ะ คุณเชื่อมขั้นตอนแรกกับขั้นตอนต่อไป แล้วปิดแผนได้ชัดเจน",
+  "language": "th",
+  "ui_language": "zh-Hant",
+  "cefr_level": "A2",
+  "source_status": "candidate_runtime_verified",
+  "review_state": "ai_reviewed",
+  "review_status_framework_state": "candidate_runtime_verified",
+  "native_review_state": "native_pending",
+  "scenario": {
+    "domain": "daily_social_coordination",
+    "review_slice": "daily_social",
+    "interaction": "friend_social_coordination",
+    "source_brief": "A2_DAILY_SOCIAL_NEUTRAL_ADAPTATION_BRIEFS_20260614",
+    "blueprint_source": "language_neutral_adaptation_brief",
+    "ko_pack_role": "mature_scenario_blueprint_not_translation_source"
+  },
+  "learner_goal": "วางแผนสองขั้นตอนกับเพื่อน และยืนยันลำดับ",
+  "target_functions": [
+    "friend_invitation_or_response",
+    "simple_reason_or_past_event",
+    "two_step_plan_or_confirmation",
+    "close_with_relationship_maintenance"
+  ],
+  "register_notes": "Thai A2 friend/social register: natural friendly Thai with soft polite particles, TTS-friendly segmentation, no service-counter register or date pressure.",
+  "production_mode_default": {
+    "required": [
+      "choice"
+    ],
+    "optional_visible": [
+      "speaking"
+    ],
+    "optional_hidden": [
+      "typing"
+    ]
+  },
+  "support_text": "วางแผนกับเพื่อนสองขั้นตอน: ก่อนทำอย่างหนึ่ง แล้วค่อยทำอีกอย่างค่ะ",
+  "roles": {
+    "npc": {
+      "label": "เพื่อน"
+    },
+    "learner": {
+      "label": "你"
+    }
+  },
+  "turns": [
+    {
+      "turn_id": "t1",
+      "speaker": "npc",
+      "act": "suggest_first_step",
+      "act_slots": {
+        "topic": "first step",
+        "keyword": "ก่อน",
+        "gloss": "A2 daily/social"
+      },
+      "learning_role": "listen_only",
+      "surface": "เราเจอกันที่สถานีก่อนดีไหม",
+      "speak": "เราเจอกันที่สถานีก่อนดีไหม",
+      "translation": "我們先在車站見好嗎？",
+      "friend": {
+        "hint": "ยืนยันขั้นตอนแรกค่ะ"
+      },
+      "reply_set": {
+        "correct": "r1a",
+        "choices": [
+          {
+            "id": "r1a",
+            "surface": "ได้ เจอกันที่สถานีก่อน",
+            "translation": "好，先在車站見。",
+            "speak": "ได้ เจอกันที่สถานีก่อน",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r1b",
+            "surface": "ได้ คืนเงินให้ฉันก่อน",
+            "translation": "好，先退款給我。",
+            "speak": "ได้ คืนเงินให้ฉันก่อน",
+            "contrast_type": "wrong_scenario_refund",
+            "feedback": "นี่เป็นแผนกับเพื่อน ไม่ใช่การคืนเงินค่ะ"
+          },
+          {
+            "id": "r1c",
+            "surface": "ไม่ เด็ดขาด",
+            "translation": "不，絕對不要。",
+            "speak": "ไม่ เด็ดขาด",
+            "contrast_type": "too_blunt",
+            "feedback": "ฟังดูแรงเกินไปสำหรับการวางแผนกับเพื่อนค่ะ"
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t2",
+      "speaker": "npc",
+      "act": "suggest_second_step",
+      "act_slots": {
+        "topic": "second step",
+        "keyword": "แล้ว",
+        "gloss": "A2 daily/social"
+      },
+      "learning_role": "listen_only",
+      "surface": "แล้วเดินไปสวนสาธารณะกันไหม",
+      "speak": "แล้วเดินไปสวนสาธารณะกันไหม",
+      "translation": "接著走去公園嗎？",
+      "friend": {
+        "hint": "ยืนยันขั้นตอนที่สองค่ะ"
+      },
+      "reply_set": {
+        "correct": "r2a",
+        "choices": [
+          {
+            "id": "r2a",
+            "surface": "ดี แล้วเดินไปสวนกัน",
+            "translation": "好，接著走去公園。",
+            "speak": "ดี แล้วเดินไปสวนกัน",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r2b",
+            "surface": "เมื่อวานไปสวนมา",
+            "translation": "昨天去了公園。",
+            "speak": "เมื่อวานไปสวนมา",
+            "contrast_type": "wrong_time_past",
+            "feedback": "กำลังวางแผนสำหรับวันข้างหน้าค่ะ"
+          },
+          {
+            "id": "r2c",
+            "surface": "ฉันจะไปรับกระเป๋าที่สนามบิน",
+            "translation": "我會在機場取行李。",
+            "speak": "ฉันจะไปรับกระเป๋าที่สนามบิน",
+            "contrast_type": "wrong_scenario_transport",
+            "feedback": "นี่ไม่ใช่เรื่องรับกระเป๋าค่ะ"
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t3",
+      "speaker": "npc",
+      "act": "confirm_sequence",
+      "act_slots": {
+        "topic": "sequence confirmation",
+        "keyword": "ก่อน แล้ว",
+        "gloss": "A2 daily/social"
+      },
+      "learning_role": "listen_only",
+      "surface": "งั้นเจอสถานีก่อน แล้วไปสวนใช่ไหม",
+      "speak": "งั้นเจอสถานีก่อน แล้วไปสวนใช่ไหม",
+      "translation": "所以先車站，接著去公園，對嗎？",
+      "friend": {
+        "hint": "พูดลำดับอีกครั้งค่ะ"
+      },
+      "reply_set": {
+        "correct": "r3a",
+        "choices": [
+          {
+            "id": "r3a",
+            "surface": "ใช่ เจอสถานีก่อน แล้วไปสวน",
+            "translation": "對，先車站，接著去公園。",
+            "speak": "ใช่ เจอสถานีก่อน แล้วไปสวน",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r3b",
+            "surface": "ใช่ สนามบินก่อน แล้วโรงแรม",
+            "translation": "對，先機場，接著飯店。",
+            "speak": "ใช่ สนามบินก่อน แล้วโรงแรม",
+            "contrast_type": "wrong_details",
+            "feedback": "สถานที่เปลี่ยนไปค่ะ"
+          },
+          {
+            "id": "r3c",
+            "surface": "ไม่ ต้องไปอีกสามที่",
+            "translation": "不，還要去三個地方。",
+            "speak": "ไม่ ต้องไปอีกสามที่",
+            "contrast_type": "too_complex",
+            "feedback": "งานนี้ใช้แผนสองขั้นตอนเท่านั้นค่ะ"
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t4",
+      "speaker": "npc",
+      "act": "confirm_time",
+      "act_slots": {
+        "topic": "time close",
+        "keyword": "บ่ายสอง",
+        "gloss": "A2 daily/social"
+      },
+      "learning_role": "listen_only",
+      "surface": "ดีเลย เจอกันวันเสาร์บ่ายสองนะ",
+      "speak": "ดีเลย เจอกันวันเสาร์บ่ายสองนะ",
+      "translation": "很好，星期六下午兩點見。",
+      "friend": {
+        "hint": "ยืนยันเวลาและปิดแผนค่ะ"
+      },
+      "reply_set": {
+        "correct": "r4a",
+        "choices": [
+          {
+            "id": "r4a",
+            "surface": "โอเค เจอกันวันเสาร์บ่ายสอง",
+            "translation": "好，星期六下午兩點見。",
+            "speak": "โอเค เจอกันวันเสาร์บ่ายสอง",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r4b",
+            "surface": "โอเค เจอกันเมื่อเช้านี้แล้ว",
+            "translation": "好，今天早上已經見過了。",
+            "speak": "โอเค เจอกันเมื่อเช้านี้แล้ว",
+            "contrast_type": "wrong_time_past",
+            "feedback": "ต้องยืนยันเวลาที่จะเจอกันข้างหน้าค่ะ"
+          },
+          {
+            "id": "r4c",
+            "surface": "โอเค ฉันจะถามหมอ",
+            "translation": "好，我會問醫生。",
+            "speak": "โอเค ฉันจะถามหมอ",
+            "contrast_type": "forbidden_or_wrong_domain",
+            "feedback": "นี่ไม่ใช่สถานการณ์ทางการแพทย์ค่ะ"
+          }
+        ]
+      }
+    }
+  ],
+  "choice_sets": [
+    "t1.reply_set",
+    "t2.reply_set",
+    "t3.reply_set",
+    "t4.reply_set"
+  ],
+  "feedback": "Distractors test social register, time/function/domain contrast, and A2 boundary without offering valid alternate answers.",
+  "tts_segments": [
+    "ได้ เจอกันที่สถานีก่อน",
+    "ดี แล้วเดินไปสวนกัน",
+    "ใช่ เจอสถานีก่อน แล้วไปสวน",
+    "โอเค เจอกันวันเสาร์บ่ายสอง"
+  ],
+  "formula_moments": [
+    {
+      "after_turn": "t3",
+      "pattern_id": "th.a2.daily.sequence.v1"
+    }
+  ],
+  "runtime_notes": "Fresh A2 daily/social candidate. Requires full-walk runtime before closeout evidence is recorded.",
+  "notes": {
+    "authoring_policy": "Fresh-authored from A2 daily/social neutral adaptation brief. KO surface text was not copied or translated.",
+    "a2_boundary": "Friend/social register, low-risk ordinary reasons and activities, short A2 responses only."
+  }
+}

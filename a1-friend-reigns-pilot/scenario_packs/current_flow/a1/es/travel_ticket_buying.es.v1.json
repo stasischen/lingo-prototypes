@@ -1,0 +1,241 @@
+{
+  "schema_version": "scenario_pack.v1",
+  "scenario_id": "travel_ticket_buying",
+  "brief_id": "ml3_a1_013_travel_ticket_buying",
+  "source_neutral_brief": "release-aggregator/docs/tasks/A1_MULTILINGUAL_KO_B1_PARALLEL_ORCHESTRATION/work_products/ml0/ML3_NEUTRAL_ADAPTATION_BRIEFS_20260614.md#brief-ml3-a1-013-buy-a-ticket",
+  "blueprint_ledger": "release-aggregator/docs/tasks/A1_MULTILINGUAL_KO_B1_PARALLEL_ORCHESTRATION/work_products/ml0/ML3_BLUEPRINT_LEDGER_20260614.md",
+  "repo": "content-es",
+  "staging_path": "content/core/content_assets/scenario_packs/current_flow/travel_ticket_buying.es.v1.json",
+  "title": "Comprar un billete",
+  "setting_label": "Taquilla de tren",
+  "wrap_title": "Ya puedes comprar un billete",
+  "wrap_friend": "Pediste un billete, confirmaste el destino y cerraste con una frase corta.",
+  "language": "es",
+  "ui_language": "zh_tw",
+  "source_status": "candidate_runtime_verified",
+  "review_state": "draft",
+  "review_status_framework_state": "candidate_runtime_verified",
+  "native_review_state": "native_pending",
+  "production_mode_default": {
+    "required": [
+      "choice"
+    ],
+    "optional_visible": [
+      "speaking"
+    ],
+    "optional_hidden": [
+      "typing"
+    ]
+  },
+  "support_text": "你在火車站售票口買一張簡單車票。選一句自然、簡短的西班牙語。",
+  "roles": {
+    "npc": {
+      "label": "empleado"
+    },
+    "learner": {
+      "label": "viajero"
+    }
+  },
+  "turns": [
+    {
+      "turn_id": "t1",
+      "speaker": "npc",
+      "act": "offer_help",
+      "learning_role": "listen_only",
+      "surface": "Buenos días. ¿Adónde va?",
+      "speak": "Buenos días. ¿Adónde va?",
+      "translation": "早安。您要去哪裡？",
+      "friend": {
+        "hint": "售票員問目的地。說你要一張去 Madrid 的票。"
+      },
+      "reply_set": {
+        "correct": "r1a",
+        "choices": [
+          {
+            "id": "r1a",
+            "surface": "Un billete a Madrid, por favor.",
+            "translation": "請給我一張去馬德里的票。",
+            "speak": "Un billete a Madrid, por favor.",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r1b",
+            "surface": "¿Dónde está el baño?",
+            "translation": "洗手間在哪裡？",
+            "speak": "¿Dónde está el baño?",
+            "contrast_type": "wrong_scenario_directions",
+            "feedback": "這是在問路，不是在買車票。"
+          },
+          {
+            "id": "r1c",
+            "surface": "Un café, por favor.",
+            "translation": "請給我一杯咖啡。",
+            "speak": "Un café, por favor.",
+            "contrast_type": "wrong_scenario_food_order",
+            "feedback": "這是在點咖啡，不是在售票口買票。"
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t2",
+      "speaker": "npc",
+      "act": "confirm_ticket",
+      "learning_role": "listen_only",
+      "surface": "¿Un billete a Madrid?",
+      "speak": "¿Un billete a Madrid?",
+      "translation": "一張去馬德里的票嗎？",
+      "friend": {
+        "hint": "售票員確認目的地和數量。用簡短句確認。"
+      },
+      "inline_explain": {
+        "pattern_id": "es.ticket.one_to_destination.v1",
+        "formula_ref": null,
+        "title": "Un billete a...",
+        "explain": "在西班牙語售票口可用 Un billete a Madrid, por favor 表示一張去某地的票。",
+        "items": [
+          {
+            "surface": "Un billete a Madrid, por favor.",
+            "translation": "請給我一張去馬德里的票。",
+            "speak": "Un billete a Madrid, por favor."
+          },
+          {
+            "surface": "Sí, correcto.",
+            "translation": "對，沒錯。",
+            "speak": "Sí, correcto."
+          }
+        ]
+      },
+      "reply_set": {
+        "correct": "r2a",
+        "choices": [
+          {
+            "id": "r2a",
+            "surface": "Sí, correcto.",
+            "translation": "對，沒錯。",
+            "speak": "Sí, correcto.",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r2b",
+            "surface": "No, gracias.",
+            "translation": "不用，謝謝。",
+            "speak": "No, gracias.",
+            "contrast_type": "cancel_when_confirming",
+            "feedback": "你正在確認買票。這樣會像取消交易。"
+          },
+          {
+            "id": "r2c",
+            "surface": "Dos billetes a Madrid.",
+            "translation": "兩張去馬德里的票。",
+            "speak": "Dos billetes a Madrid.",
+            "contrast_type": "wrong_quantity",
+            "feedback": "你只需要一張票，不要改成兩張。"
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t3",
+      "speaker": "npc",
+      "act": "price_payment",
+      "learning_role": "listen_only",
+      "surface": "Son doce euros. ¿Paga con tarjeta?",
+      "speak": "Son doce euros. ¿Paga con tarjeta?",
+      "translation": "十二歐元。您用卡付款嗎？",
+      "friend": {
+        "hint": "售票員問付款方式。回答用卡。"
+      },
+      "reply_set": {
+        "correct": "r3a",
+        "choices": [
+          {
+            "id": "r3a",
+            "surface": "Sí, con tarjeta.",
+            "translation": "對，用卡。",
+            "speak": "Sí, con tarjeta.",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r3b",
+            "surface": "Soy de Taipei.",
+            "translation": "我來自台北。",
+            "speak": "Soy de Taipei.",
+            "contrast_type": "wrong_scenario_self_intro",
+            "feedback": "這是自我介紹，不是回答付款方式。"
+          },
+          {
+            "id": "r3c",
+            "surface": "Quiero pagar la cuenta.",
+            "translation": "我想結帳。",
+            "speak": "Quiero pagar la cuenta.",
+            "contrast_type": "wrong_scenario_restaurant_bill",
+            "feedback": "這像餐廳結帳，不是售票口付款。"
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t4",
+      "speaker": "npc",
+      "act": "ticket_handover",
+      "learning_role": "listen_only",
+      "surface": "Aquí tiene. Andén dos.",
+      "speak": "Aquí tiene. Andén dos.",
+      "translation": "給您。二號月台。",
+      "friend": {
+        "hint": "拿到票和月台資訊後，簡短道謝。"
+      },
+      "reply_set": {
+        "correct": "r4a",
+        "choices": [
+          {
+            "id": "r4a",
+            "surface": "Gracias.",
+            "translation": "謝謝。",
+            "speak": "Gracias."
+          },
+          {
+            "id": "r4b",
+            "surface": "Repita, por favor.",
+            "translation": "請再說一次。",
+            "speak": "Repita, por favor.",
+            "contrast_type": "repair_after_clear_handover",
+            "feedback": "如果已理解票和月台，這裡直接道謝即可。"
+          },
+          {
+            "id": "r4c",
+            "surface": "Mucho gusto.",
+            "translation": "很高興認識你。",
+            "speak": "Mucho gusto.",
+            "contrast_type": "wrong_scenario_self_intro",
+            "feedback": "這是第一次見面的結尾，不是買票結尾。"
+          }
+        ]
+      },
+      "closing": {
+        "act": "staff_close",
+        "learning_role": "listen_only",
+        "surface": "Buen viaje.",
+        "speak": "Buen viaje.",
+        "translation": "旅途愉快。"
+      }
+    }
+  ],
+  "formula_moments": [
+    {
+      "after_turn": "t2",
+      "pattern_id": "es.ticket.one_to_destination.v1"
+    },
+    {
+      "after_turn": "t4",
+      "pattern_id": "es.ticket.thanks_handover.v1"
+    }
+  ],
+  "notes": {
+    "authoring_source": "Authored from ML-3 neutral brief, not Korean surface text or another target-language pack.",
+    "review_policy": "AI-authored Spanish candidate. Requires AI review, runtime smoke, and tracked native review before any stronger status.",
+    "canonical_policy": "Staging candidate only. Do not write back to manifests, production exports, schemas, or legacy content.",
+    "spanish_locale_note": "Broad Spanish station-counter baseline using billete, euros, and andén; avoids fare classes or reserved-seat rules."
+  }
+}

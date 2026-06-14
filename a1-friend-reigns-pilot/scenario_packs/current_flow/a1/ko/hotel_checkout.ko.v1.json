@@ -1,0 +1,256 @@
+{
+  "schema_version": "scenario_pack.v1",
+  "scenario_id": "hotel_checkout",
+  "title": "飯店退房情境",
+  "setting_label": "飯店櫃台",
+  "wrap_title": "今天這段飯店退房",
+  "wrap_friend": "你剛剛說要退房，也聽懂房卡和收據。離開飯店時，能說退房和房號，就能完成基本流程。",
+  "language": "ko",
+  "ui_language": "zh_tw",
+  "source_status": "pilot_authored_ai_review_pending",
+  "review_state": "draft",
+  "production_mode_default": {
+    "required": [
+      "choice"
+    ],
+    "optional_visible": [
+      "speaking"
+    ],
+    "optional_hidden": [
+      "typing"
+    ]
+  },
+  "support_text": "你要離開飯店，到櫃台辦退房。",
+  "roles": {
+    "npc": {
+      "label": "職員"
+    },
+    "learner": {
+      "label": "你"
+    }
+  },
+  "opening_messages": [
+    {
+      "speaker": "learner",
+      "surface": "저기요.",
+      "speak": "저기요.",
+      "translation": "不好意思。"
+    }
+  ],
+  "turns": [
+    {
+      "turn_id": "t1",
+      "speaker": "npc",
+      "act": "greeting",
+      "act_slots": {
+        "topic": "help",
+        "keyword": "도와드릴까요",
+        "gloss": "需要幫忙嗎"
+      },
+      "learning_role": "listen_only",
+      "surface": "네, 무엇을 도와드릴까요?",
+      "speak": "네, 무엇을 도와드릴까요?",
+      "translation": "您好，需要幫忙嗎？",
+      "friend": {
+        "hint": "退房可以說 체크아웃하고 싶어요。"
+      },
+      "inline_explain": {
+        "pattern_id": "ko.hotel.checkout.want.v1",
+        "formula_ref": null,
+        "title": "動作 + 하고 싶어요",
+        "explain": "하고 싶어요 是想做某事。체크아웃하고 싶어요 是想退房。",
+        "items": [
+          {
+            "surface": "체크아웃하고 싶어요.",
+            "translation": "我想退房。",
+            "speak": "체크아웃하고 싶어요."
+          },
+          {
+            "surface": "예약하고 싶어요.",
+            "translation": "我想預約。",
+            "speak": "예약하고 싶어요."
+          }
+        ]
+      },
+      "reply_set": {
+        "correct": "r1a",
+        "choices": [
+          {
+            "id": "r1a",
+            "surface": "체크아웃하고 싶어요.",
+            "translation": "我想退房。",
+            "speak": "체크아웃하고 싶어요.",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r1b",
+            "surface": "와이파이 비밀번호가 뭐예요?",
+            "translation": "Wi-Fi 密碼是什麼？",
+            "speak": "와이파이 비밀번호가 뭐예요?",
+            "contrast_type": "wrong_scenario_request",
+            "feedback": "這句是在問飯店資訊。現在你要退房。"
+          },
+          {
+            "id": "r1c",
+            "surface": "비빔밥 하나 주세요.",
+            "translation": "請給我一份拌飯。",
+            "speak": "비빔밥 하나 주세요.",
+            "contrast_type": "wrong_scenario_request",
+            "feedback": "這句是在餐廳點餐。現在是在飯店退房。"
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t2",
+      "speaker": "npc",
+      "act": "info_request",
+      "act_slots": {
+        "topic": "room number",
+        "keyword": "객실 번호",
+        "gloss": "房號"
+      },
+      "learning_role": "listen_only",
+      "surface": "객실 번호가 어떻게 되세요?",
+      "speak": "객실 번호가 어떻게 되세요?",
+      "translation": "請問房號是多少？",
+      "friend": {
+        "hint": "객실 번호 是房號。可以短句回答 302호예요。"
+      },
+      "reply_set": {
+        "correct": "r2a",
+        "choices": [
+          {
+            "id": "r2a",
+            "surface": "302호예요.",
+            "translation": "是 302 號房。",
+            "speak": "삼백이호예요.",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r2b",
+            "surface": "3번 출구요?",
+            "translation": "3 號出口嗎？",
+            "speak": "삼번 출구요?",
+            "contrast_type": "wrong_entity",
+            "feedback": "3번 출구 是出口。現在職員問的是房號。"
+          },
+          {
+            "id": "r2c",
+            "surface": "서울역 표 한 장 주세요.",
+            "translation": "請給我一張去首爾站的票。",
+            "speak": "서울역 표 한 장 주세요.",
+            "contrast_type": "wrong_scenario_request",
+            "feedback": "這句是在買車票。現在是在飯店退房。"
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t3",
+      "speaker": "npc",
+      "act": "request",
+      "act_slots": {
+        "topic": "key card",
+        "keyword": "객실 카드",
+        "gloss": "房卡"
+      },
+      "learning_role": "listen_only",
+      "surface": "객실 카드를 주세요.",
+      "speak": "객실 카드를 주세요.",
+      "translation": "請給我房卡。",
+      "friend": {
+        "hint": "他要房卡。給出東西時可以說 여기 있어요。"
+      },
+      "reply_set": {
+        "correct": "r3a",
+        "choices": [
+          {
+            "id": "r3a",
+            "surface": "여기 있어요.",
+            "translation": "在這裡。",
+            "speak": "여기 있어요."
+          },
+          {
+            "id": "r3b",
+            "surface": "302호예요.",
+            "translation": "是 302 號房。",
+            "speak": "삼백이호예요.",
+            "contrast_type": "repeated_prior_answer",
+            "feedback": "房號已經說了。現在職員要房卡。"
+          },
+          {
+            "id": "r3c",
+            "surface": "아니요, 괜찮아요.",
+            "translation": "不用了，沒關係。",
+            "speak": "아니요, 괜찮아요.",
+            "contrast_type": "wrong_act_refusal",
+            "feedback": "這樣像拒絕退房流程。職員要房卡時，用 여기 있어요。"
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t4",
+      "speaker": "npc",
+      "act": "handover",
+      "act_slots": {
+        "topic": "receipt",
+        "keyword": "영수증",
+        "gloss": "收據"
+      },
+      "learning_role": "listen_only",
+      "surface": "체크아웃 되었습니다. 영수증 여기 있습니다.",
+      "speak": "체크아웃 되었습니다. 영수증 여기 있습니다.",
+      "translation": "退房完成了。收據在這裡。",
+      "friend": {
+        "hint": "退房完成了，收尾道謝。"
+      },
+      "reply_set": {
+        "correct": "r4a",
+        "choices": [
+          {
+            "id": "r4a",
+            "surface": "감사합니다.",
+            "translation": "謝謝。",
+            "speak": "감사합니다."
+          },
+          {
+            "id": "r4b",
+            "surface": "체크아웃하고 싶어요.",
+            "translation": "我想退房。",
+            "speak": "체크아웃하고 싶어요.",
+            "contrast_type": "repeated_prior_answer",
+            "feedback": "退房已經完成了。現在可以道謝。"
+          },
+          {
+            "id": "r4c",
+            "surface": "영수증 드릴까요?",
+            "translation": "需要收據嗎？",
+            "speak": "영수증 드릴까요?",
+            "contrast_type": "wrong_speaker_role",
+            "feedback": "這是職員會問你的句子，不是你要回的句子。"
+          }
+        ]
+      },
+      "closing": {
+        "act": "closing",
+        "learning_role": "context_support",
+        "surface": "안녕히 가세요.",
+        "speak": "안녕히 가세요.",
+        "translation": "請慢走。"
+      }
+    }
+  ],
+  "formula_moments": [
+    {
+      "after_turn": "t1",
+      "pattern_id": "ko.hotel.checkout.want.v1"
+    }
+  ],
+  "notes": {
+    "practice_plan": "Primary production target is 체크아웃하고 싶어요. Optional support is 302호예요. Card handover and thanks are choice-only practiced.",
+    "review_policy": "AI review pass 1 recorded in hotel_checkout.review.ai_20260613.md; second independent AI review and native review remain pending.",
+    "canonical_policy": "Pilot-authored derived fixture only; do not write back to canonical schema."
+  }
+}

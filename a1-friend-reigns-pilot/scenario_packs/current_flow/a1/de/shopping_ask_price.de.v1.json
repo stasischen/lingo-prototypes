@@ -1,0 +1,236 @@
+{
+  "schema_version": "scenario_pack.v1",
+  "scenario_id": "shopping_ask_price",
+  "brief_id": "ml2_a1_009_shopping_ask_price",
+  "source_neutral_brief": "release-aggregator/docs/tasks/A1_MULTILINGUAL_KO_B1_PARALLEL_ORCHESTRATION/work_products/ml0/ML2_NEUTRAL_ADAPTATION_BRIEFS_20260614.md#brief-ml2-a1-009-shopping-ask-price",
+  "blueprint_ledger": "release-aggregator/docs/tasks/A1_MULTILINGUAL_KO_B1_PARALLEL_ORCHESTRATION/work_products/ml0/ML2_BLUEPRINT_LEDGER_20260614.md",
+  "repo": "content-de",
+  "staging_path": "content/core/content_assets/scenario_packs/current_flow/shopping_ask_price.de.v1.json",
+  "title": "Nach dem Preis fragen",
+  "setting_label": "Kleiner Laden",
+  "wrap_title": "Preis verstanden",
+  "wrap_friend": "你用 Sie 服務語氣詢問商品價格，聽懂價格後簡短回應。",
+  "language": "de",
+  "ui_language": "zh_tw",
+  "source_status": "candidate_runtime_verified",
+  "review_state": "draft",
+  "review_status_framework_state": "candidate_runtime_verified",
+  "native_review_state": "native_pending",
+  "production_mode_default": {
+    "required": [
+      "choice"
+    ],
+    "optional_visible": [
+      "speaking"
+    ],
+    "optional_hidden": [
+      "typing"
+    ]
+  },
+  "support_text": "你在德語區的小店。用一致的 Sie 服務語氣問這個東西多少錢，並回應價格。",
+  "roles": {
+    "npc": {
+      "label": "Verkäuferin"
+    },
+    "learner": {
+      "label": "Kunde"
+    }
+  },
+  "turns": [
+    {
+      "turn_id": "t1",
+      "speaker": "npc",
+      "act": "shop_greeting",
+      "act_slots": {
+        "topic": "attention",
+        "keyword": "helfen",
+        "gloss": "help"
+      },
+      "learning_role": "listen_only",
+      "surface": "Guten Tag. Kann ich Ihnen helfen?",
+      "speak": "Guten Tag. Kann ich Ihnen helfen?",
+      "translation": "您好。我可以幫您嗎？",
+      "friend": {
+        "hint": "服務情境用 Ihnen。問價格可說 Was kostet das?"
+      },
+      "reply_set": {
+        "correct": "r1a",
+        "choices": [
+          {
+            "id": "r1a",
+            "surface": "Entschuldigung, was kostet das?",
+            "translation": "不好意思，這個多少錢？",
+            "speak": "Entschuldigung, was kostet das?",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r1b",
+            "surface": "Wo ist der Bahnhof?",
+            "translation": "火車站在哪裡？",
+            "speak": "Wo ist der Bahnhof?",
+            "contrast_type": "directions_instead_of_price",
+            "feedback": "這是在問路。現在要在商店問價格。"
+          },
+          {
+            "id": "r1c",
+            "surface": "Einen Kaffee, bitte.",
+            "translation": "一杯咖啡，謝謝。",
+            "speak": "Einen Kaffee, bitte.",
+            "contrast_type": "ordering_food_instead_of_price",
+            "feedback": "這像在咖啡店點飲料，不是在問商品價格。"
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t2",
+      "speaker": "npc",
+      "act": "price_answer",
+      "act_slots": {
+        "topic": "price",
+        "keyword": "acht Euro",
+        "gloss": "eight euros"
+      },
+      "learning_role": "listen_only",
+      "surface": "Das kostet acht Euro.",
+      "speak": "Das kostet acht Euro.",
+      "translation": "這個八歐元。",
+      "friend": {
+        "hint": "要買就用 Ich nehme das。"
+      },
+      "reply_set": {
+        "correct": "r2a",
+        "choices": [
+          {
+            "id": "r2a",
+            "surface": "Gut, ich nehme das.",
+            "translation": "好的，我買這個。",
+            "speak": "Gut, ich nehme das.",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r2b",
+            "surface": "Ich zahle mit Karte?",
+            "translation": "我用卡付款嗎？",
+            "speak": "Ich zahle mit Karte?",
+            "contrast_type": "payment_method_too_early",
+            "feedback": "這直接跳到付款方式。先回應是否要買。"
+          },
+          {
+            "id": "r2c",
+            "surface": "Ich nehme drei große.",
+            "translation": "我要三個大的。",
+            "speak": "Ich nehme drei große.",
+            "contrast_type": "wrong_quantity_answer",
+            "feedback": "這加入數量和尺寸，超出這個一件商品的 A1 場景。"
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t3",
+      "speaker": "npc",
+      "act": "confirm_purchase",
+      "act_slots": {
+        "topic": "confirm_item",
+        "keyword": "das hier",
+        "gloss": "this one"
+      },
+      "learning_role": "listen_only",
+      "surface": "Das hier, richtig?",
+      "speak": "Das hier, richtig?",
+      "translation": "這個，對嗎？",
+      "friend": {
+        "hint": "商品正確時簡短確認。"
+      },
+      "reply_set": {
+        "correct": "r3a",
+        "choices": [
+          {
+            "id": "r3a",
+            "surface": "Ja, danke.",
+            "translation": "是的，謝謝。",
+            "speak": "Ja, danke."
+          },
+          {
+            "id": "r3b",
+            "surface": "Nein, wo ist die Toilette?",
+            "translation": "不是，洗手間在哪裡？",
+            "speak": "Nein, wo ist die Toilette?",
+            "contrast_type": "restroom_request",
+            "feedback": "這換成問洗手間。店員是在確認商品。"
+          },
+          {
+            "id": "r3c",
+            "surface": "Das ist zu teuer, geben Sie mir bitte einen großen Rabatt.",
+            "translation": "太貴了，請給我很大的折扣。",
+            "speak": "Das ist zu teuer, geben Sie mir bitte einen großen Rabatt.",
+            "contrast_type": "overlong_bargaining",
+            "feedback": "這是複雜議價，不適合這個 A1 價格場景。"
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t4",
+      "speaker": "npc",
+      "act": "service_close",
+      "act_slots": {
+        "topic": "close",
+        "keyword": "danke",
+        "gloss": "thanks"
+      },
+      "learning_role": "listen_only",
+      "surface": "Sehr gern. Danke.",
+      "speak": "Sehr gern. Danke.",
+      "translation": "好的，謝謝。",
+      "friend": {
+        "hint": "最後道謝即可。"
+      },
+      "reply_set": {
+        "correct": "r4a",
+        "choices": [
+          {
+            "id": "r4a",
+            "surface": "Danke.",
+            "translation": "謝謝。",
+            "speak": "Danke."
+          },
+          {
+            "id": "r4b",
+            "surface": "Die Rechnung, bitte.",
+            "translation": "請結帳。",
+            "speak": "Die Rechnung, bitte.",
+            "contrast_type": "restaurant_bill_request",
+            "feedback": "這是餐廳結帳說法，不是商店價格場景的收尾。"
+          },
+          {
+            "id": "r4c",
+            "surface": "Wann treffen wir uns?",
+            "translation": "我們什麼時候見面？",
+            "speak": "Wann treffen wir uns?",
+            "contrast_type": "friend_meeting_request",
+            "feedback": "這是在約朋友，不是在商店完成購買。"
+          }
+        ]
+      },
+      "closing": true
+    }
+  ],
+  "formula_moments": [
+    {
+      "after_turn": "t1",
+      "pattern_id": "de.shopping.was_kostet_das.v1"
+    },
+    {
+      "after_turn": "t2",
+      "pattern_id": "de.shopping.ich_nehme_das.v1"
+    }
+  ],
+  "notes": {
+    "authoring_source": "Authored from ML-2 neutral brief ml2_a1_009_shopping_ask_price; KO and other target-language packs were not used as translation sources.",
+    "review_policy": "AI-authored candidate only; keep review_state=draft, review_status_framework_state=candidate_needs_review, native_review_state=native_pending until tracked review evidence exists.",
+    "canonical_policy": "Staging current-flow candidate only. Do not add to manifests, production exports, schema, runtime, frontend, review artifacts, or legacy content.",
+    "german_voice_note": "Uses consistent Sie/Ihnen service register and common retail formulas; native review should check Verkäuferin/Kunde label assumptions."
+  }
+}

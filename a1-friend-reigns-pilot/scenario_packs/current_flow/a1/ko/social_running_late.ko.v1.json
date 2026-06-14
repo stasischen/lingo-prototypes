@@ -1,0 +1,239 @@
+{
+  "schema_version": "scenario_pack.v1",
+  "scenario_id": "social_running_late",
+  "title": "快遲到通知情境",
+  "setting_label": "和朋友傳訊息",
+  "wrap_title": "今天這段快遲到",
+  "wrap_friend": "你剛剛說自己會晚一點，也確認朋友會等。臨時晚到時，能先說不好意思和幾分鐘，就能讓對方安心。",
+  "language": "ko",
+  "ui_language": "zh_tw",
+  "source_status": "pilot_authored_ai_review_pending",
+  "review_state": "draft",
+  "production_mode_default": {
+    "required": [
+      "choice"
+    ],
+    "optional_visible": [
+      "speaking"
+    ],
+    "optional_hidden": [
+      "typing"
+    ]
+  },
+  "support_text": "你要和朋友見面，但路上慢了一點。先告訴朋友你會晚到。",
+  "roles": {
+    "npc": {
+      "label": "朋友"
+    },
+    "learner": {
+      "label": "你"
+    }
+  },
+  "turns": [
+    {
+      "turn_id": "t1",
+      "speaker": "npc",
+      "act": "info_request",
+      "act_slots": {
+        "topic": "arrival status",
+        "keyword": "어디",
+        "gloss": "哪裡"
+      },
+      "learning_role": "listen_only",
+      "surface": "지금 어디예요?",
+      "speak": "지금 어디예요?",
+      "translation": "你現在在哪裡？",
+      "friend": {
+        "hint": "지금 是現在。快遲到時，可以先說 죄송해요, 조금 늦어요。"
+      },
+      "inline_explain": {
+        "pattern_id": "ko.social.late.minutes.v1",
+        "formula_ref": null,
+        "title": "조금 늦어요 / 숫자 + 분",
+        "explain": "조금 늦어요 是會晚一點。분 是分鐘。",
+        "items": [
+          {
+            "surface": "조금 늦어요.",
+            "translation": "會晚一點。",
+            "speak": "조금 늦어요."
+          },
+          {
+            "surface": "10분 늦어요.",
+            "translation": "會晚 10 分鐘。",
+            "speak": "십 분 늦어요."
+          }
+        ]
+      },
+      "reply_set": {
+        "correct": "r1a",
+        "choices": [
+          {
+            "id": "r1a",
+            "surface": "죄송해요, 조금 늦어요.",
+            "translation": "不好意思，我會晚一點。",
+            "speak": "죄송해요, 조금 늦어요.",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r1b",
+            "surface": "비빔밥 하나 주세요.",
+            "translation": "請給我一份拌飯。",
+            "speak": "비빔밥 하나 주세요.",
+            "contrast_type": "wrong_scenario_request",
+            "feedback": "這句是在餐廳點餐。現在是通知朋友會晚到。"
+          },
+          {
+            "id": "r1c",
+            "surface": "카드로 할게요.",
+            "translation": "我用卡。",
+            "speak": "카드로 할게요.",
+            "contrast_type": "wrong_act_payment",
+            "feedback": "這句是付款。朋友現在問你在哪裡。"
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t2",
+      "speaker": "npc",
+      "act": "info_request",
+      "act_slots": {
+        "topic": "delay length",
+        "keyword": "몇 분",
+        "gloss": "幾分鐘"
+      },
+      "learning_role": "listen_only",
+      "surface": "몇 분 정도 늦어요?",
+      "speak": "몇 분 정도 늦어요?",
+      "translation": "大概晚幾分鐘？",
+      "friend": {
+        "hint": "몇 분 是幾分鐘。10분 정도요 可以說大概 10 分鐘。"
+      },
+      "reply_set": {
+        "correct": "r2a",
+        "choices": [
+          {
+            "id": "r2a",
+            "surface": "10분 정도요.",
+            "translation": "大概 10 分鐘。",
+            "speak": "십 분 정도요.",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r2b",
+            "surface": "3번 출구요?",
+            "translation": "3 號出口嗎？",
+            "speak": "삼번 출구요?",
+            "contrast_type": "wrong_entity",
+            "feedback": "3번 출구 是出口號碼。朋友問的是幾分鐘。"
+          },
+          {
+            "id": "r2c",
+            "surface": "아니요, 괜찮아요.",
+            "translation": "不用了，沒關係。",
+            "speak": "아니요, 괜찮아요.",
+            "contrast_type": "wrong_act_refusal",
+            "feedback": "這樣像拒絕幫忙。現在要回答晚多久。"
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t3",
+      "speaker": "npc",
+      "act": "info_response",
+      "act_slots": {
+        "topic": "wait",
+        "keyword": "기다릴게요",
+        "gloss": "我會等"
+      },
+      "learning_role": "listen_only",
+      "surface": "괜찮아요. 기다릴게요.",
+      "speak": "괜찮아요. 기다릴게요.",
+      "translation": "沒關係。我等你。",
+      "friend": {
+        "hint": "기다릴게요 是我會等。聽懂後可以道謝。"
+      },
+      "reply_set": {
+        "correct": "r3a",
+        "choices": [
+          {
+            "id": "r3a",
+            "surface": "고마워요.",
+            "translation": "謝謝你。",
+            "speak": "고마워요."
+          },
+          {
+            "id": "r3b",
+            "surface": "죄송해요, 조금 늦어요.",
+            "translation": "不好意思，我會晚一點。",
+            "speak": "죄송해요, 조금 늦어요.",
+            "contrast_type": "repeated_prior_answer",
+            "feedback": "會晚到已經說過了。朋友說會等你，這裡可以道謝。"
+          },
+          {
+            "id": "r3c",
+            "surface": "영수증 드릴까요?",
+            "translation": "需要收據嗎？",
+            "speak": "영수증 드릴까요?",
+            "contrast_type": "wrong_speaker_role",
+            "feedback": "這是店員會問的句子，不是朋友聊天的回覆。"
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t4",
+      "speaker": "npc",
+      "act": "closing",
+      "act_slots": {
+        "topic": "see soon"
+      },
+      "learning_role": "listen_only",
+      "surface": "천천히 와요. 이따 봐요.",
+      "speak": "천천히 와요. 이따 봐요.",
+      "translation": "慢慢來。等一下見。",
+      "friend": {
+        "hint": "이따 봐요 是等一下見。最後簡單回覆就好。"
+      },
+      "reply_set": {
+        "correct": "r4a",
+        "choices": [
+          {
+            "id": "r4a",
+            "surface": "네, 이따 봐요.",
+            "translation": "好，等一下見。",
+            "speak": "네, 이따 봐요."
+          },
+          {
+            "id": "r4b",
+            "surface": "10분 정도요.",
+            "translation": "大概 10 分鐘。",
+            "speak": "십 분 정도요.",
+            "contrast_type": "repeated_prior_answer",
+            "feedback": "時間已經說過了。現在是收尾。"
+          },
+          {
+            "id": "r4c",
+            "surface": "감사합니다.",
+            "translation": "謝謝。",
+            "speak": "감사합니다.",
+            "contrast_type": "over_formal_closing",
+            "feedback": "朋友之間可以說 고마워요 或 이따 봐요，比 감사합니다 自然。"
+          }
+        ]
+      }
+    }
+  ],
+  "formula_moments": [
+    {
+      "after_turn": "t1",
+      "pattern_id": "ko.social.late.minutes.v1"
+    }
+  ],
+  "notes": {
+    "practice_plan": "Primary production target is 죄송해요, 조금 늦어요. Optional support is 10분 정도요. Thanks and closing are choice-only practiced.",
+    "review_policy": "AI review pass 1 recorded in social_running_late.review.ai_20260613.md; second independent AI review and native review remain pending.",
+    "canonical_policy": "Pilot-authored derived fixture only; do not write back to canonical schema."
+  }
+}

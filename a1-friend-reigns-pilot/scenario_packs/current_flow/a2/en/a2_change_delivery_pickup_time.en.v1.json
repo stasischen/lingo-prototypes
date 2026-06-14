@@ -1,0 +1,257 @@
+{
+  "schema_version": "scenario_pack.v1",
+  "scenario_id": "a2_change_delivery_pickup_time",
+  "title": "Change a Pickup Time",
+  "setting_label": "low-risk help message",
+  "wrap_title": "Change a Pickup Time",
+  "wrap_friend": "Good. You handled a low-risk digital or document-help task with only the needed detail.",
+  "language": "en",
+  "ui_language": "zh-Hant",
+  "cefr_level": "A2",
+  "source_status": "candidate_runtime_verified",
+  "review_state": "ai_reviewed",
+  "review_status_framework_state": "candidate_runtime_verified",
+  "native_review_state": "native_pending",
+  "scenario": {
+    "domain": "digital_documents_low_risk_help",
+    "review_slice": "digital_documents",
+    "interaction": "low_risk_confirmation_or_help",
+    "source_brief": "A2_DIGITAL_DOCUMENTS_NEUTRAL_ADAPTATION_BRIEFS_20260614",
+    "blueprint_source": "language_neutral_adaptation_brief",
+    "ko_pack_role": "mature_scenario_blueprint_not_translation_source"
+  },
+  "learner_goal": "Handle a low-risk digital or simple document-help task in short A2 turns.",
+  "target_functions": [
+    "confirm_booking_or_message",
+    "request_simple_change",
+    "ask_simple_form_help",
+    "follow_up_low_risk_item"
+  ],
+  "register_notes": "English A2 low-risk digital/documents register: clear everyday help/service language, no passwords, payment, ID, medical, legal, police, or immigration framing.",
+  "production_mode_default": {
+    "required": [
+      "choice"
+    ],
+    "optional_visible": [
+      "speaking"
+    ],
+    "optional_hidden": [
+      "typing"
+    ]
+  },
+  "support_text": "Keep the task low-risk. Do not give passwords, payment details, sensitive ID, or legal/medical information.",
+  "roles": {
+    "npc": {
+      "label": "staff"
+    },
+    "learner": {
+      "label": "你"
+    }
+  },
+  "turns": [
+    {
+      "turn_id": "t1",
+      "speaker": "npc",
+      "act": "start",
+      "act_slots": {
+        "topic": "a2_change_delivery_pickup_time",
+        "keyword": "1",
+        "gloss": "A2 digital/documents"
+      },
+      "learning_role": "listen_only",
+      "surface": "Your pickup is at 4 p.m. today.",
+      "speak": "Your pickup is at 4 p.m. today.",
+      "translation": "今天四點取貨。",
+      "friend": {
+        "hint": "Check only the needed low-risk detail."
+      },
+      "reply_set": {
+        "correct": "r1a",
+        "choices": [
+          {
+            "id": "r1a",
+            "surface": "Can I change the pickup time?",
+            "translation": "可以改取貨時間嗎？",
+            "speak": "Can I change the pickup time?",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r1b",
+            "surface": "I will tell you my password.",
+            "translation": "我會告訴你密碼。",
+            "speak": "I will tell you my password.",
+            "contrast_type": "forbidden_sensitive",
+            "feedback": "Sensitive password information is outside this A2 task."
+          },
+          {
+            "id": "r1c",
+            "surface": "Please refund me.",
+            "translation": "請退款。",
+            "speak": "Please refund me.",
+            "contrast_type": "wrong_dispute_domain",
+            "feedback": "Refunds or disputes are outside this task."
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t2",
+      "speaker": "npc",
+      "act": "clarify",
+      "act_slots": {
+        "topic": "a2_change_delivery_pickup_time",
+        "keyword": "2",
+        "gloss": "A2 digital/documents"
+      },
+      "learning_role": "listen_only",
+      "surface": "Yes, 5 p.m. is available.",
+      "speak": "Yes, 5 p.m. is available.",
+      "translation": "可以，五點可以。",
+      "friend": {
+        "hint": "Check only the needed low-risk detail."
+      },
+      "reply_set": {
+        "correct": "r2a",
+        "choices": [
+          {
+            "id": "r2a",
+            "surface": "Then 5 p.m., please.",
+            "translation": "那請改成五點。",
+            "speak": "Then 5 p.m., please.",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r2b",
+            "surface": "I will tell you my password.",
+            "translation": "我會告訴你密碼。",
+            "speak": "I will tell you my password.",
+            "contrast_type": "forbidden_sensitive",
+            "feedback": "Sensitive password information is outside this A2 task."
+          },
+          {
+            "id": "r2c",
+            "surface": "Please refund me.",
+            "translation": "請退款。",
+            "speak": "Please refund me.",
+            "contrast_type": "wrong_dispute_domain",
+            "feedback": "Refunds or disputes are outside this task."
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t3",
+      "speaker": "npc",
+      "act": "confirm_detail",
+      "act_slots": {
+        "topic": "a2_change_delivery_pickup_time",
+        "keyword": "3",
+        "gloss": "A2 digital/documents"
+      },
+      "learning_role": "listen_only",
+      "surface": "So, change it to 5 p.m.?",
+      "speak": "So, change it to 5 p.m.?",
+      "translation": "改成五點嗎？",
+      "friend": {
+        "hint": "Check only the needed low-risk detail."
+      },
+      "reply_set": {
+        "correct": "r3a",
+        "choices": [
+          {
+            "id": "r3a",
+            "surface": "Yes, 5 p.m. works.",
+            "translation": "對，五點可以。",
+            "speak": "Yes, 5 p.m. works.",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r3b",
+            "surface": "I will tell you my password.",
+            "translation": "我會告訴你密碼。",
+            "speak": "I will tell you my password.",
+            "contrast_type": "forbidden_sensitive",
+            "feedback": "Sensitive password information is outside this A2 task."
+          },
+          {
+            "id": "r3c",
+            "surface": "Please refund me.",
+            "translation": "請退款。",
+            "speak": "Please refund me.",
+            "contrast_type": "wrong_dispute_domain",
+            "feedback": "Refunds or disputes are outside this task."
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t4",
+      "speaker": "npc",
+      "act": "close",
+      "act_slots": {
+        "topic": "a2_change_delivery_pickup_time",
+        "keyword": "4",
+        "gloss": "A2 digital/documents"
+      },
+      "learning_role": "listen_only",
+      "surface": "Okay, I will change it to 5 p.m.",
+      "speak": "Okay, I will change it to 5 p.m.",
+      "translation": "好的，我會改成五點。",
+      "friend": {
+        "hint": "Check only the needed low-risk detail."
+      },
+      "reply_set": {
+        "correct": "r4a",
+        "choices": [
+          {
+            "id": "r4a",
+            "surface": "Thanks. I will come at 5 p.m.",
+            "translation": "謝謝，我五點會去。",
+            "speak": "Thanks. I will come at 5 p.m.",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r4b",
+            "surface": "I will tell you my password.",
+            "translation": "我會告訴你密碼。",
+            "speak": "I will tell you my password.",
+            "contrast_type": "forbidden_sensitive",
+            "feedback": "Sensitive password information is outside this A2 task."
+          },
+          {
+            "id": "r4c",
+            "surface": "Please refund me.",
+            "translation": "請退款。",
+            "speak": "Please refund me.",
+            "contrast_type": "wrong_dispute_domain",
+            "feedback": "Refunds or disputes are outside this task."
+          }
+        ]
+      }
+    }
+  ],
+  "choice_sets": [
+    "t1.reply_set",
+    "t2.reply_set",
+    "t3.reply_set",
+    "t4.reply_set"
+  ],
+  "feedback": "Keep the task low-risk. Do not give passwords, payment details, sensitive ID, or legal/medical information.",
+  "tts_segments": [
+    "Can I change the pickup time?",
+    "Then 5 p.m., please.",
+    "Yes, 5 p.m. works.",
+    "Thanks. I will come at 5 p.m."
+  ],
+  "formula_moments": [
+    {
+      "after_turn": "t2",
+      "pattern_id": "en.a2.digital.change_delivery_pickup_time.v1"
+    }
+  ],
+  "runtime_notes": "Fresh A2 digital/documents candidate. Requires full-walk runtime before closeout evidence is recorded.",
+  "notes": {
+    "authoring_policy": "Fresh-authored from A2 digital/documents neutral adaptation brief. KO surface text was not copied or translated.",
+    "a2_boundary": "Low-risk confirmation/help only; avoids sensitive identity, payment, legal, medical, police, and immigration workflows."
+  }
+}

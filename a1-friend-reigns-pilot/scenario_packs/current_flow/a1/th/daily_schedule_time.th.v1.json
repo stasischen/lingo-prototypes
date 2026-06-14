@@ -1,0 +1,264 @@
+{
+  "schema_version": "scenario_pack.v1",
+  "scenario_id": "daily_schedule_time",
+  "brief_id": "ml0_a1_005_daily_schedule_time",
+  "source_neutral_brief": "release-aggregator/docs/tasks/A1_MULTILINGUAL_KO_B1_PARALLEL_ORCHESTRATION/work_products/ml0/ML0_NEUTRAL_ADAPTATION_BRIEFS_20260613.md#brief-ml0-a1-005-scheduling-a-time",
+  "blueprint_ledger": "release-aggregator/docs/tasks/A1_MULTILINGUAL_KO_B1_PARALLEL_ORCHESTRATION/work_products/ml0/ML0_BLUEPRINT_LEDGER_20260613.md",
+  "repo": "content-th",
+  "staging_path": "content/core/content_assets/scenario_packs/current_flow/daily_schedule_time.th.v1.json",
+  "title": "นัดเวลาเจอกัน",
+  "setting_label": "นัดกับเพื่อน",
+  "wrap_title": "นัดเวลาได้แล้ว",
+  "wrap_friend": "คุณเสนอเวลา ตอบเรื่องสถานที่ และปิดบทสนทนาแบบเป็นกันเองได้ด้วยประโยคสั้น ๆ",
+  "language": "th",
+  "ui_language": "zh_tw",
+  "source_status": "candidate_runtime_verified",
+  "review_state": "draft",
+  "review_status_framework_state": "candidate_runtime_verified",
+  "native_review_state": "native_pending",
+  "production_mode_default": {
+    "required": [
+      "choice"
+    ],
+    "optional_visible": [
+      "speaking"
+    ],
+    "optional_hidden": [
+      "typing"
+    ]
+  },
+  "support_text": "你在和泰國朋友約時間。聽對方問什麼，選一句自然接得上的泰文。",
+  "roles": {
+    "npc": {
+      "label": "เพื่อน"
+    },
+    "learner": {
+      "label": "คุณ"
+    }
+  },
+  "turns": [
+    {
+      "turn_id": "t1",
+      "speaker": "npc",
+      "act": "ask_time",
+      "act_slots": {
+        "topic": "นัดเวลา",
+        "keyword": "กี่โมง",
+        "gloss": "幾點"
+      },
+      "learning_role": "listen_only",
+      "surface": "พรุ่งนี้เจอกันกี่โมงดี",
+      "speak": "พรุ่งนี้เจอกันกี่โมงดี",
+      "translation": "明天幾點見好呢？",
+      "friend": {
+        "hint": "對方在問時間。可以用「บ่ายสามโมงดีไหม」提議下午三點。"
+      },
+      "inline_explain": {
+        "pattern_id": "th.schedule.time_suggestion.v1",
+        "formula_ref": null,
+        "title": "กี่โมง / บ่ายสามโมง",
+        "explain": "「กี่โมง」是幾點。「บ่ายสามโมง」是下午三點。",
+        "items": [
+          {
+            "surface": "กี่โมง",
+            "translation": "幾點",
+            "speak": "กี่โมง"
+          },
+          {
+            "surface": "บ่ายสามโมง",
+            "translation": "下午三點",
+            "speak": "บ่ายสามโมง"
+          }
+        ]
+      },
+      "reply_set": {
+        "correct": "r1a",
+        "choices": [
+          {
+            "id": "r1a",
+            "surface": "บ่ายสามโมงดีไหม",
+            "translation": "下午三點好嗎？",
+            "speak": "บ่ายสามโมงดีไหม",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r1b",
+            "surface": "ที่สถานีดีไหม",
+            "translation": "在車站好嗎？",
+            "speak": "ที่สถานีดีไหม",
+            "contrast_type": "location_answer_when_time_requested",
+            "feedback": "這是在說地點。對方現在問的是幾點。"
+          },
+          {
+            "id": "r1c",
+            "surface": "วันนี้ไม่ได้",
+            "translation": "今天不行。",
+            "speak": "วันนี้ไม่ได้",
+            "contrast_type": "wrong_act_refusal",
+            "feedback": "這像是在拒絕。這裡要先回答或提議時間。"
+          },
+          {
+            "id": "r1d",
+            "surface": "พรุ่งนี้ได้",
+            "translation": "明天可以。",
+            "speak": "พรุ่งนี้ได้",
+            "contrast_type": "wrong_day_time_answer",
+            "feedback": "日期已經知道是明天。現在要說幾點。"
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t2",
+      "speaker": "npc",
+      "act": "confirm_place",
+      "act_slots": {
+        "topic": "ยืนยันสถานที่",
+        "keyword": "สถานี",
+        "gloss": "車站"
+      },
+      "learning_role": "listen_only",
+      "surface": "บ่ายสามได้ เจอที่สถานีนะ",
+      "speak": "บ่ายสามได้ เจอที่สถานีนะ",
+      "translation": "下午三點可以，在車站見喔。",
+      "friend": {
+        "hint": "時間確定了，對方又說地點。可以簡短確認。"
+      },
+      "reply_set": {
+        "correct": "r2a",
+        "choices": [
+          {
+            "id": "r2a",
+            "surface": "ได้ เจอกันที่สถานี",
+            "translation": "可以，在車站見。",
+            "speak": "ได้ เจอกันที่สถานี"
+          },
+          {
+            "id": "r2b",
+            "surface": "บ่ายสามโมงดีไหม",
+            "translation": "下午三點好嗎？",
+            "speak": "บ่ายสามโมงดีไหม",
+            "contrast_type": "repeated_prior_answer",
+            "feedback": "下午三點已經確定了。現在是在確認地點。"
+          },
+          {
+            "id": "r2c",
+            "surface": "บัตรค่ะ",
+            "translation": "卡片，謝謝。",
+            "speak": "บัตรค่ะ",
+            "contrast_type": "wrong_scenario_payment",
+            "feedback": "這是付款場景的回答。現在是在約見面時間和地點。"
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t3",
+      "speaker": "npc",
+      "act": "plan_confirmation",
+      "act_slots": {
+        "topic": "ยืนยันนัด",
+        "keyword": "พรุ่งนี้บ่ายสาม",
+        "gloss": "明天下午三點"
+      },
+      "learning_role": "listen_only",
+      "surface": "โอเค เจอกันพรุ่งนี้บ่ายสาม",
+      "speak": "โอเค เจอกันพรุ่งนี้บ่ายสาม",
+      "translation": "好，明天下午三點見。",
+      "friend": {
+        "hint": "對方在總結約定。用一句「แล้วเจอกัน」收尾很自然。"
+      },
+      "reply_set": {
+        "correct": "r3a",
+        "choices": [
+          {
+            "id": "r3a",
+            "surface": "โอเค แล้วเจอกัน",
+            "translation": "好，到時見。",
+            "speak": "โอเค แล้วเจอกัน",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r3b",
+            "surface": "ที่สถานีดีไหม",
+            "translation": "在車站好嗎？",
+            "speak": "ที่สถานีดีไหม",
+            "contrast_type": "repeated_prior_answer",
+            "feedback": "地點已經確認了。現在用一句到時見收尾就好。"
+          },
+          {
+            "id": "r3c",
+            "surface": "ไปไม่ได้",
+            "translation": "不能去。",
+            "speak": "ไปไม่ได้",
+            "contrast_type": "wrong_act_refusal",
+            "feedback": "這樣會突然取消。約定沒問題時，簡短確認即可。"
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t4",
+      "speaker": "npc",
+      "act": "closing",
+      "act_slots": {
+        "topic": "จบบทสนทนา",
+        "keyword": "เจอกัน",
+        "gloss": "見面"
+      },
+      "learning_role": "listen_only",
+      "surface": "เจอกัน",
+      "speak": "เจอกัน",
+      "translation": "到時見。",
+      "friend": {
+        "hint": "對話結束了。照樣回一句到時見就可以。"
+      },
+      "reply_set": {
+        "correct": "r4a",
+        "choices": [
+          {
+            "id": "r4a",
+            "surface": "เจอกัน",
+            "translation": "到時見。",
+            "speak": "เจอกัน"
+          },
+          {
+            "id": "r4b",
+            "surface": "ไม่รับค่ะ",
+            "translation": "不用袋子。",
+            "speak": "ไม่รับค่ะ",
+            "contrast_type": "wrong_scenario_payment",
+            "feedback": "這是付款場景的回答。這裡是朋友之間約好時間後的道別。"
+          },
+          {
+            "id": "r4c",
+            "surface": "พรุ่งนี้ได้",
+            "translation": "明天可以。",
+            "speak": "พรุ่งนี้ได้",
+            "contrast_type": "overly_redundant_answer",
+            "feedback": "日期和時間都確定了。直接說到時見比較自然。"
+          }
+        ]
+      },
+      "closing": {
+        "act": "plan_set",
+        "learning_role": "listen_only",
+        "surface": "นัดเวลาเรียบร้อยแล้ว",
+        "speak": "นัดเวลาเรียบร้อยแล้ว",
+        "translation": "時間約好了。"
+      }
+    }
+  ],
+  "formula_moments": [
+    {
+      "after_turn": "t1",
+      "pattern_id": "th.schedule.time_suggestion.v1"
+    }
+  ],
+  "notes": {
+    "authoring_source": "Authored from ML-0 neutral brief, not Korean surface text.",
+    "review_policy": "AI-authored Thai candidate. Requires AI review, runtime smoke, and tracked native review before any stronger status.",
+    "canonical_policy": "Staging candidate only. Do not write back to manifests, production exports, schemas, or legacy content.",
+    "thai_voice_note": "Uses casual friend speech without slash-form polite-particle alternatives."
+  }
+}

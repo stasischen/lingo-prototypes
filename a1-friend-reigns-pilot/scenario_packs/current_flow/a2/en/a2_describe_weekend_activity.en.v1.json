@@ -1,0 +1,257 @@
+{
+  "schema_version": "scenario_pack.v1",
+  "scenario_id": "a2_describe_weekend_activity",
+  "title": "Describe a Weekend Activity",
+  "setting_label": "Monday chat with a friend",
+  "wrap_title": "Weekend activity described",
+  "wrap_friend": "Good. You described a weekend activity with short A2-level past-time details.",
+  "language": "en",
+  "ui_language": "zh-Hant",
+  "cefr_level": "A2",
+  "source_status": "candidate_runtime_verified",
+  "review_state": "ai_reviewed",
+  "review_status_framework_state": "candidate_runtime_verified",
+  "native_review_state": "native_pending",
+  "scenario": {
+    "domain": "daily_social_coordination",
+    "review_slice": "daily_social",
+    "interaction": "friend_social_coordination",
+    "source_brief": "A2_DAILY_SOCIAL_NEUTRAL_ADAPTATION_BRIEFS_20260614",
+    "blueprint_source": "language_neutral_adaptation_brief",
+    "ko_pack_role": "mature_scenario_blueprint_not_translation_source"
+  },
+  "learner_goal": "Describe one or two simple things you did on the weekend.",
+  "target_functions": [
+    "friend_invitation_or_response",
+    "simple_reason_or_past_event",
+    "two_step_plan_or_confirmation",
+    "close_with_relationship_maintenance"
+  ],
+  "register_notes": "English A2 friend/social register: broad everyday spoken English, warm but not intimate, no stiff service wording or date pressure.",
+  "production_mode_default": {
+    "required": [
+      "choice"
+    ],
+    "optional_visible": [
+      "speaking"
+    ],
+    "optional_hidden": [
+      "typing"
+    ]
+  },
+  "support_text": "Tell a friend what you did on the weekend with one or two short details.",
+  "roles": {
+    "npc": {
+      "label": "friend"
+    },
+    "learner": {
+      "label": "你"
+    }
+  },
+  "turns": [
+    {
+      "turn_id": "t1",
+      "speaker": "npc",
+      "act": "ask_weekend",
+      "act_slots": {
+        "topic": "weekend activity",
+        "keyword": "weekend",
+        "gloss": "A2 daily/social"
+      },
+      "learning_role": "listen_only",
+      "surface": "What did you do on the weekend?",
+      "speak": "What did you do on the weekend?",
+      "translation": "週末做了什麼？",
+      "friend": {
+        "hint": "Say one thing you did."
+      },
+      "reply_set": {
+        "correct": "r1a",
+        "choices": [
+          {
+            "id": "r1a",
+            "surface": "I met a friend and had lunch.",
+            "translation": "我見了朋友，也吃了午餐。",
+            "speak": "I met a friend and had lunch.",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r1b",
+            "surface": "I will meet a friend tomorrow.",
+            "translation": "我明天會見朋友。",
+            "speak": "I will meet a friend tomorrow.",
+            "contrast_type": "wrong_time_future",
+            "feedback": "Your friend asked about the past weekend."
+          },
+          {
+            "id": "r1c",
+            "surface": "Which platform should I go to?",
+            "translation": "我該去哪個月台？",
+            "speak": "Which platform should I go to?",
+            "contrast_type": "wrong_scenario_transport",
+            "feedback": "This is not a transport question."
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t2",
+      "speaker": "npc",
+      "act": "ask_place",
+      "act_slots": {
+        "topic": "place followup",
+        "keyword": "where",
+        "gloss": "A2 daily/social"
+      },
+      "learning_role": "listen_only",
+      "surface": "Where did you meet?",
+      "speak": "Where did you meet?",
+      "translation": "你們在哪裡見面？",
+      "friend": {
+        "hint": "Answer with a simple place."
+      },
+      "reply_set": {
+        "correct": "r2a",
+        "choices": [
+          {
+            "id": "r2a",
+            "surface": "We met at a cafe near my home.",
+            "translation": "我們在我家附近的咖啡店見。",
+            "speak": "We met at a cafe near my home.",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r2b",
+            "surface": "Should we meet at a cafe?",
+            "translation": "我們要在咖啡店見嗎？",
+            "speak": "Should we meet at a cafe?",
+            "contrast_type": "wrong_function_invite",
+            "feedback": "You are talking about a past activity."
+          },
+          {
+            "id": "r2c",
+            "surface": "The room was too cold.",
+            "translation": "房間太冷了。",
+            "speak": "The room was too cold.",
+            "contrast_type": "wrong_scenario_hotel",
+            "feedback": "This is not a hotel problem."
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t3",
+      "speaker": "npc",
+      "act": "ask_feeling",
+      "act_slots": {
+        "topic": "simple followup",
+        "keyword": "how",
+        "gloss": "A2 daily/social"
+      },
+      "learning_role": "listen_only",
+      "surface": "Was it nice?",
+      "speak": "Was it nice?",
+      "translation": "還不錯嗎？",
+      "friend": {
+        "hint": "Give one short feeling."
+      },
+      "reply_set": {
+        "correct": "r3a",
+        "choices": [
+          {
+            "id": "r3a",
+            "surface": "Yes, it was quiet and nice.",
+            "translation": "嗯，很安靜，也很好。",
+            "speak": "Yes, it was quiet and nice.",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r3b",
+            "surface": "It made me think about society.",
+            "translation": "那讓我思考社會。",
+            "speak": "It made me think about society.",
+            "contrast_type": "too_advanced_or_abstract",
+            "feedback": "That is too abstract for this A2 exchange."
+          },
+          {
+            "id": "r3c",
+            "surface": "No, I want a refund.",
+            "translation": "不，我想退款。",
+            "speak": "No, I want a refund.",
+            "contrast_type": "wrong_scenario_refund",
+            "feedback": "This is not a refund situation."
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t4",
+      "speaker": "npc",
+      "act": "close_weekend",
+      "act_slots": {
+        "topic": "close",
+        "keyword": "next",
+        "gloss": "A2 daily/social"
+      },
+      "learning_role": "listen_only",
+      "surface": "Sounds nice. Maybe I can join next time.",
+      "speak": "Sounds nice. Maybe I can join next time.",
+      "translation": "聽起來不錯。也許下次我可以一起去。",
+      "friend": {
+        "hint": "Respond naturally."
+      },
+      "reply_set": {
+        "correct": "r4a",
+        "choices": [
+          {
+            "id": "r4a",
+            "surface": "Sure, let’s go together next time.",
+            "translation": "好，下次一起去。",
+            "speak": "Sure, let’s go together next time.",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r4b",
+            "surface": "Get off at the next station.",
+            "translation": "下一站下車。",
+            "speak": "Get off at the next station.",
+            "contrast_type": "wrong_scenario_transport",
+            "feedback": "That is transport advice."
+          },
+          {
+            "id": "r4c",
+            "surface": "I will show my ID.",
+            "translation": "我會出示身分證。",
+            "speak": "I will show my ID.",
+            "contrast_type": "wrong_scenario_document",
+            "feedback": "This is not a document task."
+          }
+        ]
+      }
+    }
+  ],
+  "choice_sets": [
+    "t1.reply_set",
+    "t2.reply_set",
+    "t3.reply_set",
+    "t4.reply_set"
+  ],
+  "feedback": "Distractors test social register, time/function/domain contrast, and A2 boundary without offering valid alternate answers.",
+  "tts_segments": [
+    "I met a friend and had lunch.",
+    "We met at a cafe near my home.",
+    "Yes, it was quiet and nice.",
+    "Sure, let’s go together next time."
+  ],
+  "formula_moments": [
+    {
+      "after_turn": "t2",
+      "pattern_id": "en.a2.daily.weekend.v1"
+    }
+  ],
+  "runtime_notes": "Fresh A2 daily/social candidate. Requires full-walk runtime before closeout evidence is recorded.",
+  "notes": {
+    "authoring_policy": "Fresh-authored from A2 daily/social neutral adaptation brief. KO surface text was not copied or translated.",
+    "a2_boundary": "Friend/social register, low-risk ordinary reasons and activities, short A2 responses only."
+  }
+}

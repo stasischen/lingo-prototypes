@@ -1,0 +1,230 @@
+{
+  "schema_version": "scenario_pack.v1",
+  "scenario_id": "digital_battery_charging",
+  "brief_id": "ml5_a1_018_digital_battery_charging",
+  "source_neutral_brief": "release-aggregator/docs/tasks/A1_MULTILINGUAL_KO_B1_PARALLEL_ORCHESTRATION/work_products/ml0/ML5_NEUTRAL_ADAPTATION_BRIEFS_20260614.md#brief-ml5-a1-018-ask-permission-to-charge-a-phone",
+  "blueprint_ledger": "release-aggregator/docs/tasks/A1_MULTILINGUAL_KO_B1_PARALLEL_ORCHESTRATION/work_products/ml0/ML5_BLUEPRINT_LEDGER_20260614.md",
+  "repo": "content-de",
+  "staging_path": "content/core/content_assets/scenario_packs/current_flow/digital_battery_charging.de.v1.json",
+  "title": "Das Handy aufladen",
+  "setting_label": "Cafe-Theke",
+  "wrap_title": "Laden erlaubt",
+  "wrap_friend": "Du hast höflich gefragt, wo die Steckdose ist, und dich bedankt.",
+  "language": "de",
+  "ui_language": "zh_tw",
+  "source_status": "candidate_runtime_verified",
+  "review_state": "draft",
+  "review_status_framework_state": "candidate_runtime_verified",
+  "native_review_state": "native_pending",
+  "production_mode_default": {
+    "required": [
+      "choice"
+    ],
+    "optional_visible": [
+      "speaking"
+    ],
+    "optional_hidden": [
+      "typing"
+    ]
+  },
+  "support_text": "你在咖啡店或大廳。用 Sie 服務語域問可不可以充手機、插座在哪裡，確認位置並道謝。",
+  "roles": {
+    "npc": {
+      "label": "Mitarbeiter"
+    },
+    "learner": {
+      "label": "Gast"
+    }
+  },
+  "turns": [
+    {
+      "turn_id": "t1",
+      "speaker": "npc",
+      "act": "service_offer",
+      "act_slots": {
+        "topic": "help offer",
+        "keyword": "helfen",
+        "gloss": "help"
+      },
+      "learning_role": "listen_only",
+      "surface": "Guten Tag. Wie kann ich Ihnen helfen?",
+      "speak": "Guten Tag. Wie kann ich Ihnen helfen?",
+      "translation": "您好。請問有什麼可以幫您？",
+      "friend": "服務情境用 Sie。問可不可以時，Darf ich... 很自然。",
+      "reply_set": {
+        "correct": "c1",
+        "choices": [
+          {
+            "id": "c1",
+            "surface": "Darf ich hier mein Handy laden?",
+            "translation": "我可以在這裡充手機嗎？",
+            "speak": "Darf ich hier mein Handy laden?",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "c2",
+            "surface": "Wie ist das WLAN-Passwort?",
+            "translation": "Wi-Fi 密碼是什麼？",
+            "speak": "Wie ist das WLAN-Passwort?",
+            "contrast_type": "wifi_request_wrong_goal",
+            "feedback": "這是在問 WLAN，不是在問能不能充手機。"
+          },
+          {
+            "id": "c3",
+            "surface": "Einen Kaffee, bitte.",
+            "translation": "一杯咖啡，謝謝。",
+            "speak": "Einen Kaffee, bitte.",
+            "contrast_type": "food_order_wrong_goal",
+            "feedback": "這是在點餐，不是在請求使用插座。"
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t2",
+      "speaker": "npc",
+      "act": "permission_granted",
+      "act_slots": {
+        "topic": "permission",
+        "keyword": "natürlich",
+        "gloss": "of course"
+      },
+      "learning_role": "listen_only",
+      "surface": "Ja, natürlich.",
+      "speak": "Ja, natürlich.",
+      "translation": "可以，當然。",
+      "friend": "得到同意後，問 Steckdose 在哪裡。",
+      "reply_set": {
+        "correct": "c1",
+        "choices": [
+          {
+            "id": "c1",
+            "surface": "Wo ist die Steckdose?",
+            "translation": "插座在哪裡？",
+            "speak": "Wo ist die Steckdose?",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "c2",
+            "surface": "Darf ich hier mein Handy laden?",
+            "translation": "我可以在這裡充手機嗎？",
+            "speak": "Darf ich hier mein Handy laden?",
+            "contrast_type": "repeated_prior_question",
+            "feedback": "對方已經同意了。現在要問插座在哪裡。"
+          },
+          {
+            "id": "c3",
+            "surface": "Wo ist der Bahnhof?",
+            "translation": "車站在哪裡？",
+            "speak": "Wo ist der Bahnhof?",
+            "contrast_type": "station_directions_wrong_goal",
+            "feedback": "這是在問車站方向，不是問插座。"
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t3",
+      "speaker": "npc",
+      "act": "outlet_location",
+      "act_slots": {
+        "topic": "outlet location",
+        "keyword": "Fenster",
+        "gloss": "window"
+      },
+      "learning_role": "listen_only",
+      "surface": "Die Steckdose ist am Tisch am Fenster.",
+      "speak": "Die Steckdose ist am Tisch am Fenster.",
+      "translation": "插座在窗邊的桌子那裡。",
+      "friend": "確認位置時，用 am Tisch am Fenster? 就夠了。",
+      "inline_explain": "Steckdose = 插座。",
+      "reply_set": {
+        "correct": "c1",
+        "choices": [
+          {
+            "id": "c1",
+            "surface": "Am Tisch am Fenster?",
+            "translation": "窗邊的桌子那裡嗎？",
+            "speak": "Am Tisch am Fenster?",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "c2",
+            "surface": "Kostet das etwas?",
+            "translation": "這要收費嗎？",
+            "speak": "Kostet das etwas?",
+            "contrast_type": "payment_dispute_out_of_scope",
+            "feedback": "本場景不談收費或費用爭議，只確認插座位置。"
+          },
+          {
+            "id": "c3",
+            "surface": "Ja, natürlich.",
+            "translation": "可以，當然。",
+            "speak": "Ja, natürlich.",
+            "contrast_type": "staff_role_sentence",
+            "feedback": "這是工作人員給同意的句子，不是學習者確認位置。"
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t4",
+      "speaker": "npc",
+      "act": "location_confirmed",
+      "act_slots": {
+        "topic": "confirmation",
+        "keyword": "genau",
+        "gloss": "exactly"
+      },
+      "learning_role": "listen_only",
+      "surface": "Ja, genau dort.",
+      "speak": "Ja, genau dort.",
+      "translation": "對，就在那裡。",
+      "friend": "位置確認後，用 Danke 收尾。",
+      "reply_set": {
+        "correct": "c1",
+        "choices": [
+          {
+            "id": "c1",
+            "surface": "Danke schön.",
+            "translation": "謝謝您。",
+            "speak": "Danke schön."
+          },
+          {
+            "id": "c2",
+            "surface": "Mein Handy ist kaputt.",
+            "translation": "我的手機壞了。",
+            "speak": "Mein Handy ist kaputt.",
+            "contrast_type": "damaged_device_out_of_scope",
+            "feedback": "這進入裝置故障；本場景只練借用插座和道謝。"
+          },
+          {
+            "id": "c3",
+            "surface": "Haben Sie einen Adapter?",
+            "translation": "您有轉接頭嗎？",
+            "speak": "Haben Sie einen Adapter?",
+            "contrast_type": "adapter_specs_out_of_scope",
+            "feedback": "轉接頭和規格不在本場景範圍。"
+          }
+        ]
+      },
+      "closing": true
+    }
+  ],
+  "formula_moments": [
+    {
+      "after_turn": "t1",
+      "pattern_id": "de.permission.darf_ich_laden"
+    },
+    {
+      "after_turn": "t2",
+      "pattern_id": "de.location.wo_ist_die_steckdose"
+    }
+  ],
+  "notes": {
+    "authoring_source": "Authored from ML-5 neutral brief ml5_a1_018_digital_battery_charging; KO and other target-language packs were not used as translation sources.",
+    "review_policy": "AI-authored candidate only; keep review_state=draft, review_status_framework_state=candidate_needs_review, native_review_state=native_pending until tracked review evidence exists.",
+    "canonical_policy": "Staging current-flow candidate only. Do not add to manifests, production exports, schema, runtime, or frontend in this authoring lane.",
+    "german_voice_note": "Uses consistent Sie service context for staff lines and a polite guest voice; native review should confirm 'Handy laden' versus 'Handy aufladen'."
+  }
+}

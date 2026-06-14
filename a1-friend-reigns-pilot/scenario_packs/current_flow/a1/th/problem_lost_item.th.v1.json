@@ -1,0 +1,253 @@
+{
+  "schema_version": "scenario_pack.v1",
+  "scenario_id": "problem_lost_item",
+  "brief_id": "ml5_a1_020_problem_lost_item",
+  "source_neutral_brief": "release-aggregator/docs/tasks/A1_MULTILINGUAL_KO_B1_PARALLEL_ORCHESTRATION/work_products/ml0/ML5_NEUTRAL_ADAPTATION_BRIEFS_20260614.md#brief-ml5-a1-020-say-a-small-item-is-lost",
+  "blueprint_ledger": "release-aggregator/docs/tasks/A1_MULTILINGUAL_KO_B1_PARALLEL_ORCHESTRATION/work_products/ml0/ML5_BLUEPRINT_LEDGER_20260614.md",
+  "repo": "content-th",
+  "staging_path": "content/core/content_assets/scenario_packs/current_flow/problem_lost_item.th.v1.json",
+  "title": "บอกว่าของหาย",
+  "setting_label": "เคาน์เตอร์ประชาสัมพันธ์",
+  "wrap_title": "ถามเรื่องของหายได้แล้ว",
+  "wrap_friend": "คุณบอกว่ากระเป๋าใบเล็กหาย บอกสถานที่ง่าย ๆ เข้าใจจุดที่ต้องไปถามต่อ และขอบคุณพนักงานได้",
+  "language": "th",
+  "ui_language": "zh_tw",
+  "source_status": "candidate_runtime_verified",
+  "review_state": "draft",
+  "review_status_framework_state": "candidate_runtime_verified",
+  "native_review_state": "native_pending",
+  "production_mode_default": {
+    "required": [
+      "choice"
+    ],
+    "optional_visible": [
+      "speaking"
+    ],
+    "optional_hidden": [
+      "typing"
+    ]
+  },
+  "support_text": "你在泰國服務台找遺失的小物。選自然、簡短的泰文。",
+  "roles": {
+    "npc": {
+      "label": "พนักงาน"
+    },
+    "learner": {
+      "label": "คุณ"
+    }
+  },
+  "turns": [
+    {
+      "turn_id": "t1",
+      "speaker": "npc",
+      "act": "offer_help",
+      "learning_role": "listen_only",
+      "surface": "มีอะไรให้ช่วยไหมครับ",
+      "speak": "มีอะไรให้ช่วยไหมครับ",
+      "translation": "有什麼需要幫忙嗎？",
+      "friend": {
+        "hint": "簡短說你的小包包不見了。"
+      },
+      "inline_explain": {
+        "pattern_id": "th.problem.lost_item.v1",
+        "formula_ref": null,
+        "title": "กระเป๋าใบเล็กหายค่ะ",
+        "explain": "說小包包不見了，可以說 `กระเป๋าใบเล็กหายค่ะ`。",
+        "items": [
+          {
+            "surface": "กระเป๋าใบเล็กหายค่ะ",
+            "translation": "小包包不見了。",
+            "speak": "กระเป๋า ใบเล็ก หายค่ะ"
+          }
+        ]
+      },
+      "reply_set": {
+        "correct": "r1a",
+        "choices": [
+          {
+            "id": "r1a",
+            "surface": "กระเป๋าใบเล็กหายค่ะ",
+            "translation": "小包包不見了。",
+            "speak": "กระเป๋า ใบเล็ก หายค่ะ",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r1b",
+            "surface": "อันนี้เท่าไหร่คะ",
+            "translation": "這個多少錢？",
+            "speak": "อันนี้เท่าไหร่คะ",
+            "contrast_type": "price_question_instead_of_lost_item",
+            "feedback": "這是在問價格。現在要說物品不見了。"
+          },
+          {
+            "id": "r1c",
+            "surface": "ขอกาแฟค่ะ",
+            "translation": "請給我咖啡。",
+            "speak": "ขอกาแฟค่ะ",
+            "contrast_type": "food_order_instead_of_lost_item",
+            "feedback": "這是在點餐，不是尋找遺失物。"
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t2",
+      "speaker": "npc",
+      "act": "ask_lost_location",
+      "learning_role": "listen_only",
+      "surface": "หายที่ไหนครับ",
+      "speak": "หายที่ไหนครับ",
+      "translation": "在哪裡不見的？",
+      "friend": {
+        "hint": "回答簡單地點，不需要詳細說明。"
+      },
+      "inline_explain": {
+        "pattern_id": "th.problem.simple_place.v1",
+        "formula_ref": null,
+        "title": "ที่คาเฟ่ค่ะ",
+        "explain": "回答地點時，可以用 `ที่ + 地點`。",
+        "items": [
+          {
+            "surface": "ที่คาเฟ่ค่ะ",
+            "translation": "在咖啡店。",
+            "speak": "ที่คาเฟ่ค่ะ"
+          }
+        ]
+      },
+      "reply_set": {
+        "correct": "r2a",
+        "choices": [
+          {
+            "id": "r2a",
+            "surface": "ที่คาเฟ่ค่ะ",
+            "translation": "在咖啡店。",
+            "speak": "ที่คาเฟ่ค่ะ",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r2b",
+            "surface": "ประมาณสิบนาทีค่ะ",
+            "translation": "大約十分鐘。",
+            "speak": "ประมาณ สิบนาทีค่ะ",
+            "contrast_type": "time_estimate_instead_of_lost_location",
+            "feedback": "這是時間估計。對方問的是遺失地點。"
+          },
+          {
+            "id": "r2c",
+            "surface": "ชาร์จมือถือได้ไหมคะ",
+            "translation": "可以充手機嗎？",
+            "speak": "ชาร์จมือถือได้ไหมคะ",
+            "contrast_type": "charging_question_instead_of_lost_location",
+            "feedback": "這是在問充電。現在要回答地點。"
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t3",
+      "speaker": "npc",
+      "act": "give_next_desk",
+      "learning_role": "listen_only",
+      "surface": "เคาน์เตอร์ของหายอยู่ทางนั้นครับ",
+      "speak": "เคาน์เตอร์ของหาย อยู่ทางนั้นครับ",
+      "translation": "失物櫃台在那邊。",
+      "friend": {
+        "hint": "確認你聽到的方向。"
+      },
+      "reply_set": {
+        "correct": "r3a",
+        "choices": [
+          {
+            "id": "r3a",
+            "surface": "ทางนั้นใช่ไหมคะ",
+            "translation": "那邊對嗎？",
+            "speak": "ทางนั้น ใช่ไหมคะ",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r3b",
+            "surface": "กระเป๋าใบเล็กหายค่ะ",
+            "translation": "小包包不見了。",
+            "speak": "กระเป๋า ใบเล็ก หายค่ะ",
+            "contrast_type": "repeat_lost_statement_after_next_step",
+            "feedback": "你已經說過物品不見了。現在要確認下一個地點。"
+          },
+          {
+            "id": "r3c",
+            "surface": "จ่ายเงินตอนนี้ได้ไหมคะ",
+            "translation": "可以現在付款嗎？",
+            "speak": "จ่ายเงินตอนนี้ได้ไหมคะ",
+            "contrast_type": "payment_question_instead_of_next_step_confirmation",
+            "feedback": "這是在付款。現在要確認失物櫃台的位置。"
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t4",
+      "speaker": "npc",
+      "act": "confirm_next_step",
+      "learning_role": "listen_only",
+      "surface": "ใช่ครับ ถามที่นั่นได้ครับ",
+      "speak": "ใช่ครับ ถามที่นั่นได้ครับ",
+      "translation": "對，可以在那裡問。",
+      "friend": {
+        "hint": "對方給了下一步。道謝即可。"
+      },
+      "reply_set": {
+        "correct": "r4a",
+        "choices": [
+          {
+            "id": "r4a",
+            "surface": "ขอบคุณค่ะ",
+            "translation": "謝謝。",
+            "speak": "ขอบคุณค่ะ"
+          },
+          {
+            "id": "r4b",
+            "surface": "อีกกี่นาทีคะ",
+            "translation": "還要幾分鐘？",
+            "speak": "อีกกี่นาทีคะ",
+            "contrast_type": "time_question_after_lost_item_help",
+            "feedback": "這是問時間，和失物下一步不相關。"
+          },
+          {
+            "id": "r4c",
+            "surface": "ขอกาแฟค่ะ",
+            "translation": "請給我咖啡。",
+            "speak": "ขอกาแฟค่ะ",
+            "contrast_type": "food_order_after_lost_item_help",
+            "feedback": "這是在點餐。得到協助後簡短道謝即可。"
+          }
+        ]
+      },
+      "closing": {
+        "act": "lost_item_help_complete",
+        "learning_role": "listen_only",
+        "surface": "คุณบอกว่าของหายและรู้ว่าจะไปถามที่ไหนแล้ว",
+        "speak": "คุณบอกว่า ของหาย และรู้ว่าจะไปถามที่ไหนแล้ว",
+        "translation": "你說明了遺失物，也知道下一步去哪裡問。"
+      }
+    }
+  ],
+  "formula_moments": [
+    {
+      "after_turn": "t1",
+      "pattern_id": "th.problem.lost_item.v1"
+    },
+    {
+      "after_turn": "t2",
+      "pattern_id": "th.problem.simple_place.v1"
+    },
+    {
+      "after_turn": "t4",
+      "pattern_id": "th.problem.thanks.v1"
+    }
+  ],
+  "notes": {
+    "authoring_source": "Authored from ML-5 neutral brief, not Korean surface text or another target-language pack.",
+    "review_policy": "AI-authored Thai candidate. Requires AI review, runtime smoke, and tracked native review before any stronger status.",
+    "canonical_policy": "Staging candidate only. Do not write back to manifests, production exports, schemas, runtime exports, frontend, or legacy content.",
+    "thai_voice_note": "Uses Thai script, phrase-group spacing, staff ครับ and learner ค่ะ; avoids police reports, theft accusations, passports, credit-card emergencies, identity proof, compensation, and money disputes."
+  }
+}

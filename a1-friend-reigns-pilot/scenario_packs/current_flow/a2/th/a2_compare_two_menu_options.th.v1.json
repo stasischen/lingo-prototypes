@@ -1,0 +1,284 @@
+{
+  "schema_version": "scenario_pack.v1",
+  "scenario_id": "a2_compare_two_menu_options",
+  "title": "เปรียบเทียบเมนูสองอย่าง",
+  "setting_label": "เคาน์เตอร์ร้านอาหาร",
+  "wrap_title": "ยืนยันเมนูแล้ว",
+  "wrap_friend": "ทำได้ดีค่ะ คุณยืนยันความชอบและรายละเอียดในสถานการณ์อาหารหรือซื้อของแบบความเสี่ยงต่ำได้ชัดเจน",
+  "language": "th",
+  "ui_language": "zh-Hant",
+  "cefr_level": "A2",
+  "source_status": "candidate_runtime_verified",
+  "review_state": "ai_reviewed",
+  "review_status_framework_state": "candidate_runtime_verified",
+  "native_review_state": "native_pending",
+  "scenario": {
+    "domain": "food_shopping_preferences",
+    "review_slice": "food_shopping",
+    "interaction": "service_preference_or_exchange",
+    "source_brief": "A2_FOOD_SHOPPING_NEUTRAL_ADAPTATION_BRIEFS_20260614",
+    "blueprint_source": "language_neutral_adaptation_brief",
+    "ko_pack_role": "mature_scenario_blueprint_not_translation_source"
+  },
+  "learner_goal": "ฟังความต่างของเมนูสองอย่าง แล้วเลือกอย่างที่ชอบค่ะ",
+  "target_functions": [
+    "compare_or_state_preference",
+    "confirm_key_detail",
+    "make_polite_low_risk_request",
+    "close_with_correct_next_step"
+  ],
+  "register_notes": "Thai A2 food/shopping register: short polite service Thai with ค่ะ, TTS-friendly segmentation, no allergy/medical/refund-dispute framing.",
+  "production_mode_default": {
+    "required": [
+      "choice"
+    ],
+    "optional_visible": [
+      "speaking"
+    ],
+    "optional_hidden": [
+      "typing"
+    ]
+  },
+  "support_text": "ฟังความต่างของเมนูสองอย่าง แล้วเลือกอย่างที่ชอบค่ะ",
+  "roles": {
+    "npc": {
+      "label": "พนักงาน"
+    },
+    "learner": {
+      "label": "你"
+    }
+  },
+  "turns": [
+    {
+      "turn_id": "t1",
+      "speaker": "npc",
+      "act": "offer_options",
+      "act_slots": {
+        "topic": "compare-two-menu-options",
+        "keyword": "1",
+        "gloss": "A2 food/shopping"
+      },
+      "learning_role": "listen_only",
+      "surface": "วันนี้เลือกข้าวยำหรือก๋วยเตี๋ยวได้ค่ะ",
+      "speak": "วันนี้เลือกข้าวยำหรือก๋วยเตี๋ยวได้ค่ะ",
+      "translation": "今天可以選泰式拌飯或麵。",
+      "friend": {
+        "hint": "ถามความต่างของสองเมนูค่ะ"
+      },
+      "reply_set": {
+        "correct": "r1a",
+        "choices": [
+          {
+            "id": "r1a",
+            "surface": "สองอย่างนี้ต่างกันยังไงคะ",
+            "translation": "這兩個有什麼不同？",
+            "speak": "สองอย่างนี้ต่างกันยังไงคะ",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r1b",
+            "surface": "โต๊ะอยู่ที่ไหนคะ",
+            "translation": "桌子在哪裡？",
+            "speak": "โต๊ะอยู่ที่ไหนคะ",
+            "contrast_type": "wrong_detail_or_domain",
+            "feedback": "นี่ถามเรื่องที่นั่ง ไม่ใช่เปรียบเทียบเมนูค่ะ"
+          },
+          {
+            "id": "r1c",
+            "surface": "ขอคืนเงินค่ะ",
+            "translation": "請退款。",
+            "speak": "ขอคืนเงินค่ะ",
+            "contrast_type": "forbidden_or_wrong_domain",
+            "feedback": "การคืนเงินอยู่นอกงาน A2 นี้ค่ะ"
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t2",
+      "speaker": "npc",
+      "act": "ask_difference",
+      "act_slots": {
+        "topic": "compare-two-menu-options",
+        "keyword": "2",
+        "gloss": "A2 food/shopping"
+      },
+      "learning_role": "listen_only",
+      "surface": "ข้าวยำเผ็ดนิดหน่อย ส่วนก๋วยเตี๋ยวเบากว่าค่ะ",
+      "speak": "ข้าวยำเผ็ดนิดหน่อย ส่วนก๋วยเตี๋ยวเบากว่าค่ะ",
+      "translation": "泰式拌飯有點辣，麵比較清爽。",
+      "friend": {
+        "hint": "ยืนยันข้อมูลเปรียบเทียบที่ได้ยินค่ะ"
+      },
+      "reply_set": {
+        "correct": "r2a",
+        "choices": [
+          {
+            "id": "r2a",
+            "surface": "ก๋วยเตี๋ยวเบากว่าใช่ไหมคะ",
+            "translation": "麵比較清爽，對嗎？",
+            "speak": "ก๋วยเตี๋ยวเบากว่าใช่ไหมคะ",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r2b",
+            "surface": "ข้าวยำถูกกว่าใช่ไหมคะ",
+            "translation": "泰式拌飯比較便宜，對嗎？",
+            "speak": "ข้าวยำถูกกว่าใช่ไหมคะ",
+            "contrast_type": "wrong_detail_or_domain",
+            "feedback": "ไม่ได้พูดเรื่องราคา"
+          },
+          {
+            "id": "r2c",
+            "surface": "รถไฟเร็วกว่าใช่ไหมคะ",
+            "translation": "火車比較快，對嗎？",
+            "speak": "รถไฟเร็วกว่าใช่ไหมคะ",
+            "contrast_type": "forbidden_or_wrong_domain",
+            "feedback": "เปลี่ยนไปเรื่องเดินทางค่ะ"
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t3",
+      "speaker": "npc",
+      "act": "state_comparison",
+      "act_slots": {
+        "topic": "compare-two-menu-options",
+        "keyword": "3",
+        "gloss": "A2 food/shopping"
+      },
+      "learning_role": "listen_only",
+      "surface": "ใช่ค่ะ ก๋วยเตี๋ยวเผ็ดน้อยกว่าค่ะ",
+      "speak": "ใช่ค่ะ ก๋วยเตี๋ยวเผ็ดน้อยกว่าค่ะ",
+      "translation": "對，麵比較不辣。",
+      "friend": {
+        "hint": "เลือกเมนูตามความชอบค่ะ"
+      },
+      "reply_set": {
+        "correct": "r3a",
+        "choices": [
+          {
+            "id": "r3a",
+            "surface": "งั้นเอาก๋วยเตี๋ยวค่ะ",
+            "translation": "那我要麵。",
+            "speak": "งั้นเอาก๋วยเตี๋ยวค่ะ",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r3b",
+            "surface": "งั้นเปลี่ยนห้องค่ะ",
+            "translation": "那我要換房間。",
+            "speak": "งั้นเปลี่ยนห้องค่ะ",
+            "contrast_type": "wrong_detail_or_domain",
+            "feedback": "เปลี่ยนไปสถานการณ์โรงแรมค่ะ"
+          },
+          {
+            "id": "r3c",
+            "surface": "งั้นแสดงพาสปอร์ตค่ะ",
+            "translation": "那我要出示護照。",
+            "speak": "งั้นแสดงพาสปอร์ตค่ะ",
+            "contrast_type": "forbidden_or_wrong_domain",
+            "feedback": "ไม่ต้องใช้พาสปอร์ตค่ะ"
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t4",
+      "speaker": "npc",
+      "act": "choose_option",
+      "act_slots": {
+        "topic": "compare-two-menu-options",
+        "keyword": "4",
+        "gloss": "A2 food/shopping"
+      },
+      "learning_role": "listen_only",
+      "surface": "ได้ค่ะ เดี๋ยวสั่งก๋วยเตี๋ยวหนึ่งที่ให้นะคะ",
+      "speak": "ได้ค่ะ เดี๋ยวสั่งก๋วยเตี๋ยวหนึ่งที่ให้นะคะ",
+      "translation": "好的，我幫您點一份麵。",
+      "friend": {
+        "hint": "ยืนยันเมนูที่เลือกอย่างสุภาพค่ะ"
+      },
+      "reply_set": {
+        "correct": "r4a",
+        "choices": [
+          {
+            "id": "r4a",
+            "surface": "ขอบคุณค่ะ เอาก๋วยเตี๋ยวหนึ่งที่ค่ะ",
+            "translation": "謝謝，請給我一份麵。",
+            "speak": "ขอบคุณค่ะ เอาก๋วยเตี๋ยวหนึ่งที่ค่ะ",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r4b",
+            "surface": "จะไปบอกตำรวจค่ะ",
+            "translation": "我要報警。",
+            "speak": "จะไปบอกตำรวจค่ะ",
+            "contrast_type": "wrong_detail_or_domain",
+            "feedback": "คำตอบนี้แรงเกินไปสำหรับสถานการณ์นี้ค่ะ"
+          },
+          {
+            "id": "r4c",
+            "surface": "พรุ่งนี้ต้องไปโรงพยาบาลค่ะ",
+            "translation": "我明天要去醫院。",
+            "speak": "พรุ่งนี้ต้องไปโรงพยาบาลค่ะ",
+            "contrast_type": "forbidden_or_wrong_domain",
+            "feedback": "นี่ไม่ใช่สถานการณ์ทางการแพทย์ค่ะ"
+          }
+        ]
+      }
+    }
+  ],
+  "choice_sets": {
+    "count_per_turn": 3,
+    "correct_path": [
+      "r1a",
+      "r2a",
+      "r3a",
+      "r4a"
+    ],
+    "distractor_policy": "one near-domain wrong detail plus one out-of-scope/unsafe-domain option per turn"
+  },
+  "feedback": {
+    "correct": "ดีค่ะ ตอบตรงกับสถานการณ์อาหารหรือซื้อของ",
+    "incorrect": "เลือกคำตอบที่ตรงกับเมนู วัตถุดิบ การเปลี่ยนของ หรือคำแนะนำตามงบค่ะ"
+  },
+  "tts_segments": [
+    "วันนี้เลือกข้าวยำหรือก๋วยเตี๋ยวได้ค่ะ",
+    "สองอย่างนี้ต่างกันยังไงคะ",
+    "โต๊ะอยู่ที่ไหนคะ",
+    "ขอคืนเงินค่ะ",
+    "ข้าวยำเผ็ดนิดหน่อย ส่วนก๋วยเตี๋ยวเบากว่าค่ะ",
+    "ก๋วยเตี๋ยวเบากว่าใช่ไหมคะ",
+    "ข้าวยำถูกกว่าใช่ไหมคะ",
+    "รถไฟเร็วกว่าใช่ไหมคะ",
+    "ใช่ค่ะ ก๋วยเตี๋ยวเผ็ดน้อยกว่าค่ะ",
+    "งั้นเอาก๋วยเตี๋ยวค่ะ",
+    "งั้นเปลี่ยนห้องค่ะ",
+    "งั้นแสดงพาสปอร์ตค่ะ",
+    "ได้ค่ะ เดี๋ยวสั่งก๋วยเตี๋ยวหนึ่งที่ให้นะคะ",
+    "ขอบคุณค่ะ เอาก๋วยเตี๋ยวหนึ่งที่ค่ะ",
+    "จะไปบอกตำรวจค่ะ",
+    "พรุ่งนี้ต้องไปโรงพยาบาลค่ะ"
+  ],
+  "formula_moments": [
+    {
+      "after_turn": "t2",
+      "pattern_id": "th.a2.food.compare.options.v1",
+      "label": "A เบากว่า / เผ็ดกว่า B",
+      "learner_takeaway": "ขอแบบที่เบากว่า"
+    }
+  ],
+  "runtime_notes": {
+    "expected_turns": 4,
+    "expected_choices_per_turn": 3,
+    "full_walk_required": true,
+    "expected_final_screen": "Wrap"
+  },
+  "notes": {
+    "generated_at": "2026-06-14",
+    "authoring_scope": "A2 food/shopping TH adaptation",
+    "native_review_state": "native_pending"
+  }
+}

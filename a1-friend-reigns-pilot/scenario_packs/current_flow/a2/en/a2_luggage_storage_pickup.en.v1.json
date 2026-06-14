@@ -1,0 +1,263 @@
+{
+  "schema_version": "scenario_pack.v1",
+  "scenario_id": "a2_luggage_storage_pickup",
+  "title": "Store Luggage and Pick It Up",
+  "setting_label": "At a station luggage counter",
+  "wrap_title": "Luggage Pickup",
+  "wrap_friend": "你剛剛用簡單英文寄放行李，確認取件時間和收據號碼。",
+  "language": "en",
+  "ui_language": "zh_tw",
+  "cefr_level": "A2",
+  "source_status": "candidate_runtime_verified",
+  "review_state": "ai_reviewed",
+  "review_status_framework_state": "candidate_runtime_verified",
+  "native_review_state": "native_pending",
+  "scenario": "You want to store a bag at a station and pick it up later.",
+  "learner_goal": "Ask to store luggage, understand the pickup time, and confirm a simple receipt number.",
+  "target_functions": [
+    "luggage_storage_request",
+    "pickup_time",
+    "receipt_confirmation"
+  ],
+  "register_notes": "Polite everyday service-counter English. No lost property, liability, compensation, passport, or ID handling.",
+  "production_mode_default": {
+    "required": [
+      "choice"
+    ],
+    "optional_visible": [
+      "speaking"
+    ],
+    "optional_hidden": [
+      "typing"
+    ]
+  },
+  "support_text": "Ask to store your bag. Listen for the pickup time and keep the receipt number.",
+  "roles": {
+    "npc": {
+      "label": "Storage Staff"
+    },
+    "learner": {
+      "label": "You"
+    }
+  },
+  "turns": [
+    {
+      "turn_id": "t1",
+      "speaker": "npc",
+      "act": "service_prompt",
+      "act_slots": {
+        "topic": "luggage counter",
+        "keyword": "help",
+        "gloss": "幫忙"
+      },
+      "learning_role": "listen_only",
+      "surface": "Hello. Do you want to store a bag?",
+      "speak": "Hello. Do you want to store a bag?",
+      "translation": "你好。你想寄放一個包包嗎？",
+      "friend": {
+        "hint": "Ask to store your luggage here."
+      },
+      "reply_set": {
+        "correct": "r1a",
+        "choices": [
+          {
+            "id": "r1a",
+            "surface": "Yes, can I store this bag here?",
+            "translation": "是的，我可以把這個包包寄放在這裡嗎？",
+            "speak": "Yes, can I store this bag here?",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r1b",
+            "surface": "Yes, can I eat this bag here?",
+            "translation": "是的，我可以在這裡吃這個包包嗎？",
+            "speak": "Yes, can I eat this bag here?",
+            "contrast_type": "wrong_verb",
+            "feedback": "Use store for keeping a bag somewhere. Eat does not fit."
+          },
+          {
+            "id": "r1c",
+            "surface": "Yes, can I change my ticket time?",
+            "translation": "是的，我可以改票的時間嗎？",
+            "speak": "Yes, can I change my ticket time?",
+            "contrast_type": "wrong_scenario_ticket",
+            "feedback": "This is ticket language. Here you need to ask about luggage storage."
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t2",
+      "speaker": "npc",
+      "act": "pickup_time_instruction",
+      "act_slots": {
+        "topic": "pickup time",
+        "keyword": "six o'clock",
+        "gloss": "六點"
+      },
+      "learning_role": "listen_only",
+      "surface": "Yes. Please pick it up by six o'clock.",
+      "speak": "Yes. Please pick it up by six o'clock.",
+      "translation": "可以。請在六點以前取回。",
+      "friend": {
+        "hint": "Confirm the pickup time."
+      },
+      "inline_explain": {
+        "pattern_id": "en.a2.transport.luggage.pick_up_by.v1",
+        "title": "pick it up by + time",
+        "explain": "Use pick it up by to say the latest pickup time.",
+        "items": [
+          {
+            "surface": "pick it up by six o'clock",
+            "translation": "六點以前取回",
+            "speak": "pick it up by six o'clock"
+          },
+          {
+            "surface": "pick it up by noon",
+            "translation": "中午以前取回",
+            "speak": "pick it up by noon"
+          }
+        ]
+      },
+      "reply_set": {
+        "correct": "r2a",
+        "choices": [
+          {
+            "id": "r2a",
+            "surface": "Okay, I will pick it up by six.",
+            "translation": "好的，我會在六點以前取回。",
+            "speak": "Okay, I will pick it up by six.",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r2b",
+            "surface": "Okay, I will pick it up at sixteen.",
+            "translation": "好的，我會在十六點取回。",
+            "speak": "Okay, I will pick it up at sixteen.",
+            "contrast_type": "wrong_time_number",
+            "feedback": "The staff said by six o'clock. Keep the time simple: by six."
+          },
+          {
+            "id": "r2c",
+            "surface": "Okay, I will take platform six.",
+            "translation": "好的，我會搭六號月台。",
+            "speak": "Okay, I will take platform six.",
+            "contrast_type": "wrong_entity_platform",
+            "feedback": "Six is the pickup time, not a platform."
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t3",
+      "speaker": "npc",
+      "act": "receipt_instruction",
+      "act_slots": {
+        "topic": "receipt",
+        "keyword": "number twenty-four",
+        "gloss": "二十四號"
+      },
+      "learning_role": "listen_only",
+      "surface": "Here is your receipt. The number is twenty-four.",
+      "speak": "Here is your receipt. The number is twenty-four.",
+      "translation": "這是你的收據。號碼是二十四。",
+      "friend": {
+        "hint": "Repeat the receipt number so you remember it."
+      },
+      "reply_set": {
+        "correct": "r3a",
+        "choices": [
+          {
+            "id": "r3a",
+            "surface": "Receipt number twenty-four. Thank you.",
+            "translation": "收據號碼二十四。謝謝。",
+            "speak": "Receipt number twenty-four. Thank you.",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r3b",
+            "surface": "Room number twenty-four. Thank you.",
+            "translation": "房間號碼二十四。謝謝。",
+            "speak": "Room number twenty-four. Thank you.",
+            "contrast_type": "wrong_entity_room",
+            "feedback": "This is a receipt number, not a room number."
+          },
+          {
+            "id": "r3c",
+            "surface": "I lost my receipt.",
+            "translation": "我弄丟了收據。",
+            "speak": "I lost my receipt.",
+            "contrast_type": "forbidden_lost_property",
+            "feedback": "Lost receipt handling is outside this practice. Just confirm the number."
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t4",
+      "speaker": "npc",
+      "act": "final_confirmation",
+      "act_slots": {
+        "topic": "pickup confirmed"
+      },
+      "learning_role": "listen_only",
+      "surface": "Great. Bring the receipt when you come back.",
+      "speak": "Great. Bring the receipt when you come back.",
+      "translation": "很好。回來時帶著收據。",
+      "friend": {
+        "hint": "Confirm what you will bring and close politely."
+      },
+      "reply_set": {
+        "correct": "r4a",
+        "choices": [
+          {
+            "id": "r4a",
+            "surface": "Okay, I will bring the receipt.",
+            "translation": "好的，我會帶收據。",
+            "speak": "Okay, I will bring the receipt."
+          },
+          {
+            "id": "r4b",
+            "surface": "Okay, I will bring my passport.",
+            "translation": "好的，我會帶護照。",
+            "speak": "Okay, I will bring my passport.",
+            "contrast_type": "forbidden_identity_document",
+            "feedback": "Passport or ID handling is outside this practice. Bring the receipt."
+          },
+          {
+            "id": "r4c",
+            "surface": "Okay, please pay me for the bag.",
+            "translation": "好的，請為這個包包付錢給我。",
+            "speak": "Okay, please pay me for the bag.",
+            "contrast_type": "forbidden_compensation",
+            "feedback": "Payment or compensation is outside this practice. Just confirm the receipt."
+          }
+        ]
+      }
+    }
+  ],
+  "choice_sets": [
+    "t1.reply_set",
+    "t2.reply_set",
+    "t3.reply_set",
+    "t4.reply_set"
+  ],
+  "feedback": "Distractors test store versus wrong verbs, pickup time versus platform number, receipt number, and forbidden identity/lost-property escalation.",
+  "tts_segments": [
+    "Yes, can I store this bag here?",
+    "Okay, I will pick it up by six.",
+    "Receipt number twenty-four. Thank you.",
+    "Okay, I will bring the receipt."
+  ],
+  "formula_moments": [
+    {
+      "after_turn": "t2",
+      "pattern_id": "en.a2.transport.luggage.pick_up_by.v1"
+    }
+  ],
+  "runtime_notes": "Fresh EN A2 transport candidate. Structural checks and two AI semantic review passes completed on 2026-06-14 before metadata promotion.",
+  "notes": {
+    "authoring_policy": "Fresh-authored in English from the neutral A2 transport brief. KO was used only as schema-shape reference.",
+    "a2_boundary": "Simple luggage storage and pickup with receipt number; avoids lost-property claims, compensation/liability, passport, or ID handling."
+  }
+}

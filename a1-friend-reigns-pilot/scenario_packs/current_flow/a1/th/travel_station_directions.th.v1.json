@@ -1,0 +1,282 @@
+{
+  "schema_version": "scenario_pack.v1",
+  "scenario_id": "travel_station_directions",
+  "brief_id": "ml1_a1_007_travel_station_directions",
+  "source_neutral_brief": "release-aggregator/docs/tasks/A1_MULTILINGUAL_KO_B1_PARALLEL_ORCHESTRATION/work_products/ml0/ML1_NEUTRAL_ADAPTATION_BRIEFS_20260614.md#brief-ml1-a1-007-station-or-exit-directions",
+  "blueprint_ledger": "release-aggregator/docs/tasks/A1_MULTILINGUAL_KO_B1_PARALLEL_ORCHESTRATION/work_products/ml0/ML1_BLUEPRINT_LEDGER_20260614.md",
+  "repo": "content-th",
+  "staging_path": "content/core/content_assets/scenario_packs/current_flow/travel_station_directions.th.v1.json",
+  "title": "ถามทางไปทางออกสถานี",
+  "setting_label": "สถานีรถไฟฟ้า",
+  "wrap_title": "รู้ทางไปทางออกแล้ว",
+  "wrap_friend": "คุณถามหาทางออก ยืนยันทิศทางสั้น ๆ และขอบคุณเจ้าหน้าที่ได้",
+  "language": "th",
+  "ui_language": "zh_tw",
+  "source_status": "candidate_runtime_verified",
+  "review_state": "draft",
+  "review_status_framework_state": "candidate_runtime_verified",
+  "native_review_state": "native_pending",
+  "production_mode_default": {
+    "required": [
+      "choice"
+    ],
+    "optional_visible": [
+      "speaking"
+    ],
+    "optional_hidden": [
+      "typing"
+    ]
+  },
+  "support_text": "你在泰國車站裡找出口。聽對方的方向提示，選一句自然接得上的泰文。",
+  "roles": {
+    "npc": {
+      "label": "เจ้าหน้าที่"
+    },
+    "learner": {
+      "label": "คุณ"
+    }
+  },
+  "turns": [
+    {
+      "turn_id": "t1",
+      "speaker": "npc",
+      "act": "offer_help",
+      "act_slots": {
+        "topic": "ขอความช่วยเหลือ",
+        "keyword": "ช่วย",
+        "gloss": "幫忙"
+      },
+      "learning_role": "listen_only",
+      "surface": "มีอะไรให้ช่วยไหมครับ",
+      "speak": "มีอะไรให้ช่วยไหมครับ",
+      "translation": "有什麼需要幫忙嗎？",
+      "friend": {
+        "hint": "可以問你要找的出口在哪裡。"
+      },
+      "inline_explain": {
+        "pattern_id": "th.station.exit_question.v1",
+        "formula_ref": null,
+        "title": "อยู่ที่ไหน",
+        "explain": "問地點時，可以用「...อยู่ที่ไหนคะ」。",
+        "items": [
+          {
+            "surface": "ทางออกสองอยู่ที่ไหนคะ",
+            "translation": "2號出口在哪裡？",
+            "speak": "ทางออกสองอยู่ที่ไหนคะ"
+          }
+        ]
+      },
+      "reply_set": {
+        "correct": "r1a",
+        "choices": [
+          {
+            "id": "r1a",
+            "surface": "ขอโทษค่ะ ทางออกสองอยู่ที่ไหนคะ",
+            "translation": "不好意思，2號出口在哪裡？",
+            "speak": "ขอโทษค่ะ ทางออกสองอยู่ที่ไหนคะ",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r1b",
+            "surface": "ห้องน้ำอยู่ที่ไหนคะ",
+            "translation": "洗手間在哪裡？",
+            "speak": "ห้องน้ำอยู่ที่ไหนคะ",
+            "contrast_type": "restroom_question_when_exit_is_goal",
+            "feedback": "這是在問洗手間。你的目標是找出口。"
+          },
+          {
+            "id": "r1c",
+            "surface": "อยากไปแท็กซี่ค่ะ",
+            "translation": "我想去搭計程車。",
+            "speak": "อยากไปแท็กซี่ค่ะ",
+            "contrast_type": "taxi_destination_answer",
+            "feedback": "這是在說交通方式，不是在問車站出口。"
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t2",
+      "speaker": "npc",
+      "act": "give_direction",
+      "act_slots": {
+        "topic": "ทิศทาง",
+        "keyword": "ตรงไป เลี้ยวขวา",
+        "gloss": "直走右轉"
+      },
+      "learning_role": "listen_only",
+      "surface": "ตรงไป แล้วเลี้ยวขวาครับ",
+      "speak": "ตรงไป แล้วเลี้ยวขวาครับ",
+      "translation": "直走，然後右轉。",
+      "friend": {
+        "hint": "對方說直走再右轉。可以確認方向。"
+      },
+      "inline_explain": {
+        "pattern_id": "th.station.simple_direction.v1",
+        "formula_ref": null,
+        "title": "ตรงไป / เลี้ยวขวา",
+        "explain": "「ตรงไป」是直走。「เลี้ยวขวา」是右轉。",
+        "items": [
+          {
+            "surface": "ตรงไป",
+            "translation": "直走",
+            "speak": "ตรงไป"
+          },
+          {
+            "surface": "เลี้ยวขวา",
+            "translation": "右轉",
+            "speak": "เลี้ยวขวา"
+          }
+        ]
+      },
+      "reply_set": {
+        "correct": "r2a",
+        "choices": [
+          {
+            "id": "r2a",
+            "surface": "ตรงไป แล้วเลี้ยวขวาใช่ไหมคะ",
+            "translation": "直走，然後右轉對嗎？",
+            "speak": "ตรงไป แล้วเลี้ยวขวาใช่ไหมคะ",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r2b",
+            "surface": "ตรงไป แล้วเลี้ยวซ้ายใช่ไหมคะ",
+            "translation": "直走，然後左轉對嗎？",
+            "speak": "ตรงไป แล้วเลี้ยวซ้ายใช่ไหมคะ",
+            "contrast_type": "wrong_direction_confirmation",
+            "feedback": "對方說的是右轉，不是左轉。"
+          },
+          {
+            "id": "r2c",
+            "surface": "จ่ายบัตรค่ะ",
+            "translation": "我用卡付款。",
+            "speak": "จ่ายบัตรค่ะ",
+            "contrast_type": "payment_answer_in_direction_context",
+            "feedback": "這是付款回答。現在是在確認方向。"
+          },
+          {
+            "id": "r2d",
+            "surface": "ชานชาลาห้าค่ะ",
+            "translation": "5號月台。",
+            "speak": "ชานชาลาห้าค่ะ",
+            "contrast_type": "wrong_platform_confirmation",
+            "feedback": "你的目標是出口，不是月台。"
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t3",
+      "speaker": "npc",
+      "act": "confirm_exit",
+      "act_slots": {
+        "topic": "ยืนยันทางออก",
+        "keyword": "ทางออกสอง",
+        "gloss": "2號出口"
+      },
+      "learning_role": "listen_only",
+      "surface": "ใช่ครับ ทางออกสองอยู่ทางขวา",
+      "speak": "ใช่ครับ ทางออกสองอยู่ทางขวา",
+      "translation": "是的。2號出口在右邊。",
+      "friend": {
+        "hint": "出口位置確認了。可以道謝。"
+      },
+      "reply_set": {
+        "correct": "r3a",
+        "choices": [
+          {
+            "id": "r3a",
+            "surface": "ขอบคุณค่ะ",
+            "translation": "謝謝。",
+            "speak": "ขอบคุณค่ะ",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r3b",
+            "surface": "ทางออกสองอยู่ที่ไหนคะ",
+            "translation": "2號出口在哪裡？",
+            "speak": "ทางออกสองอยู่ที่ไหนคะ",
+            "contrast_type": "repeated_location_question",
+            "feedback": "對方已經告訴你方向了。現在道謝比較自然。"
+          },
+          {
+            "id": "r3c",
+            "surface": "ขอตั๋วหนึ่งใบค่ะ",
+            "translation": "請給我一張票。",
+            "speak": "ขอตั๋วหนึ่งใบค่ะ",
+            "contrast_type": "ticket_purchase_in_direction_context",
+            "feedback": "這是在買票。現在是問路後的收尾。"
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t4",
+      "speaker": "npc",
+      "act": "closing",
+      "act_slots": {
+        "topic": "จบการบอกทาง",
+        "keyword": "ยินดี",
+        "gloss": "不客氣"
+      },
+      "learning_role": "listen_only",
+      "surface": "ยินดีครับ",
+      "speak": "ยินดีครับ",
+      "translation": "不客氣。",
+      "friend": {
+        "hint": "對話結束了。可以再簡短回應。"
+      },
+      "reply_set": {
+        "correct": "r4a",
+        "choices": [
+          {
+            "id": "r4a",
+            "surface": "ขอบคุณอีกครั้งค่ะ",
+            "translation": "再次謝謝。",
+            "speak": "ขอบคุณอีกครั้งค่ะ"
+          },
+          {
+            "id": "r4b",
+            "surface": "คิดเงินค่ะ",
+            "translation": "我要結帳。",
+            "speak": "คิดเงินค่ะ",
+            "contrast_type": "wrong_scenario_payment",
+            "feedback": "這是付款時的話，不是問路收尾。"
+          },
+          {
+            "id": "r4c",
+            "surface": "ห้องน้ำอยู่ที่ไหนคะ",
+            "translation": "洗手間在哪裡？",
+            "speak": "ห้องน้ำอยู่ที่ไหนคะ",
+            "contrast_type": "new_wrong_location_question",
+            "feedback": "這會換成別的地點。你的出口方向已經確認了。"
+          }
+        ]
+      },
+      "closing": {
+        "act": "direction_understood",
+        "learning_role": "listen_only",
+        "surface": "คุณรู้ทางไปทางออกแล้ว",
+        "speak": "คุณรู้ทางไปทางออกแล้ว",
+        "translation": "你知道出口方向了。"
+      }
+    }
+  ],
+  "formula_moments": [
+    {
+      "after_turn": "t1",
+      "pattern_id": "th.station.exit_question.v1"
+    },
+    {
+      "after_turn": "t2",
+      "pattern_id": "th.station.simple_direction.v1"
+    }
+  ],
+  "notes": {
+    "authoring_source": "Authored from ML-1 neutral brief, not Korean surface text or another target-language pack.",
+    "review_policy": "AI-authored Thai candidate. Requires AI review, runtime smoke, and tracked native review before any stronger status.",
+    "canonical_policy": "Staging candidate only. Do not write back to manifests, production exports, schemas, or legacy content.",
+    "thai_voice_note": "Uses Thai script with spaced phrase groups and consistent learner polite particle ค่ะ."
+  }
+}

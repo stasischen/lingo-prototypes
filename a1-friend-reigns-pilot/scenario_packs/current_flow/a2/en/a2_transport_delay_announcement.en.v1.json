@@ -1,0 +1,263 @@
+{
+  "schema_version": "scenario_pack.v1",
+  "scenario_id": "a2_transport_delay_announcement",
+  "title": "Understand a Delay Announcement",
+  "setting_label": "At a train platform",
+  "wrap_title": "Delay Choice",
+  "wrap_friend": "你剛剛聽懂簡短的交通延誤公告，確認時間，並做出簡單選擇。",
+  "language": "en",
+  "ui_language": "zh_tw",
+  "cefr_level": "A2",
+  "source_status": "candidate_runtime_verified",
+  "review_state": "ai_reviewed",
+  "review_status_framework_state": "candidate_runtime_verified",
+  "native_review_state": "native_pending",
+  "scenario": "You hear a short train delay announcement and need to decide what to do.",
+  "learner_goal": "Understand the delay time, ask a simple follow-up, and choose to wait or use another option.",
+  "target_functions": [
+    "delay_comprehension",
+    "duration_confirmation",
+    "simple_travel_choice"
+  ],
+  "register_notes": "Clear everyday station English. Short public announcement plus polite staff exchange; no refund, compensation, emergency, or complaint flow.",
+  "production_mode_default": {
+    "required": [
+      "choice"
+    ],
+    "optional_visible": [
+      "speaking"
+    ],
+    "optional_hidden": [
+      "typing"
+    ]
+  },
+  "support_text": "Listen for the delay time. Confirm how long it is, then choose a simple next step.",
+  "roles": {
+    "npc": {
+      "label": "Station Staff"
+    },
+    "learner": {
+      "label": "You"
+    }
+  },
+  "turns": [
+    {
+      "turn_id": "t1",
+      "speaker": "npc",
+      "act": "delay_announcement",
+      "act_slots": {
+        "topic": "train delay",
+        "keyword": "fifteen minutes",
+        "gloss": "十五分鐘"
+      },
+      "learning_role": "listen_only",
+      "surface": "Attention, please. The train to Central is delayed by fifteen minutes.",
+      "speak": "Attention, please. The train to Central is delayed by fifteen minutes.",
+      "translation": "請注意。前往 Central 的火車延誤十五分鐘。",
+      "friend": {
+        "hint": "The announcement says the delay is fifteen minutes. Confirm that time."
+      },
+      "reply_set": {
+        "correct": "r1a",
+        "choices": [
+          {
+            "id": "r1a",
+            "surface": "It is delayed by fifteen minutes, right?",
+            "translation": "它延誤十五分鐘，對吧？",
+            "speak": "It is delayed by fifteen minutes, right?",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r1b",
+            "surface": "It leaves in five minutes, right?",
+            "translation": "它五分鐘後出發，對吧？",
+            "speak": "It leaves in five minutes, right?",
+            "contrast_type": "wrong_duration",
+            "feedback": "The announcement says delayed by fifteen minutes, not leaving in five."
+          },
+          {
+            "id": "r1c",
+            "surface": "Can I change my seat?",
+            "translation": "我可以換座位嗎？",
+            "speak": "Can I change my seat?",
+            "contrast_type": "wrong_scenario_seat",
+            "feedback": "This asks about a seat. Here you need to confirm the delay time."
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t2",
+      "speaker": "npc",
+      "act": "duration_confirmation",
+      "act_slots": {
+        "topic": "delay duration",
+        "keyword": "fifteen",
+        "gloss": "十五"
+      },
+      "learning_role": "listen_only",
+      "surface": "Yes, about fifteen minutes.",
+      "speak": "Yes, about fifteen minutes.",
+      "translation": "對，大約十五分鐘。",
+      "friend": {
+        "hint": "Ask if there is another simple option."
+      },
+      "inline_explain": {
+        "pattern_id": "en.a2.transport.delay.by_minutes.v1",
+        "title": "delayed by + minutes",
+        "explain": "Use delayed by to say how long the transport is late.",
+        "items": [
+          {
+            "surface": "delayed by fifteen minutes",
+            "translation": "延誤十五分鐘",
+            "speak": "delayed by fifteen minutes"
+          },
+          {
+            "surface": "delayed by ten minutes",
+            "translation": "延誤十分鐘",
+            "speak": "delayed by ten minutes"
+          }
+        ]
+      },
+      "reply_set": {
+        "correct": "r2a",
+        "choices": [
+          {
+            "id": "r2a",
+            "surface": "Is there another train soon?",
+            "translation": "很快會有另一班火車嗎？",
+            "speak": "Is there another train soon?",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r2b",
+            "surface": "Is there another ticket yesterday?",
+            "translation": "昨天有另一張票嗎？",
+            "speak": "Is there another ticket yesterday?",
+            "contrast_type": "wrong_time_expression",
+            "feedback": "Yesterday does not fit. Ask about another train soon."
+          },
+          {
+            "id": "r2c",
+            "surface": "I need a hotel room.",
+            "translation": "我需要一間飯店房間。",
+            "speak": "I need a hotel room.",
+            "contrast_type": "wrong_scenario_hotel",
+            "feedback": "This is hotel language. Here you are asking about transport."
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t3",
+      "speaker": "npc",
+      "act": "simple_option",
+      "act_slots": {
+        "topic": "next departure",
+        "keyword": "platform two",
+        "gloss": "二號月台"
+      },
+      "learning_role": "listen_only",
+      "surface": "There is a bus outside, or you can wait here for the train.",
+      "speak": "There is a bus outside, or you can wait here for the train.",
+      "translation": "外面有公車，或者你可以在這裡等火車。",
+      "friend": {
+        "hint": "Choose one simple action. Waiting is fine."
+      },
+      "reply_set": {
+        "correct": "r3a",
+        "choices": [
+          {
+            "id": "r3a",
+            "surface": "I will wait here for the train.",
+            "translation": "我會在這裡等火車。",
+            "speak": "I will wait here for the train.",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r3b",
+            "surface": "I waited here yesterday.",
+            "translation": "我昨天在這裡等過。",
+            "speak": "I waited here yesterday.",
+            "contrast_type": "wrong_time_past",
+            "feedback": "You need to choose what to do now, not talk about yesterday."
+          },
+          {
+            "id": "r3c",
+            "surface": "Please cancel my dinner.",
+            "translation": "請取消我的晚餐。",
+            "speak": "Please cancel my dinner.",
+            "contrast_type": "wrong_scenario_restaurant",
+            "feedback": "This is not a restaurant situation. Choose a transport option."
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t4",
+      "speaker": "npc",
+      "act": "closing",
+      "act_slots": {
+        "topic": "wait here"
+      },
+      "learning_role": "listen_only",
+      "surface": "Okay. Please wait near this platform.",
+      "speak": "Okay. Please wait near this platform.",
+      "translation": "好的。請在這個月台附近等候。",
+      "friend": {
+        "hint": "The choice is clear. Close politely."
+      },
+      "reply_set": {
+        "correct": "r4a",
+        "choices": [
+          {
+            "id": "r4a",
+            "surface": "Okay, thank you.",
+            "translation": "好的，謝謝。",
+            "speak": "Okay, thank you."
+          },
+          {
+            "id": "r4b",
+            "surface": "Okay, I need a refund.",
+            "translation": "好的，我需要退款。",
+            "speak": "Okay, I need a refund.",
+            "contrast_type": "forbidden_refund",
+            "feedback": "Refund language is outside this practice. A simple thank you is enough."
+          },
+          {
+            "id": "r4c",
+            "surface": "Okay, I am the driver.",
+            "translation": "好的，我是司機。",
+            "speak": "Okay, I am the driver.",
+            "contrast_type": "wrong_role",
+            "feedback": "You are a passenger. Just close politely."
+          }
+        ]
+      }
+    }
+  ],
+  "choice_sets": [
+    "t1.reply_set",
+    "t2.reply_set",
+    "t3.reply_set",
+    "t4.reply_set"
+  ],
+  "feedback": "Distractors test delay duration, current versus past action, and unrelated service language.",
+  "tts_segments": [
+    "It is delayed by fifteen minutes, right?",
+    "Is there another train soon?",
+    "I will wait here for the train.",
+    "Okay, thank you."
+  ],
+  "formula_moments": [
+    {
+      "after_turn": "t2",
+      "pattern_id": "en.a2.transport.delay.by_minutes.v1"
+    }
+  ],
+  "runtime_notes": "Fresh EN A2 transport candidate. Structural checks and two AI semantic review passes completed on 2026-06-14 before metadata promotion.",
+  "notes": {
+    "authoring_policy": "Fresh-authored in English from the neutral A2 transport brief. KO was used only as schema-shape reference.",
+    "a2_boundary": "Simple delay announcement with one duration and one low-risk choice; avoids refund, compensation, complaint, or emergency handling."
+  }
+}

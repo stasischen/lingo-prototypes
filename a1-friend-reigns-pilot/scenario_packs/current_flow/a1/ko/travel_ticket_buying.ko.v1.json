@@ -1,0 +1,249 @@
+{
+  "schema_version": "scenario_pack.v1",
+  "scenario_id": "travel_ticket_buying",
+  "title": "買車票情境",
+  "setting_label": "車站售票窗口",
+  "wrap_title": "今天這段買車票",
+  "wrap_friend": "你剛剛買到一張車票，也聽懂月台資訊。旅行移動時，先能說目的地和一張票，就能完成基本購票。",
+  "language": "ko",
+  "ui_language": "zh_tw",
+  "source_status": "pilot_authored_ai_review_pending",
+  "review_state": "draft",
+  "production_mode_default": {
+    "required": [
+      "choice"
+    ],
+    "optional_visible": [
+      "speaking"
+    ],
+    "optional_hidden": [
+      "typing"
+    ]
+  },
+  "support_text": "你在車站售票窗口，要買一張去首爾站的票。",
+  "roles": {
+    "npc": {
+      "label": "售票員"
+    },
+    "learner": {
+      "label": "你"
+    }
+  },
+  "opening_messages": [
+    {
+      "speaker": "learner",
+      "surface": "저기요.",
+      "speak": "저기요.",
+      "translation": "不好意思。"
+    }
+  ],
+  "turns": [
+    {
+      "turn_id": "t1",
+      "speaker": "npc",
+      "act": "greeting",
+      "act_slots": {
+        "topic": "help",
+        "keyword": "도와드릴까요",
+        "gloss": "需要幫忙嗎"
+      },
+      "learning_role": "listen_only",
+      "surface": "네, 무엇을 도와드릴까요?",
+      "speak": "네, 무엇을 도와드릴까요?",
+      "translation": "您好，需要幫忙嗎？",
+      "friend": {
+        "hint": "買票時，可以說目的地 + 표 한 장 주세요。"
+      },
+      "inline_explain": {
+        "pattern_id": "ko.ticket.destination.ticket.one.v1",
+        "formula_ref": null,
+        "title": "目的地 + 표 한 장 주세요",
+        "explain": "표 是票，한 장 是一張。",
+        "items": [
+          {
+            "surface": "서울역 표 한 장 주세요.",
+            "translation": "請給我一張去首爾站的票。",
+            "speak": "서울역 표 한 장 주세요."
+          },
+          {
+            "surface": "부산역 표 한 장 주세요.",
+            "translation": "請給我一張去釜山站的票。",
+            "speak": "부산역 표 한 장 주세요."
+          }
+        ]
+      },
+      "reply_set": {
+        "correct": "r1a",
+        "choices": [
+          {
+            "id": "r1a",
+            "surface": "서울역 표 한 장 주세요.",
+            "translation": "請給我一張去首爾站的票。",
+            "speak": "서울역 표 한 장 주세요.",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r1b",
+            "surface": "지하철역이 어디예요?",
+            "translation": "地鐵站在哪裡？",
+            "speak": "지하철역이 어디예요?",
+            "contrast_type": "wrong_scenario_request",
+            "feedback": "這句是在問地點。現在你在售票窗口買票。"
+          },
+          {
+            "id": "r1c",
+            "surface": "비빔밥 하나 주세요.",
+            "translation": "請給我一份拌飯。",
+            "speak": "비빔밥 하나 주세요.",
+            "contrast_type": "wrong_scenario_request",
+            "feedback": "這句是在餐廳點餐。現在要買車票。"
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t2",
+      "speaker": "npc",
+      "act": "confirmation",
+      "act_slots": {
+        "topic": "destination confirm",
+        "keyword": "서울역",
+        "gloss": "首爾站"
+      },
+      "learning_role": "listen_only",
+      "surface": "서울역 한 장 맞으세요?",
+      "speak": "서울역 한 장 맞으세요?",
+      "translation": "一張到首爾站，沒錯嗎？",
+      "friend": {
+        "hint": "맞으세요 是確認。沒錯時可以說 네, 맞아요。"
+      },
+      "reply_set": {
+        "correct": "r2a",
+        "choices": [
+          {
+            "id": "r2a",
+            "surface": "네, 맞아요.",
+            "translation": "對，沒錯。",
+            "speak": "네, 맞아요.",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r2b",
+            "surface": "서울역 표 한 장 주세요.",
+            "translation": "請給我一張去首爾站的票。",
+            "speak": "서울역 표 한 장 주세요.",
+            "contrast_type": "repeated_prior_answer",
+            "feedback": "票已經說了。現在是在確認目的地和張數。"
+          },
+          {
+            "id": "r2c",
+            "surface": "아니요, 괜찮아요.",
+            "translation": "不用了，沒關係。",
+            "speak": "아니요, 괜찮아요.",
+            "contrast_type": "wrong_act_refusal",
+            "feedback": "這樣像取消購票。沒錯時用 네, 맞아요。"
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t3",
+      "speaker": "npc",
+      "act": "payment",
+      "act_slots": {
+        "topic": "price",
+        "keyword": "원",
+        "gloss": "韓元"
+      },
+      "learning_role": "listen_only",
+      "surface": "5,000원입니다.",
+      "speak": "오천 원입니다.",
+      "translation": "是 5,000 韓元。",
+      "friend": {
+        "hint": "價格是聽懂就好。付款可以沿用 카드로 할게요。"
+      },
+      "reply_set": {
+        "correct": "r3a",
+        "choices": [
+          {
+            "id": "r3a",
+            "surface": "카드로 할게요.",
+            "translation": "我用卡。",
+            "speak": "카드로 할게요."
+          },
+          {
+            "id": "r3b",
+            "surface": "몇 시에 만날까요?",
+            "translation": "幾點見？",
+            "speak": "몇 시에 만날까요?",
+            "contrast_type": "wrong_scenario_request",
+            "feedback": "這句是在約時間。現在是在付車票錢。"
+          },
+          {
+            "id": "r3c",
+            "surface": "3번 출구요?",
+            "translation": "3 號出口嗎？",
+            "speak": "삼번 출구요?",
+            "contrast_type": "wrong_entity",
+            "feedback": "3번 출구 是出口。現在售票員說的是價格。"
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t4",
+      "speaker": "npc",
+      "act": "handover",
+      "act_slots": {
+        "topic": "ticket and platform",
+        "keyword": "2번 승강장",
+        "gloss": "2 號月台"
+      },
+      "learning_role": "listen_only",
+      "surface": "표 여기 있습니다. 2번 승강장으로 가세요.",
+      "speak": "표 여기 있습니다. 이번 승강장으로 가세요.",
+      "translation": "票在這裡。請到 2 號月台。",
+      "friend": {
+        "hint": "승강장 是月台。拿到票和月台資訊後道謝。"
+      },
+      "reply_set": {
+        "correct": "r4a",
+        "choices": [
+          {
+            "id": "r4a",
+            "surface": "감사합니다.",
+            "translation": "謝謝。",
+            "speak": "감사합니다."
+          },
+          {
+            "id": "r4b",
+            "surface": "서울역 표 한 장 주세요.",
+            "translation": "請給我一張去首爾站的票。",
+            "speak": "서울역 표 한 장 주세요.",
+            "contrast_type": "repeated_prior_answer",
+            "feedback": "票已經買好了。現在拿到票，可以道謝。"
+          },
+          {
+            "id": "r4c",
+            "surface": "영수증 드릴까요?",
+            "translation": "需要收據嗎？",
+            "speak": "영수증 드릴까요?",
+            "contrast_type": "wrong_speaker_role",
+            "feedback": "這是工作人員會問你的句子，不是你要回的句子。"
+          }
+        ]
+      }
+    }
+  ],
+  "formula_moments": [
+    {
+      "after_turn": "t1",
+      "pattern_id": "ko.ticket.destination.ticket.one.v1"
+    }
+  ],
+  "notes": {
+    "practice_plan": "Primary production target is 서울역 표 한 장 주세요. Optional support is 네, 맞아요. Payment and thanks are choice-only practiced.",
+    "review_policy": "AI review pass 1 recorded in travel_ticket_buying.review.ai_20260613.md; second independent AI review and native review remain pending.",
+    "canonical_policy": "Pilot-authored derived fixture only; do not write back to canonical schema."
+  }
+}

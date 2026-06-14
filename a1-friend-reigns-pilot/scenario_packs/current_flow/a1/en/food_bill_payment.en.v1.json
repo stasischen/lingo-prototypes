@@ -1,0 +1,238 @@
+{
+  "schema_version": "scenario_pack.v1",
+  "scenario_id": "food_bill_payment",
+  "brief_id": "ml2_a1_011_food_bill_payment",
+  "source_neutral_brief": "release-aggregator/docs/tasks/A1_MULTILINGUAL_KO_B1_PARALLEL_ORCHESTRATION/work_products/ml0/ML2_NEUTRAL_ADAPTATION_BRIEFS_20260614.md#brief-ml2-a1-011-pay-the-bill",
+  "blueprint_ledger": "release-aggregator/docs/tasks/A1_MULTILINGUAL_KO_B1_PARALLEL_ORCHESTRATION/work_products/ml0/ML2_BLUEPRINT_LEDGER_20260614.md",
+  "repo": "content-en",
+  "staging_path": "curriculum/a1_travel_v1/staging/scenario_pack.v1/food_bill_payment.en.v1.json",
+  "title": "Paying the Bill",
+  "setting_label": "Casual cafe",
+  "wrap_title": "You paid the bill",
+  "wrap_friend": "You asked for the check, answered the payment question, and closed politely.",
+  "language": "en",
+  "ui_language": "zh_tw",
+  "source_status": "candidate_runtime_verified",
+  "review_state": "draft",
+  "review_status_framework_state": "candidate_runtime_verified",
+  "native_review_state": "native_pending",
+  "production_mode_default": {
+    "required": [
+      "choice"
+    ],
+    "optional_visible": [
+      "speaking"
+    ],
+    "optional_hidden": [
+      "typing"
+    ]
+  },
+  "support_text": "你在咖啡店吃完了。選一句自然的英文要帳單並付款。",
+  "roles": {
+    "npc": {
+      "label": "Server"
+    },
+    "learner": {
+      "label": "You"
+    }
+  },
+  "turns": [
+    {
+      "turn_id": "t1",
+      "speaker": "learner",
+      "act": "ask_for_check",
+      "learning_role": "production_target",
+      "surface": "Can I get the check, please?",
+      "speak": "Can I get the check, please?",
+      "translation": "可以給我帳單嗎？",
+      "friend": {
+        "hint": "美式英文常用 check。句尾加 please 很自然。"
+      },
+      "inline_explain": {
+        "pattern_id": "en.restaurant.check_request.us.v1",
+        "formula_ref": null,
+        "title": "Can I get the check?",
+        "explain": "In US-style English, \"check\" is a common restaurant bill word.",
+        "items": [
+          {
+            "surface": "Can I get the check, please?",
+            "translation": "可以給我帳單嗎？",
+            "speak": "Can I get the check, please?"
+          }
+        ]
+      },
+      "reply_set": {
+        "correct": "r1a",
+        "choices": [
+          {
+            "id": "r1a",
+            "surface": "Can I get the check, please?",
+            "translation": "可以給我帳單嗎？",
+            "speak": "Can I get the check, please?",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r1b",
+            "surface": "I'd like another coffee.",
+            "translation": "我想再要一杯咖啡。",
+            "speak": "I'd like another coffee.",
+            "contrast_type": "ordering_more_when_payment_expected",
+            "feedback": "這是在加點。現在目標是結帳。"
+          },
+          {
+            "id": "r1c",
+            "surface": "How much is this shirt?",
+            "translation": "這件襯衫多少錢？",
+            "speak": "How much is this shirt?",
+            "contrast_type": "shop_price_in_restaurant",
+            "feedback": "這是店裡問商品價格，不是餐廳帳單。"
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t2",
+      "speaker": "npc",
+      "act": "ask_payment_method",
+      "learning_role": "listen_only",
+      "surface": "Sure. Card or cash?",
+      "speak": "Sure. Card or cash?",
+      "translation": "好的。刷卡還是現金？",
+      "friend": {
+        "hint": "店員問付款方式。選一個即可。"
+      },
+      "reply_set": {
+        "correct": "r3a",
+        "choices": [
+          {
+            "id": "r3a",
+            "surface": "Card, please.",
+            "translation": "刷卡，謝謝。",
+            "speak": "Card, please.",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r3b",
+            "surface": "No receipt, please.",
+            "translation": "不用收據，謝謝。",
+            "speak": "No receipt, please.",
+            "contrast_type": "receipt_answer_to_payment_method",
+            "feedback": "這是在回答收據問題。現在店員問的是卡或現金。"
+          },
+          {
+            "id": "r3c",
+            "surface": "For here, please.",
+            "translation": "內用，謝謝。",
+            "speak": "For here, please.",
+            "contrast_type": "dine_in_answer_at_payment",
+            "feedback": "這是點餐時的回答。現在是在付款。"
+          }
+        ]
+      },
+      "runtime_note": "Reply choices mirror the next learner response so the current prototype can render every round."
+    },
+    {
+      "turn_id": "t3",
+      "speaker": "learner",
+      "act": "answer_payment_method",
+      "learning_role": "production_target",
+      "surface": "Card, please.",
+      "speak": "Card, please.",
+      "translation": "刷卡，謝謝。",
+      "friend": {
+        "hint": "用 Card, please 簡短回答付款方式。"
+      },
+      "reply_set": {
+        "correct": "r3a",
+        "choices": [
+          {
+            "id": "r3a",
+            "surface": "Card, please.",
+            "translation": "刷卡，謝謝。",
+            "speak": "Card, please.",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r3b",
+            "surface": "No receipt, please.",
+            "translation": "不用收據，謝謝。",
+            "speak": "No receipt, please.",
+            "contrast_type": "receipt_answer_to_payment_method",
+            "feedback": "這是在回答收據問題。現在店員問的是卡或現金。"
+          },
+          {
+            "id": "r3c",
+            "surface": "For here, please.",
+            "translation": "內用，謝謝。",
+            "speak": "For here, please.",
+            "contrast_type": "dine_in_answer_at_payment",
+            "feedback": "這是點餐時的回答。現在是在付款。"
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t4",
+      "speaker": "npc",
+      "act": "close_payment",
+      "learning_role": "listen_only",
+      "surface": "All set. Thank you.",
+      "speak": "All set. Thank you.",
+      "translation": "好了，謝謝。",
+      "friend": {
+        "hint": "付款完成。用一句謝謝收尾。"
+      },
+      "reply_set": {
+        "correct": "r4a",
+        "choices": [
+          {
+            "id": "r4a",
+            "surface": "Thank you.",
+            "translation": "謝謝。",
+            "speak": "Thank you.",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r4b",
+            "surface": "Where is the station?",
+            "translation": "車站在哪裡？",
+            "speak": "Where is the station?",
+            "contrast_type": "directions_after_payment",
+            "feedback": "這突然換成問路。付款完成時簡短道謝即可。"
+          },
+          {
+            "id": "r4c",
+            "surface": "One sandwich, please.",
+            "translation": "請給我一份三明治。",
+            "speak": "One sandwich, please.",
+            "contrast_type": "new_order_after_payment_close",
+            "feedback": "這像是重新點餐，不是結帳收尾。"
+          }
+        ]
+      },
+      "closing": {
+        "act": "payment_complete",
+        "learning_role": "listen_only",
+        "surface": "You paid and closed politely.",
+        "speak": "You paid and closed politely.",
+        "translation": "你完成付款並禮貌收尾。"
+      }
+    }
+  ],
+  "formula_moments": [
+    {
+      "after_turn": "t1",
+      "pattern_id": "en.restaurant.check_request.us.v1"
+    },
+    {
+      "after_turn": "t3",
+      "pattern_id": "en.payment.card_cash.v1"
+    }
+  ],
+  "notes": {
+    "authoring_source": "Authored from ML-2 neutral brief, not Korean surface text or another target-language pack.",
+    "review_policy": "AI-authored English candidate. Requires AI review, runtime smoke, and tracked native review before any stronger status.",
+    "canonical_policy": "Staging candidate only. Do not write back to manifests, production exports, schemas, or legacy content.",
+    "register_note": "Uses US-style \"check\"; adaptation delta documents the locale choice."
+  }
+}

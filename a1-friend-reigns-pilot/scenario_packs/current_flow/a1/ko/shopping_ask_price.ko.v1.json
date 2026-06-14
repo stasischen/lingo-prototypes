@@ -1,0 +1,254 @@
+{
+  "schema_version": "scenario_pack.v1",
+  "scenario_id": "shopping_ask_price",
+  "title": "問價格情境",
+  "setting_label": "商店櫃台",
+  "wrap_title": "今天這段問價格",
+  "wrap_friend": "你剛剛問到價格，也完成購買。買東西時先能問多少錢，再說要這個，就能把流程接起來。",
+  "language": "ko",
+  "ui_language": "zh_tw",
+  "source_status": "pilot_authored_ai_review_pending",
+  "review_state": "draft",
+  "production_mode_default": {
+    "required": [
+      "choice"
+    ],
+    "optional_visible": [
+      "speaking"
+    ],
+    "optional_hidden": [
+      "typing"
+    ]
+  },
+  "support_text": "你在商店看到想買的東西。先問價格，再決定要買。",
+  "roles": {
+    "npc": {
+      "label": "店員"
+    },
+    "learner": {
+      "label": "你"
+    }
+  },
+  "opening_messages": [
+    {
+      "speaker": "learner",
+      "surface": "저기요.",
+      "speak": "저기요.",
+      "translation": "不好意思。"
+    }
+  ],
+  "turns": [
+    {
+      "turn_id": "t1",
+      "speaker": "npc",
+      "act": "greeting",
+      "act_slots": {
+        "topic": "help",
+        "keyword": "도와드릴까요",
+        "gloss": "需要幫忙嗎"
+      },
+      "learning_role": "listen_only",
+      "surface": "네, 무엇을 도와드릴까요?",
+      "speak": "네, 무엇을 도와드릴까요?",
+      "translation": "您好，需要幫忙嗎？",
+      "friend": {
+        "hint": "想問價格時，用 이거 얼마예요? 就可以。이거 是這個，얼마 是多少錢。"
+      },
+      "inline_explain": {
+        "pattern_id": "ko.shopping.this.how_much.v1",
+        "formula_ref": null,
+        "title": "이거 + 얼마예요?",
+        "explain": "이거 是這個，얼마예요 是多少錢。",
+        "items": [
+          {
+            "surface": "이거 얼마예요?",
+            "translation": "這個多少錢？",
+            "speak": "이거 얼마예요?"
+          },
+          {
+            "surface": "이거 주세요",
+            "translation": "請給我這個",
+            "speak": "이거 주세요"
+          }
+        ]
+      },
+      "reply_set": {
+        "correct": "r1a",
+        "choices": [
+          {
+            "id": "r1a",
+            "surface": "이거 얼마예요?",
+            "translation": "這個多少錢？",
+            "speak": "이거 얼마예요?",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r1b",
+            "surface": "지하철역이 어디예요?",
+            "translation": "地鐵站在哪裡？",
+            "speak": "지하철역이 어디예요?",
+            "contrast_type": "wrong_scenario_request",
+            "feedback": "這句是在問路。現在你在商店問價格。"
+          },
+          {
+            "id": "r1c",
+            "surface": "카드로 할게요.",
+            "translation": "我用卡。",
+            "speak": "카드로 할게요.",
+            "contrast_type": "wrong_act_payment",
+            "feedback": "付款還沒到。先問這個多少錢。"
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t2",
+      "speaker": "npc",
+      "act": "info_response",
+      "act_slots": {
+        "topic": "price",
+        "keyword": "원",
+        "gloss": "韓元"
+      },
+      "learning_role": "listen_only",
+      "surface": "12,000원입니다.",
+      "speak": "만 이천 원입니다.",
+      "translation": "是 12,000 韓元。",
+      "friend": {
+        "hint": "원 是韓元。想買這個時，可以說 이거 주세요。"
+      },
+      "reply_set": {
+        "correct": "r2a",
+        "choices": [
+          {
+            "id": "r2a",
+            "surface": "이거 주세요.",
+            "translation": "請給我這個。",
+            "speak": "이거 주세요.",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r2b",
+            "surface": "화장실이 어디예요?",
+            "translation": "洗手間在哪裡？",
+            "speak": "화장실이 어디예요?",
+            "contrast_type": "wrong_scenario_request",
+            "feedback": "這句是在問洗手間。你剛剛問了價格，現在要不要買。"
+          },
+          {
+            "id": "r2c",
+            "surface": "두 명이요.",
+            "translation": "兩位。",
+            "speak": "두 명이요.",
+            "contrast_type": "wrong_scenario_response",
+            "feedback": "두 명이요 是餐廳回答人數。這裡在買東西。"
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t3",
+      "speaker": "npc",
+      "act": "payment",
+      "act_slots": {
+        "topic": "payment",
+        "keyword": "결제",
+        "gloss": "付款"
+      },
+      "learning_role": "listen_only",
+      "surface": "네, 결제는 어떻게 하시겠어요?",
+      "speak": "네, 결제는 어떻게 하시겠어요?",
+      "translation": "好的，請問怎麼付款？",
+      "friend": {
+        "hint": "결제 是付款。這裡可以沿用便利商店學過的 카드로 할게요。"
+      },
+      "reply_set": {
+        "correct": "r3a",
+        "choices": [
+          {
+            "id": "r3a",
+            "surface": "카드로 할게요.",
+            "translation": "我用卡。",
+            "speak": "카드로 할게요."
+          },
+          {
+            "id": "r3b",
+            "surface": "이거 얼마예요?",
+            "translation": "這個多少錢？",
+            "speak": "이거 얼마예요?",
+            "contrast_type": "repeated_prior_answer",
+            "feedback": "價格剛問過了。現在店員在問付款方式。"
+          },
+          {
+            "id": "r3c",
+            "surface": "아침 식사는 몇 시예요?",
+            "translation": "早餐是幾點？",
+            "speak": "아침 식사는 몇 시예요?",
+            "contrast_type": "wrong_scenario_request",
+            "feedback": "這句是在飯店問早餐。現在是在商店付款。"
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t4",
+      "speaker": "npc",
+      "act": "handover",
+      "act_slots": {
+        "topic": "handover"
+      },
+      "learning_role": "listen_only",
+      "surface": "결제됐습니다. 여기 있습니다.",
+      "speak": "결제됐습니다. 여기 있습니다.",
+      "translation": "付款完成了。這是您的東西。",
+      "friend": {
+        "hint": "東西拿到了，簡單道謝就好。"
+      },
+      "reply_set": {
+        "correct": "r4a",
+        "choices": [
+          {
+            "id": "r4a",
+            "surface": "감사합니다.",
+            "translation": "謝謝。",
+            "speak": "감사합니다."
+          },
+          {
+            "id": "r4b",
+            "surface": "카페 앞이요?",
+            "translation": "咖啡店前面嗎？",
+            "speak": "카페 앞이요?",
+            "contrast_type": "wrong_scenario_response",
+            "feedback": "這句是在約地點。現在東西拿到了，收尾道謝。"
+          },
+          {
+            "id": "r4c",
+            "surface": "영수증 드릴까요?",
+            "translation": "需要收據嗎？",
+            "speak": "영수증 드릴까요?",
+            "contrast_type": "wrong_speaker_role",
+            "feedback": "這是店員問你的句子，不是你要回的句子。"
+          }
+        ]
+      },
+      "closing": {
+        "act": "closing",
+        "learning_role": "context_support",
+        "surface": "안녕히 가세요.",
+        "speak": "안녕히 가세요.",
+        "translation": "請慢走。"
+      }
+    }
+  ],
+  "formula_moments": [
+    {
+      "after_turn": "t1",
+      "pattern_id": "ko.shopping.this.how_much.v1"
+    }
+  ],
+  "notes": {
+    "practice_plan": "Primary production target is 이거 얼마예요. Optional support is 이거 주세요. Payment and thank-you replies are choice-only practiced.",
+    "review_policy": "AI review pass 1 recorded in shopping_ask_price.review.ai_20260613.md; second independent AI review and native review remain pending.",
+    "canonical_policy": "Pilot-authored derived fixture only; do not write back to canonical schema."
+  }
+}

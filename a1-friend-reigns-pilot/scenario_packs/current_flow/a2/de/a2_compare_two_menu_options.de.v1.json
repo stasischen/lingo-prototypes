@@ -1,0 +1,284 @@
+{
+  "schema_version": "scenario_pack.v1",
+  "scenario_id": "a2_compare_two_menu_options",
+  "title": "Zwei Menüoptionen Vergleichen",
+  "setting_label": "Restauranttheke",
+  "wrap_title": "Menüauswahl bestätigt",
+  "wrap_friend": "Gut. Sie haben eine Vorliebe und ein Detail in einer einfachen Essens- oder Einkaufssituation bestätigt.",
+  "language": "de",
+  "ui_language": "zh-Hant",
+  "cefr_level": "A2",
+  "source_status": "candidate_runtime_verified",
+  "review_state": "ai_reviewed",
+  "review_status_framework_state": "candidate_runtime_verified",
+  "native_review_state": "native_pending",
+  "scenario": {
+    "domain": "food_shopping_preferences",
+    "review_slice": "food_shopping",
+    "interaction": "service_preference_or_exchange",
+    "source_brief": "A2_FOOD_SHOPPING_NEUTRAL_ADAPTATION_BRIEFS_20260614",
+    "blueprint_source": "language_neutral_adaptation_brief",
+    "ko_pack_role": "mature_scenario_blueprint_not_translation_source"
+  },
+  "learner_goal": "Vergleichen Sie zwei einfache Menüoptionen und wählen Sie die bevorzugte Option.",
+  "target_functions": [
+    "compare_or_state_preference",
+    "confirm_key_detail",
+    "make_polite_low_risk_request",
+    "close_with_correct_next_step"
+  ],
+  "register_notes": "German A2 food/shopping register: clear polite Sie service German, no allergy/medical/refund-dispute framing.",
+  "production_mode_default": {
+    "required": [
+      "choice"
+    ],
+    "optional_visible": [
+      "speaking"
+    ],
+    "optional_hidden": [
+      "typing"
+    ]
+  },
+  "support_text": "Vergleichen Sie zwei einfache Menüoptionen und wählen Sie die bevorzugte Option.",
+  "roles": {
+    "npc": {
+      "label": "Mitarbeiter"
+    },
+    "learner": {
+      "label": "你"
+    }
+  },
+  "turns": [
+    {
+      "turn_id": "t1",
+      "speaker": "npc",
+      "act": "offer_options",
+      "act_slots": {
+        "topic": "compare-two-menu-options",
+        "keyword": "1",
+        "gloss": "A2 food/shopping"
+      },
+      "learning_role": "listen_only",
+      "surface": "Heute können Sie die Reisschale oder die Nudelsuppe wählen.",
+      "speak": "Heute können Sie die Reisschale oder die Nudelsuppe wählen.",
+      "translation": "今天可以選飯碗或湯麵。",
+      "friend": {
+        "hint": "Fragen Sie nach dem Unterschied zwischen den Optionen."
+      },
+      "reply_set": {
+        "correct": "r1a",
+        "choices": [
+          {
+            "id": "r1a",
+            "surface": "Was ist der Unterschied zwischen den beiden Optionen?",
+            "translation": "兩個選項有什麼不同？",
+            "speak": "Was ist der Unterschied zwischen den beiden Optionen?",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r1b",
+            "surface": "Wo ist mein Tisch?",
+            "translation": "我的桌子在哪裡？",
+            "speak": "Wo ist mein Tisch?",
+            "contrast_type": "wrong_detail_or_domain",
+            "feedback": "Das fragt nach dem Tisch, nicht nach dem Menüvergleich."
+          },
+          {
+            "id": "r1c",
+            "surface": "Ich möchte eine Erstattung.",
+            "translation": "我想退款。",
+            "speak": "Ich möchte eine Erstattung.",
+            "contrast_type": "forbidden_or_wrong_domain",
+            "feedback": "Eine Erstattung liegt außerhalb dieser A2-Aufgabe."
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t2",
+      "speaker": "npc",
+      "act": "ask_difference",
+      "act_slots": {
+        "topic": "compare-two-menu-options",
+        "keyword": "2",
+        "gloss": "A2 food/shopping"
+      },
+      "learning_role": "listen_only",
+      "surface": "Die Reisschale ist etwas scharf, und die Nudelsuppe ist leichter.",
+      "speak": "Die Reisschale ist etwas scharf, und die Nudelsuppe ist leichter.",
+      "translation": "飯碗有點辣，湯麵比較清爽。",
+      "friend": {
+        "hint": "Bestätigen Sie den gehörten Vergleich."
+      },
+      "reply_set": {
+        "correct": "r2a",
+        "choices": [
+          {
+            "id": "r2a",
+            "surface": "Die Nudelsuppe ist leichter, richtig?",
+            "translation": "湯麵比較清爽，對嗎？",
+            "speak": "Die Nudelsuppe ist leichter, richtig?",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r2b",
+            "surface": "Die Reisschale ist billiger, richtig?",
+            "translation": "飯碗比較便宜，對嗎？",
+            "speak": "Die Reisschale ist billiger, richtig?",
+            "contrast_type": "wrong_detail_or_domain",
+            "feedback": "Der Preis wurde nicht erwähnt."
+          },
+          {
+            "id": "r2c",
+            "surface": "Der Zug ist schneller, richtig?",
+            "translation": "火車比較快，對嗎？",
+            "speak": "Der Zug ist schneller, richtig?",
+            "contrast_type": "forbidden_or_wrong_domain",
+            "feedback": "Das wechselt zum Verkehr."
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t3",
+      "speaker": "npc",
+      "act": "state_comparison",
+      "act_slots": {
+        "topic": "compare-two-menu-options",
+        "keyword": "3",
+        "gloss": "A2 food/shopping"
+      },
+      "learning_role": "listen_only",
+      "surface": "Ja, die Nudelsuppe ist weniger scharf.",
+      "speak": "Ja, die Nudelsuppe ist weniger scharf.",
+      "translation": "對，湯麵比較不辣。",
+      "friend": {
+        "hint": "Wählen Sie die Option nach Ihrer Vorliebe."
+      },
+      "reply_set": {
+        "correct": "r3a",
+        "choices": [
+          {
+            "id": "r3a",
+            "surface": "Dann nehme ich die Nudelsuppe.",
+            "translation": "那我要湯麵。",
+            "speak": "Dann nehme ich die Nudelsuppe.",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r3b",
+            "surface": "Dann wechsle ich das Zimmer.",
+            "translation": "那我要換房間。",
+            "speak": "Dann wechsle ich das Zimmer.",
+            "contrast_type": "wrong_detail_or_domain",
+            "feedback": "Das wechselt in eine Hotelsituation."
+          },
+          {
+            "id": "r3c",
+            "surface": "Dann zeige ich meinen Pass.",
+            "translation": "那我要出示護照。",
+            "speak": "Dann zeige ich meinen Pass.",
+            "contrast_type": "forbidden_or_wrong_domain",
+            "feedback": "Ein Pass ist hier nicht nötig."
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t4",
+      "speaker": "npc",
+      "act": "choose_option",
+      "act_slots": {
+        "topic": "compare-two-menu-options",
+        "keyword": "4",
+        "gloss": "A2 food/shopping"
+      },
+      "learning_role": "listen_only",
+      "surface": "Gut. Ich nehme eine Nudelsuppe für Sie auf.",
+      "speak": "Gut. Ich nehme eine Nudelsuppe für Sie auf.",
+      "translation": "好的，我幫您點一份湯麵。",
+      "friend": {
+        "hint": "Bestätigen Sie das gewählte Gericht höflich."
+      },
+      "reply_set": {
+        "correct": "r4a",
+        "choices": [
+          {
+            "id": "r4a",
+            "surface": "Danke. Eine Nudelsuppe, bitte.",
+            "translation": "謝謝，請給我一份湯麵。",
+            "speak": "Danke. Eine Nudelsuppe, bitte.",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r4b",
+            "surface": "Ich rufe die Polizei.",
+            "translation": "我要報警。",
+            "speak": "Ich rufe die Polizei.",
+            "contrast_type": "wrong_detail_or_domain",
+            "feedback": "Das ist für diese Situation zu schwer."
+          },
+          {
+            "id": "r4c",
+            "surface": "Ich muss morgen ins Krankenhaus.",
+            "translation": "我明天需要去醫院。",
+            "speak": "Ich muss morgen ins Krankenhaus.",
+            "contrast_type": "forbidden_or_wrong_domain",
+            "feedback": "Das ist keine medizinische Situation."
+          }
+        ]
+      }
+    }
+  ],
+  "choice_sets": {
+    "count_per_turn": 3,
+    "correct_path": [
+      "r1a",
+      "r2a",
+      "r3a",
+      "r4a"
+    ],
+    "distractor_policy": "one near-domain wrong detail plus one out-of-scope/unsafe-domain option per turn"
+  },
+  "feedback": {
+    "correct": "Gut. Bleiben Sie in der Essens- oder Einkaufsaufgabe.",
+    "incorrect": "Wählen Sie die Antwort, die zum Menü, zur Zutat, zum Umtausch oder zur Budgetempfehlung passt."
+  },
+  "tts_segments": [
+    "Heute können Sie die Reisschale oder die Nudelsuppe wählen.",
+    "Was ist der Unterschied zwischen den beiden Optionen?",
+    "Wo ist mein Tisch?",
+    "Ich möchte eine Erstattung.",
+    "Die Reisschale ist etwas scharf, und die Nudelsuppe ist leichter.",
+    "Die Nudelsuppe ist leichter, richtig?",
+    "Die Reisschale ist billiger, richtig?",
+    "Der Zug ist schneller, richtig?",
+    "Ja, die Nudelsuppe ist weniger scharf.",
+    "Dann nehme ich die Nudelsuppe.",
+    "Dann wechsle ich das Zimmer.",
+    "Dann zeige ich meinen Pass.",
+    "Gut. Ich nehme eine Nudelsuppe für Sie auf.",
+    "Danke. Eine Nudelsuppe, bitte.",
+    "Ich rufe die Polizei.",
+    "Ich muss morgen ins Krankenhaus."
+  ],
+  "formula_moments": [
+    {
+      "after_turn": "t2",
+      "pattern_id": "de.a2.food.compare.options.v1",
+      "label": "A ist leichter/schärfer als B",
+      "learner_takeaway": "die leichtere Option"
+    }
+  ],
+  "runtime_notes": {
+    "expected_turns": 4,
+    "expected_choices_per_turn": 3,
+    "full_walk_required": true,
+    "expected_final_screen": "Wrap"
+  },
+  "notes": {
+    "generated_at": "2026-06-14",
+    "authoring_scope": "A2 food/shopping DE adaptation",
+    "native_review_state": "native_pending"
+  }
+}

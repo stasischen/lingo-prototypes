@@ -1,0 +1,257 @@
+{
+  "schema_version": "scenario_pack.v1",
+  "scenario_id": "a2_decline_with_reason",
+  "title": "Decline with a Simple Reason",
+  "setting_label": "message with a friend",
+  "wrap_title": "Soft refusal complete",
+  "wrap_friend": "Good. You declined politely, gave a short reason, and kept the relationship warm.",
+  "language": "en",
+  "ui_language": "zh-Hant",
+  "cefr_level": "A2",
+  "source_status": "candidate_runtime_verified",
+  "review_state": "ai_reviewed",
+  "review_status_framework_state": "candidate_runtime_verified",
+  "native_review_state": "native_pending",
+  "scenario": {
+    "domain": "daily_social_coordination",
+    "review_slice": "daily_social",
+    "interaction": "friend_social_coordination",
+    "source_brief": "A2_DAILY_SOCIAL_NEUTRAL_ADAPTATION_BRIEFS_20260614",
+    "blueprint_source": "language_neutral_adaptation_brief",
+    "ko_pack_role": "mature_scenario_blueprint_not_translation_source"
+  },
+  "learner_goal": "Decline a friend invitation politely with one simple reason.",
+  "target_functions": [
+    "friend_invitation_or_response",
+    "simple_reason_or_past_event",
+    "two_step_plan_or_confirmation",
+    "close_with_relationship_maintenance"
+  ],
+  "register_notes": "English A2 friend/social register: broad everyday spoken English, warm but not intimate, no stiff service wording or date pressure.",
+  "production_mode_default": {
+    "required": [
+      "choice"
+    ],
+    "optional_visible": [
+      "speaking"
+    ],
+    "optional_hidden": [
+      "typing"
+    ]
+  },
+  "support_text": "Decline a friend invitation gently with a short, ordinary reason.",
+  "roles": {
+    "npc": {
+      "label": "friend"
+    },
+    "learner": {
+      "label": "你"
+    }
+  },
+  "turns": [
+    {
+      "turn_id": "t1",
+      "speaker": "npc",
+      "act": "receive_invite",
+      "act_slots": {
+        "topic": "friend invite",
+        "keyword": "movie",
+        "gloss": "A2 daily/social"
+      },
+      "learning_role": "listen_only",
+      "surface": "Do you want to see a movie tonight?",
+      "speak": "Do you want to see a movie tonight?",
+      "translation": "今晚要看電影嗎？",
+      "friend": {
+        "hint": "Start a soft refusal."
+      },
+      "reply_set": {
+        "correct": "r1a",
+        "choices": [
+          {
+            "id": "r1a",
+            "surface": "Sorry, I can’t tonight.",
+            "translation": "不好意思，我今晚不行。",
+            "speak": "Sorry, I can’t tonight.",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r1b",
+            "surface": "No, I don’t want to.",
+            "translation": "不要，我不想。",
+            "speak": "No, I don’t want to.",
+            "contrast_type": "too_blunt",
+            "feedback": "That sounds too cold for a friend."
+          },
+          {
+            "id": "r1c",
+            "surface": "Please give me the receipt again.",
+            "translation": "請再給我收據。",
+            "speak": "Please give me the receipt again.",
+            "contrast_type": "wrong_scenario_shop",
+            "feedback": "That is a shop situation."
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t2",
+      "speaker": "npc",
+      "act": "ask_reason",
+      "act_slots": {
+        "topic": "simple reason",
+        "keyword": "why",
+        "gloss": "A2 daily/social"
+      },
+      "learning_role": "listen_only",
+      "surface": "No problem. Are you busy?",
+      "speak": "No problem. Are you busy?",
+      "translation": "沒關係。你很忙嗎？",
+      "friend": {
+        "hint": "Give one ordinary reason."
+      },
+      "reply_set": {
+        "correct": "r2a",
+        "choices": [
+          {
+            "id": "r2a",
+            "surface": "Yes, I still have some work to do.",
+            "translation": "對，我還有一點事要做。",
+            "speak": "Yes, I still have some work to do.",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r2b",
+            "surface": "There was a serious emergency.",
+            "translation": "發生了嚴重緊急事件。",
+            "speak": "There was a serious emergency.",
+            "contrast_type": "too_heavy_or_sensitive",
+            "feedback": "That is too heavy for this A2 social task."
+          },
+          {
+            "id": "r2c",
+            "surface": "The movie was good yesterday.",
+            "translation": "昨天的電影很好看。",
+            "speak": "The movie was good yesterday.",
+            "contrast_type": "wrong_time_or_function",
+            "feedback": "That does not explain why you cannot go tonight."
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t3",
+      "speaker": "npc",
+      "act": "maintain_relation",
+      "act_slots": {
+        "topic": "another time",
+        "keyword": "next",
+        "gloss": "A2 daily/social"
+      },
+      "learning_role": "listen_only",
+      "surface": "Maybe another day?",
+      "speak": "Maybe another day?",
+      "translation": "也許改天？",
+      "friend": {
+        "hint": "Keep the relationship warm."
+      },
+      "reply_set": {
+        "correct": "r3a",
+        "choices": [
+          {
+            "id": "r3a",
+            "surface": "Yes, maybe this weekend.",
+            "translation": "好，也許這個週末。",
+            "speak": "Yes, maybe this weekend.",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r3b",
+            "surface": "No, don’t ask me again.",
+            "translation": "不要，不要再問我。",
+            "speak": "No, don’t ask me again.",
+            "contrast_type": "too_cold",
+            "feedback": "That is too harsh for this friend context."
+          },
+          {
+            "id": "r3c",
+            "surface": "Yes, I will change rooms.",
+            "translation": "好，我會換房間。",
+            "speak": "Yes, I will change rooms.",
+            "contrast_type": "wrong_scenario_hotel",
+            "feedback": "This is not a hotel task."
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t4",
+      "speaker": "npc",
+      "act": "close_warmly",
+      "act_slots": {
+        "topic": "close refusal",
+        "keyword": "thanks",
+        "gloss": "A2 daily/social"
+      },
+      "learning_role": "listen_only",
+      "surface": "Okay. Let’s talk this weekend.",
+      "speak": "Okay. Let’s talk this weekend.",
+      "translation": "好，那週末再說。",
+      "friend": {
+        "hint": "Thank your friend and close warmly."
+      },
+      "reply_set": {
+        "correct": "r4a",
+        "choices": [
+          {
+            "id": "r4a",
+            "surface": "Thanks. See you this weekend.",
+            "translation": "謝謝，週末見。",
+            "speak": "Thanks. See you this weekend.",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r4b",
+            "surface": "I’ll pay right now.",
+            "translation": "我現在會付款。",
+            "speak": "I’ll pay right now.",
+            "contrast_type": "wrong_scenario_payment",
+            "feedback": "This is not a payment situation."
+          },
+          {
+            "id": "r4c",
+            "surface": "Then I will definitely go tonight.",
+            "translation": "那我今晚一定會去。",
+            "speak": "Then I will definitely go tonight.",
+            "contrast_type": "contradicts_decline",
+            "feedback": "You already said you cannot go tonight."
+          }
+        ]
+      }
+    }
+  ],
+  "choice_sets": [
+    "t1.reply_set",
+    "t2.reply_set",
+    "t3.reply_set",
+    "t4.reply_set"
+  ],
+  "feedback": "Distractors test social register, time/function/domain contrast, and A2 boundary without offering valid alternate answers.",
+  "tts_segments": [
+    "Sorry, I can’t tonight.",
+    "Yes, I still have some work to do.",
+    "Yes, maybe this weekend.",
+    "Thanks. See you this weekend."
+  ],
+  "formula_moments": [
+    {
+      "after_turn": "t2",
+      "pattern_id": "en.a2.daily.decline.v1"
+    }
+  ],
+  "runtime_notes": "Fresh A2 daily/social candidate. Requires full-walk runtime before closeout evidence is recorded.",
+  "notes": {
+    "authoring_policy": "Fresh-authored from A2 daily/social neutral adaptation brief. KO surface text was not copied or translated.",
+    "a2_boundary": "Friend/social register, low-risk ordinary reasons and activities, short A2 responses only."
+  }
+}

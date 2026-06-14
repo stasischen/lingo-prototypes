@@ -1,0 +1,263 @@
+{
+  "schema_version": "scenario_pack.v1",
+  "scenario_id": "a2_reschedule_meeting_time",
+  "title": "改約見面時間",
+  "setting_label": "跟朋友約時間",
+  "wrap_title": "改時間完成",
+  "wrap_friend": "你剛剛用簡單中文請朋友改時間，提出新的時間，並確認新舊時間。",
+  "language": "zh",
+  "ui_language": "zh_tw",
+  "cefr_level": "A2",
+  "source_status": "candidate_runtime_verified",
+  "review_state": "ai_reviewed",
+  "review_status_framework_state": "candidate_runtime_verified",
+  "native_review_state": "native_pending",
+  "scenario": "朋友確認原本的見面時間，你想改成另一個時間。",
+  "learner_goal": "禮貌地請朋友改時間，提出替代時間，並確認新的時間。",
+  "target_functions": [
+    "rescheduling_request",
+    "alternative_time",
+    "old_new_time_confirmation"
+  ],
+  "register_notes": "低風險朋友情境，使用「可以改到...嗎」「四點可以嗎」「所以改成四點」。",
+  "production_mode_default": {
+    "required": [
+      "choice"
+    ],
+    "optional_visible": [
+      "speaking"
+    ],
+    "optional_hidden": [
+      "typing"
+    ]
+  },
+  "support_text": "朋友確認原本三點見面。你想改時間，要簡短提出新時間並確認。",
+  "roles": {
+    "npc": {
+      "label": "朋友"
+    },
+    "learner": {
+      "label": "你"
+    }
+  },
+  "turns": [
+    {
+      "turn_id": "t1",
+      "speaker": "npc",
+      "act": "original_time_confirm",
+      "act_slots": {
+        "topic": "original time",
+        "keyword": "三點",
+        "gloss": "three o'clock"
+      },
+      "learning_role": "listen_only",
+      "surface": "我們今天三點見，對嗎？",
+      "speak": "我們今天三點見，對嗎？",
+      "translation": "我們今天三點見，對嗎？",
+      "friend": {
+        "hint": "原本是三點。先禮貌地請對方改時間。"
+      },
+      "reply_set": {
+        "correct": "r1a",
+        "choices": [
+          {
+            "id": "r1a",
+            "surface": "不好意思，可以改時間嗎？",
+            "translation": "不好意思，可以改時間嗎？",
+            "speak": "不好意思，可以改時間嗎？",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r1b",
+            "surface": "對，還是三點。",
+            "translation": "對，還是三點。",
+            "speak": "對，還是三點。",
+            "contrast_type": "old_time_repeated",
+            "feedback": "你想改時間，不是確認原本三點。"
+          },
+          {
+            "id": "r1c",
+            "surface": "我們在第三月台見。",
+            "translation": "我們在第三月台見。",
+            "speak": "我們在第三月台見。",
+            "contrast_type": "place_number_confusion",
+            "feedback": "這把三點聽成地點或月台，沒有提出改時間。"
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t2",
+      "speaker": "npc",
+      "act": "alternative_time_request",
+      "act_slots": {
+        "topic": "new time",
+        "keyword": "幾點",
+        "gloss": "what time"
+      },
+      "learning_role": "listen_only",
+      "surface": "可以。你想改到幾點？",
+      "speak": "可以。你想改到幾點？",
+      "translation": "可以。你想改到幾點？",
+      "friend": {
+        "hint": "提出一個新的時間，不要再重複三點。"
+      },
+      "inline_explain": {
+        "pattern_id": "zh.a2.reschedule.gai_dao.v1",
+        "title": "改到 + 時間",
+        "explain": "用「改到」提出新的時間。",
+        "items": [
+          {
+            "surface": "可以改到四點嗎？",
+            "translation": "可以改到四點嗎？",
+            "speak": "可以改到四點嗎？"
+          },
+          {
+            "surface": "所以改成四點。",
+            "translation": "所以改成四點。",
+            "speak": "所以改成四點。"
+          }
+        ]
+      },
+      "reply_set": {
+        "correct": "r2a",
+        "choices": [
+          {
+            "id": "r2a",
+            "surface": "可以改到四點嗎？",
+            "translation": "可以改到四點嗎？",
+            "speak": "可以改到四點嗎？",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r2b",
+            "surface": "三點可以嗎？",
+            "translation": "三點可以嗎？",
+            "speak": "三點可以嗎？",
+            "contrast_type": "old_time_repeated",
+            "feedback": "三點是原本時間。這裡要提出新的時間。"
+          },
+          {
+            "id": "r2c",
+            "surface": "四個人可以嗎？",
+            "translation": "四個人可以嗎？",
+            "speak": "四個人可以嗎？",
+            "contrast_type": "number_unit_confusion",
+            "feedback": "朋友問時間，不是人數。"
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t3",
+      "speaker": "npc",
+      "act": "new_time_accept",
+      "act_slots": {
+        "topic": "accept new time",
+        "keyword": "四點",
+        "gloss": "four o'clock"
+      },
+      "learning_role": "listen_only",
+      "surface": "四點可以。",
+      "speak": "四點可以。",
+      "translation": "四點可以。",
+      "friend": {
+        "hint": "朋友接受新時間。確認原本三點改成四點。"
+      },
+      "reply_set": {
+        "correct": "r3a",
+        "choices": [
+          {
+            "id": "r3a",
+            "surface": "好，那改成四點。",
+            "translation": "好，那改成四點。",
+            "speak": "好，那改成四點。"
+          },
+          {
+            "id": "r3b",
+            "surface": "好，那還是三點。",
+            "translation": "好，那還是三點。",
+            "speak": "好，那還是三點。",
+            "contrast_type": "old_time_repeated",
+            "feedback": "朋友已經同意四點。不要回到三點。"
+          },
+          {
+            "id": "r3c",
+            "surface": "好，那改到四樓。",
+            "translation": "好，那改到四樓。",
+            "speak": "好，那改到四樓。",
+            "contrast_type": "place_number_confusion",
+            "feedback": "四樓是地點樓層，不是新的時間四點。"
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t4",
+      "speaker": "npc",
+      "act": "closing_confirmation",
+      "act_slots": {
+        "topic": "rescheduled meeting"
+      },
+      "learning_role": "listen_only",
+      "surface": "好，四點見。",
+      "speak": "好，四點見。",
+      "translation": "好，四點見。",
+      "friend": {
+        "hint": "新的時間已確認，用朋友語氣收尾。"
+      },
+      "reply_set": {
+        "correct": "r4a",
+        "choices": [
+          {
+            "id": "r4a",
+            "surface": "謝謝，四點見。",
+            "translation": "謝謝，四點見。",
+            "speak": "謝謝，四點見。"
+          },
+          {
+            "id": "r4b",
+            "surface": "我要買一張票。",
+            "translation": "我要買一張票。",
+            "speak": "我要買一張票。",
+            "contrast_type": "wrong_scenario_ticket",
+            "feedback": "這是買票情境，不是確認見面時間。"
+          },
+          {
+            "id": "r4c",
+            "surface": "不好意思，我會晚十分鐘。",
+            "translation": "不好意思，我會晚十分鐘。",
+            "speak": "不好意思，我會晚十分鐘。",
+            "contrast_type": "wrong_scenario_delay",
+            "feedback": "這是在說遲到，不是在確認已改成四點。"
+          }
+        ]
+      }
+    }
+  ],
+  "choice_sets": [
+    "t1.reply_set",
+    "t2.reply_set",
+    "t3.reply_set",
+    "t4.reply_set"
+  ],
+  "feedback": "干擾選項測試重複舊時間、數字單位混淆、地點混淆和錯誤場景。",
+  "tts_segments": [
+    "不好意思，可以改時間嗎？",
+    "可以改到四點嗎？",
+    "好，那改成四點。",
+    "謝謝，四點見。"
+  ],
+  "formula_moments": [
+    {
+      "after_turn": "t2",
+      "pattern_id": "zh.a2.reschedule.gai_dao.v1"
+    }
+  ],
+  "runtime_notes": "Fresh ZH A2 candidate. Structural checks and two AI semantic review passes completed on 2026-06-14 before metadata promotion.",
+  "notes": {
+    "authoring_policy": "Fresh-authored from the neutral A2 brief. KO/JA/EN/TH packs were not translation sources.",
+    "a2_boundary": "Uses compact rescheduling request, alternative time, and old/new confirmation; avoids negotiation loops and long reasons.",
+    "chinese_voice_note": "Traditional Mandarin friend-chat phrasing with low-stakes politeness."
+  }
+}

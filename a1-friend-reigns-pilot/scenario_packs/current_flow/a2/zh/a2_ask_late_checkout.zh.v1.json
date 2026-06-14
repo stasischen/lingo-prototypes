@@ -1,0 +1,273 @@
+{
+  "schema_version": "scenario_pack.v1",
+  "scenario_id": "a2_ask_late_checkout",
+  "title": "詢問延後退房",
+  "setting_label": "飯店櫃台",
+  "wrap_title": "已確認退房時間",
+  "wrap_friend": "你剛剛完成了一段 A2 住宿服務情境，說明需求、聽懂回覆，並確認下一步。",
+  "language": "zh",
+  "ui_language": "zh-Hant",
+  "cefr_level": "A2",
+  "source_status": "candidate_runtime_verified",
+  "review_state": "ai_reviewed",
+  "review_status_framework_state": "candidate_runtime_verified",
+  "native_review_state": "native_pending",
+  "scenario": "A hotel/accommodation service scenario: a2_ask_late_checkout.",
+  "learner_goal": "Ask if late checkout is possible and confirm the allowed time.",
+  "target_functions": [
+    "late_checkout_request",
+    "availability_time",
+    "polite_confirmation"
+  ],
+  "register_notes": "zh A2 accommodation register: polite, natural Traditional Chinese hotel-service language; language-specific adaptation from the neutral brief, not a KO translation.",
+  "production_mode_default": {
+    "required": [
+      "choice"
+    ],
+    "optional_visible": [
+      "speaking"
+    ],
+    "optional_hidden": [
+      "typing"
+    ]
+  },
+  "support_text": "詢問是否可以晚一點退房，並確認最後退房時間。",
+  "roles": {
+    "npc": {
+      "label": "Empleado del hotel"
+    },
+    "learner": {
+      "label": "Tú"
+    }
+  },
+  "turns": [
+    {
+      "turn_id": "t1",
+      "speaker": "npc",
+      "act": "service_prompt",
+      "act_slots": {
+        "topic": "ask-late-checkout",
+        "keyword": "1",
+        "gloss": "A2 accommodation"
+      },
+      "learning_role": "listen_only",
+      "surface": "我可以怎麼幫您？",
+      "speak": "我可以怎麼幫您？",
+      "translation": "我可以怎麼幫您？",
+      "friend": {
+        "hint": "詢問延後退房。"
+      },
+      "reply_set": {
+        "correct": "r1a",
+        "choices": [
+          {
+            "id": "r1a",
+            "surface": "我可以晚一點退房嗎？",
+            "translation": "我可以晚一點退房嗎？",
+            "speak": "我可以晚一點退房嗎？",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r1b",
+            "surface": "我可以晚一點入住嗎？",
+            "translation": "我可以晚一點入住嗎？",
+            "speak": "我可以晚一點入住嗎？",
+            "contrast_type": "wrong_detail_or_domain",
+            "feedback": "入住和退房相反。"
+          },
+          {
+            "id": "r1c",
+            "surface": "可以降低價格嗎？",
+            "translation": "可以降低價格嗎？",
+            "speak": "可以降低價格嗎？",
+            "contrast_type": "forbidden_or_wrong_domain",
+            "feedback": "價格不是這個任務。"
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t2",
+      "speaker": "npc",
+      "act": "confirm_deadline",
+      "act_slots": {
+        "topic": "ask-late-checkout",
+        "keyword": "2",
+        "gloss": "A2 accommodation"
+      },
+      "learning_role": "listen_only",
+      "surface": "今天可以延到下午一點退房。",
+      "speak": "今天可以延到下午一點退房。",
+      "translation": "今天可以延到下午一點退房。",
+      "friend": {
+        "hint": "確認最後時間。"
+      },
+      "reply_set": {
+        "correct": "r2a",
+        "choices": [
+          {
+            "id": "r2a",
+            "surface": "可以到下午一點，對嗎？",
+            "translation": "可以到下午一點，對嗎？",
+            "speak": "可以到下午一點，對嗎？",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r2b",
+            "surface": "可以到十點，對嗎？",
+            "translation": "可以到十點，對嗎？",
+            "speak": "可以到十點，對嗎？",
+            "contrast_type": "wrong_detail_or_domain",
+            "feedback": "十點是錯誤時間。"
+          },
+          {
+            "id": "r2c",
+            "surface": "我想再訂一間房。",
+            "translation": "我想再訂一間房。",
+            "speak": "我想再訂一間房。",
+            "contrast_type": "forbidden_or_wrong_domain",
+            "feedback": "這裡不是重新訂房。"
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t3",
+      "speaker": "npc",
+      "act": "confirm_requirement",
+      "act_slots": {
+        "topic": "ask-late-checkout",
+        "keyword": "3",
+        "gloss": "A2 accommodation"
+      },
+      "learning_role": "listen_only",
+      "surface": "請在中午前到櫃台出示房卡。",
+      "speak": "請在中午前到櫃台出示房卡。",
+      "translation": "請在中午前到櫃台出示房卡。",
+      "friend": {
+        "hint": "確認簡單要求。"
+      },
+      "reply_set": {
+        "correct": "r3a",
+        "choices": [
+          {
+            "id": "r3a",
+            "surface": "我中午前出示房卡，對嗎？",
+            "translation": "我中午前出示房卡，對嗎？",
+            "speak": "我中午前出示房卡，對嗎？",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r3b",
+            "surface": "我告訴您我的護照號碼，對嗎？",
+            "translation": "我告訴您我的護照號碼，對嗎？",
+            "speak": "我告訴您我的護照號碼，對嗎？",
+            "contrast_type": "wrong_detail_or_domain",
+            "feedback": "這裡不需要護照號碼。"
+          },
+          {
+            "id": "r3c",
+            "surface": "我晚上七點拿行李，對嗎？",
+            "translation": "我晚上七點拿行李，對嗎？",
+            "speak": "我晚上七點拿行李，對嗎？",
+            "contrast_type": "forbidden_or_wrong_domain",
+            "feedback": "行李是另一個服務。"
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t4",
+      "speaker": "npc",
+      "act": "confirm_result",
+      "act_slots": {
+        "topic": "ask-late-checkout",
+        "keyword": "4",
+        "gloss": "A2 accommodation"
+      },
+      "learning_role": "listen_only",
+      "surface": "好的，我幫您記成下午一點退房。",
+      "speak": "好的，我幫您記成下午一點退房。",
+      "translation": "好的，我幫您記成下午一點退房。",
+      "friend": {
+        "hint": "用確認的時間結束。"
+      },
+      "reply_set": {
+        "correct": "r4a",
+        "choices": [
+          {
+            "id": "r4a",
+            "surface": "謝謝，我下午一點退房。",
+            "translation": "謝謝，我下午一點退房。",
+            "speak": "謝謝，我下午一點退房。",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r4b",
+            "surface": "我要申請退款。",
+            "translation": "我要申請退款。",
+            "speak": "我要申請退款。",
+            "contrast_type": "wrong_detail_or_domain",
+            "feedback": "退款不是這個任務。"
+          },
+          {
+            "id": "r4c",
+            "surface": "明天早上我要搭火車。",
+            "translation": "明天早上我要搭火車。",
+            "speak": "明天早上我要搭火車。",
+            "contrast_type": "forbidden_or_wrong_domain",
+            "feedback": "火車是其他情境。"
+          }
+        ]
+      }
+    }
+  ],
+  "choice_sets": {
+    "count_per_turn": 3,
+    "correct_path": [
+      "r1a",
+      "r2a",
+      "r3a",
+      "r4a"
+    ],
+    "distractor_policy": "one near-domain wrong detail plus one out-of-scope/over-escalated option per turn"
+  },
+  "feedback": "Los distractores prueban tiempo, lugar, servicio equivocado o una petición fuera del alcance A2.",
+  "tts_segments": [
+    "我可以怎麼幫您？",
+    "我可以晚一點退房嗎？",
+    "我可以晚一點入住嗎？",
+    "可以降低價格嗎？",
+    "今天可以延到下午一點退房。",
+    "可以到下午一點，對嗎？",
+    "可以到十點，對嗎？",
+    "我想再訂一間房。",
+    "請在中午前到櫃台出示房卡。",
+    "我中午前出示房卡，對嗎？",
+    "我告訴您我的護照號碼，對嗎？",
+    "我晚上七點拿行李，對嗎？",
+    "好的，我幫您記成下午一點退房。",
+    "謝謝，我下午一點退房。",
+    "我要申請退款。",
+    "明天早上我要搭火車。"
+  ],
+  "formula_moments": [
+    {
+      "after_turn": "t2",
+      "pattern_id": "zh.a2.accommodation.checkout.until.v1",
+      "label": "可以 + 晚一點 + 退房嗎",
+      "learner_takeaway": "延到 + 時間"
+    }
+  ],
+  "runtime_notes": {
+    "expected_turns": 4,
+    "expected_choices_per_turn": 3,
+    "full_walk_required": true,
+    "expected_final_screen": "Wrap"
+  },
+  "notes": {
+    "generated_at": "2026-06-14",
+    "authoring_scope": "A2 accommodation remaining six-language wave",
+    "native_review_state": "native_pending"
+  }
+}

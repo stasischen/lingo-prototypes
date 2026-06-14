@@ -1,0 +1,230 @@
+{
+  "schema_version": "scenario_pack.v1",
+  "scenario_id": "hotel_checkout",
+  "brief_id": "ml4_a1_016_hotel_checkout",
+  "source_neutral_brief": "release-aggregator/docs/tasks/A1_MULTILINGUAL_KO_B1_PARALLEL_ORCHESTRATION/work_products/ml0/ML4_NEUTRAL_ADAPTATION_BRIEFS_20260614.md#brief-ml4-a1-016-hotel-checkout",
+  "blueprint_ledger": "release-aggregator/docs/tasks/A1_MULTILINGUAL_KO_B1_PARALLEL_ORCHESTRATION/work_products/ml0/ML4_BLUEPRINT_LEDGER_20260614.md",
+  "repo": "content-zh",
+  "staging_path": "content/core/content_assets/scenario_packs/current_flow/hotel_checkout.zh.v1.json",
+  "title": "在飯店辦理退房",
+  "setting_label": "飯店櫃台",
+  "wrap_title": "退房完成",
+  "wrap_friend": "你已經說明要退房、提供房號、交回房卡，並禮貌道謝。",
+  "language": "zh",
+  "ui_language": "zh_tw",
+  "source_status": "candidate_runtime_verified",
+  "review_state": "draft",
+  "review_status_framework_state": "candidate_runtime_verified",
+  "native_review_state": "native_pending",
+  "production_mode_default": {
+    "required": [
+      "choice"
+    ],
+    "optional_visible": [
+      "speaking"
+    ],
+    "optional_hidden": [
+      "typing"
+    ]
+  },
+  "support_text": "你在飯店櫃台退房。說明要退房、提供房號、交回房卡，最後道謝。",
+  "roles": {
+    "npc": {
+      "label": "櫃台人員"
+    },
+    "learner": {
+      "label": "住客"
+    }
+  },
+  "turns": [
+    {
+      "turn_id": "t1",
+      "speaker": "npc",
+      "act": "front_desk_offer",
+      "act_slots": {
+        "topic": "checkout opening",
+        "keyword": "幫忙",
+        "gloss": "help"
+      },
+      "learning_role": "listen_only",
+      "surface": "您好，請問需要幫忙嗎？",
+      "speak": "您好，請問需要幫忙嗎？",
+      "translation": "您好，請問需要幫忙嗎？",
+      "friend": "退房時可以直接說 我要退房。",
+      "reply_set": {
+        "correct": "c1",
+        "choices": [
+          {
+            "id": "c1",
+            "surface": "您好，我要退房。",
+            "translation": "您好，我要退房。",
+            "speak": "您好，我要退房。",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "c2",
+            "surface": "Wi-Fi 密碼是什麼？",
+            "translation": "Wi-Fi 密碼是什麼？",
+            "speak": "Wi-Fi 密碼是什麼？",
+            "contrast_type": "wrong_scenario_request",
+            "feedback": "這是在問網路密碼，不是在辦理退房。"
+          },
+          {
+            "id": "c3",
+            "surface": "我要一杯拿鐵。",
+            "translation": "我要一杯拿鐵。",
+            "speak": "我要一杯拿鐵。",
+            "contrast_type": "food_order_wrong_scenario",
+            "feedback": "這是點飲料。飯店櫃台退房要說我要退房。"
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t2",
+      "speaker": "npc",
+      "act": "room_number_request",
+      "act_slots": {
+        "topic": "room number",
+        "keyword": "房號",
+        "gloss": "room number"
+      },
+      "learning_role": "listen_only",
+      "surface": "好的，請問房號？",
+      "speak": "好的，請問房號？",
+      "translation": "好的，請問房號？",
+      "friend": "回答房號時，說 房間是 + 數字。",
+      "inline_explain": "房間是二零四號 = Room 204.",
+      "reply_set": {
+        "correct": "c1",
+        "choices": [
+          {
+            "id": "c1",
+            "surface": "房間是二零四號。",
+            "translation": "房間是二零四號。",
+            "speak": "房間是二零四號。",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "c2",
+            "surface": "第二月台。",
+            "translation": "第二月台。",
+            "speak": "第二月台。",
+            "contrast_type": "station_number_not_room",
+            "feedback": "月台是車站用語，不是飯店房號。"
+          },
+          {
+            "id": "c3",
+            "surface": "我要買票。",
+            "translation": "我要買票。",
+            "speak": "我要買票。",
+            "contrast_type": "ticket_purchase_wrong_scenario",
+            "feedback": "這是在買票。櫃台現在問的是房號。"
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t3",
+      "speaker": "npc",
+      "act": "key_card_request",
+      "act_slots": {
+        "topic": "key card handover",
+        "keyword": "房卡",
+        "gloss": "room card"
+      },
+      "learning_role": "listen_only",
+      "surface": "謝謝。請把房卡給我。",
+      "speak": "謝謝。請把房卡給我。",
+      "translation": "謝謝。請把房卡給我。",
+      "friend": "交東西時，用 房卡在這裡 很自然。",
+      "reply_set": {
+        "correct": "c1",
+        "choices": [
+          {
+            "id": "c1",
+            "surface": "好，房卡在這裡。",
+            "translation": "好，房卡在這裡。",
+            "speak": "好，房卡在這裡。",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "c2",
+            "surface": "不用，我要留著。",
+            "translation": "不用，我要留著。",
+            "speak": "不用，我要留著。",
+            "contrast_type": "refusal_instead_of_handover",
+            "feedback": "退房流程需要交回房卡；這裡不應拒絕。"
+          },
+          {
+            "id": "c3",
+            "surface": "我姓陳。",
+            "translation": "我姓陳。",
+            "speak": "我姓陳。",
+            "contrast_type": "checkin_name_answer",
+            "feedback": "這是入住時回答姓名，不是交房卡。"
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t4",
+      "speaker": "npc",
+      "act": "checkout_complete",
+      "act_slots": {
+        "topic": "completion",
+        "keyword": "完成",
+        "gloss": "complete"
+      },
+      "learning_role": "listen_only",
+      "surface": "好了，退房完成了。",
+      "speak": "好了，退房完成了。",
+      "translation": "好了，退房完成了。",
+      "friend": "流程完成後，用謝謝您收尾。",
+      "reply_set": {
+        "correct": "c1",
+        "choices": [
+          {
+            "id": "c1",
+            "surface": "謝謝您。",
+            "translation": "謝謝您。",
+            "speak": "謝謝您。"
+          },
+          {
+            "id": "c2",
+            "surface": "還要多付多少？",
+            "translation": "還要多付多少？",
+            "speak": "還要多付多少？",
+            "contrast_type": "extra_charge_dispute_out_of_scope",
+            "feedback": "這會進入額外費用或爭議；本場景只練基本退房。"
+          },
+          {
+            "id": "c3",
+            "surface": "登機門在哪裡？",
+            "translation": "登機門在哪裡？",
+            "speak": "登機門在哪裡？",
+            "contrast_type": "airport_question_wrong_scenario",
+            "feedback": "這是機場問題，不是飯店退房結尾。"
+          }
+        ]
+      },
+      "closing": true
+    }
+  ],
+  "formula_moments": [
+    {
+      "after_turn": "t1",
+      "pattern_id": "zh.hotel.wo_yao_tuifang"
+    },
+    {
+      "after_turn": "t3",
+      "pattern_id": "zh.handover.fangka_zai_zheli"
+    }
+  ],
+  "notes": {
+    "authoring_source": "Authored from ML-4 neutral brief ml4_a1_016_hotel_checkout; KO and other target-language packs were not used as translation sources.",
+    "review_policy": "AI-authored candidate only; keep review_state=draft, review_status_framework_state=candidate_needs_review, native_review_state=native_pending until tracked review evidence exists.",
+    "canonical_policy": "Staging current-flow candidate only. Do not add to manifests, production exports, schema, runtime, or frontend in this authoring lane.",
+    "chinese_voice_note": "Uses Traditional-character Mandarin with Taiwan-leaning hotel terms such as 飯店 and 房卡; native review should confirm broader Mandarin compatibility."
+  }
+}

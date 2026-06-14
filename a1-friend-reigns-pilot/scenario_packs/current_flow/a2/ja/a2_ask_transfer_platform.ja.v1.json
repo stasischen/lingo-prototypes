@@ -1,0 +1,264 @@
+{
+  "schema_version": "scenario_pack.v1",
+  "scenario_id": "a2_ask_transfer_platform",
+  "title": "乗り換えのホームを聞く",
+  "setting_label": "駅で乗り換えを確認",
+  "wrap_title": "乗り換えホームの確認",
+  "wrap_friend": "你剛剛問了在哪裡轉乘，並確認了月台和方向。",
+  "language": "ja",
+  "ui_language": "zh_tw",
+  "cefr_level": "A2",
+  "source_status": "candidate_runtime_verified",
+  "review_state": "ai_reviewed",
+  "review_status_framework_state": "candidate_runtime_verified",
+  "native_review_state": "native_pending",
+  "scenario": "A traveler asks where to transfer and which platform to use.",
+  "learner_goal": "Ask about a transfer and confirm a short two-step direction.",
+  "target_functions": [
+    "transfer_question",
+    "platform_confirmation",
+    "two_step_direction"
+  ],
+  "register_notes": "Polite station Japanese with concise direction checks. No emergency rerouting or complex itinerary.",
+  "production_mode_default": {
+    "required": [
+      "choice"
+    ],
+    "optional_visible": [
+      "speaking"
+    ],
+    "optional_hidden": [
+      "typing"
+    ]
+  },
+  "support_text": "どこで乗り換えるか、どのホームへ行くかを短く確認しましょう。",
+  "roles": {
+    "npc": {
+      "label": "駅員"
+    },
+    "learner": {
+      "label": "你"
+    }
+  },
+  "turns": [
+    {
+      "turn_id": "t1",
+      "speaker": "npc",
+      "act": "destination_prompt",
+      "act_slots": {
+        "topic": "destination",
+        "keyword": "どちらまで",
+        "gloss": "到哪裡"
+      },
+      "learning_role": "listen_only",
+      "surface": "どちらまで行きますか。",
+      "speak": "どちらまで行きますか。",
+      "translation": "您要到哪裡？",
+      "friend": {
+        "hint": "空港へ行きたいので、どこで乗り換えるか聞きましょう。"
+      },
+      "reply_set": {
+        "correct": "r1a",
+        "choices": [
+          {
+            "id": "r1a",
+            "surface": "空港へ行きたいです。どこで乗り換えますか。",
+            "translation": "我想去機場。在哪裡轉乘？",
+            "speak": "空港へ行きたいです。どこで乗り換えますか。",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r1b",
+            "surface": "空港へ昨日行きました。",
+            "translation": "我昨天去了機場。",
+            "speak": "空港へ昨日行きました。",
+            "contrast_type": "wrong_time_past",
+            "feedback": "今は乗り換えを聞く場面です。昨日の話ではありません。"
+          },
+          {
+            "id": "r1c",
+            "surface": "荷物を預けたいです。",
+            "translation": "我想寄放行李。",
+            "speak": "荷物を預けたいです。",
+            "contrast_type": "wrong_scenario_luggage",
+            "feedback": "荷物預かりではなく、乗り換えを聞きましょう。"
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t2",
+      "speaker": "npc",
+      "act": "transfer_instruction",
+      "act_slots": {
+        "station": "Central",
+        "platform": "3",
+        "keyword": "3番ホーム",
+        "gloss": "3 號月台"
+      },
+      "learning_role": "listen_only",
+      "surface": "中央駅で降りて、3番ホームへ行ってください。",
+      "speak": "中央駅で降りて、三番ホームへ行ってください。",
+      "translation": "請在中央站下車，去 3 號月台。",
+      "friend": {
+        "hint": "降りて、行ってください connects two simple steps."
+      },
+      "inline_explain": {
+        "pattern_id": "ja.a2.transfer.sequence.te.v1",
+        "title": "〜て = 然後",
+        "explain": "降りて、3番ホームへ行ってください links two actions.",
+        "items": [
+          {
+            "surface": "降りて",
+            "translation": "下車後",
+            "speak": "降りて"
+          },
+          {
+            "surface": "3番ホームへ",
+            "translation": "往 3 號月台",
+            "speak": "三番ホームへ"
+          }
+        ]
+      },
+      "reply_set": {
+        "correct": "r2a",
+        "choices": [
+          {
+            "id": "r2a",
+            "surface": "中央駅で降りて、3番ホームですね。",
+            "translation": "在中央站下車，3 號月台，對吧？",
+            "speak": "中央駅で降りて、三番ホームですね。",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r2b",
+            "surface": "中央駅でコーヒーを飲みますね。",
+            "translation": "在中央站喝咖啡，對吧？",
+            "speak": "中央駅でコーヒーを飲みますね。",
+            "contrast_type": "wrong_action_cafe",
+            "feedback": "駅員さんはコーヒーではなく、3番ホームへ行くと言いました。"
+          },
+          {
+            "id": "r2c",
+            "surface": "3番の部屋ですね。",
+            "translation": "3 號房，對吧？",
+            "speak": "三番の部屋ですね。",
+            "contrast_type": "wrong_location_room",
+            "feedback": "部屋ではなく、ホームです。"
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t3",
+      "speaker": "npc",
+      "act": "platform_detail",
+      "act_slots": {
+        "train": "airport train",
+        "keyword": "空港行き",
+        "gloss": "往機場"
+      },
+      "learning_role": "listen_only",
+      "surface": "3番ホームで空港行きの電車に乗ってください。",
+      "speak": "三番ホームで空港行きの電車に乗ってください。",
+      "translation": "請在 3 號月台搭往機場的電車。",
+      "friend": {
+        "hint": "ホームと行き先を確認しましょう。"
+      },
+      "reply_set": {
+        "correct": "r3a",
+        "choices": [
+          {
+            "id": "r3a",
+            "surface": "3番ホームで空港行きに乗ればいいですね。",
+            "translation": "在 3 號月台搭往機場的車就可以，對吧？",
+            "speak": "三番ホームで空港行きに乗ればいいですね。",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r3b",
+            "surface": "空港行きは昨日来ましたね。",
+            "translation": "往機場的車昨天來了，對吧？",
+            "speak": "空港行きは昨日来ましたね。",
+            "contrast_type": "wrong_time_past",
+            "feedback": "今から乗る電車を確認しています。昨日の話ではありません。"
+          },
+          {
+            "id": "r3c",
+            "surface": "緊急のときはどこへ行きますか。",
+            "translation": "緊急時要去哪裡？",
+            "speak": "緊急のときはどこへ行きますか。",
+            "contrast_type": "forbidden_emergency_reroute",
+            "feedback": "緊急時の案内はこのA2の乗り換え練習の範囲外です。"
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t4",
+      "speaker": "npc",
+      "act": "route_confirmation",
+      "act_slots": {
+        "route": "Central then platform 3"
+      },
+      "learning_role": "listen_only",
+      "surface": "はい。中央駅で乗り換えてください。",
+      "speak": "はい。中央駅で乗り換えてください。",
+      "translation": "對，請在中央站轉乘。",
+      "friend": {
+        "hint": "確認できました。短くお礼を言いましょう。"
+      },
+      "reply_set": {
+        "correct": "r4a",
+        "choices": [
+          {
+            "id": "r4a",
+            "surface": "ありがとうございます。中央駅で乗り換えます。",
+            "translation": "謝謝。我會在中央站轉乘。",
+            "speak": "ありがとうございます。中央駅で乗り換えます。"
+          },
+          {
+            "id": "r4b",
+            "surface": "切符の時間を変えます。",
+            "translation": "我要改票的時間。",
+            "speak": "切符の時間を変えます。",
+            "contrast_type": "wrong_scenario_ticket_change",
+            "feedback": "今は乗り換えの確認です。切符の変更ではありません。"
+          },
+          {
+            "id": "r4c",
+            "surface": "空港で警察に行きます。",
+            "translation": "我會在機場去警察那裡。",
+            "speak": "空港で警察に行きます。",
+            "contrast_type": "forbidden_police_domain",
+            "feedback": "警察の話はこの低リスクな乗り換え練習には入りません。"
+          }
+        ]
+      }
+    }
+  ],
+  "choice_sets": [
+    "t1.reply_set",
+    "t2.reply_set",
+    "t3.reply_set",
+    "t4.reply_set"
+  ],
+  "feedback": "Distractors test wrong action, wrong place word, wrong time, and out-of-scope emergency/police domains.",
+  "tts_segments": [
+    "空港へ行きたいです。どこで乗り換えますか。",
+    "中央駅で降りて、三番ホームですね。",
+    "三番ホームで空港行きに乗ればいいですね。",
+    "ありがとうございます。中央駅で乗り換えます。"
+  ],
+  "formula_moments": [
+    {
+      "after_turn": "t2",
+      "pattern_id": "ja.a2.transfer.sequence.te.v1"
+    }
+  ],
+  "runtime_notes": "JA A2 transport candidate. Full-walk runtime gate required before final closeout.",
+  "notes": {
+    "authoring_policy": "Fresh-authored from the neutral A2 transport brief. KO surfaces were not translated.",
+    "a2_boundary": "Uses one transfer point and one platform confirmation; avoids complex rerouting and emergency content."
+  }
+}

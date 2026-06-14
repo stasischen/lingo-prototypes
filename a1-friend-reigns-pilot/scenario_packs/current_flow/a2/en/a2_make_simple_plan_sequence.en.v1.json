@@ -1,0 +1,257 @@
+{
+  "schema_version": "scenario_pack.v1",
+  "scenario_id": "a2_make_simple_plan_sequence",
+  "title": "Make a Simple Two-Step Plan",
+  "setting_label": "weekend plan call",
+  "wrap_title": "Two-step plan confirmed",
+  "wrap_friend": "Good. You connected the first step and the next step, then confirmed the plan.",
+  "language": "en",
+  "ui_language": "zh-Hant",
+  "cefr_level": "A2",
+  "source_status": "candidate_runtime_verified",
+  "review_state": "ai_reviewed",
+  "review_status_framework_state": "candidate_runtime_verified",
+  "native_review_state": "native_pending",
+  "scenario": {
+    "domain": "daily_social_coordination",
+    "review_slice": "daily_social",
+    "interaction": "friend_social_coordination",
+    "source_brief": "A2_DAILY_SOCIAL_NEUTRAL_ADAPTATION_BRIEFS_20260614",
+    "blueprint_source": "language_neutral_adaptation_brief",
+    "ko_pack_role": "mature_scenario_blueprint_not_translation_source"
+  },
+  "learner_goal": "Make a two-step plan with a friend and confirm the order.",
+  "target_functions": [
+    "friend_invitation_or_response",
+    "simple_reason_or_past_event",
+    "two_step_plan_or_confirmation",
+    "close_with_relationship_maintenance"
+  ],
+  "register_notes": "English A2 friend/social register: broad everyday spoken English, warm but not intimate, no stiff service wording or date pressure.",
+  "production_mode_default": {
+    "required": [
+      "choice"
+    ],
+    "optional_visible": [
+      "speaking"
+    ],
+    "optional_hidden": [
+      "typing"
+    ]
+  },
+  "support_text": "Plan two simple steps with a friend: first one thing, then another.",
+  "roles": {
+    "npc": {
+      "label": "friend"
+    },
+    "learner": {
+      "label": "你"
+    }
+  },
+  "turns": [
+    {
+      "turn_id": "t1",
+      "speaker": "npc",
+      "act": "suggest_first_step",
+      "act_slots": {
+        "topic": "first step",
+        "keyword": "first",
+        "gloss": "A2 daily/social"
+      },
+      "learning_role": "listen_only",
+      "surface": "Should we meet at the station first?",
+      "speak": "Should we meet at the station first?",
+      "translation": "我們先在車站見嗎？",
+      "friend": {
+        "hint": "Confirm the first step."
+      },
+      "reply_set": {
+        "correct": "r1a",
+        "choices": [
+          {
+            "id": "r1a",
+            "surface": "Yes, let’s meet at the station first.",
+            "translation": "好，我們先在車站見。",
+            "speak": "Yes, let’s meet at the station first.",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r1b",
+            "surface": "Yes, please refund me first.",
+            "translation": "好，請先退款給我。",
+            "speak": "Yes, please refund me first.",
+            "contrast_type": "wrong_scenario_refund",
+            "feedback": "This is a friend plan, not a refund task."
+          },
+          {
+            "id": "r1c",
+            "surface": "No, absolutely not.",
+            "translation": "不，絕對不要。",
+            "speak": "No, absolutely not.",
+            "contrast_type": "too_blunt",
+            "feedback": "That sounds too harsh for planning with a friend."
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t2",
+      "speaker": "npc",
+      "act": "suggest_second_step",
+      "act_slots": {
+        "topic": "second step",
+        "keyword": "then",
+        "gloss": "A2 daily/social"
+      },
+      "learning_role": "listen_only",
+      "surface": "Then should we walk to the park?",
+      "speak": "Then should we walk to the park?",
+      "translation": "接著要走去公園嗎？",
+      "friend": {
+        "hint": "Confirm the second step."
+      },
+      "reply_set": {
+        "correct": "r2a",
+        "choices": [
+          {
+            "id": "r2a",
+            "surface": "Good. Then let’s walk to the park.",
+            "translation": "好，接著走去公園。",
+            "speak": "Good. Then let’s walk to the park.",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r2b",
+            "surface": "I went to the park yesterday.",
+            "translation": "我昨天去了公園。",
+            "speak": "I went to the park yesterday.",
+            "contrast_type": "wrong_time_past",
+            "feedback": "You are planning for this weekend."
+          },
+          {
+            "id": "r2c",
+            "surface": "I will pick up luggage at the airport.",
+            "translation": "我會在機場取行李。",
+            "speak": "I will pick up luggage at the airport.",
+            "contrast_type": "wrong_scenario_transport",
+            "feedback": "This is not a luggage task."
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t3",
+      "speaker": "npc",
+      "act": "confirm_sequence",
+      "act_slots": {
+        "topic": "sequence confirmation",
+        "keyword": "first then",
+        "gloss": "A2 daily/social"
+      },
+      "learning_role": "listen_only",
+      "surface": "So, station first, then the park?",
+      "speak": "So, station first, then the park?",
+      "translation": "所以先車站，接著公園？",
+      "friend": {
+        "hint": "Restate the order."
+      },
+      "reply_set": {
+        "correct": "r3a",
+        "choices": [
+          {
+            "id": "r3a",
+            "surface": "Yes, station first, then the park.",
+            "translation": "對，先車站，接著公園。",
+            "speak": "Yes, station first, then the park.",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r3b",
+            "surface": "Yes, airport first, then the hotel.",
+            "translation": "對，先機場，接著飯店。",
+            "speak": "Yes, airport first, then the hotel.",
+            "contrast_type": "wrong_details",
+            "feedback": "The places changed."
+          },
+          {
+            "id": "r3c",
+            "surface": "No, we need three more places.",
+            "translation": "不，我們還需要三個地方。",
+            "speak": "No, we need three more places.",
+            "contrast_type": "too_complex",
+            "feedback": "This task only uses a two-step plan."
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t4",
+      "speaker": "npc",
+      "act": "confirm_time",
+      "act_slots": {
+        "topic": "time close",
+        "keyword": "two",
+        "gloss": "A2 daily/social"
+      },
+      "learning_role": "listen_only",
+      "surface": "Great. Let’s meet at two on Saturday.",
+      "speak": "Great. Let’s meet at two on Saturday.",
+      "translation": "很好。星期六兩點見。",
+      "friend": {
+        "hint": "Confirm the time and close."
+      },
+      "reply_set": {
+        "correct": "r4a",
+        "choices": [
+          {
+            "id": "r4a",
+            "surface": "Okay, see you at two on Saturday.",
+            "translation": "好，星期六兩點見。",
+            "speak": "Okay, see you at two on Saturday.",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r4b",
+            "surface": "Okay, I saw you this morning.",
+            "translation": "好，我今天早上見過你。",
+            "speak": "Okay, I saw you this morning.",
+            "contrast_type": "wrong_time_past",
+            "feedback": "You need to confirm a future meeting."
+          },
+          {
+            "id": "r4c",
+            "surface": "Okay, I will ask a doctor.",
+            "translation": "好，我會問醫生。",
+            "speak": "Okay, I will ask a doctor.",
+            "contrast_type": "forbidden_or_wrong_domain",
+            "feedback": "This is not a medical situation."
+          }
+        ]
+      }
+    }
+  ],
+  "choice_sets": [
+    "t1.reply_set",
+    "t2.reply_set",
+    "t3.reply_set",
+    "t4.reply_set"
+  ],
+  "feedback": "Distractors test social register, time/function/domain contrast, and A2 boundary without offering valid alternate answers.",
+  "tts_segments": [
+    "Yes, let’s meet at the station first.",
+    "Good. Then let’s walk to the park.",
+    "Yes, station first, then the park.",
+    "Okay, see you at two on Saturday."
+  ],
+  "formula_moments": [
+    {
+      "after_turn": "t3",
+      "pattern_id": "en.a2.daily.sequence.v1"
+    }
+  ],
+  "runtime_notes": "Fresh A2 daily/social candidate. Requires full-walk runtime before closeout evidence is recorded.",
+  "notes": {
+    "authoring_policy": "Fresh-authored from A2 daily/social neutral adaptation brief. KO surface text was not copied or translated.",
+    "a2_boundary": "Friend/social register, low-risk ordinary reasons and activities, short A2 responses only."
+  }
+}

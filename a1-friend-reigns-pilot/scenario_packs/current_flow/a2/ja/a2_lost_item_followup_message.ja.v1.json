@@ -1,0 +1,257 @@
+{
+  "schema_version": "scenario_pack.v1",
+  "scenario_id": "a2_lost_item_followup_message",
+  "title": "忘れ物について連絡する",
+  "setting_label": "low-risk help message",
+  "wrap_title": "忘れ物について連絡する",
+  "wrap_friend": "よくできました。低リスクのデジタル・書類サポート場面で、必要な情報だけを確認しました。",
+  "language": "ja",
+  "ui_language": "zh-Hant",
+  "cefr_level": "A2",
+  "source_status": "candidate_runtime_verified",
+  "review_state": "ai_reviewed",
+  "review_status_framework_state": "candidate_runtime_verified",
+  "native_review_state": "native_pending",
+  "scenario": {
+    "domain": "digital_documents_low_risk_help",
+    "review_slice": "digital_documents",
+    "interaction": "low_risk_confirmation_or_help",
+    "source_brief": "A2_DIGITAL_DOCUMENTS_NEUTRAL_ADAPTATION_BRIEFS_20260614",
+    "blueprint_source": "language_neutral_adaptation_brief",
+    "ko_pack_role": "mature_scenario_blueprint_not_translation_source"
+  },
+  "learner_goal": "低リスクのデジタル・簡単な書類サポートを短いA2表現で扱います。",
+  "target_functions": [
+    "confirm_booking_or_message",
+    "request_simple_change",
+    "ask_simple_form_help",
+    "follow_up_low_risk_item"
+  ],
+  "register_notes": "Japanese A2 low-risk digital/documents register: concise polite Japanese, no passwords, payment, ID, medical, legal, police, or immigration framing.",
+  "production_mode_default": {
+    "required": [
+      "choice"
+    ],
+    "optional_visible": [
+      "speaking"
+    ],
+    "optional_hidden": [
+      "typing"
+    ]
+  },
+  "support_text": "パスワード、支払い、身分証、医療、法律情報は出さず、必要な内容だけ確認します。",
+  "roles": {
+    "npc": {
+      "label": "友だち"
+    },
+    "learner": {
+      "label": "你"
+    }
+  },
+  "turns": [
+    {
+      "turn_id": "t1",
+      "speaker": "npc",
+      "act": "start",
+      "act_slots": {
+        "topic": "a2_lost_item_followup_message",
+        "keyword": "1",
+        "gloss": "A2 digital/documents"
+      },
+      "learning_role": "listen_only",
+      "surface": "何を探していますか。",
+      "speak": "何を探していますか。",
+      "translation": "您在找什麼？",
+      "friend": {
+        "hint": "必要な低リスク情報だけを短く確認しましょう。"
+      },
+      "reply_set": {
+        "correct": "r1a",
+        "choices": [
+          {
+            "id": "r1a",
+            "surface": "黒い傘を置いてきたと思います。",
+            "translation": "我好像把黑色雨傘忘在那裡。",
+            "speak": "黒い傘を置いてきたと思います。",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r1b",
+            "surface": "パスワードを教えます。",
+            "translation": "我會告訴你密碼。",
+            "speak": "パスワードを教えます。",
+            "contrast_type": "forbidden_sensitive",
+            "feedback": "パスワードはこのA2課題では扱いません。"
+          },
+          {
+            "id": "r1c",
+            "surface": "返金してください。",
+            "translation": "請退款。",
+            "speak": "返金してください。",
+            "contrast_type": "wrong_dispute_domain",
+            "feedback": "返金やトラブル対応はこの課題の範囲外です。"
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t2",
+      "speaker": "npc",
+      "act": "clarify",
+      "act_slots": {
+        "topic": "a2_lost_item_followup_message",
+        "keyword": "2",
+        "gloss": "A2 digital/documents"
+      },
+      "learning_role": "listen_only",
+      "surface": "どこに置きましたか。",
+      "speak": "どこに置きましたか。",
+      "translation": "放在哪裡？",
+      "friend": {
+        "hint": "必要な低リスク情報だけを短く確認しましょう。"
+      },
+      "reply_set": {
+        "correct": "r2a",
+        "choices": [
+          {
+            "id": "r2a",
+            "surface": "カフェの椅子の横だと思います。",
+            "translation": "好像放在咖啡店椅子旁邊。",
+            "speak": "カフェの椅子の横だと思います。",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r2b",
+            "surface": "パスワードを教えます。",
+            "translation": "我會告訴你密碼。",
+            "speak": "パスワードを教えます。",
+            "contrast_type": "forbidden_sensitive",
+            "feedback": "パスワードはこのA2課題では扱いません。"
+          },
+          {
+            "id": "r2c",
+            "surface": "返金してください。",
+            "translation": "請退款。",
+            "speak": "返金してください。",
+            "contrast_type": "wrong_dispute_domain",
+            "feedback": "返金やトラブル対応はこの課題の範囲外です。"
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t3",
+      "speaker": "npc",
+      "act": "confirm_detail",
+      "act_slots": {
+        "topic": "a2_lost_item_followup_message",
+        "keyword": "3",
+        "gloss": "A2 digital/documents"
+      },
+      "learning_role": "listen_only",
+      "surface": "名前と連絡先を残してください。",
+      "speak": "名前と連絡先を残してください。",
+      "translation": "請留下姓名和聯絡方式。",
+      "friend": {
+        "hint": "必要な低リスク情報だけを短く確認しましょう。"
+      },
+      "reply_set": {
+        "correct": "r3a",
+        "choices": [
+          {
+            "id": "r3a",
+            "surface": "はい、名前と電話番号を残します。",
+            "translation": "好，我會留下姓名和電話。",
+            "speak": "はい、名前と電話番号を残します。",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r3b",
+            "surface": "パスワードを教えます。",
+            "translation": "我會告訴你密碼。",
+            "speak": "パスワードを教えます。",
+            "contrast_type": "forbidden_sensitive",
+            "feedback": "パスワードはこのA2課題では扱いません。"
+          },
+          {
+            "id": "r3c",
+            "surface": "返金してください。",
+            "translation": "請退款。",
+            "speak": "返金してください。",
+            "contrast_type": "wrong_dispute_domain",
+            "feedback": "返金やトラブル対応はこの課題の範囲外です。"
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t4",
+      "speaker": "npc",
+      "act": "close",
+      "act_slots": {
+        "topic": "a2_lost_item_followup_message",
+        "keyword": "4",
+        "gloss": "A2 digital/documents"
+      },
+      "learning_role": "listen_only",
+      "surface": "確認して連絡します。",
+      "speak": "確認して連絡します。",
+      "translation": "我確認後會聯絡您。",
+      "friend": {
+        "hint": "必要な低リスク情報だけを短く確認しましょう。"
+      },
+      "reply_set": {
+        "correct": "r4a",
+        "choices": [
+          {
+            "id": "r4a",
+            "surface": "ありがとうございます。連絡を待っています。",
+            "translation": "謝謝，我等您聯絡。",
+            "speak": "ありがとうございます。連絡を待っています。",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r4b",
+            "surface": "パスワードを教えます。",
+            "translation": "我會告訴你密碼。",
+            "speak": "パスワードを教えます。",
+            "contrast_type": "forbidden_sensitive",
+            "feedback": "パスワードはこのA2課題では扱いません。"
+          },
+          {
+            "id": "r4c",
+            "surface": "返金してください。",
+            "translation": "請退款。",
+            "speak": "返金してください。",
+            "contrast_type": "wrong_dispute_domain",
+            "feedback": "返金やトラブル対応はこの課題の範囲外です。"
+          }
+        ]
+      }
+    }
+  ],
+  "choice_sets": [
+    "t1.reply_set",
+    "t2.reply_set",
+    "t3.reply_set",
+    "t4.reply_set"
+  ],
+  "feedback": "パスワード、支払い、身分証、医療、法律情報は出さず、必要な内容だけ確認します。",
+  "tts_segments": [
+    "黒い傘を置いてきたと思います。",
+    "カフェの椅子の横だと思います。",
+    "はい、名前と電話番号を残します。",
+    "ありがとうございます。連絡を待っています。"
+  ],
+  "formula_moments": [
+    {
+      "after_turn": "t2",
+      "pattern_id": "ja.a2.digital.lost_item_followup_message.v1"
+    }
+  ],
+  "runtime_notes": "Fresh A2 digital/documents candidate. Requires full-walk runtime before closeout evidence is recorded.",
+  "notes": {
+    "authoring_policy": "Fresh-authored from A2 digital/documents neutral adaptation brief. KO surface text was not copied or translated.",
+    "a2_boundary": "Low-risk confirmation/help only; avoids sensitive identity, payment, legal, medical, police, and immigration workflows."
+  }
+}

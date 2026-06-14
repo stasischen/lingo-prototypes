@@ -1,0 +1,229 @@
+{
+  "schema_version": "scenario_pack.v1",
+  "scenario_id": "convenience_payment_card_cash",
+  "brief_id": "ml0_a1_004_convenience_payment_card_cash",
+  "source_neutral_brief": "release-aggregator/docs/tasks/A1_MULTILINGUAL_KO_B1_PARALLEL_ORCHESTRATION/work_products/ml0/ML0_NEUTRAL_ADAPTATION_BRIEFS_20260613.md#ml0-a1-004",
+  "blueprint_ledger": "release-aggregator/docs/tasks/A1_MULTILINGUAL_KO_B1_PARALLEL_ORCHESTRATION/work_products/ml0/ML0_BLUEPRINT_LEDGER_20260613.md",
+  "repo": "content-de",
+  "staging_path": "content/core/content_assets/scenario_packs/current_flow/convenience_payment_card_cash.de.v1.json",
+  "title": "An der Kasse bezahlen",
+  "setting_label": "Kasse im kleinen Laden",
+  "wrap_title": "Bezahlung geschafft",
+  "wrap_friend": "Gut gemacht. Du hast mit Sie-Register kurz die Zahlungsart genannt und den Einkauf abgeschlossen.",
+  "language": "de",
+  "ui_language": "zh_tw",
+  "source_status": "candidate_runtime_verified",
+  "review_state": "draft",
+  "review_status_framework_state": "candidate_runtime_verified",
+  "native_review_state": "native_pending",
+  "production_mode_default": {
+    "required": [
+      "choice"
+    ],
+    "optional_visible": [
+      "speaking"
+    ],
+    "optional_hidden": [
+      "typing"
+    ]
+  },
+  "support_text": "你在德語小店櫃台結帳。用簡短、禮貌的德文回答付款方式，並完成交易。",
+  "roles": {
+    "npc": {
+      "label": "Kassierer/in"
+    },
+    "learner": {
+      "label": "Kunde/Kundin"
+    }
+  },
+  "turns": [
+    {
+      "turn_id": "t1",
+      "speaker": "npc",
+      "act": "payment_method_question",
+      "act_slots": {
+        "topic": "payment_method",
+        "keyword": "Karte",
+        "gloss": "卡"
+      },
+      "learning_role": "listen_only",
+      "surface": "Zahlen Sie mit Karte oder bar?",
+      "speak": "Zahlen Sie mit Karte oder bar?",
+      "translation": "您用卡付款還是付現？",
+      "friend": "服務情境保持 Sie 禮貌語氣。回答時只要說付款方式。",
+      "reply_set": {
+        "correct": "c1",
+        "choices": [
+          {
+            "id": "c1",
+            "surface": "Mit Karte, bitte.",
+            "translation": "刷卡，麻煩您。",
+            "speak": "Mit Karte, bitte.",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "c2",
+            "surface": "Einen Kaffee, bitte.",
+            "translation": "一杯咖啡，謝謝。",
+            "speak": "Einen Kaffee, bitte.",
+            "contrast_type": "ordering_food_instead_of_paying",
+            "feedback": "這是在點餐。現在收銀員問的是付款方式。"
+          },
+          {
+            "id": "c3",
+            "surface": "Wo ist die Toilette?",
+            "translation": "廁所在哪裡？",
+            "speak": "Wo ist die Toilette?",
+            "contrast_type": "asking_directions_instead_of_paying",
+            "feedback": "這是在問方向，不是在結帳付款。"
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t2",
+      "speaker": "npc",
+      "act": "cashier_instruction",
+      "act_slots": {
+        "topic": "card_terminal",
+        "keyword": "hier",
+        "gloss": "這裡"
+      },
+      "learning_role": "listen_only",
+      "surface": "Bitte hier einstecken.",
+      "speak": "Bitte hier einstecken.",
+      "translation": "請在這裡插卡。",
+      "friend": "聽到付款指示時，用 alles klar 這種短確認很自然。",
+      "inline_explain": "Mit Karte = 用卡付款。Bar = 付現。",
+      "reply_set": {
+        "correct": "c1",
+        "choices": [
+          {
+            "id": "c1",
+            "surface": "Alles klar.",
+            "translation": "好的，了解。",
+            "speak": "Alles klar.",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "c2",
+            "surface": "Mit Karte, bitte.",
+            "translation": "刷卡，麻煩您。",
+            "speak": "Mit Karte, bitte.",
+            "contrast_type": "repeated_prior_answer",
+            "feedback": "你已經選了刷卡。現在只要確認聽懂指示。"
+          },
+          {
+            "id": "c3",
+            "surface": "Ich habe eine Reservierung.",
+            "translation": "我有預訂。",
+            "speak": "Ich habe eine Reservierung.",
+            "contrast_type": "wrong_scenario_hotel",
+            "feedback": "這是飯店入住句，不是付款情境。"
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t3",
+      "speaker": "npc",
+      "act": "receipt_prompt",
+      "act_slots": {
+        "topic": "receipt",
+        "keyword": "Bon",
+        "gloss": "收據"
+      },
+      "learning_role": "listen_only",
+      "surface": "Möchten Sie den Bon?",
+      "speak": "Möchten Sie den Bon?",
+      "translation": "您要收據嗎？",
+      "friend": "如果不要，用 Nein, danke 就可以。",
+      "reply_set": {
+        "correct": "c1",
+        "choices": [
+          {
+            "id": "c1",
+            "surface": "Nein, danke.",
+            "translation": "不用，謝謝。",
+            "speak": "Nein, danke."
+          },
+          {
+            "id": "c2",
+            "surface": "Um drei Uhr passt.",
+            "translation": "三點可以。",
+            "speak": "Um drei Uhr passt.",
+            "contrast_type": "schedule_answer_to_receipt_prompt",
+            "feedback": "這是在回答時間。現在問題是要不要收據。"
+          },
+          {
+            "id": "c3",
+            "surface": "Bar, bitte.",
+            "translation": "付現，麻煩您。",
+            "speak": "Bar, bitte.",
+            "contrast_type": "wrong_payment_method_switch",
+            "feedback": "你前面已選用卡付款。這裡要回答收據問題。"
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t4",
+      "speaker": "npc",
+      "act": "transaction_close",
+      "act_slots": {
+        "topic": "closing",
+        "keyword": "Tag",
+        "gloss": "一天"
+      },
+      "learning_role": "listen_only",
+      "surface": "Danke schön. Einen schönen Tag noch.",
+      "speak": "Danke schön. Einen schönen Tag noch.",
+      "translation": "謝謝您。祝您今天愉快。",
+      "friend": "用 Danke, ebenso 回應很自然。",
+      "reply_set": {
+        "correct": "c1",
+        "choices": [
+          {
+            "id": "c1",
+            "surface": "Danke, ebenso.",
+            "translation": "謝謝，您也是。",
+            "speak": "Danke, ebenso."
+          },
+          {
+            "id": "c2",
+            "surface": "Ich checke ein.",
+            "translation": "我要入住。",
+            "speak": "Ich checke ein.",
+            "contrast_type": "wrong_scenario_hotel",
+            "feedback": "這是飯店情境。結帳結尾只要道謝。"
+          },
+          {
+            "id": "c3",
+            "surface": "Links und dann geradeaus.",
+            "translation": "左邊，然後直走。",
+            "speak": "Links und dann geradeaus.",
+            "contrast_type": "wrong_scenario_directions",
+            "feedback": "這是在指路，不是在回應收銀員的結尾。"
+          }
+        ]
+      },
+      "closing": true
+    }
+  ],
+  "formula_moments": [
+    {
+      "after_turn": "t1",
+      "pattern_id": "de_payment_mit_karte_bitte"
+    },
+    {
+      "after_turn": "t2",
+      "pattern_id": "de_short_confirmation_alles_klar"
+    }
+  ],
+  "notes": {
+    "authoring_source": "Authored from ML-0 neutral brief ml0_a1_004_convenience_payment_card_cash; KO packs, other language packs, and Lingourmet_german were not used as source strings.",
+    "review_policy": "AI-authored candidate only; keep review_state=draft, review_status_framework_state=candidate_needs_review, native_review_state=native_pending until tracked review evidence exists.",
+    "canonical_policy": "Staging current-flow candidate only. Do not add to manifests, production exports, schema, runtime, or frontend in this authoring lane.",
+    "german_voice_note": "Uses Sie service register for cashier interaction; learner targets stay short and beginner-safe."
+  }
+}

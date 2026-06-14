@@ -1,0 +1,261 @@
+{
+  "schema_version": "scenario_pack.v1",
+  "scenario_id": "a2_ask_late_checkout",
+  "title": "늦은 체크아웃 물어보기",
+  "setting_label": "호텔 프런트",
+  "wrap_title": "체크아웃 시간 확인",
+  "wrap_friend": "你剛剛完成了一段 A2 住宿服務情境，用簡短韓文說明需求、聽懂回覆，並確認下一步。",
+  "language": "ko",
+  "ui_language": "zh_tw",
+  "cefr_level": "A2",
+  "source_status": "candidate_runtime_verified",
+  "review_state": "ai_reviewed",
+  "review_status_framework_state": "candidate_runtime_verified",
+  "native_review_state": "native_pending",
+  "scenario": "A hotel/accommodation service scenario: a2_ask_late_checkout.",
+  "learner_goal": "Ask if late checkout is possible and confirm the allowed time.",
+  "target_functions": [
+    "late_checkout_request",
+    "availability_time",
+    "polite_confirmation"
+  ],
+  "register_notes": "Polite hotel front-desk Korean; simple availability only, no fee dispute.",
+  "production_mode_default": {
+    "required": [
+      "choice"
+    ],
+    "optional_visible": [
+      "speaking"
+    ],
+    "optional_hidden": [
+      "typing"
+    ]
+  },
+  "support_text": "체크아웃을 조금 늦출 수 있는지 묻고, 가능한 시간을 확인해 보세요.",
+  "roles": {
+    "npc": {
+      "label": "호텔 직원"
+    },
+    "learner": {
+      "label": "你"
+    }
+  },
+  "turns": [
+    {
+      "turn_id": "t1",
+      "speaker": "npc",
+      "act": "service_prompt",
+      "act_slots": {
+        "topic": "service_prompt",
+        "keyword": "무엇을 도와드릴까요",
+        "gloss": "可以怎麼幫您"
+      },
+      "learning_role": "listen_only",
+      "surface": "무엇을 도와드릴까요?",
+      "speak": "무엇을 도와드릴까요?",
+      "translation": "我可以怎麼幫您？",
+      "friend": {
+        "hint": "늦은 체크아웃을 물어봐요."
+      },
+      "reply_set": {
+        "correct": "r1a",
+        "choices": [
+          {
+            "id": "r1a",
+            "surface": "체크아웃을 조금 늦게 할 수 있을까요?",
+            "translation": "可以晚一點退房嗎？",
+            "speak": "체크아웃을 조금 늦게 할 수 있을까요?",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r1b",
+            "surface": "체크인을 조금 늦게 할 수 있을까요?",
+            "translation": "可以晚一點入住嗎？",
+            "speak": "체크인을 조금 늦게 할 수 있을까요?",
+            "contrast_type": "wrong_detail_or_domain",
+            "feedback": "체크인이 아니라 체크아웃을 묻는 상황이에요."
+          },
+          {
+            "id": "r1c",
+            "surface": "요금을 깎아 주세요.",
+            "translation": "請幫我降價。",
+            "speak": "요금을 깎아 주세요.",
+            "contrast_type": "forbidden_or_wrong_domain",
+            "feedback": "요금 협상은 이 A2 과제 범위를 넘어가요."
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t2",
+      "speaker": "npc",
+      "act": "availability_offer",
+      "act_slots": {
+        "topic": "availability_offer",
+        "keyword": "오후 한 시까지",
+        "gloss": "到下午一點"
+      },
+      "learning_role": "listen_only",
+      "surface": "오늘은 오후 한 시까지 가능합니다.",
+      "speak": "오늘은 오후 한 시까지 가능합니다.",
+      "translation": "今天可以到下午一點。",
+      "friend": {
+        "hint": "가능한 시간을 들어요."
+      },
+      "reply_set": {
+        "correct": "r2a",
+        "choices": [
+          {
+            "id": "r2a",
+            "surface": "오후 한 시까지 가능하군요.",
+            "translation": "可以到下午一點，對嗎？",
+            "speak": "오후 한 시까지 가능하군요.",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r2b",
+            "surface": "오전 열 시까지 가능하군요.",
+            "translation": "可以到上午十點，對嗎？",
+            "speak": "오전 열 시까지 가능하군요.",
+            "contrast_type": "wrong_detail_or_domain",
+            "feedback": "직원은 오후 한 시까지 가능하다고 했어요."
+          },
+          {
+            "id": "r2c",
+            "surface": "방을 새로 예약할게요.",
+            "translation": "我要重新訂房。",
+            "speak": "방을 새로 예약할게요.",
+            "contrast_type": "forbidden_or_wrong_domain",
+            "feedback": "새 예약이 아니라 체크아웃 시간 확인이에요."
+          }
+        ]
+      },
+      "inline_explain": {
+        "pattern_id": "ko.a2.accommodation.checkout.until.v1",
+        "title": "-까지 = 到...為止",
+        "explain": "이 상황에서 자주 쓰는 A2 표현입니다.",
+        "items": [
+          {
+            "surface": "오후 한 시까지",
+            "translation": "到下午一點",
+            "speak": "오후 한 시까지"
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t3",
+      "speaker": "npc",
+      "act": "condition_notice",
+      "act_slots": {
+        "topic": "condition_notice",
+        "keyword": "객실 카드",
+        "gloss": "房卡"
+      },
+      "learning_role": "listen_only",
+      "surface": "객실 카드는 정오 전에 프런트에 한번 보여 주세요.",
+      "speak": "객실 카드는 정오 전에 프런트에 한번 보여 주세요.",
+      "translation": "房卡請在中午前先拿到櫃台給我們看一下。",
+      "friend": {
+        "hint": "간단한 조건을 확인해요."
+      },
+      "reply_set": {
+        "correct": "r3a",
+        "choices": [
+          {
+            "id": "r3a",
+            "surface": "정오 전에 카드를 보여 드리면 되죠?",
+            "translation": "中午前拿房卡給您看就可以，對嗎？",
+            "speak": "정오 전에 카드를 보여 드리면 되죠?",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r3b",
+            "surface": "여권 번호를 알려 드리면 되죠?",
+            "translation": "告訴您護照號碼就可以，對嗎？",
+            "speak": "여권 번호를 알려 드리면 되죠?",
+            "contrast_type": "wrong_detail_or_domain",
+            "feedback": "여권 번호 같은 신분 정보는 필요하지 않아요."
+          },
+          {
+            "id": "r3c",
+            "surface": "저녁 일곱 시에 짐을 찾으면 되죠?",
+            "translation": "晚上七點領行李就可以，對嗎？",
+            "speak": "저녁 일곱 시에 짐을 찾으면 되죠?",
+            "contrast_type": "forbidden_or_wrong_domain",
+            "feedback": "짐 보관이 아니라 체크아웃 시간 이야기예요."
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t4",
+      "speaker": "npc",
+      "act": "close",
+      "act_slots": {
+        "topic": "close",
+        "keyword": "한 시 체크아웃",
+        "gloss": "一點退房"
+      },
+      "learning_role": "listen_only",
+      "surface": "네, 한 시 체크아웃으로 확인해 드릴게요.",
+      "speak": "네, 한 시 체크아웃으로 확인해 드릴게요.",
+      "translation": "好的，我幫您確認為一點退房。",
+      "friend": {
+        "hint": "마지막 시간을 확인해요."
+      },
+      "reply_set": {
+        "correct": "r4a",
+        "choices": [
+          {
+            "id": "r4a",
+            "surface": "감사합니다. 한 시에 체크아웃할게요.",
+            "translation": "謝謝。我一點退房。",
+            "speak": "감사합니다. 한 시에 체크아웃할게요.",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r4b",
+            "surface": "환불을 신청할게요.",
+            "translation": "我要申請退款。",
+            "speak": "환불을 신청할게요.",
+            "contrast_type": "wrong_detail_or_domain",
+            "feedback": "환불 신청은 이 상황의 범위를 넘어가요."
+          },
+          {
+            "id": "r4c",
+            "surface": "내일 아침에 기차를 탈게요.",
+            "translation": "我明天早上會搭火車。",
+            "speak": "내일 아침에 기차를 탈게요.",
+            "contrast_type": "forbidden_or_wrong_domain",
+            "feedback": "교통 계획이 아니라 체크아웃 확인이에요."
+          }
+        ]
+      }
+    }
+  ],
+  "choice_sets": [
+    "t1.reply_set",
+    "t2.reply_set",
+    "t3.reply_set",
+    "t4.reply_set"
+  ],
+  "feedback": "오답은 시간, 장소, 서비스 영역을 잘못 이해하거나 A2 범위를 넘는 요청으로 흐르는지를 확인합니다.",
+  "tts_segments": [
+    "무엇을 도와드릴까요?",
+    "오늘은 오후 한 시까지 가능합니다.",
+    "객실 카드는 정오 전에 프런트에 한번 보여 주세요.",
+    "네, 한 시 체크아웃으로 확인해 드릴게요."
+  ],
+  "formula_moments": [
+    {
+      "after_turn": "t2",
+      "pattern_id": "ko.a2.accommodation.checkout.until.v1"
+    }
+  ],
+  "runtime_notes": "KO A2 accommodation candidate. Full-walk runtime gate required before final closeout.",
+  "notes": {
+    "authoring_policy": "Fresh-authored from the neutral A2 accommodation brief. Legacy KO A2 was not used as a line source.",
+    "a2_boundary": "Low-risk accommodation/service task; avoids compensation, emergency, legal, medical, police, immigration, banking, insurance, or identity-sensitive handling."
+  }
+}

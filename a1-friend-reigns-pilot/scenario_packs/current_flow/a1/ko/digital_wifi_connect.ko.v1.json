@@ -1,0 +1,241 @@
+{
+  "schema_version": "scenario_pack.v1",
+  "scenario_id": "digital_wifi_connect",
+  "title": "連 Wi-Fi 情境",
+  "setting_label": "咖啡店櫃台",
+  "wrap_title": "今天這段連 Wi-Fi",
+  "wrap_friend": "你剛剛問了 Wi-Fi 密碼，也說明手機連不上。出門時能問密碼、說連不上，就能請店員幫你確認。",
+  "language": "ko",
+  "ui_language": "zh_tw",
+  "source_status": "pilot_authored_ai_review_pending",
+  "review_state": "draft",
+  "production_mode_default": {
+    "required": [
+      "choice"
+    ],
+    "optional_visible": [
+      "speaking"
+    ],
+    "optional_hidden": [
+      "typing"
+    ]
+  },
+  "support_text": "你在咖啡店想連 Wi-Fi。先問密碼，連不上時請店員協助。",
+  "roles": {
+    "npc": {
+      "label": "店員"
+    },
+    "learner": {
+      "label": "你"
+    }
+  },
+  "turns": [
+    {
+      "turn_id": "t1",
+      "speaker": "npc",
+      "act": "service_opening",
+      "act_slots": {
+        "topic": "wifi help",
+        "keyword": "도와드릴까요",
+        "gloss": "要幫忙嗎"
+      },
+      "learning_role": "listen_only",
+      "surface": "네, 도와드릴까요?",
+      "speak": "네, 도와드릴까요?",
+      "translation": "好的，需要幫忙嗎？",
+      "friend": {
+        "hint": "와이파이 是 Wi-Fi。비밀번호 是密碼。想連網時可以問 와이파이 비밀번호가 뭐예요?"
+      },
+      "inline_explain": {
+        "pattern_id": "ko.digital.wifi.password.connect.v1",
+        "formula_ref": null,
+        "title": "와이파이 비밀번호 / 연결이 안 돼요",
+        "explain": "비밀번호 是密碼。연결이 안 돼요 是連不上。",
+        "items": [
+          {
+            "surface": "와이파이 비밀번호가 뭐예요?",
+            "translation": "Wi-Fi 密碼是什麼？",
+            "speak": "와이파이 비밀번호가 뭐예요?"
+          },
+          {
+            "surface": "연결이 안 돼요.",
+            "translation": "連不上。",
+            "speak": "연결이 안 돼요."
+          }
+        ]
+      },
+      "reply_set": {
+        "correct": "r1a",
+        "choices": [
+          {
+            "id": "r1a",
+            "surface": "와이파이 비밀번호가 뭐예요?",
+            "translation": "Wi-Fi 密碼是什麼？",
+            "speak": "와이파이 비밀번호가 뭐예요?",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r1b",
+            "surface": "계산해 주세요.",
+            "translation": "請結帳。",
+            "speak": "계산해 주세요.",
+            "contrast_type": "wrong_act_payment",
+            "feedback": "這句是在結帳。現在你想問 Wi-Fi 密碼。"
+          },
+          {
+            "id": "r1c",
+            "surface": "화장실이 어디예요?",
+            "translation": "洗手間在哪裡？",
+            "speak": "화장실이 어디예요?",
+            "contrast_type": "wrong_scenario_request",
+            "feedback": "這句是在問洗手間。現在要連 Wi-Fi。"
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t2",
+      "speaker": "npc",
+      "act": "info_response",
+      "act_slots": {
+        "topic": "wifi password",
+        "keyword": "비밀번호",
+        "gloss": "密碼"
+      },
+      "learning_role": "listen_only",
+      "surface": "비밀번호는 lingo123이에요.",
+      "speak": "비밀번호는 링고 일이삼이에요.",
+      "translation": "密碼是 lingo123。",
+      "friend": {
+        "hint": "店員說 비밀번호는 ...이에요，表示密碼是什麼。輸入後可以先說試試看。"
+      },
+      "reply_set": {
+        "correct": "r2a",
+        "choices": [
+          {
+            "id": "r2a",
+            "surface": "네, 해 볼게요.",
+            "translation": "好，我試試看。",
+            "speak": "네, 해 볼게요."
+          },
+          {
+            "id": "r2b",
+            "surface": "와이파이 비밀번호가 뭐예요?",
+            "translation": "Wi-Fi 密碼是什麼？",
+            "speak": "와이파이 비밀번호가 뭐예요?",
+            "contrast_type": "repeated_prior_answer",
+            "feedback": "密碼已經說了。現在可以先試著連線。"
+          },
+          {
+            "id": "r2c",
+            "surface": "아이스 아메리카노 하나 주세요.",
+            "translation": "請給我一杯冰美式。",
+            "speak": "아이스 아메리카노 하나 주세요.",
+            "contrast_type": "wrong_scenario_request",
+            "feedback": "這句是在點咖啡。現在是在處理 Wi-Fi。"
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t3",
+      "speaker": "npc",
+      "act": "check_status",
+      "act_slots": {
+        "topic": "connection status",
+        "keyword": "돼요",
+        "gloss": "可以嗎"
+      },
+      "learning_role": "listen_only",
+      "surface": "잘 돼요?",
+      "speak": "잘 돼요?",
+      "translation": "可以順利連嗎？",
+      "friend": {
+        "hint": "안 돼요 是不行、不能。連不上時可以說 연결이 안 돼요。"
+      },
+      "reply_set": {
+        "correct": "r3a",
+        "choices": [
+          {
+            "id": "r3a",
+            "surface": "연결이 안 돼요.",
+            "translation": "連不上。",
+            "speak": "연결이 안 돼요.",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r3b",
+            "surface": "네, 맞아요.",
+            "translation": "對，沒錯。",
+            "speak": "네, 맞아요.",
+            "contrast_type": "wrong_act_confirmation",
+            "feedback": "店員問能不能連。你現在需要說連不上。"
+          },
+          {
+            "id": "r3c",
+            "surface": "충전해도 돼요?",
+            "translation": "可以充電嗎？",
+            "speak": "충전해도 돼요?",
+            "contrast_type": "wrong_scenario_request",
+            "feedback": "這句是在問充電。現在是 Wi-Fi 連不上。"
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t4",
+      "speaker": "npc",
+      "act": "instruction",
+      "act_slots": {
+        "topic": "try again",
+        "keyword": "다시",
+        "gloss": "再一次"
+      },
+      "learning_role": "listen_only",
+      "surface": "다시 한 번 해 보세요.",
+      "speak": "다시 한 번 해 보세요.",
+      "translation": "請再試一次。",
+      "friend": {
+        "hint": "다시 한 번 是再一次。店員給出協助後，可以道謝。"
+      },
+      "reply_set": {
+        "correct": "r4a",
+        "choices": [
+          {
+            "id": "r4a",
+            "surface": "감사합니다.",
+            "translation": "謝謝。",
+            "speak": "감사합니다."
+          },
+          {
+            "id": "r4b",
+            "surface": "연결이 안 돼요.",
+            "translation": "連不上。",
+            "speak": "연결이 안 돼요.",
+            "contrast_type": "repeated_prior_answer",
+            "feedback": "已經說過連不上了。店員請你再試一次，這裡可以道謝。"
+          },
+          {
+            "id": "r4c",
+            "surface": "아니요, 괜찮아요.",
+            "translation": "不用了，沒關係。",
+            "speak": "아니요, 괜찮아요.",
+            "contrast_type": "wrong_act_refusal",
+            "feedback": "這樣像拒絕協助。店員正在幫你處理 Wi-Fi。"
+          }
+        ]
+      }
+    }
+  ],
+  "formula_moments": [
+    {
+      "after_turn": "t1",
+      "pattern_id": "ko.digital.wifi.password.connect.v1"
+    }
+  ],
+  "notes": {
+    "practice_plan": "Primary production target is 와이파이 비밀번호가 뭐예요? Optional support is 연결이 안 돼요. Password acknowledgement and thanks are choice-only practiced.",
+    "review_policy": "AI review pass 1 recorded in digital_wifi_connect.review.ai_20260613.md and pass 2 recorded in digital_wifi_connect.review.ai_pass2_20260613.md; native review remains pending.",
+    "canonical_policy": "Pilot-authored derived fixture only; do not write back to canonical schema."
+  }
+}

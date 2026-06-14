@@ -1,0 +1,253 @@
+{
+  "schema_version": "scenario_pack.v1",
+  "scenario_id": "hotel_checkout",
+  "brief_id": "ml4_a1_016_hotel_checkout",
+  "source_neutral_brief": "release-aggregator/docs/tasks/A1_MULTILINGUAL_KO_B1_PARALLEL_ORCHESTRATION/work_products/ml0/ML4_NEUTRAL_ADAPTATION_BRIEFS_20260614.md#brief-ml4-a1-016-hotel-checkout",
+  "blueprint_ledger": "release-aggregator/docs/tasks/A1_MULTILINGUAL_KO_B1_PARALLEL_ORCHESTRATION/work_products/ml0/ML4_BLUEPRINT_LEDGER_20260614.md",
+  "repo": "content-ja",
+  "staging_path": "content/review/current_flow/scenario_pack.v1/ja/hotel_checkout.ja.v1.json",
+  "title": "ホテルでチェックアウトする",
+  "setting_label": "ホテルのフロント",
+  "wrap_title": "チェックアウトできました",
+  "wrap_friend": "チェックアウトを頼み、部屋番号を言い、カードキーを渡してお礼を言えました。",
+  "language": "ja",
+  "ui_language": "zh_tw",
+  "source_status": "candidate_runtime_verified",
+  "review_state": "draft",
+  "review_status_framework_state": "candidate_runtime_verified",
+  "native_review_state": "native_pending",
+  "production_mode_default": {
+    "required": [
+      "choice"
+    ],
+    "optional_visible": [
+      "speaking"
+    ],
+    "optional_hidden": [
+      "typing"
+    ]
+  },
+  "support_text": "你在日本飯店櫃台退房。選自然、簡短的日文。",
+  "roles": {
+    "npc": {
+      "label": "フロント"
+    },
+    "learner": {
+      "label": "あなた"
+    }
+  },
+  "turns": [
+    {
+      "turn_id": "t1",
+      "speaker": "npc",
+      "act": "offer_help",
+      "learning_role": "listen_only",
+      "surface": "おはようございます。ご用件をどうぞ。",
+      "speak": "おはようございます。ご用件をどうぞ。",
+      "translation": "早安，請問需要什麼？",
+      "friend": {
+        "hint": "你要退房。用フロントで自然的短句。"
+      },
+      "inline_explain": {
+        "pattern_id": "ja.hotel.checkout_request.v1",
+        "formula_ref": null,
+        "title": "チェックアウトをお願いします",
+        "explain": "退房時可以說「チェックアウトをお願いします」。",
+        "items": [
+          {
+            "surface": "チェックアウトをお願いします。",
+            "translation": "麻煩辦理退房。",
+            "speak": "チェックアウトをお願いします。"
+          }
+        ]
+      },
+      "reply_set": {
+        "correct": "r1a",
+        "choices": [
+          {
+            "id": "r1a",
+            "surface": "チェックアウトをお願いします。",
+            "translation": "麻煩辦理退房。",
+            "speak": "チェックアウトをお願いします。",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r1b",
+            "surface": "Wi-Fiのパスワードは何ですか。",
+            "translation": "Wi-Fi密碼是什麼？",
+            "speak": "Wi-Fiのパスワードは何ですか。",
+            "contrast_type": "wifi_question_instead_of_checkout",
+            "feedback": "這是在問Wi-Fi。現在要辦理退房。"
+          },
+          {
+            "id": "r1c",
+            "surface": "朝食は何時ですか。",
+            "translation": "早餐幾點？",
+            "speak": "朝食は何時ですか。",
+            "contrast_type": "breakfast_question_instead_of_checkout",
+            "feedback": "這是在問早餐，不是退房。"
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t2",
+      "speaker": "npc",
+      "act": "ask_room_number",
+      "learning_role": "listen_only",
+      "surface": "お部屋番号をお願いします。",
+      "speak": "お部屋番号をお願いします。",
+      "translation": "請問房號。",
+      "friend": {
+        "hint": "櫃台問房號。只說房號即可。"
+      },
+      "reply_set": {
+        "correct": "r2a",
+        "choices": [
+          {
+            "id": "r2a",
+            "surface": "305号室です。",
+            "translation": "是305號房。",
+            "speak": "さんまるご号室です。",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r2b",
+            "surface": "3番線です。",
+            "translation": "是三號月台。",
+            "speak": "さんばんせんです。",
+            "contrast_type": "platform_number_instead_of_room_number",
+            "feedback": "這是月台號碼。飯店櫃台需要房號。"
+          },
+          {
+            "id": "r2c",
+            "surface": "切符をください。",
+            "translation": "請給我票。",
+            "speak": "きっぷをください。",
+            "contrast_type": "ticket_purchase_at_hotel_checkout",
+            "feedback": "這是在買票，不是回答房號。"
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t3",
+      "speaker": "npc",
+      "act": "ask_key_card",
+      "learning_role": "listen_only",
+      "surface": "カードキーをお願いします。",
+      "speak": "カードキーをお願いします。",
+      "translation": "請給我房卡。",
+      "friend": {
+        "hint": "櫃台要房卡。把房卡交給對方。"
+      },
+      "inline_explain": {
+        "pattern_id": "ja.hotel.key_handover.v1",
+        "formula_ref": null,
+        "title": "はい、どうぞ",
+        "explain": "交東西給對方時可以說「はい、どうぞ」。",
+        "items": [
+          {
+            "surface": "はい、どうぞ。",
+            "translation": "好的，給你。",
+            "speak": "はい、どうぞ。"
+          }
+        ]
+      },
+      "reply_set": {
+        "correct": "r3a",
+        "choices": [
+          {
+            "id": "r3a",
+            "surface": "はい、どうぞ。",
+            "translation": "好的，給你。",
+            "speak": "はい、どうぞ。",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r3b",
+            "surface": "いいえ、ありません。",
+            "translation": "沒有。",
+            "speak": "いいえ、ありません。",
+            "contrast_type": "refusal_when_key_handover_expected",
+            "feedback": "這是在拒絕或說沒有。情境需要交出房卡。"
+          },
+          {
+            "id": "r3c",
+            "surface": "コーヒーをください。",
+            "translation": "請給我咖啡。",
+            "speak": "コーヒーをください。",
+            "contrast_type": "food_order_at_checkout",
+            "feedback": "這是點餐，不是交房卡。"
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t4",
+      "speaker": "npc",
+      "act": "confirm_checkout",
+      "learning_role": "listen_only",
+      "surface": "チェックアウトは完了です。こちらが領収書です。",
+      "speak": "チェックアウトは完了です。こちらが領収書です。",
+      "translation": "退房完成了。這是收據。",
+      "friend": {
+        "hint": "退房完成。道謝收尾。"
+      },
+      "reply_set": {
+        "correct": "r4a",
+        "choices": [
+          {
+            "id": "r4a",
+            "surface": "ありがとうございます。",
+            "translation": "謝謝。",
+            "speak": "ありがとうございます。"
+          },
+          {
+            "id": "r4b",
+            "surface": "305号室です。",
+            "translation": "是305號房。",
+            "speak": "さんまるご号室です。",
+            "contrast_type": "repeat_room_number_after_completion",
+            "feedback": "房號已經說過了。退房完成時道謝即可。"
+          },
+          {
+            "id": "r4c",
+            "surface": "パスワードを教えてください。",
+            "translation": "請告訴我密碼。",
+            "speak": "パスワードを教えてください。",
+            "contrast_type": "wifi_question_after_checkout",
+            "feedback": "這又回到Wi-Fi問題。現在退房完成了。"
+          }
+        ]
+      },
+      "closing": {
+        "act": "hotel_checkout_complete",
+        "learning_role": "listen_only",
+        "surface": "チェックアウトが完了しました。",
+        "speak": "チェックアウトが完了しました。",
+        "translation": "退房完成了。"
+      }
+    }
+  ],
+  "formula_moments": [
+    {
+      "after_turn": "t1",
+      "pattern_id": "ja.hotel.checkout_request.v1"
+    },
+    {
+      "after_turn": "t3",
+      "pattern_id": "ja.hotel.key_handover.v1"
+    },
+    {
+      "after_turn": "t4",
+      "pattern_id": "ja.hotel.checkout_thanks.v1"
+    }
+  ],
+  "notes": {
+    "authoring_source": "Authored from ML-4 neutral brief, not Korean surface text or another target-language pack.",
+    "review_policy": "AI-authored Japanese candidate. Requires AI review, runtime smoke, and tracked native review before any stronger status.",
+    "canonical_policy": "Staging candidate only. Do not write back to manifests, production exports, schemas, runtime exports, frontend, or legacy content.",
+    "register_note": "Uses service-counter polite Japanese and avoids payment, deposit, ID, or dispute content."
+  }
+}

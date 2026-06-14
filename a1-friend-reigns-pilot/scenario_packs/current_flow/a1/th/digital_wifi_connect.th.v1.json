@@ -1,0 +1,253 @@
+{
+  "schema_version": "scenario_pack.v1",
+  "scenario_id": "digital_wifi_connect",
+  "brief_id": "ml4_a1_017_digital_wifi_connect",
+  "source_neutral_brief": "release-aggregator/docs/tasks/A1_MULTILINGUAL_KO_B1_PARALLEL_ORCHESTRATION/work_products/ml0/ML4_NEUTRAL_ADAPTATION_BRIEFS_20260614.md#brief-ml4-a1-017-ask-for-wi-fi-and-say-it-will-not-connect",
+  "blueprint_ledger": "release-aggregator/docs/tasks/A1_MULTILINGUAL_KO_B1_PARALLEL_ORCHESTRATION/work_products/ml0/ML4_BLUEPRINT_LEDGER_20260614.md",
+  "repo": "content-th",
+  "staging_path": "content/core/content_assets/scenario_packs/current_flow/digital_wifi_connect.th.v1.json",
+  "title": "ถามรหัสไวไฟและบอกว่าต่อไม่ได้",
+  "setting_label": "เคาน์เตอร์คาเฟ่",
+  "wrap_title": "ขอความช่วยเหลือเรื่องไวไฟได้แล้ว",
+  "wrap_friend": "คุณถามรหัสไวไฟ ลองเชื่อมต่อ บอกว่าต่อไม่ได้ และขอบคุณพนักงานได้",
+  "language": "th",
+  "ui_language": "zh_tw",
+  "source_status": "candidate_runtime_verified",
+  "review_state": "draft",
+  "review_status_framework_state": "candidate_runtime_verified",
+  "native_review_state": "native_pending",
+  "production_mode_default": {
+    "required": [
+      "choice"
+    ],
+    "optional_visible": [
+      "speaking"
+    ],
+    "optional_hidden": [
+      "typing"
+    ]
+  },
+  "support_text": "你在泰國咖啡店或飯店櫃台，需要連Wi-Fi。選自然、簡短的泰文。",
+  "roles": {
+    "npc": {
+      "label": "พนักงาน"
+    },
+    "learner": {
+      "label": "คุณ"
+    }
+  },
+  "turns": [
+    {
+      "turn_id": "t1",
+      "speaker": "npc",
+      "act": "offer_help",
+      "learning_role": "listen_only",
+      "surface": "มีอะไรให้ช่วยไหมครับ",
+      "speak": "มีอะไรให้ช่วยไหมครับ",
+      "translation": "有什麼需要幫忙嗎？",
+      "friend": {
+        "hint": "你需要Wi-Fi密碼。用泰文短句問。"
+      },
+      "inline_explain": {
+        "pattern_id": "th.digital.wifi_password.v1",
+        "formula_ref": null,
+        "title": "รหัสไวไฟคืออะไรคะ",
+        "explain": "問Wi-Fi密碼時，可以說 `รหัสไวไฟคืออะไรคะ`。",
+        "items": [
+          {
+            "surface": "รหัสไวไฟคืออะไรคะ",
+            "translation": "Wi-Fi密碼是什麼？",
+            "speak": "รหัสไวไฟคืออะไรคะ"
+          }
+        ]
+      },
+      "reply_set": {
+        "correct": "r1a",
+        "choices": [
+          {
+            "id": "r1a",
+            "surface": "รหัสไวไฟคืออะไรคะ",
+            "translation": "Wi-Fi密碼是什麼？",
+            "speak": "รหัสไวไฟคืออะไรคะ",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r1b",
+            "surface": "จ่ายเงินตอนนี้ได้ไหมคะ",
+            "translation": "可以現在付款嗎？",
+            "speak": "จ่ายเงินตอนนี้ได้ไหมคะ",
+            "contrast_type": "bill_payment_instead_of_wifi",
+            "feedback": "這是在付款。現在要問Wi-Fi密碼。"
+          },
+          {
+            "id": "r1c",
+            "surface": "ห้องน้ำอยู่ที่ไหนคะ",
+            "translation": "廁所在哪裡？",
+            "speak": "ห้องน้ำอยู่ที่ไหนคะ",
+            "contrast_type": "restroom_question_instead_of_wifi",
+            "feedback": "這是在問廁所。現在的目標是Wi-Fi。"
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t2",
+      "speaker": "npc",
+      "act": "give_password",
+      "learning_role": "listen_only",
+      "surface": "รหัสคือ cafe123 ครับ",
+      "speak": "รหัสคือ คาเฟ่ หนึ่ง สอง สาม ครับ",
+      "translation": "密碼是 cafe123。",
+      "friend": {
+        "hint": "你拿到密碼了。說謝謝並試試看。"
+      },
+      "reply_set": {
+        "correct": "r2a",
+        "choices": [
+          {
+            "id": "r2a",
+            "surface": "ขอบคุณค่ะ ขอลองก่อนนะคะ",
+            "translation": "謝謝，我先試試看。",
+            "speak": "ขอบคุณค่ะ ขอลองก่อนนะคะ",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r2b",
+            "surface": "รหัสไวไฟคืออะไรคะ",
+            "translation": "Wi-Fi密碼是什麼？",
+            "speak": "รหัสไวไฟคืออะไรคะ",
+            "contrast_type": "repeat_password_question_after_answer",
+            "feedback": "對方已經給了密碼。現在應該表示會試試看。"
+          },
+          {
+            "id": "r2c",
+            "surface": "ขอกาแฟค่ะ",
+            "translation": "請給我咖啡。",
+            "speak": "ขอกาแฟค่ะ",
+            "contrast_type": "coffee_order_after_password",
+            "feedback": "這是在點咖啡，不是回應Wi-Fi密碼。"
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t3",
+      "speaker": "npc",
+      "act": "ask_connection_status",
+      "learning_role": "listen_only",
+      "surface": "ใช้ได้ไหมครับ",
+      "speak": "ใช้ได้ไหมครับ",
+      "translation": "可以用了嗎？",
+      "friend": {
+        "hint": "你的手機連不上。用短句說問題。"
+      },
+      "inline_explain": {
+        "pattern_id": "th.digital.wont_connect.v1",
+        "formula_ref": null,
+        "title": "ต่อไม่ได้ค่ะ",
+        "explain": "說網路連不上時，可以說 `ต่อไม่ได้ค่ะ`。",
+        "items": [
+          {
+            "surface": "ขอโทษค่ะ ต่อไม่ได้ค่ะ",
+            "translation": "不好意思，連不上。",
+            "speak": "ขอโทษค่ะ ต่อไม่ได้ค่ะ"
+          }
+        ]
+      },
+      "reply_set": {
+        "correct": "r3a",
+        "choices": [
+          {
+            "id": "r3a",
+            "surface": "ขอโทษค่ะ ต่อไม่ได้ค่ะ",
+            "translation": "不好意思，連不上。",
+            "speak": "ขอโทษค่ะ ต่อไม่ได้ค่ะ",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r3b",
+            "surface": "ใช้ได้ค่ะ",
+            "translation": "可以用了。",
+            "speak": "ใช้ได้ค่ะ",
+            "contrast_type": "success_answer_when_failure_expected",
+            "feedback": "情境是連不上。需要說問題，而不是說成功。"
+          },
+          {
+            "id": "r3c",
+            "surface": "ชาร์จมือถือได้ไหมคะ",
+            "translation": "可以充手機嗎？",
+            "speak": "ชาร์จมือถือได้ไหมคะ",
+            "contrast_type": "charging_question_instead_of_connection_failure",
+            "feedback": "這是在問充電。現在要說Wi-Fi連不上。"
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t4",
+      "speaker": "npc",
+      "act": "simple_retry_instruction",
+      "learning_role": "listen_only",
+      "surface": "ลองอีกครั้งนะครับ",
+      "speak": "ลองอีกครั้งนะครับ",
+      "translation": "請再試一次。",
+      "friend": {
+        "hint": "對方給簡單建議。道謝即可。"
+      },
+      "reply_set": {
+        "correct": "r4a",
+        "choices": [
+          {
+            "id": "r4a",
+            "surface": "ขอบคุณค่ะ",
+            "translation": "謝謝。",
+            "speak": "ขอบคุณค่ะ"
+          },
+          {
+            "id": "r4b",
+            "surface": "ใช้ได้ค่ะ",
+            "translation": "可以用了。",
+            "speak": "ใช้ได้ค่ะ",
+            "contrast_type": "unsupported_success_after_retry_instruction",
+            "feedback": "對方只是叫你再試一次。先道謝比較自然。"
+          },
+          {
+            "id": "r4c",
+            "surface": "จ่ายเงินตอนนี้ได้ไหมคะ",
+            "translation": "可以現在付款嗎？",
+            "speak": "จ่ายเงินตอนนี้ได้ไหมคะ",
+            "contrast_type": "payment_phrase_after_wifi_help",
+            "feedback": "這是付款句。Wi-Fi協助後簡短道謝即可。"
+          }
+        ]
+      },
+      "closing": {
+        "act": "wifi_help_complete",
+        "learning_role": "listen_only",
+        "surface": "คุณถามรหัสไวไฟและบอกปัญหาแล้ว",
+        "speak": "คุณถามรหัสไวไฟและบอกปัญหาแล้ว",
+        "translation": "你問了Wi-Fi密碼，也說明了問題。"
+      }
+    }
+  ],
+  "formula_moments": [
+    {
+      "after_turn": "t1",
+      "pattern_id": "th.digital.wifi_password.v1"
+    },
+    {
+      "after_turn": "t3",
+      "pattern_id": "th.digital.wont_connect.v1"
+    },
+    {
+      "after_turn": "t4",
+      "pattern_id": "th.digital.thanks.v1"
+    }
+  ],
+  "notes": {
+    "authoring_source": "Authored from ML-4 neutral brief, not Korean surface text or another target-language pack.",
+    "review_policy": "AI-authored Thai candidate. Requires AI review, runtime smoke, and tracked native review before any stronger status.",
+    "canonical_policy": "Staging candidate only. Do not write back to manifests, production exports, schemas, runtime exports, frontend, or legacy content.",
+    "thai_voice_note": "Uses Thai script, phrase-group spacing, staff ครับ and learner ค่ะ; avoids accounts, router settings, security settings, and technical diagnosis."
+  }
+}

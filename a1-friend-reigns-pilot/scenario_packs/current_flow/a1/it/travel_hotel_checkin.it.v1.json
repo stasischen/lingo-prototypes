@@ -1,0 +1,255 @@
+{
+  "schema_version": "scenario_pack.v1",
+  "scenario_id": "travel_hotel_checkin",
+  "brief_id": "ml0_a1_002_travel_hotel_checkin",
+  "source_neutral_brief": "release-aggregator/docs/tasks/A1_MULTILINGUAL_KO_B1_PARALLEL_ORCHESTRATION/work_products/ml0/ML0_NEUTRAL_ADAPTATION_BRIEFS_20260613.md#brief-ml0-a1-002-hotel-check-in",
+  "blueprint_ledger": "release-aggregator/docs/tasks/A1_MULTILINGUAL_KO_B1_PARALLEL_ORCHESTRATION/work_products/ml0/ML0_BLUEPRINT_LEDGER_20260613.md",
+  "repo": "content-it",
+  "staging_path": "content/core/content_assets/scenario_packs/current_flow/travel_hotel_checkin.it.v1.json",
+  "title": "Check-in in hotel",
+  "setting_label": "Reception dell'hotel",
+  "wrap_title": "Hai fatto il check-in in hotel",
+  "wrap_friend": "你用簡短義大利語說明有訂房、提供姓名，並聽懂房間樓層。這就是飯店入住的核心流程。",
+  "language": "it",
+  "ui_language": "zh_tw",
+  "source_status": "candidate_runtime_verified",
+  "review_state": "draft",
+  "review_status_framework_state": "candidate_runtime_verified",
+  "native_review_state": "native_pending",
+  "production_mode_default": {
+    "required": [
+      "choice"
+    ],
+    "optional_visible": [
+      "speaking"
+    ],
+    "optional_hidden": [
+      "typing"
+    ]
+  },
+  "support_text": "你在飯店櫃台。說你有訂房，提供姓名，聽懂下一步。",
+  "roles": {
+    "npc": {
+      "label": "櫃台人員"
+    },
+    "learner": {
+      "label": "你"
+    }
+  },
+  "turns": [
+    {
+      "turn_id": "t1",
+      "speaker": "npc",
+      "act": "front_desk_greeting",
+      "act_slots": {
+        "topic": "check-in opening",
+        "keyword": "prenotazione",
+        "gloss": "arrive for a reservation"
+      },
+      "learning_role": "listen_only",
+      "surface": "Buonasera. Come posso aiutarla?",
+      "speak": "Buonasera. Come posso aiutarla?",
+      "translation": "櫃台人員在問你需要什麼協助。",
+      "friend": {
+        "hint": "先說你有訂房。"
+      },
+      "reply_set": {
+        "correct": "r1a",
+        "choices": [
+          {
+            "id": "r1a",
+            "surface": "Buonasera, ho una prenotazione.",
+            "translation": "晚上好，我有訂房。",
+            "speak": "Buonasera, ho una prenotazione.",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r1b",
+            "surface": "Un cappuccino, per favore.",
+            "translation": "一杯卡布奇諾，謝謝。",
+            "speak": "Un cappuccino, per favore.",
+            "contrast_type": "wrong_scenario_request",
+            "feedback": "這是在咖啡吧點飲料。飯店櫃台要先說你有訂房。"
+          },
+          {
+            "id": "r1c",
+            "surface": "Dov'è la stazione?",
+            "translation": "車站在哪裡？",
+            "speak": "Dov'è la stazione?",
+            "contrast_type": "wrong_scenario_request",
+            "feedback": "這是在問外面的路。現在是入住櫃台流程。"
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t2",
+      "speaker": "npc",
+      "act": "name_request",
+      "act_slots": {
+        "topic": "reservation name",
+        "keyword": "nome",
+        "gloss": "give your name"
+      },
+      "learning_role": "listen_only",
+      "surface": "Certo. A che nome?",
+      "speak": "Certo. A che nome?",
+      "translation": "櫃台人員在問訂房姓名。",
+      "friend": {
+        "hint": "用 A nome di 加姓氏就可以。"
+      },
+      "inline_explain": {
+        "pattern_id": "it.hotel.a_nome_di.v1",
+        "formula_ref": null,
+        "title": "A nome di...",
+        "explain": "飯店詢問訂房姓名時，可以用 A nome di 加姓名回答。",
+        "items": [
+          {
+            "surface": "A nome di Lee.",
+            "translation": "訂房姓名是 Lee。",
+            "speak": "A nome di Lee."
+          },
+          {
+            "surface": "La prenotazione è a nome di Lee.",
+            "translation": "訂房是用 Lee 的名字。",
+            "speak": "La prenotazione è a nome di Lee."
+          }
+        ]
+      },
+      "reply_set": {
+        "correct": "r2a",
+        "choices": [
+          {
+            "id": "r2a",
+            "surface": "A nome di Lee.",
+            "translation": "訂房姓名是 Lee。",
+            "speak": "A nome di Lee.",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r2b",
+            "surface": "Vorrei fare il check-out.",
+            "translation": "我想退房。",
+            "speak": "Vorrei fare il check-out.",
+            "contrast_type": "wrong_act_checkout",
+            "feedback": "check-out 是離開飯店時用的。現在是入住，要提供訂房姓名。"
+          },
+          {
+            "id": "r2c",
+            "surface": "È a destra.",
+            "translation": "在右邊。",
+            "speak": "È a destra.",
+            "contrast_type": "wrong_scenario_response",
+            "feedback": "這是在回答方向。櫃台問的是訂房姓名。"
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t3",
+      "speaker": "npc",
+      "act": "reservation_confirmation",
+      "act_slots": {
+        "topic": "reservation found",
+        "keyword": "trovato",
+        "gloss": "confirm reservation"
+      },
+      "learning_role": "listen_only",
+      "surface": "Ho trovato la prenotazione. Una notte, giusto?",
+      "speak": "Ho trovato la prenotazione. Una notte, giusto?",
+      "translation": "櫃台找到訂房，並確認住一晚。",
+      "friend": {
+        "hint": "資料正確時，用 Sì 簡短確認。"
+      },
+      "reply_set": {
+        "correct": "r3a",
+        "choices": [
+          {
+            "id": "r3a",
+            "surface": "Sì, giusto.",
+            "translation": "對，沒錯。",
+            "speak": "Sì, giusto."
+          },
+          {
+            "id": "r3b",
+            "surface": "Un cappuccino, per favore.",
+            "translation": "一杯卡布奇諾，謝謝。",
+            "speak": "Un cappuccino, per favore.",
+            "contrast_type": "wrong_scenario_request",
+            "feedback": "這不是咖啡吧。櫃台正在確認你的訂房。"
+          },
+          {
+            "id": "r3c",
+            "surface": "No, grazie.",
+            "translation": "不用了，謝謝。",
+            "speak": "No, grazie.",
+            "contrast_type": "wrong_act_refusal",
+            "feedback": "這像是在拒絕協助。資料正確時要確認。"
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t4",
+      "speaker": "npc",
+      "act": "key_direction",
+      "act_slots": {
+        "topic": "room and key",
+        "keyword": "camera",
+        "gloss": "next step"
+      },
+      "learning_role": "listen_only",
+      "surface": "Ecco la chiave. La camera è al terzo piano.",
+      "speak": "Ecco la chiave. La camera è al terzo piano.",
+      "translation": "櫃台給你鑰匙，並告訴你房間在三樓。",
+      "friend": {
+        "hint": "拿到鑰匙後，用簡短謝謝收尾。"
+      },
+      "reply_set": {
+        "correct": "r4a",
+        "choices": [
+          {
+            "id": "r4a",
+            "surface": "Grazie.",
+            "translation": "謝謝。",
+            "speak": "Grazie."
+          },
+          {
+            "id": "r4b",
+            "surface": "A nome di Lee.",
+            "translation": "訂房姓名是 Lee。",
+            "speak": "A nome di Lee.",
+            "contrast_type": "repeated_prior_answer",
+            "feedback": "你已經提供姓名了。現在櫃台正在給你鑰匙。"
+          },
+          {
+            "id": "r4c",
+            "surface": "Dov'è il bagno?",
+            "translation": "洗手間在哪裡？",
+            "speak": "Dov'è il bagno?",
+            "contrast_type": "off_topic_statement",
+            "feedback": "這是另一個請求。先把入住流程收尾。"
+          }
+        ]
+      },
+      "closing": {
+        "act": "front_desk_close",
+        "learning_role": "context_support",
+        "surface": "La colazione è nella hall, dalle sette alle dieci.",
+        "speak": "La colazione è nella hall, dalle sette alle dieci.",
+        "translation": "早餐在大廳，時間是七點到十點。"
+      }
+    }
+  ],
+  "formula_moments": [
+    {
+      "after_turn": "t2",
+      "pattern_id": "it.hotel.a_nome_di.v1"
+    }
+  ],
+  "notes": {
+    "review_policy": "AI-authored candidate. Requires AI review, runtime smoke, and tracked native review before any stronger status.",
+    "canonical_policy": "Staging candidate only. Do not write back to manifests, production exports, schemas, or legacy content.",
+    "authoring_source": "Authored from ML-0 neutral brief, not Korean surface text."
+  }
+}

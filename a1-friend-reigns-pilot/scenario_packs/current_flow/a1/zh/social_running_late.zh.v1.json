@@ -1,0 +1,230 @@
+{
+  "schema_version": "scenario_pack.v1",
+  "scenario_id": "social_running_late",
+  "brief_id": "ml5_a1_019_social_running_late",
+  "source_neutral_brief": "release-aggregator/docs/tasks/A1_MULTILINGUAL_KO_B1_PARALLEL_ORCHESTRATION/work_products/ml0/ML5_NEUTRAL_ADAPTATION_BRIEFS_20260614.md#brief-ml5-a1-019-say-you-are-running-late",
+  "blueprint_ledger": "release-aggregator/docs/tasks/A1_MULTILINGUAL_KO_B1_PARALLEL_ORCHESTRATION/work_products/ml0/ML5_BLUEPRINT_LEDGER_20260614.md",
+  "repo": "content-zh",
+  "staging_path": "content/core/content_assets/scenario_packs/current_flow/social_running_late.zh.v1.json",
+  "title": "說自己會晚到",
+  "setting_label": "傳訊息給朋友",
+  "wrap_title": "晚到訊息完成",
+  "wrap_friend": "你已經告訴朋友會晚到、說幾分鐘、謝謝對方，並自然收尾。",
+  "language": "zh",
+  "ui_language": "zh_tw",
+  "source_status": "candidate_runtime_verified",
+  "review_state": "draft",
+  "review_status_framework_state": "candidate_runtime_verified",
+  "native_review_state": "native_pending",
+  "production_mode_default": {
+    "required": [
+      "choice"
+    ],
+    "optional_visible": [
+      "speaking"
+    ],
+    "optional_hidden": [
+      "typing"
+    ]
+  },
+  "support_text": "你要跟朋友見面，但會晚到。簡單說抱歉、晚一點到、幾分鐘、謝謝和待會見。",
+  "roles": {
+    "npc": {
+      "label": "朋友"
+    },
+    "learner": {
+      "label": "你"
+    }
+  },
+  "turns": [
+    {
+      "turn_id": "t1",
+      "speaker": "npc",
+      "act": "friend_check",
+      "act_slots": {
+        "topic": "arrival",
+        "keyword": "哪裡",
+        "gloss": "where"
+      },
+      "learning_role": "listen_only",
+      "surface": "你在哪裡？",
+      "speak": "你在哪裡？",
+      "translation": "你在哪裡？",
+      "friend": "朋友訊息可以簡單說 不好意思，我會晚一點到。",
+      "reply_set": {
+        "correct": "c1",
+        "choices": [
+          {
+            "id": "c1",
+            "surface": "不好意思，我會晚一點到。",
+            "translation": "不好意思，我會晚一點到。",
+            "speak": "不好意思，我會晚一點到。",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "c2",
+            "surface": "我要結帳。",
+            "translation": "我要結帳。",
+            "speak": "我要結帳。",
+            "contrast_type": "payment_wrong_goal",
+            "feedback": "這是在餐廳付款，不是在告訴朋友會晚到。"
+          },
+          {
+            "id": "c3",
+            "surface": "您好，需要幫忙嗎？",
+            "translation": "您好，需要幫忙嗎？",
+            "speak": "您好，需要幫忙嗎？",
+            "contrast_type": "service_register_wrong_context",
+            "feedback": "這是服務人員語氣；朋友訊息要自然簡短。"
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t2",
+      "speaker": "npc",
+      "act": "minutes_question",
+      "act_slots": {
+        "topic": "time estimate",
+        "keyword": "分鐘",
+        "gloss": "minutes"
+      },
+      "learning_role": "listen_only",
+      "surface": "幾分鐘？",
+      "speak": "幾分鐘？",
+      "translation": "幾分鐘？",
+      "friend": "用 大概十分鐘 回答很簡單。",
+      "reply_set": {
+        "correct": "c1",
+        "choices": [
+          {
+            "id": "c1",
+            "surface": "大概十分鐘。",
+            "translation": "大概十分鐘。",
+            "speak": "大概十分鐘。",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "c2",
+            "surface": "第二月台。",
+            "translation": "第二月台。",
+            "speak": "第二月台。",
+            "contrast_type": "place_number_wrong_answer",
+            "feedback": "對方問幾分鐘，不是問地點或月台。"
+          },
+          {
+            "id": "c3",
+            "surface": "不用，謝謝。",
+            "translation": "不用，謝謝。",
+            "speak": "不用，謝謝。",
+            "contrast_type": "refusal_wrong_answer",
+            "feedback": "這是在拒絕幫助，沒有回答時間。"
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t3",
+      "speaker": "npc",
+      "act": "friend_waits",
+      "act_slots": {
+        "topic": "waiting",
+        "keyword": "等",
+        "gloss": "wait"
+      },
+      "learning_role": "listen_only",
+      "surface": "好，我等你。",
+      "speak": "好，我等你。",
+      "translation": "好，我等你。",
+      "friend": "朋友願意等時，直接說謝謝你等我。",
+      "inline_explain": "等你 = 在那裡等你。",
+      "reply_set": {
+        "correct": "c1",
+        "choices": [
+          {
+            "id": "c1",
+            "surface": "謝謝你等我。",
+            "translation": "謝謝你等我。",
+            "speak": "謝謝你等我。",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "c2",
+            "surface": "不好意思，我會晚一點到。",
+            "translation": "不好意思，我會晚一點到。",
+            "speak": "不好意思，我會晚一點到。",
+            "contrast_type": "repeated_late_message",
+            "feedback": "已經說過會晚到了。現在要謝謝對方等你。"
+          },
+          {
+            "id": "c3",
+            "surface": "謝謝您的服務。",
+            "translation": "謝謝您的服務。",
+            "speak": "謝謝您的服務。",
+            "contrast_type": "overformal_service_thanks",
+            "feedback": "這像服務情境，不像朋友等你的自然說法。"
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t4",
+      "speaker": "npc",
+      "act": "friend_close",
+      "act_slots": {
+        "topic": "close",
+        "keyword": "見",
+        "gloss": "see"
+      },
+      "learning_role": "listen_only",
+      "surface": "待會見。",
+      "speak": "待會見。",
+      "translation": "待會見。",
+      "friend": "朋友結尾可以直接回待會見。",
+      "reply_set": {
+        "correct": "c1",
+        "choices": [
+          {
+            "id": "c1",
+            "surface": "待會見。",
+            "translation": "待會見。",
+            "speak": "待會見。"
+          },
+          {
+            "id": "c2",
+            "surface": "我在藍色門前面。",
+            "translation": "我在藍色門前面。",
+            "speak": "我在藍色門前面。",
+            "contrast_type": "exact_location_out_of_scope",
+            "feedback": "本場景不練即時精準定位，只練晚到和時間。"
+          },
+          {
+            "id": "c3",
+            "surface": "你為什麼不等我？",
+            "translation": "你為什麼不等我？",
+            "speak": "你為什麼不等我？",
+            "contrast_type": "conflict_blame_out_of_scope",
+            "feedback": "這會變成責怪或衝突；本場景要平和收尾。"
+          }
+        ]
+      },
+      "closing": true
+    }
+  ],
+  "formula_moments": [
+    {
+      "after_turn": "t1",
+      "pattern_id": "zh.friend.wan_yidian_dao"
+    },
+    {
+      "after_turn": "t2",
+      "pattern_id": "zh.time.dagai_shi_fenzhong"
+    }
+  ],
+  "notes": {
+    "authoring_source": "Authored from ML-5 neutral brief ml5_a1_019_social_running_late; KO and other target-language packs were not used as translation sources.",
+    "review_policy": "AI-authored candidate only; keep review_state=draft, review_status_framework_state=candidate_needs_review, native_review_state=native_pending until tracked review evidence exists.",
+    "canonical_policy": "Staging current-flow candidate only. Do not add to manifests, production exports, schema, runtime, or frontend in this authoring lane.",
+    "chinese_voice_note": "Uses Traditional-character Mandarin with Taiwan-leaning friend-chat `不好意思` and `待會見`, avoiding live-location or conflict framing."
+  }
+}

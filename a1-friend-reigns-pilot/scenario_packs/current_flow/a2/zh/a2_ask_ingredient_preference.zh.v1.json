@@ -1,0 +1,284 @@
+{
+  "schema_version": "scenario_pack.v1",
+  "scenario_id": "a2_ask_ingredient_preference",
+  "title": "詢問食材偏好",
+  "setting_label": "餐廳櫃台",
+  "wrap_title": "已確認食材偏好",
+  "wrap_friend": "做得好。你在低風險的餐飲或購物情境中，清楚確認偏好和細節。",
+  "language": "zh",
+  "ui_language": "zh-Hant",
+  "cefr_level": "A2",
+  "source_status": "candidate_runtime_verified",
+  "review_state": "ai_reviewed",
+  "review_status_framework_state": "candidate_runtime_verified",
+  "native_review_state": "native_pending",
+  "scenario": {
+    "domain": "food_shopping_preferences",
+    "review_slice": "food_shopping",
+    "interaction": "service_preference_or_exchange",
+    "source_brief": "A2_FOOD_SHOPPING_NEUTRAL_ADAPTATION_BRIEFS_20260614",
+    "blueprint_source": "language_neutral_adaptation_brief",
+    "ko_pack_role": "mature_scenario_blueprint_not_translation_source"
+  },
+  "learner_goal": "詢問是否有常見食材，並依照偏好選擇。",
+  "target_functions": [
+    "compare_or_state_preference",
+    "confirm_key_detail",
+    "make_polite_low_risk_request",
+    "close_with_correct_next_step"
+  ],
+  "register_notes": "Traditional Chinese A2 food/shopping register: Taiwan-leaning polite everyday service language, no allergy/medical/refund-dispute framing.",
+  "production_mode_default": {
+    "required": [
+      "choice"
+    ],
+    "optional_visible": [
+      "speaking"
+    ],
+    "optional_hidden": [
+      "typing"
+    ]
+  },
+  "support_text": "詢問是否有常見食材，並依照偏好選擇。",
+  "roles": {
+    "npc": {
+      "label": "店員"
+    },
+    "learner": {
+      "label": "你"
+    }
+  },
+  "turns": [
+    {
+      "turn_id": "t1",
+      "speaker": "npc",
+      "act": "ask_ingredient",
+      "act_slots": {
+        "topic": "ask-ingredient-preference",
+        "keyword": "1",
+        "gloss": "A2 food/shopping"
+      },
+      "learning_role": "listen_only",
+      "surface": "您想點什麼？",
+      "speak": "您想點什麼？",
+      "translation": "您想點什麼？",
+      "friend": {
+        "hint": "詢問是否有常見食材。"
+      },
+      "reply_set": {
+        "correct": "r1a",
+        "choices": [
+          {
+            "id": "r1a",
+            "surface": "這個沙拉裡有洋蔥嗎？",
+            "translation": "這個沙拉裡有洋蔥嗎？",
+            "speak": "這個沙拉裡有洋蔥嗎？",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r1b",
+            "surface": "這個沙拉在幾樓？",
+            "translation": "這個沙拉在幾樓？",
+            "speak": "這個沙拉在幾樓？",
+            "contrast_type": "wrong_detail_or_domain",
+            "feedback": "樓層和食材無關。"
+          },
+          {
+            "id": "r1c",
+            "surface": "請幫我改票的時間。",
+            "translation": "請幫我改票的時間。",
+            "speak": "請幫我改票的時間。",
+            "contrast_type": "forbidden_or_wrong_domain",
+            "feedback": "這變成票券情境。"
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t2",
+      "speaker": "npc",
+      "act": "answer_ingredient",
+      "act_slots": {
+        "topic": "ask-ingredient-preference",
+        "keyword": "2",
+        "gloss": "A2 food/shopping"
+      },
+      "learning_role": "listen_only",
+      "surface": "有，放一點洋蔥。",
+      "speak": "有，放一點洋蔥。",
+      "translation": "有，放一點洋蔥。",
+      "friend": {
+        "hint": "確認食材資訊。"
+      },
+      "reply_set": {
+        "correct": "r2a",
+        "choices": [
+          {
+            "id": "r2a",
+            "surface": "有一點洋蔥，對嗎？",
+            "translation": "有一點洋蔥，對嗎？",
+            "speak": "有一點洋蔥，對嗎？",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r2b",
+            "surface": "有很多肉，對嗎？",
+            "translation": "有很多肉，對嗎？",
+            "speak": "有很多肉，對嗎？",
+            "contrast_type": "wrong_detail_or_domain",
+            "feedback": "店員沒有提到肉。"
+          },
+          {
+            "id": "r2c",
+            "surface": "房間很吵，對嗎？",
+            "translation": "房間很吵，對嗎？",
+            "speak": "房間很吵，對嗎？",
+            "contrast_type": "forbidden_or_wrong_domain",
+            "feedback": "這變成飯店問題。"
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t3",
+      "speaker": "npc",
+      "act": "choose_preference",
+      "act_slots": {
+        "topic": "ask-ingredient-preference",
+        "keyword": "3",
+        "gloss": "A2 food/shopping"
+      },
+      "learning_role": "listen_only",
+      "surface": "如果您想要，可以不加洋蔥。",
+      "speak": "如果您想要，可以不加洋蔥。",
+      "translation": "如果您想要，可以不加洋蔥。",
+      "friend": {
+        "hint": "用偏好來選擇，不進入醫療。"
+      },
+      "reply_set": {
+        "correct": "r3a",
+        "choices": [
+          {
+            "id": "r3a",
+            "surface": "好的，請不要加洋蔥。",
+            "translation": "好的，請不要加洋蔥。",
+            "speak": "好的，請不要加洋蔥。",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r3b",
+            "surface": "好的，請給我過敏藥。",
+            "translation": "好的，請給我過敏藥。",
+            "speak": "好的，請給我過敏藥。",
+            "contrast_type": "wrong_detail_or_domain",
+            "feedback": "藥物/過敏處理不在這個任務內。"
+          },
+          {
+            "id": "r3c",
+            "surface": "好的，請退款。",
+            "translation": "好的，請退款。",
+            "speak": "好的，請退款。",
+            "contrast_type": "forbidden_or_wrong_domain",
+            "feedback": "這不是退款請求。"
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t4",
+      "speaker": "npc",
+      "act": "confirm_order",
+      "act_slots": {
+        "topic": "ask-ingredient-preference",
+        "keyword": "4",
+        "gloss": "A2 food/shopping"
+      },
+      "learning_role": "listen_only",
+      "surface": "可以，我會準備不加洋蔥的。",
+      "speak": "可以，我會準備不加洋蔥的。",
+      "translation": "可以，我會準備不加洋蔥的。",
+      "friend": {
+        "hint": "用確認訂單收尾。"
+      },
+      "reply_set": {
+        "correct": "r4a",
+        "choices": [
+          {
+            "id": "r4a",
+            "surface": "謝謝，請這樣做。",
+            "translation": "謝謝，請這樣做。",
+            "speak": "謝謝，請這樣做。",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r4b",
+            "surface": "請告訴我護照號碼。",
+            "translation": "請告訴我護照號碼。",
+            "speak": "請告訴我護照號碼。",
+            "contrast_type": "wrong_detail_or_domain",
+            "feedback": "這裡不需要護照資料。"
+          },
+          {
+            "id": "r4c",
+            "surface": "我想寄放行李。",
+            "translation": "我想寄放行李。",
+            "speak": "我想寄放行李。",
+            "contrast_type": "forbidden_or_wrong_domain",
+            "feedback": "這變成寄放行李。"
+          }
+        ]
+      }
+    }
+  ],
+  "choice_sets": {
+    "count_per_turn": 3,
+    "correct_path": [
+      "r1a",
+      "r2a",
+      "r3a",
+      "r4a"
+    ],
+    "distractor_policy": "one near-domain wrong detail plus one out-of-scope/unsafe-domain option per turn"
+  },
+  "feedback": {
+    "correct": "很好。這個回答符合餐飲或購物任務。",
+    "incorrect": "請選擇符合菜單、食材、更換商品或預算推薦的回答。"
+  },
+  "tts_segments": [
+    "您想點什麼？",
+    "這個沙拉裡有洋蔥嗎？",
+    "這個沙拉在幾樓？",
+    "請幫我改票的時間。",
+    "有，放一點洋蔥。",
+    "有一點洋蔥，對嗎？",
+    "有很多肉，對嗎？",
+    "房間很吵，對嗎？",
+    "如果您想要，可以不加洋蔥。",
+    "好的，請不要加洋蔥。",
+    "好的，請給我過敏藥。",
+    "好的，請退款。",
+    "可以，我會準備不加洋蔥的。",
+    "謝謝，請這樣做。",
+    "請告訴我護照號碼。",
+    "我想寄放行李。"
+  ],
+  "formula_moments": [
+    {
+      "after_turn": "t2",
+      "pattern_id": "zh.a2.food.ingredient.preference.v1",
+      "label": "有 + 食材 + 嗎",
+      "learner_takeaway": "不要加 + 食材"
+    }
+  ],
+  "runtime_notes": {
+    "expected_turns": 4,
+    "expected_choices_per_turn": 3,
+    "full_walk_required": true,
+    "expected_final_screen": "Wrap"
+  },
+  "notes": {
+    "generated_at": "2026-06-14",
+    "authoring_scope": "A2 food/shopping ZH adaptation",
+    "native_review_state": "native_pending"
+  }
+}

@@ -1,0 +1,284 @@
+{
+  "schema_version": "scenario_pack.v1",
+  "scenario_id": "a2_ask_recommendation_budget",
+  "title": "예산 안에서 추천받기",
+  "setting_label": "가게",
+  "wrap_title": "추천 선택 확인",
+  "wrap_friend": "잘했어요. 낮은 위험의 음식/쇼핑 상황에서 필요한 정보를 확인하고 정중하게 선택했어요.",
+  "language": "ko",
+  "ui_language": "zh-Hant",
+  "cefr_level": "A2",
+  "source_status": "candidate_runtime_verified",
+  "review_state": "ai_reviewed",
+  "review_status_framework_state": "candidate_runtime_verified",
+  "native_review_state": "native_pending",
+  "scenario": {
+    "domain": "food_shopping_preferences",
+    "review_slice": "food_shopping",
+    "interaction": "service_preference_or_exchange",
+    "source_brief": "A2_FOOD_SHOPPING_NEUTRAL_ADAPTATION_BRIEFS_20260614",
+    "blueprint_source": "language_neutral_adaptation_brief",
+    "ko_pack_role": "mature_scenario_blueprint_not_translation_source_after_gate"
+  },
+  "learner_goal": "작은 예산 안에서 추천을 부탁하고, 원하는 조건을 짧게 말해 보세요.",
+  "target_functions": [
+    "compare_or_state_preference",
+    "confirm_key_detail",
+    "make_polite_low_risk_request",
+    "close_with_correct_next_step"
+  ],
+  "register_notes": "Korean A2 food/shopping register: polite -요/-드릴게요 service language, concise learner replies, no allergy/medical/refund-dispute framing.",
+  "production_mode_default": {
+    "required": [
+      "choice"
+    ],
+    "optional_visible": [
+      "speaking"
+    ],
+    "optional_hidden": [
+      "typing"
+    ]
+  },
+  "support_text": "작은 예산 안에서 추천을 부탁하고, 원하는 조건을 짧게 말해 보세요.",
+  "roles": {
+    "npc": {
+      "label": "호텔 직원"
+    },
+    "learner": {
+      "label": "你"
+    }
+  },
+  "turns": [
+    {
+      "turn_id": "t1",
+      "speaker": "npc",
+      "act": "state_budget",
+      "act_slots": {
+        "topic": "ask-recommendation-budget",
+        "keyword": "1",
+        "gloss": "A2 food/shopping"
+      },
+      "learning_role": "listen_only",
+      "surface": "무엇을 찾으세요?",
+      "speak": "무엇을 찾으세요?",
+      "translation": "您在找什麼？",
+      "friend": {
+        "hint": "작은 예산 안에서 추천을 부탁하세요."
+      },
+      "reply_set": {
+        "correct": "r1a",
+        "choices": [
+          {
+            "id": "r1a",
+            "surface": "만 원 안에서 선물 추천해 주세요.",
+            "translation": "請推薦一個一萬韓元以內的禮物。",
+            "speak": "만 원 안에서 선물 추천해 주세요.",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r1b",
+            "surface": "제 통장을 확인해 주세요.",
+            "translation": "請確認我的帳戶。",
+            "speak": "제 통장을 확인해 주세요.",
+            "contrast_type": "wrong_detail_or_domain",
+            "feedback": "은행/계좌 상황이 아니에요."
+          },
+          {
+            "id": "r1c",
+            "surface": "분실 신고를 하고 싶어요.",
+            "translation": "我想報遺失。",
+            "speak": "분실 신고를 하고 싶어요.",
+            "contrast_type": "forbidden_or_wrong_domain",
+            "feedback": "분실 신고는 다른 과제예요."
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t2",
+      "speaker": "npc",
+      "act": "ask_preference",
+      "act_slots": {
+        "topic": "ask-recommendation-budget",
+        "keyword": "2",
+        "gloss": "A2 food/shopping"
+      },
+      "learning_role": "listen_only",
+      "surface": "가벼운 선물이 좋아요, 아니면 실용적인 게 좋아요?",
+      "speak": "가벼운 선물이 좋아요, 아니면 실용적인 게 좋아요?",
+      "translation": "想要輕巧的禮物，還是實用的？",
+      "friend": {
+        "hint": "간단한 선호를 말하세요."
+      },
+      "reply_set": {
+        "correct": "r2a",
+        "choices": [
+          {
+            "id": "r2a",
+            "surface": "실용적인 게 좋아요.",
+            "translation": "我想要實用的。",
+            "speak": "실용적인 게 좋아요.",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r2b",
+            "surface": "매운 게 좋아요.",
+            "translation": "我想要辣的。",
+            "speak": "매운 게 좋아요.",
+            "contrast_type": "wrong_detail_or_domain",
+            "feedback": "매운맛은 음식 메뉴 쪽이에요."
+          },
+          {
+            "id": "r2c",
+            "surface": "체크아웃을 늦추고 싶어요.",
+            "translation": "我想晚點退房。",
+            "speak": "체크아웃을 늦추고 싶어요.",
+            "contrast_type": "forbidden_or_wrong_domain",
+            "feedback": "호텔 체크아웃 상황이 아니에요."
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t3",
+      "speaker": "npc",
+      "act": "confirm_preference",
+      "act_slots": {
+        "topic": "ask-recommendation-budget",
+        "keyword": "3",
+        "gloss": "A2 food/shopping"
+      },
+      "learning_role": "listen_only",
+      "surface": "그럼 이 작은 노트가 만 원 안이에요.",
+      "speak": "그럼 이 작은 노트가 만 원 안이에요.",
+      "translation": "那這本小筆記本在一萬韓元以內。",
+      "friend": {
+        "hint": "추천과 예산을 확인하세요."
+      },
+      "reply_set": {
+        "correct": "r3a",
+        "choices": [
+          {
+            "id": "r3a",
+            "surface": "그 노트가 만 원 안이라는 거죠?",
+            "translation": "那本筆記本在一萬韓元以內，對嗎？",
+            "speak": "그 노트가 만 원 안이라는 거죠?",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r3b",
+            "surface": "그 방이 만 원 안이라는 거죠?",
+            "translation": "那個房間在一萬韓元以內，對嗎？",
+            "speak": "그 방이 만 원 안이라는 거죠?",
+            "contrast_type": "wrong_detail_or_domain",
+            "feedback": "방은 물건 추천이 아니에요."
+          },
+          {
+            "id": "r3c",
+            "surface": "그 표가 어제였다는 거죠?",
+            "translation": "那張票是昨天的，對嗎？",
+            "speak": "그 표가 어제였다는 거죠?",
+            "contrast_type": "forbidden_or_wrong_domain",
+            "feedback": "표 시간으로 바뀌었어요."
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t4",
+      "speaker": "npc",
+      "act": "accept_recommendation",
+      "act_slots": {
+        "topic": "ask-recommendation-budget",
+        "keyword": "4",
+        "gloss": "A2 food/shopping"
+      },
+      "learning_role": "listen_only",
+      "surface": "네, 선물 포장도 가능해요.",
+      "speak": "네, 선물 포장도 가능해요.",
+      "translation": "對，也可以包裝成禮物。",
+      "friend": {
+        "hint": "추천을 받아들이며 마무리하세요."
+      },
+      "reply_set": {
+        "correct": "r4a",
+        "choices": [
+          {
+            "id": "r4a",
+            "surface": "좋아요. 그 노트로 할게요.",
+            "translation": "好，我選那本筆記本。",
+            "speak": "좋아요. 그 노트로 할게요.",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r4b",
+            "surface": "환불해 주세요.",
+            "translation": "請退款。",
+            "speak": "환불해 주세요.",
+            "contrast_type": "wrong_detail_or_domain",
+            "feedback": "환불 요청이 아니에요."
+          },
+          {
+            "id": "r4c",
+            "surface": "제 보험을 확인해 주세요.",
+            "translation": "請確認我的保險。",
+            "speak": "제 보험을 확인해 주세요.",
+            "contrast_type": "forbidden_or_wrong_domain",
+            "feedback": "보험은 금지된 금융/행정 영역이에요."
+          }
+        ]
+      }
+    }
+  ],
+  "choice_sets": {
+    "count_per_turn": 3,
+    "correct_path": [
+      "r1a",
+      "r2a",
+      "r3a",
+      "r4a"
+    ],
+    "distractor_policy": "one near-domain wrong detail plus one out-of-scope/unsafe-domain option per turn"
+  },
+  "feedback": {
+    "correct": "좋아요. 음식/쇼핑 상황 안에서 필요한 정보를 확인했어요.",
+    "incorrect": "이 상황의 메뉴, 재료, 교환, 예산 추천에 맞는 답을 고르세요."
+  },
+  "tts_segments": [
+    "무엇을 찾으세요?",
+    "만 원 안에서 선물 추천해 주세요.",
+    "제 통장을 확인해 주세요.",
+    "분실 신고를 하고 싶어요.",
+    "가벼운 선물이 좋아요, 아니면 실용적인 게 좋아요?",
+    "실용적인 게 좋아요.",
+    "매운 게 좋아요.",
+    "체크아웃을 늦추고 싶어요.",
+    "그럼 이 작은 노트가 만 원 안이에요.",
+    "그 노트가 만 원 안이라는 거죠?",
+    "그 방이 만 원 안이라는 거죠?",
+    "그 표가 어제였다는 거죠?",
+    "네, 선물 포장도 가능해요.",
+    "좋아요. 그 노트로 할게요.",
+    "환불해 주세요.",
+    "제 보험을 확인해 주세요."
+  ],
+  "formula_moments": [
+    {
+      "after_turn": "t2",
+      "pattern_id": "ko.a2.shopping.recommendation.budget.v1",
+      "label": "budget + 안에서 추천해 주세요",
+      "learner_takeaway": "조용한/가벼운/작은 것 preference"
+    }
+  ],
+  "runtime_notes": {
+    "expected_turns": 4,
+    "expected_choices_per_turn": 3,
+    "full_walk_required": true,
+    "expected_final_screen": "Wrap"
+  },
+  "notes": {
+    "generated_at": "2026-06-14",
+    "authoring_scope": "A2 food/shopping KO authoring",
+    "native_review_state": "native_pending"
+  }
+}

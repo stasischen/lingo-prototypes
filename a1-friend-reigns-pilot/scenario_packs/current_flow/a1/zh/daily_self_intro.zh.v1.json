@@ -1,0 +1,236 @@
+{
+  "schema_version": "scenario_pack.v1",
+  "scenario_id": "daily_self_intro",
+  "brief_id": "ml3_a1_012_daily_self_intro",
+  "source_neutral_brief": "release-aggregator/docs/tasks/A1_MULTILINGUAL_KO_B1_PARALLEL_ORCHESTRATION/work_products/ml0/ML3_NEUTRAL_ADAPTATION_BRIEFS_20260614.md#brief-ml3-a1-012-daily-self-introduction",
+  "blueprint_ledger": "release-aggregator/docs/tasks/A1_MULTILINGUAL_KO_B1_PARALLEL_ORCHESTRATION/work_products/ml0/ML3_BLUEPRINT_LEDGER_20260614.md",
+  "repo": "content-zh",
+  "staging_path": "content/core/content_assets/scenario_packs/current_flow/daily_self_intro.zh.v1.json",
+  "title": "簡短自我介紹",
+  "setting_label": "語言交換活動",
+  "wrap_title": "介紹完成",
+  "wrap_friend": "你用自然的繁體中文打招呼、說名字，並回答自己正在學什麼。",
+  "language": "zh",
+  "ui_language": "zh_tw",
+  "source_status": "candidate_runtime_verified",
+  "review_state": "draft",
+  "review_status_framework_state": "candidate_runtime_verified",
+  "native_review_state": "native_pending",
+  "production_mode_default": {
+    "required": [
+      "choice"
+    ],
+    "optional_visible": [
+      "speaking"
+    ],
+    "optional_hidden": [
+      "typing"
+    ]
+  },
+  "support_text": "你在語言交換活動第一次見到新朋友。只說名字和正在學的語言，不分享電話、地址或工作資訊。",
+  "roles": {
+    "npc": {
+      "label": "新朋友"
+    },
+    "learner": {
+      "label": "新參加者"
+    }
+  },
+  "turns": [
+    {
+      "turn_id": "t1",
+      "speaker": "npc",
+      "act": "first_meeting_greeting",
+      "act_slots": {
+        "topic": "greeting",
+        "keyword": "你好",
+        "gloss": "hello"
+      },
+      "learning_role": "listen_only",
+      "surface": "你好，很高興認識你。",
+      "speak": "你好，很高興認識你。",
+      "translation": "你好，很高興認識你。",
+      "friend": {
+        "hint": "先打招呼，再說自己的名字。"
+      },
+      "reply_set": {
+        "correct": "r1a",
+        "choices": [
+          {
+            "id": "r1a",
+            "surface": "你好，我叫小林。",
+            "translation": "你好，我叫小林。",
+            "speak": "你好，我叫小林。",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r1b",
+            "surface": "我要買一張票。",
+            "translation": "我要買一張票。",
+            "speak": "我要買一張票。",
+            "contrast_type": "travel_ticket_phrase",
+            "feedback": "這是在買票。現在是第一次見面自我介紹。"
+          },
+          {
+            "id": "r1c",
+            "surface": "這是我的電話。",
+            "translation": "這是我的電話。",
+            "speak": "這是我的電話。",
+            "contrast_type": "private_contact_detail",
+            "feedback": "這會分享私人聯絡方式，本情境只需要名字。"
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t2",
+      "speaker": "npc",
+      "act": "language_learning_question",
+      "act_slots": {
+        "topic": "learning_language",
+        "keyword": "學",
+        "gloss": "learn"
+      },
+      "learning_role": "listen_only",
+      "surface": "你在學什麼語言？",
+      "speak": "你在學什麼語言？",
+      "translation": "你在學什麼語言？",
+      "friend": {
+        "hint": "簡短說我在學中文。"
+      },
+      "reply_set": {
+        "correct": "r2a",
+        "choices": [
+          {
+            "id": "r2a",
+            "surface": "我在學中文。",
+            "translation": "我在學中文。",
+            "speak": "我在學中文。",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r2b",
+            "surface": "刷卡，謝謝。",
+            "translation": "刷卡，謝謝。",
+            "speak": "刷卡，謝謝。",
+            "contrast_type": "payment_answer",
+            "feedback": "這是在回答付款方式，不是在回答學什麼語言。"
+          },
+          {
+            "id": "r2c",
+            "surface": "可以再說一次嗎？",
+            "translation": "可以再說一次嗎？",
+            "speak": "可以再說一次嗎？",
+            "contrast_type": "repair_when_answer_expected",
+            "feedback": "如果聽懂了問題，這裡應該直接回答你正在學的語言。"
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t3",
+      "speaker": "npc",
+      "act": "friendly_close_prompt",
+      "act_slots": {
+        "topic": "close",
+        "keyword": "認識",
+        "gloss": "meet"
+      },
+      "learning_role": "listen_only",
+      "surface": "太好了，歡迎你。",
+      "speak": "太好了，歡迎你。",
+      "translation": "太好了，歡迎你。",
+      "friend": {
+        "hint": "用簡短謝謝回應。"
+      },
+      "reply_set": {
+        "correct": "r3a",
+        "choices": [
+          {
+            "id": "r3a",
+            "surface": "謝謝，我也很高興。",
+            "translation": "謝謝，我也很高興。",
+            "speak": "謝謝，我也很高興。"
+          },
+          {
+            "id": "r3b",
+            "surface": "我要結帳。",
+            "translation": "我要結帳。",
+            "speak": "我要結帳。",
+            "contrast_type": "service_payment_phrase",
+            "feedback": "這是服務場景結帳，不是第一次見面的回應。"
+          },
+          {
+            "id": "r3c",
+            "surface": "請問月台在哪裡？",
+            "translation": "請問月台在哪裡？",
+            "speak": "請問月台在哪裡？",
+            "contrast_type": "station_question",
+            "feedback": "這是在車站問月台，和自我介紹無關。"
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t4",
+      "speaker": "npc",
+      "act": "social_close",
+      "act_slots": {
+        "topic": "close",
+        "keyword": "一起",
+        "gloss": "together"
+      },
+      "learning_role": "listen_only",
+      "surface": "等一下我們一起練習。",
+      "speak": "等一下我們一起練習。",
+      "translation": "等一下我們一起練習。",
+      "friend": {
+        "hint": "最後簡短回應好。"
+      },
+      "reply_set": {
+        "correct": "r4a",
+        "choices": [
+          {
+            "id": "r4a",
+            "surface": "好，謝謝。",
+            "translation": "好，謝謝。",
+            "speak": "好，謝謝。"
+          },
+          {
+            "id": "r4b",
+            "surface": "我要一杯拿鐵。",
+            "translation": "我要一杯拿鐵。",
+            "speak": "我要一杯拿鐵。",
+            "contrast_type": "food_drink_order",
+            "feedback": "這是在點飲料，不是回應一起練習。"
+          },
+          {
+            "id": "r4c",
+            "surface": "請說慢一點。",
+            "translation": "請說慢一點。",
+            "speak": "請說慢一點。",
+            "contrast_type": "repair_after_clear_close",
+            "feedback": "這是修復用語；現在對方只是安排一起練習，回答好即可。"
+          }
+        ]
+      },
+      "closing": true
+    }
+  ],
+  "formula_moments": [
+    {
+      "after_turn": "t1",
+      "pattern_id": "zh.self_intro.nihao_wo_jiao.v1"
+    },
+    {
+      "after_turn": "t2",
+      "pattern_id": "zh.self_intro.wo_zai_xue.v1"
+    }
+  ],
+  "notes": {
+    "authoring_source": "Authored from ML-3 neutral brief ml3_a1_012_daily_self_intro; KO and other target-language packs were not used as translation sources.",
+    "review_policy": "AI-authored candidate only; keep review_state=draft, review_status_framework_state=candidate_needs_review, native_review_state=native_pending until tracked review evidence exists.",
+    "canonical_policy": "Staging current-flow candidate only. Do not add to manifests, production exports, schema, runtime, frontend, review artifacts, or legacy content.",
+    "chinese_voice_note": "Uses Traditional-character Mandarin with Taiwan-leaning everyday wording; native review should confirm whether 小林 and 中文 fit the desired learner baseline."
+  }
+}

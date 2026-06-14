@@ -1,0 +1,229 @@
+{
+  "schema_version": "scenario_pack.v1",
+  "scenario_id": "travel_restroom_directions",
+  "brief_id": "ml0_a1_003_travel_restroom_directions",
+  "source_neutral_brief": "release-aggregator/docs/tasks/A1_MULTILINGUAL_KO_B1_PARALLEL_ORCHESTRATION/work_products/ml0/ML0_NEUTRAL_ADAPTATION_BRIEFS_20260613.md#ml0-a1-003",
+  "blueprint_ledger": "release-aggregator/docs/tasks/A1_MULTILINGUAL_KO_B1_PARALLEL_ORCHESTRATION/work_products/ml0/ML0_BLUEPRINT_LEDGER_20260613.md",
+  "repo": "content-zh",
+  "staging_path": "content/core/content_assets/scenario_packs/current_flow/travel_restroom_directions.zh.v1.json",
+  "title": "問洗手間在哪裡",
+  "setting_label": "公共場所",
+  "wrap_title": "找到方向",
+  "wrap_friend": "你已經禮貌地問了洗手間位置，也聽懂了簡短方向。",
+  "language": "zh",
+  "ui_language": "zh_tw",
+  "source_status": "candidate_runtime_verified",
+  "review_state": "draft",
+  "review_status_framework_state": "candidate_runtime_verified",
+  "native_review_state": "native_pending",
+  "production_mode_default": {
+    "required": [
+      "choice"
+    ],
+    "optional_visible": [
+      "speaking"
+    ],
+    "optional_hidden": [
+      "typing"
+    ]
+  },
+  "support_text": "你在公共場所，需要問洗手間在哪裡。用簡短、禮貌的中文問路，並確認方向。",
+  "roles": {
+    "npc": {
+      "label": "工作人員"
+    },
+    "learner": {
+      "label": "訪客"
+    }
+  },
+  "turns": [
+    {
+      "turn_id": "t1",
+      "speaker": "npc",
+      "act": "attention_prompt",
+      "act_slots": {
+        "topic": "help_available",
+        "keyword": "幫忙",
+        "gloss": "help"
+      },
+      "learning_role": "listen_only",
+      "surface": "您好，需要幫忙嗎？",
+      "speak": "您好，需要幫忙嗎？",
+      "translation": "您好，需要幫忙嗎？",
+      "friend": "對工作人員先用不好意思或您好都很自然。",
+      "reply_set": {
+        "correct": "c1",
+        "choices": [
+          {
+            "id": "c1",
+            "surface": "不好意思，洗手間在哪裡？",
+            "translation": "不好意思，洗手間在哪裡？",
+            "speak": "不好意思，洗手間在哪裡？",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "c2",
+            "surface": "一杯熱拿鐵，謝謝。",
+            "translation": "一杯熱拿鐵，謝謝。",
+            "speak": "一杯熱拿鐵，謝謝。",
+            "contrast_type": "price_order_payment",
+            "feedback": "這是在點飲料，不是在問洗手間位置。"
+          },
+          {
+            "id": "c3",
+            "surface": "我有預訂。",
+            "translation": "我有預訂。",
+            "speak": "我有預訂。",
+            "contrast_type": "wrong_place_noun",
+            "feedback": "這是飯店入住句。問洗手間要說洗手間在哪裡。"
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t2",
+      "speaker": "npc",
+      "act": "direction",
+      "act_slots": {
+        "topic": "simple_route",
+        "keyword": "往前走 左轉",
+        "gloss": "go straight, turn left"
+      },
+      "learning_role": "listen_only",
+      "surface": "往前走，然後左轉。",
+      "speak": "往前走，然後左轉。",
+      "translation": "往前走，然後左轉。",
+      "friend": "方向很短：往前走，然後左轉。",
+      "inline_explain": "往前走 = go straight；左轉 = turn left。",
+      "reply_set": {
+        "correct": "c1",
+        "choices": [
+          {
+            "id": "c1",
+            "surface": "往前走再左轉，對嗎？",
+            "translation": "往前走再左轉，對嗎？",
+            "speak": "往前走再左轉，對嗎？",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "c2",
+            "surface": "刷卡，謝謝。",
+            "translation": "刷卡，謝謝。",
+            "speak": "刷卡，謝謝。",
+            "contrast_type": "price_order_payment",
+            "feedback": "這是在付款，不是在確認方向。"
+          },
+          {
+            "id": "c3",
+            "surface": "我從台灣來。",
+            "translation": "我從台灣來。",
+            "speak": "我從台灣來。",
+            "contrast_type": "personal_status_instead_of_location",
+            "feedback": "這是個人資訊，沒有確認你聽到的方向。"
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t3",
+      "speaker": "npc",
+      "act": "confirmation",
+      "act_slots": {
+        "topic": "direction_confirmed",
+        "keyword": "對",
+        "gloss": "yes"
+      },
+      "learning_role": "listen_only",
+      "surface": "對，就在左邊。",
+      "speak": "對，就在左邊。",
+      "translation": "對，就在左邊。",
+      "friend": "對方確認你的理解。接著道謝即可。",
+      "reply_set": {
+        "correct": "c1",
+        "choices": [
+          {
+            "id": "c1",
+            "surface": "謝謝。",
+            "translation": "謝謝。",
+            "speak": "謝謝。"
+          },
+          {
+            "id": "c2",
+            "surface": "在這裡喝，還是帶走？",
+            "translation": "在這裡喝，還是帶走？",
+            "speak": "在這裡喝，還是帶走？",
+            "contrast_type": "wrong_scenario",
+            "feedback": "這是咖啡店問題，不是問路後的回應。"
+          },
+          {
+            "id": "c3",
+            "surface": "我要辦理入住。",
+            "translation": "我要辦理入住。",
+            "speak": "我要辦理入住。",
+            "contrast_type": "wrong_scenario",
+            "feedback": "這是飯店入住，不是完成問路。"
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t4",
+      "speaker": "npc",
+      "act": "closing",
+      "act_slots": {
+        "topic": "polite_close",
+        "keyword": "不客氣",
+        "gloss": "you are welcome"
+      },
+      "learning_role": "listen_only",
+      "surface": "不客氣。",
+      "speak": "不客氣。",
+      "translation": "不客氣。",
+      "friend": "情境完成。你已經問到方向了。",
+      "reply_set": {
+        "correct": "c1",
+        "choices": [
+          {
+            "id": "c1",
+            "surface": "再見。",
+            "translation": "再見。",
+            "speak": "再見。"
+          },
+          {
+            "id": "c2",
+            "surface": "請給我一間房。",
+            "translation": "請給我一間房。",
+            "speak": "請給我一間房。",
+            "contrast_type": "wrong_place_noun",
+            "feedback": "這是飯店需求，不是公共場所問路的收尾。"
+          },
+          {
+            "id": "c3",
+            "surface": "洗手間九十元。",
+            "translation": "洗手間九十元。",
+            "speak": "洗手間九十元。",
+            "contrast_type": "price_order_payment",
+            "feedback": "這把情境轉成價格付款，和本回合方向理解不符。"
+          }
+        ]
+      },
+      "closing": true
+    }
+  ],
+  "formula_moments": [
+    {
+      "after_turn": "t1",
+      "pattern_id": "zh_excuse_me_where_is"
+    },
+    {
+      "after_turn": "t2",
+      "pattern_id": "zh_direction_confirmation"
+    }
+  ],
+  "notes": {
+    "authoring_source": "Authored from ML-0 neutral brief ml0_a1_003_travel_restroom_directions; existing KO/JA/EN/TH and legacy-language text were not used as source strings.",
+    "review_policy": "AI-authored candidate only; keep review_state=draft, review_status_framework_state=candidate_needs_review, native_review_state=native_pending until tracked review evidence exists.",
+    "canonical_policy": "Staging current-flow candidate only. Do not add to manifests, production exports, schema, runtime, or frontend in this authoring lane.",
+    "chinese_voice_note": "Uses 洗手間 as a broadly understandable public-venue term and keeps directions short for A1."
+  }
+}

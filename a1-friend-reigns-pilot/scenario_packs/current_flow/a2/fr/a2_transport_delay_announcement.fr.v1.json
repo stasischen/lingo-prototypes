@@ -1,0 +1,242 @@
+{
+  "schema_version": "scenario_pack.v1",
+  "scenario_id": "a2_transport_delay_announcement",
+  "title": "Comprendre une Annonce de Retard",
+  "setting_label": "Sur le quai",
+  "wrap_title": "Retard confirmé",
+  "wrap_friend": "你剛剛完成了一段 A2 交通服務情境，確認重點並做出簡單回應。",
+  "language": "fr",
+  "ui_language": "zh_tw",
+  "cefr_level": "A2",
+  "source_status": "candidate_runtime_verified",
+  "review_state": "ai_reviewed",
+  "review_status_framework_state": "candidate_runtime_verified",
+  "native_review_state": "native_pending",
+  "scenario": "A2 transport scenario: a2_transport_delay_announcement.",
+  "learner_goal": "Understand a delay duration and choose whether to wait.",
+  "target_functions": [
+    "delay_comprehension",
+    "duration_confirmation",
+    "simple_travel_choice"
+  ],
+  "register_notes": "French public transport/service language with polite everyday responses; no refund, legal, medical, police, or identity-sensitive handling.",
+  "production_mode_default": {
+    "required": [
+      "choice"
+    ],
+    "optional_visible": [
+      "speaking"
+    ],
+    "optional_hidden": [
+      "typing"
+    ]
+  },
+  "support_text": "Écoutez l’annonce à la gare, confirmez la durée du retard, puis choisissez une réponse simple.",
+  "roles": {
+    "npc": {
+      "label": "Agent"
+    },
+    "learner": {
+      "label": "Vous"
+    }
+  },
+  "turns": [
+    {
+      "turn_id": "t1",
+      "speaker": "npc",
+      "act": "delay_announcement",
+      "act_slots": {
+        "topic": "delay_announcement"
+      },
+      "learning_role": "listen_only",
+      "surface": "Attention, s’il vous plaît. Le train pour Central a quinze minutes de retard.",
+      "speak": "Attention, s’il vous plaît. Le train pour Central a quinze minutes de retard.",
+      "translation": "請注意，開往 Central 的列車晚 15 分鐘。",
+      "friend": {
+        "hint": "聽懂延誤時間"
+      },
+      "reply_set": {
+        "correct": "r1a",
+        "choices": [
+          {
+            "id": "r1a",
+            "surface": "Il a quinze minutes de retard, c’est bien ça ?",
+            "translation": "確認延誤時間",
+            "speak": "Il a quinze minutes de retard, c’est bien ça ?",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r1b",
+            "surface": "Il part dans cinq minutes, c’est bien ça ?",
+            "translation": "錯誤時間",
+            "speak": "Il part dans cinq minutes, c’est bien ça ?",
+            "learning_role": "wrong_time_or_detail",
+            "feedback": "Les distracteurs testent une mauvaise heure, un mauvais contexte ou une demande hors du périmètre A2."
+          },
+          {
+            "id": "r1c",
+            "surface": "Je peux changer de siège ?",
+            "translation": "我可以換座位嗎？",
+            "speak": "Je peux changer de siège ?",
+            "learning_role": "wrong_scenario_or_escalation",
+            "feedback": "Les distracteurs testent une mauvaise heure, un mauvais contexte ou une demande hors du périmètre A2."
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t2",
+      "speaker": "npc",
+      "act": "choice_prompt",
+      "act_slots": {
+        "topic": "choice_prompt"
+      },
+      "learning_role": "listen_only",
+      "surface": "Si c’est quinze minutes, vous attendez ou vous prenez le bus ?",
+      "speak": "Si c’est quinze minutes, vous attendez ou vous prenez le bus ?",
+      "translation": "如果是 15 分鐘，您要等，還是搭公車？",
+      "friend": {
+        "hint": "做出簡單選擇"
+      },
+      "reply_set": {
+        "correct": "r2a",
+        "choices": [
+          {
+            "id": "r2a",
+            "surface": "Si c’est quinze minutes, j’attends.",
+            "translation": "選擇等待",
+            "speak": "Si c’est quinze minutes, j’attends.",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r2b",
+            "surface": "J’ai attendu hier.",
+            "translation": "我昨天等了。",
+            "speak": "J’ai attendu hier.",
+            "learning_role": "wrong_time_or_detail",
+            "feedback": "Les distracteurs testent une mauvaise heure, un mauvais contexte ou une demande hors du périmètre A2."
+          },
+          {
+            "id": "r2c",
+            "surface": "Un reçu, s’il vous plaît.",
+            "translation": "請給我收據。",
+            "speak": "Un reçu, s’il vous plaît.",
+            "learning_role": "wrong_scenario_or_escalation",
+            "feedback": "Les distracteurs testent une mauvaise heure, un mauvais contexte ou une demande hors du périmètre A2."
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t3",
+      "speaker": "npc",
+      "act": "next_departure_info",
+      "act_slots": {
+        "topic": "next_departure_info"
+      },
+      "learning_role": "listen_only",
+      "surface": "Le prochain train arrive vers dix heures vingt.",
+      "speak": "Le prochain train arrive vers dix heures vingt.",
+      "translation": "下一班車大約 10 點 20 分到。",
+      "friend": {
+        "hint": "確認下一班時間"
+      },
+      "reply_set": {
+        "correct": "r3a",
+        "choices": [
+          {
+            "id": "r3a",
+            "surface": "Alors je prends le train de dix heures vingt.",
+            "translation": "確認搭下一班",
+            "speak": "Alors je prends le train de dix heures vingt.",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r3b",
+            "surface": "Le magasin ferme à dix heures vingt ?",
+            "translation": "店 10 點 20 分關門嗎？",
+            "speak": "Le magasin ferme à dix heures vingt ?",
+            "learning_role": "wrong_time_or_detail",
+            "feedback": "Cette heure concerne le train, pas un magasin."
+          },
+          {
+            "id": "r3c",
+            "surface": "Je voudrais un remboursement du billet de bus.",
+            "translation": "我想退公車票。",
+            "speak": "Je voudrais un remboursement du billet de bus.",
+            "learning_role": "wrong_scenario_or_escalation",
+            "feedback": "Les remboursements sont hors du périmètre de cette tâche A2."
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t4",
+      "speaker": "npc",
+      "act": "platform_wait_confirmation",
+      "act_slots": {
+        "topic": "platform_wait_confirmation"
+      },
+      "learning_role": "listen_only",
+      "surface": "Très bien. Veuillez attendre sur ce quai.",
+      "speak": "Très bien. Veuillez attendre sur ce quai.",
+      "translation": "好的，請在這個月台等。",
+      "friend": {
+        "hint": "禮貌收尾"
+      },
+      "reply_set": {
+        "correct": "r4a",
+        "choices": [
+          {
+            "id": "r4a",
+            "surface": "D’accord, j’attends ici.",
+            "translation": "確認等待",
+            "speak": "D’accord, j’attends ici.",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r4b",
+            "surface": "Veuillez changer ma chambre.",
+            "translation": "請幫我換房間。",
+            "speak": "Veuillez changer ma chambre.",
+            "learning_role": "wrong_time_or_detail",
+            "feedback": "Les distracteurs testent une mauvaise heure, un mauvais contexte ou une demande hors du périmètre A2."
+          },
+          {
+            "id": "r4c",
+            "surface": "Je voudrais prendre rendez-vous à l’hôpital.",
+            "translation": "我想預約醫院。",
+            "speak": "Je voudrais prendre rendez-vous à l’hôpital.",
+            "learning_role": "wrong_scenario_or_escalation",
+            "feedback": "Les distracteurs testent une mauvaise heure, un mauvais contexte ou une demande hors du périmètre A2."
+          }
+        ]
+      }
+    }
+  ],
+  "choice_sets": [
+    "t1.reply_set",
+    "t2.reply_set",
+    "t3.reply_set",
+    "t4.reply_set"
+  ],
+  "feedback": "Les distracteurs testent une mauvaise heure, un mauvais contexte ou une demande hors du périmètre A2.",
+  "tts_segments": [
+    "Attention, s’il vous plaît. Le train pour Central a quinze minutes de retard.",
+    "Si c’est quinze minutes, vous attendez ou vous prenez le bus ?",
+    "Le prochain train arrive vers dix heures vingt.",
+    "Très bien. Veuillez attendre sur ce quai."
+  ],
+  "formula_moments": [
+    {
+      "after_turn": "t2",
+      "pattern_id": "fr.a2.transport.delay.v1"
+    }
+  ],
+  "runtime_notes": "FR A2 transport candidate. Full-walk runtime gate required before final closeout; target-language surfaces and feedback localized on 2026-06-14.",
+  "notes": {
+    "authoring_policy": "Fresh-authored from the neutral A2 transport brief. KO surfaces were used only as scenario blueprint, not as translation source.",
+    "a2_boundary": "Low-risk A2 transport/service task; avoids refund, compensation, emergency, identity-sensitive, legal, medical, banking, immigration, or police handling.",
+    "language_specific_adaptation": "NPC lines, learner targets, distractors, feedback, support text, and translations are adapted for this language; native review remains pending."
+  }
+}

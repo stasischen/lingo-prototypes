@@ -1,0 +1,263 @@
+{
+  "schema_version": "scenario_pack.v1",
+  "scenario_id": "a2_change_ticket_time",
+  "title": "표 시간 바꾸기",
+  "setting_label": "기차역 매표소",
+  "wrap_title": "새 표 시간 확인",
+  "wrap_friend": "你剛剛用簡單敬語改了票的時間，並確認了新的時間。",
+  "language": "ko",
+  "ui_language": "zh_tw",
+  "cefr_level": "A2",
+  "source_status": "candidate_runtime_verified",
+  "review_state": "ai_reviewed",
+  "review_status_framework_state": "candidate_runtime_verified",
+  "native_review_state": "native_pending",
+  "scenario": "A traveler asks to change a train ticket time at a ticket counter.",
+  "learner_goal": "Make a polite time-change request and confirm a simple alternative time.",
+  "target_functions": [
+    "polite_change_request",
+    "alternative_time",
+    "confirmation"
+  ],
+  "register_notes": "Service-counter polite Korean with concise requests; no refund, penalty, or booking identity details.",
+  "production_mode_default": {
+    "required": [
+      "choice"
+    ],
+    "optional_visible": [
+      "speaking"
+    ],
+    "optional_hidden": [
+      "typing"
+    ]
+  },
+  "support_text": "매표소에서 표 시간을 바꾸고 싶어요. 새 시간을 짧게 확인해 보세요.",
+  "roles": {
+    "npc": {
+      "label": "직원"
+    },
+    "learner": {
+      "label": "你"
+    }
+  },
+  "turns": [
+    {
+      "turn_id": "t1",
+      "speaker": "npc",
+      "act": "service_opening",
+      "act_slots": {
+        "topic": "ticket help",
+        "keyword": "도와드릴까요",
+        "gloss": "需要幫忙嗎"
+      },
+      "learning_role": "listen_only",
+      "surface": "무엇을 도와드릴까요?",
+      "speak": "무엇을 도와드릴까요?",
+      "translation": "需要幫您什麼嗎？",
+      "friend": {
+        "hint": "先說你想改票的時間。"
+      },
+      "reply_set": {
+        "correct": "r1a",
+        "choices": [
+          {
+            "id": "r1a",
+            "surface": "표 시간을 바꾸고 싶어요.",
+            "translation": "我想改票的時間。",
+            "speak": "표 시간을 바꾸고 싶어요.",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r1b",
+            "surface": "표가 어제였어요.",
+            "translation": "票是昨天的。",
+            "speak": "표가 어제였어요.",
+            "contrast_type": "wrong_time_past",
+            "feedback": "現在要提出改時間的請求，不是說昨天。"
+          },
+          {
+            "id": "r1c",
+            "surface": "커피를 하나 주세요.",
+            "translation": "請給我一杯咖啡。",
+            "speak": "커피를 하나 주세요.",
+            "contrast_type": "wrong_scenario_cafe",
+            "feedback": "這是咖啡店句子，不是改票時間。"
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t2",
+      "speaker": "npc",
+      "act": "alternative_offer",
+      "act_slots": {
+        "available_time": "3 p.m.",
+        "keyword": "3시 표",
+        "gloss": "3 點的票"
+      },
+      "learning_role": "listen_only",
+      "surface": "오늘 3시 표로 바꿀 수 있어요.",
+      "speak": "오늘 세 시 표로 바꿀 수 있어요.",
+      "translation": "可以改成今天 3 點的票。",
+      "friend": {
+        "hint": "직원이 가능한 시간을 말했어요. 받아들일지 말해 보세요."
+      },
+      "inline_explain": {
+        "pattern_id": "ko.a2.ticket.change.eulro.v1",
+        "title": "-로 바꾸다 = 改成",
+        "explain": "3시 표로 바꿀 수 있어요 表示可以改成 3 點的票。",
+        "items": [
+          {
+            "surface": "3시 표로",
+            "translation": "改成 3 點的票",
+            "speak": "세 시 표로"
+          },
+          {
+            "surface": "바꿀 수 있어요",
+            "translation": "可以改",
+            "speak": "바꿀 수 있어요"
+          }
+        ]
+      },
+      "reply_set": {
+        "correct": "r2a",
+        "choices": [
+          {
+            "id": "r2a",
+            "surface": "네, 3시 표로 바꿔 주세요.",
+            "translation": "好，請改成 3 點的票。",
+            "speak": "네, 세 시 표로 바꿔 주세요.",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r2b",
+            "surface": "3시에 방이 있어요?",
+            "translation": "3 點有房間嗎？",
+            "speak": "세 시에 방이 있어요?",
+            "contrast_type": "wrong_scenario_hotel",
+            "feedback": "방이 아니라 표 시간을 바꾸는 상황이에요."
+          },
+          {
+            "id": "r2c",
+            "surface": "어제 3시에 탔어요.",
+            "translation": "我昨天 3 點搭了。",
+            "speak": "어제 세 시에 탔어요.",
+            "contrast_type": "wrong_time_past",
+            "feedback": "직원이 오늘 가능한 시간을 말했어요. 지금 바꾸겠다고 말해야 해요."
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t3",
+      "speaker": "npc",
+      "act": "confirmation_question",
+      "act_slots": {
+        "new_time": "3 p.m.",
+        "keyword": "맞으세요",
+        "gloss": "對嗎"
+      },
+      "learning_role": "listen_only",
+      "surface": "3시 출발 표로 변경해 드리면 맞으세요?",
+      "speak": "세 시 출발 표로 변경해 드리면 맞으세요?",
+      "translation": "幫您改成 3 點出發的票，對嗎？",
+      "friend": {
+        "hint": "時間確認了，用短句確認。"
+      },
+      "reply_set": {
+        "correct": "r3a",
+        "choices": [
+          {
+            "id": "r3a",
+            "surface": "네, 3시 출발이 맞아요.",
+            "translation": "對，是 3 點出發。",
+            "speak": "네, 세 시 출발이 맞아요.",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r3b",
+            "surface": "아니요, 3시가 어제였어요.",
+            "translation": "不是，3 點是昨天。",
+            "speak": "아니요, 세 시가 어제였어요.",
+            "contrast_type": "wrong_time_past",
+            "feedback": "現在確認的是今天要改的新時間。"
+          },
+          {
+            "id": "r3c",
+            "surface": "환불 규정을 설명해 주세요.",
+            "translation": "請說明退款規定。",
+            "speak": "환불 규정을 설명해 주세요.",
+            "contrast_type": "forbidden_refund_rules",
+            "feedback": "退款規定超出這個 A2 任務。現在只確認改票時間。"
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t4",
+      "speaker": "npc",
+      "act": "service_close",
+      "act_slots": {
+        "new_time": "3 p.m."
+      },
+      "learning_role": "listen_only",
+      "surface": "변경됐습니다. 3시에 타시면 돼요.",
+      "speak": "변경됐습니다. 세 시에 타시면 돼요.",
+      "translation": "已經更改了。您 3 點搭乘即可。",
+      "friend": {
+        "hint": "服務完成了，禮貌收尾。"
+      },
+      "reply_set": {
+        "correct": "r4a",
+        "choices": [
+          {
+            "id": "r4a",
+            "surface": "감사합니다. 3시에 탈게요.",
+            "translation": "謝謝。我 3 點搭。",
+            "speak": "감사합니다. 세 시에 탈게요."
+          },
+          {
+            "id": "r4b",
+            "surface": "내일 커피를 마실게요.",
+            "translation": "我明天會喝咖啡。",
+            "speak": "내일 커피를 마실게요.",
+            "contrast_type": "wrong_topic_plan",
+            "feedback": "這不是改票情境的收尾。"
+          },
+          {
+            "id": "r4c",
+            "surface": "제 여권 번호는요?",
+            "translation": "我的護照號碼呢？",
+            "speak": "제 여권 번호는요?",
+            "contrast_type": "forbidden_identity_detail",
+            "feedback": "護照號碼不是這個低風險改時間任務需要的資訊。"
+          }
+        ]
+      }
+    }
+  ],
+  "choice_sets": [
+    "t1.reply_set",
+    "t2.reply_set",
+    "t3.reply_set",
+    "t4.reply_set"
+  ],
+  "feedback": "Distractors test wrong scenario, wrong time, and out-of-scope refund/identity requests.",
+  "tts_segments": [
+    "무엇을 도와드릴까요?",
+    "표 시간을 바꾸고 싶어요.",
+    "오늘 세 시 표로 바꿀 수 있어요.",
+    "네, 세 시 출발이 맞아요."
+  ],
+  "formula_moments": [
+    {
+      "after_turn": "t2",
+      "pattern_id": "ko.a2.ticket.change.eulro.v1"
+    }
+  ],
+  "runtime_notes": "Fresh KO A2 transport candidate. Requires full-walk runtime gate before final closeout.",
+  "notes": {
+    "authoring_policy": "Fresh-authored from A2 transport neutral brief. No KO legacy lines copied.",
+    "a2_boundary": "Uses simple ticket time change and confirmation; avoids refund, penalty, and identity details."
+  }
+}

@@ -1,0 +1,284 @@
+{
+  "schema_version": "scenario_pack.v1",
+  "scenario_id": "a2_exchange_wrong_item",
+  "title": "Échanger un Article Incorrect",
+  "setting_label": "comptoir du magasin",
+  "wrap_title": "Échange confirmé",
+  "wrap_friend": "Bien. Vous avez confirmé une préférence et un détail dans une situation simple de restauration ou d’achat.",
+  "language": "fr",
+  "ui_language": "zh-Hant",
+  "cefr_level": "A2",
+  "source_status": "candidate_runtime_verified",
+  "review_state": "ai_reviewed",
+  "review_status_framework_state": "candidate_runtime_verified",
+  "native_review_state": "native_pending",
+  "scenario": {
+    "domain": "food_shopping_preferences",
+    "review_slice": "food_shopping",
+    "interaction": "service_preference_or_exchange",
+    "source_brief": "A2_FOOD_SHOPPING_NEUTRAL_ADAPTATION_BRIEFS_20260614",
+    "blueprint_source": "language_neutral_adaptation_brief",
+    "ko_pack_role": "mature_scenario_blueprint_not_translation_source"
+  },
+  "learner_goal": "Expliquez poliment que vous avez reçu le mauvais article et demandez le bon.",
+  "target_functions": [
+    "compare_or_state_preference",
+    "confirm_key_detail",
+    "make_polite_low_risk_request",
+    "close_with_correct_next_step"
+  ],
+  "register_notes": "French A2 food/shopping register: natural spoken polite service French, no allergy/medical/refund-dispute framing.",
+  "production_mode_default": {
+    "required": [
+      "choice"
+    ],
+    "optional_visible": [
+      "speaking"
+    ],
+    "optional_hidden": [
+      "typing"
+    ]
+  },
+  "support_text": "Expliquez poliment que vous avez reçu le mauvais article et demandez le bon.",
+  "roles": {
+    "npc": {
+      "label": "employé"
+    },
+    "learner": {
+      "label": "你"
+    }
+  },
+  "turns": [
+    {
+      "turn_id": "t1",
+      "speaker": "npc",
+      "act": "report_wrong_item",
+      "act_slots": {
+        "topic": "exchange-wrong-item",
+        "keyword": "1",
+        "gloss": "A2 food/shopping"
+      },
+      "learning_role": "listen_only",
+      "surface": "Je peux vous aider ?",
+      "speak": "Je peux vous aider ?",
+      "translation": "需要幫忙嗎？",
+      "friend": {
+        "hint": "Expliquez que l’article reçu est différent."
+      },
+      "reply_set": {
+        "correct": "r1a",
+        "choices": [
+          {
+            "id": "r1a",
+            "surface": "J’ai demandé une petite tasse, mais j’ai reçu une grande tasse.",
+            "translation": "我訂的是小杯，但拿到大杯。",
+            "speak": "J’ai demandé une petite tasse, mais j’ai reçu une grande tasse.",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r1b",
+            "surface": "Où fabrique-t-on la petite tasse ?",
+            "translation": "小杯在哪裡製作？",
+            "speak": "Où fabrique-t-on la petite tasse ?",
+            "contrast_type": "wrong_detail_or_domain",
+            "feedback": "Le lieu de fabrication n’est pas le problème."
+          },
+          {
+            "id": "r1c",
+            "surface": "Baissez le prix, s’il vous plaît.",
+            "translation": "請降價。",
+            "speak": "Baissez le prix, s’il vous plaît.",
+            "contrast_type": "forbidden_or_wrong_domain",
+            "feedback": "La négociation du prix sort de cette tâche."
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t2",
+      "speaker": "npc",
+      "act": "staff_check",
+      "act_slots": {
+        "topic": "exchange-wrong-item",
+        "keyword": "2",
+        "gloss": "A2 food/shopping"
+      },
+      "learning_role": "listen_only",
+      "surface": "Je vérifie. Je peux voir le reçu ?",
+      "speak": "Je vérifie. Je peux voir le reçu ?",
+      "translation": "我確認一下。可以看收據嗎？",
+      "friend": {
+        "hint": "Répondez à la vérification simple du reçu."
+      },
+      "reply_set": {
+        "correct": "r2a",
+        "choices": [
+          {
+            "id": "r2a",
+            "surface": "Oui, voici le reçu.",
+            "translation": "可以，這是收據。",
+            "speak": "Oui, voici le reçu.",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r2b",
+            "surface": "Oui, voici mon passeport.",
+            "translation": "可以，這是護照。",
+            "speak": "Oui, voici mon passeport.",
+            "contrast_type": "wrong_detail_or_domain",
+            "feedback": "Le passeport n’est pas nécessaire."
+          },
+          {
+            "id": "r2c",
+            "surface": "Oui, je prends le train demain.",
+            "translation": "可以，我明天搭火車。",
+            "speak": "Oui, je prends le train demain.",
+            "contrast_type": "forbidden_or_wrong_domain",
+            "feedback": "Cela passe au transport."
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t3",
+      "speaker": "npc",
+      "act": "offer_replacement",
+      "act_slots": {
+        "topic": "exchange-wrong-item",
+        "keyword": "3",
+        "gloss": "A2 food/shopping"
+      },
+      "learning_role": "listen_only",
+      "surface": "Vous avez raison. Je peux l’échanger contre une petite tasse maintenant.",
+      "speak": "Vous avez raison. Je peux l’échanger contre une petite tasse maintenant.",
+      "translation": "您說得對。我現在可以換成小杯。",
+      "friend": {
+        "hint": "Confirmez le remplacement."
+      },
+      "reply_set": {
+        "correct": "r3a",
+        "choices": [
+          {
+            "id": "r3a",
+            "surface": "Vous l’échangez contre une petite tasse, c’est ça ?",
+            "translation": "您會幫我換成小杯，對嗎？",
+            "speak": "Vous l’échangez contre une petite tasse, c’est ça ?",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r3b",
+            "surface": "Expliquez-moi les règles de remboursement.",
+            "translation": "請說明退款規則。",
+            "speak": "Expliquez-moi les règles de remboursement.",
+            "contrast_type": "wrong_detail_or_domain",
+            "feedback": "Les règles de remboursement sont trop larges ici."
+          },
+          {
+            "id": "r3c",
+            "surface": "Je vais le signaler à la police.",
+            "translation": "我要報警。",
+            "speak": "Je vais le signaler à la police.",
+            "contrast_type": "forbidden_or_wrong_domain",
+            "feedback": "C’est trop grave pour cette tâche."
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t4",
+      "speaker": "npc",
+      "act": "confirm_replacement",
+      "act_slots": {
+        "topic": "exchange-wrong-item",
+        "keyword": "4",
+        "gloss": "A2 food/shopping"
+      },
+      "learning_role": "listen_only",
+      "surface": "Oui, attendez un instant, s’il vous plaît.",
+      "speak": "Oui, attendez un instant, s’il vous plaît.",
+      "translation": "好的，請稍等。",
+      "friend": {
+        "hint": "Terminez en acceptant d’attendre."
+      },
+      "reply_set": {
+        "correct": "r4a",
+        "choices": [
+          {
+            "id": "r4a",
+            "surface": "Merci. J’attends ici.",
+            "translation": "謝謝，我在這裡等。",
+            "speak": "Merci. J’attends ici.",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r4b",
+            "surface": "Je dois aller à l’hôpital.",
+            "translation": "我需要去醫院。",
+            "speak": "Je dois aller à l’hôpital.",
+            "contrast_type": "wrong_detail_or_domain",
+            "feedback": "Ce n’est pas une situation médicale."
+          },
+          {
+            "id": "r4c",
+            "surface": "Je veux changer de chambre.",
+            "translation": "我想換房。",
+            "speak": "Je veux changer de chambre.",
+            "contrast_type": "forbidden_or_wrong_domain",
+            "feedback": "Cela passe à une situation d’hôtel."
+          }
+        ]
+      }
+    }
+  ],
+  "choice_sets": {
+    "count_per_turn": 3,
+    "correct_path": [
+      "r1a",
+      "r2a",
+      "r3a",
+      "r4a"
+    ],
+    "distractor_policy": "one near-domain wrong detail plus one out-of-scope/unsafe-domain option per turn"
+  },
+  "feedback": {
+    "correct": "Bien. Continuez dans la tâche de restauration ou d’achat.",
+    "incorrect": "Choisissez la réponse qui correspond au menu, à l’ingrédient, à l’échange ou à la recommandation avec budget."
+  },
+  "tts_segments": [
+    "Je peux vous aider ?",
+    "J’ai demandé une petite tasse, mais j’ai reçu une grande tasse.",
+    "Où fabrique-t-on la petite tasse ?",
+    "Baissez le prix, s’il vous plaît.",
+    "Je vérifie. Je peux voir le reçu ?",
+    "Oui, voici le reçu.",
+    "Oui, voici mon passeport.",
+    "Oui, je prends le train demain.",
+    "Vous avez raison. Je peux l’échanger contre une petite tasse maintenant.",
+    "Vous l’échangez contre une petite tasse, c’est ça ?",
+    "Expliquez-moi les règles de remboursement.",
+    "Je vais le signaler à la police.",
+    "Oui, attendez un instant, s’il vous plaît.",
+    "Merci. J’attends ici.",
+    "Je dois aller à l’hôpital.",
+    "Je veux changer de chambre."
+  ],
+  "formula_moments": [
+    {
+      "after_turn": "t2",
+      "pattern_id": "fr.a2.shopping.exchange.wrong_item.v1",
+      "label": "J’ai demandé X, mais j’ai reçu Y",
+      "learner_takeaway": "Vous pouvez l’échanger ?"
+    }
+  ],
+  "runtime_notes": {
+    "expected_turns": 4,
+    "expected_choices_per_turn": 3,
+    "full_walk_required": true,
+    "expected_final_screen": "Wrap"
+  },
+  "notes": {
+    "generated_at": "2026-06-14",
+    "authoring_scope": "A2 food/shopping FR adaptation",
+    "native_review_state": "native_pending"
+  }
+}

@@ -1,0 +1,257 @@
+{
+  "schema_version": "scenario_pack.v1",
+  "scenario_id": "hotel_wifi_breakfast",
+  "brief_id": "ml1_a1_008_hotel_wifi_breakfast",
+  "source_neutral_brief": "release-aggregator/docs/tasks/A1_MULTILINGUAL_KO_B1_PARALLEL_ORCHESTRATION/work_products/ml0/ML1_NEUTRAL_ADAPTATION_BRIEFS_20260614.md#brief-ml1-a1-008-hotel-wi-fi-and-breakfast",
+  "blueprint_ledger": "release-aggregator/docs/tasks/A1_MULTILINGUAL_KO_B1_PARALLEL_ORCHESTRATION/work_products/ml0/ML1_BLUEPRINT_LEDGER_20260614.md",
+  "repo": "content-fr",
+  "staging_path": "content/core/content_assets/scenario_packs/current_flow/hotel_wifi_breakfast.fr.v1.json",
+  "title": "Demander le wifi et le petit déjeuner",
+  "setting_label": "Réception de l'hôtel",
+  "wrap_title": "Tu peux demander deux infos à l'hôtel",
+  "wrap_friend": "你問了 wifi 密碼、早餐時間，並用短句確認資訊。",
+  "language": "fr",
+  "ui_language": "zh_tw",
+  "source_status": "candidate_runtime_verified",
+  "review_state": "draft",
+  "review_status_framework_state": "candidate_runtime_verified",
+  "native_review_state": "native_pending",
+  "production_mode_default": {
+    "required": [
+      "choice"
+    ],
+    "optional_visible": [
+      "speaking"
+    ],
+    "optional_hidden": [
+      "typing"
+    ]
+  },
+  "support_text": "你在飯店櫃台。用簡短法語問 wifi 密碼和早餐時間。",
+  "roles": {
+    "npc": {
+      "label": "réceptionniste"
+    },
+    "learner": {
+      "label": "client"
+    }
+  },
+  "turns": [
+    {
+      "turn_id": "t1",
+      "speaker": "npc",
+      "act": "front_desk_opening",
+      "act_slots": {
+        "topic": "aide à la réception",
+        "keyword": "aider",
+        "gloss": "幫忙"
+      },
+      "learning_role": "listen_only",
+      "surface": "Bonjour, je peux vous aider ?",
+      "speak": "Bonjour, je peux vous aider ?",
+      "translation": "您好，我可以幫您嗎？",
+      "friend": {
+        "hint": "你要問 wifi 密碼。法語常說 mot de passe wifi。"
+      },
+      "reply_set": {
+        "correct": "r1a",
+        "choices": [
+          {
+            "id": "r1a",
+            "surface": "Quel est le mot de passe wifi ?",
+            "translation": "wifi 密碼是什麼？",
+            "speak": "Quel est le mot de passe wifi ?",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r1b",
+            "surface": "Je prends une soupe, s'il vous plaît.",
+            "translation": "我點一份湯，謝謝。",
+            "speak": "Je prends une soupe, s'il vous plaît.",
+            "contrast_type": "wrong_scenario_order",
+            "feedback": "這是餐廳點餐。你現在在飯店櫃台問 wifi。"
+          },
+          {
+            "id": "r1c",
+            "surface": "L'addition, s'il vous plaît.",
+            "translation": "請結帳。",
+            "speak": "L'addition, s'il vous plaît.",
+            "contrast_type": "wrong_scenario_bill",
+            "feedback": "這是餐廳結帳，不是飯店櫃台問題。"
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t2",
+      "speaker": "npc",
+      "act": "wifi_answer",
+      "act_slots": {
+        "topic": "mot de passe wifi",
+        "keyword": "carte",
+        "gloss": "卡片"
+      },
+      "learning_role": "listen_only",
+      "surface": "Il est sur la carte de la chambre.",
+      "speak": "Il est sur la carte de la chambre.",
+      "translation": "在房卡套上。",
+      "friend": {
+        "hint": "對方說密碼在房間卡片上。接著問早餐時間。"
+      },
+      "inline_explain": {
+        "pattern_id": "fr.hotel.wifi_breakfast.v1",
+        "formula_ref": null,
+        "title": "Quel est...? / À quelle heure...?",
+        "explain": "問密碼用 Quel est le mot de passe...?；問時間用 À quelle heure...?",
+        "items": [
+          {
+            "surface": "Quel est le mot de passe wifi ?",
+            "translation": "wifi 密碼是什麼？",
+            "speak": "Quel est le mot de passe wifi ?"
+          },
+          {
+            "surface": "À quelle heure est le petit déjeuner ?",
+            "translation": "早餐是幾點？",
+            "speak": "À quelle heure est le petit déjeuner ?"
+          }
+        ]
+      },
+      "reply_set": {
+        "correct": "r2a",
+        "choices": [
+          {
+            "id": "r2a",
+            "surface": "Merci. À quelle heure est le petit déjeuner ?",
+            "translation": "謝謝。早餐是幾點？",
+            "speak": "Merci. À quelle heure est le petit déjeuner ?",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r2b",
+            "surface": "J'ai besoin d'une autre clé.",
+            "translation": "我需要另一把鑰匙。",
+            "speak": "J'ai besoin d'une autre clé.",
+            "contrast_type": "wrong_hotel_request",
+            "feedback": "這是在要另一把鑰匙。現在要問早餐資訊。"
+          },
+          {
+            "id": "r2c",
+            "surface": "Je paie par carte.",
+            "translation": "我用卡付款。",
+            "speak": "Je paie par carte.",
+            "contrast_type": "wrong_sequence_payment",
+            "feedback": "這是付款回答。櫃台剛剛回答的是 wifi 密碼在哪裡。"
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t3",
+      "speaker": "npc",
+      "act": "breakfast_answer",
+      "act_slots": {
+        "topic": "horaire petit déjeuner",
+        "keyword": "sept",
+        "gloss": "七點"
+      },
+      "learning_role": "listen_only",
+      "surface": "Le petit déjeuner est de sept heures à dix heures, au premier étage.",
+      "speak": "Le petit déjeuner est de sept heures à dix heures, au premier étage.",
+      "translation": "早餐是七點到十點，在一樓。",
+      "friend": {
+        "hint": "重點是七點到十點。用短句確認。"
+      },
+      "reply_set": {
+        "correct": "r3a",
+        "choices": [
+          {
+            "id": "r3a",
+            "surface": "De sept heures à dix heures, merci.",
+            "translation": "七點到十點，謝謝。",
+            "speak": "De sept heures à dix heures, merci.",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r3b",
+            "surface": "À midi, merci.",
+            "translation": "中午十二點，謝謝。",
+            "speak": "À midi, merci.",
+            "contrast_type": "wrong_time",
+            "feedback": "對方說七點到十點，不是中午。"
+          },
+          {
+            "id": "r3c",
+            "surface": "Une table pour deux.",
+            "translation": "兩位用餐。",
+            "speak": "Une table pour deux.",
+            "contrast_type": "wrong_restaurant_context",
+            "feedback": "這是餐廳入座句。你現在只是確認飯店早餐時間。"
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t4",
+      "speaker": "npc",
+      "act": "front_desk_close",
+      "act_slots": {
+        "topic": "fermer l'aide",
+        "keyword": "autre",
+        "gloss": "其他"
+      },
+      "learning_role": "listen_only",
+      "surface": "Vous avez besoin d'autre chose ?",
+      "speak": "Vous avez besoin d'autre chose ?",
+      "translation": "您還需要別的嗎？",
+      "friend": {
+        "hint": "沒有其他問題時，用 Non, merci。"
+      },
+      "reply_set": {
+        "correct": "r4a",
+        "choices": [
+          {
+            "id": "r4a",
+            "surface": "Non, merci.",
+            "translation": "不用了，謝謝。",
+            "speak": "Non, merci."
+          },
+          {
+            "id": "r4b",
+            "surface": "Où est la sortie deux ?",
+            "translation": "二號出口在哪裡？",
+            "speak": "Où est la sortie deux ?",
+            "contrast_type": "wrong_scenario_station",
+            "feedback": "這是車站問路。飯店櫃台問題已經問完了。"
+          },
+          {
+            "id": "r4c",
+            "surface": "Je prends une soupe.",
+            "translation": "我點一份湯。",
+            "speak": "Je prends une soupe.",
+            "contrast_type": "wrong_scenario_order",
+            "feedback": "這是餐廳點餐，不是飯店櫃台結尾。"
+          }
+        ]
+      },
+      "closing": {
+        "act": "farewell",
+        "learning_role": "listen_only",
+        "surface": "Je vous en prie. Bon séjour.",
+        "speak": "Je vous en prie. Bon séjour.",
+        "translation": "不客氣。祝您住宿愉快。"
+      }
+    }
+  ],
+  "formula_moments": [
+    {
+      "after_turn": "t2",
+      "pattern_id": "fr.hotel.wifi_breakfast.v1"
+    }
+  ],
+  "notes": {
+    "authoring_source": "Authored from ML-1 neutral brief, not Korean surface text or another target-language pack.",
+    "review_policy": "AI-authored French candidate. Requires AI review, runtime smoke, and tracked native review before any stronger status.",
+    "canonical_policy": "Staging candidate only. Do not write back to manifests, production exports, schemas, or legacy content.",
+    "french_register_note": "Uses concise hotel-front-desk French with vous, mot de passe wifi, and petit déjeuner."
+  }
+}

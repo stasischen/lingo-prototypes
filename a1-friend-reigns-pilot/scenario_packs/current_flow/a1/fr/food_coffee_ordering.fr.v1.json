@@ -1,0 +1,255 @@
+{
+  "schema_version": "scenario_pack.v1",
+  "scenario_id": "food_coffee_ordering",
+  "brief_id": "ml0_a1_001_food_coffee_ordering",
+  "source_neutral_brief": "release-aggregator/docs/tasks/A1_MULTILINGUAL_KO_B1_PARALLEL_ORCHESTRATION/work_products/ml0/ML0_NEUTRAL_ADAPTATION_BRIEFS_20260613.md#brief-ml0-a1-001-coffee-ordering",
+  "blueprint_ledger": "release-aggregator/docs/tasks/A1_MULTILINGUAL_KO_B1_PARALLEL_ORCHESTRATION/work_products/ml0/ML0_BLUEPRINT_LEDGER_20260613.md",
+  "repo": "content-fr",
+  "staging_path": "content/core/content_assets/scenario_packs/current_flow/food_coffee_ordering.fr.v1.json",
+  "title": "Commander un café",
+  "setting_label": "Comptoir de café",
+  "wrap_title": "Tu as commandé un café",
+  "wrap_friend": "你用簡短的法語完成點餐、回答外帶選項，並接上付款步驟。A1 階段先把這些固定句說穩就夠了。",
+  "language": "fr",
+  "ui_language": "zh_tw",
+  "source_status": "candidate_runtime_verified",
+  "review_state": "draft",
+  "review_status_framework_state": "candidate_runtime_verified",
+  "native_review_state": "native_pending",
+  "production_mode_default": {
+    "required": [
+      "choice"
+    ],
+    "optional_visible": [
+      "speaking"
+    ],
+    "optional_hidden": [
+      "typing"
+    ]
+  },
+  "support_text": "你在咖啡店櫃台。聽店員的問題，選一個簡短、自然的法語回答。",
+  "roles": {
+    "npc": {
+      "label": "店員"
+    },
+    "learner": {
+      "label": "你"
+    }
+  },
+  "turns": [
+    {
+      "turn_id": "t1",
+      "speaker": "npc",
+      "act": "service_opening",
+      "act_slots": {
+        "topic": "starting an order",
+        "keyword": "commande",
+        "gloss": "say what you want"
+      },
+      "learning_role": "listen_only",
+      "surface": "Bonjour. Vous désirez ?",
+      "speak": "Bonjour. Vous désirez ?",
+      "translation": "店員在問你想點什麼。",
+      "friend": {
+        "hint": "直接用 Je voudrais 加飲品，最後加 s'il vous plaît。"
+      },
+      "reply_set": {
+        "correct": "r1a",
+        "choices": [
+          {
+            "id": "r1a",
+            "surface": "Je voudrais un café au lait, s'il vous plaît.",
+            "translation": "我想要一杯牛奶咖啡，謝謝。",
+            "speak": "Je voudrais un café au lait, s'il vous plaît.",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r1b",
+            "surface": "Où sont les toilettes ?",
+            "translation": "我在問洗手間在哪裡。",
+            "speak": "Où sont les toilettes ?",
+            "contrast_type": "wrong_scenario_request",
+            "feedback": "這句是在問洗手間。現在店員等你點飲料。"
+          },
+          {
+            "id": "r1c",
+            "surface": "Non, merci.",
+            "translation": "不用了，謝謝。",
+            "speak": "Non, merci.",
+            "contrast_type": "wrong_act_refusal",
+            "feedback": "這聽起來像是不點了。此處要說出想要的飲品。"
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t2",
+      "speaker": "npc",
+      "act": "choice_question",
+      "act_slots": {
+        "topic": "service option",
+        "keyword": "à emporter",
+        "gloss": "choose where you will drink it"
+      },
+      "learning_role": "listen_only",
+      "surface": "Sur place ou à emporter ?",
+      "speak": "Sur place ou à emporter ?",
+      "translation": "店員在問你要內用還是外帶。",
+      "friend": {
+        "hint": "選一個服務選項。à emporter 是外帶。"
+      },
+      "inline_explain": {
+        "pattern_id": "fr.cafe.sur_place.a_emporter.v1",
+        "formula_ref": null,
+        "title": "Sur place / à emporter",
+        "explain": "在法語咖啡店，sur place 表示內用，à emporter 表示外帶。",
+        "items": [
+          {
+            "surface": "Sur place, s'il vous plaît.",
+            "translation": "內用，謝謝。",
+            "speak": "Sur place, s'il vous plaît."
+          },
+          {
+            "surface": "À emporter, s'il vous plaît.",
+            "translation": "外帶，謝謝。",
+            "speak": "À emporter, s'il vous plaît."
+          }
+        ]
+      },
+      "reply_set": {
+        "correct": "r2a",
+        "choices": [
+          {
+            "id": "r2a",
+            "surface": "À emporter, s'il vous plaît.",
+            "translation": "外帶，謝謝。",
+            "speak": "À emporter, s'il vous plaît.",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r2b",
+            "surface": "Je voudrais un café au lait.",
+            "translation": "我想要一杯牛奶咖啡。",
+            "speak": "Je voudrais un café au lait.",
+            "contrast_type": "repeated_prior_answer",
+            "feedback": "你已經點飲料了。現在要回答內用或外帶。"
+          },
+          {
+            "id": "r2c",
+            "surface": "Oui, c'est ça.",
+            "translation": "對，就是這樣。",
+            "speak": "Oui, c'est ça.",
+            "contrast_type": "wrong_act_confirmation",
+            "feedback": "這是在確認，不是在二選一。請選 sur place 或 à emporter。"
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t3",
+      "speaker": "npc",
+      "act": "confirmation",
+      "act_slots": {
+        "topic": "order confirmation",
+        "keyword": "c'est ça",
+        "gloss": "confirm the order"
+      },
+      "learning_role": "listen_only",
+      "surface": "Un café au lait à emporter, c'est ça ?",
+      "speak": "Un café au lait à emporter, c'est ça ?",
+      "translation": "店員在確認你的訂單。",
+      "friend": {
+        "hint": "如果訂單正確，用 Oui, c'est ça 確認。"
+      },
+      "reply_set": {
+        "correct": "r3a",
+        "choices": [
+          {
+            "id": "r3a",
+            "surface": "Oui, c'est ça.",
+            "translation": "對，就是這樣。",
+            "speak": "Oui, c'est ça."
+          },
+          {
+            "id": "r3b",
+            "surface": "Non, merci.",
+            "translation": "不用了，謝謝。",
+            "speak": "Non, merci.",
+            "contrast_type": "wrong_act_refusal",
+            "feedback": "這像是在取消或拒絕。訂單正確時，用 Oui 確認。"
+          },
+          {
+            "id": "r3c",
+            "surface": "Où sont les toilettes ?",
+            "translation": "洗手間在哪裡？",
+            "speak": "Où sont les toilettes ?",
+            "contrast_type": "off_topic_statement",
+            "feedback": "這是另一個情境。先確認咖啡訂單。"
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t4",
+      "speaker": "npc",
+      "act": "payment",
+      "act_slots": {
+        "topic": "payment",
+        "keyword": "payer",
+        "gloss": "complete the order"
+      },
+      "learning_role": "listen_only",
+      "surface": "Ça fera trois euros. Vous pouvez payer ici.",
+      "speak": "Ça fera trois euros. Vous pouvez payer ici.",
+      "translation": "店員告訴你金額，並請你在這裡付款。",
+      "friend": {
+        "hint": "付款步驟只需要簡短回應。"
+      },
+      "reply_set": {
+        "correct": "r4a",
+        "choices": [
+          {
+            "id": "r4a",
+            "surface": "D'accord, merci.",
+            "translation": "好的，謝謝。",
+            "speak": "D'accord, merci."
+          },
+          {
+            "id": "r4b",
+            "surface": "À emporter, s'il vous plaît.",
+            "translation": "外帶，謝謝。",
+            "speak": "À emporter, s'il vous plaît.",
+            "contrast_type": "repeated_prior_answer",
+            "feedback": "你已經回答外帶了。現在是付款步驟。"
+          },
+          {
+            "id": "r4c",
+            "surface": "Je voudrais un café au lait.",
+            "translation": "我想要一杯牛奶咖啡。",
+            "speak": "Je voudrais un café au lait.",
+            "contrast_type": "repeated_prior_answer",
+            "feedback": "飲料已經點好了。現在要回應付款。"
+          }
+        ]
+      },
+      "closing": {
+        "act": "handover",
+        "learning_role": "context_support",
+        "surface": "Votre café sera prêt au bout du comptoir.",
+        "speak": "Votre café sera prêt au bout du comptoir.",
+        "translation": "你的咖啡會在櫃台尾端準備好。"
+      }
+    }
+  ],
+  "formula_moments": [
+    {
+      "after_turn": "t2",
+      "pattern_id": "fr.cafe.sur_place.a_emporter.v1"
+    }
+  ],
+  "notes": {
+    "review_policy": "AI-authored candidate. Requires AI review, runtime smoke, and tracked native review before any stronger status.",
+    "canonical_policy": "Staging candidate only. Do not write back to manifests, production exports, schemas, or legacy content.",
+    "authoring_source": "Authored from ML-0 neutral brief, not Korean surface text."
+  }
+}

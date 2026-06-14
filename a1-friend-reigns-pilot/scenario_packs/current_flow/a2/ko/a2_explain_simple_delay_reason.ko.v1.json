@@ -1,0 +1,263 @@
+{
+  "schema_version": "scenario_pack.v1",
+  "scenario_id": "a2_explain_simple_delay_reason",
+  "title": "조금 늦는 이유 말하기",
+  "setting_label": "약속 장소로 가는 길",
+  "wrap_title": "늦는 이유 설명",
+  "wrap_friend": "你剛剛用一句自然的韓文說明會晚一點到，並給出簡單理由。",
+  "language": "ko",
+  "ui_language": "zh_tw",
+  "cefr_level": "A2",
+  "source_status": "candidate_runtime_verified",
+  "review_state": "ai_reviewed",
+  "review_status_framework_state": "candidate_runtime_verified",
+  "native_review_state": "native_pending",
+  "scenario": "You are running a little late and need to explain the reason.",
+  "learner_goal": "Apologize, give one simple reason, and estimate the delay.",
+  "target_functions": [
+    "apology",
+    "simple_reason",
+    "delay_estimate"
+  ],
+  "register_notes": "Friendly polite -요. The delay is low-stakes and not a workplace or emergency situation.",
+  "production_mode_default": {
+    "required": [
+      "choice"
+    ],
+    "optional_visible": [
+      "speaking"
+    ],
+    "optional_hidden": [
+      "typing"
+    ]
+  },
+  "support_text": "친구가 어디쯤인지 물어봐요. 늦는 이유를 짧게 말해 보세요.",
+  "roles": {
+    "npc": {
+      "label": "친구"
+    },
+    "learner": {
+      "label": "你"
+    }
+  },
+  "turns": [
+    {
+      "turn_id": "t1",
+      "speaker": "npc",
+      "act": "location_check",
+      "act_slots": {
+        "topic": "where are you",
+        "keyword": "어디쯤",
+        "gloss": "大概在哪"
+      },
+      "learning_role": "listen_only",
+      "surface": "어디쯤이에요? 거의 다 왔어요?",
+      "speak": "어디쯤이에요? 거의 다 왔어요?",
+      "translation": "你大概到哪了？快到了嗎？",
+      "friend": {
+        "hint": "他在確認你到哪了。先說抱歉，再說會晚一點。"
+      },
+      "reply_set": {
+        "correct": "r1a",
+        "choices": [
+          {
+            "id": "r1a",
+            "surface": "미안해요, 조금 늦을 것 같아요.",
+            "translation": "不好意思，我可能會晚一點。",
+            "speak": "미안해요, 조금 늦을 것 같아요.",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r1b",
+            "surface": "네, 어제 도착했어요.",
+            "translation": "對，我昨天到了。",
+            "speak": "네, 어제 도착했어요.",
+            "contrast_type": "wrong_time_past",
+            "feedback": "他問現在到哪，不是昨天。"
+          },
+          {
+            "id": "r1c",
+            "surface": "메뉴를 추천해 주세요.",
+            "translation": "請推薦菜單。",
+            "speak": "메뉴를 추천해 주세요.",
+            "contrast_type": "wrong_scenario_restaurant",
+            "feedback": "這是餐廳用語。現在你要說明自己會晚。"
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t2",
+      "speaker": "npc",
+      "act": "reason_request",
+      "act_slots": {
+        "topic": "why late",
+        "keyword": "왜",
+        "gloss": "為什麼"
+      },
+      "learning_role": "listen_only",
+      "surface": "왜요? 무슨 일 있어요?",
+      "speak": "왜요? 무슨 일 있어요?",
+      "translation": "為什麼？發生什麼事了嗎？",
+      "friend": {
+        "hint": "可以用 -아서/어서 說簡單原因。不要講太長。"
+      },
+      "inline_explain": {
+        "pattern_id": "ko.a2.reason.delay.aseo.v1",
+        "title": "-아서/어서 = 因為...",
+        "explain": "原因接 -아서/어서，後面接結果。버스가 늦어서 = 因為公車晚了。",
+        "items": [
+          {
+            "surface": "버스가 늦어서",
+            "translation": "因為公車晚了",
+            "speak": "버스가 늦어서"
+          },
+          {
+            "surface": "길이 막혀서",
+            "translation": "因為塞車",
+            "speak": "길이 막혀서"
+          }
+        ]
+      },
+      "reply_set": {
+        "correct": "r2a",
+        "choices": [
+          {
+            "id": "r2a",
+            "surface": "버스가 늦어서요.",
+            "translation": "因為公車晚了。",
+            "speak": "버스가 늦어서요.",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r2b",
+            "surface": "버스를 좋아해서요.",
+            "translation": "因為我喜歡公車。",
+            "speak": "버스를 좋아해서요.",
+            "contrast_type": "wrong_reason_semantics",
+            "feedback": "這個理由不符合「為什麼會晚」。"
+          },
+          {
+            "id": "r2c",
+            "surface": "버스가 어디예요?",
+            "translation": "公車在哪裡？",
+            "speak": "버스가 어디예요?",
+            "contrast_type": "wrong_function_location_question",
+            "feedback": "他問原因，不是在問公車在哪裡。"
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t3",
+      "speaker": "npc",
+      "act": "delay_estimate_request",
+      "act_slots": {
+        "topic": "how late",
+        "keyword": "얼마나",
+        "gloss": "多久"
+      },
+      "learning_role": "listen_only",
+      "surface": "얼마나 늦을 것 같아요?",
+      "speak": "얼마나 늦을 것 같아요?",
+      "translation": "你大概會晚多久？",
+      "friend": {
+        "hint": "用 10분 정도 說大約 10 分鐘。"
+      },
+      "reply_set": {
+        "correct": "r3a",
+        "choices": [
+          {
+            "id": "r3a",
+            "surface": "10분 정도 늦을 것 같아요.",
+            "translation": "我可能會晚 10 分鐘左右。",
+            "speak": "십 분 정도 늦을 것 같아요.",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r3b",
+            "surface": "10번 버스가 좋아요.",
+            "translation": "10 號公車很好。",
+            "speak": "십 번 버스가 좋아요.",
+            "contrast_type": "wrong_entity_bus_number",
+            "feedback": "10번 是 10 號，這裡要說 10분，10 分鐘。"
+          },
+          {
+            "id": "r3c",
+            "surface": "늦지 않았어요.",
+            "translation": "我沒有晚。",
+            "speak": "늦지 않았어요.",
+            "contrast_type": "contradicts_context",
+            "feedback": "前面已經說會晚一點，這裡要估時間。"
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t4",
+      "speaker": "npc",
+      "act": "acceptance",
+      "act_slots": {
+        "topic": "wait"
+      },
+      "learning_role": "listen_only",
+      "surface": "알겠어요. 천천히 오세요.",
+      "speak": "알겠어요. 천천히 오세요.",
+      "translation": "知道了。慢慢來。",
+      "friend": {
+        "hint": "朋友接受了，簡短道謝就好。"
+      },
+      "reply_set": {
+        "correct": "r4a",
+        "choices": [
+          {
+            "id": "r4a",
+            "surface": "고마워요. 곧 갈게요.",
+            "translation": "謝謝。我很快過去。",
+            "speak": "고마워요. 곧 갈게요."
+          },
+          {
+            "id": "r4b",
+            "surface": "예약했어요.",
+            "translation": "我有預約。",
+            "speak": "예약했어요.",
+            "contrast_type": "wrong_scenario_hotel",
+            "feedback": "這是飯店或預約情境，不是遲到說明。"
+          },
+          {
+            "id": "r4c",
+            "surface": "계산해 주세요.",
+            "translation": "請結帳。",
+            "speak": "계산해 주세요.",
+            "contrast_type": "wrong_scenario_payment",
+            "feedback": "這是餐廳結帳用語。"
+          }
+        ]
+      }
+    }
+  ],
+  "choice_sets": [
+    "t1.reply_set",
+    "t2.reply_set",
+    "t3.reply_set",
+    "t4.reply_set"
+  ],
+  "feedback": "Distractors separate reason, time estimate, and scenario function.",
+  "tts_segments": [
+    "미안해요, 조금 늦을 것 같아요.",
+    "버스가 늦어서요.",
+    "10분 정도 늦을 것 같아요.",
+    "고마워요. 곧 갈게요."
+  ],
+  "formula_moments": [
+    {
+      "after_turn": "t2",
+      "pattern_id": "ko.a2.reason.delay.aseo.v1"
+    }
+  ],
+  "runtime_notes": "Fresh KO A2 candidate. Runtime smoke passed on 2026-06-14 before metadata promotion.",
+  "notes": {
+    "authoring_policy": "Fresh-authored from A2 scope. Legacy A2 lines were not copied or paraphrased.",
+    "a2_boundary": "Low-stakes delay with one reason and one time estimate; no workplace or emergency escalation."
+  }
+}

@@ -1,0 +1,257 @@
+{
+  "schema_version": "scenario_pack.v1",
+  "scenario_id": "a2_invite_friend_activity",
+  "title": "ชวนเพื่อนไปทำกิจกรรม",
+  "setting_label": "คุยกับเพื่อนทางแชต",
+  "wrap_title": "ยืนยันนัดกับเพื่อนแล้ว",
+  "wrap_friend": "ทำได้ดีค่ะ คุณชวนเพื่อนแบบไม่กดดัน และยืนยันเวลา/สถานที่ง่าย ๆ ได้",
+  "language": "th",
+  "ui_language": "zh-Hant",
+  "cefr_level": "A2",
+  "source_status": "candidate_runtime_verified",
+  "review_state": "ai_reviewed",
+  "review_status_framework_state": "candidate_runtime_verified",
+  "native_review_state": "native_pending",
+  "scenario": {
+    "domain": "daily_social_coordination",
+    "review_slice": "daily_social",
+    "interaction": "friend_social_coordination",
+    "source_brief": "A2_DAILY_SOCIAL_NEUTRAL_ADAPTATION_BRIEFS_20260614",
+    "blueprint_source": "language_neutral_adaptation_brief",
+    "ko_pack_role": "mature_scenario_blueprint_not_translation_source"
+  },
+  "learner_goal": "ชวนเพื่อนไปกิจกรรมธรรมดา แล้วตกลงเวลาและสถานที่ง่าย ๆ",
+  "target_functions": [
+    "friend_invitation_or_response",
+    "simple_reason_or_past_event",
+    "two_step_plan_or_confirmation",
+    "close_with_relationship_maintenance"
+  ],
+  "register_notes": "Thai A2 friend/social register: natural friendly Thai with soft polite particles, TTS-friendly segmentation, no service-counter register or date pressure.",
+  "production_mode_default": {
+    "required": [
+      "choice"
+    ],
+    "optional_visible": [
+      "speaking"
+    ],
+    "optional_hidden": [
+      "typing"
+    ]
+  },
+  "support_text": "ชวนเพื่อนไปกิจกรรมง่าย ๆ เช่น ดื่มกาแฟหรือเดินเล่น แล้วตกลงแผนค่ะ",
+  "roles": {
+    "npc": {
+      "label": "เพื่อน"
+    },
+    "learner": {
+      "label": "你"
+    }
+  },
+  "turns": [
+    {
+      "turn_id": "t1",
+      "speaker": "npc",
+      "act": "invite_activity",
+      "act_slots": {
+        "topic": "friend activity invite",
+        "keyword": "บ่ายนี้",
+        "gloss": "A2 daily/social"
+      },
+      "learning_role": "listen_only",
+      "surface": "บ่ายนี้ไปดื่มกาแฟด้วยกันไหม",
+      "speak": "บ่ายนี้ไปดื่มกาแฟด้วยกันไหม",
+      "translation": "今天下午要一起喝咖啡嗎？",
+      "friend": {
+        "hint": "ชวนเพื่อนไปกิจกรรมง่าย ๆ ค่ะ"
+      },
+      "reply_set": {
+        "correct": "r1a",
+        "choices": [
+          {
+            "id": "r1a",
+            "surface": "บ่ายนี้ไปดื่มกาแฟด้วยกันไหม",
+            "translation": "今天下午要一起喝咖啡嗎？",
+            "speak": "บ่ายนี้ไปดื่มกาแฟด้วยกันไหม",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r1b",
+            "surface": "บ่ายนี้ช่วยเปลี่ยนห้องให้หน่อยค่ะ",
+            "translation": "今天下午請幫我換房間。",
+            "speak": "บ่ายนี้ช่วยเปลี่ยนห้องให้หน่อยค่ะ",
+            "contrast_type": "wrong_scenario_service",
+            "feedback": "นี่เป็นคำขอบริการ ไม่ใช่คำชวนเพื่อนค่ะ"
+          },
+          {
+            "id": "r1c",
+            "surface": "วันนี้ต้องมากับฉันนะ",
+            "translation": "今天一定要跟我來。",
+            "speak": "วันนี้ต้องมากับฉันนะ",
+            "contrast_type": "too_pressuring",
+            "feedback": "ประโยคนี้กดดันเพื่อนเกินไปค่ะ"
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t2",
+      "speaker": "npc",
+      "act": "check_time",
+      "act_slots": {
+        "topic": "availability check",
+        "keyword": "สามโมง",
+        "gloss": "A2 daily/social"
+      },
+      "learning_role": "listen_only",
+      "surface": "ได้สิ กี่โมงดี",
+      "speak": "ได้สิ กี่โมงดี",
+      "translation": "好啊。幾點好？",
+      "friend": {
+        "hint": "เสนอเวลาง่าย ๆ ค่ะ"
+      },
+      "reply_set": {
+        "correct": "r2a",
+        "choices": [
+          {
+            "id": "r2a",
+            "surface": "ประมาณบ่ายสามดีไหม",
+            "translation": "三點左右好嗎？",
+            "speak": "ประมาณบ่ายสามดีไหม",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r2b",
+            "surface": "เมื่อวานไปตอนบ่ายสาม",
+            "translation": "昨天三點去了。",
+            "speak": "เมื่อวานไปตอนบ่ายสาม",
+            "contrast_type": "wrong_time_past",
+            "feedback": "ตอนนี้กำลังนัดเวลาข้างหน้าค่ะ"
+          },
+          {
+            "id": "r2c",
+            "surface": "ราคาเท่าไรคะ",
+            "translation": "多少錢？",
+            "speak": "ราคาเท่าไรคะ",
+            "contrast_type": "wrong_function_price",
+            "feedback": "นี่ไม่ใช่คำถามเรื่องราคาค่ะ"
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t3",
+      "speaker": "npc",
+      "act": "confirm_place",
+      "act_slots": {
+        "topic": "meeting place",
+        "keyword": "หน้าสถานี",
+        "gloss": "A2 daily/social"
+      },
+      "learning_role": "listen_only",
+      "surface": "เจอกันหน้าสถานีไหม",
+      "speak": "เจอกันหน้าสถานีไหม",
+      "translation": "在車站前面見嗎？",
+      "friend": {
+        "hint": "ยืนยันสถานที่นัดค่ะ"
+      },
+      "reply_set": {
+        "correct": "r3a",
+        "choices": [
+          {
+            "id": "r3a",
+            "surface": "ได้ เจอกันหน้าสถานี",
+            "translation": "好，在車站前面見。",
+            "speak": "ได้ เจอกันหน้าสถานี",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r3b",
+            "surface": "ได้ เปลี่ยนรถไฟกัน",
+            "translation": "好，換火車。",
+            "speak": "ได้ เปลี่ยนรถไฟกัน",
+            "contrast_type": "wrong_scenario_transport",
+            "feedback": "นี่ไม่ใช่แผนเปลี่ยนรถค่ะ"
+          },
+          {
+            "id": "r3c",
+            "surface": "ไม่ค่ะ ขอคืนเงิน",
+            "translation": "不，請退款。",
+            "speak": "ไม่ค่ะ ขอคืนเงิน",
+            "contrast_type": "wrong_scenario_refund",
+            "feedback": "การคืนเงินอยู่นอกสถานการณ์นัดเพื่อนค่ะ"
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t4",
+      "speaker": "npc",
+      "act": "close_plan",
+      "act_slots": {
+        "topic": "plan confirmed",
+        "keyword": "เดี๋ยว",
+        "gloss": "A2 daily/social"
+      },
+      "learning_role": "listen_only",
+      "surface": "ดีเลย เดี๋ยวเจอกันนะ",
+      "speak": "ดีเลย เดี๋ยวเจอกันนะ",
+      "translation": "好，等一下見。",
+      "friend": {
+        "hint": "ปิดแผนอย่างอบอุ่นค่ะ"
+      },
+      "reply_set": {
+        "correct": "r4a",
+        "choices": [
+          {
+            "id": "r4a",
+            "surface": "ดีเลย เดี๋ยวเจอกันนะ",
+            "translation": "好，等一下見。",
+            "speak": "ดีเลย เดี๋ยวเจอกันนะ",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r4b",
+            "surface": "ฉันต้องยกเลิกการจองค่ะ",
+            "translation": "我要取消預約。",
+            "speak": "ฉันต้องยกเลิกการจองค่ะ",
+            "contrast_type": "wrong_register_service",
+            "feedback": "เหมือนสถานการณ์จองบริการ ไม่ใช่นัดเพื่อนค่ะ"
+          },
+          {
+            "id": "r4c",
+            "surface": "แพงเกินไปค่ะ",
+            "translation": "太貴了。",
+            "speak": "แพงเกินไปค่ะ",
+            "contrast_type": "wrong_detail_price",
+            "feedback": "ยังไม่ได้คุยเรื่องราคาค่ะ"
+          }
+        ]
+      }
+    }
+  ],
+  "choice_sets": [
+    "t1.reply_set",
+    "t2.reply_set",
+    "t3.reply_set",
+    "t4.reply_set"
+  ],
+  "feedback": "Distractors test social register, time/function/domain contrast, and A2 boundary without offering valid alternate answers.",
+  "tts_segments": [
+    "บ่ายนี้ไปดื่มกาแฟด้วยกันไหม",
+    "ประมาณบ่ายสามดีไหม",
+    "ได้ เจอกันหน้าสถานี",
+    "ดีเลย เดี๋ยวเจอกันนะ"
+  ],
+  "formula_moments": [
+    {
+      "after_turn": "t2",
+      "pattern_id": "th.a2.daily.invite.v1"
+    }
+  ],
+  "runtime_notes": "Fresh A2 daily/social candidate. Requires full-walk runtime before closeout evidence is recorded.",
+  "notes": {
+    "authoring_policy": "Fresh-authored from A2 daily/social neutral adaptation brief. KO surface text was not copied or translated.",
+    "a2_boundary": "Friend/social register, low-risk ordinary reasons and activities, short A2 responses only."
+  }
+}

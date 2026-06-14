@@ -1,0 +1,266 @@
+{
+  "schema_version": "scenario_pack.v1",
+  "scenario_id": "a2_confirm_date_time_place",
+  "title": "Datum, Uhrzeit und Ort bestätigen",
+  "setting_label": "Eine kurze Nachricht prüfen",
+  "wrap_title": "Nachrichtendetails",
+  "wrap_friend": "你剛剛從短訊息中抓出日期、時間、地點，並用簡單德文確認。",
+  "language": "de",
+  "ui_language": "zh_tw",
+  "cefr_level": "A2",
+  "source_status": "candidate_runtime_verified",
+  "review_state": "ai_reviewed",
+  "review_status_framework_state": "candidate_runtime_verified",
+  "native_review_state": "native_pending",
+  "scenario": "Du bestätigst Datum, Uhrzeit und Ort aus einer kurzen Nachricht.",
+  "learner_goal": "Verstehe eine kurze Nachricht und bestätige die wichtigen Details.",
+  "target_functions": [
+    "message_comprehension",
+    "date_time_place_confirmation",
+    "repair_check"
+  ],
+  "register_notes": "Freundliches Alltagsdeutsch. Die Nachricht ist kurz und natürlich.",
+  "input_message": {
+    "surface": "Morgen um 10 Uhr treffen wir uns vor dem Rathaus.",
+    "translation": "明天十點，我們在市政廳前面見。"
+  },
+  "production_mode_default": {
+    "required": [
+      "choice"
+    ],
+    "optional_visible": [
+      "speaking"
+    ],
+    "optional_hidden": [
+      "typing"
+    ]
+  },
+  "support_text": "Lies die kurze Nachricht deines Freundes. Bestätige Datum, Uhrzeit und Ort.",
+  "roles": {
+    "npc": {
+      "label": "Freund"
+    },
+    "learner": {
+      "label": "Du"
+    }
+  },
+  "turns": [
+    {
+      "turn_id": "t1",
+      "speaker": "npc",
+      "act": "message_reference",
+      "act_slots": {
+        "topic": "sent message",
+        "keyword": "Nachricht",
+        "gloss": "訊息"
+      },
+      "learning_role": "listen_only",
+      "surface": "Hast du meine Nachricht gelesen?",
+      "speak": "Hast du meine Nachricht gelesen?",
+      "translation": "你看過我的訊息了嗎？",
+      "friend": {
+        "hint": "Die Nachricht sagt: Morgen um 10 Uhr treffen wir uns vor dem Rathaus. Bestätige zuerst Tag und Uhrzeit."
+      },
+      "reply_set": {
+        "correct": "r1a",
+        "choices": [
+          {
+            "id": "r1a",
+            "surface": "Ja, morgen um 10 Uhr, richtig?",
+            "translation": "有，明天十點，對吧？",
+            "speak": "Ja, morgen um 10 Uhr, richtig?",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r1b",
+            "surface": "Ja, heute Abend um 10 Uhr, richtig?",
+            "translation": "有，今晚十點，對吧？",
+            "speak": "Ja, heute Abend um 10 Uhr, richtig?",
+            "contrast_type": "wrong_date_time",
+            "feedback": "In der Nachricht steht morgen um 10 Uhr, nicht heute Abend um 10 Uhr."
+          },
+          {
+            "id": "r1c",
+            "surface": "Ja, ich habe die Speisekarte gelesen.",
+            "translation": "有，我看過菜單了。",
+            "speak": "Ja, ich habe die Speisekarte gelesen.",
+            "contrast_type": "wrong_scenario_menu",
+            "feedback": "Diese Nachricht ist über Zeit und Ort eines Treffens, nicht über eine Speisekarte."
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t2",
+      "speaker": "npc",
+      "act": "place_prompt",
+      "act_slots": {
+        "topic": "place",
+        "keyword": "wo",
+        "gloss": "哪裡"
+      },
+      "learning_role": "listen_only",
+      "surface": "Genau. Wo treffen wir uns?",
+      "speak": "Genau. Wo treffen wir uns?",
+      "translation": "對。我們在哪裡見？",
+      "friend": {
+        "hint": "Der Ort in der Nachricht ist vor dem Rathaus."
+      },
+      "inline_explain": {
+        "pattern_id": "de.a2.confirm.place.vor_dem.v1",
+        "title": "vor dem + Ort",
+        "explain": "Mit vor dem sagst du, dass der Treffpunkt draußen vor einem Ort ist.",
+        "items": [
+          {
+            "surface": "vor dem Rathaus",
+            "translation": "在市政廳前面",
+            "speak": "vor dem Rathaus"
+          },
+          {
+            "surface": "vor dem Café",
+            "translation": "在咖啡店前面",
+            "speak": "vor dem Café"
+          }
+        ]
+      },
+      "reply_set": {
+        "correct": "r2a",
+        "choices": [
+          {
+            "id": "r2a",
+            "surface": "Vor dem Rathaus.",
+            "translation": "在市政廳前面。",
+            "speak": "Vor dem Rathaus.",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r2b",
+            "surface": "Im Rathaus.",
+            "translation": "在市政廳裡面。",
+            "speak": "Im Rathaus.",
+            "contrast_type": "wrong_place_relation",
+            "feedback": "In der Nachricht steht vor dem Rathaus, nicht im Rathaus."
+          },
+          {
+            "id": "r2c",
+            "surface": "Ich ruhe mich zu Hause aus.",
+            "translation": "我在家休息。",
+            "speak": "Ich ruhe mich zu Hause aus.",
+            "contrast_type": "wrong_function_plan",
+            "feedback": "Das sagt deinen eigenen Plan. Es bestätigt nicht den Treffpunkt."
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t3",
+      "speaker": "npc",
+      "act": "small_change_notice",
+      "act_slots": {
+        "topic": "small change",
+        "keyword": "falls",
+        "gloss": "如果"
+      },
+      "learning_role": "listen_only",
+      "surface": "Falls ich später komme, schreibe ich dir.",
+      "speak": "Falls ich später komme, schreibe ich dir.",
+      "translation": "如果我晚到，我會傳訊息給你。",
+      "friend": {
+        "hint": "Dein Freund sagt nur, was er macht, falls er später kommt. Eine kurze Antwort reicht."
+      },
+      "reply_set": {
+        "correct": "r3a",
+        "choices": [
+          {
+            "id": "r3a",
+            "surface": "Okay, ich verstehe.",
+            "translation": "好，我知道了。",
+            "speak": "Okay, ich verstehe."
+          },
+          {
+            "id": "r3b",
+            "surface": "Okay, ich komme später.",
+            "translation": "好，我會晚到。",
+            "speak": "Okay, ich komme später.",
+            "contrast_type": "wrong_subject_status",
+            "feedback": "Dein Freund spricht über sich selbst, nicht über dich."
+          },
+          {
+            "id": "r3c",
+            "surface": "Falls der Bus spät ist, rufe ich an.",
+            "translation": "如果公車晚了，我會打電話。",
+            "speak": "Falls der Bus spät ist, rufe ich an.",
+            "contrast_type": "wrong_focus_self_delay",
+            "feedback": "Das ändert den Fokus auf deine mögliche Verspätung. Bestätige einfach."
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t4",
+      "speaker": "npc",
+      "act": "final_confirmation",
+      "act_slots": {
+        "topic": "final check"
+      },
+      "learning_role": "listen_only",
+      "surface": "Super. Bis morgen.",
+      "speak": "Super. Bis morgen.",
+      "translation": "太好了。明天見。",
+      "friend": {
+        "hint": "Die Details sind klar. Schließ natürlich ab."
+      },
+      "reply_set": {
+        "correct": "r4a",
+        "choices": [
+          {
+            "id": "r4a",
+            "surface": "Ja, bis morgen.",
+            "translation": "好，明天見。",
+            "speak": "Ja, bis morgen."
+          },
+          {
+            "id": "r4b",
+            "surface": "Ja, bis gestern.",
+            "translation": "好，昨天見。",
+            "speak": "Ja, bis gestern.",
+            "contrast_type": "wrong_time_expression",
+            "feedback": "Bis gestern ist hier nicht natürlich. Sag bis morgen."
+          },
+          {
+            "id": "r4c",
+            "surface": "Kann ich die Rechnung haben?",
+            "translation": "可以給我帳單嗎？",
+            "speak": "Kann ich die Rechnung haben?",
+            "contrast_type": "wrong_scenario_payment",
+            "feedback": "Das ist ein Bezahlsatz. Hier schliesst du nur den Plan ab."
+          }
+        ]
+      }
+    }
+  ],
+  "choice_sets": [
+    "t1.reply_set",
+    "t2.reply_set",
+    "t3.reply_set",
+    "t4.reply_set"
+  ],
+  "feedback": "Die Distraktoren testen Datum, Uhrzeit, Ortsrelation und unpassende Szenario-Sprache.",
+  "tts_segments": [
+    "Ja, morgen um 10 Uhr, richtig?",
+    "Vor dem Rathaus.",
+    "Okay, ich verstehe.",
+    "Ja, bis morgen."
+  ],
+  "formula_moments": [
+    {
+      "after_turn": "t2",
+      "pattern_id": "de.a2.confirm.place.vor_dem.v1"
+    }
+  ],
+  "runtime_notes": "Fresh DE A2 candidate. Structural checks and two AI semantic review passes completed on 2026-06-14 before metadata promotion.",
+  "notes": {
+    "authoring_policy": "Fresh-authored from the neutral A2 brief. KO/JA/EN/TH packs were used only for schema-shape reference.",
+    "a2_boundary": "Short message comprehension with date, time, and place confirmation; avoids navigation and multi-step directions."
+  }
+}

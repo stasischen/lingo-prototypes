@@ -1,0 +1,229 @@
+{
+  "schema_version": "scenario_pack.v1",
+  "scenario_id": "food_coffee_ordering",
+  "brief_id": "ml0_a1_001_food_coffee_ordering",
+  "source_neutral_brief": "release-aggregator/docs/tasks/A1_MULTILINGUAL_KO_B1_PARALLEL_ORCHESTRATION/work_products/ml0/ML0_NEUTRAL_ADAPTATION_BRIEFS_20260613.md#ml0-a1-001",
+  "blueprint_ledger": "release-aggregator/docs/tasks/A1_MULTILINGUAL_KO_B1_PARALLEL_ORCHESTRATION/work_products/ml0/ML0_BLUEPRINT_LEDGER_20260613.md",
+  "repo": "content-de",
+  "staging_path": "content/core/content_assets/scenario_packs/current_flow/food_coffee_ordering.de.v1.json",
+  "title": "Einen Kaffee bestellen",
+  "setting_label": "Café-Theke",
+  "wrap_title": "Bestellung geschafft",
+  "wrap_friend": "Gut gemacht. Du hast kurz und höflich bestellt und eine einfache Servicefrage beantwortet.",
+  "language": "de",
+  "ui_language": "zh_tw",
+  "source_status": "candidate_runtime_verified",
+  "review_state": "draft",
+  "review_status_framework_state": "candidate_runtime_verified",
+  "native_review_state": "native_pending",
+  "production_mode_default": {
+    "required": [
+      "choice"
+    ],
+    "optional_visible": [
+      "speaking"
+    ],
+    "optional_hidden": [
+      "typing"
+    ]
+  },
+  "support_text": "你在咖啡店櫃台。用簡短、禮貌的德文點一杯飲料，並回答服務人員的選項問題。",
+  "roles": {
+    "npc": {
+      "label": "Barista"
+    },
+    "learner": {
+      "label": "Kunde/Kundin"
+    }
+  },
+  "turns": [
+    {
+      "turn_id": "t1",
+      "speaker": "npc",
+      "act": "service_opening",
+      "act_slots": {
+        "topic": "drink_order",
+        "keyword": "trinken",
+        "gloss": "喝"
+      },
+      "learning_role": "listen_only",
+      "surface": "Guten Tag. Was möchten Sie trinken?",
+      "speak": "Guten Tag. Was möchten Sie trinken?",
+      "translation": "您好。您想喝什麼？",
+      "friend": "這是服務情境的 Sie 禮貌語氣。回答時可以直接說想要的飲料。",
+      "reply_set": {
+        "correct": "c1",
+        "choices": [
+          {
+            "id": "c1",
+            "surface": "Einen Kaffee, bitte.",
+            "translation": "一杯咖啡，謝謝。",
+            "speak": "Einen Kaffee, bitte.",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "c2",
+            "surface": "Wo ist das Hotel?",
+            "translation": "飯店在哪裡？",
+            "speak": "Wo ist das Hotel?",
+            "contrast_type": "wrong_scenario",
+            "feedback": "這是在問地點，不是在點咖啡。先用 einen Kaffee, bitte 完成點餐。"
+          },
+          {
+            "id": "c3",
+            "surface": "Nein, ich trinke nicht.",
+            "translation": "不，我不喝。",
+            "speak": "Nein, ich trinke nicht.",
+            "contrast_type": "refusal_when_order_expected",
+            "feedback": "這像是在拒絕服務。此回合需要說出要點的飲料。"
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t2",
+      "speaker": "npc",
+      "act": "choice_question",
+      "act_slots": {
+        "topic": "service_option",
+        "keyword": "mitnehmen",
+        "gloss": "外帶"
+      },
+      "learning_role": "listen_only",
+      "surface": "Zum Mitnehmen?",
+      "speak": "Zum Mitnehmen?",
+      "translation": "要外帶嗎？",
+      "friend": "這是咖啡店常見的短問句。你可以用 ja, bitte 來回答。",
+      "inline_explain": "Zum Mitnehmen = 外帶。",
+      "reply_set": {
+        "correct": "c1",
+        "choices": [
+          {
+            "id": "c1",
+            "surface": "Ja, bitte.",
+            "translation": "是的，麻煩您。",
+            "speak": "Ja, bitte.",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "c2",
+            "surface": "Ich habe eine Reservierung.",
+            "translation": "我有預訂。",
+            "speak": "Ich habe eine Reservierung.",
+            "contrast_type": "wrong_scenario",
+            "feedback": "這是飯店入住的句子。咖啡外帶問題只需要簡短回答。"
+          },
+          {
+            "id": "c3",
+            "surface": "Sehr groß, mit Milch, ohne Zucker, aber kalt.",
+            "translation": "很大杯、加牛奶、不加糖、但是冰的。",
+            "speak": "Sehr groß, mit Milch, ohne Zucker, aber kalt.",
+            "contrast_type": "overlong_non_a1",
+            "feedback": "資訊太多，超出這個 A1 回合。先練 Ja, bitte. 這種短回答。"
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t3",
+      "speaker": "npc",
+      "act": "confirmation",
+      "act_slots": {
+        "topic": "order_confirmation",
+        "keyword": "drei Euro",
+        "gloss": "三歐元"
+      },
+      "learning_role": "listen_only",
+      "surface": "Das macht drei Euro.",
+      "speak": "Das macht drei Euro.",
+      "translation": "總共三歐元。",
+      "friend": "聽到價格時，做一個簡短確認即可。",
+      "reply_set": {
+        "correct": "c1",
+        "choices": [
+          {
+            "id": "c1",
+            "surface": "Okay.",
+            "translation": "好的。",
+            "speak": "Okay."
+          },
+          {
+            "id": "c2",
+            "surface": "Links und dann geradeaus.",
+            "translation": "左邊，然後直走。",
+            "speak": "Links und dann geradeaus.",
+            "contrast_type": "mismatched_service_option",
+            "feedback": "這是在給方向，不是在回應價格。"
+          },
+          {
+            "id": "c3",
+            "surface": "Ich checke aus.",
+            "translation": "我要退房。",
+            "speak": "Ich checke aus.",
+            "contrast_type": "wrong_scenario",
+            "feedback": "這是飯店退房句子，和咖啡付款不符合。"
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t4",
+      "speaker": "npc",
+      "act": "pickup_instruction",
+      "act_slots": {
+        "topic": "pickup",
+        "keyword": "kurz warten",
+        "gloss": "稍等"
+      },
+      "learning_role": "listen_only",
+      "surface": "Bitte warten Sie kurz dort.",
+      "speak": "Bitte warten Sie kurz dort.",
+      "translation": "請在那邊稍等。",
+      "friend": "完成了。用 Danke 收尾很自然。",
+      "reply_set": {
+        "correct": "c1",
+        "choices": [
+          {
+            "id": "c1",
+            "surface": "Danke.",
+            "translation": "謝謝。",
+            "speak": "Danke."
+          },
+          {
+            "id": "c2",
+            "surface": "Ein Zimmer, bitte.",
+            "translation": "請給我一間房。",
+            "speak": "Ein Zimmer, bitte.",
+            "contrast_type": "wrong_location_request",
+            "feedback": "這像是在飯店櫃台。咖啡店結尾只要道謝。"
+          },
+          {
+            "id": "c3",
+            "surface": "Ich brauche die Toilette sofort.",
+            "translation": "我現在需要廁所。",
+            "speak": "Ich brauche die Toilette sofort.",
+            "contrast_type": "wrong_scenario",
+            "feedback": "這換成了找洗手間的情境，不是完成咖啡點餐。"
+          }
+        ]
+      },
+      "closing": true
+    }
+  ],
+  "formula_moments": [
+    {
+      "after_turn": "t1",
+      "pattern_id": "de_polite_item_request_bitte"
+    },
+    {
+      "after_turn": "t2",
+      "pattern_id": "de_short_yes_polite"
+    }
+  ],
+  "notes": {
+    "authoring_source": "Authored from ML-0 neutral brief ml0_a1_001_food_coffee_ordering; existing KO/JA/EN/TH and Lingourmet_german text were not used as source strings.",
+    "review_policy": "AI-authored candidate only; keep review_state=draft, review_status_framework_state=candidate_needs_review, native_review_state=native_pending until tracked review evidence exists.",
+    "canonical_policy": "Staging current-flow candidate only. Do not add to manifests, production exports, schema, runtime, or frontend in this authoring lane.",
+    "german_voice_note": "Uses Sie service register and short cafe-counter formulas; native review should check whether Kaffee vs specific drink choice is enough for the intended first lesson."
+  }
+}

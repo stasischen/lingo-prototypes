@@ -1,0 +1,250 @@
+{
+  "schema_version": "scenario_pack.v1",
+  "scenario_id": "digital_wifi_connect",
+  "brief_id": "ml4_a1_017_digital_wifi_connect",
+  "source_neutral_brief": "release-aggregator/docs/tasks/A1_MULTILINGUAL_KO_B1_PARALLEL_ORCHESTRATION/work_products/ml0/ML4_NEUTRAL_ADAPTATION_BRIEFS_20260614.md#brief-ml4-a1-017-ask-for-wi-fi-and-say-it-will-not-connect",
+  "blueprint_ledger": "release-aggregator/docs/tasks/A1_MULTILINGUAL_KO_B1_PARALLEL_ORCHESTRATION/work_products/ml0/ML4_BLUEPRINT_LEDGER_20260614.md",
+  "repo": "content-pt",
+  "staging_path": "content/core/content_assets/scenario_packs/current_flow/digital_wifi_connect.pt.v1.json",
+  "title": "Pedir a senha do wifi",
+  "setting_label": "Balcão",
+  "wrap_title": "Você já pode pedir ajuda básica com o wifi",
+  "wrap_friend": "Você pediu a senha, tentou conectar, disse que não conecta e agradeceu.",
+  "language": "pt",
+  "ui_language": "zh_tw",
+  "source_status": "candidate_runtime_verified",
+  "review_state": "draft",
+  "review_status_framework_state": "candidate_runtime_verified",
+  "native_review_state": "native_pending",
+  "production_mode_default": {
+    "required": [
+      "choice"
+    ],
+    "optional_visible": [
+      "speaking"
+    ],
+    "optional_hidden": [
+      "typing"
+    ]
+  },
+  "support_text": "你在櫃台。問 wifi 密碼，嘗試後說手機連不上，並謝謝對方。",
+  "roles": {
+    "npc": {
+      "label": "funcionário"
+    },
+    "learner": {
+      "label": "cliente"
+    }
+  },
+  "turns": [
+    {
+      "turn_id": "t1",
+      "speaker": "npc",
+      "act": "offer_help",
+      "act_slots": {
+        "topic": "ajuda",
+        "keyword": "ajudar",
+        "gloss": "幫忙"
+      },
+      "learning_role": "listen_only",
+      "surface": "Olá, posso ajudar?",
+      "speak": "Olá, posso ajudar?",
+      "translation": "您好，需要幫忙嗎？",
+      "friend": {
+        "hint": "你要問 wifi 密碼。巴西葡語常說 senha do wifi。"
+      },
+      "reply_set": {
+        "correct": "r1a",
+        "choices": [
+          {
+            "id": "r1a",
+            "surface": "Qual é a senha do wifi?",
+            "translation": "wifi 密碼是什麼？",
+            "speak": "Qual é a senha do wifi?",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r1b",
+            "surface": "Um café, por favor.",
+            "translation": "一杯咖啡，謝謝。",
+            "speak": "Um café, por favor.",
+            "contrast_type": "wrong_scenario_order",
+            "feedback": "這是在點咖啡。現在要問 wifi 密碼。"
+          },
+          {
+            "id": "r1c",
+            "surface": "Onde fica o banheiro?",
+            "translation": "洗手間在哪裡？",
+            "speak": "Onde fica o banheiro?",
+            "contrast_type": "wrong_scenario_directions",
+            "feedback": "這是在問洗手間方向，不是問 wifi。"
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t2",
+      "speaker": "npc",
+      "act": "give_password",
+      "act_slots": {
+        "topic": "senha wifi",
+        "keyword": "senha",
+        "gloss": "密碼"
+      },
+      "learning_role": "listen_only",
+      "surface": "A senha é cafe2026.",
+      "speak": "A senha é cafe2026.",
+      "translation": "密碼是 cafe2026。",
+      "friend": {
+        "hint": "對方給了密碼。先說謝謝，表示你試一下。"
+      },
+      "inline_explain": {
+        "pattern_id": "pt.digital.wifi_connect.v1",
+        "formula_ref": null,
+        "title": "A senha é... / Não conecta",
+        "explain": "問密碼用 Qual é a senha...?；連不上可以說 Não conecta。",
+        "items": [
+          {
+            "surface": "Qual é a senha do wifi?",
+            "translation": "wifi 密碼是什麼？",
+            "speak": "Qual é a senha do wifi?"
+          },
+          {
+            "surface": "Não conecta.",
+            "translation": "連不上。",
+            "speak": "Não conecta."
+          }
+        ]
+      },
+      "reply_set": {
+        "correct": "r2a",
+        "choices": [
+          {
+            "id": "r2a",
+            "surface": "Obrigado, vou tentar.",
+            "translation": "謝謝，我試一下。",
+            "speak": "Obrigado, vou tentar.",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r2b",
+            "surface": "A conta, por favor.",
+            "translation": "請結帳。",
+            "speak": "A conta, por favor.",
+            "contrast_type": "wrong_scenario_bill",
+            "feedback": "這是餐廳結帳。對方剛剛給了 wifi 密碼。"
+          },
+          {
+            "id": "r2c",
+            "surface": "Qual é a senha do wifi?",
+            "translation": "wifi 密碼是什麼？",
+            "speak": "Qual é a senha do wifi?",
+            "contrast_type": "repeated_prior_question",
+            "feedback": "對方已經說了密碼。現在要表示你試一下。"
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t3",
+      "speaker": "npc",
+      "act": "ask_if_works",
+      "act_slots": {
+        "topic": "conexão",
+        "keyword": "funcionou",
+        "gloss": "可用"
+      },
+      "learning_role": "listen_only",
+      "surface": "Funcionou?",
+      "speak": "Funcionou?",
+      "translation": "可以用嗎？",
+      "friend": {
+        "hint": "手機還是連不上。用 Não conecta。"
+      },
+      "reply_set": {
+        "correct": "r3a",
+        "choices": [
+          {
+            "id": "r3a",
+            "surface": "Não, não conecta.",
+            "translation": "不，連不上。",
+            "speak": "Não, não conecta.",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r3b",
+            "surface": "Sim, obrigado.",
+            "translation": "可以，謝謝。",
+            "speak": "Sim, obrigado.",
+            "contrast_type": "wrong_connection_status",
+            "feedback": "情境是連不上。要說 Não conecta。"
+          },
+          {
+            "id": "r3c",
+            "surface": "Quero uma mesa.",
+            "translation": "我想要一張桌子。",
+            "speak": "Quero uma mesa.",
+            "contrast_type": "wrong_scenario_restaurant",
+            "feedback": "這是餐廳需求。現在要回報 wifi 連不上。"
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t4",
+      "speaker": "npc",
+      "act": "simple_retry_instruction",
+      "act_slots": {
+        "topic": "tentar de novo",
+        "keyword": "tente",
+        "gloss": "試"
+      },
+      "learning_role": "listen_only",
+      "surface": "Tente de novo, por favor.",
+      "speak": "Tente de novo, por favor.",
+      "translation": "請再試一次。",
+      "friend": {
+        "hint": "對方給了簡單指示。用 Tá bom, obrigado 結束。"
+      },
+      "reply_set": {
+        "correct": "r4a",
+        "choices": [
+          {
+            "id": "r4a",
+            "surface": "Tá bom, obrigado.",
+            "translation": "好的，謝謝。",
+            "speak": "Tá bom, obrigado."
+          },
+          {
+            "id": "r4b",
+            "surface": "Para o Hotel Central, por favor.",
+            "translation": "到中央飯店，謝謝。",
+            "speak": "Para o Hotel Central, por favor.",
+            "contrast_type": "wrong_scenario_taxi",
+            "feedback": "這是計程車目的地。現在是在處理 wifi。"
+          },
+          {
+            "id": "r4c",
+            "surface": "Não, obrigado.",
+            "translation": "不用了，謝謝。",
+            "speak": "Não, obrigado.",
+            "contrast_type": "wrong_act_refusal",
+            "feedback": "對方正在幫你。接受簡單指示並道謝比較合適。"
+          }
+        ]
+      }
+    }
+  ],
+  "formula_moments": [
+    {
+      "after_turn": "t2",
+      "pattern_id": "pt.digital.wifi_connect.v1"
+    }
+  ],
+  "notes": {
+    "authoring_source": "Authored from ML-4 neutral brief, not Korean surface text or another target-language pack.",
+    "review_policy": "AI-authored Portuguese candidate. Requires AI review, runtime smoke, and tracked native review before any stronger status.",
+    "canonical_policy": "Staging candidate only. Do not write back to manifests, production exports, schemas, or legacy content.",
+    "portuguese_locale_note": "Brazilian Portuguese baseline with senha do wifi, vou tentar, and Não conecta."
+  }
+}

@@ -1,0 +1,236 @@
+{
+  "schema_version": "scenario_pack.v1",
+  "scenario_id": "shopping_ask_price",
+  "brief_id": "ml2_a1_009_shopping_ask_price",
+  "source_neutral_brief": "release-aggregator/docs/tasks/A1_MULTILINGUAL_KO_B1_PARALLEL_ORCHESTRATION/work_products/ml0/ML2_NEUTRAL_ADAPTATION_BRIEFS_20260614.md#brief-ml2-a1-009-shopping-ask-price",
+  "blueprint_ledger": "release-aggregator/docs/tasks/A1_MULTILINGUAL_KO_B1_PARALLEL_ORCHESTRATION/work_products/ml0/ML2_BLUEPRINT_LEDGER_20260614.md",
+  "repo": "content-it",
+  "staging_path": "content/core/content_assets/scenario_packs/current_flow/shopping_ask_price.it.v1.json",
+  "title": "Chiedere il prezzo",
+  "setting_label": "Piccolo negozio",
+  "wrap_title": "Prezzo capito",
+  "wrap_friend": "你用簡短自然的義大利語叫住店員、詢問價格，並回應是否購買。",
+  "language": "it",
+  "ui_language": "zh_tw",
+  "source_status": "candidate_runtime_verified",
+  "review_state": "draft",
+  "review_status_framework_state": "candidate_runtime_verified",
+  "native_review_state": "native_pending",
+  "production_mode_default": {
+    "required": [
+      "choice"
+    ],
+    "optional_visible": [
+      "speaking"
+    ],
+    "optional_hidden": [
+      "typing"
+    ]
+  },
+  "support_text": "你在義大利的小店或市場攤位。用一句話問這個東西多少錢，聽懂價格後簡短回應。",
+  "roles": {
+    "npc": {
+      "label": "Commesso"
+    },
+    "learner": {
+      "label": "Cliente"
+    }
+  },
+  "turns": [
+    {
+      "turn_id": "t1",
+      "speaker": "npc",
+      "act": "shop_greeting",
+      "act_slots": {
+        "topic": "attention",
+        "keyword": "buongiorno",
+        "gloss": "hello"
+      },
+      "learning_role": "listen_only",
+      "surface": "Buongiorno. Posso aiutarla?",
+      "speak": "Buongiorno. Posso aiutarla?",
+      "translation": "您好。需要幫忙嗎？",
+      "friend": {
+        "hint": "先用 Scusi 叫住店員，再問價格。"
+      },
+      "reply_set": {
+        "correct": "r1a",
+        "choices": [
+          {
+            "id": "r1a",
+            "surface": "Scusi, quanto costa questo?",
+            "translation": "不好意思，這個多少錢？",
+            "speak": "Scusi, quanto costa questo?",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r1b",
+            "surface": "Dov'è la stazione?",
+            "translation": "車站在哪裡？",
+            "speak": "Dov'è la stazione?",
+            "contrast_type": "directions_instead_of_price",
+            "feedback": "這是在問路。現在目標是在商店問這個東西的價格。"
+          },
+          {
+            "id": "r1c",
+            "surface": "Un caffè, per favore.",
+            "translation": "一杯咖啡，謝謝。",
+            "speak": "Un caffè, per favore.",
+            "contrast_type": "ordering_food_instead_of_price",
+            "feedback": "這像在咖啡吧點飲料，不是在問商品價格。"
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t2",
+      "speaker": "npc",
+      "act": "price_answer",
+      "act_slots": {
+        "topic": "price",
+        "keyword": "otto euro",
+        "gloss": "eight euros"
+      },
+      "learning_role": "listen_only",
+      "surface": "Costa otto euro.",
+      "speak": "Costa otto euro.",
+      "translation": "八歐元。",
+      "friend": {
+        "hint": "如果要買，可以用 Lo prendo。"
+      },
+      "reply_set": {
+        "correct": "r2a",
+        "choices": [
+          {
+            "id": "r2a",
+            "surface": "Va bene, lo prendo.",
+            "translation": "好的，我買這個。",
+            "speak": "Va bene, lo prendo.",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r2b",
+            "surface": "Pago con carta?",
+            "translation": "我用卡付款嗎？",
+            "speak": "Pago con carta?",
+            "contrast_type": "payment_method_too_early",
+            "feedback": "這直接跳到付款方式。先回應是否要買或道謝即可。"
+          },
+          {
+            "id": "r2c",
+            "surface": "Ne prendo tre grandi.",
+            "translation": "我要三個大的。",
+            "speak": "Ne prendo tre grandi.",
+            "contrast_type": "wrong_quantity_answer",
+            "feedback": "這加入數量和尺寸，超出這個 A1 場景的一件商品。"
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t3",
+      "speaker": "npc",
+      "act": "confirm_purchase",
+      "act_slots": {
+        "topic": "confirm_item",
+        "keyword": "questo",
+        "gloss": "this one"
+      },
+      "learning_role": "listen_only",
+      "surface": "Questo, giusto?",
+      "speak": "Questo, giusto?",
+      "translation": "這個，對嗎？",
+      "friend": {
+        "hint": "確認商品正確時，用 Sì, grazie。"
+      },
+      "reply_set": {
+        "correct": "r3a",
+        "choices": [
+          {
+            "id": "r3a",
+            "surface": "Sì, grazie.",
+            "translation": "是的，謝謝。",
+            "speak": "Sì, grazie."
+          },
+          {
+            "id": "r3b",
+            "surface": "No, dov'è il bagno?",
+            "translation": "不是，洗手間在哪裡？",
+            "speak": "No, dov'è il bagno?",
+            "contrast_type": "restroom_request",
+            "feedback": "這換成問洗手間。店員是在確認你要的商品。"
+          },
+          {
+            "id": "r3c",
+            "surface": "È troppo caro, mi fa uno sconto grande?",
+            "translation": "太貴了，可以給我很大的折扣嗎？",
+            "speak": "È troppo caro, mi fa uno sconto grande?",
+            "contrast_type": "overlong_bargaining",
+            "feedback": "這是較複雜的議價，不適合這個 A1 目標。"
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t4",
+      "speaker": "npc",
+      "act": "service_close",
+      "act_slots": {
+        "topic": "close",
+        "keyword": "grazie",
+        "gloss": "thanks"
+      },
+      "learning_role": "listen_only",
+      "surface": "Perfetto, grazie.",
+      "speak": "Perfetto, grazie.",
+      "translation": "好的，謝謝。",
+      "friend": {
+        "hint": "最後簡短道謝即可。"
+      },
+      "reply_set": {
+        "correct": "r4a",
+        "choices": [
+          {
+            "id": "r4a",
+            "surface": "Grazie.",
+            "translation": "謝謝。",
+            "speak": "Grazie."
+          },
+          {
+            "id": "r4b",
+            "surface": "Il conto, per favore.",
+            "translation": "請結帳。",
+            "speak": "Il conto, per favore.",
+            "contrast_type": "restaurant_bill_request",
+            "feedback": "這是餐廳結帳說法，不是商店價格場景的收尾。"
+          },
+          {
+            "id": "r4c",
+            "surface": "A che ora ci vediamo?",
+            "translation": "我們幾點見？",
+            "speak": "A che ora ci vediamo?",
+            "contrast_type": "friend_meeting_request",
+            "feedback": "這是在約朋友，不是在商店完成購買。"
+          }
+        ]
+      },
+      "closing": true
+    }
+  ],
+  "formula_moments": [
+    {
+      "after_turn": "t1",
+      "pattern_id": "it.shopping.quanto_costa_questo.v1"
+    },
+    {
+      "after_turn": "t2",
+      "pattern_id": "it.shopping.lo_prendo.v1"
+    }
+  ],
+  "notes": {
+    "authoring_source": "Authored from ML-2 neutral brief ml2_a1_009_shopping_ask_price; KO and other target-language packs were not used as translation sources.",
+    "review_policy": "AI-authored candidate only; keep review_state=draft, review_status_framework_state=candidate_needs_review, native_review_state=native_pending until tracked review evidence exists.",
+    "canonical_policy": "Staging current-flow candidate only. Do not add to manifests, production exports, schema, runtime, frontend, review artifacts, or legacy content.",
+    "italian_voice_note": "Uses everyday polite shop Italian with Scusi, quanto costa questo? and Lo prendo; native review should check commesso/cliente register and whether la/lo agreement should be item-specific."
+  }
+}

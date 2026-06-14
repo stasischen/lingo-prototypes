@@ -1,0 +1,237 @@
+{
+  "schema_version": "scenario_pack.v1",
+  "scenario_id": "travel_ticket_buying",
+  "brief_id": "ml3_a1_013_travel_ticket_buying",
+  "source_neutral_brief": "release-aggregator/docs/tasks/A1_MULTILINGUAL_KO_B1_PARALLEL_ORCHESTRATION/work_products/ml0/ML3_NEUTRAL_ADAPTATION_BRIEFS_20260614.md#brief-ml3-a1-013-buy-a-ticket",
+  "blueprint_ledger": "release-aggregator/docs/tasks/A1_MULTILINGUAL_KO_B1_PARALLEL_ORCHESTRATION/work_products/ml0/ML3_BLUEPRINT_LEDGER_20260614.md",
+  "repo": "content-de",
+  "staging_path": "content/core/content_assets/scenario_packs/current_flow/travel_ticket_buying.de.v1.json",
+  "title": "Eine Fahrkarte kaufen",
+  "setting_label": "Bahnhofsschalter",
+  "wrap_title": "Fahrkarte gekauft",
+  "wrap_friend": "你用 Sie 服務語氣買一張到柏林的票、確認資訊，並禮貌收尾。",
+  "language": "de",
+  "ui_language": "zh_tw",
+  "source_status": "candidate_runtime_verified",
+  "review_state": "draft",
+  "review_status_framework_state": "candidate_runtime_verified",
+  "native_review_state": "native_pending",
+  "production_mode_default": {
+    "required": [
+      "choice"
+    ],
+    "optional_visible": [
+      "speaking"
+    ],
+    "optional_hidden": [
+      "typing"
+    ]
+  },
+  "support_text": "你在德語區火車站售票窗口。買一張到柏林的票，確認後付款或道謝。",
+  "roles": {
+    "npc": {
+      "label": "Mitarbeiter"
+    },
+    "learner": {
+      "label": "Reisender"
+    }
+  },
+  "turns": [
+    {
+      "turn_id": "t1",
+      "speaker": "npc",
+      "act": "ticket_counter_offer",
+      "act_slots": {
+        "topic": "help",
+        "keyword": "bitte",
+        "gloss": "please"
+      },
+      "learning_role": "listen_only",
+      "surface": "Guten Tag, bitte?",
+      "speak": "Guten Tag, bitte?",
+      "translation": "您好，請說？",
+      "friend": {
+        "hint": "說一張到目的地的票。"
+      },
+      "reply_set": {
+        "correct": "r1a",
+        "choices": [
+          {
+            "id": "r1a",
+            "surface": "Eine Fahrkarte nach Berlin, bitte.",
+            "translation": "請給我一張到柏林的票。",
+            "speak": "Eine Fahrkarte nach Berlin, bitte.",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r1b",
+            "surface": "Wo ist das Gleis?",
+            "translation": "月台在哪裡？",
+            "speak": "Wo ist das Gleis?",
+            "contrast_type": "directions_instead_of_purchase",
+            "feedback": "這是在問路。現在需要先買票。"
+          },
+          {
+            "id": "r1c",
+            "surface": "Einen Kaffee, bitte.",
+            "translation": "請給我一杯咖啡。",
+            "speak": "Einen Kaffee, bitte.",
+            "contrast_type": "food_order",
+            "feedback": "這是在點咖啡，不是在車站買票。"
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t2",
+      "speaker": "npc",
+      "act": "ticket_confirm",
+      "act_slots": {
+        "topic": "confirmation",
+        "keyword": "Berlin",
+        "gloss": "Berlin"
+      },
+      "learning_role": "listen_only",
+      "surface": "Eine Fahrkarte nach Berlin, richtig?",
+      "speak": "Eine Fahrkarte nach Berlin, richtig?",
+      "translation": "一張到柏林的票，對嗎？",
+      "friend": {
+        "hint": "確認正確即可。"
+      },
+      "reply_set": {
+        "correct": "r2a",
+        "choices": [
+          {
+            "id": "r2a",
+            "surface": "Ja, richtig.",
+            "translation": "是的，沒錯。",
+            "speak": "Ja, richtig.",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r2b",
+            "surface": "Nein, danke.",
+            "translation": "不用，謝謝。",
+            "speak": "Nein, danke.",
+            "contrast_type": "cancel_when_confirming",
+            "feedback": "這像是在取消。對方正在確認目的地和數量。"
+          },
+          {
+            "id": "r2c",
+            "surface": "Zwei Fahrkarten nach München.",
+            "translation": "兩張到慕尼黑的票。",
+            "speak": "Zwei Fahrkarten nach München.",
+            "contrast_type": "wrong_quantity_destination",
+            "feedback": "這改成兩張和另一個目的地，和原本需求不一致。"
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t3",
+      "speaker": "npc",
+      "act": "ticket_price_prompt",
+      "act_slots": {
+        "topic": "payment",
+        "keyword": "Euro",
+        "gloss": "euros"
+      },
+      "learning_role": "listen_only",
+      "surface": "Das macht zwölf Euro.",
+      "speak": "Das macht zwölf Euro.",
+      "translation": "一共十二歐元。",
+      "friend": {
+        "hint": "可以說用卡付款。"
+      },
+      "reply_set": {
+        "correct": "r3a",
+        "choices": [
+          {
+            "id": "r3a",
+            "surface": "Mit Karte, bitte.",
+            "translation": "刷卡，謝謝。",
+            "speak": "Mit Karte, bitte.",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r3b",
+            "surface": "Ich bin Lukas.",
+            "translation": "我是 Lukas。",
+            "speak": "Ich bin Lukas.",
+            "contrast_type": "self_intro_answer",
+            "feedback": "這是自我介紹，不是回應票價或付款。"
+          },
+          {
+            "id": "r3c",
+            "surface": "Ich möchte ein Zimmer buchen.",
+            "translation": "我想訂一間房。",
+            "speak": "Ich möchte ein Zimmer buchen.",
+            "contrast_type": "hotel_booking_phrase",
+            "feedback": "這是飯店用語，不是買車票。"
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t4",
+      "speaker": "npc",
+      "act": "ticket_handover",
+      "act_slots": {
+        "topic": "handover",
+        "keyword": "Gleis",
+        "gloss": "platform"
+      },
+      "learning_role": "listen_only",
+      "surface": "Hier ist Ihre Fahrkarte. Gleis drei.",
+      "speak": "Hier ist Ihre Fahrkarte. Gleis drei.",
+      "translation": "這是您的車票。三號月台。",
+      "friend": {
+        "hint": "用謝謝收尾。"
+      },
+      "reply_set": {
+        "correct": "r4a",
+        "choices": [
+          {
+            "id": "r4a",
+            "surface": "Danke.",
+            "translation": "謝謝。",
+            "speak": "Danke."
+          },
+          {
+            "id": "r4b",
+            "surface": "Schön, dich kennenzulernen.",
+            "translation": "很高興認識你。",
+            "speak": "Schön, dich kennenzulernen.",
+            "contrast_type": "self_intro_close",
+            "feedback": "這是第一次見面收尾，不是售票窗口結束。"
+          },
+          {
+            "id": "r4c",
+            "surface": "Sprechen Sie bitte langsamer.",
+            "translation": "請您說慢一點。",
+            "speak": "Sprechen Sie bitte langsamer.",
+            "contrast_type": "repair_after_handover",
+            "feedback": "如果已理解月台資訊，最後只要道謝即可。"
+          }
+        ]
+      },
+      "closing": true
+    }
+  ],
+  "formula_moments": [
+    {
+      "after_turn": "t1",
+      "pattern_id": "de.ticket.eine_fahrkarte_nach.v1"
+    },
+    {
+      "after_turn": "t2",
+      "pattern_id": "de.confirm.ja_richtig.v1"
+    }
+  ],
+  "notes": {
+    "authoring_source": "Authored from ML-3 neutral brief ml3_a1_013_travel_ticket_buying; KO and other target-language packs were not used as translation sources.",
+    "review_policy": "AI-authored candidate only; keep review_state=draft, review_status_framework_state=candidate_needs_review, native_review_state=native_pending until tracked review evidence exists.",
+    "canonical_policy": "Staging current-flow candidate only. Do not add to manifests, production exports, schema, runtime, frontend, review artifacts, or legacy content.",
+    "german_voice_note": "Uses consistent Sie service register and broad German train-station vocabulary; native review should check Fahrkarte/Ticket regional preference."
+  }
+}

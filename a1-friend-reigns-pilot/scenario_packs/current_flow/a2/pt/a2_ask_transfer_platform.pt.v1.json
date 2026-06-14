@@ -1,0 +1,242 @@
+{
+  "schema_version": "scenario_pack.v1",
+  "scenario_id": "a2_ask_transfer_platform",
+  "title": "Perguntar a Plataforma de Conexão",
+  "setting_label": "Na informação da estação",
+  "wrap_title": "Plataforma de conexão",
+  "wrap_friend": "你剛剛完成了一段 A2 交通服務情境，確認重點並做出簡單回應。",
+  "language": "pt",
+  "ui_language": "zh_tw",
+  "cefr_level": "A2",
+  "source_status": "candidate_runtime_verified",
+  "review_state": "ai_reviewed",
+  "review_status_framework_state": "candidate_runtime_verified",
+  "native_review_state": "native_pending",
+  "scenario": "A2 transport scenario: a2_ask_transfer_platform.",
+  "learner_goal": "Ask where to transfer and confirm a short two-step direction.",
+  "target_functions": [
+    "transfer_question",
+    "platform_confirmation",
+    "two_step_direction"
+  ],
+  "register_notes": "Brazilian Portuguese public transport/service language with polite everyday responses; no refund, legal, medical, police, or identity-sensitive handling.",
+  "production_mode_default": {
+    "required": [
+      "choice"
+    ],
+    "optional_visible": [
+      "speaking"
+    ],
+    "optional_hidden": [
+      "typing"
+    ]
+  },
+  "support_text": "Pergunte onde fazer a conexão, escute a estação e a plataforma, e confirme o caminho.",
+  "roles": {
+    "npc": {
+      "label": "Atendente"
+    },
+    "learner": {
+      "label": "Você"
+    }
+  },
+  "turns": [
+    {
+      "turn_id": "t1",
+      "speaker": "npc",
+      "act": "destination_prompt",
+      "act_slots": {
+        "topic": "destination_prompt"
+      },
+      "learning_role": "listen_only",
+      "surface": "Para onde você vai?",
+      "speak": "Para onde você vai?",
+      "translation": "您要去哪裡？",
+      "friend": {
+        "hint": "詢問轉乘"
+      },
+      "reply_set": {
+        "correct": "r1a",
+        "choices": [
+          {
+            "id": "r1a",
+            "surface": "Vou para o aeroporto. Onde faço a conexão?",
+            "translation": "詢問轉乘",
+            "speak": "Vou para o aeroporto. Onde faço a conexão?",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r1b",
+            "surface": "Fui ao aeroporto ontem.",
+            "translation": "我昨天去了機場。",
+            "speak": "Fui ao aeroporto ontem.",
+            "learning_role": "wrong_time_or_detail",
+            "feedback": "Pergunte a conexão de agora, não fale de ontem."
+          },
+          {
+            "id": "r1c",
+            "surface": "Quero guardar uma mala.",
+            "translation": "我想寄放行李。",
+            "speak": "Quero guardar uma mala.",
+            "learning_role": "wrong_scenario_or_escalation",
+            "feedback": "Isso é guarda-volumes, não conexão."
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t2",
+      "speaker": "npc",
+      "act": "transfer_instruction",
+      "act_slots": {
+        "topic": "transfer_instruction"
+      },
+      "learning_role": "listen_only",
+      "surface": "Desça na Central e vá para a plataforma três.",
+      "speak": "Desça na Central e vá para a plataforma três.",
+      "translation": "請在 Central 下車，然後到 3 號月台。",
+      "friend": {
+        "hint": "確認兩步指示"
+      },
+      "reply_set": {
+        "correct": "r2a",
+        "choices": [
+          {
+            "id": "r2a",
+            "surface": "Desço na Central e vou para a plataforma três, certo?",
+            "translation": "確認路線",
+            "speak": "Desço na Central e vou para a plataforma três, certo?",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r2b",
+            "surface": "Tomo café na Central, certo?",
+            "translation": "我在 Central 喝咖啡，對嗎？",
+            "speak": "Tomo café na Central, certo?",
+            "learning_role": "wrong_time_or_detail",
+            "feedback": "A orientação é ir para a plataforma três."
+          },
+          {
+            "id": "r2c",
+            "surface": "Quarto três, certo?",
+            "translation": "3 號房，對嗎？",
+            "speak": "Quarto três, certo?",
+            "learning_role": "wrong_scenario_or_escalation",
+            "feedback": "É plataforma, não quarto."
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t3",
+      "speaker": "npc",
+      "act": "platform_detail",
+      "act_slots": {
+        "topic": "platform_detail"
+      },
+      "learning_role": "listen_only",
+      "surface": "Na plataforma três, pegue o trem para o aeroporto.",
+      "speak": "Na plataforma três, pegue o trem para o aeroporto.",
+      "translation": "在 3 號月台搭往機場的車。",
+      "friend": {
+        "hint": "確認方向"
+      },
+      "reply_set": {
+        "correct": "r3a",
+        "choices": [
+          {
+            "id": "r3a",
+            "surface": "Na plataforma três eu pego o trem para o aeroporto, certo?",
+            "translation": "確認月台與方向",
+            "speak": "Na plataforma três eu pego o trem para o aeroporto, certo?",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r3b",
+            "surface": "O trem para o aeroporto chegou ontem.",
+            "translation": "往機場的車昨天到了。",
+            "speak": "O trem para o aeroporto chegou ontem.",
+            "learning_role": "wrong_time_or_detail",
+            "feedback": "Confirme o trem que você precisa agora."
+          },
+          {
+            "id": "r3c",
+            "surface": "Para onde vou em uma emergência?",
+            "translation": "緊急時我要去哪裡？",
+            "speak": "Para onde vou em uma emergência?",
+            "learning_role": "wrong_scenario_or_escalation",
+            "feedback": "Rotas de emergência ficam fora desta tarefa."
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t4",
+      "speaker": "npc",
+      "act": "route_confirmation",
+      "act_slots": {
+        "topic": "route_confirmation"
+      },
+      "learning_role": "listen_only",
+      "surface": "Sim, faça a conexão na Central.",
+      "speak": "Sim, faça a conexão na Central.",
+      "translation": "對，請在 Central 轉乘。",
+      "friend": {
+        "hint": "收尾"
+      },
+      "reply_set": {
+        "correct": "r4a",
+        "choices": [
+          {
+            "id": "r4a",
+            "surface": "Obrigado. Vou fazer a conexão na Central.",
+            "translation": "禮貌收尾",
+            "speak": "Obrigado. Vou fazer a conexão na Central.",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r4b",
+            "surface": "Quero mudar o horário da passagem.",
+            "translation": "我想更改票的時間。",
+            "speak": "Quero mudar o horário da passagem.",
+            "learning_role": "wrong_time_or_detail",
+            "feedback": "Isso não é mudança de passagem."
+          },
+          {
+            "id": "r4c",
+            "surface": "Vou à polícia no aeroporto.",
+            "translation": "我要去機場找警察。",
+            "speak": "Vou à polícia no aeroporto.",
+            "learning_role": "wrong_scenario_or_escalation",
+            "feedback": "Procedimentos policiais ficam fora desta tarefa."
+          }
+        ]
+      }
+    }
+  ],
+  "choice_sets": [
+    "t1.reply_set",
+    "t2.reply_set",
+    "t3.reply_set",
+    "t4.reply_set"
+  ],
+  "feedback": "Os distratores testam horário errado, contexto errado ou uma escalada fora do escopo A2.",
+  "tts_segments": [
+    "Para onde você vai?",
+    "Desça na Central e vá para a plataforma três.",
+    "Na plataforma três, pegue o trem para o aeroporto.",
+    "Sim, faça a conexão na Central."
+  ],
+  "formula_moments": [
+    {
+      "after_turn": "t2",
+      "pattern_id": "pt.a2.transport.transfer.v1"
+    }
+  ],
+  "runtime_notes": "PT A2 transport candidate. Full-walk runtime gate required before final closeout; target-language surfaces and feedback localized on 2026-06-14.",
+  "notes": {
+    "authoring_policy": "Fresh-authored from the neutral A2 transport brief. KO surfaces were used only as scenario blueprint, not as translation source.",
+    "a2_boundary": "Low-risk A2 transport/service task; avoids refund, compensation, emergency, identity-sensitive, legal, medical, banking, immigration, or police handling.",
+    "language_specific_adaptation": "NPC lines, learner targets, distractors, feedback, support text, and translations are adapted for this language; native review remains pending."
+  }
+}

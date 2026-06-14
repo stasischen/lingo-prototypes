@@ -1,0 +1,257 @@
+{
+  "schema_version": "scenario_pack.v1",
+  "scenario_id": "a2_decline_with_reason",
+  "title": "Refuser avec une Raison Simple",
+  "setting_label": "friend chat",
+  "wrap_title": "Refus doux confirmé",
+  "wrap_friend": "Bien. Tu as refusé avec une raison courte tout en gardant une relation chaleureuse.",
+  "language": "fr",
+  "ui_language": "zh-Hant",
+  "cefr_level": "A2",
+  "source_status": "candidate_runtime_verified",
+  "review_state": "ai_reviewed",
+  "review_status_framework_state": "candidate_runtime_verified",
+  "native_review_state": "native_pending",
+  "scenario": {
+    "domain": "daily_social_coordination",
+    "review_slice": "daily_social",
+    "interaction": "friend_social_coordination",
+    "source_brief": "A2_DAILY_SOCIAL_NEUTRAL_ADAPTATION_BRIEFS_20260614",
+    "blueprint_source": "language_neutral_adaptation_brief",
+    "ko_pack_role": "mature_scenario_blueprint_not_translation_source"
+  },
+  "learner_goal": "Gérer une situation sociale simple avec un ami en phrases courtes de niveau A2.",
+  "target_functions": [
+    "friend_invitation_or_response",
+    "simple_reason_or_past_event",
+    "two_step_plan_or_confirmation",
+    "close_with_relationship_maintenance"
+  ],
+  "register_notes": "French A2 friend/social register: natural spoken tu register, warm but concise, no formal service language or overly written phrasing.",
+  "production_mode_default": {
+    "required": [
+      "choice"
+    ],
+    "optional_visible": [
+      "speaking"
+    ],
+    "optional_hidden": [
+      "typing"
+    ]
+  },
+  "support_text": "Utilise un langage naturel avec un ami. Garde l’activité et la raison simples.",
+  "roles": {
+    "npc": {
+      "label": "ami"
+    },
+    "learner": {
+      "label": "你"
+    }
+  },
+  "turns": [
+    {
+      "turn_id": "t1",
+      "speaker": "npc",
+      "act": "receive_invite",
+      "act_slots": {
+        "topic": "decline",
+        "keyword": "1",
+        "gloss": "A2 daily/social"
+      },
+      "learning_role": "listen_only",
+      "surface": "Tu veux voir un film ce soir ?",
+      "speak": "Tu veux voir un film ce soir ?",
+      "translation": "今晚要看電影嗎？",
+      "friend": {
+        "hint": "Keep the refusal brief and warm."
+      },
+      "reply_set": {
+        "correct": "r1a",
+        "choices": [
+          {
+            "id": "r1a",
+            "surface": "Désolé, ce soir je ne peux pas.",
+            "translation": "不好意思，我今晚不行。",
+            "speak": "Désolé, ce soir je ne peux pas.",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r1b",
+            "surface": "Non, je ne veux pas.",
+            "translation": "不要，我不想。",
+            "speak": "Non, je ne veux pas.",
+            "contrast_type": "too_blunt",
+            "feedback": "Cela ne correspond pas à cette situation avec un ami."
+          },
+          {
+            "id": "r1c",
+            "surface": "Redonnez-moi le reçu, s’il vous plaît.",
+            "translation": "請再給我收據。",
+            "speak": "Redonnez-moi le reçu, s’il vous plaît.",
+            "contrast_type": "wrong_scenario_shop",
+            "feedback": "C’est trop fort pour parler à un ami."
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t2",
+      "speaker": "npc",
+      "act": "ask_reason",
+      "act_slots": {
+        "topic": "decline",
+        "keyword": "2",
+        "gloss": "A2 daily/social"
+      },
+      "learning_role": "listen_only",
+      "surface": "Pas de souci. Tu es occupé ?",
+      "speak": "Pas de souci. Tu es occupé ?",
+      "translation": "沒關係。你很忙嗎？",
+      "friend": {
+        "hint": "Keep the refusal brief and warm."
+      },
+      "reply_set": {
+        "correct": "r2a",
+        "choices": [
+          {
+            "id": "r2a",
+            "surface": "J’ai encore un peu de travail.",
+            "translation": "我還有一點事要做。",
+            "speak": "J’ai encore un peu de travail.",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r2b",
+            "surface": "Non, je ne veux pas.",
+            "translation": "不要，我不想。",
+            "speak": "Non, je ne veux pas.",
+            "contrast_type": "too_blunt",
+            "feedback": "Cela ne correspond pas à cette situation avec un ami."
+          },
+          {
+            "id": "r2c",
+            "surface": "Redonnez-moi le reçu, s’il vous plaît.",
+            "translation": "請再給我收據。",
+            "speak": "Redonnez-moi le reçu, s’il vous plaît.",
+            "contrast_type": "wrong_scenario_shop",
+            "feedback": "C’est trop fort pour parler à un ami."
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t3",
+      "speaker": "npc",
+      "act": "maintain_relation",
+      "act_slots": {
+        "topic": "decline",
+        "keyword": "3",
+        "gloss": "A2 daily/social"
+      },
+      "learning_role": "listen_only",
+      "surface": "Peut-être un autre jour ?",
+      "speak": "Peut-être un autre jour ?",
+      "translation": "也許改天？",
+      "friend": {
+        "hint": "Keep the refusal brief and warm."
+      },
+      "reply_set": {
+        "correct": "r3a",
+        "choices": [
+          {
+            "id": "r3a",
+            "surface": "Oui, peut-être ce week-end.",
+            "translation": "好，也許這個週末。",
+            "speak": "Oui, peut-être ce week-end.",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r3b",
+            "surface": "Non, je ne veux pas.",
+            "translation": "不要，我不想。",
+            "speak": "Non, je ne veux pas.",
+            "contrast_type": "too_blunt",
+            "feedback": "Cela ne correspond pas à cette situation avec un ami."
+          },
+          {
+            "id": "r3c",
+            "surface": "Redonnez-moi le reçu, s’il vous plaît.",
+            "translation": "請再給我收據。",
+            "speak": "Redonnez-moi le reçu, s’il vous plaît.",
+            "contrast_type": "wrong_scenario_shop",
+            "feedback": "C’est trop fort pour parler à un ami."
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t4",
+      "speaker": "npc",
+      "act": "close_warmly",
+      "act_slots": {
+        "topic": "decline",
+        "keyword": "4",
+        "gloss": "A2 daily/social"
+      },
+      "learning_role": "listen_only",
+      "surface": "D’accord. On en parle ce week-end.",
+      "speak": "D’accord. On en parle ce week-end.",
+      "translation": "好，那週末再說。",
+      "friend": {
+        "hint": "Keep the refusal brief and warm."
+      },
+      "reply_set": {
+        "correct": "r4a",
+        "choices": [
+          {
+            "id": "r4a",
+            "surface": "Merci. On se voit ce week-end.",
+            "translation": "謝謝，週末見。",
+            "speak": "Merci. On se voit ce week-end.",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r4b",
+            "surface": "Non, je ne veux pas.",
+            "translation": "不要，我不想。",
+            "speak": "Non, je ne veux pas.",
+            "contrast_type": "too_blunt",
+            "feedback": "Cela ne correspond pas à cette situation avec un ami."
+          },
+          {
+            "id": "r4c",
+            "surface": "Redonnez-moi le reçu, s’il vous plaît.",
+            "translation": "請再給我收據。",
+            "speak": "Redonnez-moi le reçu, s’il vous plaît.",
+            "contrast_type": "wrong_scenario_shop",
+            "feedback": "C’est trop fort pour parler à un ami."
+          }
+        ]
+      }
+    }
+  ],
+  "choice_sets": [
+    "t1.reply_set",
+    "t2.reply_set",
+    "t3.reply_set",
+    "t4.reply_set"
+  ],
+  "feedback": "Les distracteurs testent le registre social, le temps, la fonction et la limite A2.",
+  "tts_segments": [
+    "Désolé, ce soir je ne peux pas.",
+    "J’ai encore un peu de travail.",
+    "Oui, peut-être ce week-end.",
+    "Merci. On se voit ce week-end."
+  ],
+  "formula_moments": [
+    {
+      "after_turn": "t2",
+      "pattern_id": "fr.a2.daily.decline.v1"
+    }
+  ],
+  "runtime_notes": "Fresh A2 daily/social candidate. Requires full-walk runtime before closeout evidence is recorded.",
+  "notes": {
+    "authoring_policy": "Fresh-authored from A2 daily/social neutral adaptation brief. KO surface text was not copied or translated.",
+    "a2_boundary": "Friend/social register, ordinary low-risk activities and reasons, short A2 responses only."
+  }
+}

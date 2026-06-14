@@ -1,0 +1,253 @@
+{
+  "schema_version": "scenario_pack.v1",
+  "scenario_id": "a2_make_simple_plan_sequence",
+  "title": "두 단계 계획 세우기",
+  "setting_label": "친구와 주말 계획 통화",
+  "wrap_title": "간단한 순서 계획",
+  "wrap_friend": "잘했어요. 먼저 할 일과 그다음 할 일을 짧게 연결해서 계획을 확인했어요.",
+  "language": "ko",
+  "ui_language": "zh-Hant",
+  "cefr_level": "A2",
+  "source_status": "candidate_runtime_verified",
+  "review_state": "ai_reviewed",
+  "review_status_framework_state": "candidate_runtime_verified",
+  "native_review_state": "native_pending",
+  "scenario": {
+    "domain": "daily_social_coordination",
+    "review_slice": "daily_social",
+    "interaction": "friend_social_coordination",
+    "source_brief": "A2_DAILY_SOCIAL_NEUTRAL_ADAPTATION_BRIEFS_20260614",
+    "blueprint_source": "language_neutral_adaptation_brief",
+    "ko_pack_role": "mature_scenario_blueprint_not_translation_source_after_gate"
+  },
+  "learner_goal": "친구와 두 단계 계획을 세우고, 먼저/그다음 순서를 확인해 보세요.",
+  "target_functions": [
+    "friend_invitation_or_response",
+    "simple_reason_or_past_event",
+    "two_step_plan_or_confirmation",
+    "close_with_relationship_maintenance"
+  ],
+  "register_notes": "Korean A2 friend register: friendly polite-casual -요, two-step sequence only, no complex logistics or negotiation.",
+  "production_mode_default": {
+    "required": [
+      "choice"
+    ],
+    "optional_visible": [
+      "speaking"
+    ],
+    "optional_hidden": [
+      "typing"
+    ]
+  },
+  "support_text": "친구와 간단한 계획을 만들어요. 먼저 할 일과 그다음 할 일을 짧게 말해 보세요.",
+  "roles": {
+    "npc": {
+      "label": "친구"
+    },
+    "learner": {
+      "label": "你"
+    }
+  },
+  "turns": [
+    {
+      "turn_id": "t1",
+      "speaker": "npc",
+      "act": "suggest_first_step",
+      "act_slots": {
+        "topic": "first step",
+        "keyword": "먼저",
+        "gloss": "A2 daily/social"
+      },
+      "learning_role": "listen_only",
+      "surface": "토요일에 먼저 카페에서 만날까요?",
+      "speak": "토요일에 먼저 카페에서 만날까요?",
+      "translation": "星期六先在咖啡店見嗎？",
+      "friend": {
+        "hint": "첫 번째 단계를 제안하세요."
+      },
+      "reply_set": {
+        "correct": "r1a",
+        "choices": [
+          {
+            "id": "r1a",
+            "surface": "네, 먼저 카페에서 만나요.",
+            "translation": "好，先在咖啡店見。",
+            "speak": "네, 먼저 카페에서 만나요."
+          },
+          {
+            "id": "r1b",
+            "surface": "네, 먼저 환불해 주세요.",
+            "translation": "好，請先退款。",
+            "speak": "네, 먼저 환불해 주세요.",
+            "contrast_type": "wrong_scenario_refund",
+            "feedback": "친구와 계획을 세우는 상황이에요."
+          },
+          {
+            "id": "r1c",
+            "surface": "아니요, 절대 안 돼요.",
+            "translation": "不，絕對不行。",
+            "speak": "아니요, 절대 안 돼요.",
+            "contrast_type": "too_blunt",
+            "feedback": "친구 계획 대화에서 너무 딱딱해요."
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t2",
+      "speaker": "npc",
+      "act": "suggest_second_step",
+      "act_slots": {
+        "topic": "second step",
+        "keyword": "그다음",
+        "gloss": "A2 daily/social"
+      },
+      "learning_role": "listen_only",
+      "surface": "그다음에는 공원에 갈까요?",
+      "speak": "그다음에는 공원에 갈까요?",
+      "translation": "接著去公園嗎？",
+      "friend": {
+        "hint": "두 번째 단계를 확인하세요."
+      },
+      "reply_set": {
+        "correct": "r2a",
+        "choices": [
+          {
+            "id": "r2a",
+            "surface": "좋아요. 그다음에 공원에 가요.",
+            "translation": "好。接著去公園。",
+            "speak": "좋아요. 그다음에 공원에 가요."
+          },
+          {
+            "id": "r2b",
+            "surface": "공원은 어제 갔어요.",
+            "translation": "公園昨天去了。",
+            "speak": "공원은 어제 갔어요.",
+            "contrast_type": "wrong_time_past",
+            "feedback": "지금은 이번 토요일 계획을 정하고 있어요."
+          },
+          {
+            "id": "r2c",
+            "surface": "공항에서 수하물을 찾을게요.",
+            "translation": "我會在機場取行李。",
+            "speak": "공항에서 수하물을 찾을게요.",
+            "contrast_type": "wrong_scenario_transport",
+            "feedback": "수하물 상황이 아니에요."
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t3",
+      "speaker": "npc",
+      "act": "confirm_sequence",
+      "act_slots": {
+        "topic": "sequence confirmation",
+        "keyword": "먼저 그다음",
+        "gloss": "A2 daily/social"
+      },
+      "learning_role": "listen_only",
+      "surface": "그럼 먼저 카페, 그다음 공원이죠?",
+      "speak": "그럼 먼저 카페, 그다음 공원이죠?",
+      "translation": "那就是先咖啡店，接著公園，對嗎？",
+      "friend": {
+        "hint": "순서를 짧게 다시 말하세요."
+      },
+      "reply_set": {
+        "correct": "r3a",
+        "choices": [
+          {
+            "id": "r3a",
+            "surface": "네, 먼저 카페, 그다음 공원이에요.",
+            "translation": "對，先咖啡店，接著公園。",
+            "speak": "네, 먼저 카페, 그다음 공원이에요."
+          },
+          {
+            "id": "r3b",
+            "surface": "네, 먼저 공항, 그다음 호텔이에요.",
+            "translation": "對，先機場，接著飯店。",
+            "speak": "네, 먼저 공항, 그다음 호텔이에요.",
+            "contrast_type": "wrong_details",
+            "feedback": "장소가 바뀌었어요."
+          },
+          {
+            "id": "r3c",
+            "surface": "아니요, 세 곳 더 가야 해요.",
+            "translation": "不，還要再去三個地方。",
+            "speak": "아니요, 세 곳 더 가야 해요.",
+            "contrast_type": "too_complex",
+            "feedback": "이 과제는 두 단계 계획만 다뤄요."
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t4",
+      "speaker": "npc",
+      "act": "confirm_time",
+      "act_slots": {
+        "topic": "time close",
+        "keyword": "두 시",
+        "gloss": "A2 daily/social"
+      },
+      "learning_role": "listen_only",
+      "surface": "좋아요. 토요일 두 시에 만나요.",
+      "speak": "좋아요. 토요일 두 시에 만나요.",
+      "translation": "好，星期六兩點見。",
+      "friend": {
+        "hint": "시간까지 확인하고 마무리하세요."
+      },
+      "reply_set": {
+        "correct": "r4a",
+        "choices": [
+          {
+            "id": "r4a",
+            "surface": "네, 토요일 두 시에 봐요.",
+            "translation": "好，星期六兩點見。",
+            "speak": "네, 토요일 두 시에 봐요."
+          },
+          {
+            "id": "r4b",
+            "surface": "네, 오늘 아침에 봤어요.",
+            "translation": "好，今天早上見過了。",
+            "speak": "네, 오늘 아침에 봤어요.",
+            "contrast_type": "wrong_time_past",
+            "feedback": "앞으로 만날 시간을 확인해야 해요."
+          },
+          {
+            "id": "r4c",
+            "surface": "네, 의사에게 물어볼게요.",
+            "translation": "好，我會問醫生。",
+            "speak": "네, 의사에게 물어볼게요.",
+            "contrast_type": "forbidden_or_wrong_domain",
+            "feedback": "의료 상황이 아니에요."
+          }
+        ]
+      }
+    }
+  ],
+  "choice_sets": [
+    "t1.reply_set",
+    "t2.reply_set",
+    "t3.reply_set",
+    "t4.reply_set"
+  ],
+  "feedback": "Distractors test wrong scenario, blunt register, past/future confusion, and too-complex plans.",
+  "tts_segments": [
+    "네, 먼저 카페에서 만나요.",
+    "좋아요. 그다음에 공원에 가요.",
+    "네, 먼저 카페, 그다음 공원이에요.",
+    "네, 토요일 두 시에 봐요."
+  ],
+  "formula_moments": [
+    {
+      "after_turn": "t3",
+      "pattern_id": "ko.a2.daily.sequence.meonjeo_geudaeum.v1"
+    }
+  ],
+  "runtime_notes": "Fresh KO A2 daily/social candidate. Requires full-walk runtime before closeout evidence is recorded.",
+  "notes": {
+    "authoring_policy": "Fresh-authored from A2 daily/social neutral adaptation brief. Legacy A2 lines were not copied or paraphrased.",
+    "a2_boundary": "Uses exactly two steps and one time confirmation; avoids complex logistics, reservations, payments, or negotiation."
+  }
+}

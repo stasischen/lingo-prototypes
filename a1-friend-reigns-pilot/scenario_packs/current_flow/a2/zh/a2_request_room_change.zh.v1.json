@@ -1,0 +1,273 @@
+{
+  "schema_version": "scenario_pack.v1",
+  "scenario_id": "a2_request_room_change",
+  "title": "要求換房",
+  "setting_label": "飯店櫃台",
+  "wrap_title": "已確認換房",
+  "wrap_friend": "你剛剛完成了一段 A2 住宿服務情境，說明需求、聽懂回覆，並確認下一步。",
+  "language": "zh",
+  "ui_language": "zh-Hant",
+  "cefr_level": "A2",
+  "source_status": "candidate_runtime_verified",
+  "review_state": "ai_reviewed",
+  "review_status_framework_state": "candidate_runtime_verified",
+  "native_review_state": "native_pending",
+  "scenario": "A hotel/accommodation service scenario: a2_request_room_change.",
+  "learner_goal": "Ask for a room change with a simple reason and confirm the move timing.",
+  "target_functions": [
+    "room_change_request",
+    "simple_reason",
+    "alternative_room_confirmation"
+  ],
+  "register_notes": "zh A2 accommodation register: polite, natural Traditional Chinese hotel-service language; language-specific adaptation from the neutral brief, not a KO translation.",
+  "production_mode_default": {
+    "required": [
+      "choice"
+    ],
+    "optional_visible": [
+      "speaking"
+    ],
+    "optional_hidden": [
+      "typing"
+    ]
+  },
+  "support_text": "說出簡單理由，詢問是否可以換房。",
+  "roles": {
+    "npc": {
+      "label": "Empleado del hotel"
+    },
+    "learner": {
+      "label": "Tú"
+    }
+  },
+  "turns": [
+    {
+      "turn_id": "t1",
+      "speaker": "npc",
+      "act": "service_prompt",
+      "act_slots": {
+        "topic": "request-room-change",
+        "keyword": "1",
+        "gloss": "A2 accommodation"
+      },
+      "learning_role": "listen_only",
+      "surface": "我可以怎麼幫您？",
+      "speak": "我可以怎麼幫您？",
+      "translation": "我可以怎麼幫您？",
+      "friend": {
+        "hint": "說出簡單理由並要求換房。"
+      },
+      "reply_set": {
+        "correct": "r1a",
+        "choices": [
+          {
+            "id": "r1a",
+            "surface": "我的房間有點吵，可以換房嗎？",
+            "translation": "我的房間有點吵，可以換房嗎？",
+            "speak": "我的房間有點吵，可以換房嗎？",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r1b",
+            "surface": "我可以換餐廳座位嗎？",
+            "translation": "我可以換餐廳座位嗎？",
+            "speak": "我可以換餐廳座位嗎？",
+            "contrast_type": "wrong_detail_or_domain",
+            "feedback": "餐廳座位是其他情境。"
+          },
+          {
+            "id": "r1c",
+            "surface": "我要提出正式投訴。",
+            "translation": "我要提出正式投訴。",
+            "speak": "我要提出正式投訴。",
+            "contrast_type": "forbidden_or_wrong_domain",
+            "feedback": "正式投訴太強，不是這個目標。"
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t2",
+      "speaker": "npc",
+      "act": "confirm_availability",
+      "act_slots": {
+        "topic": "request-room-change",
+        "keyword": "2",
+        "gloss": "A2 accommodation"
+      },
+      "learning_role": "listen_only",
+      "surface": "我查了一下，還有另一間房可以換。",
+      "speak": "我查了一下，還有另一間房可以換。",
+      "translation": "我查了一下，還有另一間房可以換。",
+      "friend": {
+        "hint": "確認是否有房間。"
+      },
+      "reply_set": {
+        "correct": "r2a",
+        "choices": [
+          {
+            "id": "r2a",
+            "surface": "有另一間房可以換，對嗎？",
+            "translation": "有另一間房可以換，對嗎？",
+            "speak": "有另一間房可以換，對嗎？",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r2b",
+            "surface": "有另一張票可以換，對嗎？",
+            "translation": "有另一張票可以換，對嗎？",
+            "speak": "有另一張票可以換，對嗎？",
+            "contrast_type": "wrong_detail_or_domain",
+            "feedback": "票券是錯誤領域。"
+          },
+          {
+            "id": "r2c",
+            "surface": "我也可以拿到賠償嗎？",
+            "translation": "我也可以拿到賠償嗎？",
+            "speak": "我也可以拿到賠償嗎？",
+            "contrast_type": "forbidden_or_wrong_domain",
+            "feedback": "對方沒有提到賠償。"
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t3",
+      "speaker": "npc",
+      "act": "confirm_timing",
+      "act_slots": {
+        "topic": "request-room-change",
+        "keyword": "3",
+        "gloss": "A2 accommodation"
+      },
+      "learning_role": "listen_only",
+      "surface": "三十分鐘後可以搬到新房間。",
+      "speak": "三十分鐘後可以搬到新房間。",
+      "translation": "三十分鐘後可以搬到新房間。",
+      "friend": {
+        "hint": "確認可以搬的時間。"
+      },
+      "reply_set": {
+        "correct": "r3a",
+        "choices": [
+          {
+            "id": "r3a",
+            "surface": "我三十分鐘後可以搬，對嗎？",
+            "translation": "我三十分鐘後可以搬，對嗎？",
+            "speak": "我三十分鐘後可以搬，對嗎？",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r3b",
+            "surface": "我三小時後退房，對嗎？",
+            "translation": "我三小時後退房，對嗎？",
+            "speak": "我三小時後退房，對嗎？",
+            "contrast_type": "wrong_detail_or_domain",
+            "feedback": "這變成退房情境。"
+          },
+          {
+            "id": "r3c",
+            "surface": "我換房是因為要去醫院。",
+            "translation": "我換房是因為要去醫院。",
+            "speak": "我換房是因為要去醫院。",
+            "contrast_type": "forbidden_or_wrong_domain",
+            "feedback": "不需要加入醫院理由。"
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t4",
+      "speaker": "npc",
+      "act": "confirm_card",
+      "act_slots": {
+        "topic": "request-room-change",
+        "keyword": "4",
+        "gloss": "A2 accommodation"
+      },
+      "learning_role": "listen_only",
+      "surface": "房間準備好後，我會給您新的房卡。",
+      "speak": "房間準備好後，我會給您新的房卡。",
+      "translation": "房間準備好後，我會給您新的房卡。",
+      "friend": {
+        "hint": "用新房卡收尾。"
+      },
+      "reply_set": {
+        "correct": "r4a",
+        "choices": [
+          {
+            "id": "r4a",
+            "surface": "好的，準備好後我拿新的房卡。",
+            "translation": "好的，準備好後我拿新的房卡。",
+            "speak": "好的，準備好後我拿新的房卡。",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r4b",
+            "surface": "不，我要改火車時間。",
+            "translation": "不，我要改火車時間。",
+            "speak": "不，我要改火車時間。",
+            "contrast_type": "wrong_detail_or_domain",
+            "feedback": "火車是錯誤情境。"
+          },
+          {
+            "id": "r4c",
+            "surface": "我現在要去找警察。",
+            "translation": "我現在要去找警察。",
+            "speak": "我現在要去找警察。",
+            "contrast_type": "forbidden_or_wrong_domain",
+            "feedback": "警察太嚴重，不符合這個任務。"
+          }
+        ]
+      }
+    }
+  ],
+  "choice_sets": {
+    "count_per_turn": 3,
+    "correct_path": [
+      "r1a",
+      "r2a",
+      "r3a",
+      "r4a"
+    ],
+    "distractor_policy": "one near-domain wrong detail plus one out-of-scope/over-escalated option per turn"
+  },
+  "feedback": "Los distractores prueban tiempo, lugar, servicio equivocado o una petición fuera del alcance A2.",
+  "tts_segments": [
+    "我可以怎麼幫您？",
+    "我的房間有點吵，可以換房嗎？",
+    "我可以換餐廳座位嗎？",
+    "我要提出正式投訴。",
+    "我查了一下，還有另一間房可以換。",
+    "有另一間房可以換，對嗎？",
+    "有另一張票可以換，對嗎？",
+    "我也可以拿到賠償嗎？",
+    "三十分鐘後可以搬到新房間。",
+    "我三十分鐘後可以搬，對嗎？",
+    "我三小時後退房，對嗎？",
+    "我換房是因為要去醫院。",
+    "房間準備好後，我會給您新的房卡。",
+    "好的，準備好後我拿新的房卡。",
+    "不，我要改火車時間。",
+    "我現在要去找警察。"
+  ],
+  "formula_moments": [
+    {
+      "after_turn": "t2",
+      "pattern_id": "zh.a2.accommodation.room_change.reason.v1",
+      "label": "原因 + 可以換房嗎",
+      "learner_takeaway": "有另一間房"
+    }
+  ],
+  "runtime_notes": {
+    "expected_turns": 4,
+    "expected_choices_per_turn": 3,
+    "full_walk_required": true,
+    "expected_final_screen": "Wrap"
+  },
+  "notes": {
+    "generated_at": "2026-06-14",
+    "authoring_scope": "A2 accommodation remaining six-language wave",
+    "native_review_state": "native_pending"
+  }
+}

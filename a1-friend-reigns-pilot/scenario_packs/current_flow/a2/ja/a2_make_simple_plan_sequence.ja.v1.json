@@ -1,0 +1,287 @@
+{
+  "schema_version": "scenario_pack.v1",
+  "scenario_id": "a2_make_simple_plan_sequence",
+  "title": "二つの流れで予定を決める",
+  "setting_label": "友だちとの予定作り",
+  "wrap_title": "簡単な予定の順番",
+  "wrap_friend": "よくできました。先にすることと、そのあとにすることを短く言って、友だちと予定を確認しました。",
+  "language": "ja",
+  "ui_language": "zh-Hant",
+  "cefr_level": "A2",
+  "source_status": "candidate_runtime_verified",
+  "review_state": "ai_reviewed",
+  "review_status_framework_state": "candidate_runtime_verified",
+  "native_review_state": "native_pending",
+  "scenario": {
+    "domain": "daily_social_coordination",
+    "review_slice": "daily_social",
+    "interaction": "two_step_friend_plan",
+    "source_brief": "A2_DAILY_SOCIAL_NEUTRAL_ADAPTATION_BRIEFS_20260614",
+    "blueprint_source": "language_neutral_adaptation_brief",
+    "ko_pack_role": "not_used_as_translation_source"
+  },
+  "learner_goal": "友だちと二つだけの予定を作り、先に/そのあとで順番を確認します。",
+  "target_functions": [
+    "suggest_first_step",
+    "add_second_step",
+    "use_simple_sequence",
+    "confirm_plan_order"
+  ],
+  "register_notes": "Japanese A2 daily/social register: casual friend planning, only two steps, no reservations, payments, disruption, or negotiation.",
+  "production_mode_default": {
+    "required": [
+      "choice"
+    ],
+    "optional_visible": [
+      "speaking"
+    ],
+    "optional_hidden": [
+      "typing"
+    ]
+  },
+  "support_text": "友だちと二つだけの予定を決めます。先に何をして、そのあと何をするかを短く言いましょう。",
+  "roles": {
+    "npc": {
+      "label": "友だち"
+    },
+    "learner": {
+      "label": "你"
+    }
+  },
+  "turns": [
+    {
+      "turn_id": "t1",
+      "speaker": "learner",
+      "act": "suggest_first_step",
+      "act_slots": {
+        "topic": "meet first",
+        "keyword": "先に",
+        "gloss": "先"
+      },
+      "learning_role": "production_target",
+      "surface": "先に駅で会おう。",
+      "speak": "先に駅で会おう。",
+      "translation": "先在車站見吧。",
+      "friend": {
+        "hint": "まず一つ目の行動を提案します。先に marks the first step."
+      },
+      "reply_set": {
+        "correct": "r1a",
+        "choices": [
+          {
+            "id": "r1a",
+            "surface": "先に駅で会おう。",
+            "translation": "先在車站見吧。",
+            "speak": "先に駅で会おう。",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r1b",
+            "surface": "駅で払いましょう。",
+            "translation": "在車站付款吧。",
+            "speak": "駅で払いましょう。",
+            "contrast_type": "wrong_domain_payment",
+            "feedback": "支払いの話ではありません。最初の待ち合わせを提案します。"
+          },
+          {
+            "id": "r1c",
+            "surface": "昨日、駅で会った。",
+            "translation": "昨天在車站見了。",
+            "speak": "昨日、駅で会った。",
+            "contrast_type": "wrong_time_past",
+            "feedback": "過去の話ではなく、これからの予定を作っています。"
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t2",
+      "speaker": "npc",
+      "act": "suggest_second_step",
+      "act_slots": {
+        "topic": "second step",
+        "keyword": "そのあと",
+        "gloss": "之後"
+      },
+      "learning_role": "listen_only",
+      "surface": "いいね。そのあと、少し歩く？",
+      "speak": "いいね。そのあと、少し歩く？",
+      "translation": "好啊。之後要走走嗎？",
+      "friend": {
+        "hint": "友だちが二つ目の行動を提案しています。順番をまとめましょう。"
+      },
+      "inline_explain": {
+        "pattern_id": "ja.a2.social.sequence.saki_ni_sono_ato.v1",
+        "title": "先に / そのあと",
+        "explain": "Use 先に for the first step and そのあと for the next step.",
+        "items": [
+          {
+            "surface": "先に会う",
+            "translation": "先見面",
+            "speak": "先に会う"
+          },
+          {
+            "surface": "そのあと歩く",
+            "translation": "之後散步",
+            "speak": "そのあと歩く"
+          }
+        ]
+      },
+      "reply_set": {
+        "correct": "r2a",
+        "choices": [
+          {
+            "id": "r2a",
+            "surface": "うん、先に会って、そのあと歩こう。",
+            "translation": "嗯，先見面，之後散步吧。",
+            "speak": "うん、先に会って、そのあと歩こう。",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r2b",
+            "surface": "うん、歩いたあとで昨日会った。",
+            "translation": "嗯，散步之後昨天見面了。",
+            "speak": "うん、歩いたあとで昨日会った。",
+            "contrast_type": "wrong_time_sequence",
+            "feedback": "これからの二つの予定を順番に言います。昨日の話ではありません。"
+          },
+          {
+            "id": "r2c",
+            "surface": "うん、予約してから返金しよう。",
+            "translation": "嗯，預約之後退款吧。",
+            "speak": "うん、予約してから返金しよう。",
+            "contrast_type": "wrong_domain_complex",
+            "feedback": "予約や返金はこの友だち予定の外です。二つの簡単な行動だけにします。"
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t3",
+      "speaker": "npc",
+      "act": "ask_meeting_time",
+      "act_slots": {
+        "topic": "meeting time",
+        "keyword": "何時",
+        "gloss": "幾點"
+      },
+      "learning_role": "listen_only",
+      "surface": "何時に駅で会う？",
+      "speak": "何時に駅で会う？",
+      "translation": "幾點在車站見？",
+      "friend": {
+        "hint": "待ち合わせ時間を一つだけ言いましょう。"
+      },
+      "reply_set": {
+        "correct": "r3a",
+        "choices": [
+          {
+            "id": "r3a",
+            "surface": "2時に駅で会おう。",
+            "translation": "2 點在車站見吧。",
+            "speak": "二時に駅で会おう。",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r3b",
+            "surface": "2番線で電車が遅れている。",
+            "translation": "2 號月台電車誤點了。",
+            "speak": "二番線で電車が遅れている。",
+            "contrast_type": "wrong_domain_transport_delay",
+            "feedback": "交通延誤の話ではありません。待ち合わせ時間を答えます。"
+          },
+          {
+            "id": "r3c",
+            "surface": "2時間ぐらい説明するね。",
+            "translation": "我說明大約兩小時。",
+            "speak": "二時間ぐらい説明するね。",
+            "contrast_type": "too_long_b1",
+            "feedback": "長い説明は不要です。時間を短く決めましょう。"
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t4",
+      "speaker": "npc",
+      "act": "confirm_plan",
+      "act_slots": {
+        "topic": "two-step plan confirmed"
+      },
+      "learning_role": "listen_only",
+      "surface": "わかった。2時に会って、そのあと歩こう。",
+      "speak": "わかった。二時に会って、そのあと歩こう。",
+      "translation": "了解。2 點見，之後散步吧。",
+      "friend": {
+        "hint": "予定の順番が確認できました。自然に返しましょう。"
+      },
+      "reply_set": {
+        "correct": "r4a",
+        "choices": [
+          {
+            "id": "r4a",
+            "surface": "うん、それでいいよ。",
+            "translation": "嗯，這樣可以。",
+            "speak": "うん、それでいいよ。",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r4b",
+            "surface": "うん、先に帰ろう。",
+            "translation": "嗯，先回家吧。",
+            "speak": "うん、先に帰ろう。",
+            "contrast_type": "contradicts_plan",
+            "feedback": "決まった予定を変えてしまっています。確認して終わりましょう。"
+          },
+          {
+            "id": "r4c",
+            "surface": "うん、チェックインしてください。",
+            "translation": "嗯，請辦理入住。",
+            "speak": "うん、チェックインしてください。",
+            "contrast_type": "wrong_domain_hotel",
+            "feedback": "ホテルの場面ではありません。友だちとの予定確認です。"
+          }
+        ]
+      }
+    }
+  ],
+  "choice_sets": {
+    "count_per_turn": 3,
+    "correct_path": [
+      "r1a",
+      "r2a",
+      "r3a",
+      "r4a"
+    ],
+    "distractor_policy": "wrong time, wrong domain, complex logistics, or contradiction; only two-step plan remains valid"
+  },
+  "feedback": {
+    "correct": "いいですね。二つの予定を先に/そのあとで自然に確認できました。",
+    "incorrect": "二つだけの予定、順番、待ち合わせ時間に合う答えを選びましょう。"
+  },
+  "tts_segments": [
+    "先に駅で会おう。",
+    "うん、先に会って、そのあと歩こう。",
+    "2時に駅で会おう。",
+    "うん、それでいいよ。"
+  ],
+  "formula_moments": [
+    {
+      "after_turn": "t2",
+      "pattern_id": "ja.a2.social.sequence.saki_ni_sono_ato.v1",
+      "label": "先に / そのあと",
+      "learner_takeaway": "先に会って、そのあと歩こう。"
+    }
+  ],
+  "runtime_notes": {
+    "expected_turns": 4,
+    "expected_choices_per_turn": 3,
+    "full_walk_required": true,
+    "expected_final_screen": "Wrap"
+  },
+  "notes": {
+    "generated_at": "2026-06-14",
+    "authoring_scope": "A2 daily/social JA adaptation",
+    "native_review_state": "native_pending"
+  }
+}

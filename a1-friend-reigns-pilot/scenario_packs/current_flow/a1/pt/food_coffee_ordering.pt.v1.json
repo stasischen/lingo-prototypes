@@ -1,0 +1,256 @@
+{
+  "schema_version": "scenario_pack.v1",
+  "scenario_id": "food_coffee_ordering",
+  "brief_id": "ml0_a1_001_food_coffee_ordering",
+  "source_neutral_brief": "release-aggregator/docs/tasks/A1_MULTILINGUAL_KO_B1_PARALLEL_ORCHESTRATION/work_products/ml0/ML0_NEUTRAL_ADAPTATION_BRIEFS_20260613.md#brief-ml0-a1-001-coffee-ordering",
+  "blueprint_ledger": "release-aggregator/docs/tasks/A1_MULTILINGUAL_KO_B1_PARALLEL_ORCHESTRATION/work_products/ml0/ML0_BLUEPRINT_LEDGER_20260613.md",
+  "repo": "content-pt",
+  "staging_path": "content/core/content_assets/scenario_packs/current_flow/food_coffee_ordering.pt.v1.json",
+  "title": "Pedir café",
+  "setting_label": "Balcão de cafeteria",
+  "wrap_title": "Você já pode pedir café",
+  "wrap_friend": "Você pediu uma bebida, escolheu para viagem e encerrou com frases curtas.",
+  "language": "pt",
+  "ui_language": "zh_tw",
+  "source_status": "candidate_runtime_verified",
+  "review_state": "draft",
+  "review_status_framework_state": "candidate_runtime_verified",
+  "native_review_state": "native_pending",
+  "production_mode_default": {
+    "required": [
+      "choice"
+    ],
+    "optional_visible": [
+      "speaking"
+    ],
+    "optional_hidden": [
+      "typing"
+    ]
+  },
+  "support_text": "你在葡語咖啡店櫃台。聽店員問什麼，選一句自然接得上的葡萄牙語。",
+  "roles": {
+    "npc": {
+      "label": "atendente"
+    },
+    "learner": {
+      "label": "cliente"
+    }
+  },
+  "turns": [
+    {
+      "turn_id": "t1",
+      "speaker": "npc",
+      "act": "service_opening",
+      "act_slots": {
+        "topic": "começar pedido",
+        "keyword": "quer",
+        "gloss": "想要"
+      },
+      "learning_role": "listen_only",
+      "surface": "Olá, o que vai querer?",
+      "speak": "Olá, o que vai querer?",
+      "translation": "您好，您想要什麼？",
+      "friend": {
+        "hint": "店員在問你要什麼。用「Um/Uma..., por favor」就能點餐。"
+      },
+      "reply_set": {
+        "correct": "r1a",
+        "choices": [
+          {
+            "id": "r1a",
+            "surface": "Um café com leite, por favor.",
+            "translation": "一杯牛奶咖啡，謝謝。",
+            "speak": "Um café com leite, por favor.",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r1b",
+            "surface": "Onde fica o banheiro?",
+            "translation": "洗手間在哪裡？",
+            "speak": "Onde fica o banheiro?",
+            "contrast_type": "wrong_scenario_request",
+            "feedback": "這句是在問洗手間。現在店員在等你點飲料。"
+          },
+          {
+            "id": "r1c",
+            "surface": "Não, tudo bem.",
+            "translation": "不用了，謝謝。",
+            "speak": "Não, tudo bem.",
+            "contrast_type": "wrong_act_refusal",
+            "feedback": "這樣像是在說不點。要點飲料時，說「Um café..., por favor」。"
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t2",
+      "speaker": "npc",
+      "act": "choice_question",
+      "act_slots": {
+        "topic": "tomar aqui ou levar",
+        "keyword": "viagem",
+        "gloss": "外帶"
+      },
+      "learning_role": "listen_only",
+      "surface": "Para tomar aqui ou para viagem?",
+      "speak": "Para tomar aqui ou para viagem?",
+      "translation": "內用還是外帶？",
+      "friend": {
+        "hint": "aqui 是這裡，para viagem 是外帶。選一個回答就好。"
+      },
+      "inline_explain": {
+        "pattern_id": "pt.cafe.here.to_go.v1",
+        "formula_ref": null,
+        "title": "aqui / para viagem",
+        "explain": "「aqui」是這裡，「para viagem」是外帶。",
+        "items": [
+          {
+            "surface": "Aqui.",
+            "translation": "內用。",
+            "speak": "Aqui."
+          },
+          {
+            "surface": "Para viagem.",
+            "translation": "外帶。",
+            "speak": "Para viagem."
+          }
+        ]
+      },
+      "reply_set": {
+        "correct": "r2a",
+        "choices": [
+          {
+            "id": "r2a",
+            "surface": "Para viagem, por favor.",
+            "translation": "外帶，謝謝。",
+            "speak": "Para viagem, por favor.",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r2b",
+            "surface": "Um café com leite, por favor.",
+            "translation": "一杯牛奶咖啡，謝謝。",
+            "speak": "Um café com leite, por favor.",
+            "contrast_type": "repeated_prior_answer",
+            "feedback": "飲料已經點了。這裡是在問內用或外帶。"
+          },
+          {
+            "id": "r2c",
+            "surface": "Sim, por favor.",
+            "translation": "好的，謝謝。",
+            "speak": "Sim, por favor.",
+            "contrast_type": "wrong_act_confirmation",
+            "feedback": "店員給你兩個選項，不是問是或不是。要選「aqui」或「para viagem」。"
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t3",
+      "speaker": "npc",
+      "act": "confirmation",
+      "act_slots": {
+        "topic": "confirmar pedido",
+        "keyword": "certo",
+        "gloss": "好"
+      },
+      "learning_role": "listen_only",
+      "surface": "Um café com leite para viagem, certo?",
+      "speak": "Um café com leite para viagem, certo?",
+      "translation": "一杯牛奶咖啡外帶，對嗎？",
+      "friend": {
+        "hint": "店員在確認訂單。沒問題時，可以簡短說「Sim」。"
+      },
+      "reply_set": {
+        "correct": "r3a",
+        "choices": [
+          {
+            "id": "r3a",
+            "surface": "Sim, está certo.",
+            "translation": "是的，謝謝。",
+            "speak": "Sim, está certo."
+          },
+          {
+            "id": "r3b",
+            "surface": "Não quero nada.",
+            "translation": "我什麼都不要。",
+            "speak": "Não quero nada.",
+            "contrast_type": "wrong_act_refusal",
+            "feedback": "這樣像是在取消。訂單沒問題時，說「Sim, está certo」。"
+          },
+          {
+            "id": "r3c",
+            "surface": "Tenho uma reserva.",
+            "translation": "我有訂房。",
+            "speak": "Tenho uma reserva.",
+            "contrast_type": "wrong_scenario_response",
+            "feedback": "這是飯店入住用的句子。現在是在確認咖啡訂單。"
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t4",
+      "speaker": "npc",
+      "act": "payment",
+      "act_slots": {
+        "topic": "pagar e esperar",
+        "keyword": "reais",
+        "gloss": "巴西雷亞爾"
+      },
+      "learning_role": "listen_only",
+      "surface": "São dez reais. Já sai.",
+      "speak": "São dez reais. Já sai.",
+      "translation": "十雷亞爾。很快就好。",
+      "friend": {
+        "hint": "店員說價格，也說很快就好。簡短說謝謝就可以。"
+      },
+      "reply_set": {
+        "correct": "r4a",
+        "choices": [
+          {
+            "id": "r4a",
+            "surface": "Tudo bem.",
+            "translation": "謝謝。",
+            "speak": "Tudo bem."
+          },
+          {
+            "id": "r4b",
+            "surface": "Para viagem, por favor.",
+            "translation": "外帶，謝謝。",
+            "speak": "Para viagem, por favor.",
+            "contrast_type": "repeated_prior_answer",
+            "feedback": "外帶剛剛已經說過了。現在是付款和等待。"
+          },
+          {
+            "id": "r4c",
+            "surface": "Onde fica o banheiro?",
+            "translation": "洗手間在哪裡？",
+            "speak": "Onde fica o banheiro?",
+            "contrast_type": "off_topic_statement",
+            "feedback": "先完成咖啡付款。問洗手間是另一個場景。"
+          }
+        ]
+      },
+      "closing": {
+        "act": "handover",
+        "learning_role": "listen_only",
+        "surface": "Aqui está seu café.",
+        "speak": "Aqui está seu café.",
+        "translation": "這是您的咖啡。"
+      }
+    }
+  ],
+  "formula_moments": [
+    {
+      "after_turn": "t2",
+      "pattern_id": "pt.cafe.here.to_go.v1"
+    }
+  ],
+  "notes": {
+    "authoring_source": "Authored from ML-0 neutral brief, not Korean surface text.",
+    "review_policy": "AI-authored Portuguese candidate. Requires AI review, runtime smoke, and tracked native review before any stronger status.",
+    "canonical_policy": "Staging candidate only. Do not write back to manifests, production exports, schemas, or legacy content.",
+    "portuguese_locale_note": "Uses a Brazilian Portuguese service baseline with banheiro, reais, para viagem, and o que vai querer."
+  }
+}

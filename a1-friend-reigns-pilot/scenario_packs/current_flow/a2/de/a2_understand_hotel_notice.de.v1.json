@@ -1,0 +1,261 @@
+{
+  "schema_version": "scenario_pack.v1",
+  "scenario_id": "a2_understand_hotel_notice",
+  "title": "Einen Hotelhinweis Verstehen",
+  "setting_label": "In der Hotellobby",
+  "wrap_title": "Hotelhinweis bestätigt",
+  "wrap_friend": "你剛剛完成了一段 A2 住宿服務情境，說明需求、聽懂回覆，並確認下一步。",
+  "language": "de",
+  "ui_language": "zh_tw",
+  "cefr_level": "A2",
+  "source_status": "candidate_runtime_verified",
+  "review_state": "ai_reviewed",
+  "review_status_framework_state": "candidate_runtime_verified",
+  "native_review_state": "native_pending",
+  "scenario": "A hotel/accommodation service scenario: a2_understand_hotel_notice.",
+  "learner_goal": "Understand a short hotel notice and confirm time, place, and rule details.",
+  "target_functions": [
+    "notice_comprehension",
+    "time_place_rule_confirmation",
+    "simple_clarification"
+  ],
+  "register_notes": "Clear German hotel-service register with Sie forms; no complaint escalation.",
+  "production_mode_default": {
+    "required": [
+      "choice"
+    ],
+    "optional_visible": [
+      "speaking"
+    ],
+    "optional_hidden": [
+      "typing"
+    ]
+  },
+  "support_text": "Verstehen Sie einen kurzen Hotelhinweis und bestätigen Sie Zeit, Ort und Regel.",
+  "roles": {
+    "npc": {
+      "label": "Hotelmitarbeiter"
+    },
+    "learner": {
+      "label": "Sie"
+    }
+  },
+  "turns": [
+    {
+      "turn_id": "t1",
+      "speaker": "npc",
+      "act": "notice_intro",
+      "act_slots": {
+        "topic": "notice_intro",
+        "keyword": "desayuno",
+        "gloss": "早餐"
+      },
+      "learning_role": "listen_only",
+      "surface": "Bitte sehen Sie sich den Hinweis an. Das Frühstück ist morgens von sieben bis neun Uhr.",
+      "speak": "Bitte sehen Sie sich den Hinweis an. Das Frühstück ist morgens von sieben bis neun Uhr.",
+      "translation": "請看公告。早餐是早上七點到九點。",
+      "friend": {
+        "hint": "Busque la hora en el aviso."
+      },
+      "reply_set": {
+        "correct": "r1a",
+        "choices": [
+          {
+            "id": "r1a",
+            "surface": "Das Frühstück ist morgens von sieben bis neun Uhr, richtig?",
+            "translation": "早餐是早上七點到九點，對嗎？",
+            "speak": "Das Frühstück ist morgens von sieben bis neun Uhr, richtig?",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r1b",
+            "surface": "Das Frühstück ist abends von sieben bis neun Uhr, richtig?",
+            "translation": "早餐是晚上七點到九點，對嗎？",
+            "speak": "Das Frühstück ist abends von sieben bis neun Uhr, richtig?",
+            "contrast_type": "wrong_detail_or_domain",
+            "feedback": "Der Hinweis sagt morgens."
+          },
+          {
+            "id": "r1c",
+            "surface": "Check-out ist morgens um neun Uhr, richtig?",
+            "translation": "退房是早上九點，對嗎？",
+            "speak": "Check-out ist morgens um neun Uhr, richtig?",
+            "contrast_type": "forbidden_or_wrong_domain",
+            "feedback": "Dieser Hinweis ist über Frühstück, nicht Check-out."
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t2",
+      "speaker": "npc",
+      "act": "place_detail",
+      "act_slots": {
+        "topic": "place_detail",
+        "keyword": "restaurante del segundo piso",
+        "gloss": "二樓餐廳"
+      },
+      "learning_role": "listen_only",
+      "surface": "Es ist im Restaurant im zweiten Stock.",
+      "speak": "Es ist im Restaurant im zweiten Stock.",
+      "translation": "地點是二樓餐廳。",
+      "friend": {
+        "hint": "Confirme el lugar."
+      },
+      "inline_explain": {
+        "pattern_id": "de.a2.accommodation.notice.time_place.v1",
+        "title": "A2-Muster",
+        "explain": "Kurzer Ausdruck für diese Hotelsituation.",
+        "items": [
+          {
+            "surface": "restaurante del segundo piso",
+            "translation": "二樓餐廳",
+            "speak": "restaurante del segundo piso"
+          }
+        ]
+      },
+      "reply_set": {
+        "correct": "r2a",
+        "choices": [
+          {
+            "id": "r2a",
+            "surface": "Ich gehe ins Restaurant im zweiten Stock, richtig?",
+            "translation": "去二樓餐廳就可以，對嗎？",
+            "speak": "Ich gehe ins Restaurant im zweiten Stock, richtig?",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r2b",
+            "surface": "Ich gehe in ein Zimmer im dritten Stock, richtig?",
+            "translation": "去三樓房間就可以，對嗎？",
+            "speak": "Ich gehe in ein Zimmer im dritten Stock, richtig?",
+            "contrast_type": "wrong_detail_or_domain",
+            "feedback": "Der Ort ist das Restaurant im zweiten Stock."
+          },
+          {
+            "id": "r2c",
+            "surface": "Ich zeige meinen Pass, richtig?",
+            "translation": "給您看護照就可以，對嗎？",
+            "speak": "Ich zeige meinen Pass, richtig?",
+            "contrast_type": "forbidden_or_wrong_domain",
+            "feedback": "Ein Pass ist für diesen Hinweis nicht nötig."
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t3",
+      "speaker": "npc",
+      "act": "clarification",
+      "act_slots": {
+        "topic": "clarification",
+        "keyword": "número de habitación",
+        "gloss": "房號"
+      },
+      "learning_role": "listen_only",
+      "surface": "Am Eingang sagen Sie bitte nur Ihre Zimmernummer.",
+      "speak": "Am Eingang sagen Sie bitte nur Ihre Zimmernummer.",
+      "translation": "入口只要告知房號即可。",
+      "friend": {
+        "hint": "Confirme la condición sencilla."
+      },
+      "reply_set": {
+        "correct": "r3a",
+        "choices": [
+          {
+            "id": "r3a",
+            "surface": "Ich sage am Eingang nur meine Zimmernummer, richtig?",
+            "translation": "入口只要說房號就可以，對嗎？",
+            "speak": "Ich sage am Eingang nur meine Zimmernummer, richtig?",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r3b",
+            "surface": "Ich spreche am Eingang mit der Polizei, richtig?",
+            "translation": "入口要跟警察說，對嗎？",
+            "speak": "Ich spreche am Eingang mit der Polizei, richtig?",
+            "contrast_type": "wrong_detail_or_domain",
+            "feedback": "Das ist ein Frühstückshinweis, kein Polizeivorgang."
+          },
+          {
+            "id": "r3c",
+            "surface": "Ich bekomme am Eingang eine Erstattung, richtig?",
+            "translation": "入口可以拿退款，對嗎？",
+            "speak": "Ich bekomme am Eingang eine Erstattung, richtig?",
+            "contrast_type": "forbidden_or_wrong_domain",
+            "feedback": "Erstattungen passen nicht zu diesem Hinweis."
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t4",
+      "speaker": "npc",
+      "act": "close",
+      "act_slots": {
+        "topic": "close",
+        "keyword": "mañana por la mañana",
+        "gloss": "明天早上"
+      },
+      "learning_role": "listen_only",
+      "surface": "Ja, kommen Sie morgen früh.",
+      "speak": "Ja, kommen Sie morgen früh.",
+      "translation": "對，明天早上來就可以。",
+      "friend": {
+        "hint": "Confirme lo que hará."
+      },
+      "reply_set": {
+        "correct": "r4a",
+        "choices": [
+          {
+            "id": "r4a",
+            "surface": "In Ordnung. Morgen früh gehe ich ins Restaurant im zweiten Stock.",
+            "translation": "好，我明天早上去二樓餐廳。",
+            "speak": "In Ordnung. Morgen früh gehe ich ins Restaurant im zweiten Stock.",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r4b",
+            "surface": "In Ordnung. Heute Abend hole ich die Wäsche ab.",
+            "translation": "好，我今晚去拿洗衣。",
+            "speak": "In Ordnung. Heute Abend hole ich die Wäsche ab.",
+            "contrast_type": "wrong_detail_or_domain",
+            "feedback": "Es geht um Frühstück, nicht um Wäsche."
+          },
+          {
+            "id": "r4c",
+            "surface": "In Ordnung. Ich schreibe einen Unfallbericht.",
+            "translation": "好，我會寫事故報告。",
+            "speak": "In Ordnung. Ich schreibe einen Unfallbericht.",
+            "contrast_type": "forbidden_or_wrong_domain",
+            "feedback": "Unfallberichte liegen außerhalb dieser Aufgabe."
+          }
+        ]
+      }
+    }
+  ],
+  "choice_sets": [
+    "t1.reply_set",
+    "t2.reply_set",
+    "t3.reply_set",
+    "t4.reply_set"
+  ],
+  "feedback": "Die Ablenker prüfen falsche Zeit, falschen Ort, falschen Service oder eine Anfrage außerhalb von A2.",
+  "tts_segments": [
+    "Bitte sehen Sie sich den Hinweis an. Das Frühstück ist morgens von sieben bis neun Uhr.",
+    "Es ist im Restaurant im zweiten Stock.",
+    "Am Eingang sagen Sie bitte nur Ihre Zimmernummer.",
+    "Ja, kommen Sie morgen früh."
+  ],
+  "formula_moments": [
+    {
+      "after_turn": "t2",
+      "pattern_id": "de.a2.accommodation.notice.time_place.v1"
+    }
+  ],
+  "runtime_notes": "DE A2 accommodation candidate. Full-walk runtime gate required before final closeout.",
+  "notes": {
+    "authoring_policy": "Fresh-authored from the neutral A2 accommodation brief. KO surfaces were not translated.",
+    "a2_boundary": "Low-risk accommodation/service task; avoids compensation, emergency, legal, medical, police, immigration, banking, insurance, or identity-sensitive handling."
+  }
+}

@@ -1,0 +1,263 @@
+{
+  "schema_version": "scenario_pack.v1",
+  "scenario_id": "a2_explain_simple_delay_reason",
+  "title": "少し遅れる理由を話す",
+  "setting_label": "待ち合わせ場所へ向かう途中",
+  "wrap_title": "遅れる理由",
+  "wrap_friend": "你剛剛用自然的日文說明會晚一點到，也給了一個簡單、安全的理由。",
+  "language": "ja",
+  "ui_language": "zh_tw",
+  "cefr_level": "A2",
+  "source_status": "candidate_runtime_verified",
+  "review_state": "ai_reviewed",
+  "review_status_framework_state": "candidate_runtime_verified",
+  "native_review_state": "native_pending",
+  "scenario": "You are running a little late and need to explain the reason.",
+  "learner_goal": "Apologize, give one simple reason, and estimate the delay.",
+  "target_functions": [
+    "apology",
+    "simple_reason",
+    "delay_estimate"
+  ],
+  "register_notes": "Friendly polite です/ます. Low-stakes personal delay, not a workplace excuse or emergency.",
+  "production_mode_default": {
+    "required": [
+      "choice"
+    ],
+    "optional_visible": [
+      "speaking"
+    ],
+    "optional_hidden": [
+      "typing"
+    ]
+  },
+  "support_text": "友だちが今どこにいるか聞いています。少し遅れることと理由を短く言いましょう。",
+  "roles": {
+    "npc": {
+      "label": "友だち"
+    },
+    "learner": {
+      "label": "你"
+    }
+  },
+  "turns": [
+    {
+      "turn_id": "t1",
+      "speaker": "npc",
+      "act": "location_check",
+      "act_slots": {
+        "topic": "where are you",
+        "keyword": "もうすぐ",
+        "gloss": "快要"
+      },
+      "learning_role": "listen_only",
+      "surface": "今どのあたりですか。もうすぐ着きますか。",
+      "speak": "今どのあたりですか。もうすぐ着きますか。",
+      "translation": "你現在大概在哪裡？快到了嗎？",
+      "friend": {
+        "hint": "相手は今どこかを確認しています。まず謝って、少し遅れると言いましょう。"
+      },
+      "reply_set": {
+        "correct": "r1a",
+        "choices": [
+          {
+            "id": "r1a",
+            "surface": "すみません、少し遅れそうです。",
+            "translation": "不好意思，我可能會晚一點。",
+            "speak": "すみません、少し遅れそうです。",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r1b",
+            "surface": "はい、昨日着きました。",
+            "translation": "對，我昨天到了。",
+            "speak": "はい、昨日着きました。",
+            "contrast_type": "wrong_time_past",
+            "feedback": "相手は今の状況を聞いています。昨日の到着では答えになりません。"
+          },
+          {
+            "id": "r1c",
+            "surface": "おすすめのメニューはありますか。",
+            "translation": "有推薦的菜單嗎？",
+            "speak": "おすすめのメニューはありますか。",
+            "contrast_type": "wrong_scenario_restaurant",
+            "feedback": "これはレストランの質問です。今は遅れることを伝える場面です。"
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t2",
+      "speaker": "npc",
+      "act": "reason_request",
+      "act_slots": {
+        "topic": "why late",
+        "keyword": "どうして",
+        "gloss": "為什麼"
+      },
+      "learning_role": "listen_only",
+      "surface": "どうしてですか。",
+      "speak": "どうしてですか。",
+      "translation": "為什麼呢？",
+      "friend": {
+        "hint": "日常的で短い理由を言いましょう。バスが遅れています works for this context."
+      },
+      "inline_explain": {
+        "pattern_id": "ja.a2.reason.delay.node.v1",
+        "title": "ので = 因為",
+        "explain": "Use a short reason + ので to explain why something happens.",
+        "items": [
+          {
+            "surface": "バスが遅れているので",
+            "translation": "因為公車晚了",
+            "speak": "バスが遅れているので"
+          },
+          {
+            "surface": "道が混んでいるので",
+            "translation": "因為路上很塞",
+            "speak": "道が混んでいるので"
+          }
+        ]
+      },
+      "reply_set": {
+        "correct": "r2a",
+        "choices": [
+          {
+            "id": "r2a",
+            "surface": "バスが遅れているので。",
+            "translation": "因為公車晚了。",
+            "speak": "バスが遅れているので。",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r2b",
+            "surface": "バスが好きなので。",
+            "translation": "因為我喜歡公車。",
+            "speak": "バスが好きなので。",
+            "contrast_type": "wrong_reason_semantics",
+            "feedback": "文法は使えますが、遅れる理由としては不自然です。"
+          },
+          {
+            "id": "r2c",
+            "surface": "バス停はどこですか。",
+            "translation": "公車站在哪裡？",
+            "speak": "バス停はどこですか。",
+            "contrast_type": "wrong_function_location_question",
+            "feedback": "相手は理由を聞いています。場所を聞く場面ではありません。"
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t3",
+      "speaker": "npc",
+      "act": "delay_estimate_request",
+      "act_slots": {
+        "topic": "how late",
+        "keyword": "どのくらい",
+        "gloss": "多久"
+      },
+      "learning_role": "listen_only",
+      "surface": "どのくらい遅れそうですか。",
+      "speak": "どのくらい遅れそうですか。",
+      "translation": "你大概會晚多久？",
+      "friend": {
+        "hint": "Use 10分くらい for about ten minutes."
+      },
+      "reply_set": {
+        "correct": "r3a",
+        "choices": [
+          {
+            "id": "r3a",
+            "surface": "10分くらい遅れそうです。",
+            "translation": "我可能會晚 10 分鐘左右。",
+            "speak": "十分くらい遅れそうです。",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r3b",
+            "surface": "10番のバスが好きです。",
+            "translation": "我喜歡 10 號公車。",
+            "speak": "十番のバスが好きです。",
+            "contrast_type": "wrong_entity_bus_number",
+            "feedback": "10番 is bus number ten. Here you need 10分, ten minutes."
+          },
+          {
+            "id": "r3c",
+            "surface": "遅れていません。",
+            "translation": "我沒有遲到。",
+            "speak": "遅れていません。",
+            "contrast_type": "contradicts_context",
+            "feedback": "前に少し遅れそうだと言いました。ここでは時間の目安を答えます。"
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t4",
+      "speaker": "npc",
+      "act": "acceptance",
+      "act_slots": {
+        "topic": "wait"
+      },
+      "learning_role": "listen_only",
+      "surface": "わかりました。気をつけて来てください。",
+      "speak": "わかりました。気をつけて来てください。",
+      "translation": "知道了。路上小心過來。",
+      "friend": {
+        "hint": "相手が受け入れてくれました。短くお礼を言いましょう。"
+      },
+      "reply_set": {
+        "correct": "r4a",
+        "choices": [
+          {
+            "id": "r4a",
+            "surface": "ありがとうございます。すぐ行きます。",
+            "translation": "謝謝。我很快過去。",
+            "speak": "ありがとうございます。すぐ行きます。"
+          },
+          {
+            "id": "r4b",
+            "surface": "予約しました。",
+            "translation": "我預約了。",
+            "speak": "予約しました。",
+            "contrast_type": "wrong_scenario_reservation",
+            "feedback": "これは予約の話です。今は遅れる連絡への返事です。"
+          },
+          {
+            "id": "r4c",
+            "surface": "お会計をお願いします。",
+            "translation": "請結帳。",
+            "speak": "お会計をお願いします。",
+            "contrast_type": "wrong_scenario_payment",
+            "feedback": "これは会計の場面です。ここではお礼を言って向かうことを伝えます。"
+          }
+        ]
+      }
+    }
+  ],
+  "choice_sets": [
+    "t1.reply_set",
+    "t2.reply_set",
+    "t3.reply_set",
+    "t4.reply_set"
+  ],
+  "feedback": "Distractors separate apology, reason, estimate, and unrelated scenario phrases.",
+  "tts_segments": [
+    "すみません、少し遅れそうです。",
+    "バスが遅れているので。",
+    "10分くらい遅れそうです。",
+    "ありがとうございます。すぐ行きます。"
+  ],
+  "formula_moments": [
+    {
+      "after_turn": "t2",
+      "pattern_id": "ja.a2.reason.delay.node.v1"
+    }
+  ],
+  "runtime_notes": "JA A2 pilot candidate. Structural checks and two AI semantic review passes completed on 2026-06-14; runtime-style metadata promoted for pilot handoff. Browser/TTS runtime smoke remains native/product pending.",
+  "notes": {
+    "authoring_policy": "Fresh-authored from the neutral A2 brief. KO surfaces were read only for schema shape and not translated.",
+    "a2_boundary": "Low-stakes delay with apology, one everyday reason, and one estimate; no emergency, medical, workplace, or formal excuse."
+  }
+}

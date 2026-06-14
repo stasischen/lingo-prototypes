@@ -1,0 +1,260 @@
+{
+  "schema_version": "scenario_pack.v1",
+  "scenario_id": "a2_reschedule_meeting_time",
+  "title": "Change a Meeting Time",
+  "setting_label": "Changing plans with a friend",
+  "wrap_title": "New Meeting Time",
+  "wrap_friend": "你剛剛用簡單英文請朋友改時間，提出新時間，並再次確認。",
+  "language": "en",
+  "ui_language": "zh_tw",
+  "cefr_level": "A2",
+  "source_status": "candidate_runtime_verified",
+  "review_state": "ai_reviewed",
+  "review_status_framework_state": "candidate_runtime_verified",
+  "native_review_state": "native_pending",
+  "scenario": "You need to ask a friend to move a meeting time.",
+  "learner_goal": "Ask to change a time and confirm the new time.",
+  "target_functions": [
+    "reschedule_request",
+    "alternative_time",
+    "confirmation"
+  ],
+  "register_notes": "Friendly, low-stakes English. Polite but not formal; no negotiation loop or workplace framing.",
+  "production_mode_default": {
+    "required": [
+      "choice"
+    ],
+    "optional_visible": [
+      "speaking"
+    ],
+    "optional_hidden": [
+      "typing"
+    ]
+  },
+  "support_text": "The original meeting time is hard for you. Ask to change it, give a new time, and confirm.",
+  "roles": {
+    "npc": {
+      "label": "Friend"
+    },
+    "learner": {
+      "label": "You"
+    }
+  },
+  "turns": [
+    {
+      "turn_id": "t1",
+      "speaker": "npc",
+      "act": "schedule_confirmation",
+      "act_slots": {
+        "topic": "three o'clock plan",
+        "keyword": "three",
+        "gloss": "三點"
+      },
+      "learning_role": "listen_only",
+      "surface": "We are meeting at three today, right?",
+      "speak": "We are meeting at three today, right?",
+      "translation": "我們今天三點見，對吧？",
+      "friend": {
+        "hint": "Your friend is checking the old time. Ask to change the time."
+      },
+      "reply_set": {
+        "correct": "r1a",
+        "choices": [
+          {
+            "id": "r1a",
+            "surface": "Sorry, can we change the time?",
+            "translation": "不好意思，我們可以改時間嗎？",
+            "speak": "Sorry, can we change the time?",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r1b",
+            "surface": "Yes, we met yesterday.",
+            "translation": "對，我們昨天見過了。",
+            "speak": "Yes, we met yesterday.",
+            "contrast_type": "wrong_time_past",
+            "feedback": "Your friend is confirming today's plan, not yesterday."
+          },
+          {
+            "id": "r1c",
+            "surface": "I will pay by card.",
+            "translation": "我會用卡付款。",
+            "speak": "I will pay by card.",
+            "contrast_type": "wrong_scenario_payment",
+            "feedback": "This is payment language. Here you need to ask about the meeting time."
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t2",
+      "speaker": "npc",
+      "act": "alternative_request",
+      "act_slots": {
+        "topic": "new time",
+        "keyword": "what time",
+        "gloss": "幾點"
+      },
+      "learning_role": "listen_only",
+      "surface": "Sure. What time works for you?",
+      "speak": "Sure. What time works for you?",
+      "translation": "可以。你幾點方便？",
+      "friend": {
+        "hint": "Give one new time. Keep it simple."
+      },
+      "inline_explain": {
+        "pattern_id": "en.a2.reschedule.move_to.v1",
+        "title": "move it to + time",
+        "explain": "Use move it to for changing a meeting time.",
+        "items": [
+          {
+            "surface": "move it to four",
+            "translation": "改到四點",
+            "speak": "move it to four"
+          },
+          {
+            "surface": "move it to tomorrow",
+            "translation": "改到明天",
+            "speak": "move it to tomorrow"
+          }
+        ]
+      },
+      "reply_set": {
+        "correct": "r2a",
+        "choices": [
+          {
+            "id": "r2a",
+            "surface": "Can we move it to four?",
+            "translation": "我們可以改到四點嗎？",
+            "speak": "Can we move it to four?",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r2b",
+            "surface": "Should we use exit four?",
+            "translation": "我們要用四號出口嗎？",
+            "speak": "Should we use exit four?",
+            "contrast_type": "wrong_entity_exit_number",
+            "feedback": "Exit four is a place detail. Your friend asked for a new time."
+          },
+          {
+            "id": "r2c",
+            "surface": "I went at four.",
+            "translation": "我四點去了。",
+            "speak": "I went at four.",
+            "contrast_type": "wrong_time_past",
+            "feedback": "This talks about the past. Ask to move the meeting to four."
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t3",
+      "speaker": "npc",
+      "act": "accept_new_time",
+      "act_slots": {
+        "topic": "new time accepted"
+      },
+      "learning_role": "listen_only",
+      "surface": "Yes, four is fine.",
+      "speak": "Yes, four is fine.",
+      "translation": "可以，四點沒問題。",
+      "friend": {
+        "hint": "The new time is accepted. Confirm it once."
+      },
+      "reply_set": {
+        "correct": "r3a",
+        "choices": [
+          {
+            "id": "r3a",
+            "surface": "Great, see you at four.",
+            "translation": "太好了，四點見。",
+            "speak": "Great, see you at four."
+          },
+          {
+            "id": "r3b",
+            "surface": "Great, see you at three.",
+            "translation": "太好了，三點見。",
+            "speak": "Great, see you at three.",
+            "contrast_type": "repeats_old_time",
+            "feedback": "The old time was three. You changed it to four."
+          },
+          {
+            "id": "r3c",
+            "surface": "Please give me the room key.",
+            "translation": "請給我房卡。",
+            "speak": "Please give me the room key.",
+            "contrast_type": "wrong_scenario_hotel",
+            "feedback": "This is hotel language. Here you need to confirm the new time."
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t4",
+      "speaker": "npc",
+      "act": "closing",
+      "act_slots": {
+        "topic": "close plan"
+      },
+      "learning_role": "listen_only",
+      "surface": "Okay. See you later.",
+      "speak": "Okay. See you later.",
+      "translation": "好，晚點見。",
+      "friend": {
+        "hint": "The plan is finished. Close naturally."
+      },
+      "reply_set": {
+        "correct": "r4a",
+        "choices": [
+          {
+            "id": "r4a",
+            "surface": "Okay, see you later.",
+            "translation": "好，晚點見。",
+            "speak": "Okay, see you later."
+          },
+          {
+            "id": "r4b",
+            "surface": "Because I am late.",
+            "translation": "因為我遲到了。",
+            "speak": "Because I am late.",
+            "contrast_type": "fragment_without_need",
+            "feedback": "The time is already changed. You do not need a reason fragment now."
+          },
+          {
+            "id": "r4c",
+            "surface": "I booked it again.",
+            "translation": "我重新預約了。",
+            "speak": "I booked it again.",
+            "contrast_type": "wrong_scenario_reservation",
+            "feedback": "This sounds like a reservation system, not a simple plan with a friend."
+          }
+        ]
+      }
+    }
+  ],
+  "choice_sets": [
+    "t1.reply_set",
+    "t2.reply_set",
+    "t3.reply_set",
+    "t4.reply_set"
+  ],
+  "feedback": "Distractors test old versus new time, number-place confusion, and unrelated scenario phrases.",
+  "tts_segments": [
+    "Sorry, can we change the time?",
+    "Can we move it to four?",
+    "Great, see you at four.",
+    "Okay, see you later."
+  ],
+  "formula_moments": [
+    {
+      "after_turn": "t2",
+      "pattern_id": "en.a2.reschedule.move_to.v1"
+    }
+  ],
+  "runtime_notes": "Fresh EN A2 candidate. Structural checks and two AI semantic review passes completed on 2026-06-14 before metadata promotion.",
+  "notes": {
+    "authoring_policy": "Fresh-authored from the neutral A2 brief. KO was used only as schema-shape reference.",
+    "a2_boundary": "Low-stakes rescheduling with one alternative time; avoids a negotiation loop or formal workplace framing."
+  }
+}

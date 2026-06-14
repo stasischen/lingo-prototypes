@@ -1,0 +1,240 @@
+{
+  "schema_version": "scenario_pack.v1",
+  "scenario_id": "travel_taxi_destination",
+  "brief_id": "ml4_a1_015_travel_taxi_destination",
+  "source_neutral_brief": "release-aggregator/docs/tasks/A1_MULTILINGUAL_KO_B1_PARALLEL_ORCHESTRATION/work_products/ml0/ML4_NEUTRAL_ADAPTATION_BRIEFS_20260614.md#brief-ml4-a1-015-taxi-destination",
+  "blueprint_ledger": "release-aggregator/docs/tasks/A1_MULTILINGUAL_KO_B1_PARALLEL_ORCHESTRATION/work_products/ml0/ML4_BLUEPRINT_LEDGER_20260614.md",
+  "repo": "content-en",
+  "staging_path": "curriculum/a1_travel_v1/staging/scenario_pack.v1/travel_taxi_destination.en.v1.json",
+  "title": "Taking a Taxi to a Destination",
+  "setting_label": "Taxi",
+  "wrap_title": "You gave the taxi destination",
+  "wrap_friend": "You told the driver the destination, confirmed it, understood the short ride status, and thanked the driver.",
+  "language": "en",
+  "ui_language": "zh_tw",
+  "source_status": "candidate_runtime_verified",
+  "review_state": "draft",
+  "review_status_framework_state": "candidate_runtime_verified",
+  "native_review_state": "native_pending",
+  "production_mode_default": {
+    "required": [
+      "choice"
+    ],
+    "optional_visible": [
+      "speaking"
+    ],
+    "optional_hidden": [
+      "typing"
+    ]
+  },
+  "support_text": "你在計程車上。聽司機說話，選一句自然接得上的英文。",
+  "roles": {
+    "npc": {
+      "label": "Driver"
+    },
+    "learner": {
+      "label": "You"
+    }
+  },
+  "turns": [
+    {
+      "turn_id": "t1",
+      "speaker": "npc",
+      "act": "ask_destination",
+      "learning_role": "listen_only",
+      "surface": "Where to?",
+      "speak": "Where to?",
+      "translation": "要去哪裡？",
+      "friend": {
+        "hint": "司機問目的地。用自然英文說要去這間飯店。"
+      },
+      "inline_explain": {
+        "pattern_id": "en.taxi.destination_request.v1",
+        "formula_ref": null,
+        "title": "Can you take me to this hotel?",
+        "explain": "Use this polite taxi formula to give a destination.",
+        "items": [
+          {
+            "surface": "Can you take me to this hotel, please?",
+            "translation": "可以載我到這間飯店嗎？",
+            "speak": "Can you take me to this hotel, please?"
+          }
+        ]
+      },
+      "reply_set": {
+        "correct": "r1a",
+        "choices": [
+          {
+            "id": "r1a",
+            "surface": "Can you take me to this hotel, please?",
+            "translation": "可以載我到這間飯店嗎？",
+            "speak": "Can you take me to this hotel, please?",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r1b",
+            "surface": "Where is the restroom?",
+            "translation": "廁所在哪裡？",
+            "speak": "Where is the restroom?",
+            "contrast_type": "directions_question_instead_of_destination",
+            "feedback": "這是在問路。現在要告訴司機目的地。"
+          },
+          {
+            "id": "r1c",
+            "surface": "I'd like a coffee.",
+            "translation": "我想要一杯咖啡。",
+            "speak": "I'd like a coffee.",
+            "contrast_type": "food_order_in_taxi",
+            "feedback": "這是點餐，不是計程車目的地。"
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t2",
+      "speaker": "npc",
+      "act": "confirm_destination",
+      "learning_role": "listen_only",
+      "surface": "This hotel?",
+      "speak": "This hotel?",
+      "translation": "這間飯店嗎？",
+      "friend": {
+        "hint": "司機確認目的地。直接確認。"
+      },
+      "reply_set": {
+        "correct": "r2a",
+        "choices": [
+          {
+            "id": "r2a",
+            "surface": "Yes, please.",
+            "translation": "是的，麻煩你。",
+            "speak": "Yes, please.",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r2b",
+            "surface": "No, cancel it.",
+            "translation": "不用，取消。",
+            "speak": "No, cancel it.",
+            "contrast_type": "cancel_when_confirmation_expected",
+            "feedback": "司機確認的是正確目的地，這裡不需要取消。"
+          },
+          {
+            "id": "r2c",
+            "surface": "Can you take me to this hotel, please?",
+            "translation": "可以載我到這間飯店嗎？",
+            "speak": "Can you take me to this hotel, please?",
+            "contrast_type": "repeat_destination_when_confirmation_expected",
+            "feedback": "目的地已經說過了。現在自然回覆是確認。"
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t3",
+      "speaker": "npc",
+      "act": "give_duration",
+      "learning_role": "listen_only",
+      "surface": "About ten minutes.",
+      "speak": "About ten minutes.",
+      "translation": "大約十分鐘。",
+      "friend": {
+        "hint": "聽到車程時間。表示知道並道謝。"
+      },
+      "reply_set": {
+        "correct": "r3a",
+        "choices": [
+          {
+            "id": "r3a",
+            "surface": "Okay, thank you.",
+            "translation": "好的，謝謝。",
+            "speak": "Okay, thank you.",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r3b",
+            "surface": "One ticket, please.",
+            "translation": "請給我一張票。",
+            "speak": "One ticket, please.",
+            "contrast_type": "ticket_purchase_in_taxi",
+            "feedback": "這是在買票。現在是在計程車裡聽車程時間。"
+          },
+          {
+            "id": "r3c",
+            "surface": "Where to?",
+            "translation": "要去哪裡？",
+            "speak": "Where to?",
+            "contrast_type": "driver_role_sentence_by_learner",
+            "feedback": "這是司機問乘客的話，不是乘客回覆。"
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t4",
+      "speaker": "npc",
+      "act": "arrival",
+      "learning_role": "listen_only",
+      "surface": "We're here.",
+      "speak": "We're here.",
+      "translation": "到了。",
+      "friend": {
+        "hint": "已經到目的地。簡短道謝。"
+      },
+      "reply_set": {
+        "correct": "r4a",
+        "choices": [
+          {
+            "id": "r4a",
+            "surface": "Thank you.",
+            "translation": "謝謝。",
+            "speak": "Thank you."
+          },
+          {
+            "id": "r4b",
+            "surface": "This hotel?",
+            "translation": "這間飯店嗎？",
+            "speak": "This hotel?",
+            "contrast_type": "driver_confirmation_reused_by_learner",
+            "feedback": "這像司機確認目的地。到達後乘客說謝謝更自然。"
+          },
+          {
+            "id": "r4c",
+            "surface": "What time is breakfast?",
+            "translation": "早餐幾點？",
+            "speak": "What time is breakfast?",
+            "contrast_type": "hotel_question_in_taxi_closing",
+            "feedback": "這是飯店櫃台問題，不是計程車到達後的收尾。"
+          }
+        ]
+      },
+      "closing": {
+        "act": "taxi_destination_complete",
+        "learning_role": "listen_only",
+        "surface": "You gave the destination and arrived.",
+        "speak": "You gave the destination and arrived.",
+        "translation": "你說出目的地並到達了。"
+      }
+    }
+  ],
+  "formula_moments": [
+    {
+      "after_turn": "t1",
+      "pattern_id": "en.taxi.destination_request.v1"
+    },
+    {
+      "after_turn": "t2",
+      "pattern_id": "en.taxi.confirm_yes_please.v1"
+    },
+    {
+      "after_turn": "t4",
+      "pattern_id": "en.taxi.thanks.v1"
+    }
+  ],
+  "notes": {
+    "authoring_source": "Authored from ML-4 neutral brief, not Korean surface text or another target-language pack.",
+    "review_policy": "AI-authored English candidate. Requires AI review, runtime smoke, and tracked native review before any stronger status.",
+    "canonical_policy": "Staging candidate only. Do not write back to manifests, production exports, schemas, runtime exports, frontend, or legacy content.",
+    "register_note": "Uses broad everyday taxi English and avoids fares, route negotiation, safety reporting, and payment details."
+  }
+}

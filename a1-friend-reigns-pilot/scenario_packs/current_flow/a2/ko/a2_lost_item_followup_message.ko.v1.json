@@ -1,0 +1,257 @@
+{
+  "schema_version": "scenario_pack.v1",
+  "scenario_id": "a2_lost_item_followup_message",
+  "title": "잃어버린 물건 문의하기",
+  "setting_label": "분실물 메시지",
+  "wrap_title": "분실물 문의 완료",
+  "wrap_friend": "잘했어요. 낮은 위험의 디지털/문서 도움 상황에서 필요한 정보만 짧게 확인했어요.",
+  "language": "ko",
+  "ui_language": "zh-Hant",
+  "cefr_level": "A2",
+  "source_status": "candidate_runtime_verified",
+  "review_state": "ai_reviewed",
+  "review_status_framework_state": "candidate_runtime_verified",
+  "native_review_state": "native_pending",
+  "scenario": {
+    "domain": "digital_documents_low_risk_help",
+    "review_slice": "digital_documents",
+    "interaction": "low_risk_confirmation_or_help",
+    "source_brief": "A2_DIGITAL_DOCUMENTS_NEUTRAL_ADAPTATION_BRIEFS_20260614",
+    "blueprint_source": "language_neutral_adaptation_brief",
+    "ko_pack_role": "mature_scenario_blueprint_not_translation_source_after_gate"
+  },
+  "learner_goal": "평범한 분실물에 대해 짧게 문의하고 특징을 말해 보세요.",
+  "target_functions": [
+    "confirm_booking_or_message",
+    "request_simple_change",
+    "ask_simple_form_help",
+    "follow_up_low_risk_item"
+  ],
+  "register_notes": "Korean A2 digital/documents register: polite concise -요 service/help language, no password, payment, ID, medical, legal, police, or immigration framing.",
+  "production_mode_default": {
+    "required": [
+      "choice"
+    ],
+    "optional_visible": [
+      "speaking"
+    ],
+    "optional_hidden": [
+      "typing"
+    ]
+  },
+  "support_text": "평범한 분실물에 대해 짧게 문의하고 특징을 말해 보세요.",
+  "roles": {
+    "npc": {
+      "label": "직원"
+    },
+    "learner": {
+      "label": "你"
+    }
+  },
+  "turns": [
+    {
+      "turn_id": "t1",
+      "speaker": "npc",
+      "act": "start",
+      "act_slots": {
+        "topic": "a2_lost_item_followup_message",
+        "keyword": "1",
+        "gloss": "A2 digital/documents"
+      },
+      "learning_role": "listen_only",
+      "surface": "무엇을 찾고 계세요?",
+      "speak": "무엇을 찾고 계세요?",
+      "translation": "您在找什麼？",
+      "friend": {
+        "hint": "필요한 정보만 짧게 확인하세요."
+      },
+      "reply_set": {
+        "correct": "r1a",
+        "choices": [
+          {
+            "id": "r1a",
+            "surface": "검은 우산을 두고 간 것 같아요.",
+            "translation": "我好像把黑色雨傘忘在那裡。",
+            "speak": "검은 우산을 두고 간 것 같아요.",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r1b",
+            "surface": "비밀번호를 알려드릴게요.",
+            "translation": "我會告訴你密碼。",
+            "speak": "비밀번호를 알려드릴게요.",
+            "contrast_type": "forbidden_sensitive",
+            "feedback": "비밀번호는 이 과제에서 다루지 않아요."
+          },
+          {
+            "id": "r1c",
+            "surface": "환불해 주세요.",
+            "translation": "請退款。",
+            "speak": "환불해 주세요.",
+            "contrast_type": "wrong_dispute_domain",
+            "feedback": "환불이나 분쟁 상황이 아니에요."
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t2",
+      "speaker": "npc",
+      "act": "clarify",
+      "act_slots": {
+        "topic": "a2_lost_item_followup_message",
+        "keyword": "2",
+        "gloss": "A2 digital/documents"
+      },
+      "learning_role": "listen_only",
+      "surface": "어디에 두셨나요?",
+      "speak": "어디에 두셨나요?",
+      "translation": "放在哪裡？",
+      "friend": {
+        "hint": "필요한 정보만 짧게 확인하세요."
+      },
+      "reply_set": {
+        "correct": "r2a",
+        "choices": [
+          {
+            "id": "r2a",
+            "surface": "카페 의자 옆에 둔 것 같아요.",
+            "translation": "好像放在咖啡店椅子旁邊。",
+            "speak": "카페 의자 옆에 둔 것 같아요.",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r2b",
+            "surface": "비밀번호를 알려드릴게요.",
+            "translation": "我會告訴你密碼。",
+            "speak": "비밀번호를 알려드릴게요.",
+            "contrast_type": "forbidden_sensitive",
+            "feedback": "비밀번호는 이 과제에서 다루지 않아요."
+          },
+          {
+            "id": "r2c",
+            "surface": "환불해 주세요.",
+            "translation": "請退款。",
+            "speak": "환불해 주세요.",
+            "contrast_type": "wrong_dispute_domain",
+            "feedback": "환불이나 분쟁 상황이 아니에요."
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t3",
+      "speaker": "npc",
+      "act": "confirm_detail",
+      "act_slots": {
+        "topic": "a2_lost_item_followup_message",
+        "keyword": "3",
+        "gloss": "A2 digital/documents"
+      },
+      "learning_role": "listen_only",
+      "surface": "이름과 연락처를 남겨 주세요.",
+      "speak": "이름과 연락처를 남겨 주세요.",
+      "translation": "請留下姓名和聯絡方式。",
+      "friend": {
+        "hint": "필요한 정보만 짧게 확인하세요."
+      },
+      "reply_set": {
+        "correct": "r3a",
+        "choices": [
+          {
+            "id": "r3a",
+            "surface": "네, 이름과 전화번호를 남길게요.",
+            "translation": "好，我會留下姓名和電話。",
+            "speak": "네, 이름과 전화번호를 남길게요.",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r3b",
+            "surface": "비밀번호를 알려드릴게요.",
+            "translation": "我會告訴你密碼。",
+            "speak": "비밀번호를 알려드릴게요.",
+            "contrast_type": "forbidden_sensitive",
+            "feedback": "비밀번호는 이 과제에서 다루지 않아요."
+          },
+          {
+            "id": "r3c",
+            "surface": "환불해 주세요.",
+            "translation": "請退款。",
+            "speak": "환불해 주세요.",
+            "contrast_type": "wrong_dispute_domain",
+            "feedback": "환불이나 분쟁 상황이 아니에요."
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t4",
+      "speaker": "npc",
+      "act": "close",
+      "act_slots": {
+        "topic": "a2_lost_item_followup_message",
+        "keyword": "4",
+        "gloss": "A2 digital/documents"
+      },
+      "learning_role": "listen_only",
+      "surface": "확인하고 연락드릴게요.",
+      "speak": "확인하고 연락드릴게요.",
+      "translation": "我確認後會聯絡您。",
+      "friend": {
+        "hint": "필요한 정보만 짧게 확인하세요."
+      },
+      "reply_set": {
+        "correct": "r4a",
+        "choices": [
+          {
+            "id": "r4a",
+            "surface": "감사합니다. 연락 기다릴게요.",
+            "translation": "謝謝，我等您聯絡。",
+            "speak": "감사합니다. 연락 기다릴게요.",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r4b",
+            "surface": "비밀번호를 알려드릴게요.",
+            "translation": "我會告訴你密碼。",
+            "speak": "비밀번호를 알려드릴게요.",
+            "contrast_type": "forbidden_sensitive",
+            "feedback": "비밀번호는 이 과제에서 다루지 않아요."
+          },
+          {
+            "id": "r4c",
+            "surface": "환불해 주세요.",
+            "translation": "請退款。",
+            "speak": "환불해 주세요.",
+            "contrast_type": "wrong_dispute_domain",
+            "feedback": "환불이나 분쟁 상황이 아니에요."
+          }
+        ]
+      }
+    }
+  ],
+  "choice_sets": [
+    "t1.reply_set",
+    "t2.reply_set",
+    "t3.reply_set",
+    "t4.reply_set"
+  ],
+  "feedback": "Distractors test sensitive password leakage, refund/dispute drift, and wrong domain.",
+  "tts_segments": [
+    "검은 우산을 두고 간 것 같아요.",
+    "카페 의자 옆에 둔 것 같아요.",
+    "네, 이름과 전화번호를 남길게요.",
+    "감사합니다. 연락 기다릴게요."
+  ],
+  "formula_moments": [
+    {
+      "after_turn": "t2",
+      "pattern_id": "ko.a2.digital.lost_item_followup_message.v1"
+    }
+  ],
+  "runtime_notes": "Fresh KO A2 digital/documents candidate. Requires full-walk runtime before closeout evidence is recorded.",
+  "notes": {
+    "authoring_policy": "Fresh-authored from A2 digital/documents neutral adaptation brief. Legacy A2 lines were not copied or paraphrased.",
+    "a2_boundary": "Low-risk confirmation/help only; avoids sensitive identity, payment, legal, medical, police, and immigration workflows."
+  }
+}

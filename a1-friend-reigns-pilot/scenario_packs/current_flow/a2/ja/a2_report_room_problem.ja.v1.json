@@ -1,0 +1,261 @@
+{
+  "schema_version": "scenario_pack.v1",
+  "scenario_id": "a2_report_room_problem",
+  "title": "部屋の問題を伝える",
+  "setting_label": "ホテルのフロント",
+  "wrap_title": "対応の確認",
+  "wrap_friend": "你剛剛完成了一段 A2 住宿服務情境，說明需求、聽懂回覆，並確認下一步。",
+  "language": "ja",
+  "ui_language": "zh_tw",
+  "cefr_level": "A2",
+  "source_status": "candidate_runtime_verified",
+  "review_state": "ai_reviewed",
+  "review_status_framework_state": "candidate_runtime_verified",
+  "native_review_state": "native_pending",
+  "scenario": "A hotel/accommodation service scenario: a2_report_room_problem.",
+  "learner_goal": "Report a simple room problem and confirm the next step.",
+  "target_functions": [
+    "room_problem_description",
+    "polite_help_request",
+    "service_next_step_confirmation"
+  ],
+  "register_notes": "Natural Japanese hotel-service register with polite です/ます responses; no complaint escalation.",
+  "production_mode_default": {
+    "required": [
+      "choice"
+    ],
+    "optional_visible": [
+      "speaking"
+    ],
+    "optional_hidden": [
+      "typing"
+    ]
+  },
+  "support_text": "部屋で小さな問題があるとき、短く伝えて、スタッフの対応を確認しましょう。",
+  "roles": {
+    "npc": {
+      "label": "ホテルスタッフ"
+    },
+    "learner": {
+      "label": "あなた"
+    }
+  },
+  "turns": [
+    {
+      "turn_id": "t1",
+      "speaker": "npc",
+      "act": "service_prompt",
+      "act_slots": {
+        "topic": "service_prompt",
+        "keyword": "何かお困りですか",
+        "gloss": "需要幫忙嗎"
+      },
+      "learning_role": "listen_only",
+      "surface": "何かお困りですか。",
+      "speak": "何かお困りですか。",
+      "translation": "有什麼需要幫忙嗎？",
+      "friend": {
+        "hint": "部屋の問題を短く伝えます。"
+      },
+      "reply_set": {
+        "correct": "r1a",
+        "choices": [
+          {
+            "id": "r1a",
+            "surface": "部屋にタオルがありません。お願いできますか。",
+            "translation": "房間裡沒有毛巾。可以麻煩您嗎？",
+            "speak": "部屋にタオルがありません。お願いできますか。",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r1b",
+            "surface": "部屋を予約したいです。",
+            "translation": "我想訂房。",
+            "speak": "部屋を予約したいです。",
+            "contrast_type": "wrong_detail_or_domain",
+            "feedback": "今は予約ではなく、部屋の問題を伝える場面です。"
+          },
+          {
+            "id": "r1c",
+            "surface": "補償してください。",
+            "translation": "請賠償我。",
+            "speak": "補償してください。",
+            "contrast_type": "forbidden_or_wrong_domain",
+            "feedback": "補償の話はこのA2場面の範囲外です。"
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t2",
+      "speaker": "npc",
+      "act": "service_response",
+      "act_slots": {
+        "topic": "service_response",
+        "keyword": "すぐにお持ちします",
+        "gloss": "馬上拿過去"
+      },
+      "learning_role": "listen_only",
+      "surface": "はい、すぐにタオルをお持ちします。",
+      "speak": "はい、すぐにタオルをお持ちします。",
+      "translation": "好的，我們馬上把毛巾拿過去。",
+      "friend": {
+        "hint": "スタッフが何をするか確認します。"
+      },
+      "inline_explain": {
+        "pattern_id": "ja.a2.accommodation.problem.help.v1",
+        "title": "A2で使う表現",
+        "explain": "この宿泊場面で使いやすい短い表現です。",
+        "items": [
+          {
+            "surface": "すぐにお持ちします",
+            "translation": "馬上拿過去",
+            "speak": "すぐにお持ちします"
+          }
+        ]
+      },
+      "reply_set": {
+        "correct": "r2a",
+        "choices": [
+          {
+            "id": "r2a",
+            "surface": "タオルを持ってきてくれるんですね。",
+            "translation": "會拿毛巾過來，對嗎？",
+            "speak": "タオルを持ってきてくれるんですね。",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r2b",
+            "surface": "部屋を変えてくれるんですね。",
+            "translation": "會幫我換房間，對嗎？",
+            "speak": "部屋を変えてくれるんですね。",
+            "contrast_type": "wrong_detail_or_domain",
+            "feedback": "スタッフは部屋ではなくタオルを持ってくると言っています。"
+          },
+          {
+            "id": "r2c",
+            "surface": "電車が遅れるんですね。",
+            "translation": "是電車會晚，對嗎？",
+            "speak": "電車が遅れるんですね。",
+            "contrast_type": "forbidden_or_wrong_domain",
+            "feedback": "これは交通案内ではなくホテルのサービス場面です。"
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t3",
+      "speaker": "npc",
+      "act": "time_estimate",
+      "act_slots": {
+        "topic": "time_estimate",
+        "keyword": "十分ほど",
+        "gloss": "大約十分鐘"
+      },
+      "learning_role": "listen_only",
+      "surface": "十分ほどかかります。",
+      "speak": "十分ほどかかります。",
+      "translation": "大約需要十分鐘。",
+      "friend": {
+        "hint": "かかる時間を確認します。"
+      },
+      "reply_set": {
+        "correct": "r3a",
+        "choices": [
+          {
+            "id": "r3a",
+            "surface": "十分ほどですね。",
+            "translation": "大約十分鐘，對嗎？",
+            "speak": "十分ほどですね。",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r3b",
+            "surface": "一時間後にチェックアウトします。",
+            "translation": "一小時後退房。",
+            "speak": "一時間後にチェックアウトします。",
+            "contrast_type": "wrong_detail_or_domain",
+            "feedback": "チェックアウトではなく、タオルが届く時間です。"
+          },
+          {
+            "id": "r3c",
+            "surface": "病院に行かなければなりません。",
+            "translation": "我必須去醫院。",
+            "speak": "病院に行かなければなりません。",
+            "contrast_type": "forbidden_or_wrong_domain",
+            "feedback": "医療内容はこの課題の範囲外です。"
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t4",
+      "speaker": "npc",
+      "act": "close",
+      "act_slots": {
+        "topic": "close",
+        "keyword": "お部屋にお届けします",
+        "gloss": "送到房間"
+      },
+      "learning_role": "listen_only",
+      "surface": "お部屋にお届けします。",
+      "speak": "お部屋にお届けします。",
+      "translation": "我們會送到房間。",
+      "friend": {
+        "hint": "お礼を言って終えます。"
+      },
+      "reply_set": {
+        "correct": "r4a",
+        "choices": [
+          {
+            "id": "r4a",
+            "surface": "ありがとうございます。部屋で待ちます。",
+            "translation": "謝謝。我在房間等。",
+            "speak": "ありがとうございます。部屋で待ちます。",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r4b",
+            "surface": "返金のルールを教えてください。",
+            "translation": "請告訴我退款規則。",
+            "speak": "返金のルールを教えてください。",
+            "contrast_type": "wrong_detail_or_domain",
+            "feedback": "返金の話はこの簡単な部屋の問題の範囲外です。"
+          },
+          {
+            "id": "r4c",
+            "surface": "コーヒーを二つください。",
+            "translation": "請給我兩杯咖啡。",
+            "speak": "コーヒーを二つください。",
+            "contrast_type": "forbidden_or_wrong_domain",
+            "feedback": "レストラン注文ではなくホテルの部屋サービスです。"
+          }
+        ]
+      }
+    }
+  ],
+  "choice_sets": [
+    "t1.reply_set",
+    "t2.reply_set",
+    "t3.reply_set",
+    "t4.reply_set"
+  ],
+  "feedback": "誤答は、時間・場所・サービス内容の取り違え、またはA2範囲外の依頼に進んでいないかを確認します。",
+  "tts_segments": [
+    "何かお困りですか。",
+    "はい、すぐにタオルをお持ちします。",
+    "十分ほどかかります。",
+    "お部屋にお届けします。"
+  ],
+  "formula_moments": [
+    {
+      "after_turn": "t2",
+      "pattern_id": "ja.a2.accommodation.problem.help.v1"
+    }
+  ],
+  "runtime_notes": "JA A2 accommodation candidate. Full-walk runtime gate required before final closeout.",
+  "notes": {
+    "authoring_policy": "Fresh-authored from the neutral A2 accommodation brief. KO surfaces were not translated.",
+    "a2_boundary": "Low-risk accommodation/service task; avoids compensation, emergency, legal, medical, police, immigration, banking, insurance, or identity-sensitive handling."
+  }
+}

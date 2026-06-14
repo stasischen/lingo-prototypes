@@ -1,0 +1,263 @@
+{
+  "schema_version": "scenario_pack.v1",
+  "scenario_id": "convenience_payment_card_cash",
+  "brief_id": "ml0_a1_004_convenience_payment_card_cash",
+  "source_neutral_brief": "release-aggregator/docs/tasks/A1_MULTILINGUAL_KO_B1_PARALLEL_ORCHESTRATION/work_products/ml0/ML0_NEUTRAL_ADAPTATION_BRIEFS_20260613.md#brief-ml0-a1-004-convenience-store-payment",
+  "blueprint_ledger": "release-aggregator/docs/tasks/A1_MULTILINGUAL_KO_B1_PARALLEL_ORCHESTRATION/work_products/ml0/ML0_BLUEPRINT_LEDGER_20260613.md",
+  "repo": "content-ja",
+  "staging_path": "content/review/current_flow/scenario_pack.v1/ja/convenience_payment_card_cash.ja.v1.json",
+  "title": "コンビニで支払う",
+  "setting_label": "コンビニのレジ",
+  "wrap_title": "コンビニで支払いできました",
+  "wrap_friend": "短い言い方でカード払いを伝え、袋やレシートの質問にも答えられました。",
+  "language": "ja",
+  "ui_language": "zh_tw",
+  "source_status": "candidate_runtime_verified",
+  "review_state": "draft",
+  "review_status_framework_state": "candidate_runtime_verified",
+  "native_review_state": "native_pending",
+  "production_mode_default": {
+    "required": [
+      "choice"
+    ],
+    "optional_visible": [
+      "speaking"
+    ],
+    "optional_hidden": [
+      "typing"
+    ]
+  },
+  "support_text": "你在日本便利商店櫃台。聽店員問付款方式，選一句自然接得上的日文。",
+  "roles": {
+    "npc": {
+      "label": "店員"
+    },
+    "learner": {
+      "label": "あなた"
+    }
+  },
+  "turns": [
+    {
+      "turn_id": "t1",
+      "speaker": "npc",
+      "act": "payment_method_question",
+      "act_slots": {
+        "topic": "付款方式",
+        "keyword": "お支払い",
+        "gloss": "付款"
+      },
+      "learning_role": "listen_only",
+      "surface": "お会計は520円です。お支払いは現金ですか、カードですか。",
+      "speak": "お会計は520円です。お支払いは現金ですか、カードですか。",
+      "translation": "總共五百二十日圓。您要付現金還是刷卡？",
+      "friend": {
+        "hint": "店員在問付款方式。要刷卡時，可以說「カードでお願いします」。"
+      },
+      "inline_explain": {
+        "pattern_id": "ja.store.payment.card_cash.v1",
+        "formula_ref": null,
+        "title": "カード / 現金",
+        "explain": "「カード」是卡片，「現金」是現金。用「〜でお願いします」可以自然回答付款方式。",
+        "items": [
+          {
+            "surface": "カードでお願いします。",
+            "translation": "麻煩刷卡。",
+            "speak": "カードでお願いします。"
+          },
+          {
+            "surface": "現金でお願いします。",
+            "translation": "麻煩付現金。",
+            "speak": "現金でお願いします。"
+          }
+        ]
+      },
+      "reply_set": {
+        "correct": "r1a",
+        "choices": [
+          {
+            "id": "r1a",
+            "surface": "カードでお願いします。",
+            "translation": "麻煩刷卡。",
+            "speak": "カードでお願いします。",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r1b",
+            "surface": "おにぎりをください。",
+            "translation": "請給我飯糰。",
+            "speak": "おにぎりをください。",
+            "contrast_type": "wrong_scenario_ordering",
+            "feedback": "這句是在點東西。現在商品已經結帳了，店員在問付款方式。"
+          },
+          {
+            "id": "r1c",
+            "surface": "トイレはどこですか。",
+            "translation": "洗手間在哪裡？",
+            "speak": "トイレはどこですか。",
+            "contrast_type": "wrong_scenario_request",
+            "feedback": "這句是在問方向。現在要回答現金或卡片。"
+          },
+          {
+            "id": "r1d",
+            "surface": "現金でお願いします。",
+            "translation": "麻煩付現金。",
+            "speak": "現金でお願いします。",
+            "contrast_type": "wrong_payment_method",
+            "feedback": "這也是付款方式，但這一輪要練習刷卡時的回答。"
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t2",
+      "speaker": "npc",
+      "act": "payment_instruction",
+      "act_slots": {
+        "topic": "刷卡指示",
+        "keyword": "タッチ",
+        "gloss": "感應"
+      },
+      "learning_role": "listen_only",
+      "surface": "こちらにタッチしてください。",
+      "speak": "こちらにタッチしてください。",
+      "translation": "請感應這裡。",
+      "friend": {
+        "hint": "店員要你把卡片感應在這裡。簡短回答「はい」就可以。"
+      },
+      "reply_set": {
+        "correct": "r2a",
+        "choices": [
+          {
+            "id": "r2a",
+            "surface": "はい。",
+            "translation": "好。",
+            "speak": "はい。"
+          },
+          {
+            "id": "r2b",
+            "surface": "カードでお願いします。",
+            "translation": "麻煩刷卡。",
+            "speak": "カードでお願いします。",
+            "contrast_type": "repeated_prior_answer",
+            "feedback": "付款方式已經說了。現在店員在告訴你感應卡片。"
+          },
+          {
+            "id": "r2c",
+            "surface": "いくらですか。",
+            "translation": "多少錢？",
+            "speak": "いくらですか。",
+            "contrast_type": "wrong_act_price_question",
+            "feedback": "價格剛剛已經說了。這裡先照店員指示付款。"
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t3",
+      "speaker": "npc",
+      "act": "bag_question",
+      "act_slots": {
+        "topic": "袋子",
+        "keyword": "袋",
+        "gloss": "袋子"
+      },
+      "learning_role": "listen_only",
+      "surface": "袋はご利用ですか。",
+      "speak": "袋はご利用ですか。",
+      "translation": "需要袋子嗎？",
+      "friend": {
+        "hint": "袋是袋子。不要袋子時，可以說「袋はいりません」。"
+      },
+      "reply_set": {
+        "correct": "r3a",
+        "choices": [
+          {
+            "id": "r3a",
+            "surface": "袋はいりません。",
+            "translation": "不需要袋子。",
+            "speak": "袋はいりません。",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r3b",
+            "surface": "カードでお願いします。",
+            "translation": "麻煩刷卡。",
+            "speak": "カードでお願いします。",
+            "contrast_type": "repeated_prior_answer",
+            "feedback": "刷卡已經完成了。現在店員在問要不要袋子。"
+          },
+          {
+            "id": "r3c",
+            "surface": "はい、ここです。",
+            "translation": "是的，在這裡。",
+            "speak": "はい、ここです。",
+            "contrast_type": "wrong_act_location_answer",
+            "feedback": "這不像是在回答要不要袋子。不要袋子時說「いりません」。"
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t4",
+      "speaker": "npc",
+      "act": "transaction_close",
+      "act_slots": {
+        "topic": "交易完成",
+        "keyword": "レシート",
+        "gloss": "收據"
+      },
+      "learning_role": "listen_only",
+      "surface": "レシートです。ありがとうございました。",
+      "speak": "レシートです。ありがとうございました。",
+      "translation": "這是收據。謝謝您。",
+      "friend": {
+        "hint": "交易結束了。用簡短的謝謝收尾就好。"
+      },
+      "reply_set": {
+        "correct": "r4a",
+        "choices": [
+          {
+            "id": "r4a",
+            "surface": "ありがとうございます。",
+            "translation": "謝謝。",
+            "speak": "ありがとうございます。"
+          },
+          {
+            "id": "r4b",
+            "surface": "おにぎりをください。",
+            "translation": "請給我飯糰。",
+            "speak": "おにぎりをください。",
+            "contrast_type": "wrong_scenario_ordering",
+            "feedback": "結帳已經結束了。這裡用謝謝收尾比較自然。"
+          },
+          {
+            "id": "r4c",
+            "surface": "袋はいりません。",
+            "translation": "不需要袋子。",
+            "speak": "袋はいりません。",
+            "contrast_type": "repeated_prior_answer",
+            "feedback": "袋子的問題已經回答過了。現在店員在結束交易。"
+          }
+        ]
+      },
+      "closing": {
+        "act": "handover",
+        "learning_role": "listen_only",
+        "surface": "またお越しください。",
+        "speak": "またお越しください。",
+        "translation": "歡迎再次光臨。"
+      }
+    }
+  ],
+  "formula_moments": [
+    {
+      "after_turn": "t1",
+      "pattern_id": "ja.store.payment.card_cash.v1"
+    }
+  ],
+  "notes": {
+    "authoring_source": "Authored from ML-0 neutral brief, not Korean surface text.",
+    "review_policy": "AI-authored candidate. Requires AI review, runtime smoke, and tracked native review before any stronger status.",
+    "canonical_policy": "Staging candidate only. Do not write back to manifests, production exports, schemas, or legacy content."
+  }
+}

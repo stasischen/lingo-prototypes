@@ -1,0 +1,260 @@
+{
+  "schema_version": "scenario_pack.v1",
+  "scenario_id": "a2_reschedule_meeting_time",
+  "title": "Mudar o Horário de um Encontro",
+  "setting_label": "Mudando planos com uma amiga",
+  "wrap_title": "Novo horário do encontro",
+  "wrap_friend": "你剛剛用簡單葡語請朋友改時間，提出新時間，並再次確認。",
+  "language": "pt",
+  "ui_language": "zh_tw",
+  "cefr_level": "A2",
+  "source_status": "candidate_runtime_verified",
+  "review_state": "ai_reviewed",
+  "review_status_framework_state": "candidate_runtime_verified",
+  "native_review_state": "native_pending",
+  "scenario": "Você precisa pedir para uma amiga mudar o horário de um encontro.",
+  "learner_goal": "Pedir para mudar o horário e confirmar o novo horário.",
+  "target_functions": [
+    "reschedule_request",
+    "alternative_time",
+    "confirmation"
+  ],
+  "register_notes": "Português brasileiro amigável e de baixo risco. Polido sem ficar formal; sem negociação longa ou contexto de trabalho.",
+  "production_mode_default": {
+    "required": [
+      "choice"
+    ],
+    "optional_visible": [
+      "speaking"
+    ],
+    "optional_hidden": [
+      "typing"
+    ]
+  },
+  "support_text": "O horário original ficou difícil para você. Peça para mudar, dê um novo horário e confirme.",
+  "roles": {
+    "npc": {
+      "label": "amiga"
+    },
+    "learner": {
+      "label": "você"
+    }
+  },
+  "turns": [
+    {
+      "turn_id": "t1",
+      "speaker": "npc",
+      "act": "schedule_confirmation",
+      "act_slots": {
+        "topic": "plano das três",
+        "keyword": "três",
+        "gloss": "三點"
+      },
+      "learning_role": "listen_only",
+      "surface": "A gente vai se encontrar às três hoje, né?",
+      "speak": "A gente vai se encontrar às três hoje, né?",
+      "translation": "我們今天三點見，對吧？",
+      "friend": {
+        "hint": "對方在確認原本時間。請求改時間。"
+      },
+      "reply_set": {
+        "correct": "r1a",
+        "choices": [
+          {
+            "id": "r1a",
+            "surface": "Desculpa, podemos mudar o horário?",
+            "translation": "不好意思，我們可以改時間嗎？",
+            "speak": "Desculpa, podemos mudar o horário?",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r1b",
+            "surface": "Sim, a gente se encontrou ontem.",
+            "translation": "對，我們昨天見過了。",
+            "speak": "Sim, a gente se encontrou ontem.",
+            "contrast_type": "wrong_time_past",
+            "feedback": "對方在確認今天的計畫，不是昨天。"
+          },
+          {
+            "id": "r1c",
+            "surface": "Vou pagar no cartão.",
+            "translation": "我會刷卡付款。",
+            "speak": "Vou pagar no cartão.",
+            "contrast_type": "wrong_scenario_payment",
+            "feedback": "這是付款用語。這裡要問見面時間。"
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t2",
+      "speaker": "npc",
+      "act": "alternative_request",
+      "act_slots": {
+        "topic": "novo horário",
+        "keyword": "que horas",
+        "gloss": "幾點"
+      },
+      "learning_role": "listen_only",
+      "surface": "Claro. Que horas fica bom para você?",
+      "speak": "Claro. Que horas fica bom para você?",
+      "translation": "當然。你幾點方便？",
+      "friend": {
+        "hint": "給一個新的時間，保持簡短。"
+      },
+      "inline_explain": {
+        "pattern_id": "pt.a2.reschedule.mudar_para.v1",
+        "title": "mudar para + horário",
+        "explain": "用 mudar para 來說把時間改到某個時候。",
+        "items": [
+          {
+            "surface": "mudar para as quatro",
+            "translation": "改到四點",
+            "speak": "mudar para as quatro"
+          },
+          {
+            "surface": "mudar para amanhã",
+            "translation": "改到明天",
+            "speak": "mudar para amanhã"
+          }
+        ]
+      },
+      "reply_set": {
+        "correct": "r2a",
+        "choices": [
+          {
+            "id": "r2a",
+            "surface": "Podemos mudar para as quatro?",
+            "translation": "我們可以改到四點嗎？",
+            "speak": "Podemos mudar para as quatro?",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r2b",
+            "surface": "A gente usa a saída quatro?",
+            "translation": "我們走四號出口嗎？",
+            "speak": "A gente usa a saída quatro?",
+            "contrast_type": "wrong_entity_exit_number",
+            "feedback": "四號出口是地點細節。對方問的是新時間。"
+          },
+          {
+            "id": "r2c",
+            "surface": "Eu fui às quatro.",
+            "translation": "我四點去了。",
+            "speak": "Eu fui às quatro.",
+            "contrast_type": "wrong_time_past",
+            "feedback": "這是在說過去。現在要請求改到四點。"
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t3",
+      "speaker": "npc",
+      "act": "accept_new_time",
+      "act_slots": {
+        "topic": "novo horário aceito"
+      },
+      "learning_role": "listen_only",
+      "surface": "Sim, quatro está bom.",
+      "speak": "Sim, quatro está bom.",
+      "translation": "可以，四點沒問題。",
+      "friend": {
+        "hint": "新時間已經被接受了。再確認一次。"
+      },
+      "reply_set": {
+        "correct": "r3a",
+        "choices": [
+          {
+            "id": "r3a",
+            "surface": "Ótimo, até as quatro.",
+            "translation": "太好了，四點見。",
+            "speak": "Ótimo, até as quatro."
+          },
+          {
+            "id": "r3b",
+            "surface": "Ótimo, até as três.",
+            "translation": "太好了，三點見。",
+            "speak": "Ótimo, até as três.",
+            "contrast_type": "repeats_old_time",
+            "feedback": "三點是原本時間。你已經改到四點。"
+          },
+          {
+            "id": "r3c",
+            "surface": "Pode me dar a chave do quarto?",
+            "translation": "可以給我房卡嗎？",
+            "speak": "Pode me dar a chave do quarto?",
+            "contrast_type": "wrong_scenario_hotel",
+            "feedback": "這是飯店用語。這裡要確認新的見面時間。"
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t4",
+      "speaker": "npc",
+      "act": "closing",
+      "act_slots": {
+        "topic": "fechar plano"
+      },
+      "learning_role": "listen_only",
+      "surface": "Fechado. Até mais tarde.",
+      "speak": "Fechado. Até mais tarde.",
+      "translation": "說定了，晚點見。",
+      "friend": {
+        "hint": "計畫完成了。自然收尾。"
+      },
+      "reply_set": {
+        "correct": "r4a",
+        "choices": [
+          {
+            "id": "r4a",
+            "surface": "Até mais tarde.",
+            "translation": "晚點見。",
+            "speak": "Até mais tarde."
+          },
+          {
+            "id": "r4b",
+            "surface": "Porque eu estou atrasado.",
+            "translation": "因為我遲到了。",
+            "speak": "Porque eu estou atrasado.",
+            "contrast_type": "fragment_without_need",
+            "feedback": "時間已經改好了。這裡不需要再補原因片段。"
+          },
+          {
+            "id": "r4c",
+            "surface": "Reservei de novo.",
+            "translation": "我重新預約了。",
+            "speak": "Reservei de novo.",
+            "contrast_type": "wrong_scenario_reservation",
+            "feedback": "這像是預約系統，不是朋友之間改時間。"
+          }
+        ]
+      }
+    }
+  ],
+  "choice_sets": [
+    "t1.reply_set",
+    "t2.reply_set",
+    "t3.reply_set",
+    "t4.reply_set"
+  ],
+  "feedback": "Distractors test old versus new time, number-place confusion, and unrelated scenario phrases.",
+  "tts_segments": [
+    "Desculpa, podemos mudar o horário?",
+    "Podemos mudar para as quatro?",
+    "Ótimo, até as quatro.",
+    "Até mais tarde."
+  ],
+  "formula_moments": [
+    {
+      "after_turn": "t2",
+      "pattern_id": "pt.a2.reschedule.mudar_para.v1"
+    }
+  ],
+  "runtime_notes": "Fresh PT A2 candidate. Structural checks and two AI semantic review passes completed on 2026-06-14 before metadata promotion.",
+  "notes": {
+    "authoring_policy": "Fresh-authored from the neutral A2 brief. KO/JA/EN/TH were used only as schema-shape references.",
+    "a2_boundary": "Low-stakes rescheduling with one alternative time; avoids a negotiation loop or formal workplace framing."
+  }
+}

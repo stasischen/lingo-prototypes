@@ -1,0 +1,257 @@
+{
+  "schema_version": "scenario_pack.v1",
+  "scenario_id": "a2_invite_friend_activity",
+  "title": "Convidar um Amigo para uma Atividade",
+  "setting_label": "friend chat",
+  "wrap_title": "Plano com um amigo confirmado",
+  "wrap_friend": "Muito bem. Você convidou um amigo sem pressão e confirmou horário e lugar.",
+  "language": "pt",
+  "ui_language": "zh-Hant",
+  "cefr_level": "A2",
+  "source_status": "candidate_runtime_verified",
+  "review_state": "ai_reviewed",
+  "review_status_framework_state": "candidate_runtime_verified",
+  "native_review_state": "native_pending",
+  "scenario": {
+    "domain": "daily_social_coordination",
+    "review_slice": "daily_social",
+    "interaction": "friend_social_coordination",
+    "source_brief": "A2_DAILY_SOCIAL_NEUTRAL_ADAPTATION_BRIEFS_20260614",
+    "blueprint_source": "language_neutral_adaptation_brief",
+    "ko_pack_role": "mature_scenario_blueprint_not_translation_source"
+  },
+  "learner_goal": "Resolver uma situação social simples com um amigo usando frases curtas de A2.",
+  "target_functions": [
+    "friend_invitation_or_response",
+    "simple_reason_or_past_event",
+    "two_step_plan_or_confirmation",
+    "close_with_relationship_maintenance"
+  ],
+  "register_notes": "Brazilian Portuguese A2 friend/social register: natural você friend wording, warm and concise, no European/formal service phrasing.",
+  "production_mode_default": {
+    "required": [
+      "choice"
+    ],
+    "optional_visible": [
+      "speaking"
+    ],
+    "optional_hidden": [
+      "typing"
+    ]
+  },
+  "support_text": "Use linguagem natural com um amigo. Mantenha a atividade e o motivo simples.",
+  "roles": {
+    "npc": {
+      "label": "amigo"
+    },
+    "learner": {
+      "label": "你"
+    }
+  },
+  "turns": [
+    {
+      "turn_id": "t1",
+      "speaker": "npc",
+      "act": "invite_activity",
+      "act_slots": {
+        "topic": "invite",
+        "keyword": "1",
+        "gloss": "A2 daily/social"
+      },
+      "learning_role": "listen_only",
+      "surface": "Você quer tomar um café mais tarde?",
+      "speak": "Você quer tomar um café mais tarde?",
+      "translation": "等一下要一起喝咖啡嗎？",
+      "friend": {
+        "hint": "Respond naturally to the friend plan."
+      },
+      "reply_set": {
+        "correct": "r1a",
+        "choices": [
+          {
+            "id": "r1a",
+            "surface": "Você quer tomar um café mais tarde?",
+            "translation": "等一下要一起喝咖啡嗎？",
+            "speak": "Você quer tomar um café mais tarde?",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r1b",
+            "surface": "Por favor, troque meu quarto mais tarde.",
+            "translation": "等一下請幫我換房間。",
+            "speak": "Por favor, troque meu quarto mais tarde.",
+            "contrast_type": "wrong_scenario_service",
+            "feedback": "Isso não combina com esta situação com um amigo."
+          },
+          {
+            "id": "r1c",
+            "surface": "Você tem que vir comigo hoje.",
+            "translation": "你今天一定要跟我來。",
+            "speak": "Você tem que vir comigo hoje.",
+            "contrast_type": "too_pressuring",
+            "feedback": "Isso soa forte demais para falar com um amigo."
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t2",
+      "speaker": "npc",
+      "act": "check_time",
+      "act_slots": {
+        "topic": "invite",
+        "keyword": "2",
+        "gloss": "A2 daily/social"
+      },
+      "learning_role": "listen_only",
+      "surface": "Claro. Que horas?",
+      "speak": "Claro. Que horas?",
+      "translation": "好啊。幾點？",
+      "friend": {
+        "hint": "Respond naturally to the friend plan."
+      },
+      "reply_set": {
+        "correct": "r2a",
+        "choices": [
+          {
+            "id": "r2a",
+            "surface": "Que tal às três?",
+            "translation": "三點怎麼樣？",
+            "speak": "Que tal às três?",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r2b",
+            "surface": "Por favor, troque meu quarto mais tarde.",
+            "translation": "等一下請幫我換房間。",
+            "speak": "Por favor, troque meu quarto mais tarde.",
+            "contrast_type": "wrong_scenario_service",
+            "feedback": "Isso não combina com esta situação com um amigo."
+          },
+          {
+            "id": "r2c",
+            "surface": "Você tem que vir comigo hoje.",
+            "translation": "你今天一定要跟我來。",
+            "speak": "Você tem que vir comigo hoje.",
+            "contrast_type": "too_pressuring",
+            "feedback": "Isso soa forte demais para falar com um amigo."
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t3",
+      "speaker": "npc",
+      "act": "confirm_place",
+      "act_slots": {
+        "topic": "invite",
+        "keyword": "3",
+        "gloss": "A2 daily/social"
+      },
+      "learning_role": "listen_only",
+      "surface": "A gente se encontra na frente da estação?",
+      "speak": "A gente se encontra na frente da estação?",
+      "translation": "要在車站前面見嗎？",
+      "friend": {
+        "hint": "Respond naturally to the friend plan."
+      },
+      "reply_set": {
+        "correct": "r3a",
+        "choices": [
+          {
+            "id": "r3a",
+            "surface": "Sim, vamos nos encontrar na frente da estação.",
+            "translation": "好，我們在車站前面見。",
+            "speak": "Sim, vamos nos encontrar na frente da estação.",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r3b",
+            "surface": "Por favor, troque meu quarto mais tarde.",
+            "translation": "等一下請幫我換房間。",
+            "speak": "Por favor, troque meu quarto mais tarde.",
+            "contrast_type": "wrong_scenario_service",
+            "feedback": "Isso não combina com esta situação com um amigo."
+          },
+          {
+            "id": "r3c",
+            "surface": "Você tem que vir comigo hoje.",
+            "translation": "你今天一定要跟我來。",
+            "speak": "Você tem que vir comigo hoje.",
+            "contrast_type": "too_pressuring",
+            "feedback": "Isso soa forte demais para falar com um amigo."
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t4",
+      "speaker": "npc",
+      "act": "close_plan",
+      "act_slots": {
+        "topic": "invite",
+        "keyword": "4",
+        "gloss": "A2 daily/social"
+      },
+      "learning_role": "listen_only",
+      "surface": "Ótimo. Até mais tarde.",
+      "speak": "Ótimo. Até mais tarde.",
+      "translation": "好，等一下見。",
+      "friend": {
+        "hint": "Respond naturally to the friend plan."
+      },
+      "reply_set": {
+        "correct": "r4a",
+        "choices": [
+          {
+            "id": "r4a",
+            "surface": "Ótimo. Até mais tarde.",
+            "translation": "很好，等一下見。",
+            "speak": "Ótimo. Até mais tarde.",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r4b",
+            "surface": "Por favor, troque meu quarto mais tarde.",
+            "translation": "等一下請幫我換房間。",
+            "speak": "Por favor, troque meu quarto mais tarde.",
+            "contrast_type": "wrong_scenario_service",
+            "feedback": "Isso não combina com esta situação com um amigo."
+          },
+          {
+            "id": "r4c",
+            "surface": "Você tem que vir comigo hoje.",
+            "translation": "你今天一定要跟我來。",
+            "speak": "Você tem que vir comigo hoje.",
+            "contrast_type": "too_pressuring",
+            "feedback": "Isso soa forte demais para falar com um amigo."
+          }
+        ]
+      }
+    }
+  ],
+  "choice_sets": [
+    "t1.reply_set",
+    "t2.reply_set",
+    "t3.reply_set",
+    "t4.reply_set"
+  ],
+  "feedback": "Os distratores testam registro social, tempo, função e limite A2.",
+  "tts_segments": [
+    "Você quer tomar um café mais tarde?",
+    "Que tal às três?",
+    "Sim, vamos nos encontrar na frente da estação.",
+    "Ótimo. Até mais tarde."
+  ],
+  "formula_moments": [
+    {
+      "after_turn": "t2",
+      "pattern_id": "pt.a2.daily.invite.v1"
+    }
+  ],
+  "runtime_notes": "Fresh A2 daily/social candidate. Requires full-walk runtime before closeout evidence is recorded.",
+  "notes": {
+    "authoring_policy": "Fresh-authored from A2 daily/social neutral adaptation brief. KO surface text was not copied or translated.",
+    "a2_boundary": "Friend/social register, ordinary low-risk activities and reasons, short A2 responses only."
+  }
+}

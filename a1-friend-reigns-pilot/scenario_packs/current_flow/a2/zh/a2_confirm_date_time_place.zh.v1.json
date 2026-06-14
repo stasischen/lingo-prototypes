@@ -1,0 +1,264 @@
+{
+  "schema_version": "scenario_pack.v1",
+  "scenario_id": "a2_confirm_date_time_place",
+  "title": "確認日期時間地點",
+  "setting_label": "看朋友的訊息",
+  "wrap_title": "日期時間地點確認完成",
+  "wrap_friend": "你剛剛從短訊息中確認了日期、時間和地點，並自然收尾。",
+  "language": "zh",
+  "ui_language": "zh_tw",
+  "cefr_level": "A2",
+  "source_status": "candidate_runtime_verified",
+  "review_state": "ai_reviewed",
+  "review_status_framework_state": "candidate_runtime_verified",
+  "native_review_state": "native_pending",
+  "scenario": "朋友提到一則短訊息，你要確認日期、時間和地點。",
+  "learner_goal": "從短訊息中抓出日期、時間和地點，並用簡短問題確認。",
+  "target_functions": [
+    "message_comprehension",
+    "date_time_place_extraction",
+    "confirmation_question"
+  ],
+  "register_notes": "自然朋友語氣，短訊息使用「這週六下午三點，在市立圖書館門口見」。",
+  "production_mode_default": {
+    "required": [
+      "choice"
+    ],
+    "optional_visible": [
+      "speaking"
+    ],
+    "optional_hidden": [
+      "typing"
+    ]
+  },
+  "support_text": "朋友傳來短訊息。你要確認星期、時間和地點，不需要問路或看地圖。",
+  "roles": {
+    "npc": {
+      "label": "朋友"
+    },
+    "learner": {
+      "label": "你"
+    }
+  },
+  "message_text": "這週六下午三點，在市立圖書館門口見。",
+  "turns": [
+    {
+      "turn_id": "t1",
+      "speaker": "npc",
+      "act": "message_reference",
+      "act_slots": {
+        "topic": "short message",
+        "keyword": "訊息",
+        "gloss": "message"
+      },
+      "learning_role": "listen_only",
+      "surface": "我剛剛傳訊息給你：這週六下午三點，在市立圖書館門口見。",
+      "speak": "我剛剛傳訊息給你：這週六下午三點，在市立圖書館門口見。",
+      "translation": "我剛剛傳訊息給你：這週六下午三點，在市立圖書館門口見。",
+      "friend": {
+        "hint": "先確認日期和時間。"
+      },
+      "reply_set": {
+        "correct": "r1a",
+        "choices": [
+          {
+            "id": "r1a",
+            "surface": "是這週六下午三點，對嗎？",
+            "translation": "是這週六下午三點，對嗎？",
+            "speak": "是這週六下午三點，對嗎？",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r1b",
+            "surface": "是這週日早上三點，對嗎？",
+            "translation": "是這週日早上三點，對嗎？",
+            "speak": "是這週日早上三點，對嗎？",
+            "contrast_type": "wrong_date_time",
+            "feedback": "訊息說這週六下午三點，不是週日早上三點。"
+          },
+          {
+            "id": "r1c",
+            "surface": "我要改到四點，對嗎？",
+            "translation": "我要改到四點，對嗎？",
+            "speak": "我要改到四點，對嗎？",
+            "contrast_type": "wrong_scenario_reschedule",
+            "feedback": "這是在改時間。現在只是確認訊息內容。"
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t2",
+      "speaker": "npc",
+      "act": "date_time_confirm",
+      "act_slots": {
+        "topic": "date and time",
+        "keyword": "週六下午三點",
+        "gloss": "Saturday at 3 PM"
+      },
+      "learning_role": "listen_only",
+      "surface": "對，這週六下午三點。",
+      "speak": "對，這週六下午三點。",
+      "translation": "對，這週六下午三點。",
+      "friend": {
+        "hint": "日期和時間已確認。接著問地點。"
+      },
+      "inline_explain": {
+        "pattern_id": "zh.a2.confirm.dui_ma.v1",
+        "title": "...對嗎？",
+        "explain": "用「...對嗎？」確認訊息中的重點。",
+        "items": [
+          {
+            "surface": "是這週六，對嗎？",
+            "translation": "是這週六，對嗎？",
+            "speak": "是這週六，對嗎？"
+          },
+          {
+            "surface": "在圖書館門口，對嗎？",
+            "translation": "在圖書館門口，對嗎？",
+            "speak": "在圖書館門口，對嗎？"
+          }
+        ]
+      },
+      "reply_set": {
+        "correct": "r2a",
+        "choices": [
+          {
+            "id": "r2a",
+            "surface": "地點是在市立圖書館門口嗎？",
+            "translation": "地點是在市立圖書館門口嗎？",
+            "speak": "地點是在市立圖書館門口嗎？",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r2b",
+            "surface": "地點是在市立圖書館裡面嗎？",
+            "translation": "地點是在市立圖書館裡面嗎？",
+            "speak": "地點是在市立圖書館裡面嗎？",
+            "contrast_type": "wrong_place_relation",
+            "feedback": "訊息說門口，不是裡面。"
+          },
+          {
+            "id": "r2c",
+            "surface": "公車站在哪裡？",
+            "translation": "公車站在哪裡？",
+            "speak": "公車站在哪裡？",
+            "contrast_type": "navigation_out_of_scope",
+            "feedback": "這是在問路。這個場景只確認訊息中的地點。"
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t3",
+      "speaker": "npc",
+      "act": "place_confirm",
+      "act_slots": {
+        "topic": "place",
+        "keyword": "門口",
+        "gloss": "entrance"
+      },
+      "learning_role": "listen_only",
+      "surface": "對，在市立圖書館門口。",
+      "speak": "對，在市立圖書館門口。",
+      "translation": "對，在市立圖書館門口。",
+      "friend": {
+        "hint": "現在三個資訊都清楚了，可以完整確認一次。"
+      },
+      "reply_set": {
+        "correct": "r3a",
+        "choices": [
+          {
+            "id": "r3a",
+            "surface": "好，這週六下午三點，在圖書館門口。",
+            "translation": "好，這週六下午三點，在圖書館門口。",
+            "speak": "好，這週六下午三點，在圖書館門口。"
+          },
+          {
+            "id": "r3b",
+            "surface": "好，這週六上午三點，在圖書館門口。",
+            "translation": "好，這週六上午三點，在圖書館門口。",
+            "speak": "好，這週六上午三點，在圖書館門口。",
+            "contrast_type": "wrong_time",
+            "feedback": "訊息說下午三點，不是上午三點。"
+          },
+          {
+            "id": "r3c",
+            "surface": "好，這週六下午三點，在車站門口。",
+            "translation": "好，這週六下午三點，在車站門口。",
+            "speak": "好，這週六下午三點，在車站門口。",
+            "contrast_type": "wrong_place",
+            "feedback": "訊息說圖書館門口，不是車站門口。"
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t4",
+      "speaker": "npc",
+      "act": "closing",
+      "act_slots": {
+        "topic": "confirmed plan"
+      },
+      "learning_role": "listen_only",
+      "surface": "沒錯，到時候見。",
+      "speak": "沒錯，到時候見。",
+      "translation": "沒錯，到時候見。",
+      "friend": {
+        "hint": "資訊都確認好了，簡短收尾。"
+      },
+      "reply_set": {
+        "correct": "r4a",
+        "choices": [
+          {
+            "id": "r4a",
+            "surface": "好，到時候見。",
+            "translation": "好，到時候見。",
+            "speak": "好，到時候見。"
+          },
+          {
+            "id": "r4b",
+            "surface": "不好意思，我會晚十分鐘。",
+            "translation": "不好意思，我會晚十分鐘。",
+            "speak": "不好意思，我會晚十分鐘。",
+            "contrast_type": "wrong_scenario_delay",
+            "feedback": "這是在說會遲到，不是確認訊息後收尾。"
+          },
+          {
+            "id": "r4c",
+            "surface": "可以改到四點嗎？",
+            "translation": "可以改到四點嗎？",
+            "speak": "可以改到四點嗎？",
+            "contrast_type": "wrong_scenario_reschedule",
+            "feedback": "這是在改時間。這裡只要自然結尾。"
+          }
+        ]
+      }
+    }
+  ],
+  "choice_sets": [
+    "t1.reply_set",
+    "t2.reply_set",
+    "t3.reply_set",
+    "t4.reply_set"
+  ],
+  "feedback": "干擾選項測試日期、時間、地點關係和錯誤場景，不加入問路或多步驟導航。",
+  "tts_segments": [
+    "是這週六下午三點，對嗎？",
+    "地點是在市立圖書館門口嗎？",
+    "好，這週六下午三點，在圖書館門口。",
+    "好，到時候見。"
+  ],
+  "formula_moments": [
+    {
+      "after_turn": "t2",
+      "pattern_id": "zh.a2.confirm.dui_ma.v1"
+    }
+  ],
+  "runtime_notes": "Fresh ZH A2 candidate. Structural checks and two AI semantic review passes completed on 2026-06-14 before metadata promotion.",
+  "notes": {
+    "authoring_policy": "Fresh-authored from the neutral A2 brief. KO/JA/EN/TH packs were not translation sources.",
+    "a2_boundary": "Uses short-message comprehension and date/time/place confirmation; avoids map reading or directions.",
+    "chinese_voice_note": "Traditional Mandarin message style with compact confirmation questions."
+  }
+}

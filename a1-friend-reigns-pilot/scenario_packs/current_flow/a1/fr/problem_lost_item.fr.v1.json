@@ -1,0 +1,250 @@
+{
+  "schema_version": "scenario_pack.v1",
+  "scenario_id": "problem_lost_item",
+  "brief_id": "ml5_a1_020_problem_lost_item",
+  "source_neutral_brief": "release-aggregator/docs/tasks/A1_MULTILINGUAL_KO_B1_PARALLEL_ORCHESTRATION/work_products/ml0/ML5_NEUTRAL_ADAPTATION_BRIEFS_20260614.md#brief-ml5-a1-020-say-a-small-item-is-lost",
+  "blueprint_ledger": "release-aggregator/docs/tasks/A1_MULTILINGUAL_KO_B1_PARALLEL_ORCHESTRATION/work_products/ml0/ML5_BLUEPRINT_LEDGER_20260614.md",
+  "repo": "content-fr",
+  "staging_path": "content/core/content_assets/scenario_packs/current_flow/problem_lost_item.fr.v1.json",
+  "title": "Dire qu'on a perdu quelque chose",
+  "setting_label": "Point information",
+  "wrap_title": "Tu peux demander de l'aide pour un objet perdu",
+  "wrap_friend": "你說明遺失物、簡單地點，確認去哪裡問，並道謝。",
+  "language": "fr",
+  "ui_language": "zh_tw",
+  "source_status": "candidate_runtime_verified",
+  "review_state": "draft",
+  "review_status_framework_state": "candidate_runtime_verified",
+  "native_review_state": "native_pending",
+  "production_mode_default": {
+    "required": [
+      "choice"
+    ],
+    "optional_visible": [
+      "speaking"
+    ],
+    "optional_hidden": [
+      "typing"
+    ]
+  },
+  "support_text": "你在服務櫃台。說一個小物品不見了，回答可能在哪裡不見，確認下一步去哪裡問，最後道謝。",
+  "roles": {
+    "npc": {
+      "label": "employé"
+    },
+    "learner": {
+      "label": "client"
+    }
+  },
+  "turns": [
+    {
+      "turn_id": "t1",
+      "speaker": "npc",
+      "act": "offer_help",
+      "act_slots": {
+        "topic": "aide",
+        "keyword": "aider",
+        "gloss": "幫忙"
+      },
+      "learning_role": "listen_only",
+      "surface": "Bonjour, je peux vous aider ?",
+      "speak": "Bonjour, je peux vous aider ?",
+      "translation": "您好，我可以幫您嗎？",
+      "friend": {
+        "hint": "先說你的小包不見了。用 J'ai perdu... 很簡單。"
+      },
+      "reply_set": {
+        "correct": "r1a",
+        "choices": [
+          {
+            "id": "r1a",
+            "surface": "J'ai perdu mon sac.",
+            "translation": "我的包不見了。",
+            "speak": "J'ai perdu mon sac.",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r1b",
+            "surface": "C'est combien ?",
+            "translation": "多少錢？",
+            "speak": "C'est combien ?",
+            "contrast_type": "wrong_scenario_price",
+            "feedback": "這是在問價格。現在要說東西不見了。"
+          },
+          {
+            "id": "r1c",
+            "surface": "Je voudrais un café.",
+            "translation": "我想要一杯咖啡。",
+            "speak": "Je voudrais un café.",
+            "contrast_type": "wrong_scenario_order",
+            "feedback": "這是在點餐，不是尋求失物協助。"
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t2",
+      "speaker": "npc",
+      "act": "ask_lost_location",
+      "act_slots": {
+        "topic": "lieu",
+        "keyword": "où",
+        "gloss": "哪裡"
+      },
+      "learning_role": "listen_only",
+      "surface": "Vous l'avez perdu où ?",
+      "speak": "Vous l'avez perdu où ?",
+      "translation": "您在哪裡弄丟的？",
+      "friend": {
+        "hint": "給一個簡單地點，不需要細節。"
+      },
+      "inline_explain": {
+        "pattern_id": "fr.problem.lost_item.v1",
+        "formula_ref": null,
+        "title": "J'ai perdu... / au café",
+        "explain": "說遺失可用 J'ai perdu...；地點可用 au/à la + lieu。",
+        "items": [
+          {
+            "surface": "J'ai perdu mon sac.",
+            "translation": "我的包不見了。",
+            "speak": "J'ai perdu mon sac."
+          },
+          {
+            "surface": "Je crois, au café.",
+            "translation": "我想是在咖啡店。",
+            "speak": "Je crois, au café."
+          }
+        ]
+      },
+      "reply_set": {
+        "correct": "r2a",
+        "choices": [
+          {
+            "id": "r2a",
+            "surface": "Je crois, au café.",
+            "translation": "我想是在咖啡店。",
+            "speak": "Je crois, au café.",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r2b",
+            "surface": "À trois heures.",
+            "translation": "三點。",
+            "speak": "À trois heures.",
+            "contrast_type": "wrong_answer_time",
+            "feedback": "對方問在哪裡，不是問時間。"
+          },
+          {
+            "id": "r2c",
+            "surface": "Non, merci.",
+            "translation": "不用了，謝謝。",
+            "speak": "Non, merci.",
+            "contrast_type": "wrong_act_refusal",
+            "feedback": "你正在尋求協助。需要回答可能的地點。"
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t3",
+      "speaker": "npc",
+      "act": "give_next_desk",
+      "act_slots": {
+        "topic": "objets trouvés",
+        "keyword": "côté",
+        "gloss": "旁邊"
+      },
+      "learning_role": "listen_only",
+      "surface": "Les objets trouvés sont à côté.",
+      "speak": "Les objets trouvés sont à côté.",
+      "translation": "失物招領在旁邊。",
+      "friend": {
+        "hint": "確認下一步去哪裡問。"
+      },
+      "reply_set": {
+        "correct": "r3a",
+        "choices": [
+          {
+            "id": "r3a",
+            "surface": "Aux objets trouvés ?",
+            "translation": "到失物招領嗎？",
+            "speak": "Aux objets trouvés ?",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r3b",
+            "surface": "Je veux payer maintenant.",
+            "translation": "我現在想付款。",
+            "speak": "Je veux payer maintenant.",
+            "contrast_type": "wrong_scenario_payment",
+            "feedback": "這是在付款，不是確認去哪裡問失物。"
+          },
+          {
+            "id": "r3c",
+            "surface": "J'ai perdu mon sac.",
+            "translation": "我的包不見了。",
+            "speak": "J'ai perdu mon sac.",
+            "contrast_type": "repeated_prior_statement",
+            "feedback": "你已經說過遺失物。現在要確認下一步。"
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t4",
+      "speaker": "npc",
+      "act": "confirm_next_step",
+      "act_slots": {
+        "topic": "confirmation",
+        "keyword": "là-bas",
+        "gloss": "那裡"
+      },
+      "learning_role": "listen_only",
+      "surface": "Oui, demandez là-bas.",
+      "speak": "Oui, demandez là-bas.",
+      "translation": "對，請到那裡問。",
+      "friend": {
+        "hint": "已知道下一步。道謝結束。"
+      },
+      "reply_set": {
+        "correct": "r4a",
+        "choices": [
+          {
+            "id": "r4a",
+            "surface": "Merci.",
+            "translation": "謝謝。",
+            "speak": "Merci."
+          },
+          {
+            "id": "r4b",
+            "surface": "Où sont les toilettes ?",
+            "translation": "洗手間在哪裡？",
+            "speak": "Où sont les toilettes ?",
+            "contrast_type": "wrong_scenario_directions",
+            "feedback": "這是在問洗手間。現在應該感謝對方。"
+          },
+          {
+            "id": "r4c",
+            "surface": "C'est trop cher.",
+            "translation": "太貴了。",
+            "speak": "C'est trop cher.",
+            "contrast_type": "wrong_scenario_price",
+            "feedback": "這是在談價格，不是完成失物詢問。"
+          }
+        ]
+      }
+    }
+  ],
+  "formula_moments": [
+    {
+      "after_turn": "t2",
+      "pattern_id": "fr.problem.lost_item.v1"
+    }
+  ],
+  "notes": {
+    "authoring_source": "Authored from ML-5 neutral brief, not Korean surface text or another target-language pack.",
+    "review_policy": "AI-authored French candidate. Requires AI review, runtime smoke, and tracked native review before any stronger status.",
+    "canonical_policy": "Staging candidate only. Do not write back to manifests, production exports, schemas, or legacy content.",
+    "french_register_note": "Concise service-desk French with J'ai perdu mon sac and objets trouvés; avoids police, theft, identity, compensation, and money disputes."
+  }
+}

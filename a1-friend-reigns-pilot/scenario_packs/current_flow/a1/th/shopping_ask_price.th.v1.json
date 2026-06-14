@@ -1,0 +1,251 @@
+{
+  "schema_version": "scenario_pack.v1",
+  "scenario_id": "shopping_ask_price",
+  "brief_id": "ml2_a1_009_shopping_ask_price",
+  "source_neutral_brief": "release-aggregator/docs/tasks/A1_MULTILINGUAL_KO_B1_PARALLEL_ORCHESTRATION/work_products/ml0/ML2_NEUTRAL_ADAPTATION_BRIEFS_20260614.md#brief-ml2-a1-009-shopping-ask-price",
+  "blueprint_ledger": "release-aggregator/docs/tasks/A1_MULTILINGUAL_KO_B1_PARALLEL_ORCHESTRATION/work_products/ml0/ML2_BLUEPRINT_LEDGER_20260614.md",
+  "repo": "content-th",
+  "staging_path": "content/core/content_assets/scenario_packs/current_flow/shopping_ask_price.th.v1.json",
+  "title": "ถามราคา",
+  "setting_label": "ร้านเล็ก",
+  "wrap_title": "ถามราคาได้แล้ว",
+  "wrap_friend": "คุณเรียกพนักงาน ถามราคาของหนึ่งชิ้น ฟังราคา และตอบสั้น ๆ ได้",
+  "language": "th",
+  "ui_language": "zh_tw",
+  "source_status": "candidate_runtime_verified",
+  "review_state": "draft",
+  "review_status_framework_state": "candidate_runtime_verified",
+  "native_review_state": "native_pending",
+  "production_mode_default": {
+    "required": [
+      "choice"
+    ],
+    "optional_visible": [
+      "speaking"
+    ],
+    "optional_hidden": [
+      "typing"
+    ]
+  },
+  "support_text": "你在小店想問一件商品的價格。選自然、簡短的泰文。",
+  "roles": {
+    "npc": {
+      "label": "พนักงานขาย"
+    },
+    "learner": {
+      "label": "คุณ"
+    }
+  },
+  "turns": [
+    {
+      "turn_id": "t1",
+      "speaker": "npc",
+      "act": "shop_greeting",
+      "learning_role": "listen_only",
+      "surface": "สวัสดีค่ะ ดูได้เลยค่ะ",
+      "speak": "สวัสดีค่ะ / ดูได้เลยค่ะ",
+      "translation": "你好，可以慢慢看。",
+      "friend": {
+        "hint": "店員在招呼。先用不好意思叫住對方。"
+      },
+      "inline_explain": {
+        "pattern_id": "th.shopping.attention.v1",
+        "formula_ref": null,
+        "title": "ขอโทษค่ะ",
+        "explain": "ใช้เรียกพนักงานอย่างสุภาพในร้านค้า",
+        "items": [
+          {
+            "surface": "ขอโทษค่ะ",
+            "translation": "不好意思。",
+            "speak": "ขอโทษค่ะ"
+          }
+        ]
+      },
+      "reply_set": {
+        "correct": "r1a",
+        "choices": [
+          {
+            "id": "r1a",
+            "surface": "ขอโทษค่ะ",
+            "translation": "不好意思。",
+            "speak": "ขอโทษค่ะ",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r1b",
+            "surface": "สถานีอยู่ที่ไหนคะ",
+            "translation": "車站在哪裡？",
+            "speak": "สถานี / อยู่ที่ไหนคะ",
+            "contrast_type": "directions_instead_of_shop_attention",
+            "feedback": "這是在問路。現在是在店裡先叫住店員。"
+          },
+          {
+            "id": "r1c",
+            "surface": "ขอกาแฟค่ะ",
+            "translation": "請給我咖啡。",
+            "speak": "ขอกาแฟค่ะ",
+            "contrast_type": "food_order_in_shop_price_scene",
+            "feedback": "這像是在點飲料，不是在問商品價格。"
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t2",
+      "speaker": "learner",
+      "act": "ask_item_price",
+      "learning_role": "production_target",
+      "surface": "อันนี้เท่าไหร่คะ",
+      "speak": "อันนี้ / เท่าไหร่คะ",
+      "translation": "這個多少錢？",
+      "friend": {
+        "hint": "อันนี้ 指這個；เท่าไหร่คะ 是禮貌問價格。"
+      },
+      "inline_explain": {
+        "pattern_id": "th.shopping.price_question.v1",
+        "formula_ref": null,
+        "title": "อันนี้เท่าไหร่คะ",
+        "explain": "ประโยคสั้นและธรรมชาติสำหรับถามราคาของหนึ่งชิ้น",
+        "items": [
+          {
+            "surface": "อันนี้เท่าไหร่คะ",
+            "translation": "這個多少錢？",
+            "speak": "อันนี้ / เท่าไหร่คะ"
+          }
+        ]
+      },
+      "reply_set": {
+        "correct": "r2a",
+        "choices": [
+          {
+            "id": "r2a",
+            "surface": "อันนี้เท่าไหร่คะ",
+            "translation": "這個多少錢？",
+            "speak": "อันนี้ / เท่าไหร่คะ",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r2b",
+            "surface": "จ่ายบัตรได้ไหมคะ",
+            "translation": "可以刷卡嗎？",
+            "speak": "จ่ายบัตร / ได้ไหมคะ",
+            "contrast_type": "payment_method_before_price",
+            "feedback": "這是在問付款方式。先問價格比較自然。"
+          },
+          {
+            "id": "r2c",
+            "surface": "เอาสองอันค่ะ",
+            "translation": "我要兩個。",
+            "speak": "เอาสองอันค่ะ",
+            "contrast_type": "quantity_before_price",
+            "feedback": "這是在說數量。現在要問一件商品的價格。"
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t3",
+      "speaker": "npc",
+      "act": "give_price",
+      "learning_role": "listen_only",
+      "surface": "ห้าสิบบาทค่ะ",
+      "speak": "ห้าสิบบาทค่ะ",
+      "translation": "五十泰銖。",
+      "friend": {
+        "hint": "店員說價格：ห้าสิบบาท。"
+      },
+      "reply_set": {
+        "correct": "r4a",
+        "choices": [
+          {
+            "id": "r4a",
+            "surface": "เอาอันนี้ค่ะ",
+            "translation": "我要這個。",
+            "speak": "เอาอันนี้ค่ะ",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r4b",
+            "surface": "ห้องน้ำอยู่ที่ไหนคะ",
+            "translation": "洗手間在哪裡？",
+            "speak": "ห้องน้ำ / อยู่ที่ไหนคะ",
+            "contrast_type": "directions_after_price",
+            "feedback": "這突然換成問路。聽到價格後要買或道謝離開。"
+          },
+          {
+            "id": "r4c",
+            "surface": "ขอเช็กบิลค่ะ",
+            "translation": "請結帳。",
+            "speak": "ขอเช็กบิลค่ะ",
+            "contrast_type": "restaurant_bill_in_shop",
+            "feedback": "這是餐廳結帳用語，不是買店裡商品。"
+          }
+        ]
+      },
+      "runtime_note": "Reply choices mirror the next learner response so the current prototype can render every round."
+    },
+    {
+      "turn_id": "t4",
+      "speaker": "learner",
+      "act": "accept_or_close",
+      "learning_role": "production_target",
+      "surface": "เอาอันนี้ค่ะ",
+      "speak": "เอาอันนี้ค่ะ",
+      "translation": "我要這個。",
+      "friend": {
+        "hint": "要買時，用เอาอันนี้ค่ะ簡短自然。"
+      },
+      "reply_set": {
+        "correct": "r4a",
+        "choices": [
+          {
+            "id": "r4a",
+            "surface": "เอาอันนี้ค่ะ",
+            "translation": "我要這個。",
+            "speak": "เอาอันนี้ค่ะ",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r4b",
+            "surface": "ห้องน้ำอยู่ที่ไหนคะ",
+            "translation": "洗手間在哪裡？",
+            "speak": "ห้องน้ำ / อยู่ที่ไหนคะ",
+            "contrast_type": "directions_after_price",
+            "feedback": "這突然換成問路。聽到價格後要買或道謝離開。"
+          },
+          {
+            "id": "r4c",
+            "surface": "ขอเช็กบิลค่ะ",
+            "translation": "請結帳。",
+            "speak": "ขอเช็กบิลค่ะ",
+            "contrast_type": "restaurant_bill_in_shop",
+            "feedback": "這是餐廳結帳用語，不是買店裡商品。"
+          }
+        ]
+      },
+      "closing": {
+        "act": "price_understood",
+        "learning_role": "listen_only",
+        "surface": "คุณฟังราคาแล้วตอบได้ชัดเจน",
+        "speak": "คุณฟังราคา / แล้วตอบได้ชัดเจน",
+        "translation": "你聽懂價格並清楚回應了。"
+      }
+    }
+  ],
+  "formula_moments": [
+    {
+      "after_turn": "t1",
+      "pattern_id": "th.shopping.attention.v1"
+    },
+    {
+      "after_turn": "t2",
+      "pattern_id": "th.shopping.price_question.v1"
+    }
+  ],
+  "notes": {
+    "authoring_source": "Authored from ML-2 neutral brief, not Korean surface text or another target-language pack.",
+    "review_policy": "AI-authored Thai candidate. Requires AI review, runtime smoke, and tracked native review before any stronger status.",
+    "canonical_policy": "Staging candidate only. Do not write back to manifests, production exports, schemas, or legacy content.",
+    "register_note": "Polite customer Thai using ค่ะ as the default learner particle."
+  }
+}

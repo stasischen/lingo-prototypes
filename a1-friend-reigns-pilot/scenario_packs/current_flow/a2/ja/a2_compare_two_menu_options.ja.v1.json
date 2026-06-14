@@ -1,0 +1,284 @@
+{
+  "schema_version": "scenario_pack.v1",
+  "scenario_id": "a2_compare_two_menu_options",
+  "title": "メニューを二つ比べる",
+  "setting_label": "レストランのカウンター",
+  "wrap_title": "メニュー選択を確認",
+  "wrap_friend": "よくできました。食事や買い物の低リスク場面で、好みと確認を自然に伝えました。",
+  "language": "ja",
+  "ui_language": "zh-Hant",
+  "cefr_level": "A2",
+  "source_status": "candidate_runtime_verified",
+  "review_state": "ai_reviewed",
+  "review_status_framework_state": "candidate_runtime_verified",
+  "native_review_state": "native_pending",
+  "scenario": {
+    "domain": "food_shopping_preferences",
+    "review_slice": "food_shopping",
+    "interaction": "service_preference_or_exchange",
+    "source_brief": "A2_FOOD_SHOPPING_NEUTRAL_ADAPTATION_BRIEFS_20260614",
+    "blueprint_source": "language_neutral_adaptation_brief",
+    "ko_pack_role": "mature_scenario_blueprint_not_translation_source"
+  },
+  "learner_goal": "二つのメニューの違いを聞いて、好みに合う方を選びます。",
+  "target_functions": [
+    "compare_or_state_preference",
+    "confirm_key_detail",
+    "make_polite_low_risk_request",
+    "close_with_correct_next_step"
+  ],
+  "register_notes": "Japanese A2 food/shopping register: natural polite service Japanese, concise learner replies, no allergy/medical/refund-dispute framing.",
+  "production_mode_default": {
+    "required": [
+      "choice"
+    ],
+    "optional_visible": [
+      "speaking"
+    ],
+    "optional_hidden": [
+      "typing"
+    ]
+  },
+  "support_text": "二つのメニューの違いを聞いて、好みに合う方を選びます。",
+  "roles": {
+    "npc": {
+      "label": "店員"
+    },
+    "learner": {
+      "label": "你"
+    }
+  },
+  "turns": [
+    {
+      "turn_id": "t1",
+      "speaker": "npc",
+      "act": "offer_options",
+      "act_slots": {
+        "topic": "compare-two-menu-options",
+        "keyword": "1",
+        "gloss": "A2 food/shopping"
+      },
+      "learning_role": "listen_only",
+      "surface": "今日はビビンバと冷たい麺から選べます。",
+      "speak": "今日はビビンバと冷たい麺から選べます。",
+      "translation": "今天可以選拌飯或冷麵。",
+      "friend": {
+        "hint": "二つの違いを聞きましょう。"
+      },
+      "reply_set": {
+        "correct": "r1a",
+        "choices": [
+          {
+            "id": "r1a",
+            "surface": "二つはどう違いますか。",
+            "translation": "兩個有什麼不同？",
+            "speak": "二つはどう違いますか。",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r1b",
+            "surface": "席はどこですか。",
+            "translation": "座位在哪裡？",
+            "speak": "席はどこですか。",
+            "contrast_type": "wrong_detail_or_domain",
+            "feedback": "席の質問で、メニュー比較ではありません。"
+          },
+          {
+            "id": "r1c",
+            "surface": "返金してください。",
+            "translation": "請退款。",
+            "speak": "返金してください。",
+            "contrast_type": "forbidden_or_wrong_domain",
+            "feedback": "返金はこのA2タスクの外です。"
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t2",
+      "speaker": "npc",
+      "act": "ask_difference",
+      "act_slots": {
+        "topic": "compare-two-menu-options",
+        "keyword": "2",
+        "gloss": "A2 food/shopping"
+      },
+      "learning_role": "listen_only",
+      "surface": "ビビンバは少し辛くて、麺のほうが軽いです。",
+      "speak": "ビビンバは少し辛くて、麺のほうが軽いです。",
+      "translation": "拌飯有點辣，麵比較清爽。",
+      "friend": {
+        "hint": "聞いた比較を確認しましょう。"
+      },
+      "reply_set": {
+        "correct": "r2a",
+        "choices": [
+          {
+            "id": "r2a",
+            "surface": "麺のほうが軽いんですね。",
+            "translation": "麵比較清爽，對嗎？",
+            "speak": "麺のほうが軽いんですね。",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r2b",
+            "surface": "ビビンバのほうが安いんですね。",
+            "translation": "拌飯比較便宜，對嗎？",
+            "speak": "ビビンバのほうが安いんですね。",
+            "contrast_type": "wrong_detail_or_domain",
+            "feedback": "値段は言っていません。"
+          },
+          {
+            "id": "r2c",
+            "surface": "電車のほうが速いんですね。",
+            "translation": "電車比較快，對嗎？",
+            "speak": "電車のほうが速いんですね。",
+            "contrast_type": "forbidden_or_wrong_domain",
+            "feedback": "交通の話に変わっています。"
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t3",
+      "speaker": "npc",
+      "act": "state_comparison",
+      "act_slots": {
+        "topic": "compare-two-menu-options",
+        "keyword": "3",
+        "gloss": "A2 food/shopping"
+      },
+      "learning_role": "listen_only",
+      "surface": "はい、麺のほうが辛くないです。",
+      "speak": "はい、麺のほうが辛くないです。",
+      "translation": "對，麵比較不辣。",
+      "friend": {
+        "hint": "好みに合うものを選びましょう。"
+      },
+      "reply_set": {
+        "correct": "r3a",
+        "choices": [
+          {
+            "id": "r3a",
+            "surface": "では、麺にします。",
+            "translation": "那我要麵。",
+            "speak": "では、麺にします。",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r3b",
+            "surface": "では、部屋を変えます。",
+            "translation": "那我要換房間。",
+            "speak": "では、部屋を変えます。",
+            "contrast_type": "wrong_detail_or_domain",
+            "feedback": "ホテルの場面に変わっています。"
+          },
+          {
+            "id": "r3c",
+            "surface": "では、パスポートを見せます。",
+            "translation": "那我要出示護照。",
+            "speak": "では、パスポートを見せます。",
+            "contrast_type": "forbidden_or_wrong_domain",
+            "feedback": "パスポートは必要ありません。"
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t4",
+      "speaker": "npc",
+      "act": "choose_option",
+      "act_slots": {
+        "topic": "compare-two-menu-options",
+        "keyword": "4",
+        "gloss": "A2 food/shopping"
+      },
+      "learning_role": "listen_only",
+      "surface": "かしこまりました。麺を一つご用意します。",
+      "speak": "かしこまりました。麺を一つご用意します。",
+      "translation": "好的，我幫您準備一份麵。",
+      "friend": {
+        "hint": "選んだメニューを丁寧に確認しましょう。"
+      },
+      "reply_set": {
+        "correct": "r4a",
+        "choices": [
+          {
+            "id": "r4a",
+            "surface": "ありがとうございます。麺を一つお願いします。",
+            "translation": "謝謝，請給我一份麵。",
+            "speak": "ありがとうございます。麺を一つお願いします。",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r4b",
+            "surface": "警察に言います。",
+            "translation": "我要報警。",
+            "speak": "警察に言います。",
+            "contrast_type": "wrong_detail_or_domain",
+            "feedback": "この場面では強すぎます。"
+          },
+          {
+            "id": "r4c",
+            "surface": "明日、病院に行きます。",
+            "translation": "我明天要去醫院。",
+            "speak": "明日、病院に行きます。",
+            "contrast_type": "forbidden_or_wrong_domain",
+            "feedback": "医療の場面ではありません。"
+          }
+        ]
+      }
+    }
+  ],
+  "choice_sets": {
+    "count_per_turn": 3,
+    "correct_path": [
+      "r1a",
+      "r2a",
+      "r3a",
+      "r4a"
+    ],
+    "distractor_policy": "one near-domain wrong detail plus one out-of-scope/unsafe-domain option per turn"
+  },
+  "feedback": {
+    "correct": "いいですね。食事や買い物の場面に合う確認です。",
+    "incorrect": "メニュー、材料、交換、予算内のおすすめに合う答えを選びましょう。"
+  },
+  "tts_segments": [
+    "今日はビビンバと冷たい麺から選べます。",
+    "二つはどう違いますか。",
+    "席はどこですか。",
+    "返金してください。",
+    "ビビンバは少し辛くて、麺のほうが軽いです。",
+    "麺のほうが軽いんですね。",
+    "ビビンバのほうが安いんですね。",
+    "電車のほうが速いんですね。",
+    "はい、麺のほうが辛くないです。",
+    "では、麺にします。",
+    "では、部屋を変えます。",
+    "では、パスポートを見せます。",
+    "かしこまりました。麺を一つご用意します。",
+    "ありがとうございます。麺を一つお願いします。",
+    "警察に言います。",
+    "明日、病院に行きます。"
+  ],
+  "formula_moments": [
+    {
+      "after_turn": "t2",
+      "pattern_id": "ja.a2.food.compare.options.v1",
+      "label": "AよりBのほうが + adjective",
+      "learner_takeaway": "軽いほう / 辛くないほう"
+    }
+  ],
+  "runtime_notes": {
+    "expected_turns": 4,
+    "expected_choices_per_turn": 3,
+    "full_walk_required": true,
+    "expected_final_screen": "Wrap"
+  },
+  "notes": {
+    "generated_at": "2026-06-14",
+    "authoring_scope": "A2 food/shopping JA adaptation",
+    "native_review_state": "native_pending"
+  }
+}

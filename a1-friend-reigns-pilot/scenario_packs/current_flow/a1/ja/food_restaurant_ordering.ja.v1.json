@@ -1,0 +1,282 @@
+{
+  "schema_version": "scenario_pack.v1",
+  "scenario_id": "food_restaurant_ordering",
+  "brief_id": "ml1_a1_006_food_restaurant_ordering",
+  "source_neutral_brief": "release-aggregator/docs/tasks/A1_MULTILINGUAL_KO_B1_PARALLEL_ORCHESTRATION/work_products/ml0/ML1_NEUTRAL_ADAPTATION_BRIEFS_20260614.md#brief-ml1-a1-006-restaurant-ordering",
+  "blueprint_ledger": "release-aggregator/docs/tasks/A1_MULTILINGUAL_KO_B1_PARALLEL_ORCHESTRATION/work_products/ml0/ML1_BLUEPRINT_LEDGER_20260614.md",
+  "repo": "content-ja",
+  "staging_path": "content/review/current_flow/scenario_pack.v1/ja/food_restaurant_ordering.ja.v1.json",
+  "title": "レストランで注文する",
+  "setting_label": "カジュアルなレストラン",
+  "wrap_title": "注文できました",
+  "wrap_friend": "人数を伝え、食べたいものを短く注文し、確認してお礼を言えました。",
+  "language": "ja",
+  "ui_language": "zh_tw",
+  "source_status": "candidate_runtime_verified",
+  "review_state": "draft",
+  "review_status_framework_state": "candidate_runtime_verified",
+  "native_review_state": "native_pending",
+  "production_mode_default": {
+    "required": [
+      "choice"
+    ],
+    "optional_visible": [
+      "speaking"
+    ],
+    "optional_hidden": [
+      "typing"
+    ]
+  },
+  "support_text": "你在日本的簡單餐廳用餐。聽店員問什麼，選一句自然接得上的日文。",
+  "roles": {
+    "npc": {
+      "label": "店員"
+    },
+    "learner": {
+      "label": "あなた"
+    }
+  },
+  "turns": [
+    {
+      "turn_id": "t1",
+      "speaker": "npc",
+      "act": "greet_and_ask_party",
+      "act_slots": {
+        "topic": "人数確認",
+        "keyword": "お一人",
+        "gloss": "一位"
+      },
+      "learning_role": "listen_only",
+      "surface": "いらっしゃいませ。お一人ですか。",
+      "speak": "いらっしゃいませ。お一人ですか。",
+      "translation": "歡迎光臨。是一位嗎？",
+      "friend": {
+        "hint": "店員在確認人數。可以短短回答一位。"
+      },
+      "inline_explain": {
+        "pattern_id": "ja.restaurant.party_count.v1",
+        "formula_ref": null,
+        "title": "一人です",
+        "explain": "「一人です」可以簡短回答用餐人數。服務場合加「お願いします」也自然。",
+        "items": [
+          {
+            "surface": "一人です。",
+            "translation": "我一個人。",
+            "speak": "一人です。"
+          },
+          {
+            "surface": "お願いします。",
+            "translation": "麻煩了。",
+            "speak": "お願いします。"
+          }
+        ]
+      },
+      "reply_set": {
+        "correct": "r1a",
+        "choices": [
+          {
+            "id": "r1a",
+            "surface": "はい、一人です。",
+            "translation": "是的，一位。",
+            "speak": "はい、一人です。",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r1b",
+            "surface": "お会計お願いします。",
+            "translation": "我要結帳。",
+            "speak": "お会計お願いします。",
+            "contrast_type": "bill_request_before_ordering",
+            "feedback": "這是吃完後結帳。現在店員在確認人數。"
+          },
+          {
+            "id": "r1c",
+            "surface": "コーヒーをください。",
+            "translation": "請給我咖啡。",
+            "speak": "コーヒーをください。",
+            "contrast_type": "order_when_party_size_requested",
+            "feedback": "這是在點飲料。先回答人數比較自然。"
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t2",
+      "speaker": "npc",
+      "act": "ask_order",
+      "act_slots": {
+        "topic": "注文",
+        "keyword": "ご注文",
+        "gloss": "點餐"
+      },
+      "learning_role": "listen_only",
+      "surface": "ご注文はお決まりですか。",
+      "speak": "ご注文はお決まりですか。",
+      "translation": "您決定要點什麼了嗎？",
+      "friend": {
+        "hint": "店員在問餐點。用「カレーをください」就能點一份。"
+      },
+      "inline_explain": {
+        "pattern_id": "ja.restaurant.order_one_dish.v1",
+        "formula_ref": null,
+        "title": "〜をください",
+        "explain": "點一樣東西時，可以用「料理名 + をください」。",
+        "items": [
+          {
+            "surface": "カレーをください。",
+            "translation": "請給我咖哩。",
+            "speak": "カレーをください。"
+          }
+        ]
+      },
+      "reply_set": {
+        "correct": "r2a",
+        "choices": [
+          {
+            "id": "r2a",
+            "surface": "カレーをください。",
+            "translation": "請給我咖哩。",
+            "speak": "カレーをください。",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r2b",
+            "surface": "水だけでいいです。",
+            "translation": "只要水就好。",
+            "speak": "水だけでいいです。",
+            "contrast_type": "no_meal_when_meal_order_expected",
+            "feedback": "這不像是在點一份餐。這裡要點一個主餐。"
+          },
+          {
+            "id": "r2c",
+            "surface": "持ち帰りです。",
+            "translation": "我要外帶。",
+            "speak": "持ち帰りです。",
+            "contrast_type": "takeout_answer_in_dine_in_order",
+            "feedback": "這是在說外帶。現在店員問的是要點什麼。"
+          },
+          {
+            "id": "r2d",
+            "surface": "二人です。",
+            "translation": "兩位。",
+            "speak": "二人です。",
+            "contrast_type": "party_size_answer_when_order_requested",
+            "feedback": "人數已經確認了。現在要說餐點。"
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t3",
+      "speaker": "npc",
+      "act": "confirm_order",
+      "act_slots": {
+        "topic": "注文確認",
+        "keyword": "カレー",
+        "gloss": "咖哩"
+      },
+      "learning_role": "listen_only",
+      "surface": "カレーですね。",
+      "speak": "カレーですね。",
+      "translation": "是咖哩對吧？",
+      "friend": {
+        "hint": "店員在確認你的餐點。簡短說對就可以。"
+      },
+      "reply_set": {
+        "correct": "r3a",
+        "choices": [
+          {
+            "id": "r3a",
+            "surface": "はい、お願いします。",
+            "translation": "是的，麻煩了。",
+            "speak": "はい、お願いします。",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r3b",
+            "surface": "お会計お願いします。",
+            "translation": "我要結帳。",
+            "speak": "お会計お願いします。",
+            "contrast_type": "bill_request_before_order_ready",
+            "feedback": "現在還在確認訂單，不是結帳。"
+          },
+          {
+            "id": "r3c",
+            "surface": "コーヒーをください。",
+            "translation": "請給我咖啡。",
+            "speak": "コーヒーをください。",
+            "contrast_type": "changes_to_cafe_order",
+            "feedback": "這會改成點咖啡。要確認剛才的咖哩。"
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t4",
+      "speaker": "npc",
+      "act": "order_close",
+      "act_slots": {
+        "topic": "結束點餐",
+        "keyword": "少々",
+        "gloss": "稍等"
+      },
+      "learning_role": "listen_only",
+      "surface": "ありがとうございます。少々お待ちください。",
+      "speak": "ありがとうございます。少々お待ちください。",
+      "translation": "謝謝，請稍等。",
+      "friend": {
+        "hint": "點餐完成了。用一句謝謝收尾很自然。"
+      },
+      "reply_set": {
+        "correct": "r4a",
+        "choices": [
+          {
+            "id": "r4a",
+            "surface": "ありがとうございます。",
+            "translation": "謝謝。",
+            "speak": "ありがとうございます。"
+          },
+          {
+            "id": "r4b",
+            "surface": "一人です。",
+            "translation": "我一個人。",
+            "speak": "一人です。",
+            "contrast_type": "repeated_party_size",
+            "feedback": "人數已經說過了。現在用謝謝收尾即可。"
+          },
+          {
+            "id": "r4c",
+            "surface": "カードでお願いします。",
+            "translation": "麻煩刷卡。",
+            "speak": "カードでお願いします。",
+            "contrast_type": "payment_answer_in_order_close",
+            "feedback": "這是付款回答。現在只是店員確認餐點會準備。"
+          }
+        ]
+      },
+      "closing": {
+        "act": "order_understood",
+        "learning_role": "listen_only",
+        "surface": "注文が伝わりました。",
+        "speak": "注文が伝わりました。",
+        "translation": "你的餐點已經傳達清楚了。"
+      }
+    }
+  ],
+  "formula_moments": [
+    {
+      "after_turn": "t1",
+      "pattern_id": "ja.restaurant.party_count.v1"
+    },
+    {
+      "after_turn": "t2",
+      "pattern_id": "ja.restaurant.order_one_dish.v1"
+    }
+  ],
+  "notes": {
+    "authoring_source": "Authored from ML-1 neutral brief, not Korean surface text or another target-language pack.",
+    "review_policy": "AI-authored Japanese candidate. Requires AI review, runtime smoke, and tracked native review before any stronger status.",
+    "canonical_policy": "Staging candidate only. Do not write back to manifests, production exports, schemas, or legacy content.",
+    "register_note": "Uses concise service-polite Japanese suitable for a casual restaurant."
+  }
+}

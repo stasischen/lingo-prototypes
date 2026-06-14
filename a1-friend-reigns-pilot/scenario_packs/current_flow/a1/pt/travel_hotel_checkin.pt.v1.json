@@ -1,0 +1,256 @@
+{
+  "schema_version": "scenario_pack.v1",
+  "scenario_id": "travel_hotel_checkin",
+  "brief_id": "ml0_a1_002_travel_hotel_checkin",
+  "source_neutral_brief": "release-aggregator/docs/tasks/A1_MULTILINGUAL_KO_B1_PARALLEL_ORCHESTRATION/work_products/ml0/ML0_NEUTRAL_ADAPTATION_BRIEFS_20260613.md#brief-ml0-a1-002-hotel-check-in",
+  "blueprint_ledger": "release-aggregator/docs/tasks/A1_MULTILINGUAL_KO_B1_PARALLEL_ORCHESTRATION/work_products/ml0/ML0_BLUEPRINT_LEDGER_20260613.md",
+  "repo": "content-pt",
+  "staging_path": "content/core/content_assets/scenario_packs/current_flow/travel_hotel_checkin.pt.v1.json",
+  "title": "Fazer check-in no hotel",
+  "setting_label": "Recepção do hotel",
+  "wrap_title": "Você já pode fazer check-in",
+  "wrap_friend": "Você disse que tem uma reserva, deu o nome e entendeu o próximo passo.",
+  "language": "pt",
+  "ui_language": "zh_tw",
+  "source_status": "candidate_runtime_verified",
+  "review_state": "draft",
+  "review_status_framework_state": "candidate_runtime_verified",
+  "native_review_state": "native_pending",
+  "production_mode_default": {
+    "required": [
+      "choice"
+    ],
+    "optional_visible": [
+      "speaking"
+    ],
+    "optional_hidden": [
+      "typing"
+    ]
+  },
+  "support_text": "你在葡語飯店櫃台。辦理入住、說訂房姓名，並聽懂下一步。",
+  "roles": {
+    "npc": {
+      "label": "recepcionista"
+    },
+    "learner": {
+      "label": "hóspede"
+    }
+  },
+  "turns": [
+    {
+      "turn_id": "t1",
+      "speaker": "npc",
+      "act": "front_desk_greeting",
+      "act_slots": {
+        "topic": "abrir atendimento",
+        "keyword": "ajudar",
+        "gloss": "協助"
+      },
+      "learning_role": "listen_only",
+      "surface": "Boa tarde, posso ajudar?",
+      "speak": "Boa tarde, posso ajudar?",
+      "translation": "午安，我可以幫忙嗎？",
+      "friend": {
+        "hint": "櫃台在問你需要什麼。入住時可以說「Tenho uma reserva」。"
+      },
+      "reply_set": {
+        "correct": "r1a",
+        "choices": [
+          {
+            "id": "r1a",
+            "surface": "Tenho uma reserva.",
+            "translation": "我有訂房。",
+            "speak": "Tenho uma reserva.",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r1b",
+            "surface": "Um café, por favor.",
+            "translation": "一杯咖啡，謝謝。",
+            "speak": "Um café, por favor.",
+            "contrast_type": "wrong_scenario_request",
+            "feedback": "這句是在點咖啡。現在是在飯店櫃台辦理入住。"
+          },
+          {
+            "id": "r1c",
+            "surface": "Onde fica a estação?",
+            "translation": "車站在哪裡？",
+            "speak": "Onde fica a estação?",
+            "contrast_type": "wrong_scenario_request",
+            "feedback": "這句是在問路。櫃台現在在處理入住。"
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t2",
+      "speaker": "npc",
+      "act": "name_request",
+      "act_slots": {
+        "topic": "nome da reserva",
+        "keyword": "nome",
+        "gloss": "名字"
+      },
+      "learning_role": "listen_only",
+      "surface": "Qual é o nome da reserva?",
+      "speak": "Qual é o nome da reserva?",
+      "translation": "訂房姓名是什麼？",
+      "friend": {
+        "hint": "櫃台在問訂房名字。用「Está em nome de...」回答。"
+      },
+      "inline_explain": {
+        "pattern_id": "pt.hotel.name_under.v1",
+        "formula_ref": null,
+        "title": "Está em nome de...",
+        "explain": "「Está em nome de...」可用來說訂房登記的名字。",
+        "items": [
+          {
+            "surface": "Está em nome de Lin.",
+            "translation": "用 Lin 的名字。",
+            "speak": "Está em nome de Lin."
+          },
+          {
+            "surface": "A reserva está em nome de Lin.",
+            "translation": "訂房是 Lin 的名字。",
+            "speak": "A reserva está em nome de Lin."
+          }
+        ]
+      },
+      "reply_set": {
+        "correct": "r2a",
+        "choices": [
+          {
+            "id": "r2a",
+            "surface": "Está em nome de Lin.",
+            "translation": "用 Lin 的名字。",
+            "speak": "Está em nome de Lin.",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r2b",
+            "surface": "Quero fazer check-out.",
+            "translation": "我要退房。",
+            "speak": "Quero fazer check-out.",
+            "contrast_type": "wrong_act_checkout",
+            "feedback": "check-out 是退房。你現在是入住，要說訂房姓名。"
+          },
+          {
+            "id": "r2c",
+            "surface": "Fica à direita.",
+            "translation": "在右邊。",
+            "speak": "Fica à direita.",
+            "contrast_type": "wrong_scenario_response",
+            "feedback": "這是在回答方向。櫃台問的是訂房姓名。"
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t3",
+      "speaker": "npc",
+      "act": "reservation_confirmation",
+      "act_slots": {
+        "topic": "confirmar reserva",
+        "keyword": "noite",
+        "gloss": "晚"
+      },
+      "learning_role": "listen_only",
+      "surface": "Encontrei. Uma noite, certo?",
+      "speak": "Encontrei. Uma noite, certo?",
+      "translation": "找到了。一晚，對嗎？",
+      "friend": {
+        "hint": "櫃台在確認資料。正確的話，簡短說是。"
+      },
+      "reply_set": {
+        "correct": "r3a",
+        "choices": [
+          {
+            "id": "r3a",
+            "surface": "Sim, certo.",
+            "translation": "是的，沒錯。",
+            "speak": "Sim, certo."
+          },
+          {
+            "id": "r3b",
+            "surface": "Um café com leite.",
+            "translation": "一杯牛奶咖啡。",
+            "speak": "Um café com leite.",
+            "contrast_type": "wrong_scenario_request",
+            "feedback": "這不是咖啡店。櫃台在確認你的訂房。"
+          },
+          {
+            "id": "r3c",
+            "surface": "Não, tudo bem.",
+            "translation": "不用了，謝謝。",
+            "speak": "Não, tudo bem.",
+            "contrast_type": "wrong_act_refusal",
+            "feedback": "這樣像是在拒絕。資料正確時，說「Sim, certo」。"
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t4",
+      "speaker": "npc",
+      "act": "key_direction",
+      "act_slots": {
+        "topic": "chave e quarto",
+        "keyword": "quarto",
+        "gloss": "房間"
+      },
+      "learning_role": "listen_only",
+      "surface": "Aqui está a chave. O quarto fica no terceiro andar.",
+      "speak": "Aqui está a chave. O quarto fica no terceiro andar.",
+      "translation": "這是鑰匙。房間在三樓。",
+      "friend": {
+        "hint": "你拿到鑰匙了。簡短說謝謝就可以。"
+      },
+      "reply_set": {
+        "correct": "r4a",
+        "choices": [
+          {
+            "id": "r4a",
+            "surface": "Tudo bem.",
+            "translation": "謝謝。",
+            "speak": "Tudo bem."
+          },
+          {
+            "id": "r4b",
+            "surface": "Está em nome de Lin.",
+            "translation": "用 Lin 的名字。",
+            "speak": "Está em nome de Lin.",
+            "contrast_type": "repeated_prior_answer",
+            "feedback": "名字剛剛已經說過了。現在櫃台給你鑰匙和房間資訊。"
+          },
+          {
+            "id": "r4c",
+            "surface": "Onde fica o banheiro?",
+            "translation": "洗手間在哪裡？",
+            "speak": "Onde fica o banheiro?",
+            "contrast_type": "off_topic_statement",
+            "feedback": "這是另一個需求。先把入住流程結束。"
+          }
+        ]
+      },
+      "closing": {
+        "act": "front_desk_close",
+        "learning_role": "context_support",
+        "surface": "O café da manhã é no térreo, das sete às dez.",
+        "speak": "O café da manhã é no térreo, das sete às dez.",
+        "translation": "早餐在一樓，七點到十點。"
+      }
+    }
+  ],
+  "formula_moments": [
+    {
+      "after_turn": "t2",
+      "pattern_id": "pt.hotel.name_under.v1"
+    }
+  ],
+  "notes": {
+    "authoring_source": "Authored from ML-0 neutral brief, not Korean surface text.",
+    "review_policy": "AI-authored Portuguese candidate. Requires AI review, runtime smoke, and tracked native review before any stronger status.",
+    "canonical_policy": "Staging candidate only. Do not write back to manifests, production exports, schemas, or legacy content.",
+    "portuguese_locale_note": "Uses a Brazilian Portuguese service baseline with check-in/check-out, recepção, térreo, and café da manhã."
+  }
+}

@@ -1,0 +1,269 @@
+{
+  "schema_version": "scenario_pack.v1",
+  "scenario_id": "a2_ask_transfer_platform",
+  "brief_id": "a2_ask_transfer_platform",
+  "source_neutral_brief": "release-aggregator/docs/tasks/A2_BASELINE_INVENTORY/A2_TRANSPORT_NEUTRAL_ADAPTATION_BRIEFS_20260614.md#a2_ask_transfer_platform",
+  "blueprint_ledger": "release-aggregator/docs/tasks/A2_BASELINE_INVENTORY/A2_TRANSPORT_BLUEPRINT_LEDGER_20260614.md",
+  "repo": "content-th",
+  "staging_path": "content/core/content_assets/scenario_packs/current_flow/a2/a2_ask_transfer_platform.th.v1.json",
+  "title": "ถามชานชาลาที่ต้องเปลี่ยนขบวน",
+  "setting_label": "ถามทางในสถานี",
+  "wrap_title": "ชานชาลาเปลี่ยนขบวน",
+  "wrap_friend": "คุณถามจุดเปลี่ยนขบวน ยืนยันชานชาลา และทวนทางสั้น ๆ ได้แล้ว",
+  "language": "th",
+  "ui_language": "zh_tw",
+  "cefr_level": "A2",
+  "source_status": "candidate_runtime_verified",
+  "review_state": "ai_reviewed",
+  "review_status_framework_state": "candidate_runtime_verified",
+  "native_review_state": "native_pending",
+  "scenario": "You ask station staff where to transfer and which platform to use.",
+  "learner_goal": "Ask for a transfer point and confirm a short two-step direction.",
+  "target_functions": [
+    "transfer_question",
+    "platform_confirmation",
+    "two_step_direction"
+  ],
+  "register_notes": "Everyday polite Thai at a station. Directions stay short and safe; no emergency rerouting or complex route planning.",
+  "production_mode_default": {
+    "required": [
+      "choice"
+    ],
+    "optional_visible": [
+      "speaking"
+    ],
+    "optional_hidden": [
+      "typing"
+    ]
+  },
+  "support_text": "ถามว่าต้องเปลี่ยนขบวนที่ไหน และต้องไปชานชาลาไหน",
+  "roles": {
+    "npc": {
+      "label": "เจ้าหน้าที่"
+    },
+    "learner": {
+      "label": "คุณ"
+    }
+  },
+  "turns": [
+    {
+      "turn_id": "t1",
+      "speaker": "npc",
+      "act": "destination_prompt",
+      "act_slots": {
+        "topic": "destination",
+        "keyword": "ไปไหน",
+        "gloss": "去哪裡"
+      },
+      "learning_role": "listen_only",
+      "surface": "จะไปไหนคะ",
+      "speak": "จะไปไหนคะ",
+      "translation": "您要去哪裡？",
+      "friend": {
+        "hint": "บอกว่าจะไปสนามบิน แล้วถามว่าต้องเปลี่ยนขบวนที่ไหน"
+      },
+      "reply_set": {
+        "correct": "r1a",
+        "choices": [
+          {
+            "id": "r1a",
+            "surface": "จะไปสนามบิน ต้องเปลี่ยนขบวนที่ไหนคะ",
+            "translation": "我要去機場，要在哪裡轉乘？",
+            "speak": "จะไปสนามบิน ต้องเปลี่ยนขบวนที่ไหนคะ",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r1b",
+            "surface": "เมื่อวานไปสนามบินแล้วค่ะ",
+            "translation": "我昨天已經去了機場。",
+            "speak": "เมื่อวานไปสนามบินแล้วค่ะ",
+            "contrast_type": "wrong_time_past",
+            "feedback": "ตอนนี้ต้องถามทางไปสนามบิน ไม่ใช่เล่าเรื่องเมื่อวาน"
+          },
+          {
+            "id": "r1c",
+            "surface": "อยากฝากกระเป๋าค่ะ",
+            "translation": "我想寄放包包。",
+            "speak": "อยากฝากกระเป๋าค่ะ",
+            "contrast_type": "wrong_scenario_luggage",
+            "feedback": "นี่เป็นเรื่องฝากกระเป๋า แต่ตอนนี้ต้องถามเรื่องเปลี่ยนขบวน"
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t2",
+      "speaker": "npc",
+      "act": "transfer_instruction",
+      "act_slots": {
+        "station": "Central",
+        "platform": "3",
+        "keyword": "ชานชาลา 3",
+        "gloss": "3 號月台"
+      },
+      "learning_role": "listen_only",
+      "surface": "ลงที่สถานี Central แล้วไปชานชาลา 3 ค่ะ",
+      "speak": "ลงที่สถานี Central แล้วไปชานชาลา สาม ค่ะ",
+      "translation": "在 Central 站下車，然後去 3 號月台。",
+      "friend": {
+        "hint": "คำว่า แล้ว ใช้ต่อสองขั้นตอนสั้น ๆ"
+      },
+      "inline_explain": {
+        "pattern_id": "th.a2.transfer.sequence.laew.v1",
+        "title": "แล้ว = 然後",
+        "explain": "ลงที่สถานี Central แล้วไปชานชาลา 3 links two simple steps.",
+        "items": [
+          {
+            "surface": "ลงที่สถานี Central",
+            "translation": "在 Central 站下車",
+            "speak": "ลงที่สถานี Central"
+          },
+          {
+            "surface": "แล้วไปชานชาลา 3",
+            "translation": "然後去 3 號月台",
+            "speak": "แล้วไปชานชาลา สาม"
+          }
+        ]
+      },
+      "reply_set": {
+        "correct": "r2a",
+        "choices": [
+          {
+            "id": "r2a",
+            "surface": "ลงที่ Central แล้วไปชานชาลา 3 ใช่ไหมคะ",
+            "translation": "在 Central 下車後去 3 號月台，對嗎？",
+            "speak": "ลงที่ Central แล้วไปชานชาลา สาม ใช่ไหมคะ",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r2b",
+            "surface": "ลงที่ Central แล้วไปดื่มกาแฟใช่ไหมคะ",
+            "translation": "在 Central 下車後去喝咖啡，對嗎？",
+            "speak": "ลงที่ Central แล้วไปดื่มกาแฟ ใช่ไหมคะ",
+            "contrast_type": "wrong_action_cafe",
+            "feedback": "เจ้าหน้าที่บอกให้ไปชานชาลา 3 ไม่ใช่ไปดื่มกาแฟ"
+          },
+          {
+            "id": "r2c",
+            "surface": "ไปห้องหมายเลข 3 ใช่ไหมคะ",
+            "translation": "去 3 號房，對嗎？",
+            "speak": "ไปห้องหมายเลข สาม ใช่ไหมคะ",
+            "contrast_type": "wrong_location_room",
+            "feedback": "ไม่ใช่ห้อง แต่เป็นชานชาลา"
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t3",
+      "speaker": "npc",
+      "act": "platform_detail",
+      "act_slots": {
+        "train": "airport train",
+        "keyword": "ไปสนามบิน",
+        "gloss": "往機場"
+      },
+      "learning_role": "listen_only",
+      "surface": "ที่ชานชาลา 3 ให้ขึ้นรถไฟไปสนามบินค่ะ",
+      "speak": "ที่ชานชาลา สาม ให้ขึ้นรถไฟไปสนามบินค่ะ",
+      "translation": "在 3 號月台搭往機場的車。",
+      "friend": {
+        "hint": "ยืนยันชานชาลาและทิศทาง"
+      },
+      "reply_set": {
+        "correct": "r3a",
+        "choices": [
+          {
+            "id": "r3a",
+            "surface": "ชานชาลา 3 รถไฟไปสนามบินนะคะ",
+            "translation": "3 號月台，往機場的車，對嗎？",
+            "speak": "ชานชาลา สาม รถไฟไปสนามบินนะคะ",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r3b",
+            "surface": "รถไฟไปสนามบินมาเมื่อวานนะคะ",
+            "translation": "往機場的車昨天來了，對嗎？",
+            "speak": "รถไฟไปสนามบินมาเมื่อวานนะคะ",
+            "contrast_type": "wrong_time_past",
+            "feedback": "กำลังยืนยันรถไฟที่จะขึ้นตอนนี้ ไม่ใช่เมื่อวาน"
+          },
+          {
+            "id": "r3c",
+            "surface": "ถ้าฉุกเฉินต้องไปไหนคะ",
+            "translation": "緊急時要去哪裡？",
+            "speak": "ถ้าฉุกเฉิน ต้องไปไหนคะ",
+            "contrast_type": "forbidden_emergency_reroute",
+            "feedback": "เรื่องฉุกเฉินเกินขอบเขตการถามทาง A2 นี้"
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t4",
+      "speaker": "npc",
+      "act": "route_confirmation",
+      "act_slots": {
+        "route": "Central then platform 3"
+      },
+      "learning_role": "listen_only",
+      "surface": "ใช่ค่ะ เปลี่ยนขบวนที่ Central ได้เลย",
+      "speak": "ใช่ค่ะ เปลี่ยนขบวนที่ Central ได้เลย",
+      "translation": "對，在 Central 轉乘就可以。",
+      "friend": {
+        "hint": "เส้นทางชัดแล้ว ขอบคุณสั้น ๆ"
+      },
+      "reply_set": {
+        "correct": "r4a",
+        "choices": [
+          {
+            "id": "r4a",
+            "surface": "ขอบคุณค่ะ จะเปลี่ยนขบวนที่ Central",
+            "translation": "謝謝，我會在 Central 轉乘。",
+            "speak": "ขอบคุณค่ะ จะเปลี่ยนขบวนที่ Central"
+          },
+          {
+            "id": "r4b",
+            "surface": "จะเปลี่ยนเวลาตั๋วค่ะ",
+            "translation": "我要改票時間。",
+            "speak": "จะเปลี่ยนเวลาตั๋วค่ะ",
+            "contrast_type": "wrong_scenario_ticket_change",
+            "feedback": "ตอนนี้กำลังยืนยันทางเปลี่ยนขบวน ไม่ใช่เปลี่ยนตั๋ว"
+          },
+          {
+            "id": "r4c",
+            "surface": "จะไปแจ้งตำรวจที่สนามบินค่ะ",
+            "translation": "我會在機場報警。",
+            "speak": "จะไปแจ้งตำรวจที่สนามบินค่ะ",
+            "contrast_type": "forbidden_police_domain",
+            "feedback": "เรื่องตำรวจไม่อยู่ในงานถามทางแบบง่ายนี้"
+          }
+        ]
+      }
+    }
+  ],
+  "choice_sets": [
+    "t1.reply_set",
+    "t2.reply_set",
+    "t3.reply_set",
+    "t4.reply_set"
+  ],
+  "feedback": "Distractors test wrong action, wrong location word, wrong time, and out-of-scope emergency/police domains.",
+  "tts_segments": [
+    "จะไปสนามบิน ต้องเปลี่ยนขบวนที่ไหนคะ",
+    "ลงที่ Central แล้วไปชานชาลา สาม ใช่ไหมคะ",
+    "ชานชาลา สาม รถไฟไปสนามบินนะคะ",
+    "ขอบคุณค่ะ จะเปลี่ยนขบวนที่ Central"
+  ],
+  "formula_moments": [
+    {
+      "after_turn": "t2",
+      "pattern_id": "th.a2.transfer.sequence.laew.v1"
+    }
+  ],
+  "runtime_notes": "TH A2 transport candidate. Full-walk runtime gate required before final closeout.",
+  "notes": {
+    "authoring_policy": "Fresh-authored from the neutral A2 transport brief. KO surfaces were not translated.",
+    "a2_boundary": "Uses one transfer point and one platform confirmation; avoids complex rerouting and emergency content."
+  }
+}

@@ -1,0 +1,260 @@
+{
+  "schema_version": "scenario_pack.v1",
+  "scenario_id": "a2_reschedule_meeting_time",
+  "title": "Cambiare l'orario di un incontro",
+  "setting_label": "Cambiare un piano con un amico",
+  "wrap_title": "Nuovo orario",
+  "wrap_friend": "你剛剛用簡單義大利語請朋友改時間，提出新時間，並再次確認。",
+  "language": "it",
+  "ui_language": "zh_tw",
+  "cefr_level": "A2",
+  "source_status": "candidate_runtime_verified",
+  "review_state": "ai_reviewed",
+  "review_status_framework_state": "candidate_runtime_verified",
+  "native_review_state": "native_pending",
+  "scenario": "Devi chiedere a un amico di cambiare l'orario di un incontro.",
+  "learner_goal": "Chiedere di cambiare orario e confermare il nuovo orario.",
+  "target_functions": [
+    "reschedule_request",
+    "alternative_time",
+    "confirmation"
+  ],
+  "register_notes": "Italiano amichevole e poco formale. Contesto personale e semplice; nessuna trattativa lunga o cornice lavorativa.",
+  "production_mode_default": {
+    "required": [
+      "choice"
+    ],
+    "optional_visible": [
+      "speaking"
+    ],
+    "optional_hidden": [
+      "typing"
+    ]
+  },
+  "support_text": "L'orario originale non va bene. Chiedi di cambiarlo, proponi un nuovo orario e conferma.",
+  "roles": {
+    "npc": {
+      "label": "Amico"
+    },
+    "learner": {
+      "label": "Tu"
+    }
+  },
+  "turns": [
+    {
+      "turn_id": "t1",
+      "speaker": "npc",
+      "act": "schedule_confirmation",
+      "act_slots": {
+        "topic": "three o'clock plan",
+        "keyword": "tre",
+        "gloss": "三點"
+      },
+      "learning_role": "listen_only",
+      "surface": "Ci vediamo oggi alle tre, giusto?",
+      "speak": "Ci vediamo oggi alle tre, giusto?",
+      "translation": "我們今天三點見，對吧？",
+      "friend": {
+        "hint": "Il tuo amico controlla il vecchio orario. Chiedi di cambiarlo."
+      },
+      "reply_set": {
+        "correct": "r1a",
+        "choices": [
+          {
+            "id": "r1a",
+            "surface": "Scusa, possiamo cambiare orario?",
+            "translation": "不好意思，我們可以改時間嗎？",
+            "speak": "Scusa, possiamo cambiare orario?",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r1b",
+            "surface": "Sì, ci siamo visti ieri.",
+            "translation": "對，我們昨天見過了。",
+            "speak": "Sì, ci siamo visti ieri.",
+            "contrast_type": "wrong_time_past",
+            "feedback": "Il tuo amico conferma il piano di oggi, non parla di ieri."
+          },
+          {
+            "id": "r1c",
+            "surface": "Pago con carta.",
+            "translation": "我用卡付款。",
+            "speak": "Pago con carta.",
+            "contrast_type": "wrong_scenario_payment",
+            "feedback": "Questa è lingua per pagare. Qui devi chiedere dell'orario."
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t2",
+      "speaker": "npc",
+      "act": "alternative_request",
+      "act_slots": {
+        "topic": "new time",
+        "keyword": "a che ora",
+        "gloss": "幾點"
+      },
+      "learning_role": "listen_only",
+      "surface": "Certo. A che ora va bene per te?",
+      "speak": "Certo. A che ora va bene per te?",
+      "translation": "可以。你幾點方便？",
+      "friend": {
+        "hint": "Proponi un solo nuovo orario. Tienilo semplice."
+      },
+      "inline_explain": {
+        "pattern_id": "it.a2.reschedule.spostare_alle.v1",
+        "title": "spostare a + ora",
+        "explain": "Usa spostare a per cambiare l'orario di un incontro.",
+        "items": [
+          {
+            "surface": "spostare alle quattro",
+            "translation": "改到四點",
+            "speak": "spostare alle quattro"
+          },
+          {
+            "surface": "spostare a domani",
+            "translation": "改到明天",
+            "speak": "spostare a domani"
+          }
+        ]
+      },
+      "reply_set": {
+        "correct": "r2a",
+        "choices": [
+          {
+            "id": "r2a",
+            "surface": "Possiamo spostare alle quattro?",
+            "translation": "我們可以改到四點嗎？",
+            "speak": "Possiamo spostare alle quattro?",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r2b",
+            "surface": "Usiamo l'uscita quattro?",
+            "translation": "我們用四號出口嗎？",
+            "speak": "Usiamo l'uscita quattro?",
+            "contrast_type": "wrong_entity_exit_number",
+            "feedback": "Uscita quattro è un dettaglio di luogo. Il tuo amico chiede un nuovo orario."
+          },
+          {
+            "id": "r2c",
+            "surface": "Sono andato alle quattro.",
+            "translation": "我四點去了。",
+            "speak": "Sono andato alle quattro.",
+            "contrast_type": "wrong_time_past",
+            "feedback": "Questa frase parla del passato. Devi chiedere di spostare l'incontro alle quattro."
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t3",
+      "speaker": "npc",
+      "act": "accept_new_time",
+      "act_slots": {
+        "topic": "new time accepted"
+      },
+      "learning_role": "listen_only",
+      "surface": "Sì, alle quattro va bene.",
+      "speak": "Sì, alle quattro va bene.",
+      "translation": "可以，四點沒問題。",
+      "friend": {
+        "hint": "Il nuovo orario è accettato. Confermalo una volta."
+      },
+      "reply_set": {
+        "correct": "r3a",
+        "choices": [
+          {
+            "id": "r3a",
+            "surface": "Perfetto, ci vediamo alle quattro.",
+            "translation": "太好了，我們四點見。",
+            "speak": "Perfetto, ci vediamo alle quattro."
+          },
+          {
+            "id": "r3b",
+            "surface": "Perfetto, ci vediamo alle tre.",
+            "translation": "太好了，我們三點見。",
+            "speak": "Perfetto, ci vediamo alle tre.",
+            "contrast_type": "repeats_old_time",
+            "feedback": "Il vecchio orario era le tre. Lo hai cambiato alle quattro."
+          },
+          {
+            "id": "r3c",
+            "surface": "Mi dà la chiave della camera?",
+            "translation": "可以給我房卡嗎？",
+            "speak": "Mi dà la chiave della camera?",
+            "contrast_type": "wrong_scenario_hotel",
+            "feedback": "Questa è lingua da hotel. Qui devi confermare il nuovo orario."
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t4",
+      "speaker": "npc",
+      "act": "closing",
+      "act_slots": {
+        "topic": "close plan"
+      },
+      "learning_role": "listen_only",
+      "surface": "Va bene. A dopo.",
+      "speak": "Va bene. A dopo.",
+      "translation": "好，晚點見。",
+      "friend": {
+        "hint": "Il piano è finito. Chiudi in modo naturale."
+      },
+      "reply_set": {
+        "correct": "r4a",
+        "choices": [
+          {
+            "id": "r4a",
+            "surface": "Va bene, a dopo.",
+            "translation": "好，晚點見。",
+            "speak": "Va bene, a dopo."
+          },
+          {
+            "id": "r4b",
+            "surface": "Perché sono in ritardo.",
+            "translation": "因為我遲到了。",
+            "speak": "Perché sono in ritardo.",
+            "contrast_type": "fragment_without_need",
+            "feedback": "L'orario è già cambiato. Ora non serve un frammento con il motivo."
+          },
+          {
+            "id": "r4c",
+            "surface": "Ho prenotato di nuovo.",
+            "translation": "我重新預約了。",
+            "speak": "Ho prenotato di nuovo.",
+            "contrast_type": "wrong_scenario_reservation",
+            "feedback": "Sembra una prenotazione, non un semplice piano con un amico."
+          }
+        ]
+      }
+    }
+  ],
+  "choice_sets": [
+    "t1.reply_set",
+    "t2.reply_set",
+    "t3.reply_set",
+    "t4.reply_set"
+  ],
+  "feedback": "I distrattori verificano vecchio e nuovo orario, confusione tra numero e luogo, e frasi di altri scenari.",
+  "tts_segments": [
+    "Scusa, possiamo cambiare orario?",
+    "Possiamo spostare alle quattro?",
+    "Perfetto, ci vediamo alle quattro.",
+    "Va bene, a dopo."
+  ],
+  "formula_moments": [
+    {
+      "after_turn": "t2",
+      "pattern_id": "it.a2.reschedule.spostare_alle.v1"
+    }
+  ],
+  "runtime_notes": "Fresh IT A2 candidate. Structural checks and two AI semantic review passes completed on 2026-06-14 before metadata promotion.",
+  "notes": {
+    "authoring_policy": "Fresh-authored from the neutral A2 brief. KO/JA/EN/TH were used only as schema-shape and workflow references.",
+    "a2_boundary": "Low-stakes rescheduling with one alternative time; avoids negotiation loops and formal workplace framing."
+  }
+}

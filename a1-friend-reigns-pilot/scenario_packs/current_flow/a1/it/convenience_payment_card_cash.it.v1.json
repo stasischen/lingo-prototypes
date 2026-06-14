@@ -1,0 +1,255 @@
+{
+  "schema_version": "scenario_pack.v1",
+  "scenario_id": "convenience_payment_card_cash",
+  "brief_id": "ml0_a1_004_convenience_payment_card_cash",
+  "source_neutral_brief": "release-aggregator/docs/tasks/A1_MULTILINGUAL_KO_B1_PARALLEL_ORCHESTRATION/work_products/ml0/ML0_NEUTRAL_ADAPTATION_BRIEFS_20260613.md#brief-ml0-a1-004-convenience-store-payment",
+  "blueprint_ledger": "release-aggregator/docs/tasks/A1_MULTILINGUAL_KO_B1_PARALLEL_ORCHESTRATION/work_products/ml0/ML0_BLUEPRINT_LEDGER_20260613.md",
+  "repo": "content-it",
+  "staging_path": "content/core/content_assets/scenario_packs/current_flow/convenience_payment_card_cash.it.v1.json",
+  "title": "Pagare alla cassa",
+  "setting_label": "Cassa di un piccolo negozio",
+  "wrap_title": "Pagamento completato",
+  "wrap_friend": "你用簡短義大利語回答付款方式，聽懂收據提示，並自然完成結帳。",
+  "language": "it",
+  "ui_language": "zh_tw",
+  "source_status": "candidate_runtime_verified",
+  "review_state": "draft",
+  "review_status_framework_state": "candidate_runtime_verified",
+  "native_review_state": "native_pending",
+  "production_mode_default": {
+    "required": [
+      "choice"
+    ],
+    "optional_visible": [
+      "speaking"
+    ],
+    "optional_hidden": [
+      "typing"
+    ]
+  },
+  "support_text": "你在義大利小店結帳。聽收銀員的問題，用短句回答要刷卡或付現。",
+  "roles": {
+    "npc": {
+      "label": "收銀員"
+    },
+    "learner": {
+      "label": "你"
+    }
+  },
+  "turns": [
+    {
+      "turn_id": "t1",
+      "speaker": "npc",
+      "act": "payment_method_question",
+      "act_slots": {
+        "topic": "payment method",
+        "keyword": "carta",
+        "gloss": "card"
+      },
+      "learning_role": "listen_only",
+      "surface": "Paga con carta o in contanti?",
+      "speak": "Paga con carta o in contanti?",
+      "translation": "收銀員在問你要刷卡還是付現。",
+      "friend": {
+        "hint": "回答付款方式就好。con carta 是刷卡。"
+      },
+      "reply_set": {
+        "correct": "r1a",
+        "choices": [
+          {
+            "id": "r1a",
+            "surface": "Con carta, per favore.",
+            "translation": "刷卡，謝謝。",
+            "speak": "Con carta, per favore.",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r1b",
+            "surface": "Un caffè, per favore.",
+            "translation": "一杯咖啡，謝謝。",
+            "speak": "Un caffè, per favore.",
+            "contrast_type": "wrong_scenario_ordering",
+            "feedback": "這是在點飲料。現在收銀員問的是付款方式。"
+          },
+          {
+            "id": "r1c",
+            "surface": "Dov'è la stazione?",
+            "translation": "車站在哪裡？",
+            "speak": "Dov'è la stazione?",
+            "contrast_type": "wrong_scenario_directions",
+            "feedback": "這是在問路。結帳時先回答 carta 或 contanti。"
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t2",
+      "speaker": "npc",
+      "act": "cashier_instruction",
+      "act_slots": {
+        "topic": "card payment",
+        "keyword": "pos",
+        "gloss": "card reader"
+      },
+      "learning_role": "listen_only",
+      "surface": "Inserisca la carta, per favore.",
+      "speak": "Inserisca la carta, per favore.",
+      "translation": "收銀員請你插卡。",
+      "friend": {
+        "hint": "聽到付款指示時，用 va bene 這種短確認很自然。"
+      },
+      "inline_explain": {
+        "pattern_id": "it.payment.con_carta.v1",
+        "formula_ref": null,
+        "title": "Con carta / in contanti",
+        "explain": "con carta 表示用卡付款，in contanti 表示用現金付款。",
+        "items": [
+          {
+            "surface": "Con carta, per favore.",
+            "translation": "刷卡，謝謝。",
+            "speak": "Con carta, per favore."
+          },
+          {
+            "surface": "In contanti, per favore.",
+            "translation": "付現，謝謝。",
+            "speak": "In contanti, per favore."
+          }
+        ]
+      },
+      "reply_set": {
+        "correct": "r2a",
+        "choices": [
+          {
+            "id": "r2a",
+            "surface": "Va bene.",
+            "translation": "好的。",
+            "speak": "Va bene.",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r2b",
+            "surface": "Con carta, per favore.",
+            "translation": "刷卡，謝謝。",
+            "speak": "Con carta, per favore.",
+            "contrast_type": "repeated_prior_answer",
+            "feedback": "你已經選好刷卡了。現在只要確認聽懂指示。"
+          },
+          {
+            "id": "r2c",
+            "surface": "Ho una prenotazione.",
+            "translation": "我有預訂。",
+            "speak": "Ho una prenotazione.",
+            "contrast_type": "wrong_scenario_hotel",
+            "feedback": "這是飯店入住句，不是結帳付款。"
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t3",
+      "speaker": "npc",
+      "act": "receipt_prompt",
+      "act_slots": {
+        "topic": "receipt",
+        "keyword": "scontrino",
+        "gloss": "receipt"
+      },
+      "learning_role": "listen_only",
+      "surface": "Vuole lo scontrino?",
+      "speak": "Vuole lo scontrino?",
+      "translation": "收銀員問你要不要收據。",
+      "friend": {
+        "hint": "如果不要收據，No, grazie 就夠了。"
+      },
+      "reply_set": {
+        "correct": "r3a",
+        "choices": [
+          {
+            "id": "r3a",
+            "surface": "No, grazie.",
+            "translation": "不用，謝謝。",
+            "speak": "No, grazie."
+          },
+          {
+            "id": "r3b",
+            "surface": "Alle tre va bene.",
+            "translation": "三點可以。",
+            "speak": "Alle tre va bene.",
+            "contrast_type": "wrong_scenario_schedule",
+            "feedback": "這是在約時間，不是在回答收據問題。"
+          },
+          {
+            "id": "r3c",
+            "surface": "In contanti, per favore.",
+            "translation": "付現，謝謝。",
+            "speak": "In contanti, per favore.",
+            "contrast_type": "wrong_payment_method_switch",
+            "feedback": "你剛才已經選刷卡。現在問題是要不要收據。"
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t4",
+      "speaker": "npc",
+      "act": "transaction_close",
+      "act_slots": {
+        "topic": "closing",
+        "keyword": "giornata",
+        "gloss": "day"
+      },
+      "learning_role": "listen_only",
+      "surface": "Perfetto, grazie. Buona giornata.",
+      "speak": "Perfetto, grazie. Buona giornata.",
+      "translation": "收銀員結束交易並祝你有美好的一天。",
+      "friend": {
+        "hint": "用 Grazie, arrivederci 收尾很自然。"
+      },
+      "reply_set": {
+        "correct": "r4a",
+        "choices": [
+          {
+            "id": "r4a",
+            "surface": "Grazie, arrivederci.",
+            "translation": "謝謝，再見。",
+            "speak": "Grazie, arrivederci."
+          },
+          {
+            "id": "r4b",
+            "surface": "Dov'è il bagno?",
+            "translation": "洗手間在哪裡？",
+            "speak": "Dov'è il bagno?",
+            "contrast_type": "wrong_scenario_directions",
+            "feedback": "這會切換到問路情境。現在只要道謝離開。"
+          },
+          {
+            "id": "r4c",
+            "surface": "Un cappuccino, per favore.",
+            "translation": "一杯卡布奇諾，謝謝。",
+            "speak": "Un cappuccino, per favore.",
+            "contrast_type": "wrong_scenario_ordering",
+            "feedback": "這是在點飲料。結帳已完成，請用道謝結尾。"
+          }
+        ]
+      },
+      "closing": {
+        "act": "done",
+        "learning_role": "context_support",
+        "surface": "La transazione è finita.",
+        "speak": "La transazione è finita.",
+        "translation": "交易完成。"
+      }
+    }
+  ],
+  "formula_moments": [
+    {
+      "after_turn": "t2",
+      "pattern_id": "it.payment.card.cash.v1"
+    }
+  ],
+  "notes": {
+    "review_policy": "AI-authored candidate. Requires AI review, runtime smoke, and tracked native review before any stronger status.",
+    "canonical_policy": "Staging candidate only. Do not write back to manifests, production exports, schemas, or legacy content.",
+    "authoring_source": "Authored from ML-0 neutral brief, not Korean surface text."
+  }
+}

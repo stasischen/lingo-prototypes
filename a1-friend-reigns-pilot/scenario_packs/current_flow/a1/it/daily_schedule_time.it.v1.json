@@ -1,0 +1,255 @@
+{
+  "schema_version": "scenario_pack.v1",
+  "scenario_id": "daily_schedule_time",
+  "brief_id": "ml0_a1_005_daily_schedule_time",
+  "source_neutral_brief": "release-aggregator/docs/tasks/A1_MULTILINGUAL_KO_B1_PARALLEL_ORCHESTRATION/work_products/ml0/ML0_NEUTRAL_ADAPTATION_BRIEFS_20260613.md#brief-ml0-a1-005-scheduling-a-time",
+  "blueprint_ledger": "release-aggregator/docs/tasks/A1_MULTILINGUAL_KO_B1_PARALLEL_ORCHESTRATION/work_products/ml0/ML0_BLUEPRINT_LEDGER_20260613.md",
+  "repo": "content-it",
+  "staging_path": "content/core/content_assets/scenario_packs/current_flow/daily_schedule_time.it.v1.json",
+  "title": "Fissare un orario",
+  "setting_label": "Chat per un incontro",
+  "wrap_title": "Orario confermato",
+  "wrap_friend": "你用簡短義大利語約好時間，也自然確認了見面安排。",
+  "language": "it",
+  "ui_language": "zh_tw",
+  "source_status": "candidate_runtime_verified",
+  "review_state": "draft",
+  "review_status_framework_state": "candidate_runtime_verified",
+  "native_review_state": "native_pending",
+  "production_mode_default": {
+    "required": [
+      "choice"
+    ],
+    "optional_visible": [
+      "speaking"
+    ],
+    "optional_hidden": [
+      "typing"
+    ]
+  },
+  "support_text": "你正在和朋友約見面時間。用簡短義大利語回答幾點，並確認安排。",
+  "roles": {
+    "npc": {
+      "label": "朋友"
+    },
+    "learner": {
+      "label": "你"
+    }
+  },
+  "turns": [
+    {
+      "turn_id": "t1",
+      "speaker": "npc",
+      "act": "ask_time",
+      "act_slots": {
+        "topic": "meeting time",
+        "keyword": "che ora",
+        "gloss": "what time"
+      },
+      "learning_role": "listen_only",
+      "surface": "A che ora ci vediamo?",
+      "speak": "A che ora ci vediamo?",
+      "translation": "朋友問你們幾點見面。",
+      "friend": {
+        "hint": "回答時間即可。alle tre 是三點。"
+      },
+      "reply_set": {
+        "correct": "r1a",
+        "choices": [
+          {
+            "id": "r1a",
+            "surface": "Alle tre va bene.",
+            "translation": "三點可以。",
+            "speak": "Alle tre va bene.",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r1b",
+            "surface": "Davanti alla stazione.",
+            "translation": "在車站前面。",
+            "speak": "Davanti alla stazione.",
+            "contrast_type": "location_when_time_requested",
+            "feedback": "這是在回答地點。對方問的是時間。"
+          },
+          {
+            "id": "r1c",
+            "surface": "Pago con carta.",
+            "translation": "我刷卡付款。",
+            "speak": "Pago con carta.",
+            "contrast_type": "wrong_scenario_payment",
+            "feedback": "這是結帳付款情境，不是約時間。"
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t2",
+      "speaker": "npc",
+      "act": "availability_check",
+      "act_slots": {
+        "topic": "availability",
+        "keyword": "va bene",
+        "gloss": "is okay"
+      },
+      "learning_role": "listen_only",
+      "surface": "Perfetto. Per te va bene oggi?",
+      "speak": "Perfetto. Per te va bene oggi?",
+      "translation": "朋友確認今天可不可以。",
+      "friend": {
+        "hint": "用 sì, oggi va bene 確認今天可以。"
+      },
+      "inline_explain": {
+        "pattern_id": "it.schedule.alle_tre.v1",
+        "formula_ref": null,
+        "title": "Alle + ora",
+        "explain": "義大利語說幾點常用 alle 加時間，例如 alle tre。",
+        "items": [
+          {
+            "surface": "Alle tre.",
+            "translation": "三點。",
+            "speak": "Alle tre."
+          },
+          {
+            "surface": "Oggi va bene.",
+            "translation": "今天可以。",
+            "speak": "Oggi va bene."
+          }
+        ]
+      },
+      "reply_set": {
+        "correct": "r2a",
+        "choices": [
+          {
+            "id": "r2a",
+            "surface": "Sì, oggi va bene.",
+            "translation": "可以，今天可以。",
+            "speak": "Sì, oggi va bene.",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r2b",
+            "surface": "No, mai.",
+            "translation": "不，永遠不要。",
+            "speak": "No, mai.",
+            "contrast_type": "refusal_when_confirmation_expected",
+            "feedback": "語氣太強，也取消了安排。這裡要確認今天可以。"
+          },
+          {
+            "id": "r2c",
+            "surface": "Vorrei una camera.",
+            "translation": "我想要一間房。",
+            "speak": "Vorrei una camera.",
+            "contrast_type": "wrong_scenario_hotel",
+            "feedback": "這是飯店情境，不是朋友約時間。"
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t3",
+      "speaker": "npc",
+      "act": "plan_confirmation",
+      "act_slots": {
+        "topic": "confirmed plan",
+        "keyword": "allora",
+        "gloss": "then"
+      },
+      "learning_role": "listen_only",
+      "surface": "Allora ci vediamo alle tre.",
+      "speak": "Allora ci vediamo alle tre.",
+      "translation": "朋友確認三點見。",
+      "friend": {
+        "hint": "安排正確時，用 perfetto 簡短確認。"
+      },
+      "reply_set": {
+        "correct": "r3a",
+        "choices": [
+          {
+            "id": "r3a",
+            "surface": "Perfetto.",
+            "translation": "太好了。",
+            "speak": "Perfetto."
+          },
+          {
+            "id": "r3b",
+            "surface": "È troppo caro.",
+            "translation": "太貴了。",
+            "speak": "È troppo caro.",
+            "contrast_type": "wrong_scenario_payment",
+            "feedback": "這是在談價格，不是在確認見面時間。"
+          },
+          {
+            "id": "r3c",
+            "surface": "Dov'è il bagno?",
+            "translation": "洗手間在哪裡？",
+            "speak": "Dov'è il bagno?",
+            "contrast_type": "wrong_scenario_directions",
+            "feedback": "這會切換到問路情境。先確認三點見。"
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t4",
+      "speaker": "npc",
+      "act": "casual_close",
+      "act_slots": {
+        "topic": "closing",
+        "keyword": "a dopo",
+        "gloss": "see you later"
+      },
+      "learning_role": "listen_only",
+      "surface": "A dopo!",
+      "speak": "A dopo!",
+      "translation": "朋友說待會見。",
+      "friend": {
+        "hint": "同樣用 A dopo 回應，簡短自然。"
+      },
+      "reply_set": {
+        "correct": "r4a",
+        "choices": [
+          {
+            "id": "r4a",
+            "surface": "A dopo!",
+            "translation": "待會見！",
+            "speak": "A dopo!"
+          },
+          {
+            "id": "r4b",
+            "surface": "Con carta, per favore.",
+            "translation": "刷卡，謝謝。",
+            "speak": "Con carta, per favore.",
+            "contrast_type": "wrong_scenario_payment",
+            "feedback": "這是付款回答。朋友道別時，用待會見收尾。"
+          },
+          {
+            "id": "r4c",
+            "surface": "Buongiorno, cosa prende?",
+            "translation": "您好，您要點什麼？",
+            "speak": "Buongiorno, cosa prende?",
+            "contrast_type": "wrong_role_staff_line",
+            "feedback": "這像店員說話。你現在是朋友聊天的一方。"
+          }
+        ]
+      },
+      "closing": {
+        "act": "meetup_confirmed",
+        "learning_role": "context_support",
+        "surface": "L'appuntamento è confermato.",
+        "speak": "L'appuntamento è confermato.",
+        "translation": "見面時間確認了。"
+      }
+    }
+  ],
+  "formula_moments": [
+    {
+      "after_turn": "t2",
+      "pattern_id": "it.schedule.alle_tre.v1"
+    }
+  ],
+  "notes": {
+    "review_policy": "AI-authored candidate. Requires AI review, runtime smoke, and tracked native review before any stronger status.",
+    "canonical_policy": "Staging candidate only. Do not write back to manifests, production exports, schemas, or legacy content.",
+    "authoring_source": "Authored from ML-0 neutral brief, not Korean surface text."
+  }
+}

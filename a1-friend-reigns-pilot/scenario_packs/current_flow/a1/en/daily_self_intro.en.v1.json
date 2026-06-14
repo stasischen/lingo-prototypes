@@ -1,0 +1,241 @@
+{
+  "schema_version": "scenario_pack.v1",
+  "scenario_id": "daily_self_intro",
+  "brief_id": "ml3_a1_012_daily_self_intro",
+  "source_neutral_brief": "release-aggregator/docs/tasks/A1_MULTILINGUAL_KO_B1_PARALLEL_ORCHESTRATION/work_products/ml0/ML3_NEUTRAL_ADAPTATION_BRIEFS_20260614.md#brief-ml3-a1-012-daily-self-introduction",
+  "blueprint_ledger": "release-aggregator/docs/tasks/A1_MULTILINGUAL_KO_B1_PARALLEL_ORCHESTRATION/work_products/ml0/ML3_BLUEPRINT_LEDGER_20260614.md",
+  "repo": "content-en",
+  "staging_path": "curriculum/a1_travel_v1/staging/scenario_pack.v1/daily_self_intro.en.v1.json",
+  "title": "Introducing Yourself",
+  "setting_label": "Language exchange table",
+  "wrap_title": "You introduced yourself",
+  "wrap_friend": "You gave your name, said what you are learning, and answered politely without sharing private contact details.",
+  "language": "en",
+  "ui_language": "zh_tw",
+  "source_status": "candidate_runtime_verified",
+  "review_state": "draft",
+  "review_status_framework_state": "candidate_runtime_verified",
+  "native_review_state": "native_pending",
+  "production_mode_default": {
+    "required": [
+      "choice"
+    ],
+    "optional_visible": [
+      "speaking"
+    ],
+    "optional_hidden": [
+      "typing"
+    ]
+  },
+  "support_text": "你在語言交換桌第一次見到新朋友。選自然、簡短的英文回應。",
+  "roles": {
+    "npc": {
+      "label": "New friend"
+    },
+    "learner": {
+      "label": "You"
+    }
+  },
+  "turns": [
+    {
+      "turn_id": "t1",
+      "speaker": "npc",
+      "act": "first_meeting_greeting",
+      "learning_role": "listen_only",
+      "surface": "Hi, I'm Maya. What's your name?",
+      "speak": "Hi, I'm Maya. What's your name?",
+      "translation": "嗨，我是 Maya。你叫什麼名字？",
+      "friend": {
+        "hint": "對方先介紹自己。用 I'm 加名字簡短回答。"
+      },
+      "reply_set": {
+        "correct": "r1a",
+        "choices": [
+          {
+            "id": "r1a",
+            "surface": "Hi, I'm Alex.",
+            "translation": "嗨，我是 Alex。",
+            "speak": "Hi, I'm Alex.",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r1b",
+            "surface": "Can I have a ticket?",
+            "translation": "可以給我一張票嗎？",
+            "speak": "Can I have a ticket?",
+            "contrast_type": "travel_service_phrase_in_self_intro",
+            "feedback": "這是在買票，不是在介紹名字。"
+          },
+          {
+            "id": "r1c",
+            "surface": "Here is my phone number.",
+            "translation": "這是我的電話號碼。",
+            "speak": "Here is my phone number.",
+            "contrast_type": "private_contact_detail",
+            "feedback": "自我介紹不需要提供私人聯絡資料。"
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t2",
+      "speaker": "npc",
+      "act": "ask_learning_language",
+      "learning_role": "listen_only",
+      "surface": "Nice to meet you. Are you learning English?",
+      "speak": "Nice to meet you. Are you learning English?",
+      "translation": "很高興認識你。你在學英文嗎？",
+      "friend": {
+        "hint": "對方問你是不是在學英文。用 yes 和 I'm learning English 回答。"
+      },
+      "inline_explain": {
+        "pattern_id": "en.self_intro.learning_language.v1",
+        "formula_ref": null,
+        "title": "I'm learning...",
+        "explain": "Use this short formula to say what language you are learning.",
+        "items": [
+          {
+            "surface": "Yes, I'm learning English.",
+            "translation": "對，我在學英文。",
+            "speak": "Yes, I'm learning English."
+          }
+        ]
+      },
+      "reply_set": {
+        "correct": "r2a",
+        "choices": [
+          {
+            "id": "r2a",
+            "surface": "Yes, I'm learning English.",
+            "translation": "對，我在學英文。",
+            "speak": "Yes, I'm learning English.",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r2b",
+            "surface": "Hi, I'm Alex.",
+            "translation": "嗨，我是 Alex。",
+            "speak": "Hi, I'm Alex.",
+            "contrast_type": "repeat_name_after_new_question",
+            "feedback": "你已經說過名字；現在要回答正在學什麼。"
+          },
+          {
+            "id": "r2c",
+            "surface": "Could you repeat that?",
+            "translation": "可以再說一次嗎？",
+            "speak": "Could you repeat that?",
+            "contrast_type": "repair_when_understood",
+            "feedback": "這是聽不懂時用的修復句；這裡可以直接回答。"
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t3",
+      "speaker": "npc",
+      "act": "friendly_close",
+      "learning_role": "listen_only",
+      "surface": "Great. Welcome to the group!",
+      "speak": "Great. Welcome to the group!",
+      "translation": "太好了。歡迎加入這個小組！",
+      "friend": {
+        "hint": "對方表示歡迎。用 Thanks 和 nice to meet you 收尾。"
+      },
+      "reply_set": {
+        "correct": "r4a",
+        "choices": [
+          {
+            "id": "r4a",
+            "surface": "Thanks. Nice to meet you.",
+            "translation": "謝謝。很高興認識你。",
+            "speak": "Thanks. Nice to meet you.",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r4b",
+            "surface": "I'd like one coffee.",
+            "translation": "我想要一杯咖啡。",
+            "speak": "I'd like one coffee.",
+            "contrast_type": "food_order_in_self_intro",
+            "feedback": "這是在點餐，不是在回應歡迎。"
+          },
+          {
+            "id": "r4c",
+            "surface": "Dear Sir or Madam.",
+            "translation": "敬啟者。",
+            "speak": "Dear Sir or Madam.",
+            "contrast_type": "overformal_business_greeting",
+            "feedback": "這太像正式信件，不適合語言交換桌。"
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t4",
+      "speaker": "npc",
+      "act": "friendly_continue",
+      "learning_role": "listen_only",
+      "surface": "Great. Let's get started.",
+      "speak": "Great. Let's get started.",
+      "translation": "太好了。我們開始吧。",
+      "friend": {
+        "hint": "對方準備開始活動。用簡短友善句回應。"
+      },
+      "reply_set": {
+        "correct": "r4a",
+        "choices": [
+          {
+            "id": "r4a",
+            "surface": "Okay, thanks.",
+            "translation": "好的，謝謝。",
+            "speak": "Okay, thanks.",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r4b",
+            "surface": "I'd like one coffee.",
+            "translation": "我想要一杯咖啡。",
+            "speak": "I'd like one coffee.",
+            "contrast_type": "food_order_in_self_intro",
+            "feedback": "這是在點餐，不是在回應歡迎。"
+          },
+          {
+            "id": "r4c",
+            "surface": "Dear Sir or Madam.",
+            "translation": "敬啟者。",
+            "speak": "Dear Sir or Madam.",
+            "contrast_type": "overformal_business_greeting",
+            "feedback": "這太像正式信件，不適合語言交換桌。"
+          }
+        ]
+      },
+      "closing": {
+        "act": "daily_self_intro_complete",
+        "learning_role": "listen_only",
+        "surface": "Great. Let's get started.",
+        "speak": "Great. Let's get started.",
+        "translation": "太好了。我們開始吧。"
+      }
+    }
+  ],
+  "formula_moments": [
+    {
+      "after_turn": "t1",
+      "pattern_id": "en.self_intro.name.v1"
+    },
+    {
+      "after_turn": "t2",
+      "pattern_id": "en.self_intro.learning_language.v1"
+    },
+    {
+      "after_turn": "t4",
+      "pattern_id": "en.self_intro.nice_to_meet.v1"
+    }
+  ],
+  "notes": {
+    "authoring_source": "Authored from ML-3 neutral brief, not Korean surface text or another target-language pack.",
+    "review_policy": "AI-authored English candidate. Requires AI review, runtime smoke, and tracked native review before any stronger status.",
+    "canonical_policy": "Staging candidate only. Do not write back to manifests, production exports, schemas, or legacy content.",
+    "register_note": "Everyday first-meeting English; avoids private contact details and formal business language."
+  }
+}

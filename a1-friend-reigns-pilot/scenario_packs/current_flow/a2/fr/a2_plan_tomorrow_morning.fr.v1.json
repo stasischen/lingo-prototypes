@@ -1,0 +1,265 @@
+{
+  "schema_version": "scenario_pack.v1",
+  "scenario_id": "a2_plan_tomorrow_morning",
+  "title": "Prévoir demain matin",
+  "setting_label": "Conversation avec une amie",
+  "wrap_title": "Ton programme de demain matin",
+  "wrap_friend": "你剛剛用簡單法語說了明天早上的安排，並接上一個下一步。",
+  "language": "fr",
+  "ui_language": "zh_tw",
+  "cefr_level": "A2",
+  "source_status": "candidate_runtime_verified",
+  "review_state": "ai_reviewed",
+  "review_status_framework_state": "candidate_runtime_verified",
+  "native_review_state": "native_pending",
+  "scenario": "Une amie te demande ce que tu vas faire demain matin.",
+  "learner_goal": "Dire un projet proche avec une etape simple ensuite.",
+  "target_functions": [
+    "near_future_plan",
+    "simple_sequence",
+    "time_expression"
+  ],
+  "register_notes": "Français familier et amical avec tu. Utilise je vais, ensuite, et vers pour rester au niveau A2.",
+  "production_mode_default": {
+    "required": [
+      "choice"
+    ],
+    "optional_visible": [
+      "speaking"
+    ],
+    "optional_hidden": [
+      "typing"
+    ]
+  },
+  "support_text": "Ton amie te demande ton programme de demain matin. Dis d'abord ce que tu vas faire, puis ajoute une prochaine etape.",
+  "roles": {
+    "npc": {
+      "label": "amie"
+    },
+    "learner": {
+      "label": "toi"
+    }
+  },
+  "turns": [
+    {
+      "turn_id": "t1",
+      "speaker": "npc",
+      "act": "info_request",
+      "act_slots": {
+        "topic": "programme de demain matin",
+        "keyword": "demain matin",
+        "gloss": "明天早上"
+      },
+      "learning_role": "listen_only",
+      "surface": "Qu'est-ce que tu vas faire demain matin ?",
+      "speak": "Qu'est-ce que tu vas faire demain matin ?",
+      "translation": "你明天早上打算做什麼？",
+      "friend": {
+        "hint": "La question porte sur demain matin. Utilise je vais pour un projet simple."
+      },
+      "reply_set": {
+        "correct": "r1a",
+        "choices": [
+          {
+            "id": "r1a",
+            "surface": "Je vais passer à la banque.",
+            "translation": "我打算去銀行一趟。",
+            "speak": "Je vais passer à la banque.",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r1b",
+            "surface": "Je suis passé à la banque hier.",
+            "translation": "我昨天去過銀行了。",
+            "speak": "Je suis passé à la banque hier.",
+            "contrast_type": "wrong_time_past",
+            "feedback": "Ton amie parle de demain matin, pas d'hier."
+          },
+          {
+            "id": "r1c",
+            "surface": "Où est la banque ?",
+            "translation": "銀行在哪裡？",
+            "speak": "Où est la banque ?",
+            "contrast_type": "wrong_function_location_question",
+            "feedback": "Cette phrase demande un lieu. Elle ne dit pas ton programme."
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t2",
+      "speaker": "npc",
+      "act": "followup_sequence",
+      "act_slots": {
+        "topic": "après la banque",
+        "keyword": "après",
+        "gloss": "之後"
+      },
+      "learning_role": "listen_only",
+      "surface": "Et après ?",
+      "speak": "Et après ?",
+      "translation": "那之後呢？",
+      "friend": {
+        "hint": "Et après demande l'étape suivante. Réponds avec ensuite."
+      },
+      "inline_explain": {
+        "pattern_id": "fr.a2.plan.sequence.je_vais.v1",
+        "title": "je vais + infinitif",
+        "explain": "Pour parler d'un projet proche, utilise je vais + verbe. Ensuite ajoute l'étape suivante.",
+        "items": [
+          {
+            "surface": "Je vais passer à la banque.",
+            "translation": "我打算去銀行一趟。",
+            "speak": "Je vais passer à la banque."
+          },
+          {
+            "surface": "Ensuite, je vais étudier.",
+            "translation": "接著我打算讀書。",
+            "speak": "Ensuite, je vais étudier."
+          }
+        ]
+      },
+      "reply_set": {
+        "correct": "r2a",
+        "choices": [
+          {
+            "id": "r2a",
+            "surface": "Ensuite, je vais étudier au café.",
+            "translation": "接著我打算在咖啡店讀書。",
+            "speak": "Ensuite, je vais étudier au café.",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r2b",
+            "surface": "On se retrouve au café.",
+            "translation": "我們在咖啡店見面。",
+            "speak": "On se retrouve au café.",
+            "contrast_type": "wrong_function_meeting_place",
+            "feedback": "Cette phrase propose un rendez-vous. Ton amie demande ton activite suivante."
+          },
+          {
+            "id": "r2c",
+            "surface": "J'étudie maintenant.",
+            "translation": "我現在正在讀書。",
+            "speak": "J'étudie maintenant.",
+            "contrast_type": "wrong_time_now",
+            "feedback": "Maintenant ne correspond pas a l'etape de demain matin."
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t3",
+      "speaker": "npc",
+      "act": "time_confirmation",
+      "act_slots": {
+        "topic": "disponibilite",
+        "keyword": "avant midi",
+        "gloss": "中午前"
+      },
+      "learning_role": "listen_only",
+      "surface": "Tu es libre avant midi ?",
+      "speak": "Tu es libre avant midi ?",
+      "translation": "你中午前有空嗎？",
+      "friend": {
+        "hint": "Avant midi veut dire en fin de matinee. Tu peux dire vers avec une heure."
+      },
+      "reply_set": {
+        "correct": "r3a",
+        "choices": [
+          {
+            "id": "r3a",
+            "surface": "Oui, je suis libre vers onze heures.",
+            "translation": "有，我十一點左右有空。",
+            "speak": "Oui, je suis libre vers onze heures.",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r3b",
+            "surface": "Non, j'étais libre hier.",
+            "translation": "不，我昨天有空。",
+            "speak": "Non, j'étais libre hier.",
+            "contrast_type": "wrong_time_past",
+            "feedback": "La question parle de demain avant midi, pas d'hier."
+          },
+          {
+            "id": "r3c",
+            "surface": "La banque ferme à onze heures ?",
+            "translation": "銀行十一點關門嗎？",
+            "speak": "La banque ferme à onze heures ?",
+            "contrast_type": "wrong_focus_opening_hours",
+            "feedback": "Ton amie demande quand tu es libre, pas les horaires de la banque."
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t4",
+      "speaker": "npc",
+      "act": "closing_confirmation",
+      "act_slots": {
+        "topic": "programme confirme"
+      },
+      "learning_role": "listen_only",
+      "surface": "Super. Je t'écris à onze heures.",
+      "speak": "Super. Je t'écris à onze heures.",
+      "translation": "太好了。我十一點傳訊息給你。",
+      "friend": {
+        "hint": "Le programme est clair. Termine avec une reponse courte et amicale."
+      },
+      "reply_set": {
+        "correct": "r4a",
+        "choices": [
+          {
+            "id": "r4a",
+            "surface": "D'accord, à demain.",
+            "translation": "好，明天見。",
+            "speak": "D'accord, à demain.",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r4b",
+            "surface": "Je voudrais commander encore une fois.",
+            "translation": "我想再點一次。",
+            "speak": "Je voudrais commander encore une fois.",
+            "contrast_type": "wrong_scenario_ordering",
+            "feedback": "Cette phrase sert a commander. Ici, il suffit de confirmer demain."
+          },
+          {
+            "id": "r4c",
+            "surface": "Je veux changer de chambre.",
+            "translation": "我想換房間。",
+            "speak": "Je veux changer de chambre.",
+            "contrast_type": "wrong_scenario_hotel",
+            "feedback": "C'est une phrase d'hotel. Une courte confirmation suffit."
+          }
+        ]
+      }
+    }
+  ],
+  "choice_sets": [
+    "t1.reply_set",
+    "t2.reply_set",
+    "t3.reply_set",
+    "t4.reply_set"
+  ],
+  "feedback": "Les distracteurs testent le mauvais moment, la mauvaise fonction ou le mauvais scenario sans devenir des reponses valides.",
+  "tts_segments": [
+    "Je vais passer à la banque.",
+    "Ensuite, je vais étudier au café.",
+    "Oui, je suis libre vers onze heures.",
+    "D'accord, à demain."
+  ],
+  "formula_moments": [
+    {
+      "after_turn": "t2",
+      "pattern_id": "fr.a2.plan.sequence.je_vais.v1"
+    }
+  ],
+  "runtime_notes": "Fresh FR A2 candidate. Structural checks and two AI semantic review passes completed on 2026-06-14 before metadata promotion.",
+  "notes": {
+    "authoring_policy": "Fresh-authored from the neutral A2 brief. KO, JA, EN, and TH packs were not used as translation sources.",
+    "a2_boundary": "Uses near-future plan plus one simple sequence and time availability; avoids a formal itinerary.",
+    "native_review_boundary": "AI-reviewed only; native_review_state remains native_pending."
+  }
+}

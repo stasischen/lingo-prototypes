@@ -1,0 +1,284 @@
+{
+  "schema_version": "scenario_pack.v1",
+  "scenario_id": "a2_ask_recommendation_budget",
+  "title": "ขอคำแนะนำตามงบ",
+  "setting_label": "ร้านเล็ก ๆ",
+  "wrap_title": "ยืนยันคำแนะนำแล้ว",
+  "wrap_friend": "ทำได้ดีค่ะ คุณยืนยันความชอบและรายละเอียดในสถานการณ์อาหารหรือซื้อของแบบความเสี่ยงต่ำได้ชัดเจน",
+  "language": "th",
+  "ui_language": "zh-Hant",
+  "cefr_level": "A2",
+  "source_status": "candidate_runtime_verified",
+  "review_state": "ai_reviewed",
+  "review_status_framework_state": "candidate_runtime_verified",
+  "native_review_state": "native_pending",
+  "scenario": {
+    "domain": "food_shopping_preferences",
+    "review_slice": "food_shopping",
+    "interaction": "service_preference_or_exchange",
+    "source_brief": "A2_FOOD_SHOPPING_NEUTRAL_ADAPTATION_BRIEFS_20260614",
+    "blueprint_source": "language_neutral_adaptation_brief",
+    "ko_pack_role": "mature_scenario_blueprint_not_translation_source"
+  },
+  "learner_goal": "ขอคำแนะนำในงบเล็ก ๆ และบอกความชอบสั้น ๆ ค่ะ",
+  "target_functions": [
+    "compare_or_state_preference",
+    "confirm_key_detail",
+    "make_polite_low_risk_request",
+    "close_with_correct_next_step"
+  ],
+  "register_notes": "Thai A2 food/shopping register: short polite service Thai with ค่ะ, TTS-friendly segmentation, no allergy/medical/refund-dispute framing.",
+  "production_mode_default": {
+    "required": [
+      "choice"
+    ],
+    "optional_visible": [
+      "speaking"
+    ],
+    "optional_hidden": [
+      "typing"
+    ]
+  },
+  "support_text": "ขอคำแนะนำในงบเล็ก ๆ และบอกความชอบสั้น ๆ ค่ะ",
+  "roles": {
+    "npc": {
+      "label": "พนักงาน"
+    },
+    "learner": {
+      "label": "你"
+    }
+  },
+  "turns": [
+    {
+      "turn_id": "t1",
+      "speaker": "npc",
+      "act": "state_budget",
+      "act_slots": {
+        "topic": "ask-recommendation-budget",
+        "keyword": "1",
+        "gloss": "A2 food/shopping"
+      },
+      "learning_role": "listen_only",
+      "surface": "กำลังหาอะไรอยู่คะ",
+      "speak": "กำลังหาอะไรอยู่คะ",
+      "translation": "您在找什麼？",
+      "friend": {
+        "hint": "ขอคำแนะนำในงบเล็ก ๆ ค่ะ"
+      },
+      "reply_set": {
+        "correct": "r1a",
+        "choices": [
+          {
+            "id": "r1a",
+            "surface": "ช่วยแนะนำของขวัญไม่เกินสามร้อยบาทได้ไหมคะ",
+            "translation": "可以推薦三百泰銖以內的禮物嗎？",
+            "speak": "ช่วยแนะนำของขวัญไม่เกินสามร้อยบาทได้ไหมคะ",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r1b",
+            "surface": "ช่วยเช็กบัญชีธนาคารให้หน่อยค่ะ",
+            "translation": "請幫我查銀行帳戶。",
+            "speak": "ช่วยเช็กบัญชีธนาคารให้หน่อยค่ะ",
+            "contrast_type": "wrong_detail_or_domain",
+            "feedback": "นี่ไม่ใช่งานธนาคารค่ะ"
+          },
+          {
+            "id": "r1c",
+            "surface": "อยากแจ้งของหายค่ะ",
+            "translation": "我想申報遺失物。",
+            "speak": "อยากแจ้งของหายค่ะ",
+            "contrast_type": "forbidden_or_wrong_domain",
+            "feedback": "การแจ้งของหายเป็นอีกงานหนึ่งค่ะ"
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t2",
+      "speaker": "npc",
+      "act": "ask_preference",
+      "act_slots": {
+        "topic": "ask-recommendation-budget",
+        "keyword": "2",
+        "gloss": "A2 food/shopping"
+      },
+      "learning_role": "listen_only",
+      "surface": "อยากได้ของเบา ๆ หรือของที่ใช้ได้จริงคะ",
+      "speak": "อยากได้ของเบา ๆ หรือของที่ใช้ได้จริงคะ",
+      "translation": "想要輕巧的，還是實用的？",
+      "friend": {
+        "hint": "บอกความชอบง่าย ๆ ค่ะ"
+      },
+      "reply_set": {
+        "correct": "r2a",
+        "choices": [
+          {
+            "id": "r2a",
+            "surface": "อยากได้แบบใช้ได้จริงค่ะ",
+            "translation": "我想要實用的。",
+            "speak": "อยากได้แบบใช้ได้จริงค่ะ",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r2b",
+            "surface": "อยากได้แบบเผ็ดค่ะ",
+            "translation": "我想要辣的。",
+            "speak": "อยากได้แบบเผ็ดค่ะ",
+            "contrast_type": "wrong_detail_or_domain",
+            "feedback": "ความเผ็ดเป็นเรื่องเมนูอาหารค่ะ"
+          },
+          {
+            "id": "r2c",
+            "surface": "อยากเช็กเอาต์ช้าค่ะ",
+            "translation": "我想晚點退房。",
+            "speak": "อยากเช็กเอาต์ช้าค่ะ",
+            "contrast_type": "forbidden_or_wrong_domain",
+            "feedback": "เปลี่ยนไปเรื่องโรงแรมค่ะ"
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t3",
+      "speaker": "npc",
+      "act": "confirm_preference",
+      "act_slots": {
+        "topic": "ask-recommendation-budget",
+        "keyword": "3",
+        "gloss": "A2 food/shopping"
+      },
+      "learning_role": "listen_only",
+      "surface": "งั้นสมุดเล่มเล็กนี้ไม่เกินสามร้อยบาทค่ะ",
+      "speak": "งั้นสมุดเล่มเล็กนี้ไม่เกินสามร้อยบาทค่ะ",
+      "translation": "那這本小筆記本不超過三百泰銖。",
+      "friend": {
+        "hint": "ยืนยันของแนะนำและงบค่ะ"
+      },
+      "reply_set": {
+        "correct": "r3a",
+        "choices": [
+          {
+            "id": "r3a",
+            "surface": "สมุดเล่มนั้นไม่เกินสามร้อยบาทใช่ไหมคะ",
+            "translation": "那本筆記本不超過三百泰銖，對嗎？",
+            "speak": "สมุดเล่มนั้นไม่เกินสามร้อยบาทใช่ไหมคะ",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r3b",
+            "surface": "ห้องนั้นไม่เกินสามร้อยบาทใช่ไหมคะ",
+            "translation": "那個房間不超過三百泰銖，對嗎？",
+            "speak": "ห้องนั้นไม่เกินสามร้อยบาทใช่ไหมคะ",
+            "contrast_type": "wrong_detail_or_domain",
+            "feedback": "ห้องไม่ใช่สินค้าที่แนะนำค่ะ"
+          },
+          {
+            "id": "r3c",
+            "surface": "ตั๋วนั้นเป็นของเมื่อวานใช่ไหมคะ",
+            "translation": "那張票是昨天的，對嗎？",
+            "speak": "ตั๋วนั้นเป็นของเมื่อวานใช่ไหมคะ",
+            "contrast_type": "forbidden_or_wrong_domain",
+            "feedback": "เปลี่ยนไปเรื่องตั๋วค่ะ"
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t4",
+      "speaker": "npc",
+      "act": "accept_recommendation",
+      "act_slots": {
+        "topic": "ask-recommendation-budget",
+        "keyword": "4",
+        "gloss": "A2 food/shopping"
+      },
+      "learning_role": "listen_only",
+      "surface": "ใช่ค่ะ และห่อของขวัญได้ด้วยค่ะ",
+      "speak": "ใช่ค่ะ และห่อของขวัญได้ด้วยค่ะ",
+      "translation": "對，也可以包裝成禮物。",
+      "friend": {
+        "hint": "รับคำแนะนำอย่างสุภาพค่ะ"
+      },
+      "reply_set": {
+        "correct": "r4a",
+        "choices": [
+          {
+            "id": "r4a",
+            "surface": "ดีค่ะ เอาสมุดเล่มนั้นค่ะ",
+            "translation": "很好，我要那本筆記本。",
+            "speak": "ดีค่ะ เอาสมุดเล่มนั้นค่ะ",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r4b",
+            "surface": "ขอคืนเงินค่ะ",
+            "translation": "請退款。",
+            "speak": "ขอคืนเงินค่ะ",
+            "contrast_type": "wrong_detail_or_domain",
+            "feedback": "นี่ไม่ใช่การคืนเงินค่ะ"
+          },
+          {
+            "id": "r4c",
+            "surface": "ช่วยเช็กประกันให้หน่อยค่ะ",
+            "translation": "請幫我查保險。",
+            "speak": "ช่วยเช็กประกันให้หน่อยค่ะ",
+            "contrast_type": "forbidden_or_wrong_domain",
+            "feedback": "ประกันอยู่นอกงานความเสี่ยงต่ำนี้ค่ะ"
+          }
+        ]
+      }
+    }
+  ],
+  "choice_sets": {
+    "count_per_turn": 3,
+    "correct_path": [
+      "r1a",
+      "r2a",
+      "r3a",
+      "r4a"
+    ],
+    "distractor_policy": "one near-domain wrong detail plus one out-of-scope/unsafe-domain option per turn"
+  },
+  "feedback": {
+    "correct": "ดีค่ะ ตอบตรงกับสถานการณ์อาหารหรือซื้อของ",
+    "incorrect": "เลือกคำตอบที่ตรงกับเมนู วัตถุดิบ การเปลี่ยนของ หรือคำแนะนำตามงบค่ะ"
+  },
+  "tts_segments": [
+    "กำลังหาอะไรอยู่คะ",
+    "ช่วยแนะนำของขวัญไม่เกินสามร้อยบาทได้ไหมคะ",
+    "ช่วยเช็กบัญชีธนาคารให้หน่อยค่ะ",
+    "อยากแจ้งของหายค่ะ",
+    "อยากได้ของเบา ๆ หรือของที่ใช้ได้จริงคะ",
+    "อยากได้แบบใช้ได้จริงค่ะ",
+    "อยากได้แบบเผ็ดค่ะ",
+    "อยากเช็กเอาต์ช้าค่ะ",
+    "งั้นสมุดเล่มเล็กนี้ไม่เกินสามร้อยบาทค่ะ",
+    "สมุดเล่มนั้นไม่เกินสามร้อยบาทใช่ไหมคะ",
+    "ห้องนั้นไม่เกินสามร้อยบาทใช่ไหมคะ",
+    "ตั๋วนั้นเป็นของเมื่อวานใช่ไหมคะ",
+    "ใช่ค่ะ และห่อของขวัญได้ด้วยค่ะ",
+    "ดีค่ะ เอาสมุดเล่มนั้นค่ะ",
+    "ขอคืนเงินค่ะ",
+    "ช่วยเช็กประกันให้หน่อยค่ะ"
+  ],
+  "formula_moments": [
+    {
+      "after_turn": "t2",
+      "pattern_id": "th.a2.shopping.recommendation.budget.v1",
+      "label": "ไม่เกิน + budget",
+      "learner_takeaway": "อยากได้แบบใช้งานได้จริง"
+    }
+  ],
+  "runtime_notes": {
+    "expected_turns": 4,
+    "expected_choices_per_turn": 3,
+    "full_walk_required": true,
+    "expected_final_screen": "Wrap"
+  },
+  "notes": {
+    "generated_at": "2026-06-14",
+    "authoring_scope": "A2 food/shopping TH adaptation",
+    "native_review_state": "native_pending"
+  }
+}

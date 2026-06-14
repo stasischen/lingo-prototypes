@@ -1,0 +1,262 @@
+{
+  "schema_version": "scenario_pack.v1",
+  "scenario_id": "a2_plan_tomorrow_morning",
+  "title": "Morgen früh etwas planen",
+  "setting_label": "Chat mit einem Freund",
+  "wrap_title": "Plan für morgen früh",
+  "wrap_friend": "你剛剛用簡單德文說了明天早上的安排，並接上一個下一步。",
+  "language": "de",
+  "ui_language": "zh_tw",
+  "cefr_level": "A2",
+  "source_status": "candidate_runtime_verified",
+  "review_state": "ai_reviewed",
+  "review_status_framework_state": "candidate_runtime_verified",
+  "native_review_state": "native_pending",
+  "scenario": "Ein Freund fragt, was du morgen früh vorhast.",
+  "learner_goal": "Sage einen Plan für morgen früh und nenne einen einfachen nächsten Schritt.",
+  "target_functions": [
+    "near_future_plan",
+    "simple_sequence",
+    "time_expression"
+  ],
+  "register_notes": "Freundliches Alltagsdeutsch. A2-nahe Formen wie ich gehe, danach und gegen zehn; kein formeller Tagesplan.",
+  "production_mode_default": {
+    "required": [
+      "choice"
+    ],
+    "optional_visible": [
+      "speaking"
+    ],
+    "optional_hidden": [
+      "typing"
+    ]
+  },
+  "support_text": "Dein Freund fragt nach morgen früh. Sag zuerst, was du vorhast, und füge dann einen nächsten Schritt hinzu.",
+  "roles": {
+    "npc": {
+      "label": "Freund"
+    },
+    "learner": {
+      "label": "Du"
+    }
+  },
+  "turns": [
+    {
+      "turn_id": "t1",
+      "speaker": "npc",
+      "act": "info_request",
+      "act_slots": {
+        "topic": "tomorrow morning plan",
+        "keyword": "morgen früh",
+        "gloss": "明天早上"
+      },
+      "learning_role": "listen_only",
+      "surface": "Was machst du morgen früh?",
+      "speak": "Was machst du morgen früh?",
+      "translation": "你明天早上要做什麼？",
+      "friend": {
+        "hint": "Die Frage ist über morgen früh. Antworte mit einem einfachen Plan."
+      },
+      "reply_set": {
+        "correct": "r1a",
+        "choices": [
+          {
+            "id": "r1a",
+            "surface": "Ich gehe morgen früh zum Bäcker.",
+            "translation": "我明天早上要去麵包店。",
+            "speak": "Ich gehe morgen früh zum Bäcker.",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r1b",
+            "surface": "Ich war gestern beim Bäcker.",
+            "translation": "我昨天去了麵包店。",
+            "speak": "Ich war gestern beim Bäcker.",
+            "contrast_type": "wrong_time_past",
+            "feedback": "Dein Freund fragt nach morgen früh, nicht nach gestern."
+          },
+          {
+            "id": "r1c",
+            "surface": "Wo ist der Bäcker?",
+            "translation": "麵包店在哪裡？",
+            "speak": "Wo ist der Bäcker?",
+            "contrast_type": "wrong_function_location_question",
+            "feedback": "Das fragt nach einem Ort. Es sagt nicht, was du vorhast."
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t2",
+      "speaker": "npc",
+      "act": "followup_sequence",
+      "act_slots": {
+        "topic": "after bakery",
+        "keyword": "danach",
+        "gloss": "接著"
+      },
+      "learning_role": "listen_only",
+      "surface": "Und was machst du danach?",
+      "speak": "Und was machst du danach?",
+      "translation": "那之後你要做什麼？",
+      "friend": {
+        "hint": "Danach fragt nach dem nächsten Schritt. Antworte kurz."
+      },
+      "inline_explain": {
+        "pattern_id": "de.a2.plan.sequence.danach.v1",
+        "title": "danach + Verb",
+        "explain": "Mit danach verbindest du zwei kurze Schritte in einer Reihenfolge.",
+        "items": [
+          {
+            "surface": "Danach trinke ich Kaffee.",
+            "translation": "接著我喝咖啡。",
+            "speak": "Danach trinke ich Kaffee."
+          },
+          {
+            "surface": "Dann lerne ich.",
+            "translation": "然後我學習。",
+            "speak": "Dann lerne ich."
+          }
+        ]
+      },
+      "reply_set": {
+        "correct": "r2a",
+        "choices": [
+          {
+            "id": "r2a",
+            "surface": "Danach lerne ich kurz im Café.",
+            "translation": "接著我在咖啡店學習一下。",
+            "speak": "Danach lerne ich kurz im Café.",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r2b",
+            "surface": "Treffen wir uns im Café?",
+            "translation": "我們在咖啡店見面嗎？",
+            "speak": "Treffen wir uns im Café?",
+            "contrast_type": "wrong_function_meeting_place",
+            "feedback": "Das schlägt ein Treffen vor. Dein Freund fragt nach deiner nächsten Aktivität."
+          },
+          {
+            "id": "r2c",
+            "surface": "Ich lerne gerade zu Hause.",
+            "translation": "我現在正在家裡學習。",
+            "speak": "Ich lerne gerade zu Hause.",
+            "contrast_type": "wrong_time_aspect",
+            "feedback": "Das ist jetzt. Die Frage ist nach dem nächsten Schritt morgen."
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t3",
+      "speaker": "npc",
+      "act": "time_confirmation",
+      "act_slots": {
+        "topic": "meeting after plan",
+        "keyword": "vor dem Mittag",
+        "gloss": "午餐前"
+      },
+      "learning_role": "listen_only",
+      "surface": "Bist du vor dem Mittag frei?",
+      "speak": "Bist du vor dem Mittag frei?",
+      "translation": "你午餐前有空嗎？",
+      "friend": {
+        "hint": "Vor dem Mittag meint späten Vormittag. Du kannst gegen plus Uhrzeit verwenden."
+      },
+      "reply_set": {
+        "correct": "r3a",
+        "choices": [
+          {
+            "id": "r3a",
+            "surface": "Ja, ich bin gegen elf frei.",
+            "translation": "可以，我十一點左右有空。",
+            "speak": "Ja, ich bin gegen elf frei."
+          },
+          {
+            "id": "r3b",
+            "surface": "Nein, ich war gestern frei.",
+            "translation": "不，我昨天有空。",
+            "speak": "Nein, ich war gestern frei.",
+            "contrast_type": "wrong_time_past",
+            "feedback": "Die Frage ist nach morgen vor dem Mittag, nicht nach gestern."
+          },
+          {
+            "id": "r3c",
+            "surface": "Hat der Bäcker um elf zu?",
+            "translation": "麵包店十一點關門嗎？",
+            "speak": "Hat der Bäcker um elf zu?",
+            "contrast_type": "wrong_focus_store_hours",
+            "feedback": "Dein Freund fragt, wann du frei bist."
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t4",
+      "speaker": "npc",
+      "act": "closing_confirmation",
+      "act_slots": {
+        "topic": "plan confirmed"
+      },
+      "learning_role": "listen_only",
+      "surface": "Super. Ich schreibe dir um elf.",
+      "speak": "Super. Ich schreibe dir um elf.",
+      "translation": "太好了。我十一點傳訊息給你。",
+      "friend": {
+        "hint": "Der Plan ist klar. Schließ freundlich und kurz ab."
+      },
+      "reply_set": {
+        "correct": "r4a",
+        "choices": [
+          {
+            "id": "r4a",
+            "surface": "Okay, bis morgen.",
+            "translation": "好，明天見。",
+            "speak": "Okay, bis morgen."
+          },
+          {
+            "id": "r4b",
+            "surface": "Ich bestelle es noch einmal.",
+            "translation": "我會再點一次。",
+            "speak": "Ich bestelle es noch einmal.",
+            "contrast_type": "wrong_scenario_ordering",
+            "feedback": "Das klingt nach einer Bestellung. Hier bestätigst du den Plan für morgen."
+          },
+          {
+            "id": "r4c",
+            "surface": "Ich möchte das Zimmer wechseln.",
+            "translation": "我想換房間。",
+            "speak": "Ich möchte das Zimmer wechseln.",
+            "contrast_type": "wrong_scenario_hotel",
+            "feedback": "Das ist eine Hotelsituation. Hier reicht ein kurzer Abschied."
+          }
+        ]
+      }
+    }
+  ],
+  "choice_sets": [
+    "t1.reply_set",
+    "t2.reply_set",
+    "t3.reply_set",
+    "t4.reply_set"
+  ],
+  "feedback": "Die Distraktoren testen falsche Zeit, falsche Funktion und falsches Szenario.",
+  "tts_segments": [
+    "Ich gehe morgen früh zum Bäcker.",
+    "Danach lerne ich kurz im Café.",
+    "Ja, ich bin gegen elf frei.",
+    "Okay, bis morgen."
+  ],
+  "formula_moments": [
+    {
+      "after_turn": "t2",
+      "pattern_id": "de.a2.plan.sequence.danach.v1"
+    }
+  ],
+  "runtime_notes": "Fresh DE A2 candidate. Structural checks and two AI semantic review passes completed on 2026-06-14 before metadata promotion.",
+  "notes": {
+    "authoring_policy": "Fresh-authored from the neutral A2 brief. KO/JA/EN/TH packs were used only for schema-shape reference.",
+    "a2_boundary": "Simple near-future plan plus one next step and approximate availability; avoids a formal itinerary."
+  }
+}

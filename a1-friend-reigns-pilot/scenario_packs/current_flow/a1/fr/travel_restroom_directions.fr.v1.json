@@ -1,0 +1,220 @@
+{
+  "schema_version": "scenario_pack.v1",
+  "scenario_id": "travel_restroom_directions",
+  "brief_id": "ml0_a1_003_travel_restroom_directions",
+  "source_neutral_brief": "release-aggregator/docs/tasks/A1_MULTILINGUAL_KO_B1_PARALLEL_ORCHESTRATION/work_products/ml0/ML0_NEUTRAL_ADAPTATION_BRIEFS_20260613.md#brief-ml0-a1-003-asking-for-restroom-directions",
+  "blueprint_ledger": "release-aggregator/docs/tasks/A1_MULTILINGUAL_KO_B1_PARALLEL_ORCHESTRATION/work_products/ml0/ML0_BLUEPRINT_LEDGER_20260613.md",
+  "repo": "content-fr",
+  "staging_path": "content/core/content_assets/scenario_packs/current_flow/travel_restroom_directions.fr.v1.json",
+  "title": "Demander les toilettes",
+  "setting_label": "Lieu public",
+  "wrap_title": "Tu as demandé les toilettes",
+  "wrap_friend": "你先禮貌引起注意，再問洗手間位置，最後確認方向。這套短句在公共場所很實用。",
+  "language": "fr",
+  "ui_language": "zh_tw",
+  "source_status": "candidate_runtime_verified",
+  "review_state": "draft",
+  "review_status_framework_state": "candidate_runtime_verified",
+  "native_review_state": "native_pending",
+  "production_mode_default": {
+    "required": [
+      "choice"
+    ],
+    "optional_visible": [
+      "speaking"
+    ],
+    "optional_hidden": [
+      "typing"
+    ]
+  },
+  "support_text": "你在公共場所，需要找到洗手間。先禮貌開口，再聽懂簡單方向。",
+  "roles": {
+    "npc": {
+      "label": "工作人員"
+    },
+    "learner": {
+      "label": "你"
+    }
+  },
+  "opening_messages": [
+    {
+      "speaker": "learner",
+      "learning_role": "production_target",
+      "surface": "Excusez-moi.",
+      "speak": "Excusez-moi.",
+      "translation": "不好意思。"
+    }
+  ],
+  "turns": [
+    {
+      "turn_id": "t1",
+      "speaker": "npc",
+      "act": "service_opening",
+      "act_slots": {
+        "topic": "offering help",
+        "keyword": "aider",
+        "gloss": "ask what the visitor needs"
+      },
+      "learning_role": "listen_only",
+      "surface": "Oui, je vous écoute.",
+      "speak": "Oui, je vous écoute.",
+      "translation": "工作人員在表示可以聽你說。",
+      "friend": {
+        "hint": "問洗手間在哪裡。法語常用 les toilettes。"
+      },
+      "reply_set": {
+        "correct": "r1a",
+        "choices": [
+          {
+            "id": "r1a",
+            "surface": "Où sont les toilettes, s'il vous plaît ?",
+            "translation": "請問洗手間在哪裡？",
+            "speak": "Où sont les toilettes, s'il vous plaît ?",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r1b",
+            "surface": "Je voudrais un café.",
+            "translation": "我想要一杯咖啡。",
+            "speak": "Je voudrais un café.",
+            "contrast_type": "wrong_scenario_request",
+            "feedback": "這是在點咖啡。現在你需要問位置。"
+          },
+          {
+            "id": "r1c",
+            "surface": "C'est combien ?",
+            "translation": "多少錢？",
+            "speak": "C'est combien ?",
+            "contrast_type": "wrong_scenario_request",
+            "feedback": "這是在問價格。此處要問洗手間在哪裡。"
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t2",
+      "speaker": "npc",
+      "act": "direction_instruction",
+      "act_slots": {
+        "topic": "right side",
+        "keyword": "droite",
+        "gloss": "direction"
+      },
+      "learning_role": "listen_only",
+      "surface": "Tout droit, puis à droite.",
+      "speak": "Tout droit, puis à droite.",
+      "translation": "直走，然後在右邊。",
+      "friend": {
+        "hint": "聽兩個方向詞：tout droit 是直走，à droite 是在右邊。"
+      },
+      "inline_explain": {
+        "pattern_id": "fr.directions.tout_droit.droite.v1",
+        "formula_ref": null,
+        "title": "Tout droit / à droite",
+        "explain": "tout droit 表示直走，à droite 表示在右邊。",
+        "items": [
+          {
+            "surface": "Tout droit.",
+            "translation": "直走。",
+            "speak": "Tout droit."
+          },
+          {
+            "surface": "À droite.",
+            "translation": "在右邊。",
+            "speak": "À droite."
+          }
+        ]
+      },
+      "reply_set": {
+        "correct": "r2a",
+        "choices": [
+          {
+            "id": "r2a",
+            "surface": "À droite ?",
+            "translation": "在右邊嗎？",
+            "speak": "À droite ?",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r2b",
+            "surface": "Au nom de Lee.",
+            "translation": "訂房姓名是 Lee。",
+            "speak": "Au nom de Lee.",
+            "contrast_type": "wrong_scenario_response",
+            "feedback": "這是在飯店櫃台提供姓名。現在你是在確認方向。"
+          },
+          {
+            "id": "r2c",
+            "surface": "Ça va.",
+            "translation": "我還好。",
+            "speak": "Ça va.",
+            "contrast_type": "wrong_act_personal_status",
+            "feedback": "這是在說自己的狀態，不是在確認方向。"
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t3",
+      "speaker": "npc",
+      "act": "direction_confirmation",
+      "act_slots": {
+        "topic": "confirming direction",
+        "keyword": "droite",
+        "gloss": "confirm the side"
+      },
+      "learning_role": "listen_only",
+      "surface": "Oui, à droite.",
+      "speak": "Oui, à droite.",
+      "translation": "工作人員確認是在右邊。",
+      "friend": {
+        "hint": "方向已經確認，接著說謝謝。"
+      },
+      "reply_set": {
+        "correct": "r3a",
+        "choices": [
+          {
+            "id": "r3a",
+            "surface": "Merci.",
+            "translation": "謝謝。",
+            "speak": "Merci."
+          },
+          {
+            "id": "r3b",
+            "surface": "À droite ?",
+            "translation": "在右邊嗎？",
+            "speak": "À droite ?",
+            "contrast_type": "repeated_prior_answer",
+            "feedback": "對方已經確認方向了。現在可以道謝。"
+          },
+          {
+            "id": "r3c",
+            "surface": "Non, merci.",
+            "translation": "不用了，謝謝。",
+            "speak": "Non, merci.",
+            "contrast_type": "wrong_act_refusal",
+            "feedback": "這像是在拒絕協助。你已經得到方向，應該禮貌收尾。"
+          }
+        ]
+      },
+      "closing": {
+        "act": "closing",
+        "learning_role": "context_support",
+        "surface": "Avec plaisir.",
+        "speak": "Avec plaisir.",
+        "translation": "不客氣。"
+      }
+    }
+  ],
+  "formula_moments": [
+    {
+      "after_turn": "t2",
+      "pattern_id": "fr.directions.tout_droit.droite.v1"
+    }
+  ],
+  "notes": {
+    "review_policy": "AI-authored candidate. Requires AI review, runtime smoke, and tracked native review before any stronger status.",
+    "canonical_policy": "Staging candidate only. Do not write back to manifests, production exports, schemas, or legacy content.",
+    "authoring_source": "Authored from ML-0 neutral brief, not Korean surface text."
+  }
+}

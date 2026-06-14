@@ -1,0 +1,260 @@
+{
+  "schema_version": "scenario_pack.v1",
+  "scenario_id": "hotel_wifi_breakfast",
+  "brief_id": "ml1_a1_008_hotel_wifi_breakfast",
+  "source_neutral_brief": "release-aggregator/docs/tasks/A1_MULTILINGUAL_KO_B1_PARALLEL_ORCHESTRATION/work_products/ml0/ML1_NEUTRAL_ADAPTATION_BRIEFS_20260614.md#brief-ml1-a1-008-hotel-wi-fi-and-breakfast",
+  "blueprint_ledger": "release-aggregator/docs/tasks/A1_MULTILINGUAL_KO_B1_PARALLEL_ORCHESTRATION/work_products/ml0/ML1_BLUEPRINT_LEDGER_20260614.md",
+  "repo": "content-zh",
+  "staging_path": "content/core/content_assets/scenario_packs/current_flow/hotel_wifi_breakfast.zh.v1.json",
+  "title": "飯店 Wi-Fi 和早餐",
+  "setting_label": "飯店櫃台",
+  "wrap_title": "資訊問到了",
+  "wrap_friend": "你用繁體中文問到 Wi-Fi 密碼和早餐資訊，並確認了時間地點。",
+  "language": "zh",
+  "ui_language": "zh_tw",
+  "source_status": "candidate_runtime_verified",
+  "review_state": "draft",
+  "review_status_framework_state": "candidate_runtime_verified",
+  "native_review_state": "native_pending",
+  "production_mode_default": {
+    "required": [
+      "choice"
+    ],
+    "optional_visible": [
+      "speaking"
+    ],
+    "optional_hidden": [
+      "typing"
+    ]
+  },
+  "support_text": "你在飯店櫃台。詢問 Wi-Fi 密碼和早餐時間地點，聽懂簡短回答後道謝。",
+  "roles": {
+    "npc": {
+      "label": "櫃台人員"
+    },
+    "learner": {
+      "label": "房客"
+    }
+  },
+  "turns": [
+    {
+      "turn_id": "t1",
+      "speaker": "npc",
+      "act": "front_desk_opening",
+      "act_slots": {
+        "topic": "offer_help",
+        "keyword": "幫忙",
+        "gloss": "help"
+      },
+      "learning_role": "listen_only",
+      "surface": "您好，需要幫忙嗎？",
+      "speak": "您好，需要幫忙嗎？",
+      "translation": "您好，需要幫忙嗎？",
+      "friend": {
+        "hint": "在飯店櫃台，直接問 Wi-Fi 密碼在哪裡。"
+      },
+      "reply_set": {
+        "correct": "r1a",
+        "choices": [
+          {
+            "id": "r1a",
+            "surface": "請問 Wi-Fi 密碼在哪裡？",
+            "translation": "請問 Wi-Fi 密碼在哪裡？",
+            "speak": "請問 Wi-Fi 密碼在哪裡？",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r1b",
+            "surface": "我需要一張新的房卡。",
+            "translation": "我需要一張新的房卡。",
+            "speak": "我需要一張新的房卡。",
+            "contrast_type": "room_key_instead_of_wifi",
+            "feedback": "這是在要房卡。你的目標是問 Wi-Fi 密碼。"
+          },
+          {
+            "id": "r1c",
+            "surface": "我想要一份牛肉麵。",
+            "translation": "我想要一份牛肉麵。",
+            "speak": "我想要一份牛肉麵。",
+            "contrast_type": "restaurant_order_answer",
+            "feedback": "這是餐廳點餐。現在是在飯店櫃台問 Wi-Fi。"
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t2",
+      "speaker": "npc",
+      "act": "wifi_answer",
+      "act_slots": {
+        "topic": "wifi_location",
+        "keyword": "房卡套",
+        "gloss": "room-card sleeve"
+      },
+      "learning_role": "listen_only",
+      "surface": "密碼在房卡套上。",
+      "speak": "密碼在房卡套上。",
+      "translation": "密碼在房卡套上。",
+      "friend": {
+        "hint": "房卡套就是裝房卡的紙套。"
+      },
+      "inline_explain": {
+        "pattern_id": "zh.hotel.fangka_tao.v1",
+        "formula_ref": null,
+        "title": "在房卡套上",
+        "explain": "在...上 表示資訊印在那個物品上。",
+        "items": [
+          {
+            "surface": "密碼在房卡套上。",
+            "translation": "密碼在房卡套上。",
+            "speak": "密碼在房卡套上。"
+          },
+          {
+            "surface": "密碼在這裡。",
+            "translation": "密碼在這裡。",
+            "speak": "密碼在這裡。"
+          }
+        ]
+      },
+      "reply_set": {
+        "correct": "r2a",
+        "choices": [
+          {
+            "id": "r2a",
+            "surface": "在房卡套上，謝謝。",
+            "translation": "在房卡套上，謝謝。",
+            "speak": "在房卡套上，謝謝。"
+          },
+          {
+            "id": "r2b",
+            "surface": "十點，在櫃台。",
+            "translation": "十點，在櫃台。",
+            "speak": "十點，在櫃台。",
+            "contrast_type": "wrong_place_time_confirmation",
+            "feedback": "這混入時間和地點，沒有確認 Wi-Fi 資訊在房卡套上。"
+          },
+          {
+            "id": "r2c",
+            "surface": "我現在付款。",
+            "translation": "我現在付款。",
+            "speak": "我現在付款。",
+            "contrast_type": "checkout_payment_phrase",
+            "feedback": "這是付款句，不是在確認 Wi-Fi 密碼位置。"
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t3",
+      "speaker": "npc",
+      "act": "prompt_more_help",
+      "act_slots": {
+        "topic": "more_help",
+        "keyword": "還需要",
+        "gloss": "still need"
+      },
+      "learning_role": "listen_only",
+      "surface": "還需要其他幫忙嗎？",
+      "speak": "還需要其他幫忙嗎？",
+      "translation": "還需要其他幫忙嗎？",
+      "friend": {
+        "hint": "接著問早餐時間。"
+      },
+      "reply_set": {
+        "correct": "r3a",
+        "choices": [
+          {
+            "id": "r3a",
+            "surface": "早餐幾點開始？",
+            "translation": "早餐幾點開始？",
+            "speak": "早餐幾點開始？",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r3b",
+            "surface": "兩位的桌子，謝謝。",
+            "translation": "兩位的桌子，謝謝。",
+            "speak": "兩位的桌子，謝謝。",
+            "contrast_type": "restaurant_request",
+            "feedback": "這像是在餐廳要座位。現在要問飯店早餐時間。"
+          },
+          {
+            "id": "r3c",
+            "surface": "請問二號月台在哪裡？",
+            "translation": "請問二號月台在哪裡？",
+            "speak": "請問二號月台在哪裡？",
+            "contrast_type": "station_question",
+            "feedback": "這是車站問路。飯店櫃台現在要問早餐資訊。"
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t4",
+      "speaker": "npc",
+      "act": "breakfast_answer",
+      "act_slots": {
+        "topic": "breakfast_time_place",
+        "keyword": "七點",
+        "gloss": "seven o'clock"
+      },
+      "learning_role": "listen_only",
+      "surface": "早上七點開始，在二樓。",
+      "speak": "早上七點開始，在二樓。",
+      "translation": "早上七點開始，在二樓。",
+      "friend": {
+        "hint": "確認關鍵資訊：早上七點，二樓。"
+      },
+      "reply_set": {
+        "correct": "r4a",
+        "choices": [
+          {
+            "id": "r4a",
+            "surface": "早上七點，在二樓。謝謝。",
+            "translation": "早上七點，在二樓。謝謝。",
+            "speak": "早上七點，在二樓。謝謝。"
+          },
+          {
+            "id": "r4b",
+            "surface": "早上十點，在房間。",
+            "translation": "早上十點，在房間。",
+            "speak": "早上十點，在房間。",
+            "contrast_type": "wrong_time_place",
+            "feedback": "時間和地點都聽錯了。櫃台人員說早上七點，在二樓。"
+          },
+          {
+            "id": "r4c",
+            "surface": "我要退房。",
+            "translation": "我要退房。",
+            "speak": "我要退房。",
+            "contrast_type": "checkout_payment_phrase",
+            "feedback": "這是退房情境，不是在確認早餐資訊。"
+          }
+        ]
+      },
+      "closing": {
+        "act": "front_desk_close",
+        "learning_role": "context_support",
+        "surface": "不客氣。",
+        "speak": "不客氣。",
+        "translation": "不客氣。"
+      }
+    }
+  ],
+  "formula_moments": [
+    {
+      "after_turn": "t1",
+      "pattern_id": "zh.hotel_wifi_mima_zai_nali.v1"
+    },
+    {
+      "after_turn": "t3",
+      "pattern_id": "zh.hotel_zaocan_jidian.v1"
+    }
+  ],
+  "notes": {
+    "authoring_source": "Authored from ML-1 neutral brief ml1_a1_008_hotel_wifi_breakfast; KO and other target-language packs were not used as translation sources.",
+    "review_policy": "AI-authored candidate only; keep review_state=draft, review_status_framework_state=candidate_needs_review, native_review_state=native_pending until tracked review evidence exists.",
+    "canonical_policy": "Staging current-flow candidate only. Do not add to manifests, production exports, schema, runtime, frontend, review artifacts, or legacy content.",
+    "chinese_voice_note": "Uses Traditional-character Mandarin with Taiwan-leaning hotel terms such as 房卡套 and 飯店; native review should check whether broader Mandarin should use 酒店 or 房卡 instead."
+  }
+}

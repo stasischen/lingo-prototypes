@@ -1,0 +1,285 @@
+{
+  "schema_version": "scenario_pack.v1",
+  "scenario_id": "a2_decline_with_reason",
+  "title": "理由を添えてやさしく断る",
+  "setting_label": "友だちからの誘い",
+  "wrap_title": "やさしい断り方",
+  "wrap_friend": "よくできました。短い理由を添えて断り、関係を保つ自然な一言を返しました。",
+  "language": "ja",
+  "ui_language": "zh-Hant",
+  "cefr_level": "A2",
+  "source_status": "candidate_runtime_verified",
+  "review_state": "ai_reviewed",
+  "review_status_framework_state": "candidate_runtime_verified",
+  "native_review_state": "native_pending",
+  "scenario": {
+    "domain": "daily_social_coordination",
+    "review_slice": "daily_social",
+    "interaction": "polite_friend_decline",
+    "source_brief": "A2_DAILY_SOCIAL_NEUTRAL_ADAPTATION_BRIEFS_20260614",
+    "blueprint_source": "language_neutral_adaptation_brief",
+    "ko_pack_role": "not_used_as_translation_source"
+  },
+  "learner_goal": "友だちの誘いをやわらかく断り、普通の理由を一つ伝えます。",
+  "target_functions": [
+    "soft_decline",
+    "give_simple_reason",
+    "suggest_another_time",
+    "close_warmly"
+  ],
+  "register_notes": "Japanese A2 daily/social register: casual friend wording, light apology, ordinary reason only, no heavy personal disclosure or formal service register.",
+  "production_mode_default": {
+    "required": [
+      "choice"
+    ],
+    "optional_visible": [
+      "speaking"
+    ],
+    "optional_hidden": [
+      "typing"
+    ]
+  },
+  "support_text": "友だちの誘いを今回は断ります。短い理由を言って、また今度につなげましょう。",
+  "roles": {
+    "npc": {
+      "label": "友だち"
+    },
+    "learner": {
+      "label": "你"
+    }
+  },
+  "turns": [
+    {
+      "turn_id": "t1",
+      "speaker": "npc",
+      "act": "invite_activity",
+      "act_slots": {
+        "topic": "movie invitation",
+        "keyword": "映画",
+        "gloss": "電影"
+      },
+      "learning_role": "listen_only",
+      "surface": "今日、映画を見に行かない？",
+      "speak": "今日、映画を見に行かない？",
+      "translation": "今天要不要去看電影？",
+      "friend": {
+        "hint": "友だちの誘いです。断るときは軽く謝ってから言いましょう。"
+      },
+      "reply_set": {
+        "correct": "r1a",
+        "choices": [
+          {
+            "id": "r1a",
+            "surface": "ごめん、今日はちょっと行けない。",
+            "translation": "抱歉，今天有點不能去。",
+            "speak": "ごめん、今日はちょっと行けない。",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r1b",
+            "surface": "はい、かしこまりました。",
+            "translation": "好的，我明白了。",
+            "speak": "はい、かしこまりました。",
+            "contrast_type": "wrong_register_service",
+            "feedback": "これは店や仕事のように硬い返事です。友だちには自然に言いましょう。"
+          },
+          {
+            "id": "r1c",
+            "surface": "もちろん、毎週行こう。",
+            "translation": "當然，我們每週去吧。",
+            "speak": "もちろん、毎週行こう。",
+            "contrast_type": "wrong_function_accepts",
+            "feedback": "今回は断る場面です。約束を増やさないようにしましょう。"
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t2",
+      "speaker": "npc",
+      "act": "ask_reason",
+      "act_slots": {
+        "topic": "reason",
+        "keyword": "どうした",
+        "gloss": "怎麼了"
+      },
+      "learning_role": "listen_only",
+      "surface": "そっか。何かあるの？",
+      "speak": "そっか。何かあるの？",
+      "translation": "這樣啊。你有事嗎？",
+      "friend": {
+        "hint": "理由は一つだけ、普通で軽いものにします。"
+      },
+      "inline_explain": {
+        "pattern_id": "ja.a2.social.decline.reason_nde.v1",
+        "title": "理由 + んだ",
+        "explain": "In casual speech, use a short reason with んだ to explain softly.",
+        "items": [
+          {
+            "surface": "宿題があるんだ",
+            "translation": "我有作業",
+            "speak": "宿題があるんだ"
+          },
+          {
+            "surface": "家で手伝うんだ",
+            "translation": "我要在家幫忙",
+            "speak": "家で手伝うんだ"
+          }
+        ]
+      },
+      "reply_set": {
+        "correct": "r2a",
+        "choices": [
+          {
+            "id": "r2a",
+            "surface": "宿題がまだあるんだ。",
+            "translation": "我還有作業。",
+            "speak": "宿題がまだあるんだ。",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r2b",
+            "surface": "病院で大きな検査があるんだ。",
+            "translation": "我要去醫院做大型檢查。",
+            "speak": "病院で大きな検査があるんだ。",
+            "contrast_type": "forbidden_heavy_reason",
+            "feedback": "このタスクでは重い理由は使いません。普通の短い理由にしましょう。"
+          },
+          {
+            "id": "r2c",
+            "surface": "映画館はどこにあるの？",
+            "translation": "電影院在哪裡？",
+            "speak": "映画館はどこにあるの？",
+            "contrast_type": "wrong_function_location_question",
+            "feedback": "場所を聞く場面ではありません。断る理由を短く言います。"
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t3",
+      "speaker": "npc",
+      "act": "accept_reason",
+      "act_slots": {
+        "topic": "reason accepted"
+      },
+      "learning_role": "listen_only",
+      "surface": "わかった。じゃあ、また今度にしよう。",
+      "speak": "わかった。じゃあ、また今度にしよう。",
+      "translation": "了解。那下次再說吧。",
+      "friend": {
+        "hint": "友だちが理由を受け入れました。別の時を提案しても自然です。"
+      },
+      "reply_set": {
+        "correct": "r3a",
+        "choices": [
+          {
+            "id": "r3a",
+            "surface": "うん、週末なら行けるかも。",
+            "translation": "嗯，週末的話也許可以去。",
+            "speak": "うん、週末なら行けるかも。",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r3b",
+            "surface": "うん、今すぐ行こう。",
+            "translation": "嗯，現在馬上去吧。",
+            "speak": "うん、今すぐ行こう。",
+            "contrast_type": "contradicts_decline",
+            "feedback": "さっき断ったので、今すぐ行く返事は流れに合いません。"
+          },
+          {
+            "id": "r3c",
+            "surface": "うん、返金してもらえる？",
+            "translation": "嗯，可以退款嗎？",
+            "speak": "うん、返金してもらえる？",
+            "contrast_type": "wrong_domain_refund",
+            "feedback": "返金の話ではありません。友だちとの予定を別の日につなげます。"
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t4",
+      "speaker": "npc",
+      "act": "close_warmly",
+      "act_slots": {
+        "topic": "warm close"
+      },
+      "learning_role": "listen_only",
+      "surface": "いいよ。じゃあ、また連絡するね。",
+      "speak": "いいよ。じゃあ、また連絡するね。",
+      "translation": "好啊。那我再聯絡你。",
+      "friend": {
+        "hint": "短くお礼を言って、温かく終わりましょう。"
+      },
+      "reply_set": {
+        "correct": "r4a",
+        "choices": [
+          {
+            "id": "r4a",
+            "surface": "ありがとう。また誘ってね。",
+            "translation": "謝謝。下次再約我喔。",
+            "speak": "ありがとう。また誘ってね。",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r4b",
+            "surface": "もう誘わないで。",
+            "translation": "不要再約我了。",
+            "speak": "もう誘わないで。",
+            "contrast_type": "too_harsh",
+            "feedback": "強すぎて関係を保ちにくい言い方です。"
+          },
+          {
+            "id": "r4c",
+            "surface": "領収書をください。",
+            "translation": "請給我收據。",
+            "speak": "領収書をください。",
+            "contrast_type": "wrong_domain_service",
+            "feedback": "買い物の場面ではありません。友だちに自然に返しましょう。"
+          }
+        ]
+      }
+    }
+  ],
+  "choice_sets": {
+    "count_per_turn": 3,
+    "correct_path": [
+      "r1a",
+      "r2a",
+      "r3a",
+      "r4a"
+    ],
+    "distractor_policy": "wrong register, heavy forbidden reason, contradiction, or unrelated service-domain contrast"
+  },
+  "feedback": {
+    "correct": "いいですね。やわらかく断って、普通の理由と次につながる一言を言えました。",
+    "incorrect": "短い断り、普通の理由、温かい締めに合う答えを選びましょう。"
+  },
+  "tts_segments": [
+    "ごめん、今日はちょっと行けない。",
+    "宿題がまだあるんだ。",
+    "うん、週末なら行けるかも。",
+    "ありがとう。また誘ってね。"
+  ],
+  "formula_moments": [
+    {
+      "after_turn": "t2",
+      "pattern_id": "ja.a2.social.decline.reason_nde.v1",
+      "label": "reason + んだ",
+      "learner_takeaway": "宿題がまだあるんだ。"
+    }
+  ],
+  "runtime_notes": {
+    "expected_turns": 4,
+    "expected_choices_per_turn": 3,
+    "full_walk_required": true,
+    "expected_final_screen": "Wrap"
+  },
+  "notes": {
+    "generated_at": "2026-06-14",
+    "authoring_scope": "A2 daily/social JA adaptation",
+    "native_review_state": "native_pending"
+  }
+}

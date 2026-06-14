@@ -1,0 +1,240 @@
+{
+  "schema_version": "scenario_pack.v1",
+  "scenario_id": "travel_taxi_destination",
+  "brief_id": "ml4_a1_015_travel_taxi_destination",
+  "source_neutral_brief": "release-aggregator/docs/tasks/A1_MULTILINGUAL_KO_B1_PARALLEL_ORCHESTRATION/work_products/ml0/ML4_NEUTRAL_ADAPTATION_BRIEFS_20260614.md#brief-ml4-a1-015-taxi-destination",
+  "blueprint_ledger": "release-aggregator/docs/tasks/A1_MULTILINGUAL_KO_B1_PARALLEL_ORCHESTRATION/work_products/ml0/ML4_BLUEPRINT_LEDGER_20260614.md",
+  "repo": "content-ja",
+  "staging_path": "content/review/current_flow/scenario_pack.v1/ja/travel_taxi_destination.ja.v1.json",
+  "title": "タクシーで行き先を伝える",
+  "setting_label": "タクシー",
+  "wrap_title": "行き先を伝えられました",
+  "wrap_friend": "行き先を伝え、確認して、到着時にお礼を言えました。",
+  "language": "ja",
+  "ui_language": "zh_tw",
+  "source_status": "candidate_runtime_verified",
+  "review_state": "draft",
+  "review_status_framework_state": "candidate_runtime_verified",
+  "native_review_state": "native_pending",
+  "production_mode_default": {
+    "required": [
+      "choice"
+    ],
+    "optional_visible": [
+      "speaking"
+    ],
+    "optional_hidden": [
+      "typing"
+    ]
+  },
+  "support_text": "你在日本搭計程車。聽司機說話，選一句自然接得上的日文。",
+  "roles": {
+    "npc": {
+      "label": "運転手"
+    },
+    "learner": {
+      "label": "あなた"
+    }
+  },
+  "turns": [
+    {
+      "turn_id": "t1",
+      "speaker": "npc",
+      "act": "ask_destination",
+      "learning_role": "listen_only",
+      "surface": "どちらまでですか。",
+      "speak": "どちらまでですか。",
+      "translation": "請問要到哪裡？",
+      "friend": {
+        "hint": "司機問目的地。用短句說到這間飯店。"
+      },
+      "inline_explain": {
+        "pattern_id": "ja.taxi.destination_request.v1",
+        "formula_ref": null,
+        "title": "このホテルまでお願いします",
+        "explain": "搭計程車時，說目的地加「までお願いします」很自然。",
+        "items": [
+          {
+            "surface": "このホテルまでお願いします。",
+            "translation": "麻煩到這間飯店。",
+            "speak": "このホテルまでお願いします。"
+          }
+        ]
+      },
+      "reply_set": {
+        "correct": "r1a",
+        "choices": [
+          {
+            "id": "r1a",
+            "surface": "このホテルまでお願いします。",
+            "translation": "麻煩到這間飯店。",
+            "speak": "このホテルまでお願いします。",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r1b",
+            "surface": "トイレはどこですか。",
+            "translation": "廁所在哪裡？",
+            "speak": "トイレはどこですか。",
+            "contrast_type": "directions_question_instead_of_destination",
+            "feedback": "這是在問路。現在要告訴司機目的地。"
+          },
+          {
+            "id": "r1c",
+            "surface": "コーヒーをください。",
+            "translation": "請給我咖啡。",
+            "speak": "コーヒーをください。",
+            "contrast_type": "food_order_in_taxi",
+            "feedback": "這是點餐，不適合計程車上車後的目的地回覆。"
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t2",
+      "speaker": "npc",
+      "act": "confirm_destination",
+      "learning_role": "listen_only",
+      "surface": "このホテルですね。",
+      "speak": "このホテルですね。",
+      "translation": "是這間飯店，對吧？",
+      "friend": {
+        "hint": "司機確認目的地。簡短確認。"
+      },
+      "reply_set": {
+        "correct": "r2a",
+        "choices": [
+          {
+            "id": "r2a",
+            "surface": "はい、お願いします。",
+            "translation": "是的，麻煩你。",
+            "speak": "はい、お願いします。",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r2b",
+            "surface": "いいえ、やめます。",
+            "translation": "不用，我不去了。",
+            "speak": "いいえ、やめます。",
+            "contrast_type": "cancel_when_confirmation_expected",
+            "feedback": "司機確認的是正確目的地，這裡不需要取消。"
+          },
+          {
+            "id": "r2c",
+            "surface": "このホテルまでお願いします。",
+            "translation": "麻煩到這間飯店。",
+            "speak": "このホテルまでお願いします。",
+            "contrast_type": "repeat_destination_when_confirmation_expected",
+            "feedback": "目的地已經說過了。現在自然回覆是確認。"
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t3",
+      "speaker": "npc",
+      "act": "give_duration",
+      "learning_role": "listen_only",
+      "surface": "10分くらいです。",
+      "speak": "じゅっぷんくらいです。",
+      "translation": "大約十分鐘。",
+      "friend": {
+        "hint": "聽到車程時間。表示知道了並道謝。"
+      },
+      "reply_set": {
+        "correct": "r3a",
+        "choices": [
+          {
+            "id": "r3a",
+            "surface": "わかりました。ありがとうございます。",
+            "translation": "我知道了，謝謝。",
+            "speak": "わかりました。ありがとうございます。",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r3b",
+            "surface": "切符を一枚ください。",
+            "translation": "請給我一張票。",
+            "speak": "きっぷをいちまいください。",
+            "contrast_type": "ticket_purchase_in_taxi",
+            "feedback": "這是在買票。現在是在計程車裡聽車程時間。"
+          },
+          {
+            "id": "r3c",
+            "surface": "どちらまでですか。",
+            "translation": "請問要到哪裡？",
+            "speak": "どちらまでですか。",
+            "contrast_type": "driver_role_sentence_by_learner",
+            "feedback": "這是司機問乘客的話，不是乘客回覆車程時間。"
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t4",
+      "speaker": "npc",
+      "act": "arrival",
+      "learning_role": "listen_only",
+      "surface": "着きました。",
+      "speak": "つきました。",
+      "translation": "到了。",
+      "friend": {
+        "hint": "已經到目的地。簡短道謝即可。"
+      },
+      "reply_set": {
+        "correct": "r4a",
+        "choices": [
+          {
+            "id": "r4a",
+            "surface": "ありがとうございます。",
+            "translation": "謝謝。",
+            "speak": "ありがとうございます。"
+          },
+          {
+            "id": "r4b",
+            "surface": "このホテルですね。",
+            "translation": "是這間飯店，對吧？",
+            "speak": "このホテルですね。",
+            "contrast_type": "driver_confirmation_reused_by_learner",
+            "feedback": "這像司機確認目的地。到達後乘客說謝謝更自然。"
+          },
+          {
+            "id": "r4c",
+            "surface": "朝食は何時ですか。",
+            "translation": "早餐幾點？",
+            "speak": "朝食は何時ですか。",
+            "contrast_type": "hotel_question_in_taxi_closing",
+            "feedback": "這是飯店櫃台問題，不是計程車到達後的收尾。"
+          }
+        ]
+      },
+      "closing": {
+        "act": "taxi_destination_complete",
+        "learning_role": "listen_only",
+        "surface": "行き先を伝えて、到着できました。",
+        "speak": "行き先を伝えて、到着できました。",
+        "translation": "你說出目的地並到達了。"
+      }
+    }
+  ],
+  "formula_moments": [
+    {
+      "after_turn": "t1",
+      "pattern_id": "ja.taxi.destination_request.v1"
+    },
+    {
+      "after_turn": "t2",
+      "pattern_id": "ja.taxi.confirm_yes.v1"
+    },
+    {
+      "after_turn": "t4",
+      "pattern_id": "ja.taxi.thanks.v1"
+    }
+  ],
+  "notes": {
+    "authoring_source": "Authored from ML-4 neutral brief, not Korean surface text or another target-language pack.",
+    "review_policy": "AI-authored Japanese candidate. Requires AI review, runtime smoke, and tracked native review before any stronger status.",
+    "canonical_policy": "Staging candidate only. Do not write back to manifests, production exports, schemas, runtime exports, frontend, or legacy content.",
+    "register_note": "Uses compact polite passenger Japanese for a low-stakes taxi ride."
+  }
+}

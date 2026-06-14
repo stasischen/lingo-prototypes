@@ -1,0 +1,256 @@
+{
+  "schema_version": "scenario_pack.v1",
+  "scenario_id": "convenience_payment_card_cash",
+  "brief_id": "ml0_a1_004_convenience_payment_card_cash",
+  "source_neutral_brief": "release-aggregator/docs/tasks/A1_MULTILINGUAL_KO_B1_PARALLEL_ORCHESTRATION/work_products/ml0/ML0_NEUTRAL_ADAPTATION_BRIEFS_20260613.md#brief-ml0-a1-004-convenience-store-payment",
+  "blueprint_ledger": "release-aggregator/docs/tasks/A1_MULTILINGUAL_KO_B1_PARALLEL_ORCHESTRATION/work_products/ml0/ML0_BLUEPRINT_LEDGER_20260613.md",
+  "repo": "content-fr",
+  "staging_path": "content/core/content_assets/scenario_packs/current_flow/convenience_payment_card_cash.fr.v1.json",
+  "title": "Payer à la caisse",
+  "setting_label": "Caisse d'une petite boutique",
+  "wrap_title": "Tu as payé à la caisse",
+  "wrap_friend": "你用簡短法語選擇付款方式、回應收據問題，並完成了結帳流程。",
+  "language": "fr",
+  "ui_language": "zh_tw",
+  "source_status": "candidate_runtime_verified",
+  "review_state": "draft",
+  "review_status_framework_state": "candidate_runtime_verified",
+  "native_review_state": "native_pending",
+  "production_mode_default": {
+    "required": [
+      "choice"
+    ],
+    "optional_visible": [
+      "speaking"
+    ],
+    "optional_hidden": [
+      "typing"
+    ]
+  },
+  "support_text": "你在法語便利店或小商店櫃台。聽店員問付款方式，選一句簡短、自然的法語回答。",
+  "roles": {
+    "npc": {
+      "label": "店員"
+    },
+    "learner": {
+      "label": "你"
+    }
+  },
+  "turns": [
+    {
+      "turn_id": "t1",
+      "speaker": "npc",
+      "act": "payment_method_question",
+      "act_slots": {
+        "topic": "mode de paiement",
+        "keyword": "carte",
+        "gloss": "pay by card or cash"
+      },
+      "learning_role": "listen_only",
+      "surface": "Ça fait quatre euros. Par carte ou en espèces ?",
+      "speak": "Ça fait quatre euros. Par carte ou en espèces ?",
+      "translation": "四歐元。刷卡還是付現？",
+      "friend": {
+        "hint": "店員在問付款方式。par carte 是刷卡，en espèces 是付現。"
+      },
+      "inline_explain": {
+        "pattern_id": "fr.store.carte.especes.v1",
+        "formula_ref": null,
+        "title": "Par carte / en espèces",
+        "explain": "在法語結帳時，par carte 表示刷卡，en espèces 表示現金。",
+        "items": [
+          {
+            "surface": "Par carte, s'il vous plaît.",
+            "translation": "刷卡，謝謝。",
+            "speak": "Par carte, s'il vous plaît."
+          },
+          {
+            "surface": "En espèces, s'il vous plaît.",
+            "translation": "付現，謝謝。",
+            "speak": "En espèces, s'il vous plaît."
+          }
+        ]
+      },
+      "reply_set": {
+        "correct": "r1a",
+        "choices": [
+          {
+            "id": "r1a",
+            "surface": "Par carte, s'il vous plaît.",
+            "translation": "刷卡，謝謝。",
+            "speak": "Par carte, s'il vous plaît.",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r1b",
+            "surface": "Je voudrais un café.",
+            "translation": "我想要一杯咖啡。",
+            "speak": "Je voudrais un café.",
+            "contrast_type": "wrong_scenario_request",
+            "feedback": "這是在點咖啡。現在店員問的是付款方式。"
+          },
+          {
+            "id": "r1c",
+            "surface": "Où sont les toilettes ?",
+            "translation": "洗手間在哪裡？",
+            "speak": "Où sont les toilettes ?",
+            "contrast_type": "wrong_scenario_request",
+            "feedback": "這是在問洗手間。現在是在結帳。"
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t2",
+      "speaker": "npc",
+      "act": "payment_instruction",
+      "act_slots": {
+        "topic": "terminal",
+        "keyword": "approcher",
+        "gloss": "tap the card"
+      },
+      "learning_role": "listen_only",
+      "surface": "Très bien. Approchez la carte, s'il vous plaît.",
+      "speak": "Très bien. Approchez la carte, s'il vous plaît.",
+      "translation": "好的。請把卡靠近感應。",
+      "friend": {
+        "hint": "店員請你用卡付款。簡短確認就好。"
+      },
+      "reply_set": {
+        "correct": "r2a",
+        "choices": [
+          {
+            "id": "r2a",
+            "surface": "D'accord, merci.",
+            "translation": "好的，謝謝。",
+            "speak": "D'accord, merci."
+          },
+          {
+            "id": "r2b",
+            "surface": "En espèces, s'il vous plaît.",
+            "translation": "付現，謝謝。",
+            "speak": "En espèces, s'il vous plaît.",
+            "contrast_type": "wrong_payment_method_switch",
+            "feedback": "你剛剛選了刷卡。現在店員在請你用卡付款。"
+          },
+          {
+            "id": "r2c",
+            "surface": "À emporter, s'il vous plaît.",
+            "translation": "外帶，謝謝。",
+            "speak": "À emporter, s'il vous plaît.",
+            "contrast_type": "wrong_scenario_response",
+            "feedback": "這是餐點外帶時用的句子。現在是付款流程。"
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t3",
+      "speaker": "npc",
+      "act": "receipt_question",
+      "act_slots": {
+        "topic": "ticket",
+        "keyword": "ticket",
+        "gloss": "receipt"
+      },
+      "learning_role": "listen_only",
+      "surface": "Vous voulez le ticket ?",
+      "speak": "Vous voulez le ticket ?",
+      "translation": "您要收據嗎？",
+      "friend": {
+        "hint": "要或不要都可以。這裡先練不用的短答。"
+      },
+      "reply_set": {
+        "correct": "r3a",
+        "choices": [
+          {
+            "id": "r3a",
+            "surface": "Non, merci.",
+            "translation": "不用，謝謝。",
+            "speak": "Non, merci.",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r3b",
+            "surface": "Par carte, s'il vous plaît.",
+            "translation": "刷卡，謝謝。",
+            "speak": "Par carte, s'il vous plaît.",
+            "contrast_type": "repeated_prior_answer",
+            "feedback": "付款方式已經說過了。現在店員問你要不要收據。"
+          },
+          {
+            "id": "r3c",
+            "surface": "À trois heures.",
+            "translation": "三點。",
+            "speak": "À trois heures.",
+            "contrast_type": "wrong_scenario_response",
+            "feedback": "這是在回答時間。現在問題是要不要收據。"
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t4",
+      "speaker": "npc",
+      "act": "transaction_close",
+      "act_slots": {
+        "topic": "fin de paiement",
+        "keyword": "voilà",
+        "gloss": "done"
+      },
+      "learning_role": "listen_only",
+      "surface": "Voilà, c'est bon. Merci.",
+      "speak": "Voilà, c'est bon. Merci.",
+      "translation": "好了，沒問題。謝謝。",
+      "friend": {
+        "hint": "交易完成了。回一句謝謝就可以。"
+      },
+      "reply_set": {
+        "correct": "r4a",
+        "choices": [
+          {
+            "id": "r4a",
+            "surface": "Merci.",
+            "translation": "謝謝。",
+            "speak": "Merci."
+          },
+          {
+            "id": "r4b",
+            "surface": "J'ai une réservation.",
+            "translation": "我有訂房。",
+            "speak": "J'ai une réservation.",
+            "contrast_type": "wrong_scenario_response",
+            "feedback": "這是飯店入住用的句子。現在你已經完成付款。"
+          },
+          {
+            "id": "r4c",
+            "surface": "Je ne veux rien.",
+            "translation": "我什麼都不要。",
+            "speak": "Je ne veux rien.",
+            "contrast_type": "wrong_act_refusal",
+            "feedback": "這像是在拒絕購買。付款完成後，說 Merci 就好。"
+          }
+        ]
+      },
+      "closing": {
+        "act": "handover",
+        "learning_role": "context_support",
+        "surface": "Voici votre sac.",
+        "speak": "Voici votre sac.",
+        "translation": "這是您的袋子。"
+      }
+    }
+  ],
+  "formula_moments": [
+    {
+      "after_turn": "t1",
+      "pattern_id": "fr.store.carte.especes.v1"
+    }
+  ],
+  "notes": {
+    "authoring_source": "Authored from ML-0 neutral brief, not Korean surface text.",
+    "review_policy": "AI-authored French candidate. Requires AI review, runtime smoke, and tracked native review before any stronger status.",
+    "canonical_policy": "Staging candidate only. Do not write back to manifests, production exports, schemas, or legacy content.",
+    "french_register_note": "Uses short polite service French with vous, par carte, en espèces, and ticket."
+  }
+}

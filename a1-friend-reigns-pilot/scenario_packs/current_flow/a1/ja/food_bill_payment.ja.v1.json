@@ -1,0 +1,238 @@
+{
+  "schema_version": "scenario_pack.v1",
+  "scenario_id": "food_bill_payment",
+  "brief_id": "ml2_a1_011_food_bill_payment",
+  "source_neutral_brief": "release-aggregator/docs/tasks/A1_MULTILINGUAL_KO_B1_PARALLEL_ORCHESTRATION/work_products/ml0/ML2_NEUTRAL_ADAPTATION_BRIEFS_20260614.md#brief-ml2-a1-011-pay-the-bill",
+  "blueprint_ledger": "release-aggregator/docs/tasks/A1_MULTILINGUAL_KO_B1_PARALLEL_ORCHESTRATION/work_products/ml0/ML2_BLUEPRINT_LEDGER_20260614.md",
+  "repo": "content-ja",
+  "staging_path": "content/review/current_flow/scenario_pack.v1/ja/food_bill_payment.ja.v1.json",
+  "title": "食事の会計",
+  "setting_label": "カジュアルなカフェ",
+  "wrap_title": "会計できた",
+  "wrap_friend": "会計をお願いして、支払い方法を答え、丁寧に終えました。",
+  "language": "ja",
+  "ui_language": "zh_tw",
+  "source_status": "candidate_runtime_verified",
+  "review_state": "draft",
+  "review_status_framework_state": "candidate_runtime_verified",
+  "native_review_state": "native_pending",
+  "production_mode_default": {
+    "required": [
+      "choice"
+    ],
+    "optional_visible": [
+      "speaking"
+    ],
+    "optional_hidden": [
+      "typing"
+    ]
+  },
+  "support_text": "你在咖啡店用餐後要結帳。選自然、簡短的日文。",
+  "roles": {
+    "npc": {
+      "label": "店員"
+    },
+    "learner": {
+      "label": "あなた"
+    }
+  },
+  "turns": [
+    {
+      "turn_id": "t1",
+      "speaker": "learner",
+      "act": "ask_for_bill",
+      "learning_role": "production_target",
+      "surface": "お会計をお願いします。",
+      "speak": "おかいけいを、おねがいします。",
+      "translation": "麻煩結帳。",
+      "friend": {
+        "hint": "餐廳或咖啡店要結帳時常用お会計をお願いします。"
+      },
+      "inline_explain": {
+        "pattern_id": "ja.restaurant.bill_request.v1",
+        "formula_ref": null,
+        "title": "お会計をお願いします",
+        "explain": "食事のあとに会計をお願いする丁寧で自然な表現です。",
+        "items": [
+          {
+            "surface": "お会計をお願いします。",
+            "translation": "麻煩結帳。",
+            "speak": "おかいけいを、おねがいします。"
+          }
+        ]
+      },
+      "reply_set": {
+        "correct": "r1a",
+        "choices": [
+          {
+            "id": "r1a",
+            "surface": "お会計をお願いします。",
+            "translation": "麻煩結帳。",
+            "speak": "おかいけいを、おねがいします。",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r1b",
+            "surface": "コーヒーをもう一つください。",
+            "translation": "請再給我一杯咖啡。",
+            "speak": "コーヒーをもうひとつください。",
+            "contrast_type": "ordering_more_when_payment_expected",
+            "feedback": "這是在加點。現在目標是結帳。"
+          },
+          {
+            "id": "r1c",
+            "surface": "これはいくらですか。",
+            "translation": "這個多少錢？",
+            "speak": "これは、いくらですか。",
+            "contrast_type": "shop_price_in_restaurant",
+            "feedback": "這像在店裡問商品價格，不是餐廳結帳。"
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t2",
+      "speaker": "npc",
+      "act": "ask_payment_method",
+      "learning_role": "listen_only",
+      "surface": "カードですか、現金ですか。",
+      "speak": "カードですか、げんきんですか。",
+      "translation": "刷卡還是現金？",
+      "friend": {
+        "hint": "店員問付款方式。選一種回答。"
+      },
+      "reply_set": {
+        "correct": "r3a",
+        "choices": [
+          {
+            "id": "r3a",
+            "surface": "カードでお願いします。",
+            "translation": "刷卡，麻煩你。",
+            "speak": "カードで、おねがいします。",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r3b",
+            "surface": "レシートはいりません。",
+            "translation": "不用收據。",
+            "speak": "レシートはいりません。",
+            "contrast_type": "receipt_answer_to_payment_method",
+            "feedback": "這是在回答收據問題。現在店員問的是刷卡或現金。"
+          },
+          {
+            "id": "r3c",
+            "surface": "店内でお願いします。",
+            "translation": "內用，麻煩你。",
+            "speak": "てんないで、おねがいします。",
+            "contrast_type": "dine_in_answer_at_payment",
+            "feedback": "這是點餐時的內用回答。現在是在付款。"
+          }
+        ]
+      },
+      "runtime_note": "Reply choices mirror the next learner response so the current prototype can render every round."
+    },
+    {
+      "turn_id": "t3",
+      "speaker": "learner",
+      "act": "answer_payment_method",
+      "learning_role": "production_target",
+      "surface": "カードでお願いします。",
+      "speak": "カードで、おねがいします。",
+      "translation": "刷卡，麻煩你。",
+      "friend": {
+        "hint": "用カードでお願いします簡短回答。"
+      },
+      "reply_set": {
+        "correct": "r3a",
+        "choices": [
+          {
+            "id": "r3a",
+            "surface": "カードでお願いします。",
+            "translation": "刷卡，麻煩你。",
+            "speak": "カードで、おねがいします。",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r3b",
+            "surface": "レシートはいりません。",
+            "translation": "不用收據。",
+            "speak": "レシートはいりません。",
+            "contrast_type": "receipt_answer_to_payment_method",
+            "feedback": "這是在回答收據問題。現在店員問的是刷卡或現金。"
+          },
+          {
+            "id": "r3c",
+            "surface": "店内でお願いします。",
+            "translation": "內用，麻煩你。",
+            "speak": "てんないで、おねがいします。",
+            "contrast_type": "dine_in_answer_at_payment",
+            "feedback": "這是點餐時的內用回答。現在是在付款。"
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t4",
+      "speaker": "npc",
+      "act": "close_payment",
+      "learning_role": "listen_only",
+      "surface": "ありがとうございます。",
+      "speak": "ありがとうございます。",
+      "translation": "謝謝。",
+      "friend": {
+        "hint": "付款完成。用謝謝收尾即可。"
+      },
+      "reply_set": {
+        "correct": "r4a",
+        "choices": [
+          {
+            "id": "r4a",
+            "surface": "ありがとうございます。",
+            "translation": "謝謝。",
+            "speak": "ありがとうございます。",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r4b",
+            "surface": "駅はどこですか。",
+            "translation": "車站在哪裡？",
+            "speak": "駅はどこですか。",
+            "contrast_type": "directions_after_payment",
+            "feedback": "這突然換成問路。付款結束時簡短道謝即可。"
+          },
+          {
+            "id": "r4c",
+            "surface": "サンドイッチをください。",
+            "translation": "請給我三明治。",
+            "speak": "サンドイッチをください。",
+            "contrast_type": "new_order_after_payment_close",
+            "feedback": "這像重新點餐，不是結帳收尾。"
+          }
+        ]
+      },
+      "closing": {
+        "act": "payment_complete",
+        "learning_role": "listen_only",
+        "surface": "会計が終わりました。",
+        "speak": "かいけいが、おわりました。",
+        "translation": "結帳完成了。"
+      }
+    }
+  ],
+  "formula_moments": [
+    {
+      "after_turn": "t1",
+      "pattern_id": "ja.restaurant.bill_request.v1"
+    },
+    {
+      "after_turn": "t3",
+      "pattern_id": "ja.payment.card_cash.v1"
+    }
+  ],
+  "notes": {
+    "authoring_source": "Authored from ML-2 neutral brief, not Korean surface text or another target-language pack.",
+    "review_policy": "AI-authored Japanese candidate. Requires AI review, runtime smoke, and tracked native review before any stronger status.",
+    "canonical_policy": "Staging candidate only. Do not write back to manifests, production exports, schemas, or legacy content.",
+    "register_note": "Natural restaurant payment Japanese, polite but not overly formal."
+  }
+}

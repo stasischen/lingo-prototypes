@@ -1,0 +1,230 @@
+{
+  "schema_version": "scenario_pack.v1",
+  "scenario_id": "social_running_late",
+  "brief_id": "ml5_a1_019_social_running_late",
+  "source_neutral_brief": "release-aggregator/docs/tasks/A1_MULTILINGUAL_KO_B1_PARALLEL_ORCHESTRATION/work_products/ml0/ML5_NEUTRAL_ADAPTATION_BRIEFS_20260614.md#brief-ml5-a1-019-say-you-are-running-late",
+  "blueprint_ledger": "release-aggregator/docs/tasks/A1_MULTILINGUAL_KO_B1_PARALLEL_ORCHESTRATION/work_products/ml0/ML5_BLUEPRINT_LEDGER_20260614.md",
+  "repo": "content-it",
+  "staging_path": "content/core/content_assets/scenario_packs/current_flow/social_running_late.it.v1.json",
+  "title": "Dire che arrivi in ritardo",
+  "setting_label": "Messaggio a un amico",
+  "wrap_title": "Ritardo comunicato",
+  "wrap_friend": "Hai avvisato che arrivi in ritardo, hai dato i minuti e hai chiuso in modo naturale.",
+  "language": "it",
+  "ui_language": "zh_tw",
+  "source_status": "candidate_runtime_verified",
+  "review_state": "draft",
+  "review_status_framework_state": "candidate_runtime_verified",
+  "native_review_state": "native_pending",
+  "production_mode_default": {
+    "required": [
+      "choice"
+    ],
+    "optional_visible": [
+      "speaking"
+    ],
+    "optional_hidden": [
+      "typing"
+    ]
+  },
+  "support_text": "你要跟朋友見面，但會晚到。簡單說抱歉、晚一點到、幾分鐘、謝謝和待會見。",
+  "roles": {
+    "npc": {
+      "label": "Amico"
+    },
+    "learner": {
+      "label": "Tu"
+    }
+  },
+  "turns": [
+    {
+      "turn_id": "t1",
+      "speaker": "npc",
+      "act": "friend_check",
+      "act_slots": {
+        "topic": "arrival",
+        "keyword": "dove",
+        "gloss": "where"
+      },
+      "learning_role": "listen_only",
+      "surface": "Ehi, dove sei?",
+      "speak": "Ehi, dove sei?",
+      "translation": "嘿，你在哪？",
+      "friend": "朋友情境可以用 scusa + arrivo in ritardo。",
+      "reply_set": {
+        "correct": "c1",
+        "choices": [
+          {
+            "id": "c1",
+            "surface": "Scusa, arrivo in ritardo.",
+            "translation": "抱歉，我會晚到。",
+            "speak": "Scusa, arrivo in ritardo.",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "c2",
+            "surface": "Il conto, per favore.",
+            "translation": "請結帳。",
+            "speak": "Il conto, per favore.",
+            "contrast_type": "payment_wrong_goal",
+            "feedback": "這是在餐廳付款，不是在告訴朋友會晚到。"
+          },
+          {
+            "id": "c3",
+            "surface": "Buongiorno, posso aiutarla?",
+            "translation": "您好，我可以幫您嗎？",
+            "speak": "Buongiorno, posso aiutarla?",
+            "contrast_type": "service_register_wrong_context",
+            "feedback": "這是服務人員語氣；朋友訊息要自然簡短。"
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t2",
+      "speaker": "npc",
+      "act": "minutes_question",
+      "act_slots": {
+        "topic": "time estimate",
+        "keyword": "minuti",
+        "gloss": "minutes"
+      },
+      "learning_role": "listen_only",
+      "surface": "Quanti minuti?",
+      "speak": "Quanti minuti?",
+      "translation": "幾分鐘？",
+      "friend": "用 tra + 數字 + minuti 表示大約多久。",
+      "reply_set": {
+        "correct": "c1",
+        "choices": [
+          {
+            "id": "c1",
+            "surface": "Arrivo tra dieci minuti.",
+            "translation": "我十分鐘後到。",
+            "speak": "Arrivo tra dieci minuti.",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "c2",
+            "surface": "Al binario due.",
+            "translation": "在第二月台。",
+            "speak": "Al binario due.",
+            "contrast_type": "place_number_wrong_answer",
+            "feedback": "對方問幾分鐘，不是問地點或月台。"
+          },
+          {
+            "id": "c3",
+            "surface": "No, grazie.",
+            "translation": "不用，謝謝。",
+            "speak": "No, grazie.",
+            "contrast_type": "refusal_wrong_answer",
+            "feedback": "這是在拒絕幫助，沒有回答時間。"
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t3",
+      "speaker": "npc",
+      "act": "friend_waits",
+      "act_slots": {
+        "topic": "waiting",
+        "keyword": "aspetto",
+        "gloss": "I wait"
+      },
+      "learning_role": "listen_only",
+      "surface": "Va bene, ti aspetto.",
+      "speak": "Va bene, ti aspetto.",
+      "translation": "好，我等你。",
+      "friend": "朋友願意等時，用 grazie per... 很自然。",
+      "inline_explain": "ti aspetto = 我等你。",
+      "reply_set": {
+        "correct": "c1",
+        "choices": [
+          {
+            "id": "c1",
+            "surface": "Grazie per aspettarmi.",
+            "translation": "謝謝你等我。",
+            "speak": "Grazie per aspettarmi.",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "c2",
+            "surface": "Scusa, arrivo in ritardo.",
+            "translation": "抱歉，我會晚到。",
+            "speak": "Scusa, arrivo in ritardo.",
+            "contrast_type": "repeated_late_message",
+            "feedback": "已經說過會晚到了。現在要謝謝對方等你。"
+          },
+          {
+            "id": "c3",
+            "surface": "Grazie per il servizio.",
+            "translation": "謝謝您的服務。",
+            "speak": "Grazie per il servizio.",
+            "contrast_type": "overformal_service_thanks",
+            "feedback": "這像服務情境，不像朋友等你的自然說法。"
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t4",
+      "speaker": "npc",
+      "act": "friend_close",
+      "act_slots": {
+        "topic": "close",
+        "keyword": "dopo",
+        "gloss": "later"
+      },
+      "learning_role": "listen_only",
+      "surface": "A tra poco.",
+      "speak": "A tra poco.",
+      "translation": "待會見。",
+      "friend": "用 a tra poco 回應朋友的結尾。",
+      "reply_set": {
+        "correct": "c1",
+        "choices": [
+          {
+            "id": "c1",
+            "surface": "A tra poco.",
+            "translation": "待會見。",
+            "speak": "A tra poco."
+          },
+          {
+            "id": "c2",
+            "surface": "Sono davanti alla porta blu.",
+            "translation": "我在藍色門前。",
+            "speak": "Sono davanti alla porta blu.",
+            "contrast_type": "exact_location_out_of_scope",
+            "feedback": "本場景不練即時精準定位，只練晚到和時間。"
+          },
+          {
+            "id": "c3",
+            "surface": "Perché non sei già lì?",
+            "translation": "你為什麼還沒在那裡？",
+            "speak": "Perché non sei già lì?",
+            "contrast_type": "conflict_blame_out_of_scope",
+            "feedback": "這會變成責怪或衝突；本場景要平和收尾。"
+          }
+        ]
+      },
+      "closing": true
+    }
+  ],
+  "formula_moments": [
+    {
+      "after_turn": "t1",
+      "pattern_id": "it.friend.scusa_ritardo"
+    },
+    {
+      "after_turn": "t2",
+      "pattern_id": "it.time.tra_dieci_minuti"
+    }
+  ],
+  "notes": {
+    "authoring_source": "Authored from ML-5 neutral brief ml5_a1_019_social_running_late; KO and other target-language packs were not used as translation sources.",
+    "review_policy": "AI-authored candidate only; keep review_state=draft, review_status_framework_state=candidate_needs_review, native_review_state=native_pending until tracked review evidence exists.",
+    "canonical_policy": "Staging current-flow candidate only. Do not add to manifests, production exports, schema, runtime, or frontend in this authoring lane.",
+    "native_risk_note": "Native review should confirm that 'Grazie per aspettarmi' and 'A tra poco' feel natural in a low-stakes friend chat."
+  }
+}

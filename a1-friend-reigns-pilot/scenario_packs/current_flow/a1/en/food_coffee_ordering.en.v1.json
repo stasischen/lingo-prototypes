@@ -1,0 +1,255 @@
+{
+  "schema_version": "scenario_pack.v1",
+  "scenario_id": "food_coffee_ordering",
+  "brief_id": "ml0_a1_001_food_coffee_ordering",
+  "source_neutral_brief": "release-aggregator/docs/tasks/A1_MULTILINGUAL_KO_B1_PARALLEL_ORCHESTRATION/work_products/ml0/ML0_NEUTRAL_ADAPTATION_BRIEFS_20260613.md#brief-ml0-a1-001-coffee-ordering",
+  "blueprint_ledger": "release-aggregator/docs/tasks/A1_MULTILINGUAL_KO_B1_PARALLEL_ORCHESTRATION/work_products/ml0/ML0_BLUEPRINT_LEDGER_20260613.md",
+  "repo": "content-en",
+  "staging_path": "curriculum/a1_travel_v1/staging/scenario_pack.v1/food_coffee_ordering.en.v1.json",
+  "title": "Ordering Coffee",
+  "setting_label": "Cafe counter",
+  "wrap_title": "You ordered coffee",
+  "wrap_friend": "You handled a short cafe order. A simple drink request, one option answer, and a quick thanks are enough to keep the line moving.",
+  "language": "en",
+  "ui_language": "en",
+  "source_status": "candidate_runtime_verified",
+  "review_state": "draft",
+  "review_status_framework_state": "candidate_runtime_verified",
+  "native_review_state": "native_pending",
+  "production_mode_default": {
+    "required": [
+      "choice"
+    ],
+    "optional_visible": [
+      "speaking"
+    ],
+    "optional_hidden": [
+      "typing"
+    ]
+  },
+  "support_text": "You are at a cafe counter. Listen to the barista and choose a short reply that fits the order.",
+  "roles": {
+    "npc": {
+      "label": "Barista"
+    },
+    "learner": {
+      "label": "You"
+    }
+  },
+  "turns": [
+    {
+      "turn_id": "t1",
+      "speaker": "npc",
+      "act": "service_opening",
+      "act_slots": {
+        "topic": "starting an order",
+        "keyword": "order",
+        "gloss": "say what you want"
+      },
+      "learning_role": "listen_only",
+      "surface": "Hi. What can I get for you?",
+      "speak": "Hi. What can I get for you?",
+      "translation": "The barista is asking for your order.",
+      "friend": {
+        "hint": "They are ready for your drink order. A short request is enough."
+      },
+      "reply_set": {
+        "correct": "r1a",
+        "choices": [
+          {
+            "id": "r1a",
+            "surface": "Can I get an iced coffee, please?",
+            "translation": "I want to order an iced coffee.",
+            "speak": "Can I get an iced coffee, please?",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r1b",
+            "surface": "Where is the restroom?",
+            "translation": "I am asking for a restroom.",
+            "speak": "Where is the restroom?",
+            "contrast_type": "wrong_scenario_request",
+            "feedback": "This asks for a restroom. At the counter, start by ordering the drink."
+          },
+          {
+            "id": "r1c",
+            "surface": "No, thank you.",
+            "translation": "I do not want anything.",
+            "speak": "No, thank you.",
+            "contrast_type": "wrong_act_refusal",
+            "feedback": "This sounds like you are not ordering. Choose the drink you want."
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t2",
+      "speaker": "npc",
+      "act": "choice_question",
+      "act_slots": {
+        "topic": "service option",
+        "keyword": "for here or to go",
+        "gloss": "choose where you will drink it"
+      },
+      "learning_role": "listen_only",
+      "surface": "For here or to go?",
+      "speak": "For here or to go?",
+      "translation": "The barista is asking where you will have it.",
+      "friend": {
+        "hint": "Pick one option. For here means you stay. To go means take it away."
+      },
+      "inline_explain": {
+        "pattern_id": "en.cafe.for_here.to_go.v1",
+        "formula_ref": null,
+        "title": "For here / to go",
+        "explain": "Use \"for here\" if you will stay, and \"to go\" if you will take it with you.",
+        "items": [
+          {
+            "surface": "For here, please.",
+            "translation": "I will stay.",
+            "speak": "For here, please."
+          },
+          {
+            "surface": "To go, please.",
+            "translation": "I will take it with me.",
+            "speak": "To go, please."
+          }
+        ]
+      },
+      "reply_set": {
+        "correct": "r2a",
+        "choices": [
+          {
+            "id": "r2a",
+            "surface": "To go, please.",
+            "translation": "I will take it with me.",
+            "speak": "To go, please.",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r2b",
+            "surface": "Can I get an iced coffee, please?",
+            "translation": "I want to order an iced coffee.",
+            "speak": "Can I get an iced coffee, please?",
+            "contrast_type": "repeated_prior_answer",
+            "feedback": "You already ordered the drink. Now answer for here or to go."
+          },
+          {
+            "id": "r2c",
+            "surface": "Yes, it is.",
+            "translation": "I am confirming something.",
+            "speak": "Yes, it is.",
+            "contrast_type": "wrong_act_confirmation",
+            "feedback": "This is not a choice. Choose \"for here\" or \"to go.\""
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t3",
+      "speaker": "npc",
+      "act": "confirmation",
+      "act_slots": {
+        "topic": "order confirmation",
+        "keyword": "right",
+        "gloss": "confirm the order"
+      },
+      "learning_role": "listen_only",
+      "surface": "One iced coffee to go, right?",
+      "speak": "One iced coffee to go, right?",
+      "translation": "The barista is checking your order.",
+      "friend": {
+        "hint": "They are confirming the order. If it is correct, say yes."
+      },
+      "reply_set": {
+        "correct": "r3a",
+        "choices": [
+          {
+            "id": "r3a",
+            "surface": "Yes, that's right.",
+            "translation": "The order is correct.",
+            "speak": "Yes, that's right."
+          },
+          {
+            "id": "r3b",
+            "surface": "No, thank you.",
+            "translation": "I do not want it.",
+            "speak": "No, thank you.",
+            "contrast_type": "wrong_act_refusal",
+            "feedback": "This sounds like you are stopping the order. If the order is correct, confirm it."
+          },
+          {
+            "id": "r3c",
+            "surface": "Where is the restroom?",
+            "translation": "I am asking for a restroom.",
+            "speak": "Where is the restroom?",
+            "contrast_type": "off_topic_statement",
+            "feedback": "This is another situation. First confirm the coffee order."
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t4",
+      "speaker": "npc",
+      "act": "payment",
+      "act_slots": {
+        "topic": "payment",
+        "keyword": "pay",
+        "gloss": "complete the order"
+      },
+      "learning_role": "listen_only",
+      "surface": "That'll be $4. Please tap your card here.",
+      "speak": "That'll be four dollars. Please tap your card here.",
+      "translation": "The barista is asking you to pay.",
+      "friend": {
+        "hint": "You only need to acknowledge the payment step."
+      },
+      "reply_set": {
+        "correct": "r4a",
+        "choices": [
+          {
+            "id": "r4a",
+            "surface": "Okay, thanks.",
+            "translation": "I understand.",
+            "speak": "Okay, thanks."
+          },
+          {
+            "id": "r4b",
+            "surface": "To go, please.",
+            "translation": "I want it to go.",
+            "speak": "To go, please.",
+            "contrast_type": "repeated_prior_answer",
+            "feedback": "You already answered that. Now the barista is asking you to pay."
+          },
+          {
+            "id": "r4c",
+            "surface": "Can I get an iced coffee, please?",
+            "translation": "I want to order an iced coffee.",
+            "speak": "Can I get an iced coffee, please?",
+            "contrast_type": "repeated_prior_answer",
+            "feedback": "The drink is already ordered. This step is payment."
+          }
+        ]
+      },
+      "closing": {
+        "act": "handover",
+        "learning_role": "context_support",
+        "surface": "Your drink will be ready at the end of the counter.",
+        "speak": "Your drink will be ready at the end of the counter.",
+        "translation": "Wait at the end of the counter for the drink."
+      }
+    }
+  ],
+  "formula_moments": [
+    {
+      "after_turn": "t2",
+      "pattern_id": "en.cafe.for_here.to_go.v1"
+    }
+  ],
+  "notes": {
+    "review_policy": "AI-authored candidate. Requires AI review, runtime smoke, and tracked native review before any stronger status.",
+    "canonical_policy": "Staging candidate only. Do not write back to manifests, production exports, schemas, or legacy content.",
+    "authoring_source": "Authored from ML-0 neutral brief, not Korean surface text."
+  }
+}

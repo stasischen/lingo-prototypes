@@ -1,0 +1,284 @@
+{
+  "schema_version": "scenario_pack.v1",
+  "scenario_id": "a2_ask_recommendation_budget",
+  "title": "Pedir uma Recomendação no Orçamento",
+  "setting_label": "loja pequena",
+  "wrap_title": "Recomendação confirmada",
+  "wrap_friend": "Muito bem. Você confirmou uma preferência e um detalhe em uma situação simples de comida ou compras.",
+  "language": "pt",
+  "ui_language": "zh-Hant",
+  "cefr_level": "A2",
+  "source_status": "candidate_runtime_verified",
+  "review_state": "ai_reviewed",
+  "review_status_framework_state": "candidate_runtime_verified",
+  "native_review_state": "native_pending",
+  "scenario": {
+    "domain": "food_shopping_preferences",
+    "review_slice": "food_shopping",
+    "interaction": "service_preference_or_exchange",
+    "source_brief": "A2_FOOD_SHOPPING_NEUTRAL_ADAPTATION_BRIEFS_20260614",
+    "blueprint_source": "language_neutral_adaptation_brief",
+    "ko_pack_role": "mature_scenario_blueprint_not_translation_source"
+  },
+  "learner_goal": "Peça uma recomendação simples dentro de um orçamento pequeno.",
+  "target_functions": [
+    "compare_or_state_preference",
+    "confirm_key_detail",
+    "make_polite_low_risk_request",
+    "close_with_correct_next_step"
+  ],
+  "register_notes": "Brazilian Portuguese A2 food/shopping register: polite everyday service language, no allergy/medical/refund-dispute framing.",
+  "production_mode_default": {
+    "required": [
+      "choice"
+    ],
+    "optional_visible": [
+      "speaking"
+    ],
+    "optional_hidden": [
+      "typing"
+    ]
+  },
+  "support_text": "Peça uma recomendação simples dentro de um orçamento pequeno.",
+  "roles": {
+    "npc": {
+      "label": "atendente"
+    },
+    "learner": {
+      "label": "你"
+    }
+  },
+  "turns": [
+    {
+      "turn_id": "t1",
+      "speaker": "npc",
+      "act": "state_budget",
+      "act_slots": {
+        "topic": "ask-recommendation-budget",
+        "keyword": "1",
+        "gloss": "A2 food/shopping"
+      },
+      "learning_role": "listen_only",
+      "surface": "O que você está procurando?",
+      "speak": "O que você está procurando?",
+      "translation": "您在找什麼？",
+      "friend": {
+        "hint": "Peça uma recomendação dentro de um orçamento pequeno."
+      },
+      "reply_set": {
+        "correct": "r1a",
+        "choices": [
+          {
+            "id": "r1a",
+            "surface": "Pode recomendar um presente por menos de cinquenta reais?",
+            "translation": "可以推薦五十雷亞爾以內的禮物嗎？",
+            "speak": "Pode recomendar um presente por menos de cinquenta reais?",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r1b",
+            "surface": "Verifique minha conta bancária, por favor.",
+            "translation": "請查看我的銀行帳戶。",
+            "speak": "Verifique minha conta bancária, por favor.",
+            "contrast_type": "wrong_detail_or_domain",
+            "feedback": "Esta não é uma tarefa bancária."
+          },
+          {
+            "id": "r1c",
+            "surface": "Quero registrar um item perdido.",
+            "translation": "我想申報遺失物。",
+            "speak": "Quero registrar um item perdido.",
+            "contrast_type": "forbidden_or_wrong_domain",
+            "feedback": "Registro de item perdido é outra tarefa."
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t2",
+      "speaker": "npc",
+      "act": "ask_preference",
+      "act_slots": {
+        "topic": "ask-recommendation-budget",
+        "keyword": "2",
+        "gloss": "A2 food/shopping"
+      },
+      "learning_role": "listen_only",
+      "surface": "Você prefere algo leve ou algo prático?",
+      "speak": "Você prefere algo leve ou algo prático?",
+      "translation": "您想要輕巧的，還是實用的？",
+      "friend": {
+        "hint": "Diga uma preferência simples."
+      },
+      "reply_set": {
+        "correct": "r2a",
+        "choices": [
+          {
+            "id": "r2a",
+            "surface": "Algo prático, por favor.",
+            "translation": "請推薦實用的。",
+            "speak": "Algo prático, por favor.",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r2b",
+            "surface": "Algo apimentado, por favor.",
+            "translation": "請推薦辣的。",
+            "speak": "Algo apimentado, por favor.",
+            "contrast_type": "wrong_detail_or_domain",
+            "feedback": "Apimentado combina mais com menu de comida."
+          },
+          {
+            "id": "r2c",
+            "surface": "Quero check-out mais tarde.",
+            "translation": "我想晚點退房。",
+            "speak": "Quero check-out mais tarde.",
+            "contrast_type": "forbidden_or_wrong_domain",
+            "feedback": "Isso muda para hotel."
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t3",
+      "speaker": "npc",
+      "act": "confirm_preference",
+      "act_slots": {
+        "topic": "ask-recommendation-budget",
+        "keyword": "3",
+        "gloss": "A2 food/shopping"
+      },
+      "learning_role": "listen_only",
+      "surface": "Então este caderninho custa menos de cinquenta reais.",
+      "speak": "Então este caderninho custa menos de cinquenta reais.",
+      "translation": "那這本小筆記本在五十雷亞爾以內。",
+      "friend": {
+        "hint": "Confirme a recomendação e o orçamento."
+      },
+      "reply_set": {
+        "correct": "r3a",
+        "choices": [
+          {
+            "id": "r3a",
+            "surface": "Esse caderno custa menos de cinquenta reais, certo?",
+            "translation": "那本筆記本在五十雷亞爾以內，對嗎？",
+            "speak": "Esse caderno custa menos de cinquenta reais, certo?",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r3b",
+            "surface": "Esse quarto custa menos de cinquenta reais, certo?",
+            "translation": "那個房間在五十雷亞爾以內，對嗎？",
+            "speak": "Esse quarto custa menos de cinquenta reais, certo?",
+            "contrast_type": "wrong_detail_or_domain",
+            "feedback": "Um quarto não é o item recomendado."
+          },
+          {
+            "id": "r3c",
+            "surface": "Essa passagem era de ontem, certo?",
+            "translation": "那張票是昨天的，對嗎？",
+            "speak": "Essa passagem era de ontem, certo?",
+            "contrast_type": "forbidden_or_wrong_domain",
+            "feedback": "Isso muda para passagens."
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t4",
+      "speaker": "npc",
+      "act": "accept_recommendation",
+      "act_slots": {
+        "topic": "ask-recommendation-budget",
+        "keyword": "4",
+        "gloss": "A2 food/shopping"
+      },
+      "learning_role": "listen_only",
+      "surface": "Sim, e dá para embrulhar para presente.",
+      "speak": "Sim, e dá para embrulhar para presente.",
+      "translation": "對，也可以包裝成禮物。",
+      "friend": {
+        "hint": "Aceite a recomendação com educação."
+      },
+      "reply_set": {
+        "correct": "r4a",
+        "choices": [
+          {
+            "id": "r4a",
+            "surface": "Ótimo. Vou levar esse caderno.",
+            "translation": "很好，我要那本筆記本。",
+            "speak": "Ótimo. Vou levar esse caderno.",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r4b",
+            "surface": "Quero reembolso.",
+            "translation": "請退款。",
+            "speak": "Quero reembolso.",
+            "contrast_type": "wrong_detail_or_domain",
+            "feedback": "Isto não é pedido de reembolso."
+          },
+          {
+            "id": "r4c",
+            "surface": "Verifique meu seguro, por favor.",
+            "translation": "請查看我的保險。",
+            "speak": "Verifique meu seguro, por favor.",
+            "contrast_type": "forbidden_or_wrong_domain",
+            "feedback": "Seguro fica fora desta tarefa de baixo risco."
+          }
+        ]
+      }
+    }
+  ],
+  "choice_sets": {
+    "count_per_turn": 3,
+    "correct_path": [
+      "r1a",
+      "r2a",
+      "r3a",
+      "r4a"
+    ],
+    "distractor_policy": "one near-domain wrong detail plus one out-of-scope/unsafe-domain option per turn"
+  },
+  "feedback": {
+    "correct": "Muito bem. Continue dentro da tarefa de comida ou compras.",
+    "incorrect": "Escolha a resposta que combina com menu, ingrediente, troca ou recomendação com orçamento."
+  },
+  "tts_segments": [
+    "O que você está procurando?",
+    "Pode recomendar um presente por menos de cinquenta reais?",
+    "Verifique minha conta bancária, por favor.",
+    "Quero registrar um item perdido.",
+    "Você prefere algo leve ou algo prático?",
+    "Algo prático, por favor.",
+    "Algo apimentado, por favor.",
+    "Quero check-out mais tarde.",
+    "Então este caderninho custa menos de cinquenta reais.",
+    "Esse caderno custa menos de cinquenta reais, certo?",
+    "Esse quarto custa menos de cinquenta reais, certo?",
+    "Essa passagem era de ontem, certo?",
+    "Sim, e dá para embrulhar para presente.",
+    "Ótimo. Vou levar esse caderno.",
+    "Quero reembolso.",
+    "Verifique meu seguro, por favor."
+  ],
+  "formula_moments": [
+    {
+      "after_turn": "t2",
+      "pattern_id": "pt.a2.shopping.recommendation.budget.v1",
+      "label": "por menos de + orçamento",
+      "learner_takeaway": "algo prático/leve/pequeno"
+    }
+  ],
+  "runtime_notes": {
+    "expected_turns": 4,
+    "expected_choices_per_turn": 3,
+    "full_walk_required": true,
+    "expected_final_screen": "Wrap"
+  },
+  "notes": {
+    "generated_at": "2026-06-14",
+    "authoring_scope": "A2 food/shopping PT adaptation",
+    "native_review_state": "native_pending"
+  }
+}

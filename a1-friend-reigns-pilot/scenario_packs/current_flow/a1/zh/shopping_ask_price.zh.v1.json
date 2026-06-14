@@ -1,0 +1,236 @@
+{
+  "schema_version": "scenario_pack.v1",
+  "scenario_id": "shopping_ask_price",
+  "brief_id": "ml2_a1_009_shopping_ask_price",
+  "source_neutral_brief": "release-aggregator/docs/tasks/A1_MULTILINGUAL_KO_B1_PARALLEL_ORCHESTRATION/work_products/ml0/ML2_NEUTRAL_ADAPTATION_BRIEFS_20260614.md#brief-ml2-a1-009-shopping-ask-price",
+  "blueprint_ledger": "release-aggregator/docs/tasks/A1_MULTILINGUAL_KO_B1_PARALLEL_ORCHESTRATION/work_products/ml0/ML2_BLUEPRINT_LEDGER_20260614.md",
+  "repo": "content-zh",
+  "staging_path": "content/core/content_assets/scenario_packs/current_flow/shopping_ask_price.zh.v1.json",
+  "title": "問商品價格",
+  "setting_label": "小店櫃台",
+  "wrap_title": "聽懂價格",
+  "wrap_friend": "你用自然的繁體中文詢問商品價格，聽懂價格後簡短回應。",
+  "language": "zh",
+  "ui_language": "zh_tw",
+  "source_status": "candidate_runtime_verified",
+  "review_state": "draft",
+  "review_status_framework_state": "candidate_runtime_verified",
+  "native_review_state": "native_pending",
+  "production_mode_default": {
+    "required": [
+      "choice"
+    ],
+    "optional_visible": [
+      "speaking"
+    ],
+    "optional_hidden": [
+      "typing"
+    ]
+  },
+  "support_text": "你在台灣常見的小店或攤位。用短句問這個東西多少錢，聽懂價格後回應。",
+  "roles": {
+    "npc": {
+      "label": "店員"
+    },
+    "learner": {
+      "label": "客人"
+    }
+  },
+  "turns": [
+    {
+      "turn_id": "t1",
+      "speaker": "npc",
+      "act": "shop_greeting",
+      "act_slots": {
+        "topic": "attention",
+        "keyword": "需要幫忙",
+        "gloss": "need help"
+      },
+      "learning_role": "listen_only",
+      "surface": "您好，需要幫忙嗎？",
+      "speak": "您好，需要幫忙嗎？",
+      "translation": "您好，需要幫忙嗎？",
+      "friend": {
+        "hint": "先用不好意思叫住店員，再問價格。"
+      },
+      "reply_set": {
+        "correct": "r1a",
+        "choices": [
+          {
+            "id": "r1a",
+            "surface": "不好意思，這個多少錢？",
+            "translation": "不好意思，這個多少錢？",
+            "speak": "不好意思，這個多少錢？",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r1b",
+            "surface": "請問車站在哪裡？",
+            "translation": "請問車站在哪裡？",
+            "speak": "請問車站在哪裡？",
+            "contrast_type": "directions_instead_of_price",
+            "feedback": "這是在問路。現在要在商店問價格。"
+          },
+          {
+            "id": "r1c",
+            "surface": "我要一杯咖啡，謝謝。",
+            "translation": "我要一杯咖啡，謝謝。",
+            "speak": "我要一杯咖啡，謝謝。",
+            "contrast_type": "ordering_food_instead_of_price",
+            "feedback": "這像在咖啡店點飲料，不是在問商品價格。"
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t2",
+      "speaker": "npc",
+      "act": "price_answer",
+      "act_slots": {
+        "topic": "price",
+        "keyword": "八十塊",
+        "gloss": "eighty dollars"
+      },
+      "learning_role": "listen_only",
+      "surface": "這個八十塊。",
+      "speak": "這個八十塊。",
+      "translation": "這個八十塊。",
+      "friend": {
+        "hint": "要買時可以說好，我要這個。"
+      },
+      "reply_set": {
+        "correct": "r2a",
+        "choices": [
+          {
+            "id": "r2a",
+            "surface": "好，我要這個。",
+            "translation": "好，我要這個。",
+            "speak": "好，我要這個。",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r2b",
+            "surface": "我刷卡嗎？",
+            "translation": "我刷卡嗎？",
+            "speak": "我刷卡嗎？",
+            "contrast_type": "payment_method_too_early",
+            "feedback": "這直接跳到付款方式。先回應是否要買。"
+          },
+          {
+            "id": "r2c",
+            "surface": "我要三個大的。",
+            "translation": "我要三個大的。",
+            "speak": "我要三個大的。",
+            "contrast_type": "wrong_quantity_answer",
+            "feedback": "這加入數量和大小，超出這個一件商品的 A1 場景。"
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t3",
+      "speaker": "npc",
+      "act": "confirm_purchase",
+      "act_slots": {
+        "topic": "confirm_item",
+        "keyword": "這個",
+        "gloss": "this one"
+      },
+      "learning_role": "listen_only",
+      "surface": "這個，對嗎？",
+      "speak": "這個，對嗎？",
+      "translation": "這個，對嗎？",
+      "friend": {
+        "hint": "商品正確時，直接說對，謝謝。"
+      },
+      "reply_set": {
+        "correct": "r3a",
+        "choices": [
+          {
+            "id": "r3a",
+            "surface": "對，謝謝。",
+            "translation": "對，謝謝。",
+            "speak": "對，謝謝。"
+          },
+          {
+            "id": "r3b",
+            "surface": "不是，洗手間在哪裡？",
+            "translation": "不是，洗手間在哪裡？",
+            "speak": "不是，洗手間在哪裡？",
+            "contrast_type": "restroom_request",
+            "feedback": "這換成問洗手間。店員是在確認商品。"
+          },
+          {
+            "id": "r3c",
+            "surface": "太貴了，可以便宜很多嗎？",
+            "translation": "太貴了，可以便宜很多嗎？",
+            "speak": "太貴了，可以便宜很多嗎？",
+            "contrast_type": "overlong_bargaining",
+            "feedback": "這是議價，超出這個 A1 問價格場景。"
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t4",
+      "speaker": "npc",
+      "act": "service_close",
+      "act_slots": {
+        "topic": "close",
+        "keyword": "謝謝",
+        "gloss": "thanks"
+      },
+      "learning_role": "listen_only",
+      "surface": "好的，謝謝。",
+      "speak": "好的，謝謝。",
+      "translation": "好的，謝謝。",
+      "friend": {
+        "hint": "最後簡短道謝即可。"
+      },
+      "reply_set": {
+        "correct": "r4a",
+        "choices": [
+          {
+            "id": "r4a",
+            "surface": "謝謝。",
+            "translation": "謝謝。",
+            "speak": "謝謝。"
+          },
+          {
+            "id": "r4b",
+            "surface": "我要結帳，謝謝。",
+            "translation": "我要結帳，謝謝。",
+            "speak": "我要結帳，謝謝。",
+            "contrast_type": "restaurant_bill_request",
+            "feedback": "這比較像餐廳結帳，不是商店問價後收尾。"
+          },
+          {
+            "id": "r4c",
+            "surface": "我們幾點見？",
+            "translation": "我們幾點見？",
+            "speak": "我們幾點見？",
+            "contrast_type": "friend_meeting_request",
+            "feedback": "這是在約朋友，不是在商店完成購買。"
+          }
+        ]
+      },
+      "closing": true
+    }
+  ],
+  "formula_moments": [
+    {
+      "after_turn": "t1",
+      "pattern_id": "zh.shopping.zhege_duoshao_qian.v1"
+    },
+    {
+      "after_turn": "t2",
+      "pattern_id": "zh.shopping.wo_yao_zhege.v1"
+    }
+  ],
+  "notes": {
+    "authoring_source": "Authored from ML-2 neutral brief ml2_a1_009_shopping_ask_price; KO and other target-language packs were not used as translation sources.",
+    "review_policy": "AI-authored candidate only; keep review_state=draft, review_status_framework_state=candidate_needs_review, native_review_state=native_pending until tracked review evidence exists.",
+    "canonical_policy": "Staging current-flow candidate only. Do not add to manifests, production exports, schema, runtime, frontend, review artifacts, or legacy content.",
+    "chinese_voice_note": "Uses Traditional-character Mandarin with Taiwan-leaning retail wording such as 塊 for dollars; native review should confirm whether a broader Mandarin lane should prefer 元."
+  }
+}

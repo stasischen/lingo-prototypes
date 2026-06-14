@@ -1,0 +1,257 @@
+{
+  "schema_version": "scenario_pack.v1",
+  "scenario_id": "travel_station_directions",
+  "brief_id": "ml1_a1_007_travel_station_directions",
+  "source_neutral_brief": "release-aggregator/docs/tasks/A1_MULTILINGUAL_KO_B1_PARALLEL_ORCHESTRATION/work_products/ml0/ML1_NEUTRAL_ADAPTATION_BRIEFS_20260614.md#brief-ml1-a1-007-station-or-exit-directions",
+  "blueprint_ledger": "release-aggregator/docs/tasks/A1_MULTILINGUAL_KO_B1_PARALLEL_ORCHESTRATION/work_products/ml0/ML1_BLUEPRINT_LEDGER_20260614.md",
+  "repo": "content-es",
+  "staging_path": "content/core/content_assets/scenario_packs/current_flow/travel_station_directions.es.v1.json",
+  "title": "Preguntar por la salida",
+  "setting_label": "Estación de metro",
+  "wrap_title": "Ya puedes pedir una dirección corta",
+  "wrap_friend": "Pediste una salida, escuchaste una dirección simple y confirmaste antes de irte.",
+  "language": "es",
+  "ui_language": "zh_tw",
+  "source_status": "candidate_runtime_verified",
+  "review_state": "draft",
+  "review_status_framework_state": "candidate_runtime_verified",
+  "native_review_state": "native_pending",
+  "production_mode_default": {
+    "required": [
+      "choice"
+    ],
+    "optional_visible": [
+      "speaking"
+    ],
+    "optional_hidden": [
+      "typing"
+    ]
+  },
+  "support_text": "你在西語地鐵站。用簡短西班牙語問出口，聽懂左轉、直走等方向。",
+  "roles": {
+    "npc": {
+      "label": "empleado"
+    },
+    "learner": {
+      "label": "viajero"
+    }
+  },
+  "turns": [
+    {
+      "turn_id": "t1",
+      "speaker": "npc",
+      "act": "attention_response",
+      "act_slots": {
+        "topic": "pedir ayuda",
+        "keyword": "diga",
+        "gloss": "請說"
+      },
+      "learning_role": "listen_only",
+      "surface": "Sí, dígame.",
+      "speak": "Sí, dígame.",
+      "translation": "好的，請說。",
+      "friend": {
+        "hint": "對方願意幫忙。直接問出口在哪裡。"
+      },
+      "reply_set": {
+        "correct": "r1a",
+        "choices": [
+          {
+            "id": "r1a",
+            "surface": "Perdón, ¿dónde está la salida dos?",
+            "translation": "不好意思，二號出口在哪裡？",
+            "speak": "Perdón, ¿dónde está la salida dos?",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r1b",
+            "surface": "Un taxi al hotel, por favor.",
+            "translation": "請給我一台去飯店的計程車。",
+            "speak": "Un taxi al hotel, por favor.",
+            "contrast_type": "wrong_transport_goal",
+            "feedback": "這是在叫計程車。現在目標是問車站出口。"
+          },
+          {
+            "id": "r1c",
+            "surface": "Pago con tarjeta.",
+            "translation": "我用卡付款。",
+            "speak": "Pago con tarjeta.",
+            "contrast_type": "wrong_scenario_payment",
+            "feedback": "這是付款回答，不是問路。"
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t2",
+      "speaker": "npc",
+      "act": "short_direction",
+      "act_slots": {
+        "topic": "dar dirección",
+        "keyword": "derecha",
+        "gloss": "右邊"
+      },
+      "learning_role": "listen_only",
+      "surface": "Siga derecho y gire a la derecha.",
+      "speak": "Siga derecho y gire a la derecha.",
+      "translation": "直走，然後右轉。",
+      "friend": {
+        "hint": "derecho 是直走，derecha 是右邊。用短句確認重點。"
+      },
+      "inline_explain": {
+        "pattern_id": "es.station.straight_right.v1",
+        "formula_ref": null,
+        "title": "derecho / derecha",
+        "explain": "derecho 表示直走；a la derecha 表示往右。",
+        "items": [
+          {
+            "surface": "Siga derecho.",
+            "translation": "直走。",
+            "speak": "Siga derecho."
+          },
+          {
+            "surface": "A la derecha.",
+            "translation": "在右邊。",
+            "speak": "A la derecha."
+          }
+        ]
+      },
+      "reply_set": {
+        "correct": "r2a",
+        "choices": [
+          {
+            "id": "r2a",
+            "surface": "Derecho y a la derecha.",
+            "translation": "直走，然後右邊。",
+            "speak": "Derecho y a la derecha.",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r2b",
+            "surface": "A la izquierda.",
+            "translation": "左邊。",
+            "speak": "A la izquierda.",
+            "contrast_type": "wrong_direction",
+            "feedback": "對方說的是右邊，不是左邊。"
+          },
+          {
+            "id": "r2c",
+            "surface": "¿Dónde está el baño?",
+            "translation": "洗手間在哪裡？",
+            "speak": "¿Dónde está el baño?",
+            "contrast_type": "wrong_scenario_request",
+            "feedback": "這是問洗手間。現在你要確認出口方向。"
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t3",
+      "speaker": "npc",
+      "act": "exit_detail",
+      "act_slots": {
+        "topic": "confirmar salida",
+        "keyword": "cartel",
+        "gloss": "標示"
+      },
+      "learning_role": "listen_only",
+      "surface": "Sí. Luego verá el cartel de la salida dos.",
+      "speak": "Sí. Luego verá el cartel de la salida dos.",
+      "translation": "對。然後您會看到二號出口的標示。",
+      "friend": {
+        "hint": "出口號碼是 dos。確認你聽到的出口。"
+      },
+      "reply_set": {
+        "correct": "r3a",
+        "choices": [
+          {
+            "id": "r3a",
+            "surface": "Salida dos, gracias.",
+            "translation": "二號出口，謝謝。",
+            "speak": "Salida dos, gracias.",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r3b",
+            "surface": "Salida cinco, gracias.",
+            "translation": "五號出口，謝謝。",
+            "speak": "Salida cinco, gracias.",
+            "contrast_type": "wrong_exit_number",
+            "feedback": "對方說的是 salida dos，不是 salida cinco。"
+          },
+          {
+            "id": "r3c",
+            "surface": "Quiero una sopa.",
+            "translation": "我想要一份湯。",
+            "speak": "Quiero una sopa.",
+            "contrast_type": "wrong_scenario_order",
+            "feedback": "這是餐廳點餐，不是車站問路。"
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t4",
+      "speaker": "npc",
+      "act": "service_close",
+      "act_slots": {
+        "topic": "cerrar ayuda",
+        "keyword": "nada",
+        "gloss": "不客氣"
+      },
+      "learning_role": "listen_only",
+      "surface": "Exacto. Está muy cerca.",
+      "speak": "Exacto. Está muy cerca.",
+      "translation": "沒錯。很近。",
+      "friend": {
+        "hint": "你已經確認方向。用 Gracias 結束。"
+      },
+      "reply_set": {
+        "correct": "r4a",
+        "choices": [
+          {
+            "id": "r4a",
+            "surface": "Muchas gracias.",
+            "translation": "非常謝謝。",
+            "speak": "Muchas gracias."
+          },
+          {
+            "id": "r4b",
+            "surface": "La cuenta, por favor.",
+            "translation": "請結帳。",
+            "speak": "La cuenta, por favor.",
+            "contrast_type": "wrong_scenario_bill",
+            "feedback": "這是餐廳結帳。問路結束時道謝就好。"
+          },
+          {
+            "id": "r4c",
+            "surface": "Tengo una reserva.",
+            "translation": "我有訂房。",
+            "speak": "Tengo una reserva.",
+            "contrast_type": "wrong_scenario_hotel",
+            "feedback": "這是飯店入住句。現在是在車站問路。"
+          }
+        ]
+      },
+      "closing": {
+        "act": "farewell",
+        "learning_role": "listen_only",
+        "surface": "De nada.",
+        "speak": "De nada.",
+        "translation": "不客氣。"
+      }
+    }
+  ],
+  "formula_moments": [
+    {
+      "after_turn": "t2",
+      "pattern_id": "es.station.straight_right.v1"
+    }
+  ],
+  "notes": {
+    "authoring_source": "Authored from ML-1 neutral brief, not Korean surface text or another target-language pack.",
+    "review_policy": "AI-authored Spanish candidate. Requires AI review, runtime smoke, and tracked native review before any stronger status.",
+    "canonical_policy": "Staging candidate only. Do not write back to manifests, production exports, schemas, or legacy content.",
+    "spanish_register_note": "Uses broad neutral transit Spanish with salida and siga derecho."
+  }
+}

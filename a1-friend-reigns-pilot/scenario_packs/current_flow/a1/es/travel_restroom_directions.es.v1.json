@@ -1,0 +1,212 @@
+{
+  "schema_version": "scenario_pack.v1",
+  "scenario_id": "travel_restroom_directions",
+  "brief_id": "ml0_a1_003_travel_restroom_directions",
+  "source_neutral_brief": "release-aggregator/docs/tasks/A1_MULTILINGUAL_KO_B1_PARALLEL_ORCHESTRATION/work_products/ml0/ML0_NEUTRAL_ADAPTATION_BRIEFS_20260613.md#brief-ml0-a1-003-asking-for-restroom-directions",
+  "blueprint_ledger": "release-aggregator/docs/tasks/A1_MULTILINGUAL_KO_B1_PARALLEL_ORCHESTRATION/work_products/ml0/ML0_BLUEPRINT_LEDGER_20260613.md",
+  "repo": "content-es",
+  "staging_path": "content/core/content_assets/scenario_packs/current_flow/travel_restroom_directions.es.v1.json",
+  "title": "Preguntar por el baño",
+  "setting_label": "Lugar público",
+  "wrap_title": "Ya puedes preguntar por el baño",
+  "wrap_friend": "Llamaste la atención, preguntaste dónde está el baño y confirmaste una dirección sencilla.",
+  "language": "es",
+  "ui_language": "zh_tw",
+  "source_status": "candidate_runtime_verified",
+  "review_state": "draft",
+  "review_status_framework_state": "candidate_runtime_verified",
+  "native_review_state": "native_pending",
+  "production_mode_default": {
+    "required": [
+      "choice"
+    ],
+    "optional_visible": [
+      "speaking"
+    ],
+    "optional_hidden": [
+      "typing"
+    ]
+  },
+  "support_text": "你在西語公共場所。禮貌開口，問洗手間在哪裡，並確認方向。",
+  "roles": {
+    "npc": {
+      "label": "empleado"
+    },
+    "learner": {
+      "label": "visitante"
+    }
+  },
+  "turns": [
+    {
+      "turn_id": "t1",
+      "speaker": "npc",
+      "act": "attention_response",
+      "act_slots": {
+        "topic": "pedir ayuda",
+        "keyword": "ayuda",
+        "gloss": "幫忙"
+      },
+      "learning_role": "listen_only",
+      "surface": "Sí, dígame.",
+      "speak": "Sí, dígame.",
+      "translation": "好的，請說。",
+      "friend": {
+        "hint": "對方願意幫你。直接問洗手間在哪裡。"
+      },
+      "reply_set": {
+        "correct": "r1a",
+        "choices": [
+          {
+            "id": "r1a",
+            "surface": "Disculpe, ¿dónde está el baño?",
+            "translation": "不好意思，洗手間在哪裡？",
+            "speak": "Disculpe, ¿dónde está el baño?",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r1b",
+            "surface": "Un café, por favor.",
+            "translation": "一杯咖啡，謝謝。",
+            "speak": "Un café, por favor.",
+            "contrast_type": "wrong_scenario_request",
+            "feedback": "這句是在點咖啡。現在你要問洗手間。"
+          },
+          {
+            "id": "r1c",
+            "surface": "¿Cuánto cuesta?",
+            "translation": "多少錢？",
+            "speak": "¿Cuánto cuesta?",
+            "contrast_type": "wrong_scenario_request",
+            "feedback": "這句是在問價格。要找洗手間時，問「¿dónde está el baño?」。"
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t2",
+      "speaker": "npc",
+      "act": "simple_direction",
+      "act_slots": {
+        "topic": "dirección",
+        "keyword": "derecha",
+        "gloss": "右邊"
+      },
+      "learning_role": "listen_only",
+      "surface": "Siga recto y gire a la derecha.",
+      "speak": "Siga recto y gire a la derecha.",
+      "translation": "直走，然後右轉。",
+      "friend": {
+        "hint": "recto 是直走，derecha 是右邊。可以確認是不是右轉。"
+      },
+      "inline_explain": {
+        "pattern_id": "es.directions.straight_right.v1",
+        "formula_ref": null,
+        "title": "recto / derecha",
+        "explain": "「recto」是直走，「a la derecha」是往右邊。",
+        "items": [
+          {
+            "surface": "Siga recto.",
+            "translation": "請直走。",
+            "speak": "Siga recto."
+          },
+          {
+            "surface": "A la derecha.",
+            "translation": "在右邊。",
+            "speak": "A la derecha."
+          }
+        ]
+      },
+      "reply_set": {
+        "correct": "r2a",
+        "choices": [
+          {
+            "id": "r2a",
+            "surface": "¿A la derecha?",
+            "translation": "往右邊嗎？",
+            "speak": "¿A la derecha?",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r2b",
+            "surface": "Para llevar, por favor.",
+            "translation": "外帶，謝謝。",
+            "speak": "Para llevar, por favor.",
+            "contrast_type": "wrong_scenario_response",
+            "feedback": "這是咖啡店外帶時用的回答。現在對方在說方向。"
+          },
+          {
+            "id": "r2c",
+            "surface": "Sí, gracias.",
+            "translation": "是的，謝謝。",
+            "speak": "Sí, gracias.",
+            "contrast_type": "underspecified_confirmation",
+            "feedback": "只說是有點不清楚。確認方向時，可以說「¿A la derecha?」。"
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t3",
+      "speaker": "npc",
+      "act": "direction_confirmation",
+      "act_slots": {
+        "topic": "confirmar dirección",
+        "keyword": "derecha",
+        "gloss": "右邊"
+      },
+      "learning_role": "listen_only",
+      "surface": "Sí, a la derecha.",
+      "speak": "Sí, a la derecha.",
+      "translation": "是的，往右邊。",
+      "friend": {
+        "hint": "你確認方向了。最後說謝謝就好。"
+      },
+      "reply_set": {
+        "correct": "r3a",
+        "choices": [
+          {
+            "id": "r3a",
+            "surface": "Gracias.",
+            "translation": "謝謝。",
+            "speak": "Gracias."
+          },
+          {
+            "id": "r3b",
+            "surface": "Un café con leche.",
+            "translation": "一杯牛奶咖啡。",
+            "speak": "Un café con leche.",
+            "contrast_type": "wrong_scenario_request",
+            "feedback": "這又回到點飲料了。你已經問完方向，可以說謝謝。"
+          },
+          {
+            "id": "r3c",
+            "surface": "A nombre de Lin.",
+            "translation": "用 Lin 的名字。",
+            "speak": "A nombre de Lin.",
+            "contrast_type": "wrong_scenario_response",
+            "feedback": "這是飯店入住時說名字。現在是問路情境。"
+          }
+        ]
+      },
+      "closing": {
+        "act": "helper_close",
+        "learning_role": "listen_only",
+        "surface": "De nada.",
+        "speak": "De nada.",
+        "translation": "不客氣。"
+      }
+    }
+  ],
+  "formula_moments": [
+    {
+      "after_turn": "t2",
+      "pattern_id": "es.directions.straight_right.v1"
+    }
+  ],
+  "notes": {
+    "authoring_source": "Authored from ML-0 neutral brief, not Korean surface text.",
+    "review_policy": "AI-authored Spanish candidate. Requires AI review, runtime smoke, and tracked native review before any stronger status.",
+    "canonical_policy": "Staging candidate only. Do not write back to manifests, production exports, schemas, or legacy content.",
+    "spanish_register_note": "Uses polite public-service forms such as disculpe, dígame, siga, and gire."
+  }
+}

@@ -1,0 +1,257 @@
+{
+  "schema_version": "scenario_pack.v1",
+  "scenario_id": "a2_app_booking_confirmation",
+  "title": "Confirmar una Reserva en la App",
+  "setting_label": "low-risk help message",
+  "wrap_title": "Confirmar una Reserva en la App",
+  "wrap_friend": "Bien. Manejaste una tarea digital o de ayuda con documentos usando solo el detalle necesario.",
+  "language": "es",
+  "ui_language": "zh-Hant",
+  "cefr_level": "A2",
+  "source_status": "candidate_runtime_verified",
+  "review_state": "ai_reviewed",
+  "review_status_framework_state": "candidate_runtime_verified",
+  "native_review_state": "native_pending",
+  "scenario": {
+    "domain": "digital_documents_low_risk_help",
+    "review_slice": "digital_documents",
+    "interaction": "low_risk_confirmation_or_help",
+    "source_brief": "A2_DIGITAL_DOCUMENTS_NEUTRAL_ADAPTATION_BRIEFS_20260614",
+    "blueprint_source": "language_neutral_adaptation_brief",
+    "ko_pack_role": "mature_scenario_blueprint_not_translation_source"
+  },
+  "learner_goal": "Manejar una tarea digital o de formulario simple de bajo riesgo con frases cortas de A2.",
+  "target_functions": [
+    "confirm_booking_or_message",
+    "request_simple_change",
+    "ask_simple_form_help",
+    "follow_up_low_risk_item"
+  ],
+  "register_notes": "Neutral Spanish A2 low-risk digital/documents register: concise polite help/service language, no passwords, payment, ID, medical, legal, police, or immigration framing.",
+  "production_mode_default": {
+    "required": [
+      "choice"
+    ],
+    "optional_visible": [
+      "speaking"
+    ],
+    "optional_hidden": [
+      "typing"
+    ]
+  },
+  "support_text": "Mantén la tarea de bajo riesgo. No des contraseñas, pagos, ID sensible ni información legal o médica.",
+  "roles": {
+    "npc": {
+      "label": "personal"
+    },
+    "learner": {
+      "label": "你"
+    }
+  },
+  "turns": [
+    {
+      "turn_id": "t1",
+      "speaker": "npc",
+      "act": "start",
+      "act_slots": {
+        "topic": "a2_app_booking_confirmation",
+        "keyword": "1",
+        "gloss": "A2 digital/documents"
+      },
+      "learning_role": "listen_only",
+      "surface": "La reserva está confirmada para hoy a las tres.",
+      "speak": "La reserva está confirmada para hoy a las tres.",
+      "translation": "預約確認為今天下午三點。",
+      "friend": {
+        "hint": "Confirma solo el detalle necesario y de bajo riesgo."
+      },
+      "reply_set": {
+        "correct": "r1a",
+        "choices": [
+          {
+            "id": "r1a",
+            "surface": "¿Dónde es el lugar?",
+            "translation": "地點在哪裡？",
+            "speak": "¿Dónde es el lugar?",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r1b",
+            "surface": "Le digo mi contraseña.",
+            "translation": "我會告訴你密碼。",
+            "speak": "Le digo mi contraseña.",
+            "contrast_type": "forbidden_sensitive",
+            "feedback": "La contraseña está fuera de esta tarea A2."
+          },
+          {
+            "id": "r1c",
+            "surface": "Quiero un reembolso.",
+            "translation": "請退款。",
+            "speak": "Quiero un reembolso.",
+            "contrast_type": "wrong_dispute_domain",
+            "feedback": "Los reembolsos o disputas están fuera de esta tarea."
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t2",
+      "speaker": "npc",
+      "act": "clarify",
+      "act_slots": {
+        "topic": "a2_app_booking_confirmation",
+        "keyword": "2",
+        "gloss": "A2 digital/documents"
+      },
+      "learning_role": "listen_only",
+      "surface": "Es en el segundo piso de la cafetería.",
+      "speak": "Es en el segundo piso de la cafetería.",
+      "translation": "在咖啡店二樓。",
+      "friend": {
+        "hint": "Confirma solo el detalle necesario y de bajo riesgo."
+      },
+      "reply_set": {
+        "correct": "r2a",
+        "choices": [
+          {
+            "id": "r2a",
+            "surface": "¿Entonces es en el segundo piso de la cafetería?",
+            "translation": "是在咖啡店二樓，對嗎？",
+            "speak": "¿Entonces es en el segundo piso de la cafetería?",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r2b",
+            "surface": "Le digo mi contraseña.",
+            "translation": "我會告訴你密碼。",
+            "speak": "Le digo mi contraseña.",
+            "contrast_type": "forbidden_sensitive",
+            "feedback": "La contraseña está fuera de esta tarea A2."
+          },
+          {
+            "id": "r2c",
+            "surface": "Quiero un reembolso.",
+            "translation": "請退款。",
+            "speak": "Quiero un reembolso.",
+            "contrast_type": "wrong_dispute_domain",
+            "feedback": "Los reembolsos o disputas están fuera de esta tarea."
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t3",
+      "speaker": "npc",
+      "act": "confirm_detail",
+      "act_slots": {
+        "topic": "a2_app_booking_confirmation",
+        "keyword": "3",
+        "gloss": "A2 digital/documents"
+      },
+      "learning_role": "listen_only",
+      "surface": "Sí, la reserva está a nombre de Mina.",
+      "speak": "Sí, la reserva está a nombre de Mina.",
+      "translation": "對，預約姓名是 Mina。",
+      "friend": {
+        "hint": "Confirma solo el detalle necesario y de bajo riesgo."
+      },
+      "reply_set": {
+        "correct": "r3a",
+        "choices": [
+          {
+            "id": "r3a",
+            "surface": "Sí, ese es mi nombre.",
+            "translation": "對，是我的名字。",
+            "speak": "Sí, ese es mi nombre.",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r3b",
+            "surface": "Le digo mi contraseña.",
+            "translation": "我會告訴你密碼。",
+            "speak": "Le digo mi contraseña.",
+            "contrast_type": "forbidden_sensitive",
+            "feedback": "La contraseña está fuera de esta tarea A2."
+          },
+          {
+            "id": "r3c",
+            "surface": "Quiero un reembolso.",
+            "translation": "請退款。",
+            "speak": "Quiero un reembolso.",
+            "contrast_type": "wrong_dispute_domain",
+            "feedback": "Los reembolsos o disputas están fuera de esta tarea."
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t4",
+      "speaker": "npc",
+      "act": "close",
+      "act_slots": {
+        "topic": "a2_app_booking_confirmation",
+        "keyword": "4",
+        "gloss": "A2 digital/documents"
+      },
+      "learning_role": "listen_only",
+      "surface": "Entonces le esperamos a las tres.",
+      "speak": "Entonces le esperamos a las tres.",
+      "translation": "那下午三點見。",
+      "friend": {
+        "hint": "Confirma solo el detalle necesario y de bajo riesgo."
+      },
+      "reply_set": {
+        "correct": "r4a",
+        "choices": [
+          {
+            "id": "r4a",
+            "surface": "De acuerdo, voy a las tres.",
+            "translation": "好，我下午三點會去。",
+            "speak": "De acuerdo, voy a las tres.",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r4b",
+            "surface": "Le digo mi contraseña.",
+            "translation": "我會告訴你密碼。",
+            "speak": "Le digo mi contraseña.",
+            "contrast_type": "forbidden_sensitive",
+            "feedback": "La contraseña está fuera de esta tarea A2."
+          },
+          {
+            "id": "r4c",
+            "surface": "Quiero un reembolso.",
+            "translation": "請退款。",
+            "speak": "Quiero un reembolso.",
+            "contrast_type": "wrong_dispute_domain",
+            "feedback": "Los reembolsos o disputas están fuera de esta tarea."
+          }
+        ]
+      }
+    }
+  ],
+  "choice_sets": [
+    "t1.reply_set",
+    "t2.reply_set",
+    "t3.reply_set",
+    "t4.reply_set"
+  ],
+  "feedback": "Mantén la tarea de bajo riesgo. No des contraseñas, pagos, ID sensible ni información legal o médica.",
+  "tts_segments": [
+    "¿Dónde es el lugar?",
+    "¿Entonces es en el segundo piso de la cafetería?",
+    "Sí, ese es mi nombre.",
+    "De acuerdo, voy a las tres."
+  ],
+  "formula_moments": [
+    {
+      "after_turn": "t2",
+      "pattern_id": "es.a2.digital.app_booking_confirmation.v1"
+    }
+  ],
+  "runtime_notes": "Fresh A2 digital/documents candidate. Requires full-walk runtime before closeout evidence is recorded.",
+  "notes": {
+    "authoring_policy": "Fresh-authored from A2 digital/documents neutral adaptation brief. KO surface text was not copied or translated.",
+    "a2_boundary": "Low-risk confirmation/help only; avoids sensitive identity, payment, legal, medical, police, and immigration workflows."
+  }
+}

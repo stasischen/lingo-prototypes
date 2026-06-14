@@ -1,0 +1,265 @@
+{
+  "schema_version": "scenario_pack.v1",
+  "scenario_id": "a2_transport_delay_announcement",
+  "title": "交通機関の遅延案内を聞く",
+  "setting_label": "駅の案内放送",
+  "wrap_title": "遅延案内の確認",
+  "wrap_friend": "你剛剛聽懂了日文延誤廣播，並用簡短日文決定下一步。",
+  "language": "ja",
+  "ui_language": "zh_tw",
+  "cefr_level": "A2",
+  "source_status": "candidate_runtime_verified",
+  "review_state": "ai_reviewed",
+  "review_status_framework_state": "candidate_runtime_verified",
+  "native_review_state": "native_pending",
+  "scenario": "A traveler hears a short train delay announcement and chooses what to do.",
+  "learner_goal": "Understand the delay time and make one simple travel choice.",
+  "target_functions": [
+    "announcement_comprehension",
+    "delay_duration",
+    "simple_travel_choice"
+  ],
+  "register_notes": "Polite public transport Japanese with concise learner replies. No refund, complaint, or emergency language.",
+  "production_mode_default": {
+    "required": [
+      "choice"
+    ],
+    "optional_visible": [
+      "speaking"
+    ],
+    "optional_hidden": [
+      "typing"
+    ]
+  },
+  "support_text": "駅の案内を聞いて、どのくらい遅れるか確認し、待つか別の方法にするか言いましょう。",
+  "roles": {
+    "npc": {
+      "label": "駅員"
+    },
+    "learner": {
+      "label": "你"
+    }
+  },
+  "turns": [
+    {
+      "turn_id": "t1",
+      "speaker": "npc",
+      "act": "delay_announcement",
+      "act_slots": {
+        "delay": "10 minutes",
+        "keyword": "10分ほど遅れ",
+        "gloss": "晚約 10 分鐘"
+      },
+      "learning_role": "listen_only",
+      "surface": "お知らせします。電車は10分ほど遅れて到着します。",
+      "speak": "お知らせします。電車は十分ほど遅れて到着します。",
+      "translation": "通知：電車會晚約 10 分鐘到。",
+      "friend": {
+        "hint": "ポイントは10分ほど遅れて到着します。どのくらい遅れますか。"
+      },
+      "reply_set": {
+        "correct": "r1a",
+        "choices": [
+          {
+            "id": "r1a",
+            "surface": "10分ほど遅れるそうです。",
+            "translation": "好像會晚約 10 分鐘。",
+            "speak": "十分ほど遅れるそうです。",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r1b",
+            "surface": "すぐに出発するそうです。",
+            "translation": "好像馬上出發。",
+            "speak": "すぐに出発するそうです。",
+            "contrast_type": "wrong_delay_meaning",
+            "feedback": "案内はすぐ出発ではなく、10分ほど遅れると言っています。"
+          },
+          {
+            "id": "r1c",
+            "surface": "切符を変えるそうです。",
+            "translation": "好像要改票。",
+            "speak": "切符を変えるそうです。",
+            "contrast_type": "wrong_scenario_ticket_change",
+            "feedback": "切符の変更ではなく、電車の遅れの案内です。"
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t2",
+      "speaker": "npc",
+      "act": "choice_prompt",
+      "act_slots": {
+        "options": "wait or bus",
+        "keyword": "待ちますか",
+        "gloss": "要等嗎"
+      },
+      "learning_role": "listen_only",
+      "surface": "10分くらいなら待ちますか。それともバスにしますか。",
+      "speak": "十分くらいなら待ちますか。それともバスにしますか。",
+      "translation": "如果大約 10 分鐘，您要等嗎？還是改搭公車？",
+      "friend": {
+        "hint": "10分くらいなら means if it is about ten minutes."
+      },
+      "inline_explain": {
+        "pattern_id": "ja.a2.transport.choice.nara.v1",
+        "title": "なら = 如果是／的話",
+        "explain": "10分くらいなら can introduce a simple condition before your choice.",
+        "items": [
+          {
+            "surface": "10分くらいなら",
+            "translation": "如果大約 10 分鐘",
+            "speak": "十分くらいなら"
+          },
+          {
+            "surface": "待ちます",
+            "translation": "我會等",
+            "speak": "待ちます"
+          }
+        ]
+      },
+      "reply_set": {
+        "correct": "r2a",
+        "choices": [
+          {
+            "id": "r2a",
+            "surface": "10分くらいなら待ちます。",
+            "translation": "如果大約 10 分鐘，我會等。",
+            "speak": "十分くらいなら待ちます。",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r2b",
+            "surface": "昨日待ちました。",
+            "translation": "我昨天等了。",
+            "speak": "昨日待ちました。",
+            "contrast_type": "wrong_time_past",
+            "feedback": "今どうするかを言う場面です。昨日の話ではありません。"
+          },
+          {
+            "id": "r2c",
+            "surface": "領収書をください。",
+            "translation": "請給我收據。",
+            "speak": "領収書をください。",
+            "contrast_type": "wrong_service_receipt",
+            "feedback": "ここでは領収書ではなく、待つか別の方法にするかを答えます。"
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t3",
+      "speaker": "npc",
+      "act": "next_departure_info",
+      "act_slots": {
+        "time": "10:20",
+        "keyword": "10時20分ごろ",
+        "gloss": "10 點 20 分左右"
+      },
+      "learning_role": "listen_only",
+      "surface": "次の電車は10時20分ごろ到着します。",
+      "speak": "次の電車は十時二十分ごろ到着します。",
+      "translation": "下一班電車大約 10 點 20 分到。",
+      "friend": {
+        "hint": "次の電車の時間を確認しましょう。"
+      },
+      "reply_set": {
+        "correct": "r3a",
+        "choices": [
+          {
+            "id": "r3a",
+            "surface": "では、10時20分の電車に乗ります。",
+            "translation": "那我搭 10 點 20 分的電車。",
+            "speak": "では、十時二十分の電車に乗ります。",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r3b",
+            "surface": "10時20分に店は閉まりますか。",
+            "translation": "店 10 點 20 分關門嗎？",
+            "speak": "十時二十分に店は閉まりますか。",
+            "contrast_type": "wrong_function_business_hours",
+            "feedback": "その時間は店の時間ではなく、次の電車の到着時間です。"
+          },
+          {
+            "id": "r3c",
+            "surface": "バスの切符を返金したいです。",
+            "translation": "我想退公車票。",
+            "speak": "バスの切符を返金したいです。",
+            "contrast_type": "forbidden_refund_escalation",
+            "feedback": "返金の話はこのA2練習の範囲を超えます。電車の時間を確認しましょう。"
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t4",
+      "speaker": "npc",
+      "act": "platform_wait_confirmation",
+      "act_slots": {
+        "place": "this platform",
+        "keyword": "このホーム",
+        "gloss": "這個月台"
+      },
+      "learning_role": "listen_only",
+      "surface": "はい。このホームでお待ちください。",
+      "speak": "はい。このホームでお待ちください。",
+      "translation": "好的。請在這個月台等候。",
+      "friend": {
+        "hint": "場所が確認できました。短く返しましょう。"
+      },
+      "reply_set": {
+        "correct": "r4a",
+        "choices": [
+          {
+            "id": "r4a",
+            "surface": "わかりました。ここで待ちます。",
+            "translation": "了解。我會在這裡等。",
+            "speak": "わかりました。ここで待ちます。"
+          },
+          {
+            "id": "r4b",
+            "surface": "部屋を変えてください。",
+            "translation": "請幫我換房間。",
+            "speak": "部屋を変えてください。",
+            "contrast_type": "wrong_scenario_hotel",
+            "feedback": "これはホテルの場面です。今は駅のホームで待つ場面です。"
+          },
+          {
+            "id": "r4c",
+            "surface": "病院を予約したいです。",
+            "translation": "我想預約醫院。",
+            "speak": "病院を予約したいです。",
+            "contrast_type": "forbidden_medical_domain",
+            "feedback": "医療予約はこの交通場面とは関係ありません。"
+          }
+        ]
+      }
+    }
+  ],
+  "choice_sets": [
+    "t1.reply_set",
+    "t2.reply_set",
+    "t3.reply_set",
+    "t4.reply_set"
+  ],
+  "feedback": "Distractors test delay misunderstanding, wrong service context, past-time response, and out-of-scope escalation.",
+  "tts_segments": [
+    "お知らせします。電車は十分ほど遅れて到着します。",
+    "十分ほど遅れるそうです。",
+    "十分くらいなら待ちます。",
+    "では、十時二十分の電車に乗ります。"
+  ],
+  "formula_moments": [
+    {
+      "after_turn": "t2",
+      "pattern_id": "ja.a2.transport.choice.nara.v1"
+    }
+  ],
+  "runtime_notes": "JA A2 transport candidate. Full-walk runtime gate required before final closeout.",
+  "notes": {
+    "authoring_policy": "Fresh-authored from the neutral A2 transport brief. KO surfaces were not translated.",
+    "a2_boundary": "Uses delay duration and a simple wait/bus choice; avoids refunds, complaints, and emergencies."
+  }
+}

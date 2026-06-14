@@ -1,0 +1,264 @@
+{
+  "schema_version": "scenario_pack.v1",
+  "scenario_id": "daily_schedule_time",
+  "brief_id": "ml0_a1_005_daily_schedule_time",
+  "source_neutral_brief": "release-aggregator/docs/tasks/A1_MULTILINGUAL_KO_B1_PARALLEL_ORCHESTRATION/work_products/ml0/ML0_NEUTRAL_ADAPTATION_BRIEFS_20260613.md#brief-ml0-a1-005-scheduling-a-time",
+  "blueprint_ledger": "release-aggregator/docs/tasks/A1_MULTILINGUAL_KO_B1_PARALLEL_ORCHESTRATION/work_products/ml0/ML0_BLUEPRINT_LEDGER_20260613.md",
+  "repo": "content-en",
+  "staging_path": "curriculum/a1_travel_v1/staging/scenario_pack.v1/daily_schedule_time.en.v1.json",
+  "title": "Choosing a Time to Meet",
+  "setting_label": "Making a casual plan",
+  "wrap_title": "You set a time",
+  "wrap_friend": "You suggested a simple time, confirmed the place, and closed the plan naturally.",
+  "language": "en",
+  "ui_language": "en",
+  "source_status": "candidate_runtime_verified",
+  "review_state": "draft",
+  "review_status_framework_state": "candidate_runtime_verified",
+  "native_review_state": "native_pending",
+  "production_mode_default": {
+    "required": [
+      "choice"
+    ],
+    "optional_visible": [
+      "speaking"
+    ],
+    "optional_hidden": [
+      "typing"
+    ]
+  },
+  "support_text": "You are making a simple plan with a friend. Listen for the time question and choose a short reply that fits.",
+  "roles": {
+    "npc": {
+      "label": "Friend"
+    },
+    "learner": {
+      "label": "You"
+    }
+  },
+  "turns": [
+    {
+      "turn_id": "t1",
+      "speaker": "npc",
+      "act": "ask_time",
+      "act_slots": {
+        "topic": "meeting time",
+        "keyword": "what time",
+        "gloss": "ask for a time"
+      },
+      "learning_role": "listen_only",
+      "surface": "What time should we meet tomorrow?",
+      "speak": "What time should we meet tomorrow?",
+      "translation": "Your friend is asking for a meeting time.",
+      "friend": {
+        "hint": "They are asking for a time. You can suggest one short time."
+      },
+      "inline_explain": {
+        "pattern_id": "en.schedule.time_suggestion.v1",
+        "formula_ref": null,
+        "title": "What time? / How about three?",
+        "explain": "Use \"What time...?\" to ask for a time. Use \"How about...?\" to suggest one.",
+        "items": [
+          {
+            "surface": "What time should we meet?",
+            "translation": "Ask for the time.",
+            "speak": "What time should we meet?"
+          },
+          {
+            "surface": "How about three?",
+            "translation": "Suggest three o'clock.",
+            "speak": "How about three?"
+          }
+        ]
+      },
+      "reply_set": {
+        "correct": "r1a",
+        "choices": [
+          {
+            "id": "r1a",
+            "surface": "How about three?",
+            "translation": "I suggest three o'clock.",
+            "speak": "How about three?",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r1b",
+            "surface": "At the station.",
+            "translation": "I am giving a place.",
+            "speak": "At the station.",
+            "contrast_type": "location_answer_when_time_requested",
+            "feedback": "That gives a place. Your friend asked what time."
+          },
+          {
+            "id": "r1c",
+            "surface": "I can't today.",
+            "translation": "I am refusing the plan.",
+            "speak": "I can't today.",
+            "contrast_type": "wrong_act_refusal",
+            "feedback": "This sounds like you cannot meet. The question is asking for a time."
+          },
+          {
+            "id": "r1d",
+            "surface": "Tomorrow is fine.",
+            "translation": "I am confirming the day.",
+            "speak": "Tomorrow is fine.",
+            "contrast_type": "wrong_day_time_answer",
+            "feedback": "The day is already tomorrow. Now choose a time."
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t2",
+      "speaker": "npc",
+      "act": "confirm_place",
+      "act_slots": {
+        "topic": "place confirmation",
+        "keyword": "station",
+        "gloss": "meeting place"
+      },
+      "learning_role": "listen_only",
+      "surface": "Three works. At the station?",
+      "speak": "Three works. At the station?",
+      "translation": "Your friend accepts the time and asks about the place.",
+      "friend": {
+        "hint": "The time is accepted. Now confirm the place."
+      },
+      "reply_set": {
+        "correct": "r2a",
+        "choices": [
+          {
+            "id": "r2a",
+            "surface": "Yes, at the station.",
+            "translation": "I confirm the place.",
+            "speak": "Yes, at the station."
+          },
+          {
+            "id": "r2b",
+            "surface": "How about three?",
+            "translation": "I suggest three o'clock.",
+            "speak": "How about three?",
+            "contrast_type": "repeated_prior_answer",
+            "feedback": "You already suggested three. Now answer the place question."
+          },
+          {
+            "id": "r2c",
+            "surface": "Card, please.",
+            "translation": "I want to pay by card.",
+            "speak": "Card, please.",
+            "contrast_type": "wrong_scenario_payment",
+            "feedback": "That is for paying at a counter. This is a meetup plan."
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t3",
+      "speaker": "npc",
+      "act": "plan_confirmation",
+      "act_slots": {
+        "topic": "plan confirmation",
+        "keyword": "see you",
+        "gloss": "close the plan"
+      },
+      "learning_role": "listen_only",
+      "surface": "Great. See you tomorrow at three.",
+      "speak": "Great. See you tomorrow at three.",
+      "translation": "Your friend confirms the plan.",
+      "friend": {
+        "hint": "The plan is set. A short closing phrase is natural."
+      },
+      "reply_set": {
+        "correct": "r3a",
+        "choices": [
+          {
+            "id": "r3a",
+            "surface": "See you then.",
+            "translation": "I confirm and close the plan.",
+            "speak": "See you then.",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r3b",
+            "surface": "At the station.",
+            "translation": "I am giving the place.",
+            "speak": "At the station.",
+            "contrast_type": "repeated_prior_answer",
+            "feedback": "The place is already clear. Now close the plan."
+          },
+          {
+            "id": "r3c",
+            "surface": "I can't today.",
+            "translation": "I am refusing.",
+            "speak": "I can't today.",
+            "contrast_type": "wrong_act_refusal",
+            "feedback": "This would cancel the plan. If the plan works, use a closing phrase."
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t4",
+      "speaker": "npc",
+      "act": "closing",
+      "act_slots": {
+        "topic": "goodbye",
+        "keyword": "see you",
+        "gloss": "end the chat"
+      },
+      "learning_role": "listen_only",
+      "surface": "See you.",
+      "speak": "See you.",
+      "translation": "Your friend is ending the chat.",
+      "friend": {
+        "hint": "The conversation is ending. Echoing the goodbye is fine."
+      },
+      "reply_set": {
+        "correct": "r4a",
+        "choices": [
+          {
+            "id": "r4a",
+            "surface": "See you.",
+            "translation": "I say goodbye.",
+            "speak": "See you."
+          },
+          {
+            "id": "r4b",
+            "surface": "No receipt, thanks.",
+            "translation": "I do not need a receipt.",
+            "speak": "No receipt, thanks.",
+            "contrast_type": "wrong_scenario_payment",
+            "feedback": "That is for checkout. This is a casual plan."
+          },
+          {
+            "id": "r4c",
+            "surface": "Tomorrow is fine.",
+            "translation": "I am confirming the day.",
+            "speak": "Tomorrow is fine.",
+            "contrast_type": "overly_redundant_answer",
+            "feedback": "The day and time are already set. A goodbye is more natural."
+          }
+        ]
+      },
+      "closing": {
+        "act": "plan_set",
+        "learning_role": "context_support",
+        "surface": "The meetup time is set.",
+        "speak": "The meetup time is set.",
+        "translation": "The plan is complete."
+      }
+    }
+  ],
+  "formula_moments": [
+    {
+      "after_turn": "t1",
+      "pattern_id": "en.schedule.time_suggestion.v1"
+    }
+  ],
+  "notes": {
+    "review_policy": "AI-authored candidate. Requires AI review, runtime smoke, and tracked native review before any stronger status.",
+    "canonical_policy": "Staging candidate only. Do not write back to manifests, production exports, schemas, or legacy content.",
+    "authoring_source": "Authored from ML-0 neutral brief, not Korean surface text.",
+    "register_note": "Uses casual friend speech for the scheduling scenario."
+  }
+}

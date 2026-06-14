@@ -1,0 +1,263 @@
+{
+  "schema_version": "scenario_pack.v1",
+  "scenario_id": "a2_plan_tomorrow_morning",
+  "title": "明日の朝の予定を話す",
+  "setting_label": "友だちと予定を確認",
+  "wrap_title": "明日の朝の予定",
+  "wrap_friend": "你剛剛用自然的日文說了明天早上的安排，也補上一個簡單的下一步。",
+  "language": "ja",
+  "ui_language": "zh_tw",
+  "cefr_level": "A2",
+  "source_status": "candidate_runtime_verified",
+  "review_state": "ai_reviewed",
+  "review_status_framework_state": "candidate_runtime_verified",
+  "native_review_state": "native_pending",
+  "scenario": "A friend asks what you plan to do tomorrow morning.",
+  "learner_goal": "Say a near-future plan with one simple sequence and availability.",
+  "target_functions": [
+    "near_future_plan",
+    "simple_sequence",
+    "time_expression"
+  ],
+  "register_notes": "Friendly polite Japanese using です/ます. The tone is casual enough for friends but not plain-form intimate speech.",
+  "production_mode_default": {
+    "required": [
+      "choice"
+    ],
+    "optional_visible": [
+      "speaking"
+    ],
+    "optional_hidden": [
+      "typing"
+    ]
+  },
+  "support_text": "友だちが明日の朝の予定を聞いています。最初にすることと、その次のことを短く言いましょう。",
+  "roles": {
+    "npc": {
+      "label": "友だち"
+    },
+    "learner": {
+      "label": "你"
+    }
+  },
+  "turns": [
+    {
+      "turn_id": "t1",
+      "speaker": "npc",
+      "act": "info_request",
+      "act_slots": {
+        "topic": "tomorrow morning plan",
+        "keyword": "明日の朝",
+        "gloss": "明天早上"
+      },
+      "learning_role": "listen_only",
+      "surface": "明日の朝は何をする予定ですか。",
+      "speak": "明日の朝は何をする予定ですか。",
+      "translation": "明天早上你打算做什麼？",
+      "friend": {
+        "hint": "相手は明日の朝の予定を聞いています。予定です、または行くつもりですで答えられます。"
+      },
+      "reply_set": {
+        "correct": "r1a",
+        "choices": [
+          {
+            "id": "r1a",
+            "surface": "朝、図書館に行く予定です。",
+            "translation": "早上我打算去圖書館。",
+            "speak": "朝、図書館に行く予定です。",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r1b",
+            "surface": "昨日、図書館に行きました。",
+            "translation": "我昨天去了圖書館。",
+            "speak": "昨日、図書館に行きました。",
+            "contrast_type": "wrong_time_past",
+            "feedback": "聞かれているのは明日の朝の予定です。昨日の話ではありません。"
+          },
+          {
+            "id": "r1c",
+            "surface": "図書館はどこですか。",
+            "translation": "圖書館在哪裡？",
+            "speak": "図書館はどこですか。",
+            "contrast_type": "wrong_function_location_question",
+            "feedback": "これは場所を聞く文です。ここでは自分の予定を言います。"
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t2",
+      "speaker": "npc",
+      "act": "followup_sequence",
+      "act_slots": {
+        "topic": "after library",
+        "keyword": "そのあと",
+        "gloss": "之後"
+      },
+      "learning_role": "listen_only",
+      "surface": "そのあとは何をしますか。",
+      "speak": "そのあとは何をしますか。",
+      "translation": "那之後你要做什麼？",
+      "friend": {
+        "hint": "そのあと means after that. Add one simple next step."
+      },
+      "inline_explain": {
+        "pattern_id": "ja.a2.plan.sequence.yotei.v1",
+        "title": "予定です = 打算",
+        "explain": "Use verb dictionary form + 予定です to say what you plan to do.",
+        "items": [
+          {
+            "surface": "行く予定です",
+            "translation": "打算去",
+            "speak": "行く予定です"
+          },
+          {
+            "surface": "勉強する予定です",
+            "translation": "打算讀書",
+            "speak": "勉強する予定です"
+          }
+        ]
+      },
+      "reply_set": {
+        "correct": "r2a",
+        "choices": [
+          {
+            "id": "r2a",
+            "surface": "そのあと、カフェで勉強する予定です。",
+            "translation": "那之後，我打算在咖啡店讀書。",
+            "speak": "そのあと、カフェで勉強する予定です。",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r2b",
+            "surface": "カフェで会いましょう。",
+            "translation": "我們在咖啡店見吧。",
+            "speak": "カフェで会いましょう。",
+            "contrast_type": "wrong_function_meeting_place",
+            "feedback": "これは待ち合わせの提案です。今は次にすることを聞かれています。"
+          },
+          {
+            "id": "r2c",
+            "surface": "今、勉強しました。",
+            "translation": "我現在讀過書了。",
+            "speak": "今、勉強しました。",
+            "contrast_type": "wrong_time_aspect",
+            "feedback": "明日の次の予定を言う場面です。過去形は合いません。"
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t3",
+      "speaker": "npc",
+      "act": "time_confirmation",
+      "act_slots": {
+        "topic": "availability after plan",
+        "keyword": "昼前",
+        "gloss": "午餐前"
+      },
+      "learning_role": "listen_only",
+      "surface": "じゃあ、昼前は少し時間がありますか。",
+      "speak": "じゃあ、昼前は少し時間がありますか。",
+      "translation": "那午餐前你有一點時間嗎？",
+      "friend": {
+        "hint": "昼前 means before noon or before lunch. Say an approximate time when you are free."
+      },
+      "reply_set": {
+        "correct": "r3a",
+        "choices": [
+          {
+            "id": "r3a",
+            "surface": "はい、11時ごろなら大丈夫です。",
+            "translation": "可以，11 點左右的話沒問題。",
+            "speak": "はい、十一時ごろなら大丈夫です。",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r3b",
+            "surface": "いいえ、昨日は大丈夫でした。",
+            "translation": "不，昨天可以。",
+            "speak": "いいえ、昨日は大丈夫でした。",
+            "contrast_type": "wrong_time_past",
+            "feedback": "相手は明日の昼前のことを聞いています。昨日の話ではありません。"
+          },
+          {
+            "id": "r3c",
+            "surface": "図書館は11時に閉まりますか。",
+            "translation": "圖書館 11 點關門嗎？",
+            "speak": "図書館は十一時に閉まりますか。",
+            "contrast_type": "wrong_focus_facility_hours",
+            "feedback": "今は施設の時間ではなく、あなたに時間があるかを聞かれています。"
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t4",
+      "speaker": "npc",
+      "act": "closing_confirmation",
+      "act_slots": {
+        "topic": "plan confirmed"
+      },
+      "learning_role": "listen_only",
+      "surface": "わかりました。じゃあ、11時に連絡しますね。",
+      "speak": "わかりました。じゃあ、十一時に連絡しますね。",
+      "translation": "知道了。那我 11 點聯絡你。",
+      "friend": {
+        "hint": "予定が確認できました。短く自然に返しましょう。"
+      },
+      "reply_set": {
+        "correct": "r4a",
+        "choices": [
+          {
+            "id": "r4a",
+            "surface": "はい、明日会いましょう。",
+            "translation": "好，明天見。",
+            "speak": "はい、明日会いましょう。"
+          },
+          {
+            "id": "r4b",
+            "surface": "もう一度注文します。",
+            "translation": "我再點一次。",
+            "speak": "もう一度注文します。",
+            "contrast_type": "wrong_scenario_ordering",
+            "feedback": "これは注文の場面です。今は明日の予定を確認しています。"
+          },
+          {
+            "id": "r4c",
+            "surface": "部屋を変えたいです。",
+            "translation": "我想換房間。",
+            "speak": "部屋を変えたいです。",
+            "contrast_type": "wrong_scenario_hotel",
+            "feedback": "これはホテルの場面です。ここでは明日会うことを確認します。"
+          }
+        ]
+      }
+    }
+  ],
+  "choice_sets": [
+    "t1.reply_set",
+    "t2.reply_set",
+    "t3.reply_set",
+    "t4.reply_set"
+  ],
+  "feedback": "Distractors test wrong time, wrong function, and wrong scenario without offering valid alternate responses.",
+  "tts_segments": [
+    "朝、図書館に行く予定です。",
+    "そのあと、カフェで勉強する予定です。",
+    "はい、11時ごろなら大丈夫です。",
+    "はい、明日会いましょう。"
+  ],
+  "formula_moments": [
+    {
+      "after_turn": "t2",
+      "pattern_id": "ja.a2.plan.sequence.yotei.v1"
+    }
+  ],
+  "runtime_notes": "JA A2 pilot candidate. Structural checks and two AI semantic review passes completed on 2026-06-14; runtime-style metadata promoted for pilot handoff. Browser/TTS runtime smoke remains native/product pending.",
+  "notes": {
+    "authoring_policy": "Fresh-authored from the neutral A2 brief. KO surfaces were read only for schema shape and not translated.",
+    "a2_boundary": "Near-future plan plus one simple sequence and approximate availability; no formal itinerary or B1 explanation."
+  }
+}

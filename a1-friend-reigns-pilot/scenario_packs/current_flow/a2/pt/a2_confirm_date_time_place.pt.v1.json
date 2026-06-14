@@ -1,0 +1,267 @@
+{
+  "schema_version": "scenario_pack.v1",
+  "scenario_id": "a2_confirm_date_time_place",
+  "title": "Confirmar Data, Hora e Lugar",
+  "setting_label": "Conferindo uma mensagem curta",
+  "wrap_title": "Detalhes da mensagem",
+  "wrap_friend": "你剛剛從短訊息中抓出日期、時間和地點，並用簡單葡語確認。",
+  "language": "pt",
+  "ui_language": "zh_tw",
+  "cefr_level": "A2",
+  "source_status": "candidate_runtime_verified",
+  "review_state": "ai_reviewed",
+  "review_status_framework_state": "candidate_runtime_verified",
+  "native_review_state": "native_pending",
+  "scenario": "Você confirma data, hora e lugar a partir de uma mensagem curta.",
+  "learner_goal": "Entender uma mensagem curta e confirmar os detalhes principais.",
+  "target_functions": [
+    "message_comprehension",
+    "date_time_place_confirmation",
+    "repair_check"
+  ],
+  "register_notes": "Português brasileiro cotidiano. A mensagem é curta, natural e sem instruções de rota.",
+  "input_message": {
+    "surface": "Amanhã, às 10h, vamos nos encontrar na frente da prefeitura.",
+    "translation": "明天上午十點，我們在市政廳前面見。"
+  },
+  "production_mode_default": {
+    "required": [
+      "choice"
+    ],
+    "optional_visible": [
+      "speaking"
+    ],
+    "optional_hidden": [
+      "typing"
+    ]
+  },
+  "support_text": "Leia a mensagem curta da sua amiga. Confirme a data, a hora e o lugar.",
+  "roles": {
+    "npc": {
+      "label": "amiga"
+    },
+    "learner": {
+      "label": "você"
+    }
+  },
+  "turns": [
+    {
+      "turn_id": "t1",
+      "speaker": "npc",
+      "act": "message_reference",
+      "act_slots": {
+        "topic": "mensagem enviada",
+        "keyword": "mensagem",
+        "gloss": "訊息"
+      },
+      "learning_role": "listen_only",
+      "surface": "Você viu a minha mensagem?",
+      "speak": "Você viu a minha mensagem?",
+      "translation": "你看過我的訊息了嗎？",
+      "friend": {
+        "hint": "訊息寫著：Amanhã, às 10h, vamos nos encontrar na frente da prefeitura. 先確認日期和時間。"
+      },
+      "reply_set": {
+        "correct": "r1a",
+        "choices": [
+          {
+            "id": "r1a",
+            "surface": "Sim, amanhã às dez, né?",
+            "translation": "有，明天十點，對吧？",
+            "speak": "Sim, amanhã às dez, né?",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r1b",
+            "surface": "Sim, hoje à noite às dez, né?",
+            "translation": "有，今天晚上十點，對吧？",
+            "speak": "Sim, hoje à noite às dez, né?",
+            "contrast_type": "wrong_date_time",
+            "feedback": "訊息說的是明天十點，不是今天晚上十點。"
+          },
+          {
+            "id": "r1c",
+            "surface": "Sim, vi o cardápio.",
+            "translation": "有，我看過菜單了。",
+            "speak": "Sim, vi o cardápio.",
+            "contrast_type": "wrong_scenario_menu",
+            "feedback": "這則訊息是在說見面的時間和地點，不是菜單。"
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t2",
+      "speaker": "npc",
+      "act": "place_prompt",
+      "act_slots": {
+        "topic": "lugar",
+        "keyword": "onde",
+        "gloss": "哪裡"
+      },
+      "learning_role": "listen_only",
+      "surface": "Isso. Onde a gente vai se encontrar?",
+      "speak": "Isso. Onde a gente vai se encontrar?",
+      "translation": "對。我們要在哪裡見？",
+      "friend": {
+        "hint": "訊息裡的地點是 na frente da prefeitura。"
+      },
+      "inline_explain": {
+        "pattern_id": "pt.a2.confirm.place.na_frente_de.v1",
+        "title": "na frente de + lugar",
+        "explain": "用 na frente de 表示在某個地點前面。",
+        "items": [
+          {
+            "surface": "na frente da prefeitura",
+            "translation": "在市政廳前面",
+            "speak": "na frente da prefeitura"
+          },
+          {
+            "surface": "na frente da cafeteria",
+            "translation": "在咖啡店前面",
+            "speak": "na frente da cafeteria"
+          }
+        ]
+      },
+      "reply_set": {
+        "correct": "r2a",
+        "choices": [
+          {
+            "id": "r2a",
+            "surface": "Na frente da prefeitura.",
+            "translation": "在市政廳前面。",
+            "speak": "Na frente da prefeitura.",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r2b",
+            "surface": "Dentro da prefeitura.",
+            "translation": "在市政廳裡面。",
+            "speak": "Dentro da prefeitura.",
+            "contrast_type": "wrong_place_relation",
+            "feedback": "訊息說的是在市政廳前面，不是在裡面。"
+          },
+          {
+            "id": "r2c",
+            "surface": "Vou descansar em casa.",
+            "translation": "我打算在家休息。",
+            "speak": "Vou descansar em casa.",
+            "contrast_type": "wrong_function_plan",
+            "feedback": "這是在說自己的計畫，沒有確認見面地點。"
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t3",
+      "speaker": "npc",
+      "act": "small_change_notice",
+      "act_slots": {
+        "topic": "pequeno aviso",
+        "keyword": "se",
+        "gloss": "如果"
+      },
+      "learning_role": "listen_only",
+      "surface": "Se eu atrasar, te mando mensagem.",
+      "speak": "Se eu atrasar, te mando mensagem.",
+      "translation": "如果我晚到，我會傳訊息給你。",
+      "friend": {
+        "hint": "對方只是說如果自己晚到會傳訊息。簡短回覆即可。"
+      },
+      "reply_set": {
+        "correct": "r3a",
+        "choices": [
+          {
+            "id": "r3a",
+            "surface": "Tá bom, entendi.",
+            "translation": "好，我知道了。",
+            "speak": "Tá bom, entendi."
+          },
+          {
+            "id": "r3b",
+            "surface": "Tá bom, estou atrasado.",
+            "translation": "好，我遲到了。",
+            "speak": "Tá bom, estou atrasado.",
+            "contrast_type": "wrong_subject_status",
+            "feedback": "對方是在說自己可能晚到，不是在說你遲到。"
+          },
+          {
+            "id": "r3c",
+            "surface": "Se o ônibus atrasar, eu ligo.",
+            "translation": "如果公車晚了，我會打電話。",
+            "speak": "Se o ônibus atrasar, eu ligo.",
+            "contrast_type": "wrong_focus_self_delay",
+            "feedback": "這把焦點改成你自己的可能晚到。現在只要回應對方。"
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t4",
+      "speaker": "npc",
+      "act": "final_confirmation",
+      "act_slots": {
+        "topic": "confirmação final"
+      },
+      "learning_role": "listen_only",
+      "surface": "Perfeito. Até amanhã.",
+      "speak": "Perfeito. Até amanhã.",
+      "translation": "太好了。明天見。",
+      "friend": {
+        "hint": "細節都清楚了。自然收尾。"
+      },
+      "reply_set": {
+        "correct": "r4a",
+        "choices": [
+          {
+            "id": "r4a",
+            "surface": "Até amanhã.",
+            "translation": "明天見。",
+            "speak": "Até amanhã."
+          },
+          {
+            "id": "r4b",
+            "surface": "Até ontem.",
+            "translation": "昨天見。",
+            "speak": "Até ontem.",
+            "contrast_type": "wrong_time_expression",
+            "feedback": "Até ontem 不自然。這裡要說 até amanhã。"
+          },
+          {
+            "id": "r4c",
+            "surface": "Pode trazer a conta?",
+            "translation": "可以拿帳單來嗎？",
+            "speak": "Pode trazer a conta?",
+            "contrast_type": "wrong_scenario_payment",
+            "feedback": "這是付款句。這裡只是結束見面確認。"
+          }
+        ]
+      }
+    }
+  ],
+  "choice_sets": [
+    "t1.reply_set",
+    "t2.reply_set",
+    "t3.reply_set",
+    "t4.reply_set"
+  ],
+  "feedback": "Distractors test date, time, place relation, and unrelated scenario language.",
+  "tts_segments": [
+    "Sim, amanhã às dez, né?",
+    "Na frente da prefeitura.",
+    "Tá bom, entendi.",
+    "Até amanhã."
+  ],
+  "formula_moments": [
+    {
+      "after_turn": "t2",
+      "pattern_id": "pt.a2.confirm.place.na_frente_de.v1"
+    }
+  ],
+  "runtime_notes": "Fresh PT A2 candidate. Structural checks and two AI semantic review passes completed on 2026-06-14 before metadata promotion.",
+  "notes": {
+    "authoring_policy": "Fresh-authored from the neutral A2 brief. KO/JA/EN/TH were used only as schema-shape references.",
+    "a2_boundary": "Short message comprehension with date, time, and place confirmation; avoids navigation or multi-step directions.",
+    "gender_note": "Uses masculine atrasado in one distractor only; native review may decide whether to neutralize gendered forms across the PT course."
+  }
+}

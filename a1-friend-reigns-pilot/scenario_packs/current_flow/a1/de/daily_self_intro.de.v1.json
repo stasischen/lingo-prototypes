@@ -1,0 +1,236 @@
+{
+  "schema_version": "scenario_pack.v1",
+  "scenario_id": "daily_self_intro",
+  "brief_id": "ml3_a1_012_daily_self_intro",
+  "source_neutral_brief": "release-aggregator/docs/tasks/A1_MULTILINGUAL_KO_B1_PARALLEL_ORCHESTRATION/work_products/ml0/ML3_NEUTRAL_ADAPTATION_BRIEFS_20260614.md#brief-ml3-a1-012-daily-self-introduction",
+  "blueprint_ledger": "release-aggregator/docs/tasks/A1_MULTILINGUAL_KO_B1_PARALLEL_ORCHESTRATION/work_products/ml0/ML3_BLUEPRINT_LEDGER_20260614.md",
+  "repo": "content-de",
+  "staging_path": "content/core/content_assets/scenario_packs/current_flow/daily_self_intro.de.v1.json",
+  "title": "Sich vorstellen",
+  "setting_label": "Sprachaustausch",
+  "wrap_title": "Vorstellung geschafft",
+  "wrap_friend": "你用友善自然的德語打招呼、說名字，並回答自己正在學什麼。",
+  "language": "de",
+  "ui_language": "zh_tw",
+  "source_status": "candidate_runtime_verified",
+  "review_state": "draft",
+  "review_status_framework_state": "candidate_runtime_verified",
+  "native_review_state": "native_pending",
+  "production_mode_default": {
+    "required": [
+      "choice"
+    ],
+    "optional_visible": [
+      "speaking"
+    ],
+    "optional_hidden": [
+      "typing"
+    ]
+  },
+  "support_text": "你在語言交換或課前休息區第一次見到同學。用友善的 du 語氣介紹名字和學習語言。",
+  "roles": {
+    "npc": {
+      "label": "Teilnehmer"
+    },
+    "learner": {
+      "label": "Neuer Teilnehmer"
+    }
+  },
+  "turns": [
+    {
+      "turn_id": "t1",
+      "speaker": "npc",
+      "act": "first_meeting_greeting",
+      "act_slots": {
+        "topic": "greeting",
+        "keyword": "hallo",
+        "gloss": "hello"
+      },
+      "learning_role": "listen_only",
+      "surface": "Hallo, ich bin Mia.",
+      "speak": "Hallo, ich bin Mia.",
+      "translation": "你好，我是 Mia。",
+      "friend": {
+        "hint": "用 Hallo 回應，再說名字。"
+      },
+      "reply_set": {
+        "correct": "r1a",
+        "choices": [
+          {
+            "id": "r1a",
+            "surface": "Hallo, ich bin Lukas.",
+            "translation": "你好，我是 Lukas。",
+            "speak": "Hallo, ich bin Lukas.",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r1b",
+            "surface": "Eine Fahrkarte nach Berlin, bitte.",
+            "translation": "請給我一張到柏林的票。",
+            "speak": "Eine Fahrkarte nach Berlin, bitte.",
+            "contrast_type": "travel_ticket_phrase",
+            "feedback": "這是在買票。現在是第一次見面介紹自己。"
+          },
+          {
+            "id": "r1c",
+            "surface": "Meine Telefonnummer ist hier.",
+            "translation": "我的電話號碼在這裡。",
+            "speak": "Meine Telefonnummer ist hier.",
+            "contrast_type": "private_contact_detail",
+            "feedback": "這會分享私人聯絡方式，本情境只需要名字。"
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t2",
+      "speaker": "npc",
+      "act": "language_learning_question",
+      "act_slots": {
+        "topic": "learning_language",
+        "keyword": "lernst",
+        "gloss": "you learn"
+      },
+      "learning_role": "listen_only",
+      "surface": "Welche Sprache lernst du?",
+      "speak": "Welche Sprache lernst du?",
+      "translation": "你在學哪種語言？",
+      "friend": {
+        "hint": "簡短說 Ich lerne...。"
+      },
+      "reply_set": {
+        "correct": "r2a",
+        "choices": [
+          {
+            "id": "r2a",
+            "surface": "Ich lerne Deutsch.",
+            "translation": "我在學德語。",
+            "speak": "Ich lerne Deutsch.",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r2b",
+            "surface": "Mit Karte, bitte.",
+            "translation": "刷卡，謝謝。",
+            "speak": "Mit Karte, bitte.",
+            "contrast_type": "payment_answer",
+            "feedback": "這是在回答付款方式，不是在回答學什麼語言。"
+          },
+          {
+            "id": "r2c",
+            "surface": "Können Sie das wiederholen?",
+            "translation": "您可以再說一次嗎？",
+            "speak": "Können Sie das wiederholen?",
+            "contrast_type": "formal_repair_when_answer_expected",
+            "feedback": "如果聽懂了問題，這裡應該直接回答；而且這句是服務場景的 Sie 語氣。"
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t3",
+      "speaker": "npc",
+      "act": "friendly_close_prompt",
+      "act_slots": {
+        "topic": "close",
+        "keyword": "freut mich",
+        "gloss": "nice to meet you"
+      },
+      "learning_role": "listen_only",
+      "surface": "Schön, dich kennenzulernen.",
+      "speak": "Schön, dich kennenzulernen.",
+      "translation": "很高興認識你。",
+      "friend": {
+        "hint": "用 Freut mich auch 自然回應。"
+      },
+      "reply_set": {
+        "correct": "r3a",
+        "choices": [
+          {
+            "id": "r3a",
+            "surface": "Freut mich auch.",
+            "translation": "我也很高興。",
+            "speak": "Freut mich auch."
+          },
+          {
+            "id": "r3b",
+            "surface": "Ich möchte bezahlen.",
+            "translation": "我想付款。",
+            "speak": "Ich möchte bezahlen.",
+            "contrast_type": "service_payment_phrase",
+            "feedback": "這是服務場景付款，不是第一次見面的回應。"
+          },
+          {
+            "id": "r3c",
+            "surface": "Von welchem Gleis?",
+            "translation": "從哪個月台？",
+            "speak": "Von welchem Gleis?",
+            "contrast_type": "station_question",
+            "feedback": "這是在車站問月台，和自我介紹無關。"
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t4",
+      "speaker": "npc",
+      "act": "social_close",
+      "act_slots": {
+        "topic": "close",
+        "keyword": "willkommen",
+        "gloss": "welcome"
+      },
+      "learning_role": "listen_only",
+      "surface": "Willkommen in der Gruppe!",
+      "speak": "Willkommen in der Gruppe!",
+      "translation": "歡迎加入這個小組！",
+      "friend": {
+        "hint": "最後簡短道謝。"
+      },
+      "reply_set": {
+        "correct": "r4a",
+        "choices": [
+          {
+            "id": "r4a",
+            "surface": "Danke!",
+            "translation": "謝謝！",
+            "speak": "Danke!"
+          },
+          {
+            "id": "r4b",
+            "surface": "Ein Wasser, bitte.",
+            "translation": "請給我一杯水。",
+            "speak": "Ein Wasser, bitte.",
+            "contrast_type": "food_drink_order",
+            "feedback": "這是在點飲料，不是回應歡迎。"
+          },
+          {
+            "id": "r4c",
+            "surface": "Sprechen Sie bitte langsamer.",
+            "translation": "請您說慢一點。",
+            "speak": "Sprechen Sie bitte langsamer.",
+            "contrast_type": "formal_repair_after_clear_close",
+            "feedback": "這是服務語氣的修復用語；現在只要回應歡迎。"
+          }
+        ]
+      },
+      "closing": true
+    }
+  ],
+  "formula_moments": [
+    {
+      "after_turn": "t1",
+      "pattern_id": "de.self_intro.hallo_ich_bin.v1"
+    },
+    {
+      "after_turn": "t2",
+      "pattern_id": "de.self_intro.ich_lerne.v1"
+    }
+  ],
+  "notes": {
+    "authoring_source": "Authored from ML-3 neutral brief ml3_a1_012_daily_self_intro; KO and other target-language packs were not used as translation sources.",
+    "review_policy": "AI-authored candidate only; keep review_state=draft, review_status_framework_state=candidate_needs_review, native_review_state=native_pending until tracked review evidence exists.",
+    "canonical_policy": "Staging current-flow candidate only. Do not add to manifests, production exports, schema, runtime, frontend, review artifacts, or legacy content.",
+    "german_voice_note": "Uses friendly du register for a peer language-exchange setting; service scenarios in this wave use Sie."
+  }
+}

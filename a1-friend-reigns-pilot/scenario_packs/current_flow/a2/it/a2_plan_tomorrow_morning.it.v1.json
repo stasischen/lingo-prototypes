@@ -1,0 +1,262 @@
+{
+  "schema_version": "scenario_pack.v1",
+  "scenario_id": "a2_plan_tomorrow_morning",
+  "title": "Programma per domani mattina",
+  "setting_label": "Chat con un amico",
+  "wrap_title": "Programma di domani mattina",
+  "wrap_friend": "你剛剛用簡單義大利語說了明天早上的安排，並接上一個下一步。",
+  "language": "it",
+  "ui_language": "zh_tw",
+  "cefr_level": "A2",
+  "source_status": "candidate_runtime_verified",
+  "review_state": "ai_reviewed",
+  "review_status_framework_state": "candidate_runtime_verified",
+  "native_review_state": "native_pending",
+  "scenario": "Un amico ti chiede cosa farai domani mattina.",
+  "learner_goal": "Dire un programma per il futuro vicino e aggiungere un passo successivo semplice.",
+  "target_functions": [
+    "near_future_plan",
+    "simple_sequence",
+    "time_expression"
+  ],
+  "register_notes": "Italiano quotidiano e amichevole. Usa il presente con valore futuro, poi, verso e una chiusura breve.",
+  "production_mode_default": {
+    "required": [
+      "choice"
+    ],
+    "optional_visible": [
+      "speaking"
+    ],
+    "optional_hidden": [
+      "typing"
+    ]
+  },
+  "support_text": "Il tuo amico ti chiede cosa fai domani mattina. Di' prima un programma, poi aggiungi il passo successivo.",
+  "roles": {
+    "npc": {
+      "label": "Amico"
+    },
+    "learner": {
+      "label": "Tu"
+    }
+  },
+  "turns": [
+    {
+      "turn_id": "t1",
+      "speaker": "npc",
+      "act": "info_request",
+      "act_slots": {
+        "topic": "tomorrow morning plan",
+        "keyword": "domani mattina",
+        "gloss": "明天早上"
+      },
+      "learning_role": "listen_only",
+      "surface": "Che cosa fai domani mattina?",
+      "speak": "Che cosa fai domani mattina?",
+      "translation": "你明天早上要做什麼？",
+      "friend": {
+        "hint": "La domanda riguarda domani mattina. Usa il presente italiano per un programma vicino."
+      },
+      "reply_set": {
+        "correct": "r1a",
+        "choices": [
+          {
+            "id": "r1a",
+            "surface": "Domani mattina vado in biblioteca.",
+            "translation": "明天早上我去圖書館。",
+            "speak": "Domani mattina vado in biblioteca.",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r1b",
+            "surface": "Ieri sono andato in biblioteca.",
+            "translation": "我昨天去了圖書館。",
+            "speak": "Ieri sono andato in biblioteca.",
+            "contrast_type": "wrong_time_past",
+            "feedback": "Il tuo amico chiede di domani mattina, non di ieri."
+          },
+          {
+            "id": "r1c",
+            "surface": "Dov'è la biblioteca?",
+            "translation": "圖書館在哪裡？",
+            "speak": "Dov'è la biblioteca?",
+            "contrast_type": "wrong_function_location_question",
+            "feedback": "Questa è una domanda sul luogo. Non dice il tuo programma."
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t2",
+      "speaker": "npc",
+      "act": "followup_sequence",
+      "act_slots": {
+        "topic": "after library",
+        "keyword": "poi",
+        "gloss": "接著"
+      },
+      "learning_role": "listen_only",
+      "surface": "E poi che cosa fai?",
+      "speak": "E poi che cosa fai?",
+      "translation": "那之後你要做什麼？",
+      "friend": {
+        "hint": "Poi introduce il passo successivo. Rispondi con una sola azione."
+      },
+      "inline_explain": {
+        "pattern_id": "it.a2.plan.sequence.presente_poi.v1",
+        "title": "presente + poi",
+        "explain": "In italiano il presente puo' indicare un programma vicino. Usa poi per aggiungere il passo successivo.",
+        "items": [
+          {
+            "surface": "Domani vado in biblioteca.",
+            "translation": "明天我去圖書館。",
+            "speak": "Domani vado in biblioteca."
+          },
+          {
+            "surface": "Poi prendo un caffè.",
+            "translation": "接著我喝杯咖啡。",
+            "speak": "Poi prendo un caffè."
+          }
+        ]
+      },
+      "reply_set": {
+        "correct": "r2a",
+        "choices": [
+          {
+            "id": "r2a",
+            "surface": "Poi prendo un caffè vicino alla piazza.",
+            "translation": "接著我在廣場附近喝杯咖啡。",
+            "speak": "Poi prendo un caffè vicino alla piazza.",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r2b",
+            "surface": "Vediamoci in piazza.",
+            "translation": "我們在廣場見吧。",
+            "speak": "Vediamoci in piazza.",
+            "contrast_type": "wrong_function_meeting_place",
+            "feedback": "Questo propone un luogo d'incontro. Il tuo amico chiede la tua prossima attività."
+          },
+          {
+            "id": "r2c",
+            "surface": "Sto prendendo un caffè adesso.",
+            "translation": "我現在正在喝咖啡。",
+            "speak": "Sto prendendo un caffè adesso.",
+            "contrast_type": "wrong_time_now",
+            "feedback": "Questa frase parla di adesso. La domanda riguarda il prossimo passo domani."
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t3",
+      "speaker": "npc",
+      "act": "time_confirmation",
+      "act_slots": {
+        "topic": "free before lunch",
+        "keyword": "verso",
+        "gloss": "大約"
+      },
+      "learning_role": "listen_only",
+      "surface": "Allora sei libero prima di pranzo?",
+      "speak": "Allora sei libero prima di pranzo?",
+      "translation": "所以你午餐前有空嗎？",
+      "friend": {
+        "hint": "Prima di pranzo indica la tarda mattina. Usa verso piu' un'ora."
+      },
+      "reply_set": {
+        "correct": "r3a",
+        "choices": [
+          {
+            "id": "r3a",
+            "surface": "Sì, sono libero verso le undici.",
+            "translation": "可以，我十一點左右有空。",
+            "speak": "Sì, sono libero verso le undici."
+          },
+          {
+            "id": "r3b",
+            "surface": "No, ero libero ieri.",
+            "translation": "不，我昨天有空。",
+            "speak": "No, ero libero ieri.",
+            "contrast_type": "wrong_time_past",
+            "feedback": "La domanda riguarda domani prima di pranzo, non ieri."
+          },
+          {
+            "id": "r3c",
+            "surface": "La biblioteca chiude alle undici?",
+            "translation": "圖書館十一點關門嗎？",
+            "speak": "La biblioteca chiude alle undici?",
+            "contrast_type": "wrong_focus_opening_hours",
+            "feedback": "Il tuo amico chiede quando sei libero."
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t4",
+      "speaker": "npc",
+      "act": "closing_confirmation",
+      "act_slots": {
+        "topic": "plan confirmed"
+      },
+      "learning_role": "listen_only",
+      "surface": "Perfetto. Ti scrivo verso le undici.",
+      "speak": "Perfetto. Ti scrivo verso le undici.",
+      "translation": "太好了。我十一點左右傳訊息給你。",
+      "friend": {
+        "hint": "Il programma è chiaro. Chiudi con una risposta breve e amichevole."
+      },
+      "reply_set": {
+        "correct": "r4a",
+        "choices": [
+          {
+            "id": "r4a",
+            "surface": "Va bene, a domani.",
+            "translation": "好，明天見。",
+            "speak": "Va bene, a domani."
+          },
+          {
+            "id": "r4b",
+            "surface": "Lo ordino di nuovo.",
+            "translation": "我會再點一次。",
+            "speak": "Lo ordino di nuovo.",
+            "contrast_type": "wrong_scenario_ordering",
+            "feedback": "Sembra una frase per ordinare qualcosa. Qui stai confermando il piano di domani."
+          },
+          {
+            "id": "r4c",
+            "surface": "Vorrei cambiare camera.",
+            "translation": "我想換房間。",
+            "speak": "Vorrei cambiare camera.",
+            "contrast_type": "wrong_scenario_hotel",
+            "feedback": "Questa è una frase da hotel. Qui basta un saluto breve."
+          }
+        ]
+      }
+    }
+  ],
+  "choice_sets": [
+    "t1.reply_set",
+    "t2.reply_set",
+    "t3.reply_set",
+    "t4.reply_set"
+  ],
+  "feedback": "I distrattori verificano tempo sbagliato, funzione sbagliata e scenario sbagliato senza creare risposte alternative valide.",
+  "tts_segments": [
+    "Domani mattina vado in biblioteca.",
+    "Poi prendo un caffè vicino alla piazza.",
+    "Sì, sono libero verso le undici.",
+    "Va bene, a domani."
+  ],
+  "formula_moments": [
+    {
+      "after_turn": "t2",
+      "pattern_id": "it.a2.plan.sequence.presente_poi.v1"
+    }
+  ],
+  "runtime_notes": "Fresh IT A2 candidate. Structural checks and two AI semantic review passes completed on 2026-06-14 before metadata promotion.",
+  "notes": {
+    "authoring_policy": "Fresh-authored from the neutral A2 brief. KO/JA/EN/TH were used only as schema-shape and workflow references.",
+    "a2_boundary": "Uses a near-future plan, a simple sequence marker, and approximate availability; avoids a formal itinerary."
+  }
+}

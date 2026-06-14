@@ -1,0 +1,263 @@
+{
+  "schema_version": "scenario_pack.v1",
+  "scenario_id": "a2_explain_simple_delay_reason",
+  "title": "Eine kleine Verspätung erklären",
+  "setting_label": "Auf dem Weg zu einem Freund",
+  "wrap_title": "Grund für die Verspätung",
+  "wrap_friend": "你剛剛用簡單德文說明會晚一點到，並給出一個日常理由。",
+  "language": "de",
+  "ui_language": "zh_tw",
+  "cefr_level": "A2",
+  "source_status": "candidate_runtime_verified",
+  "review_state": "ai_reviewed",
+  "review_status_framework_state": "candidate_runtime_verified",
+  "native_review_state": "native_pending",
+  "scenario": "Du kommst ein bisschen später und musst den Grund erklären.",
+  "learner_goal": "Entschuldige dich, nenne einen einfachen Grund und schaetze die Verspätung.",
+  "target_functions": [
+    "apology",
+    "simple_reason",
+    "delay_estimate"
+  ],
+  "register_notes": "Freundliches Alltagsdeutsch. Nur eine harmlose Verspätung; keine Notfaelle, Arbeitssanktionen, Medizin oder formelle Ausrede.",
+  "production_mode_default": {
+    "required": [
+      "choice"
+    ],
+    "optional_visible": [
+      "speaking"
+    ],
+    "optional_hidden": [
+      "typing"
+    ]
+  },
+  "support_text": "Dein Freund fragt, wo du bist. Entschuldige dich, erkläre den einfachen Grund und gib eine kurze Schaetzung.",
+  "roles": {
+    "npc": {
+      "label": "Freund"
+    },
+    "learner": {
+      "label": "Du"
+    }
+  },
+  "turns": [
+    {
+      "turn_id": "t1",
+      "speaker": "npc",
+      "act": "location_check",
+      "act_slots": {
+        "topic": "where are you",
+        "keyword": "gleich da",
+        "gloss": "快到了嗎"
+      },
+      "learning_role": "listen_only",
+      "surface": "Wo bist du? Bist du gleich da?",
+      "speak": "Wo bist du? Bist du gleich da?",
+      "translation": "你在哪裡？快到了嗎？",
+      "friend": {
+        "hint": "Dein Freund fragt, wo du bist. Beginne mit Entschuldigung und sag, dass du etwas später kommst."
+      },
+      "reply_set": {
+        "correct": "r1a",
+        "choices": [
+          {
+            "id": "r1a",
+            "surface": "Entschuldige, ich komme etwas später.",
+            "translation": "不好意思，我會晚一點到。",
+            "speak": "Entschuldige, ich komme etwas später.",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r1b",
+            "surface": "Ja, ich bin gestern angekommen.",
+            "translation": "對，我昨天到了。",
+            "speak": "Ja, ich bin gestern angekommen.",
+            "contrast_type": "wrong_time_past",
+            "feedback": "Dein Freund fragt nach jetzt, nicht nach gestern."
+          },
+          {
+            "id": "r1c",
+            "surface": "Kannst du mir ein Gericht empfehlen?",
+            "translation": "你可以推薦一道菜嗎？",
+            "speak": "Kannst du mir ein Gericht empfehlen?",
+            "contrast_type": "wrong_scenario_restaurant",
+            "feedback": "Das ist Restaurant-Sprache. Hier musst du sagen, dass du später kommst."
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t2",
+      "speaker": "npc",
+      "act": "reason_request",
+      "act_slots": {
+        "topic": "why late",
+        "keyword": "warum",
+        "gloss": "為什麼"
+      },
+      "learning_role": "listen_only",
+      "surface": "Warum? Was ist los?",
+      "speak": "Warum? Was ist los?",
+      "translation": "為什麼？怎麼了？",
+      "friend": {
+        "hint": "Gib einen einfachen Grund aus dem Alltag. Halte es kurz."
+      },
+      "inline_explain": {
+        "pattern_id": "de.a2.reason.delay.weil.v1",
+        "title": "weil + Grund",
+        "explain": "Mit weil gibst du einen einfachen Grund.",
+        "items": [
+          {
+            "surface": "weil der Bus spät ist",
+            "translation": "因為公車晚了",
+            "speak": "weil der Bus spät ist"
+          },
+          {
+            "surface": "weil viel Verkehr ist",
+            "translation": "因為車很多",
+            "speak": "weil viel Verkehr ist"
+          }
+        ]
+      },
+      "reply_set": {
+        "correct": "r2a",
+        "choices": [
+          {
+            "id": "r2a",
+            "surface": "Der Bus ist spät.",
+            "translation": "公車晚了。",
+            "speak": "Der Bus ist spät.",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r2b",
+            "surface": "Ich mag den Bus.",
+            "translation": "我喜歡公車。",
+            "speak": "Ich mag den Bus.",
+            "contrast_type": "wrong_reason_semantics",
+            "feedback": "Das erklärt nicht, warum du später kommst."
+          },
+          {
+            "id": "r2c",
+            "surface": "Wo ist die Bushaltestelle?",
+            "translation": "公車站在哪裡？",
+            "speak": "Wo ist die Bushaltestelle?",
+            "contrast_type": "wrong_function_location_question",
+            "feedback": "Dein Freund fragt nach dem Grund, nicht nach einem Ort."
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t3",
+      "speaker": "npc",
+      "act": "delay_estimate_request",
+      "act_slots": {
+        "topic": "how late",
+        "keyword": "wie spät",
+        "gloss": "會晚多久"
+      },
+      "learning_role": "listen_only",
+      "surface": "Wie viel später kommst du?",
+      "speak": "Wie viel später kommst du?",
+      "translation": "你會晚多久？",
+      "friend": {
+        "hint": "Benutze ungefähr plus Minuten für eine einfache Schaetzung."
+      },
+      "reply_set": {
+        "correct": "r3a",
+        "choices": [
+          {
+            "id": "r3a",
+            "surface": "Ich komme ungefähr zehn Minuten später.",
+            "translation": "我會晚大約十分鐘。",
+            "speak": "Ich komme ungefähr zehn Minuten später.",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r3b",
+            "surface": "Bus Nummer zehn ist gut.",
+            "translation": "十號公車很好。",
+            "speak": "Bus Nummer zehn ist gut.",
+            "contrast_type": "wrong_entity_bus_number",
+            "feedback": "Zehn soll hier Minuten bedeuten, nicht eine Busnummer."
+          },
+          {
+            "id": "r3c",
+            "surface": "Ich komme nicht später.",
+            "translation": "我不會晚到。",
+            "speak": "Ich komme nicht später.",
+            "contrast_type": "contradicts_context",
+            "feedback": "Du hast schon gesagt, dass du später kommst. Jetzt schaetzt du die Zeit."
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t4",
+      "speaker": "npc",
+      "act": "acceptance",
+      "act_slots": {
+        "topic": "wait"
+      },
+      "learning_role": "listen_only",
+      "surface": "Okay, kein Stress.",
+      "speak": "Okay, kein Stress.",
+      "translation": "好，不用急。",
+      "friend": {
+        "hint": "Dein Freund akzeptiert die Verspätung. Danke kurz und schließe natürlich."
+      },
+      "reply_set": {
+        "correct": "r4a",
+        "choices": [
+          {
+            "id": "r4a",
+            "surface": "Danke, ich bin gleich da.",
+            "translation": "謝謝。我很快就到。",
+            "speak": "Danke, ich bin gleich da."
+          },
+          {
+            "id": "r4b",
+            "surface": "Ich habe reserviert.",
+            "translation": "我有預約。",
+            "speak": "Ich habe reserviert.",
+            "contrast_type": "wrong_scenario_reservation",
+            "feedback": "Das klingt nach Hotel oder Restaurant, nicht nach einer kurzen Verspätung."
+          },
+          {
+            "id": "r4c",
+            "surface": "Kann ich jetzt bezahlen?",
+            "translation": "我現在可以付款嗎？",
+            "speak": "Kann ich jetzt bezahlen?",
+            "contrast_type": "wrong_scenario_payment",
+            "feedback": "Das ist ein Bezahlsatz. Hier passt ein einfaches Danke besser."
+          }
+        ]
+      }
+    }
+  ],
+  "choice_sets": [
+    "t1.reply_set",
+    "t2.reply_set",
+    "t3.reply_set",
+    "t4.reply_set"
+  ],
+  "feedback": "Die Distraktoren trennen Grund, Zeitangabe und unpassende Szenario-Sprache.",
+  "tts_segments": [
+    "Entschuldige, ich komme etwas später.",
+    "Der Bus ist spät.",
+    "Ich komme ungefähr zehn Minuten später.",
+    "Danke, ich bin gleich da."
+  ],
+  "formula_moments": [
+    {
+      "after_turn": "t2",
+      "pattern_id": "de.a2.reason.delay.weil.v1"
+    }
+  ],
+  "runtime_notes": "Fresh DE A2 candidate. Structural checks and two AI semantic review passes completed on 2026-06-14 before metadata promotion.",
+  "notes": {
+    "authoring_policy": "Fresh-authored from the neutral A2 brief. KO/JA/EN/TH packs were used only for schema-shape reference.",
+    "a2_boundary": "Low-stakes delay with one reason and one estimate; avoids emergency, health, workplace, or formal excuse content."
+  }
+}

@@ -1,0 +1,261 @@
+{
+  "schema_version": "scenario_pack.v1",
+  "scenario_id": "a2_report_room_problem",
+  "title": "Avisar de un Problema en la Habitación",
+  "setting_label": "En la recepción del hotel",
+  "wrap_title": "Ayuda confirmada",
+  "wrap_friend": "你剛剛完成了一段 A2 住宿服務情境，說明需求、聽懂回覆，並確認下一步。",
+  "language": "es",
+  "ui_language": "zh_tw",
+  "cefr_level": "A2",
+  "source_status": "candidate_runtime_verified",
+  "review_state": "ai_reviewed",
+  "review_status_framework_state": "candidate_runtime_verified",
+  "native_review_state": "native_pending",
+  "scenario": "A hotel/accommodation service scenario: a2_report_room_problem.",
+  "learner_goal": "Report a simple room problem and confirm the next step.",
+  "target_functions": [
+    "room_problem_description",
+    "polite_help_request",
+    "service_next_step_confirmation"
+  ],
+  "register_notes": "Broad neutral Spanish hotel-service register; polite usted forms; no complaint escalation.",
+  "production_mode_default": {
+    "required": [
+      "choice"
+    ],
+    "optional_visible": [
+      "speaking"
+    ],
+    "optional_hidden": [
+      "typing"
+    ]
+  },
+  "support_text": "Avise de un problema sencillo en la habitación y confirme qué hará el personal.",
+  "roles": {
+    "npc": {
+      "label": "Empleado del hotel"
+    },
+    "learner": {
+      "label": "Tú"
+    }
+  },
+  "turns": [
+    {
+      "turn_id": "t1",
+      "speaker": "npc",
+      "act": "service_prompt",
+      "act_slots": {
+        "topic": "service_prompt",
+        "keyword": "ayuda",
+        "gloss": "幫忙"
+      },
+      "learning_role": "listen_only",
+      "surface": "Hola. ¿En qué puedo ayudarle?",
+      "speak": "Hola. ¿En qué puedo ayudarle?",
+      "translation": "您好，我可以怎麼幫您？",
+      "friend": {
+        "hint": "Diga el problema de la habitación en una frase corta."
+      },
+      "reply_set": {
+        "correct": "r1a",
+        "choices": [
+          {
+            "id": "r1a",
+            "surface": "En mi habitación no hay toallas. ¿Me puede ayudar?",
+            "translation": "我的房間裡沒有毛巾。可以幫忙嗎？",
+            "speak": "En mi habitación no hay toallas. ¿Me puede ayudar?",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r1b",
+            "surface": "Quiero reservar una habitación.",
+            "translation": "我想訂房。",
+            "speak": "Quiero reservar una habitación.",
+            "contrast_type": "wrong_detail_or_domain",
+            "feedback": "Ahora no está reservando; tiene que explicar un problema de la habitación."
+          },
+          {
+            "id": "r1c",
+            "surface": "Quiero una compensación.",
+            "translation": "我想要賠償。",
+            "speak": "Quiero una compensación.",
+            "contrast_type": "forbidden_or_wrong_domain",
+            "feedback": "La compensación queda fuera de esta tarea A2."
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t2",
+      "speaker": "npc",
+      "act": "service_response",
+      "act_slots": {
+        "topic": "service_response",
+        "keyword": "llevar toallas",
+        "gloss": "拿毛巾"
+      },
+      "learning_role": "listen_only",
+      "surface": "Sí, le llevo toallas ahora mismo.",
+      "speak": "Sí, le llevo toallas ahora mismo.",
+      "translation": "好的，我馬上拿毛巾過去。",
+      "friend": {
+        "hint": "Confirme lo que hará el personal."
+      },
+      "inline_explain": {
+        "pattern_id": "es.a2.accommodation.problem.help.v1",
+        "title": "Fórmula A2",
+        "explain": "Expresión breve útil en esta situación de hotel.",
+        "items": [
+          {
+            "surface": "llevar toallas",
+            "translation": "拿毛巾",
+            "speak": "llevar toallas"
+          }
+        ]
+      },
+      "reply_set": {
+        "correct": "r2a",
+        "choices": [
+          {
+            "id": "r2a",
+            "surface": "Me trae toallas, ¿verdad?",
+            "translation": "您會拿毛巾過來，對嗎？",
+            "speak": "Me trae toallas, ¿verdad?",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r2b",
+            "surface": "Me cambia de habitación, ¿verdad?",
+            "translation": "您會幫我換房間，對嗎？",
+            "speak": "Me cambia de habitación, ¿verdad?",
+            "contrast_type": "wrong_detail_or_domain",
+            "feedback": "El personal dijo toallas, no cambio de habitación."
+          },
+          {
+            "id": "r2c",
+            "surface": "El tren llega tarde, ¿verdad?",
+            "translation": "火車會晚，對嗎？",
+            "speak": "El tren llega tarde, ¿verdad?",
+            "contrast_type": "forbidden_or_wrong_domain",
+            "feedback": "Esto es un servicio de hotel, no transporte."
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t3",
+      "speaker": "npc",
+      "act": "time_estimate",
+      "act_slots": {
+        "topic": "time_estimate",
+        "keyword": "diez minutos",
+        "gloss": "十分鐘"
+      },
+      "learning_role": "listen_only",
+      "surface": "Tardará unos diez minutos.",
+      "speak": "Tardará unos diez minutos.",
+      "translation": "大約需要十分鐘。",
+      "friend": {
+        "hint": "Confirme el tiempo."
+      },
+      "reply_set": {
+        "correct": "r3a",
+        "choices": [
+          {
+            "id": "r3a",
+            "surface": "Unos diez minutos, de acuerdo.",
+            "translation": "大約十分鐘，好的。",
+            "speak": "Unos diez minutos, de acuerdo.",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r3b",
+            "surface": "Salgo del hotel en una hora.",
+            "translation": "我一小時後退房。",
+            "speak": "Salgo del hotel en una hora.",
+            "contrast_type": "wrong_detail_or_domain",
+            "feedback": "Es el tiempo de entrega de las toallas, no la salida del hotel."
+          },
+          {
+            "id": "r3c",
+            "surface": "Tengo que ir al hospital.",
+            "translation": "我需要去醫院。",
+            "speak": "Tengo que ir al hospital.",
+            "contrast_type": "forbidden_or_wrong_domain",
+            "feedback": "El contenido médico queda fuera de esta tarea."
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t4",
+      "speaker": "npc",
+      "act": "close",
+      "act_slots": {
+        "topic": "close",
+        "keyword": "a la habitación",
+        "gloss": "到房間"
+      },
+      "learning_role": "listen_only",
+      "surface": "Se lo enviamos a la habitación.",
+      "speak": "Se lo enviamos a la habitación.",
+      "translation": "我們會送到房間。",
+      "friend": {
+        "hint": "Agradezca y cierre."
+      },
+      "reply_set": {
+        "correct": "r4a",
+        "choices": [
+          {
+            "id": "r4a",
+            "surface": "Gracias. Espero en la habitación.",
+            "translation": "謝謝。我在房間等。",
+            "speak": "Gracias. Espero en la habitación.",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r4b",
+            "surface": "Explíqueme las reglas de reembolso.",
+            "translation": "請說明退款規則。",
+            "speak": "Explíqueme las reglas de reembolso.",
+            "contrast_type": "wrong_detail_or_domain",
+            "feedback": "Las reglas de reembolso quedan fuera de este problema sencillo."
+          },
+          {
+            "id": "r4c",
+            "surface": "Dos cafés, por favor.",
+            "translation": "請給我兩杯咖啡。",
+            "speak": "Dos cafés, por favor.",
+            "contrast_type": "forbidden_or_wrong_domain",
+            "feedback": "Eso es un pedido de restaurante, no servicio de habitación."
+          }
+        ]
+      }
+    }
+  ],
+  "choice_sets": [
+    "t1.reply_set",
+    "t2.reply_set",
+    "t3.reply_set",
+    "t4.reply_set"
+  ],
+  "feedback": "Los distractores prueban tiempo, lugar, servicio equivocado o una petición fuera del alcance A2.",
+  "tts_segments": [
+    "Hola. ¿En qué puedo ayudarle?",
+    "Sí, le llevo toallas ahora mismo.",
+    "Tardará unos diez minutos.",
+    "Se lo enviamos a la habitación."
+  ],
+  "formula_moments": [
+    {
+      "after_turn": "t2",
+      "pattern_id": "es.a2.accommodation.problem.help.v1"
+    }
+  ],
+  "runtime_notes": "ES A2 accommodation candidate. Full-walk runtime gate required before final closeout.",
+  "notes": {
+    "authoring_policy": "Fresh-authored from the neutral A2 accommodation brief. KO surfaces were not translated.",
+    "a2_boundary": "Low-risk accommodation/service task; avoids compensation, emergency, legal, medical, police, immigration, banking, insurance, or identity-sensitive handling."
+  }
+}

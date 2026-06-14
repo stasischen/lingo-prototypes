@@ -1,0 +1,262 @@
+{
+  "schema_version": "scenario_pack.v1",
+  "scenario_id": "a2_plan_tomorrow_morning",
+  "title": "Planejar Amanhã de Manhã",
+  "setting_label": "Conversa com uma amiga",
+  "wrap_title": "Plano para amanhã de manhã",
+  "wrap_friend": "你剛剛用簡單葡語說了明天早上的安排，接上一個下一步，並確認可用時間。",
+  "language": "pt",
+  "ui_language": "zh_tw",
+  "cefr_level": "A2",
+  "source_status": "candidate_runtime_verified",
+  "review_state": "ai_reviewed",
+  "review_status_framework_state": "candidate_runtime_verified",
+  "native_review_state": "native_pending",
+  "scenario": "Uma amiga pergunta o que você pretende fazer amanhã de manhã.",
+  "learner_goal": "Dizer um plano para amanhã de manhã com um próximo passo simples.",
+  "target_functions": [
+    "near_future_plan",
+    "simple_sequence",
+    "time_expression"
+  ],
+  "register_notes": "Português brasileiro cotidiano e amigável. Usa vou + infinitivo, depois e por volta de.",
+  "production_mode_default": {
+    "required": [
+      "choice"
+    ],
+    "optional_visible": [
+      "speaking"
+    ],
+    "optional_hidden": [
+      "typing"
+    ]
+  },
+  "support_text": "Sua amiga pergunta sobre amanhã de manhã. Diga primeiro o que você vai fazer, depois acrescente o próximo passo.",
+  "roles": {
+    "npc": {
+      "label": "amiga"
+    },
+    "learner": {
+      "label": "você"
+    }
+  },
+  "turns": [
+    {
+      "turn_id": "t1",
+      "speaker": "npc",
+      "act": "info_request",
+      "act_slots": {
+        "topic": "plano de amanhã de manhã",
+        "keyword": "amanhã de manhã",
+        "gloss": "明天早上"
+      },
+      "learning_role": "listen_only",
+      "surface": "O que você vai fazer amanhã de manhã?",
+      "speak": "O que você vai fazer amanhã de manhã?",
+      "translation": "你明天早上打算做什麼？",
+      "friend": {
+        "hint": "對方在問明天早上的計畫。用 vou + 動詞回答。"
+      },
+      "reply_set": {
+        "correct": "r1a",
+        "choices": [
+          {
+            "id": "r1a",
+            "surface": "Vou passar no mercado.",
+            "translation": "我打算去市場一趟。",
+            "speak": "Vou passar no mercado.",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r1b",
+            "surface": "Passei no mercado ontem.",
+            "translation": "我昨天去了市場。",
+            "speak": "Passei no mercado ontem.",
+            "contrast_type": "wrong_time_past",
+            "feedback": "對方問的是明天早上，不是昨天。"
+          },
+          {
+            "id": "r1c",
+            "surface": "Onde fica o mercado?",
+            "translation": "市場在哪裡？",
+            "speak": "Onde fica o mercado?",
+            "contrast_type": "wrong_function_location_question",
+            "feedback": "這是在問地點，沒有說出你的計畫。"
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t2",
+      "speaker": "npc",
+      "act": "followup_sequence",
+      "act_slots": {
+        "topic": "depois do mercado",
+        "keyword": "depois",
+        "gloss": "之後"
+      },
+      "learning_role": "listen_only",
+      "surface": "E depois disso?",
+      "speak": "E depois disso?",
+      "translation": "那之後呢？",
+      "friend": {
+        "hint": "Depois disso 是問下一步。用 depois 加一個簡短活動。"
+      },
+      "inline_explain": {
+        "pattern_id": "pt.a2.plan.sequence.vou_depois.v1",
+        "title": "vou + verbo; depois...",
+        "explain": "用 vou + 動詞說計畫，用 depois 接下一步。",
+        "items": [
+          {
+            "surface": "Vou passar no mercado.",
+            "translation": "我打算去市場一趟。",
+            "speak": "Vou passar no mercado."
+          },
+          {
+            "surface": "Depois vou estudar.",
+            "translation": "之後我會讀書。",
+            "speak": "Depois vou estudar."
+          }
+        ]
+      },
+      "reply_set": {
+        "correct": "r2a",
+        "choices": [
+          {
+            "id": "r2a",
+            "surface": "Depois vou estudar numa cafeteria.",
+            "translation": "之後我打算在咖啡店讀書。",
+            "speak": "Depois vou estudar numa cafeteria.",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r2b",
+            "surface": "Vamos nos encontrar na cafeteria.",
+            "translation": "我們在咖啡店見吧。",
+            "speak": "Vamos nos encontrar na cafeteria.",
+            "contrast_type": "wrong_function_meeting_place",
+            "feedback": "這是在提議見面地點。對方問的是你的下一個活動。"
+          },
+          {
+            "id": "r2c",
+            "surface": "Estou estudando agora.",
+            "translation": "我現在正在讀書。",
+            "speak": "Estou estudando agora.",
+            "contrast_type": "wrong_time_now",
+            "feedback": "這是在說現在。對方問的是明天接下來要做什麼。"
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t3",
+      "speaker": "npc",
+      "act": "time_confirmation",
+      "act_slots": {
+        "topic": "disponibilidade antes do almoço",
+        "keyword": "antes do almoço",
+        "gloss": "午餐前"
+      },
+      "learning_role": "listen_only",
+      "surface": "Então você fica livre antes do almoço?",
+      "speak": "Então você fica livre antes do almoço?",
+      "translation": "所以你午餐前有空嗎？",
+      "friend": {
+        "hint": "Antes do almoço 是上午晚一點。可以用 por volta de 加時間。"
+      },
+      "reply_set": {
+        "correct": "r3a",
+        "choices": [
+          {
+            "id": "r3a",
+            "surface": "Sim, fico livre por volta das onze.",
+            "translation": "對，我十一點左右有空。",
+            "speak": "Sim, fico livre por volta das onze."
+          },
+          {
+            "id": "r3b",
+            "surface": "Não, fiquei livre ontem.",
+            "translation": "不，我昨天有空。",
+            "speak": "Não, fiquei livre ontem.",
+            "contrast_type": "wrong_time_past",
+            "feedback": "問題是在問明天午餐前，不是昨天。"
+          },
+          {
+            "id": "r3c",
+            "surface": "O mercado fecha às onze?",
+            "translation": "市場十一點關門嗎？",
+            "speak": "O mercado fecha às onze?",
+            "contrast_type": "wrong_focus_store_hours",
+            "feedback": "對方問的是你什麼時候有空，不是市場營業時間。"
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t4",
+      "speaker": "npc",
+      "act": "closing_confirmation",
+      "act_slots": {
+        "topic": "plano confirmado"
+      },
+      "learning_role": "listen_only",
+      "surface": "Beleza. Te mando mensagem às onze.",
+      "speak": "Beleza. Te mando mensagem às onze.",
+      "translation": "好。我十一點傳訊息給你。",
+      "friend": {
+        "hint": "計畫已經清楚了。用簡短友善的回答收尾。"
+      },
+      "reply_set": {
+        "correct": "r4a",
+        "choices": [
+          {
+            "id": "r4a",
+            "surface": "Combinado, até amanhã.",
+            "translation": "說定了，明天見。",
+            "speak": "Combinado, até amanhã."
+          },
+          {
+            "id": "r4b",
+            "surface": "Vou pedir de novo.",
+            "translation": "我會再點一次。",
+            "speak": "Vou pedir de novo.",
+            "contrast_type": "wrong_scenario_ordering",
+            "feedback": "這像是在點餐或購物。這裡只是在確認明天的安排。"
+          },
+          {
+            "id": "r4c",
+            "surface": "Quero trocar de quarto.",
+            "translation": "我想換房間。",
+            "speak": "Quero trocar de quarto.",
+            "contrast_type": "wrong_scenario_hotel",
+            "feedback": "這是飯店情境。現在用短句道別就好。"
+          }
+        ]
+      }
+    }
+  ],
+  "choice_sets": [
+    "t1.reply_set",
+    "t2.reply_set",
+    "t3.reply_set",
+    "t4.reply_set"
+  ],
+  "feedback": "Distractors test wrong time, wrong function, and wrong scenario without offering a valid alternate answer.",
+  "tts_segments": [
+    "Vou passar no mercado.",
+    "Depois vou estudar numa cafeteria.",
+    "Sim, fico livre por volta das onze.",
+    "Combinado, até amanhã."
+  ],
+  "formula_moments": [
+    {
+      "after_turn": "t2",
+      "pattern_id": "pt.a2.plan.sequence.vou_depois.v1"
+    }
+  ],
+  "runtime_notes": "Fresh PT A2 candidate. Structural checks and two AI semantic review passes completed on 2026-06-14 before metadata promotion.",
+  "notes": {
+    "authoring_policy": "Fresh-authored from the neutral A2 brief. KO/JA/EN/TH were used only as schema-shape references.",
+    "a2_boundary": "Uses near-future plan plus one simple sequence and time availability; avoids a formal itinerary."
+  }
+}

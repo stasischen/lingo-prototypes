@@ -1,0 +1,230 @@
+{
+  "schema_version": "scenario_pack.v1",
+  "scenario_id": "travel_taxi_destination",
+  "brief_id": "ml4_a1_015_travel_taxi_destination",
+  "source_neutral_brief": "release-aggregator/docs/tasks/A1_MULTILINGUAL_KO_B1_PARALLEL_ORCHESTRATION/work_products/ml0/ML4_NEUTRAL_ADAPTATION_BRIEFS_20260614.md#brief-ml4-a1-015-taxi-destination",
+  "blueprint_ledger": "release-aggregator/docs/tasks/A1_MULTILINGUAL_KO_B1_PARALLEL_ORCHESTRATION/work_products/ml0/ML4_BLUEPRINT_LEDGER_20260614.md",
+  "repo": "content-de",
+  "staging_path": "content/core/content_assets/scenario_packs/current_flow/travel_taxi_destination.de.v1.json",
+  "title": "Im Taxi das Ziel sagen",
+  "setting_label": "Taxi",
+  "wrap_title": "Ziel bestätigt",
+  "wrap_friend": "Du hast das Ziel genannt, kurz bestätigt und die Fahrt höflich beendet.",
+  "language": "de",
+  "ui_language": "zh_tw",
+  "source_status": "candidate_runtime_verified",
+  "review_state": "draft",
+  "review_status_framework_state": "candidate_runtime_verified",
+  "native_review_state": "native_pending",
+  "production_mode_default": {
+    "required": [
+      "choice"
+    ],
+    "optional_visible": [
+      "speaking"
+    ],
+    "optional_hidden": [
+      "typing"
+    ]
+  },
+  "support_text": "你上了計程車。用 Sie 服務語域說目的地、確認，並聽懂大概時間。",
+  "roles": {
+    "npc": {
+      "label": "Fahrer"
+    },
+    "learner": {
+      "label": "Fahrgast"
+    }
+  },
+  "turns": [
+    {
+      "turn_id": "t1",
+      "speaker": "npc",
+      "act": "destination_question",
+      "act_slots": {
+        "topic": "destination",
+        "keyword": "Wohin",
+        "gloss": "where to"
+      },
+      "learning_role": "listen_only",
+      "surface": "Guten Tag. Wohin möchten Sie?",
+      "speak": "Guten Tag. Wohin möchten Sie?",
+      "translation": "您好。您想去哪裡？",
+      "friend": "德語服務情境用 Sie。乘客可以用 Zum + 地點 + bitte。",
+      "reply_set": {
+        "correct": "c1",
+        "choices": [
+          {
+            "id": "c1",
+            "surface": "Zum Hotel Adler, bitte.",
+            "translation": "到阿德勒飯店，謝謝。",
+            "speak": "Zum Hotel Adler, bitte.",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "c2",
+            "surface": "Wo ist die Toilette?",
+            "translation": "洗手間在哪裡？",
+            "speak": "Wo ist die Toilette?",
+            "contrast_type": "directions_request_not_destination",
+            "feedback": "這是在問方向。司機問的是目的地。"
+          },
+          {
+            "id": "c3",
+            "surface": "Eine Fahrkarte, bitte.",
+            "translation": "一張車票，謝謝。",
+            "speak": "Eine Fahrkarte, bitte.",
+            "contrast_type": "ticket_purchase_wrong_scenario",
+            "feedback": "這是在買票，不是在計程車上說目的地。"
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t2",
+      "speaker": "npc",
+      "act": "destination_confirmation",
+      "act_slots": {
+        "topic": "confirm destination",
+        "keyword": "richtig",
+        "gloss": "right"
+      },
+      "learning_role": "listen_only",
+      "surface": "Zum Hotel Adler, richtig?",
+      "speak": "Zum Hotel Adler, richtig?",
+      "translation": "到阿德勒飯店，對嗎？",
+      "friend": "目的地正確時，用 Ja, genau 簡短確認。",
+      "inline_explain": "Ja, genau = 對，沒錯。",
+      "reply_set": {
+        "correct": "c1",
+        "choices": [
+          {
+            "id": "c1",
+            "surface": "Ja, genau.",
+            "translation": "對，沒錯。",
+            "speak": "Ja, genau.",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "c2",
+            "surface": "Zum Hotel Adler, bitte.",
+            "translation": "到阿德勒飯店，謝謝。",
+            "speak": "Zum Hotel Adler, bitte.",
+            "contrast_type": "repeated_prior_destination",
+            "feedback": "目的地已經說過了。現在需要確認。"
+          },
+          {
+            "id": "c3",
+            "surface": "Nein, ich steige hier aus.",
+            "translation": "不，我在這裡下車。",
+            "speak": "Nein, ich steige hier aus.",
+            "contrast_type": "cancellation_instead_of_confirmation",
+            "feedback": "這是在取消或改變行程；目的地正確時回答確認即可。"
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t3",
+      "speaker": "npc",
+      "act": "duration_notice",
+      "act_slots": {
+        "topic": "short duration",
+        "keyword": "Minuten",
+        "gloss": "minutes"
+      },
+      "learning_role": "listen_only",
+      "surface": "Gut. Es dauert ungefähr zehn Minuten.",
+      "speak": "Gut. Es dauert ungefähr zehn Minuten.",
+      "translation": "好的。大約需要十分鐘。",
+      "friend": "聽到時間後，用 Alles klar 表示知道了。",
+      "reply_set": {
+        "correct": "c1",
+        "choices": [
+          {
+            "id": "c1",
+            "surface": "Alles klar.",
+            "translation": "了解。",
+            "speak": "Alles klar."
+          },
+          {
+            "id": "c2",
+            "surface": "Wie viel kostet das?",
+            "translation": "這多少錢？",
+            "speak": "Wie viel kostet das?",
+            "contrast_type": "fare_detail_out_of_scope",
+            "feedback": "這會進入費用細節；本場景只練目的地和行程狀態。"
+          },
+          {
+            "id": "c3",
+            "surface": "Einen Kaffee, bitte.",
+            "translation": "一杯咖啡，謝謝。",
+            "speak": "Einen Kaffee, bitte.",
+            "contrast_type": "wrong_scenario_request",
+            "feedback": "這是咖啡店點餐，不是回應司機說的時間。"
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t4",
+      "speaker": "npc",
+      "act": "arrival_notice",
+      "act_slots": {
+        "topic": "arrival",
+        "keyword": "angekommen",
+        "gloss": "arrived"
+      },
+      "learning_role": "listen_only",
+      "surface": "Wir sind da.",
+      "speak": "Wir sind da.",
+      "translation": "我們到了。",
+      "friend": "到達時，用 Vielen Dank 收尾。",
+      "reply_set": {
+        "correct": "c1",
+        "choices": [
+          {
+            "id": "c1",
+            "surface": "Vielen Dank. Auf Wiedersehen.",
+            "translation": "非常謝謝。再見。",
+            "speak": "Vielen Dank. Auf Wiedersehen.",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "c2",
+            "surface": "Wohin möchten Sie?",
+            "translation": "您想去哪裡？",
+            "speak": "Wohin möchten Sie?",
+            "contrast_type": "driver_role_sentence",
+            "feedback": "這是司機問乘客的句子。乘客到達時應該道謝。"
+          },
+          {
+            "id": "c3",
+            "surface": "Eine Fahrkarte nach Berlin.",
+            "translation": "一張去柏林的票。",
+            "speak": "Eine Fahrkarte nach Berlin.",
+            "contrast_type": "ticket_purchase_wrong_scenario",
+            "feedback": "這回到買票情境，不是計程車到達。"
+          }
+        ]
+      },
+      "closing": true
+    }
+  ],
+  "formula_moments": [
+    {
+      "after_turn": "t1",
+      "pattern_id": "de.taxi.zum_ziel_bitte"
+    },
+    {
+      "after_turn": "t2",
+      "pattern_id": "de.confirm.ja_genau"
+    }
+  ],
+  "notes": {
+    "authoring_source": "Authored from ML-4 neutral brief ml4_a1_015_travel_taxi_destination; KO and other target-language packs were not used as translation sources.",
+    "review_policy": "AI-authored candidate only; keep review_state=draft, review_status_framework_state=candidate_needs_review, native_review_state=native_pending until tracked review evidence exists.",
+    "canonical_policy": "Staging current-flow candidate only. Do not add to manifests, production exports, schema, runtime, or frontend in this authoring lane.",
+    "german_voice_note": "Uses consistent Sie service register; native review should confirm taxi formulas and whether Fahrer/Fahrgast labels are preferred."
+  }
+}

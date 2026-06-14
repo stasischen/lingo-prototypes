@@ -1,0 +1,241 @@
+{
+  "schema_version": "scenario_pack.v1",
+  "scenario_id": "core_repair_repeat_slowly",
+  "brief_id": "ml3_a1_014_core_repair_repeat_slowly",
+  "source_neutral_brief": "release-aggregator/docs/tasks/A1_MULTILINGUAL_KO_B1_PARALLEL_ORCHESTRATION/work_products/ml0/ML3_NEUTRAL_ADAPTATION_BRIEFS_20260614.md#brief-ml3-a1-014-ask-to-repeat-or-speak-slowly",
+  "blueprint_ledger": "release-aggregator/docs/tasks/A1_MULTILINGUAL_KO_B1_PARALLEL_ORCHESTRATION/work_products/ml0/ML3_BLUEPRINT_LEDGER_20260614.md",
+  "repo": "content-fr",
+  "staging_path": "content/core/content_assets/scenario_packs/current_flow/core_repair_repeat_slowly.fr.v1.json",
+  "title": "Demander de répéter lentement",
+  "setting_label": "Comptoir d'un café",
+  "wrap_title": "Tu peux demander de l'aide pour comprendre",
+  "wrap_friend": "你請對方重複、請對方說慢一點，然後回答簡單問題。",
+  "language": "fr",
+  "ui_language": "zh_tw",
+  "source_status": "candidate_runtime_verified",
+  "review_state": "draft",
+  "review_status_framework_state": "candidate_runtime_verified",
+  "native_review_state": "native_pending",
+  "production_mode_default": {
+    "required": [
+      "choice"
+    ],
+    "optional_visible": [
+      "speaking"
+    ],
+    "optional_hidden": [
+      "typing"
+    ]
+  },
+  "support_text": "你在櫃台沒聽清楚問題。先修復對話，再回答。",
+  "roles": {
+    "npc": {
+      "label": "serveuse"
+    },
+    "learner": {
+      "label": "client"
+    }
+  },
+  "turns": [
+    {
+      "turn_id": "t1",
+      "speaker": "npc",
+      "act": "fast_question",
+      "learning_role": "listen_only",
+      "surface": "C'est pour emporter ?",
+      "speak": "C'est pour emporter ?",
+      "translation": "是外帶嗎？",
+      "friend": {
+        "hint": "你沒聽清楚。先請對方再說一次。"
+      },
+      "reply_set": {
+        "correct": "r1a",
+        "choices": [
+          {
+            "id": "r1a",
+            "surface": "Vous pouvez répéter, s'il vous plaît ?",
+            "translation": "可以請您再說一次嗎？",
+            "speak": "Vous pouvez répéter, s'il vous plaît ?",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r1b",
+            "surface": "Oui, c'est ça.",
+            "translation": "對，就是這樣。",
+            "speak": "Oui, c'est ça.",
+            "contrast_type": "blind_confirmation",
+            "feedback": "你還沒聽懂時不要盲目確認。先請對方重複。"
+          },
+          {
+            "id": "r1c",
+            "surface": "Moi aussi.",
+            "translation": "我也是。",
+            "speak": "Moi aussi.",
+            "contrast_type": "wrong_scenario_self_intro",
+            "feedback": "這是自我介紹回應，不是請對方重複。"
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t2",
+      "speaker": "npc",
+      "act": "repeat_same_question",
+      "learning_role": "listen_only",
+      "surface": "Bien sûr. C'est pour emporter ?",
+      "speak": "Bien sûr. C'est pour emporter ?",
+      "translation": "當然。是外帶嗎？",
+      "friend": {
+        "hint": "還是太快。請對方說慢一點。"
+      },
+      "inline_explain": {
+        "pattern_id": "fr.repair.repeat_slowly.v1",
+        "formula_ref": null,
+        "title": "Répéter et parler lentement",
+        "explain": "沒聽清楚時，可以說 Vous pouvez répéter, s'il vous plaît ?，再說 Plus lentement, s'il vous plaît。",
+        "items": [
+          {
+            "surface": "Vous pouvez répéter, s'il vous plaît ?",
+            "translation": "可以請您再說一次嗎？",
+            "speak": "Vous pouvez répéter, s'il vous plaît ?"
+          },
+          {
+            "surface": "Plus lentement, s'il vous plaît.",
+            "translation": "請慢一點。",
+            "speak": "Plus lentement, s'il vous plaît."
+          }
+        ]
+      },
+      "reply_set": {
+        "correct": "r2a",
+        "choices": [
+          {
+            "id": "r2a",
+            "surface": "Plus lentement, s'il vous plaît.",
+            "translation": "請慢一點。",
+            "speak": "Plus lentement, s'il vous plaît.",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r2b",
+            "surface": "Merci, au revoir.",
+            "translation": "謝謝，再見。",
+            "speak": "Merci, au revoir.",
+            "contrast_type": "closing_before_understanding",
+            "feedback": "還沒理解問題，不要直接結束對話。"
+          },
+          {
+            "id": "r2c",
+            "surface": "Un billet pour Lyon.",
+            "translation": "一張去里昂的票。",
+            "speak": "Un billet pour Lyon.",
+            "contrast_type": "wrong_scenario_ticket",
+            "feedback": "這是買票句，不是請對方說慢一點。"
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t3",
+      "speaker": "npc",
+      "act": "simple_restate",
+      "learning_role": "listen_only",
+      "surface": "Pour emporter ou sur place ?",
+      "speak": "Pour emporter ou sur place ?",
+      "translation": "外帶還是在這裡用？",
+      "friend": {
+        "hint": "現在問題清楚了。簡短回答在這裡。"
+      },
+      "reply_set": {
+        "correct": "r3a",
+        "choices": [
+          {
+            "id": "r3a",
+            "surface": "Sur place, s'il vous plaît.",
+            "translation": "在這裡，謝謝。",
+            "speak": "Sur place, s'il vous plaît.",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r3b",
+            "surface": "Vous pouvez répéter ?",
+            "translation": "您可以再說一次嗎？",
+            "speak": "Vous pouvez répéter ?",
+            "contrast_type": "repair_repeated_after_clear_prompt",
+            "feedback": "對方已經用簡單方式重述了，現在可以回答。"
+          },
+          {
+            "id": "r3c",
+            "surface": "Je viens de Taipei.",
+            "translation": "我來自台北。",
+            "speak": "Je viens de Taipei.",
+            "contrast_type": "wrong_scenario_self_intro",
+            "feedback": "這是自我介紹，不是回答內用或外帶。"
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t4",
+      "speaker": "npc",
+      "act": "service_close",
+      "learning_role": "listen_only",
+      "surface": "Très bien. Installez-vous ici.",
+      "speak": "Très bien. Installez-vous ici.",
+      "translation": "好的。請坐這裡。",
+      "friend": {
+        "hint": "對方已經幫你處理。簡短道謝。"
+      },
+      "reply_set": {
+        "correct": "r4a",
+        "choices": [
+          {
+            "id": "r4a",
+            "surface": "Merci.",
+            "translation": "謝謝。",
+            "speak": "Merci."
+          },
+          {
+            "id": "r4b",
+            "surface": "Deux billets, s'il vous plaît.",
+            "translation": "請給我兩張票。",
+            "speak": "Deux billets, s'il vous plaît.",
+            "contrast_type": "wrong_scenario_ticket_quantity",
+            "feedback": "這是買票數量，不是櫃台修復對話結尾。"
+          },
+          {
+            "id": "r4c",
+            "surface": "Je ne comprends rien.",
+            "translation": "我完全不懂。",
+            "speak": "Je ne comprends rien.",
+            "contrast_type": "overbroad_repair_after_success",
+            "feedback": "你已經成功理解並回答了。這裡道謝即可。"
+          }
+        ]
+      },
+      "closing": {
+        "act": "staff_close",
+        "learning_role": "listen_only",
+        "surface": "Avec plaisir.",
+        "speak": "Avec plaisir.",
+        "translation": "不客氣。"
+      }
+    }
+  ],
+  "formula_moments": [
+    {
+      "after_turn": "t2",
+      "pattern_id": "fr.repair.repeat_slowly.v1"
+    },
+    {
+      "after_turn": "t4",
+      "pattern_id": "fr.repair.answer_after_repair.v1"
+    }
+  ],
+  "notes": {
+    "authoring_source": "Authored from ML-3 neutral brief, not Korean surface text or another target-language pack.",
+    "review_policy": "AI-authored French candidate. Requires AI review, runtime smoke, and tracked native review before any stronger status.",
+    "canonical_policy": "Staging candidate only. Do not write back to manifests, production exports, schemas, or legacy content.",
+    "french_register_note": "Uses concise vous-form cafe-counter repair formulas and avoids advanced repair explanations."
+  }
+}

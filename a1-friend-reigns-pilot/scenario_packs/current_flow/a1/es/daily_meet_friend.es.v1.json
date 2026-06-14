@@ -1,0 +1,258 @@
+{
+  "schema_version": "scenario_pack.v1",
+  "scenario_id": "daily_meet_friend",
+  "brief_id": "ml2_a1_010_daily_meet_friend",
+  "source_neutral_brief": "release-aggregator/docs/tasks/A1_MULTILINGUAL_KO_B1_PARALLEL_ORCHESTRATION/work_products/ml0/ML2_NEUTRAL_ADAPTATION_BRIEFS_20260614.md#brief-ml2-a1-010-meet-a-friend",
+  "blueprint_ledger": "release-aggregator/docs/tasks/A1_MULTILINGUAL_KO_B1_PARALLEL_ORCHESTRATION/work_products/ml0/ML2_BLUEPRINT_LEDGER_20260614.md",
+  "repo": "content-es",
+  "staging_path": "content/core/content_assets/scenario_packs/current_flow/daily_meet_friend.es.v1.json",
+  "title": "Quedar con un amigo",
+  "setting_label": "Entrada de una cafetería",
+  "wrap_title": "Ya puedes encontrarte con un amigo",
+  "wrap_friend": "Saludaste, confirmaste que eras la persona correcta y cerraste con una frase para irse.",
+  "language": "es",
+  "ui_language": "zh_tw",
+  "source_status": "candidate_runtime_verified",
+  "review_state": "draft",
+  "review_status_framework_state": "candidate_runtime_verified",
+  "native_review_state": "native_pending",
+  "production_mode_default": {
+    "required": [
+      "choice"
+    ],
+    "optional_visible": [
+      "speaking"
+    ],
+    "optional_hidden": [
+      "typing"
+    ]
+  },
+  "support_text": "你在咖啡店門口和朋友碰面。選一句自然、簡短的西班牙語。",
+  "roles": {
+    "npc": {
+      "label": "amiga"
+    },
+    "learner": {
+      "label": "amigo"
+    }
+  },
+  "turns": [
+    {
+      "turn_id": "t1",
+      "speaker": "npc",
+      "act": "friend_greeting",
+      "act_slots": {
+        "topic": "saludo",
+        "keyword": "hola",
+        "gloss": "你好"
+      },
+      "learning_role": "listen_only",
+      "surface": "¡Hola! ¿Eres Alex?",
+      "speak": "¡Hola! ¿Eres Alex?",
+      "translation": "嗨！你是 Alex 嗎？",
+      "friend": {
+        "hint": "朋友在確認是不是你。用簡短自然的回答。"
+      },
+      "reply_set": {
+        "correct": "r1a",
+        "choices": [
+          {
+            "id": "r1a",
+            "surface": "Sí, soy Alex.",
+            "translation": "對，我是 Alex。",
+            "speak": "Sí, soy Alex.",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r1b",
+            "surface": "La cuenta, por favor.",
+            "translation": "請結帳。",
+            "speak": "La cuenta, por favor.",
+            "contrast_type": "wrong_scenario_payment",
+            "feedback": "這是在餐廳結帳，不是和朋友確認身份。"
+          },
+          {
+            "id": "r1c",
+            "surface": "¿Cuánto cuesta esto?",
+            "translation": "這個多少錢？",
+            "speak": "¿Cuánto cuesta esto?",
+            "contrast_type": "wrong_scenario_shopping",
+            "feedback": "這是在問價格，不是回朋友的招呼。"
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t2",
+      "speaker": "npc",
+      "act": "readiness_question",
+      "act_slots": {
+        "topic": "estar listo",
+        "keyword": "listo",
+        "gloss": "準備好了"
+      },
+      "learning_role": "listen_only",
+      "surface": "Qué bien. ¿Estás listo?",
+      "speak": "Qué bien. ¿Estás listo?",
+      "translation": "太好了。你準備好了嗎？",
+      "friend": {
+        "hint": "朋友在問你可不可以出發。"
+      },
+      "inline_explain": {
+        "pattern_id": "es.friend.ready_go.v1",
+        "formula_ref": null,
+        "title": "Estoy listo",
+        "explain": "和朋友碰面時，可以用 Estoy listo/lista 表示準備好了。A1 可先用 listo。",
+        "items": [
+          {
+            "surface": "Sí, estoy listo.",
+            "translation": "對，我準備好了。",
+            "speak": "Sí, estoy listo."
+          },
+          {
+            "surface": "Vamos.",
+            "translation": "走吧。",
+            "speak": "Vamos."
+          }
+        ]
+      },
+      "reply_set": {
+        "correct": "r2a",
+        "choices": [
+          {
+            "id": "r2a",
+            "surface": "Sí, estoy listo.",
+            "translation": "對，我準備好了。",
+            "speak": "Sí, estoy listo.",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r2b",
+            "surface": "Quiero un café.",
+            "translation": "我想要一杯咖啡。",
+            "speak": "Quiero un café.",
+            "contrast_type": "wrong_scenario_ordering",
+            "feedback": "這是在點飲料。朋友問你是否準備好。"
+          },
+          {
+            "id": "r2c",
+            "surface": "¿Dónde está la estación?",
+            "translation": "車站在哪裡？",
+            "speak": "¿Dónde está la estación?",
+            "contrast_type": "wrong_scenario_directions",
+            "feedback": "這是在問路。現在只要回答準備好了。"
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t3",
+      "speaker": "npc",
+      "act": "next_step",
+      "act_slots": {
+        "topic": "salir",
+        "keyword": "vamos",
+        "gloss": "走吧"
+      },
+      "learning_role": "listen_only",
+      "surface": "Perfecto. Vamos al café.",
+      "speak": "Perfecto. Vamos al café.",
+      "translation": "好。我們去咖啡店吧。",
+      "friend": {
+        "hint": "朋友說下一步。用短句同意。"
+      },
+      "reply_set": {
+        "correct": "r3a",
+        "choices": [
+          {
+            "id": "r3a",
+            "surface": "Sí, vamos.",
+            "translation": "好，走吧。",
+            "speak": "Sí, vamos.",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r3b",
+            "surface": "Pago con tarjeta.",
+            "translation": "我用卡付款。",
+            "speak": "Pago con tarjeta.",
+            "contrast_type": "wrong_scenario_payment",
+            "feedback": "這是付款句。朋友只是說一起走。"
+          },
+          {
+            "id": "r3c",
+            "surface": "No soy Alex.",
+            "translation": "我不是 Alex。",
+            "speak": "No soy Alex.",
+            "contrast_type": "wrong_identity_after_confirm",
+            "feedback": "前面已經確認是 Alex，這會讓情境不成立。"
+          }
+        ]
+      },
+      "runtime_note": "Reply choices mirror the next learner response so the current prototype can render every round."
+    },
+    {
+      "turn_id": "t4",
+      "speaker": "learner",
+      "act": "agree_next_step",
+      "learning_role": "production_target",
+      "surface": "Sí, vamos.",
+      "speak": "Sí, vamos.",
+      "translation": "好，走吧。",
+      "friend": {
+        "hint": "用簡短自然的句子表示同意出發。"
+      },
+      "reply_set": {
+        "correct": "r3a",
+        "choices": [
+          {
+            "id": "r3a",
+            "surface": "Sí, vamos.",
+            "translation": "好，走吧。",
+            "speak": "Sí, vamos.",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r3b",
+            "surface": "Pago con tarjeta.",
+            "translation": "我用卡付款。",
+            "speak": "Pago con tarjeta.",
+            "contrast_type": "wrong_scenario_payment",
+            "feedback": "這是付款句。朋友只是說一起走。"
+          },
+          {
+            "id": "r3c",
+            "surface": "No soy Alex.",
+            "translation": "我不是 Alex。",
+            "speak": "No soy Alex.",
+            "contrast_type": "wrong_identity_after_confirm",
+            "feedback": "前面已經確認是 Alex，這會讓情境不成立。"
+          }
+        ]
+      },
+      "closing": {
+        "act": "friend_close",
+        "learning_role": "listen_only",
+        "surface": "Genial.",
+        "speak": "Genial.",
+        "translation": "太好了。"
+      }
+    }
+  ],
+  "formula_moments": [
+    {
+      "after_turn": "t2",
+      "pattern_id": "es.friend.ready_go.v1"
+    },
+    {
+      "after_turn": "t4",
+      "pattern_id": "es.friend.agree_next_step.v1"
+    }
+  ],
+  "notes": {
+    "authoring_source": "Authored from ML-2 neutral brief, not Korean surface text or another target-language pack.",
+    "review_policy": "AI-authored Spanish candidate. Requires AI review, runtime smoke, and tracked native review before any stronger status.",
+    "canonical_policy": "Staging candidate only. Do not write back to manifests, production exports, schemas, or legacy content.",
+    "spanish_register_note": "Uses everyday friend speech with tú and concise learner replies."
+  }
+}

@@ -1,0 +1,257 @@
+{
+  "schema_version": "scenario_pack.v1",
+  "scenario_id": "a2_make_simple_plan_sequence",
+  "title": "安排兩步驟計畫",
+  "setting_label": "friend chat",
+  "wrap_title": "已確認兩步驟計畫",
+  "wrap_friend": "做得好。你把先做什麼和接著做什麼連起來，並確認了計畫。",
+  "language": "zh",
+  "ui_language": "zh-Hant",
+  "cefr_level": "A2",
+  "source_status": "candidate_runtime_verified",
+  "review_state": "ai_reviewed",
+  "review_status_framework_state": "candidate_runtime_verified",
+  "native_review_state": "native_pending",
+  "scenario": {
+    "domain": "daily_social_coordination",
+    "review_slice": "daily_social",
+    "interaction": "friend_social_coordination",
+    "source_brief": "A2_DAILY_SOCIAL_NEUTRAL_ADAPTATION_BRIEFS_20260614",
+    "blueprint_source": "language_neutral_adaptation_brief",
+    "ko_pack_role": "mature_scenario_blueprint_not_translation_source"
+  },
+  "learner_goal": "用 A2 短句處理低風險的朋友日常協調。",
+  "target_functions": [
+    "friend_invitation_or_response",
+    "simple_reason_or_past_event",
+    "two_step_plan_or_confirmation",
+    "close_with_relationship_maintenance"
+  ],
+  "register_notes": "Traditional Mandarin A2 friend/social register: Taiwan-leaning, natural friend wording, softened refusals, no service register or Mainland-only phrasing.",
+  "production_mode_default": {
+    "required": [
+      "choice"
+    ],
+    "optional_visible": [
+      "speaking"
+    ],
+    "optional_hidden": [
+      "typing"
+    ]
+  },
+  "support_text": "使用自然的朋友語氣，活動和理由都保持普通、簡短。",
+  "roles": {
+    "npc": {
+      "label": "朋友"
+    },
+    "learner": {
+      "label": "你"
+    }
+  },
+  "turns": [
+    {
+      "turn_id": "t1",
+      "speaker": "npc",
+      "act": "suggest_first_step",
+      "act_slots": {
+        "topic": "sequence",
+        "keyword": "1",
+        "gloss": "A2 daily/social"
+      },
+      "learning_role": "listen_only",
+      "surface": "我們先在車站見，好嗎？",
+      "speak": "我們先在車站見，好嗎？",
+      "translation": "我們先在車站見，好嗎？",
+      "friend": {
+        "hint": "Keep the plan to two simple steps."
+      },
+      "reply_set": {
+        "correct": "r1a",
+        "choices": [
+          {
+            "id": "r1a",
+            "surface": "好，我們先在車站見。",
+            "translation": "好，我們先在車站見。",
+            "speak": "好，我們先在車站見。",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r1b",
+            "surface": "好，請先退款給我。",
+            "translation": "好，請先退款給我。",
+            "speak": "好，請先退款給我。",
+            "contrast_type": "wrong_scenario_refund",
+            "feedback": "這不符合目前的朋友情境。"
+          },
+          {
+            "id": "r1c",
+            "surface": "不要，絕對不要。",
+            "translation": "不要，絕對不要。",
+            "speak": "不要，絕對不要。",
+            "contrast_type": "too_blunt",
+            "feedback": "這樣對朋友來說太強硬。"
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t2",
+      "speaker": "npc",
+      "act": "suggest_second_step",
+      "act_slots": {
+        "topic": "sequence",
+        "keyword": "2",
+        "gloss": "A2 daily/social"
+      },
+      "learning_role": "listen_only",
+      "surface": "接著去公園嗎？",
+      "speak": "接著去公園嗎？",
+      "translation": "接著去公園嗎？",
+      "friend": {
+        "hint": "Keep the plan to two simple steps."
+      },
+      "reply_set": {
+        "correct": "r2a",
+        "choices": [
+          {
+            "id": "r2a",
+            "surface": "好，接著走去公園。",
+            "translation": "好，接著走去公園。",
+            "speak": "好，接著走去公園。",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r2b",
+            "surface": "好，請先退款給我。",
+            "translation": "好，請先退款給我。",
+            "speak": "好，請先退款給我。",
+            "contrast_type": "wrong_scenario_refund",
+            "feedback": "這不符合目前的朋友情境。"
+          },
+          {
+            "id": "r2c",
+            "surface": "不要，絕對不要。",
+            "translation": "不要，絕對不要。",
+            "speak": "不要，絕對不要。",
+            "contrast_type": "too_blunt",
+            "feedback": "這樣對朋友來說太強硬。"
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t3",
+      "speaker": "npc",
+      "act": "confirm_sequence",
+      "act_slots": {
+        "topic": "sequence",
+        "keyword": "3",
+        "gloss": "A2 daily/social"
+      },
+      "learning_role": "listen_only",
+      "surface": "所以先車站，接著公園，對嗎？",
+      "speak": "所以先車站，接著公園，對嗎？",
+      "translation": "所以先車站，接著公園，對嗎？",
+      "friend": {
+        "hint": "Keep the plan to two simple steps."
+      },
+      "reply_set": {
+        "correct": "r3a",
+        "choices": [
+          {
+            "id": "r3a",
+            "surface": "對，先車站，接著公園。",
+            "translation": "對，先車站，接著公園。",
+            "speak": "對，先車站，接著公園。",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r3b",
+            "surface": "好，請先退款給我。",
+            "translation": "好，請先退款給我。",
+            "speak": "好，請先退款給我。",
+            "contrast_type": "wrong_scenario_refund",
+            "feedback": "這不符合目前的朋友情境。"
+          },
+          {
+            "id": "r3c",
+            "surface": "不要，絕對不要。",
+            "translation": "不要，絕對不要。",
+            "speak": "不要，絕對不要。",
+            "contrast_type": "too_blunt",
+            "feedback": "這樣對朋友來說太強硬。"
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t4",
+      "speaker": "npc",
+      "act": "confirm_time",
+      "act_slots": {
+        "topic": "sequence",
+        "keyword": "4",
+        "gloss": "A2 daily/social"
+      },
+      "learning_role": "listen_only",
+      "surface": "好，星期六兩點見。",
+      "speak": "好，星期六兩點見。",
+      "translation": "好，星期六兩點見。",
+      "friend": {
+        "hint": "Keep the plan to two simple steps."
+      },
+      "reply_set": {
+        "correct": "r4a",
+        "choices": [
+          {
+            "id": "r4a",
+            "surface": "好，星期六兩點見。",
+            "translation": "好，星期六兩點見。",
+            "speak": "好，星期六兩點見。",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r4b",
+            "surface": "好，請先退款給我。",
+            "translation": "好，請先退款給我。",
+            "speak": "好，請先退款給我。",
+            "contrast_type": "wrong_scenario_refund",
+            "feedback": "這不符合目前的朋友情境。"
+          },
+          {
+            "id": "r4c",
+            "surface": "不要，絕對不要。",
+            "translation": "不要，絕對不要。",
+            "speak": "不要，絕對不要。",
+            "contrast_type": "too_blunt",
+            "feedback": "這樣對朋友來說太強硬。"
+          }
+        ]
+      }
+    }
+  ],
+  "choice_sets": [
+    "t1.reply_set",
+    "t2.reply_set",
+    "t3.reply_set",
+    "t4.reply_set"
+  ],
+  "feedback": "干擾選項測試朋友語氣、時間、功能和 A2 邊界。",
+  "tts_segments": [
+    "好，我們先在車站見。",
+    "好，接著走去公園。",
+    "對，先車站，接著公園。",
+    "好，星期六兩點見。"
+  ],
+  "formula_moments": [
+    {
+      "after_turn": "t3",
+      "pattern_id": "zh.a2.daily.sequence.v1"
+    }
+  ],
+  "runtime_notes": "Fresh A2 daily/social candidate. Requires full-walk runtime before closeout evidence is recorded.",
+  "notes": {
+    "authoring_policy": "Fresh-authored from A2 daily/social neutral adaptation brief. KO surface text was not copied or translated.",
+    "a2_boundary": "Friend/social register, ordinary low-risk activities and reasons, short A2 responses only."
+  }
+}

@@ -1,0 +1,264 @@
+{
+  "schema_version": "scenario_pack.v1",
+  "scenario_id": "daily_schedule_time",
+  "brief_id": "ml0_a1_005_daily_schedule_time",
+  "source_neutral_brief": "release-aggregator/docs/tasks/A1_MULTILINGUAL_KO_B1_PARALLEL_ORCHESTRATION/work_products/ml0/ML0_NEUTRAL_ADAPTATION_BRIEFS_20260613.md#brief-ml0-a1-005-scheduling-a-time",
+  "blueprint_ledger": "release-aggregator/docs/tasks/A1_MULTILINGUAL_KO_B1_PARALLEL_ORCHESTRATION/work_products/ml0/ML0_BLUEPRINT_LEDGER_20260613.md",
+  "repo": "content-ja",
+  "staging_path": "content/review/current_flow/scenario_pack.v1/ja/daily_schedule_time.ja.v1.json",
+  "title": "会う時間を決める",
+  "setting_label": "友だちとの予定",
+  "wrap_title": "会う時間を決められました",
+  "wrap_friend": "カジュアルな言い方で時間を提案し、最後に予定を確認できました。",
+  "language": "ja",
+  "ui_language": "zh_tw",
+  "source_status": "candidate_runtime_verified",
+  "review_state": "draft",
+  "review_status_framework_state": "candidate_runtime_verified",
+  "native_review_state": "native_pending",
+  "production_mode_default": {
+    "required": [
+      "choice"
+    ],
+    "optional_visible": [
+      "speaking"
+    ],
+    "optional_hidden": [
+      "typing"
+    ]
+  },
+  "support_text": "你在和日本朋友約時間。聽對方問什麼，選一句自然接得上的日文。",
+  "roles": {
+    "npc": {
+      "label": "友だち"
+    },
+    "learner": {
+      "label": "あなた"
+    }
+  },
+  "turns": [
+    {
+      "turn_id": "t1",
+      "speaker": "npc",
+      "act": "ask_time",
+      "act_slots": {
+        "topic": "約時間",
+        "keyword": "何時",
+        "gloss": "幾點"
+      },
+      "learning_role": "listen_only",
+      "surface": "明日、何時に会う？",
+      "speak": "明日、何時に会う？",
+      "translation": "明天幾點見？",
+      "friend": {
+        "hint": "對方在問時間。可以用「3時はどう？」提議三點。"
+      },
+      "inline_explain": {
+        "pattern_id": "ja.schedule.time_suggestion.v1",
+        "formula_ref": null,
+        "title": "何時 / 3時",
+        "explain": "「何時」是幾點。提議時間時，可以說「3時はどう？」。",
+        "items": [
+          {
+            "surface": "何時に会う？",
+            "translation": "幾點見？",
+            "speak": "何時に会う？"
+          },
+          {
+            "surface": "3時はどう？",
+            "translation": "三點怎麼樣？",
+            "speak": "3時はどう？"
+          }
+        ]
+      },
+      "reply_set": {
+        "correct": "r1a",
+        "choices": [
+          {
+            "id": "r1a",
+            "surface": "3時はどう？",
+            "translation": "三點怎麼樣？",
+            "speak": "3時はどう？",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r1b",
+            "surface": "駅で会おう。",
+            "translation": "在車站見吧。",
+            "speak": "駅で会おう。",
+            "contrast_type": "location_answer_when_time_requested",
+            "feedback": "這是在說地點。對方現在問的是幾點。"
+          },
+          {
+            "id": "r1c",
+            "surface": "今日は行けない。",
+            "translation": "今天不能去。",
+            "speak": "今日は行けない。",
+            "contrast_type": "wrong_act_refusal",
+            "feedback": "這像是在拒絕。這裡要先回答或提議時間。"
+          },
+          {
+            "id": "r1d",
+            "surface": "明日です。",
+            "translation": "是明天。",
+            "speak": "明日です。",
+            "contrast_type": "wrong_day_time_answer",
+            "feedback": "日期已經知道是明天。現在要說幾點。"
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t2",
+      "speaker": "npc",
+      "act": "confirm_availability",
+      "act_slots": {
+        "topic": "確認時間",
+        "keyword": "大丈夫",
+        "gloss": "可以"
+      },
+      "learning_role": "listen_only",
+      "surface": "3時で大丈夫。駅でいい？",
+      "speak": "3時で大丈夫。駅でいい？",
+      "translation": "三點可以。在車站可以嗎？",
+      "friend": {
+        "hint": "時間確定了，對方又確認地點。可以簡短回答可以。"
+      },
+      "reply_set": {
+        "correct": "r2a",
+        "choices": [
+          {
+            "id": "r2a",
+            "surface": "うん、駅で。",
+            "translation": "嗯，在車站。",
+            "speak": "うん、駅で。"
+          },
+          {
+            "id": "r2b",
+            "surface": "3時はどう？",
+            "translation": "三點怎麼樣？",
+            "speak": "3時はどう？",
+            "contrast_type": "repeated_prior_answer",
+            "feedback": "三點已經確定了。現在是在確認地點。"
+          },
+          {
+            "id": "r2c",
+            "surface": "いいえ、現金です。",
+            "translation": "不是，是現金。",
+            "speak": "いいえ、現金です。",
+            "contrast_type": "wrong_scenario_payment",
+            "feedback": "這是付款場景的回答。現在是在約見面時間和地點。"
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t3",
+      "speaker": "npc",
+      "act": "plan_confirmation",
+      "act_slots": {
+        "topic": "予定確認",
+        "keyword": "明日3時",
+        "gloss": "明天三點"
+      },
+      "learning_role": "listen_only",
+      "surface": "じゃあ、明日3時に駅ね。",
+      "speak": "じゃあ、明日3時に駅ね。",
+      "translation": "那明天三點在車站喔。",
+      "friend": {
+        "hint": "對方在總結約定。用「また明日」自然收尾。"
+      },
+      "reply_set": {
+        "correct": "r3a",
+        "choices": [
+          {
+            "id": "r3a",
+            "surface": "うん、また明日。",
+            "translation": "嗯，明天見。",
+            "speak": "うん、また明日。",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r3b",
+            "surface": "駅で会おう。",
+            "translation": "在車站見吧。",
+            "speak": "駅で会おう。",
+            "contrast_type": "repeated_prior_answer",
+            "feedback": "地點已經確認了。現在用一句明天見收尾就好。"
+          },
+          {
+            "id": "r3c",
+            "surface": "行けません。",
+            "translation": "不能去。",
+            "speak": "行けません。",
+            "contrast_type": "wrong_act_refusal",
+            "feedback": "這樣會突然取消。約定沒問題時，簡短確認即可。"
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t4",
+      "speaker": "npc",
+      "act": "closing",
+      "act_slots": {
+        "topic": "結束對話",
+        "keyword": "また明日",
+        "gloss": "明天見"
+      },
+      "learning_role": "listen_only",
+      "surface": "また明日。",
+      "speak": "また明日。",
+      "translation": "明天見。",
+      "friend": {
+        "hint": "對話結束了。你可以簡短回應。"
+      },
+      "reply_set": {
+        "correct": "r4a",
+        "choices": [
+          {
+            "id": "r4a",
+            "surface": "また明日。",
+            "translation": "明天見。",
+            "speak": "また明日。"
+          },
+          {
+            "id": "r4b",
+            "surface": "カードでお願いします。",
+            "translation": "麻煩刷卡。",
+            "speak": "カードでお願いします。",
+            "contrast_type": "wrong_scenario_payment",
+            "feedback": "這是付款回答。這裡是朋友之間約好時間後的道別。"
+          },
+          {
+            "id": "r4c",
+            "surface": "明日です。",
+            "translation": "是明天。",
+            "speak": "明日です。",
+            "contrast_type": "overly_redundant_answer",
+            "feedback": "時間和日期都確定了。直接說明天見比較自然。"
+          }
+        ]
+      },
+      "closing": {
+        "act": "plan_set",
+        "learning_role": "listen_only",
+        "surface": "予定が決まりました。",
+        "speak": "予定が決まりました。",
+        "translation": "行程約好了。"
+      }
+    }
+  ],
+  "formula_moments": [
+    {
+      "after_turn": "t1",
+      "pattern_id": "ja.schedule.time_suggestion.v1"
+    }
+  ],
+  "notes": {
+    "authoring_source": "Authored from ML-0 neutral brief, not Korean surface text.",
+    "review_policy": "AI-authored candidate. Requires AI review, runtime smoke, and tracked native review before any stronger status.",
+    "canonical_policy": "Staging candidate only. Do not write back to manifests, production exports, schemas, or legacy content.",
+    "register_note": "Uses casual friend speech consistently for the scheduling scenario."
+  }
+}

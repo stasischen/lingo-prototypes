@@ -1,0 +1,229 @@
+{
+  "schema_version": "scenario_pack.v1",
+  "scenario_id": "daily_schedule_time",
+  "brief_id": "ml0_a1_005_daily_schedule_time",
+  "source_neutral_brief": "release-aggregator/docs/tasks/A1_MULTILINGUAL_KO_B1_PARALLEL_ORCHESTRATION/work_products/ml0/ML0_NEUTRAL_ADAPTATION_BRIEFS_20260613.md#ml0-a1-005",
+  "blueprint_ledger": "release-aggregator/docs/tasks/A1_MULTILINGUAL_KO_B1_PARALLEL_ORCHESTRATION/work_products/ml0/ML0_BLUEPRINT_LEDGER_20260613.md",
+  "repo": "content-de",
+  "staging_path": "content/core/content_assets/scenario_packs/current_flow/daily_schedule_time.de.v1.json",
+  "title": "Eine Uhrzeit ausmachen",
+  "setting_label": "Kurze Nachricht unter Freunden",
+  "wrap_title": "Zeit bestätigt",
+  "wrap_friend": "Gut gemacht. Du hast eine einfache Uhrzeit genannt und den Plan kurz bestätigt.",
+  "language": "de",
+  "ui_language": "zh_tw",
+  "source_status": "candidate_runtime_verified",
+  "review_state": "draft",
+  "review_status_framework_state": "candidate_runtime_verified",
+  "native_review_state": "native_pending",
+  "production_mode_default": {
+    "required": [
+      "choice"
+    ],
+    "optional_visible": [
+      "speaking"
+    ],
+    "optional_hidden": [
+      "typing"
+    ]
+  },
+  "support_text": "你和朋友正在約見面時間。用簡短自然的德文回答幾點，並確認安排。",
+  "roles": {
+    "npc": {
+      "label": "Freund/in"
+    },
+    "learner": {
+      "label": "du"
+    }
+  },
+  "turns": [
+    {
+      "turn_id": "t1",
+      "speaker": "npc",
+      "act": "ask_time",
+      "act_slots": {
+        "topic": "meeting_time",
+        "keyword": "Uhr",
+        "gloss": "點鐘"
+      },
+      "learning_role": "listen_only",
+      "surface": "Wann treffen wir uns?",
+      "speak": "Wann treffen wir uns?",
+      "translation": "我們什麼時候見面？",
+      "friend": "這是朋友之間的自然問法。回答一個簡單時間即可。",
+      "reply_set": {
+        "correct": "c1",
+        "choices": [
+          {
+            "id": "c1",
+            "surface": "Um drei Uhr.",
+            "translation": "三點。",
+            "speak": "Um drei Uhr.",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "c2",
+            "surface": "Vor dem Bahnhof.",
+            "translation": "在車站前面。",
+            "speak": "Vor dem Bahnhof.",
+            "contrast_type": "location_answer_when_time_requested",
+            "feedback": "這是地點，不是時間。對方問 Wann，要回答幾點。"
+          },
+          {
+            "id": "c3",
+            "surface": "Mit Karte, bitte.",
+            "translation": "刷卡，麻煩您。",
+            "speak": "Mit Karte, bitte.",
+            "contrast_type": "wrong_scenario_payment",
+            "feedback": "這是付款句，不是約見面時間。"
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t2",
+      "speaker": "npc",
+      "act": "availability_check",
+      "act_slots": {
+        "topic": "availability",
+        "keyword": "passt",
+        "gloss": "合適"
+      },
+      "learning_role": "listen_only",
+      "surface": "Passt dir das?",
+      "speak": "Passt dir das?",
+      "translation": "這樣你可以嗎？",
+      "friend": "朋友之間用 dir，很自然。可以用 Ja, das passt 確認。",
+      "inline_explain": "Um drei Uhr = 在三點。Das passt = 這樣可以。",
+      "reply_set": {
+        "correct": "c1",
+        "choices": [
+          {
+            "id": "c1",
+            "surface": "Ja, das passt.",
+            "translation": "可以，這樣可以。",
+            "speak": "Ja, das passt.",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "c2",
+            "surface": "Nein, nie.",
+            "translation": "不，永遠不要。",
+            "speak": "Nein, nie.",
+            "contrast_type": "refusal_when_confirmation_expected",
+            "feedback": "這會直接取消安排，而且語氣太強。此處要確認可以。"
+          },
+          {
+            "id": "c3",
+            "surface": "Ich möchte den Bon.",
+            "translation": "我要收據。",
+            "speak": "Ich möchte den Bon.",
+            "contrast_type": "wrong_scenario_payment",
+            "feedback": "這是結帳情境，不是朋友約時間。"
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t3",
+      "speaker": "npc",
+      "act": "plan_confirmation",
+      "act_slots": {
+        "topic": "confirmed_plan",
+        "keyword": "dann",
+        "gloss": "那麼"
+      },
+      "learning_role": "listen_only",
+      "surface": "Super, dann um drei.",
+      "speak": "Super, dann um drei.",
+      "translation": "太好了，那就三點。",
+      "friend": "安排正確時，簡短說 Super 即可。",
+      "reply_set": {
+        "correct": "c1",
+        "choices": [
+          {
+            "id": "c1",
+            "surface": "Super.",
+            "translation": "太好了。",
+            "speak": "Super."
+          },
+          {
+            "id": "c2",
+            "surface": "Wo ist die Toilette?",
+            "translation": "廁所在哪裡？",
+            "speak": "Wo ist die Toilette?",
+            "contrast_type": "wrong_scenario_directions",
+            "feedback": "這換成問路情境了。現在只要確認三點見。"
+          },
+          {
+            "id": "c3",
+            "surface": "Ich checke aus.",
+            "translation": "我要退房。",
+            "speak": "Ich checke aus.",
+            "contrast_type": "wrong_scenario_hotel",
+            "feedback": "這是飯店情境，不是朋友約時間。"
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t4",
+      "speaker": "npc",
+      "act": "casual_close",
+      "act_slots": {
+        "topic": "closing",
+        "keyword": "bis später",
+        "gloss": "待會見"
+      },
+      "learning_role": "listen_only",
+      "surface": "Bis später!",
+      "speak": "Bis später!",
+      "translation": "待會見！",
+      "friend": "朋友聊天結尾可以直接回 Bis später。",
+      "reply_set": {
+        "correct": "c1",
+        "choices": [
+          {
+            "id": "c1",
+            "surface": "Bis später!",
+            "translation": "待會見！",
+            "speak": "Bis später!"
+          },
+          {
+            "id": "c2",
+            "surface": "Einen Kaffee, bitte.",
+            "translation": "一杯咖啡，謝謝。",
+            "speak": "Einen Kaffee, bitte.",
+            "contrast_type": "wrong_scenario_ordering",
+            "feedback": "這是在點飲料。朋友道別時，用待會見收尾。"
+          },
+          {
+            "id": "c3",
+            "surface": "Zahlen Sie mit Karte?",
+            "translation": "您用卡付款嗎？",
+            "speak": "Zahlen Sie mit Karte?",
+            "contrast_type": "wrong_role_cashier_line",
+            "feedback": "這像收銀員在說話，不符合朋友聊天情境。"
+          }
+        ]
+      },
+      "closing": true
+    }
+  ],
+  "formula_moments": [
+    {
+      "after_turn": "t1",
+      "pattern_id": "de_time_um_drei_uhr"
+    },
+    {
+      "after_turn": "t2",
+      "pattern_id": "de_casual_confirmation_das_passt"
+    }
+  ],
+  "notes": {
+    "authoring_source": "Authored from ML-0 neutral brief ml0_a1_005_daily_schedule_time; KO packs, other language packs, and Lingourmet_german were not used as source strings.",
+    "review_policy": "AI-authored candidate only; keep review_state=draft, review_status_framework_state=candidate_needs_review, native_review_state=native_pending until tracked review evidence exists.",
+    "canonical_policy": "Staging current-flow candidate only. Do not add to manifests, production exports, schema, runtime, or frontend in this authoring lane.",
+    "german_voice_note": "Uses du relationship consistently for casual scheduling; no Sie service register appears in the scheduling dialogue except distractor content."
+  }
+}

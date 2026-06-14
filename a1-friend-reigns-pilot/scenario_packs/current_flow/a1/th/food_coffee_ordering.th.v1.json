@@ -1,0 +1,256 @@
+{
+  "schema_version": "scenario_pack.v1",
+  "scenario_id": "food_coffee_ordering",
+  "brief_id": "ml0_a1_001_food_coffee_ordering",
+  "source_neutral_brief": "release-aggregator/docs/tasks/A1_MULTILINGUAL_KO_B1_PARALLEL_ORCHESTRATION/work_products/ml0/ML0_NEUTRAL_ADAPTATION_BRIEFS_20260613.md#brief-ml0-a1-001-coffee-ordering",
+  "blueprint_ledger": "release-aggregator/docs/tasks/A1_MULTILINGUAL_KO_B1_PARALLEL_ORCHESTRATION/work_products/ml0/ML0_BLUEPRINT_LEDGER_20260613.md",
+  "repo": "content-th",
+  "staging_path": "content/core/content_assets/scenario_packs/current_flow/food_coffee_ordering.th.v1.json",
+  "title": "สั่งกาแฟ",
+  "setting_label": "เคาน์เตอร์คาเฟ่",
+  "wrap_title": "สั่งกาแฟได้แล้ว",
+  "wrap_friend": "คุณสั่งเครื่องดื่ม ตอบเรื่องกลับบ้าน และปิดบทสนทนาได้ด้วยประโยคสั้น ๆ",
+  "language": "th",
+  "ui_language": "zh_tw",
+  "source_status": "candidate_runtime_verified",
+  "review_state": "draft",
+  "review_status_framework_state": "candidate_runtime_verified",
+  "native_review_state": "native_pending",
+  "production_mode_default": {
+    "required": [
+      "choice"
+    ],
+    "optional_visible": [
+      "speaking"
+    ],
+    "optional_hidden": [
+      "typing"
+    ]
+  },
+  "support_text": "你在泰國咖啡店櫃台。聽店員問什麼，選一句自然接得上的泰文。",
+  "roles": {
+    "npc": {
+      "label": "พนักงาน"
+    },
+    "learner": {
+      "label": "คุณ"
+    }
+  },
+  "turns": [
+    {
+      "turn_id": "t1",
+      "speaker": "npc",
+      "act": "service_opening",
+      "act_slots": {
+        "topic": "เริ่มสั่ง",
+        "keyword": "รับอะไร",
+        "gloss": "點餐"
+      },
+      "learning_role": "listen_only",
+      "surface": "สวัสดีค่ะ รับอะไรดีคะ",
+      "speak": "สวัสดีค่ะ รับอะไรดีคะ",
+      "translation": "您好。要點什麼呢？",
+      "friend": {
+        "hint": "店員在問你要什麼。想要某個飲料，可以說「เอา...ค่ะ」。"
+      },
+      "reply_set": {
+        "correct": "r1a",
+        "choices": [
+          {
+            "id": "r1a",
+            "surface": "เอาอเมริกาโน่เย็นค่ะ",
+            "translation": "我要冰美式。",
+            "speak": "เอาอเมริกาโน่เย็นค่ะ",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r1b",
+            "surface": "ห้องน้ำอยู่ที่ไหนคะ",
+            "translation": "洗手間在哪裡？",
+            "speak": "ห้องน้ำอยู่ที่ไหนคะ",
+            "contrast_type": "wrong_scenario_request",
+            "feedback": "這句是在問洗手間。現在店員在等你點飲料。"
+          },
+          {
+            "id": "r1c",
+            "surface": "ไม่เป็นไรค่ะ",
+            "translation": "不用了／沒關係。",
+            "speak": "ไม่เป็นไรค่ะ",
+            "contrast_type": "wrong_act_refusal",
+            "feedback": "這樣像是在說不用點。要點飲料時，用「เอา...ค่ะ」。"
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t2",
+      "speaker": "npc",
+      "act": "choice_question",
+      "act_slots": {
+        "topic": "內用或外帶",
+        "keyword": "ที่นี่",
+        "gloss": "這裡"
+      },
+      "learning_role": "listen_only",
+      "surface": "ทานที่ร้านหรือกลับบ้านคะ",
+      "speak": "ทานที่ร้านหรือกลับบ้านคะ",
+      "translation": "內用還是外帶？",
+      "friend": {
+        "hint": "ที่ร้าน 是在店裡，กลับบ้าน 是帶回家。選一個回答就好。"
+      },
+      "inline_explain": {
+        "pattern_id": "th.cafe.for_here.to_go.v1",
+        "formula_ref": null,
+        "title": "ที่ร้าน / กลับบ้าน",
+        "explain": "「ที่ร้าน」是在店裡，「กลับบ้าน」是帶回家。",
+        "items": [
+          {
+            "surface": "ที่ร้าน",
+            "translation": "內用",
+            "speak": "ที่ร้าน"
+          },
+          {
+            "surface": "กลับบ้าน",
+            "translation": "外帶",
+            "speak": "กลับบ้าน"
+          }
+        ]
+      },
+      "reply_set": {
+        "correct": "r2a",
+        "choices": [
+          {
+            "id": "r2a",
+            "surface": "กลับบ้านค่ะ",
+            "translation": "外帶。",
+            "speak": "กลับบ้านค่ะ",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r2b",
+            "surface": "เอาอเมริกาโน่เย็นค่ะ",
+            "translation": "我要冰美式。",
+            "speak": "เอาอเมริกาโน่เย็นค่ะ",
+            "contrast_type": "repeated_prior_answer",
+            "feedback": "飲料已經點了。這裡是在問內用或外帶。"
+          },
+          {
+            "id": "r2c",
+            "surface": "ใช่ค่ะ",
+            "translation": "是的。",
+            "speak": "ใช่ค่ะ",
+            "contrast_type": "wrong_act_confirmation",
+            "feedback": "店員給你兩個選項，不是問是或不是。要選「ที่ร้าน」或「กลับบ้าน」。"
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t3",
+      "speaker": "npc",
+      "act": "confirmation",
+      "act_slots": {
+        "topic": "訂單確認",
+        "keyword": "นะคะ",
+        "gloss": "確認語氣"
+      },
+      "learning_role": "listen_only",
+      "surface": "อเมริกาโน่เย็น กลับบ้านนะคะ",
+      "speak": "อเมริกาโน่เย็น กลับบ้านนะคะ",
+      "translation": "冰美式外帶，對嗎？",
+      "friend": {
+        "hint": "店員在確認訂單。沒問題時，可以簡短說「ใช่ค่ะ」。"
+      },
+      "reply_set": {
+        "correct": "r3a",
+        "choices": [
+          {
+            "id": "r3a",
+            "surface": "ใช่ค่ะ",
+            "translation": "是的。",
+            "speak": "ใช่ค่ะ"
+          },
+          {
+            "id": "r3b",
+            "surface": "ไม่เอาค่ะ",
+            "translation": "不要了。",
+            "speak": "ไม่เอาค่ะ",
+            "contrast_type": "wrong_act_refusal",
+            "feedback": "這樣像是在取消。訂單沒問題時，說「ใช่ค่ะ」就好。"
+          },
+          {
+            "id": "r3c",
+            "surface": "ห้องน้ำอยู่ที่ไหนคะ",
+            "translation": "洗手間在哪裡？",
+            "speak": "ห้องน้ำอยู่ที่ไหนคะ",
+            "contrast_type": "off_topic_statement",
+            "feedback": "先確認飲料。問洗手間是另一個場景。"
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t4",
+      "speaker": "npc",
+      "act": "payment",
+      "act_slots": {
+        "topic": "付款等待",
+        "keyword": "บาท",
+        "gloss": "泰銖"
+      },
+      "learning_role": "listen_only",
+      "surface": "หกสิบบาทค่ะ รอสักครู่นะคะ",
+      "speak": "หกสิบบาทค่ะ รอสักครู่นะคะ",
+      "translation": "六十泰銖。請稍等一下。",
+      "friend": {
+        "hint": "店員說價格，也請你稍等。簡短回答謝謝就可以。"
+      },
+      "reply_set": {
+        "correct": "r4a",
+        "choices": [
+          {
+            "id": "r4a",
+            "surface": "ขอบคุณค่ะ",
+            "translation": "謝謝。",
+            "speak": "ขอบคุณค่ะ"
+          },
+          {
+            "id": "r4b",
+            "surface": "กลับบ้านค่ะ",
+            "translation": "外帶。",
+            "speak": "กลับบ้านค่ะ",
+            "contrast_type": "repeated_prior_answer",
+            "feedback": "外帶剛剛已經說過了。現在是付款和等待。"
+          },
+          {
+            "id": "r4c",
+            "surface": "เอาอเมริกาโน่เย็นค่ะ",
+            "translation": "我要冰美式。",
+            "speak": "เอาอเมริกาโน่เย็นค่ะ",
+            "contrast_type": "repeated_prior_answer",
+            "feedback": "飲料已經點好了，現在接著付款或等待。"
+          }
+        ]
+      },
+      "closing": {
+        "act": "handover",
+        "learning_role": "listen_only",
+        "surface": "ได้แล้วค่ะ อเมริกาโน่เย็นค่ะ",
+        "speak": "ได้แล้วค่ะ อเมริกาโน่เย็นค่ะ",
+        "translation": "好了。這是冰美式。"
+      }
+    }
+  ],
+  "formula_moments": [
+    {
+      "after_turn": "t2",
+      "pattern_id": "th.cafe.for_here.to_go.v1"
+    }
+  ],
+  "notes": {
+    "authoring_source": "Authored from ML-0 neutral brief, not Korean surface text.",
+    "review_policy": "AI-authored Thai candidate. Requires AI review, runtime smoke, and tracked native review before any stronger status.",
+    "canonical_policy": "Staging candidate only. Do not write back to manifests, production exports, schemas, or legacy content.",
+    "thai_voice_note": "Pilot uses ค่ะ/คะ consistently to avoid slash-form TTS and beginner-input ambiguity."
+  }
+}

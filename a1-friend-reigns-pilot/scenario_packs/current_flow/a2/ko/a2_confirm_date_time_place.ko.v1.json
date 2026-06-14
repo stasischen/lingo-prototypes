@@ -1,0 +1,266 @@
+{
+  "schema_version": "scenario_pack.v1",
+  "scenario_id": "a2_confirm_date_time_place",
+  "title": "날짜, 시간, 장소 확인하기",
+  "setting_label": "짧은 메시지 확인",
+  "wrap_title": "메시지 내용 확인",
+  "wrap_friend": "你剛剛從短訊息裡抓出日期、時間、地點，並用韓文確認。",
+  "language": "ko",
+  "ui_language": "zh_tw",
+  "cefr_level": "A2",
+  "source_status": "candidate_runtime_verified",
+  "review_state": "ai_reviewed",
+  "review_status_framework_state": "candidate_runtime_verified",
+  "native_review_state": "native_pending",
+  "scenario": "You confirm date, time, and place from a short message.",
+  "learner_goal": "Understand a short message and confirm the key details.",
+  "target_functions": [
+    "message_comprehension",
+    "date_time_place_confirmation",
+    "repair_check"
+  ],
+  "register_notes": "Friendly polite -요. Message phrasing is concise and natural.",
+  "input_message": {
+    "surface": "내일 오전 10시, 시청 앞에서 만나요.",
+    "translation": "明天上午 10 點，在市政府前面見。"
+  },
+  "production_mode_default": {
+    "required": [
+      "choice"
+    ],
+    "optional_visible": [
+      "speaking"
+    ],
+    "optional_hidden": [
+      "typing"
+    ]
+  },
+  "support_text": "친구가 보낸 짧은 메시지를 보고 날짜, 시간, 장소를 확인해요.",
+  "roles": {
+    "npc": {
+      "label": "친구"
+    },
+    "learner": {
+      "label": "你"
+    }
+  },
+  "turns": [
+    {
+      "turn_id": "t1",
+      "speaker": "npc",
+      "act": "message_reference",
+      "act_slots": {
+        "topic": "sent message",
+        "keyword": "메시지",
+        "gloss": "訊息"
+      },
+      "learning_role": "listen_only",
+      "surface": "메시지 확인했어요?",
+      "speak": "메시지 확인했어요?",
+      "translation": "你確認訊息了嗎？",
+      "friend": {
+        "hint": "訊息是：내일 오전 10시, 시청 앞에서 만나요。先確認日期和時間。"
+      },
+      "reply_set": {
+        "correct": "r1a",
+        "choices": [
+          {
+            "id": "r1a",
+            "surface": "네, 내일 오전 10시 맞죠?",
+            "translation": "有，明天上午 10 點對吧？",
+            "speak": "네, 내일 오전 열 시 맞죠?",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r1b",
+            "surface": "네, 오늘 밤 10시 맞죠?",
+            "translation": "有，今天晚上 10 點對吧？",
+            "speak": "네, 오늘 밤 열 시 맞죠?",
+            "contrast_type": "wrong_date_time",
+            "feedback": "訊息是 내일 오전 10시，明天上午 10 點，不是今天晚上。"
+          },
+          {
+            "id": "r1c",
+            "surface": "네, 메뉴 확인했어요.",
+            "translation": "有，我確認菜單了。",
+            "speak": "네, 메뉴 확인했어요.",
+            "contrast_type": "wrong_scenario_menu",
+            "feedback": "訊息不是菜單，是見面的時間地點。"
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t2",
+      "speaker": "npc",
+      "act": "place_prompt",
+      "act_slots": {
+        "topic": "place",
+        "keyword": "어디",
+        "gloss": "哪裡"
+      },
+      "learning_role": "listen_only",
+      "surface": "네. 장소는 어디였죠?",
+      "speak": "네. 장소는 어디였죠?",
+      "translation": "對。地點是哪裡來著？",
+      "friend": {
+        "hint": "訊息裡的 장소 是 시청 앞，市政府前面。"
+      },
+      "inline_explain": {
+        "pattern_id": "ko.a2.confirm.place.ap.v1",
+        "title": "N 앞에서 = 在 N 前面",
+        "explain": "앞에서 表示在某個地方前面進行動作或見面。",
+        "items": [
+          {
+            "surface": "시청 앞에서",
+            "translation": "在市政府前面",
+            "speak": "시청 앞에서"
+          },
+          {
+            "surface": "카페 앞에서",
+            "translation": "在咖啡店前面",
+            "speak": "카페 앞에서"
+          }
+        ]
+      },
+      "reply_set": {
+        "correct": "r2a",
+        "choices": [
+          {
+            "id": "r2a",
+            "surface": "시청 앞에서 만나요.",
+            "translation": "在市政府前面見。",
+            "speak": "시청 앞에서 만나요.",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r2b",
+            "surface": "시청 안에서 만나요.",
+            "translation": "在市政府裡面見。",
+            "speak": "시청 안에서 만나요.",
+            "contrast_type": "wrong_place_relation",
+            "feedback": "訊息是 앞에서，前面，不是 안에서，裡面。"
+          },
+          {
+            "id": "r2c",
+            "surface": "집에서 쉬려고 해요.",
+            "translation": "我打算在家休息。",
+            "speak": "집에서 쉬려고 해요.",
+            "contrast_type": "wrong_function_plan",
+            "feedback": "這是在說自己的計畫，不是在確認地點。"
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t3",
+      "speaker": "npc",
+      "act": "small_change_notice",
+      "act_slots": {
+        "topic": "small change",
+        "keyword": "혹시",
+        "gloss": "如果"
+      },
+      "learning_role": "listen_only",
+      "surface": "혹시 늦으면 메시지할게요.",
+      "speak": "혹시 늦으면 메시지할게요.",
+      "translation": "如果我晚到，我會傳訊息。",
+      "friend": {
+        "hint": "혹시 늦으면 是如果晚到。可以回答知道了。"
+      },
+      "reply_set": {
+        "correct": "r3a",
+        "choices": [
+          {
+            "id": "r3a",
+            "surface": "네, 알겠어요.",
+            "translation": "好，我知道了。",
+            "speak": "네, 알겠어요."
+          },
+          {
+            "id": "r3b",
+            "surface": "네, 늦었어요.",
+            "translation": "好，我遲到了。",
+            "speak": "네, 늦었어요.",
+            "contrast_type": "wrong_subject_status",
+            "feedback": "他是在說如果他晚到會傳訊息，不是說你已經遲到。"
+          },
+          {
+            "id": "r3c",
+            "surface": "버스가 늦으면 연락할게요.",
+            "translation": "如果公車晚了，我會聯絡你。",
+            "speak": "버스가 늦으면 연락할게요.",
+            "contrast_type": "wrong_focus_self_delay",
+            "feedback": "這句像是在說你自己的情況；他只是說如果他晚到會傳訊息。"
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t4",
+      "speaker": "npc",
+      "act": "final_confirmation",
+      "act_slots": {
+        "topic": "final check"
+      },
+      "learning_role": "listen_only",
+      "surface": "그럼 내일 봐요.",
+      "speak": "그럼 내일 봐요.",
+      "translation": "那明天見。",
+      "friend": {
+        "hint": "細節確認完了，自然收尾。"
+      },
+      "reply_set": {
+        "correct": "r4a",
+        "choices": [
+          {
+            "id": "r4a",
+            "surface": "네, 내일 봐요.",
+            "translation": "好，明天見。",
+            "speak": "네, 내일 봐요."
+          },
+          {
+            "id": "r4b",
+            "surface": "네, 어제 봐요.",
+            "translation": "好，昨天見。",
+            "speak": "네, 어제 봐요.",
+            "contrast_type": "wrong_time_expression",
+            "feedback": "어제 봐요 不自然；要說 내일 봐요。"
+          },
+          {
+            "id": "r4c",
+            "surface": "계산서를 주세요.",
+            "translation": "請給我帳單。",
+            "speak": "계산서를 주세요.",
+            "contrast_type": "wrong_scenario_payment",
+            "feedback": "這是付款情境。現在只是約明天見。"
+          }
+        ]
+      }
+    }
+  ],
+  "choice_sets": [
+    "t1.reply_set",
+    "t2.reply_set",
+    "t3.reply_set",
+    "t4.reply_set"
+  ],
+  "feedback": "Distractors test date/time/place extraction and avoid valid alternate confirmations.",
+  "tts_segments": [
+    "네, 내일 오전 10시 맞죠?",
+    "시청 앞에서 만나요.",
+    "네, 알겠어요.",
+    "네, 내일 봐요."
+  ],
+  "formula_moments": [
+    {
+      "after_turn": "t2",
+      "pattern_id": "ko.a2.confirm.place.ap.v1"
+    }
+  ],
+  "runtime_notes": "Fresh KO A2 candidate. Runtime smoke passed on 2026-06-14 before metadata promotion.",
+  "notes": {
+    "authoring_policy": "Fresh-authored from A2 scope. Legacy A2 lines were not copied or paraphrased.",
+    "a2_boundary": "Short message comprehension plus confirmation; no extended scheduling negotiation."
+  }
+}

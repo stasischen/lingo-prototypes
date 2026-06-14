@@ -1,0 +1,257 @@
+{
+  "schema_version": "scenario_pack.v1",
+  "scenario_id": "a2_change_delivery_pickup_time",
+  "title": "更改取貨時間",
+  "setting_label": "low-risk help message",
+  "wrap_title": "更改取貨時間",
+  "wrap_friend": "做得好。你在低風險的數位或文件協助情境中，只確認了必要資訊。",
+  "language": "zh",
+  "ui_language": "zh-Hant",
+  "cefr_level": "A2",
+  "source_status": "candidate_runtime_verified",
+  "review_state": "ai_reviewed",
+  "review_status_framework_state": "candidate_runtime_verified",
+  "native_review_state": "native_pending",
+  "scenario": {
+    "domain": "digital_documents_low_risk_help",
+    "review_slice": "digital_documents",
+    "interaction": "low_risk_confirmation_or_help",
+    "source_brief": "A2_DIGITAL_DOCUMENTS_NEUTRAL_ADAPTATION_BRIEFS_20260614",
+    "blueprint_source": "language_neutral_adaptation_brief",
+    "ko_pack_role": "mature_scenario_blueprint_not_translation_source"
+  },
+  "learner_goal": "用 A2 短句處理低風險的數位或簡單表格協助。",
+  "target_functions": [
+    "confirm_booking_or_message",
+    "request_simple_change",
+    "ask_simple_form_help",
+    "follow_up_low_risk_item"
+  ],
+  "register_notes": "Traditional Mandarin A2 low-risk digital/documents register: Taiwan-leaning, concise polite help/service wording, no passwords, payment, sensitive ID, medical, legal, police, or immigration framing.",
+  "production_mode_default": {
+    "required": [
+      "choice"
+    ],
+    "optional_visible": [
+      "speaking"
+    ],
+    "optional_hidden": [
+      "typing"
+    ]
+  },
+  "support_text": "只確認必要資訊，不提供密碼、付款資料、敏感身分資料、法律或醫療資訊。",
+  "roles": {
+    "npc": {
+      "label": "工作人員"
+    },
+    "learner": {
+      "label": "你"
+    }
+  },
+  "turns": [
+    {
+      "turn_id": "t1",
+      "speaker": "npc",
+      "act": "start",
+      "act_slots": {
+        "topic": "a2_change_delivery_pickup_time",
+        "keyword": "1",
+        "gloss": "A2 digital/documents"
+      },
+      "learning_role": "listen_only",
+      "surface": "你今天四點取貨。",
+      "speak": "你今天四點取貨。",
+      "translation": "今天四點取貨。",
+      "friend": {
+        "hint": "只確認必要且低風險的細節。"
+      },
+      "reply_set": {
+        "correct": "r1a",
+        "choices": [
+          {
+            "id": "r1a",
+            "surface": "可以改取貨時間嗎？",
+            "translation": "可以改取貨時間嗎？",
+            "speak": "可以改取貨時間嗎？",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r1b",
+            "surface": "我會告訴你密碼。",
+            "translation": "我會告訴你密碼。",
+            "speak": "我會告訴你密碼。",
+            "contrast_type": "forbidden_sensitive",
+            "feedback": "密碼不屬於這個 A2 任務。"
+          },
+          {
+            "id": "r1c",
+            "surface": "請退款。",
+            "translation": "請退款。",
+            "speak": "請退款。",
+            "contrast_type": "wrong_dispute_domain",
+            "feedback": "退款或爭議不屬於這個任務。"
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t2",
+      "speaker": "npc",
+      "act": "clarify",
+      "act_slots": {
+        "topic": "a2_change_delivery_pickup_time",
+        "keyword": "2",
+        "gloss": "A2 digital/documents"
+      },
+      "learning_role": "listen_only",
+      "surface": "可以，五點可以。",
+      "speak": "可以，五點可以。",
+      "translation": "可以，五點可以。",
+      "friend": {
+        "hint": "只確認必要且低風險的細節。"
+      },
+      "reply_set": {
+        "correct": "r2a",
+        "choices": [
+          {
+            "id": "r2a",
+            "surface": "那請改成五點。",
+            "translation": "那請改成五點。",
+            "speak": "那請改成五點。",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r2b",
+            "surface": "我會告訴你密碼。",
+            "translation": "我會告訴你密碼。",
+            "speak": "我會告訴你密碼。",
+            "contrast_type": "forbidden_sensitive",
+            "feedback": "密碼不屬於這個 A2 任務。"
+          },
+          {
+            "id": "r2c",
+            "surface": "請退款。",
+            "translation": "請退款。",
+            "speak": "請退款。",
+            "contrast_type": "wrong_dispute_domain",
+            "feedback": "退款或爭議不屬於這個任務。"
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t3",
+      "speaker": "npc",
+      "act": "confirm_detail",
+      "act_slots": {
+        "topic": "a2_change_delivery_pickup_time",
+        "keyword": "3",
+        "gloss": "A2 digital/documents"
+      },
+      "learning_role": "listen_only",
+      "surface": "所以改成五點嗎？",
+      "speak": "所以改成五點嗎？",
+      "translation": "改成五點嗎？",
+      "friend": {
+        "hint": "只確認必要且低風險的細節。"
+      },
+      "reply_set": {
+        "correct": "r3a",
+        "choices": [
+          {
+            "id": "r3a",
+            "surface": "對，五點可以。",
+            "translation": "對，五點可以。",
+            "speak": "對，五點可以。",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r3b",
+            "surface": "我會告訴你密碼。",
+            "translation": "我會告訴你密碼。",
+            "speak": "我會告訴你密碼。",
+            "contrast_type": "forbidden_sensitive",
+            "feedback": "密碼不屬於這個 A2 任務。"
+          },
+          {
+            "id": "r3c",
+            "surface": "請退款。",
+            "translation": "請退款。",
+            "speak": "請退款。",
+            "contrast_type": "wrong_dispute_domain",
+            "feedback": "退款或爭議不屬於這個任務。"
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t4",
+      "speaker": "npc",
+      "act": "close",
+      "act_slots": {
+        "topic": "a2_change_delivery_pickup_time",
+        "keyword": "4",
+        "gloss": "A2 digital/documents"
+      },
+      "learning_role": "listen_only",
+      "surface": "好，我會改成五點。",
+      "speak": "好，我會改成五點。",
+      "translation": "好的，我會改成五點。",
+      "friend": {
+        "hint": "只確認必要且低風險的細節。"
+      },
+      "reply_set": {
+        "correct": "r4a",
+        "choices": [
+          {
+            "id": "r4a",
+            "surface": "謝謝，我五點會去。",
+            "translation": "謝謝，我五點會去。",
+            "speak": "謝謝，我五點會去。",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r4b",
+            "surface": "我會告訴你密碼。",
+            "translation": "我會告訴你密碼。",
+            "speak": "我會告訴你密碼。",
+            "contrast_type": "forbidden_sensitive",
+            "feedback": "密碼不屬於這個 A2 任務。"
+          },
+          {
+            "id": "r4c",
+            "surface": "請退款。",
+            "translation": "請退款。",
+            "speak": "請退款。",
+            "contrast_type": "wrong_dispute_domain",
+            "feedback": "退款或爭議不屬於這個任務。"
+          }
+        ]
+      }
+    }
+  ],
+  "choice_sets": [
+    "t1.reply_set",
+    "t2.reply_set",
+    "t3.reply_set",
+    "t4.reply_set"
+  ],
+  "feedback": "只確認必要資訊，不提供密碼、付款資料、敏感身分資料、法律或醫療資訊。",
+  "tts_segments": [
+    "可以改取貨時間嗎？",
+    "那請改成五點。",
+    "對，五點可以。",
+    "謝謝，我五點會去。"
+  ],
+  "formula_moments": [
+    {
+      "after_turn": "t2",
+      "pattern_id": "zh.a2.digital.change_delivery_pickup_time.v1"
+    }
+  ],
+  "runtime_notes": "Fresh A2 digital/documents candidate. Requires full-walk runtime before closeout evidence is recorded.",
+  "notes": {
+    "authoring_policy": "Fresh-authored from A2 digital/documents neutral adaptation brief. KO surface text was not copied or translated.",
+    "a2_boundary": "Low-risk confirmation/help only; avoids sensitive identity, payment, legal, medical, police, and immigration workflows."
+  }
+}

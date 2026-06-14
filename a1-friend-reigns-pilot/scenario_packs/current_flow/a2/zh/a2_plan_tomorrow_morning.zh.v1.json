@@ -1,0 +1,263 @@
+{
+  "schema_version": "scenario_pack.v1",
+  "scenario_id": "a2_plan_tomorrow_morning",
+  "title": "明天早上的計畫",
+  "setting_label": "跟朋友聊天",
+  "wrap_title": "明天早上計畫完成",
+  "wrap_friend": "你剛剛用簡單中文說了明天早上的安排，接著說下一步，並確認有空的時間。",
+  "language": "zh",
+  "ui_language": "zh_tw",
+  "cefr_level": "A2",
+  "source_status": "candidate_runtime_verified",
+  "review_state": "ai_reviewed",
+  "review_status_framework_state": "candidate_runtime_verified",
+  "native_review_state": "native_pending",
+  "scenario": "朋友問你明天早上打算做什麼。",
+  "learner_goal": "說明天早上的近未來計畫，再加一個簡單的下一步。",
+  "target_functions": [
+    "near_future_plan",
+    "simple_sequence",
+    "time_expression"
+  ],
+  "register_notes": "自然朋友語氣，使用「明天早上」「先」「然後」「十一點左右」。",
+  "production_mode_default": {
+    "required": [
+      "choice"
+    ],
+    "optional_visible": [
+      "speaking"
+    ],
+    "optional_hidden": [
+      "typing"
+    ]
+  },
+  "support_text": "朋友問你明天早上的計畫。先說你要做什麼，再說下一步，最後確認大概什麼時候有空。",
+  "roles": {
+    "npc": {
+      "label": "朋友"
+    },
+    "learner": {
+      "label": "你"
+    }
+  },
+  "turns": [
+    {
+      "turn_id": "t1",
+      "speaker": "npc",
+      "act": "info_request",
+      "act_slots": {
+        "topic": "tomorrow morning plan",
+        "keyword": "明天早上",
+        "gloss": "tomorrow morning"
+      },
+      "learning_role": "listen_only",
+      "surface": "你明天早上打算做什麼？",
+      "speak": "你明天早上打算做什麼？",
+      "translation": "你明天早上打算做什麼？",
+      "friend": {
+        "hint": "問題是明天早上的計畫，可以用「我要」或「我打算」。"
+      },
+      "reply_set": {
+        "correct": "r1a",
+        "choices": [
+          {
+            "id": "r1a",
+            "surface": "我明天早上要去圖書館。",
+            "translation": "我明天早上要去圖書館。",
+            "speak": "我明天早上要去圖書館。",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r1b",
+            "surface": "我昨天早上去了圖書館。",
+            "translation": "我昨天早上去了圖書館。",
+            "speak": "我昨天早上去了圖書館。",
+            "contrast_type": "wrong_time_past",
+            "feedback": "朋友問的是明天早上，不是昨天早上。"
+          },
+          {
+            "id": "r1c",
+            "surface": "圖書館在哪裡？",
+            "translation": "圖書館在哪裡？",
+            "speak": "圖書館在哪裡？",
+            "contrast_type": "wrong_function_location_question",
+            "feedback": "這是在問地點，沒有說你的計畫。"
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t2",
+      "speaker": "npc",
+      "act": "followup_sequence",
+      "act_slots": {
+        "topic": "next step",
+        "keyword": "然後",
+        "gloss": "then"
+      },
+      "learning_role": "listen_only",
+      "surface": "那之後呢？",
+      "speak": "那之後呢？",
+      "translation": "那之後呢？",
+      "friend": {
+        "hint": "對方問下一步。用「然後」接一個簡單活動。"
+      },
+      "inline_explain": {
+        "pattern_id": "zh.a2.plan.sequence.xian_ranhou.v1",
+        "title": "先...然後...",
+        "explain": "用「先」說第一件事，用「然後」接下一件事。",
+        "items": [
+          {
+            "surface": "我先去圖書館。",
+            "translation": "我先去圖書館。",
+            "speak": "我先去圖書館。"
+          },
+          {
+            "surface": "然後我去買早餐。",
+            "translation": "然後我去買早餐。",
+            "speak": "然後我去買早餐。"
+          }
+        ]
+      },
+      "reply_set": {
+        "correct": "r2a",
+        "choices": [
+          {
+            "id": "r2a",
+            "surface": "然後我去買早餐。",
+            "translation": "然後我去買早餐。",
+            "speak": "然後我去買早餐。",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r2b",
+            "surface": "我們在圖書館見吧。",
+            "translation": "我們在圖書館見吧。",
+            "speak": "我們在圖書館見吧。",
+            "contrast_type": "wrong_function_meeting_suggestion",
+            "feedback": "這是在約見面地點，不是在說你的下一步。"
+          },
+          {
+            "id": "r2c",
+            "surface": "我現在正在買早餐。",
+            "translation": "我現在正在買早餐。",
+            "speak": "我現在正在買早餐。",
+            "contrast_type": "wrong_time_now",
+            "feedback": "這是在說現在，不是明天早上的下一步。"
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t3",
+      "speaker": "npc",
+      "act": "time_confirmation",
+      "act_slots": {
+        "topic": "availability",
+        "keyword": "有空",
+        "gloss": "free"
+      },
+      "learning_role": "listen_only",
+      "surface": "所以你午餐前有空嗎？",
+      "speak": "所以你午餐前有空嗎？",
+      "translation": "所以你午餐前有空嗎？",
+      "friend": {
+        "hint": "回答大概時間即可，例如十一點左右。"
+      },
+      "reply_set": {
+        "correct": "r3a",
+        "choices": [
+          {
+            "id": "r3a",
+            "surface": "有，我十一點左右有空。",
+            "translation": "有，我十一點左右有空。",
+            "speak": "有，我十一點左右有空。"
+          },
+          {
+            "id": "r3b",
+            "surface": "沒有，我昨天有空。",
+            "translation": "沒有，我昨天有空。",
+            "speak": "沒有，我昨天有空。",
+            "contrast_type": "wrong_time_past",
+            "feedback": "朋友問的是明天午餐前，不是昨天。"
+          },
+          {
+            "id": "r3c",
+            "surface": "圖書館十一點關門嗎？",
+            "translation": "圖書館十一點關門嗎？",
+            "speak": "圖書館十一點關門嗎？",
+            "contrast_type": "wrong_focus_opening_hours",
+            "feedback": "朋友問你什麼時候有空，不是在問圖書館時間。"
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t4",
+      "speaker": "npc",
+      "act": "closing_confirmation",
+      "act_slots": {
+        "topic": "plan confirmed"
+      },
+      "learning_role": "listen_only",
+      "surface": "好，那我十一點傳訊息給你。",
+      "speak": "好，那我十一點傳訊息給你。",
+      "translation": "好，那我十一點傳訊息給你。",
+      "friend": {
+        "hint": "計畫已經清楚了，用短句自然收尾。"
+      },
+      "reply_set": {
+        "correct": "r4a",
+        "choices": [
+          {
+            "id": "r4a",
+            "surface": "好，明天見。",
+            "translation": "好，明天見。",
+            "speak": "好，明天見。"
+          },
+          {
+            "id": "r4b",
+            "surface": "我想再點一份。",
+            "translation": "我想再點一份。",
+            "speak": "我想再點一份。",
+            "contrast_type": "wrong_scenario_ordering",
+            "feedback": "這像在點餐，不是在確認明天的計畫。"
+          },
+          {
+            "id": "r4c",
+            "surface": "我想換房間。",
+            "translation": "我想換房間。",
+            "speak": "我想換房間。",
+            "contrast_type": "wrong_scenario_hotel",
+            "feedback": "這是旅館情境，不適合朋友聊天的結尾。"
+          }
+        ]
+      }
+    }
+  ],
+  "choice_sets": [
+    "t1.reply_set",
+    "t2.reply_set",
+    "t3.reply_set",
+    "t4.reply_set"
+  ],
+  "feedback": "干擾選項測試錯誤時間、錯誤功能和錯誤場景，但不提供可接受的替代答案。",
+  "tts_segments": [
+    "我明天早上要去圖書館。",
+    "然後我去買早餐。",
+    "有，我十一點左右有空。",
+    "好，明天見。"
+  ],
+  "formula_moments": [
+    {
+      "after_turn": "t2",
+      "pattern_id": "zh.a2.plan.sequence.xian_ranhou.v1"
+    }
+  ],
+  "runtime_notes": "Fresh ZH A2 candidate. Structural checks and two AI semantic review passes completed on 2026-06-14 before metadata promotion.",
+  "notes": {
+    "authoring_policy": "Fresh-authored from the neutral A2 brief. KO/JA/EN/TH packs were not translation sources.",
+    "a2_boundary": "Uses near-future plan, simple sequence, and approximate availability; avoids formal itinerary language.",
+    "chinese_voice_note": "Traditional-character Mandarin with Taiwan-leaning friend-chat phrasing."
+  }
+}

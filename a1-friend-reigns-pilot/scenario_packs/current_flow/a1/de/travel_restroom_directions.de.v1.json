@@ -1,0 +1,229 @@
+{
+  "schema_version": "scenario_pack.v1",
+  "scenario_id": "travel_restroom_directions",
+  "brief_id": "ml0_a1_003_travel_restroom_directions",
+  "source_neutral_brief": "release-aggregator/docs/tasks/A1_MULTILINGUAL_KO_B1_PARALLEL_ORCHESTRATION/work_products/ml0/ML0_NEUTRAL_ADAPTATION_BRIEFS_20260613.md#ml0-a1-003",
+  "blueprint_ledger": "release-aggregator/docs/tasks/A1_MULTILINGUAL_KO_B1_PARALLEL_ORCHESTRATION/work_products/ml0/ML0_BLUEPRINT_LEDGER_20260613.md",
+  "repo": "content-de",
+  "staging_path": "content/core/content_assets/scenario_packs/current_flow/travel_restroom_directions.de.v1.json",
+  "title": "Nach der Toilette fragen",
+  "setting_label": "Öffentlicher Ort",
+  "wrap_title": "Weg verstanden",
+  "wrap_friend": "Du hast höflich gefragt und eine kurze Richtung verstanden.",
+  "language": "de",
+  "ui_language": "zh_tw",
+  "source_status": "candidate_runtime_verified",
+  "review_state": "draft",
+  "review_status_framework_state": "candidate_runtime_verified",
+  "native_review_state": "native_pending",
+  "production_mode_default": {
+    "required": [
+      "choice"
+    ],
+    "optional_visible": [
+      "speaking"
+    ],
+    "optional_hidden": [
+      "typing"
+    ]
+  },
+  "support_text": "你在公共場所，需要問洗手間在哪裡。用簡短禮貌的德文問路，並理解簡單方向。",
+  "roles": {
+    "npc": {
+      "label": "Mitarbeiter/in"
+    },
+    "learner": {
+      "label": "Besucher/in"
+    }
+  },
+  "turns": [
+    {
+      "turn_id": "t1",
+      "speaker": "npc",
+      "act": "attention_prompt",
+      "act_slots": {
+        "topic": "help_available",
+        "keyword": "helfen",
+        "gloss": "幫忙"
+      },
+      "learning_role": "listen_only",
+      "surface": "Hallo. Kann ich Ihnen helfen?",
+      "speak": "Hallo. Kann ich Ihnen helfen?",
+      "translation": "您好。我可以幫您嗎？",
+      "friend": "對陌生服務人員用 Ihnen，是 Sie 禮貌語氣。",
+      "reply_set": {
+        "correct": "c1",
+        "choices": [
+          {
+            "id": "c1",
+            "surface": "Entschuldigung, wo ist die Toilette?",
+            "translation": "不好意思，洗手間在哪裡？",
+            "speak": "Entschuldigung, wo ist die Toilette?",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "c2",
+            "surface": "Einen Kaffee, bitte.",
+            "translation": "一杯咖啡，謝謝。",
+            "speak": "Einen Kaffee, bitte.",
+            "contrast_type": "price_order_payment",
+            "feedback": "這是在點咖啡，不是在問洗手間位置。"
+          },
+          {
+            "id": "c3",
+            "surface": "Ich habe eine Reservierung.",
+            "translation": "我有預訂。",
+            "speak": "Ich habe eine Reservierung.",
+            "contrast_type": "wrong_place_noun",
+            "feedback": "這是飯店入住句。找洗手間要問 wo ist die Toilette?"
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t2",
+      "speaker": "npc",
+      "act": "direction",
+      "act_slots": {
+        "topic": "simple_route",
+        "keyword": "geradeaus links",
+        "gloss": "直走左邊"
+      },
+      "learning_role": "listen_only",
+      "surface": "Geradeaus und dann links.",
+      "speak": "Geradeaus und dann links.",
+      "translation": "直走，然後左邊。",
+      "friend": "方向很短：geradeaus 是直走，links 是左邊。",
+      "inline_explain": "Geradeaus = 直走；links = 左邊。",
+      "reply_set": {
+        "correct": "c1",
+        "choices": [
+          {
+            "id": "c1",
+            "surface": "Geradeaus und links?",
+            "translation": "直走然後左邊嗎？",
+            "speak": "Geradeaus und links?",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "c2",
+            "surface": "Mit Karte, bitte.",
+            "translation": "用卡，謝謝。",
+            "speak": "Mit Karte, bitte.",
+            "contrast_type": "price_order_payment",
+            "feedback": "這是在付款，不是在確認方向。"
+          },
+          {
+            "id": "c3",
+            "surface": "Ich bin aus Taiwan.",
+            "translation": "我來自台灣。",
+            "speak": "Ich bin aus Taiwan.",
+            "contrast_type": "personal_status_instead_of_location",
+            "feedback": "這是個人資訊，沒有確認你聽到的方向。"
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t3",
+      "speaker": "npc",
+      "act": "confirmation",
+      "act_slots": {
+        "topic": "direction_confirmed",
+        "keyword": "genau",
+        "gloss": "沒錯"
+      },
+      "learning_role": "listen_only",
+      "surface": "Ja, genau.",
+      "speak": "Ja, genau.",
+      "translation": "對，沒錯。",
+      "friend": "對方確認你的理解。可以道謝。",
+      "reply_set": {
+        "correct": "c1",
+        "choices": [
+          {
+            "id": "c1",
+            "surface": "Danke.",
+            "translation": "謝謝。",
+            "speak": "Danke."
+          },
+          {
+            "id": "c2",
+            "surface": "Zum Mitnehmen?",
+            "translation": "要外帶嗎？",
+            "speak": "Zum Mitnehmen?",
+            "contrast_type": "wrong_scenario",
+            "feedback": "這是咖啡店問題，不是問路後的回應。"
+          },
+          {
+            "id": "c3",
+            "surface": "Ich checke ein.",
+            "translation": "我要入住。",
+            "speak": "Ich checke ein.",
+            "contrast_type": "wrong_scenario",
+            "feedback": "這是飯店入住，不是完成問路。"
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t4",
+      "speaker": "npc",
+      "act": "closing",
+      "act_slots": {
+        "topic": "polite_close",
+        "keyword": "gern",
+        "gloss": "不客氣"
+      },
+      "learning_role": "listen_only",
+      "surface": "Gern.",
+      "speak": "Gern.",
+      "translation": "不客氣。",
+      "friend": "情境完成。你已經問到方向了。",
+      "reply_set": {
+        "correct": "c1",
+        "choices": [
+          {
+            "id": "c1",
+            "surface": "Auf Wiedersehen.",
+            "translation": "再見。",
+            "speak": "Auf Wiedersehen."
+          },
+          {
+            "id": "c2",
+            "surface": "Ich möchte ein Zimmer.",
+            "translation": "我想要一間房。",
+            "speak": "Ich möchte ein Zimmer.",
+            "contrast_type": "wrong_place_noun",
+            "feedback": "這是飯店需求，不是公共場所問路的收尾。"
+          },
+          {
+            "id": "c3",
+            "surface": "Die Toilette kostet drei Euro.",
+            "translation": "洗手間三歐元。",
+            "speak": "Die Toilette kostet drei Euro.",
+            "contrast_type": "price_order_payment",
+            "feedback": "這把情境轉成價格付款，和本回合方向理解不符。"
+          }
+        ]
+      },
+      "closing": true
+    }
+  ],
+  "formula_moments": [
+    {
+      "after_turn": "t1",
+      "pattern_id": "de_entschuldigung_wo_ist"
+    },
+    {
+      "after_turn": "t2",
+      "pattern_id": "de_direction_confirmation"
+    }
+  ],
+  "notes": {
+    "authoring_source": "Authored from ML-0 neutral brief ml0_a1_003_travel_restroom_directions; existing KO/JA/EN/TH and Lingourmet_german text were not used as source strings.",
+    "review_policy": "AI-authored candidate only; keep review_state=draft, review_status_framework_state=candidate_needs_review, native_review_state=native_pending until tracked review evidence exists.",
+    "canonical_policy": "Staging current-flow candidate only. Do not add to manifests, production exports, schema, runtime, or frontend in this authoring lane.",
+    "german_voice_note": "Uses Toilette as the common beginner restroom noun and avoids long compound-heavy directions."
+  }
+}

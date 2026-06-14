@@ -1,0 +1,220 @@
+{
+  "schema_version": "scenario_pack.v1",
+  "scenario_id": "travel_restroom_directions",
+  "brief_id": "ml0_a1_003_travel_restroom_directions",
+  "source_neutral_brief": "release-aggregator/docs/tasks/A1_MULTILINGUAL_KO_B1_PARALLEL_ORCHESTRATION/work_products/ml0/ML0_NEUTRAL_ADAPTATION_BRIEFS_20260613.md#brief-ml0-a1-003-asking-for-restroom-directions",
+  "blueprint_ledger": "release-aggregator/docs/tasks/A1_MULTILINGUAL_KO_B1_PARALLEL_ORCHESTRATION/work_products/ml0/ML0_BLUEPRINT_LEDGER_20260613.md",
+  "repo": "content-en",
+  "staging_path": "curriculum/a1_travel_v1/staging/scenario_pack.v1/travel_restroom_directions.en.v1.json",
+  "title": "Asking for the Restroom",
+  "setting_label": "Public venue",
+  "wrap_title": "You asked for the restroom",
+  "wrap_friend": "You got attention, asked a simple location question, and checked the direction. That is enough to find your way in a public place.",
+  "language": "en",
+  "ui_language": "en",
+  "source_status": "candidate_runtime_verified",
+  "review_state": "draft",
+  "review_status_framework_state": "candidate_runtime_verified",
+  "native_review_state": "native_pending",
+  "production_mode_default": {
+    "required": [
+      "choice"
+    ],
+    "optional_visible": [
+      "speaking"
+    ],
+    "optional_hidden": [
+      "typing"
+    ]
+  },
+  "support_text": "You are in a public place and need to find the restroom. Ask politely and listen for the direction.",
+  "roles": {
+    "npc": {
+      "label": "Staff member"
+    },
+    "learner": {
+      "label": "You"
+    }
+  },
+  "opening_messages": [
+    {
+      "speaker": "learner",
+      "learning_role": "production_target",
+      "surface": "Excuse me.",
+      "speak": "Excuse me.",
+      "translation": "I want to get someone's attention politely."
+    }
+  ],
+  "turns": [
+    {
+      "turn_id": "t1",
+      "speaker": "npc",
+      "act": "service_opening",
+      "act_slots": {
+        "topic": "offering help",
+        "keyword": "help",
+        "gloss": "ask what the visitor needs"
+      },
+      "learning_role": "listen_only",
+      "surface": "Yes, how can I help?",
+      "speak": "Yes, how can I help?",
+      "translation": "The staff member is asking what you need.",
+      "friend": {
+        "hint": "Ask where the restroom is."
+      },
+      "reply_set": {
+        "correct": "r1a",
+        "choices": [
+          {
+            "id": "r1a",
+            "surface": "Where is the restroom?",
+            "translation": "I am asking for the restroom location.",
+            "speak": "Where is the restroom?",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r1b",
+            "surface": "Can I get an iced coffee?",
+            "translation": "I want to order coffee.",
+            "speak": "Can I get an iced coffee?",
+            "contrast_type": "wrong_scenario_request",
+            "feedback": "This is a cafe order. You need a location question."
+          },
+          {
+            "id": "r1c",
+            "surface": "How much is it?",
+            "translation": "I am asking for a price.",
+            "speak": "How much is it?",
+            "contrast_type": "wrong_scenario_request",
+            "feedback": "This asks about a price. Ask where the restroom is."
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t2",
+      "speaker": "npc",
+      "act": "direction_instruction",
+      "act_slots": {
+        "topic": "right side",
+        "keyword": "right",
+        "gloss": "direction"
+      },
+      "learning_role": "listen_only",
+      "surface": "Go straight, and it's on the right.",
+      "speak": "Go straight, and it's on the right.",
+      "translation": "The restroom is straight ahead and on the right.",
+      "friend": {
+        "hint": "Listen for two direction words: straight and right."
+      },
+      "inline_explain": {
+        "pattern_id": "en.directions.straight.right.v1",
+        "formula_ref": null,
+        "title": "straight / right",
+        "explain": "\"Go straight\" means keep walking forward. \"On the right\" means it is on your right side.",
+        "items": [
+          {
+            "surface": "Go straight.",
+            "translation": "Walk forward.",
+            "speak": "Go straight."
+          },
+          {
+            "surface": "It's on the right.",
+            "translation": "It is on your right side.",
+            "speak": "It's on the right."
+          }
+        ]
+      },
+      "reply_set": {
+        "correct": "r2a",
+        "choices": [
+          {
+            "id": "r2a",
+            "surface": "On the right?",
+            "translation": "I am checking the direction.",
+            "speak": "On the right?",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r2b",
+            "surface": "It's under Lee.",
+            "translation": "I am giving a hotel reservation name.",
+            "speak": "It's under Lee.",
+            "contrast_type": "wrong_scenario_response",
+            "feedback": "This belongs at a hotel front desk. Here you are checking a direction."
+          },
+          {
+            "id": "r2c",
+            "surface": "I'm fine.",
+            "translation": "I do not need help.",
+            "speak": "I'm fine.",
+            "contrast_type": "wrong_act_personal_status",
+            "feedback": "This does not check the direction. Repeat the key direction if you need to confirm."
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t3",
+      "speaker": "npc",
+      "act": "direction_confirmation",
+      "act_slots": {
+        "topic": "confirming direction",
+        "keyword": "right",
+        "gloss": "confirm the side"
+      },
+      "learning_role": "listen_only",
+      "surface": "Yes, on the right.",
+      "speak": "Yes, on the right.",
+      "translation": "The staff member confirms the direction.",
+      "friend": {
+        "hint": "You have the direction. Say thank you."
+      },
+      "reply_set": {
+        "correct": "r3a",
+        "choices": [
+          {
+            "id": "r3a",
+            "surface": "Thank you.",
+            "translation": "Thanks.",
+            "speak": "Thank you."
+          },
+          {
+            "id": "r3b",
+            "surface": "On the right?",
+            "translation": "I am checking the direction again.",
+            "speak": "On the right?",
+            "contrast_type": "repeated_prior_answer",
+            "feedback": "They already confirmed the direction. Now you can thank them."
+          },
+          {
+            "id": "r3c",
+            "surface": "No, thank you.",
+            "translation": "I do not want help.",
+            "speak": "No, thank you.",
+            "contrast_type": "wrong_act_refusal",
+            "feedback": "This sounds like refusing help. You received the direction, so close with thanks."
+          }
+        ]
+      },
+      "closing": {
+        "act": "closing",
+        "learning_role": "context_support",
+        "surface": "You're welcome.",
+        "speak": "You're welcome.",
+        "translation": "The staff member closes politely."
+      }
+    }
+  ],
+  "formula_moments": [
+    {
+      "after_turn": "t2",
+      "pattern_id": "en.directions.straight.right.v1"
+    }
+  ],
+  "notes": {
+    "review_policy": "AI-authored candidate. Requires AI review, runtime smoke, and tracked native review before any stronger status.",
+    "canonical_policy": "Staging candidate only. Do not write back to manifests, production exports, schemas, or legacy content.",
+    "authoring_source": "Authored from ML-0 neutral brief, not Korean surface text."
+  }
+}

@@ -1,0 +1,257 @@
+{
+  "schema_version": "scenario_pack.v1",
+  "scenario_id": "a2_decline_with_reason",
+  "title": "Mit einem Einfachen Grund Absagen",
+  "setting_label": "friend chat",
+  "wrap_title": "Freundliche Absage bestätigt",
+  "wrap_friend": "Gut. Du hast kurz abgesagt, einen einfachen Grund genannt und freundlich abgeschlossen.",
+  "language": "de",
+  "ui_language": "zh-Hant",
+  "cefr_level": "A2",
+  "source_status": "candidate_runtime_verified",
+  "review_state": "ai_reviewed",
+  "review_status_framework_state": "candidate_runtime_verified",
+  "native_review_state": "native_pending",
+  "scenario": {
+    "domain": "daily_social_coordination",
+    "review_slice": "daily_social",
+    "interaction": "friend_social_coordination",
+    "source_brief": "A2_DAILY_SOCIAL_NEUTRAL_ADAPTATION_BRIEFS_20260614",
+    "blueprint_source": "language_neutral_adaptation_brief",
+    "ko_pack_role": "mature_scenario_blueprint_not_translation_source"
+  },
+  "learner_goal": "Eine einfache soziale Situation mit einem Freund in kurzen A2-Sätzen bewältigen.",
+  "target_functions": [
+    "friend_invitation_or_response",
+    "simple_reason_or_past_event",
+    "two_step_plan_or_confirmation",
+    "close_with_relationship_maintenance"
+  ],
+  "register_notes": "German A2 friend/social register: use du, concise friendly wording, no Sie service register and no heavy personal disclosure.",
+  "production_mode_default": {
+    "required": [
+      "choice"
+    ],
+    "optional_visible": [
+      "speaking"
+    ],
+    "optional_hidden": [
+      "typing"
+    ]
+  },
+  "support_text": "Benutze natürliche Sprache mit einem Freund. Aktivität und Grund bleiben einfach.",
+  "roles": {
+    "npc": {
+      "label": "Freund"
+    },
+    "learner": {
+      "label": "你"
+    }
+  },
+  "turns": [
+    {
+      "turn_id": "t1",
+      "speaker": "npc",
+      "act": "receive_invite",
+      "act_slots": {
+        "topic": "decline",
+        "keyword": "1",
+        "gloss": "A2 daily/social"
+      },
+      "learning_role": "listen_only",
+      "surface": "Möchtest du heute Abend einen Film sehen?",
+      "speak": "Möchtest du heute Abend einen Film sehen?",
+      "translation": "今晚要看電影嗎？",
+      "friend": {
+        "hint": "Keep the refusal brief and warm."
+      },
+      "reply_set": {
+        "correct": "r1a",
+        "choices": [
+          {
+            "id": "r1a",
+            "surface": "Tut mir leid, heute Abend kann ich nicht.",
+            "translation": "不好意思，我今晚不行。",
+            "speak": "Tut mir leid, heute Abend kann ich nicht.",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r1b",
+            "surface": "Nein, ich will nicht.",
+            "translation": "不要，我不想。",
+            "speak": "Nein, ich will nicht.",
+            "contrast_type": "too_blunt",
+            "feedback": "Das passt nicht zu dieser Situation mit einem Freund."
+          },
+          {
+            "id": "r1c",
+            "surface": "Ich brauche bitte noch einmal die Quittung.",
+            "translation": "請再給我收據。",
+            "speak": "Ich brauche bitte noch einmal die Quittung.",
+            "contrast_type": "wrong_scenario_shop",
+            "feedback": "Das klingt für einen Freund zu hart."
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t2",
+      "speaker": "npc",
+      "act": "ask_reason",
+      "act_slots": {
+        "topic": "decline",
+        "keyword": "2",
+        "gloss": "A2 daily/social"
+      },
+      "learning_role": "listen_only",
+      "surface": "Kein Problem. Bist du beschäftigt?",
+      "speak": "Kein Problem. Bist du beschäftigt?",
+      "translation": "沒關係。你很忙嗎？",
+      "friend": {
+        "hint": "Keep the refusal brief and warm."
+      },
+      "reply_set": {
+        "correct": "r2a",
+        "choices": [
+          {
+            "id": "r2a",
+            "surface": "Ich habe noch ein bisschen zu tun.",
+            "translation": "我還有一點事要做。",
+            "speak": "Ich habe noch ein bisschen zu tun.",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r2b",
+            "surface": "Nein, ich will nicht.",
+            "translation": "不要，我不想。",
+            "speak": "Nein, ich will nicht.",
+            "contrast_type": "too_blunt",
+            "feedback": "Das passt nicht zu dieser Situation mit einem Freund."
+          },
+          {
+            "id": "r2c",
+            "surface": "Ich brauche bitte noch einmal die Quittung.",
+            "translation": "請再給我收據。",
+            "speak": "Ich brauche bitte noch einmal die Quittung.",
+            "contrast_type": "wrong_scenario_shop",
+            "feedback": "Das klingt für einen Freund zu hart."
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t3",
+      "speaker": "npc",
+      "act": "maintain_relation",
+      "act_slots": {
+        "topic": "decline",
+        "keyword": "3",
+        "gloss": "A2 daily/social"
+      },
+      "learning_role": "listen_only",
+      "surface": "Vielleicht an einem anderen Tag?",
+      "speak": "Vielleicht an einem anderen Tag?",
+      "translation": "也許改天？",
+      "friend": {
+        "hint": "Keep the refusal brief and warm."
+      },
+      "reply_set": {
+        "correct": "r3a",
+        "choices": [
+          {
+            "id": "r3a",
+            "surface": "Ja, vielleicht am Wochenende.",
+            "translation": "好，也許這個週末。",
+            "speak": "Ja, vielleicht am Wochenende.",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r3b",
+            "surface": "Nein, ich will nicht.",
+            "translation": "不要，我不想。",
+            "speak": "Nein, ich will nicht.",
+            "contrast_type": "too_blunt",
+            "feedback": "Das passt nicht zu dieser Situation mit einem Freund."
+          },
+          {
+            "id": "r3c",
+            "surface": "Ich brauche bitte noch einmal die Quittung.",
+            "translation": "請再給我收據。",
+            "speak": "Ich brauche bitte noch einmal die Quittung.",
+            "contrast_type": "wrong_scenario_shop",
+            "feedback": "Das klingt für einen Freund zu hart."
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t4",
+      "speaker": "npc",
+      "act": "close_warmly",
+      "act_slots": {
+        "topic": "decline",
+        "keyword": "4",
+        "gloss": "A2 daily/social"
+      },
+      "learning_role": "listen_only",
+      "surface": "Okay. Wir sprechen am Wochenende.",
+      "speak": "Okay. Wir sprechen am Wochenende.",
+      "translation": "好，那週末再說。",
+      "friend": {
+        "hint": "Keep the refusal brief and warm."
+      },
+      "reply_set": {
+        "correct": "r4a",
+        "choices": [
+          {
+            "id": "r4a",
+            "surface": "Danke. Wir sehen uns am Wochenende.",
+            "translation": "謝謝，週末見。",
+            "speak": "Danke. Wir sehen uns am Wochenende.",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r4b",
+            "surface": "Nein, ich will nicht.",
+            "translation": "不要，我不想。",
+            "speak": "Nein, ich will nicht.",
+            "contrast_type": "too_blunt",
+            "feedback": "Das passt nicht zu dieser Situation mit einem Freund."
+          },
+          {
+            "id": "r4c",
+            "surface": "Ich brauche bitte noch einmal die Quittung.",
+            "translation": "請再給我收據。",
+            "speak": "Ich brauche bitte noch einmal die Quittung.",
+            "contrast_type": "wrong_scenario_shop",
+            "feedback": "Das klingt für einen Freund zu hart."
+          }
+        ]
+      }
+    }
+  ],
+  "choice_sets": [
+    "t1.reply_set",
+    "t2.reply_set",
+    "t3.reply_set",
+    "t4.reply_set"
+  ],
+  "feedback": "Die Ablenker prüfen soziales Register, Zeit, Funktion und A2-Grenze.",
+  "tts_segments": [
+    "Tut mir leid, heute Abend kann ich nicht.",
+    "Ich habe noch ein bisschen zu tun.",
+    "Ja, vielleicht am Wochenende.",
+    "Danke. Wir sehen uns am Wochenende."
+  ],
+  "formula_moments": [
+    {
+      "after_turn": "t2",
+      "pattern_id": "de.a2.daily.decline.v1"
+    }
+  ],
+  "runtime_notes": "Fresh A2 daily/social candidate. Requires full-walk runtime before closeout evidence is recorded.",
+  "notes": {
+    "authoring_policy": "Fresh-authored from A2 daily/social neutral adaptation brief. KO surface text was not copied or translated.",
+    "a2_boundary": "Friend/social register, ordinary low-risk activities and reasons, short A2 responses only."
+  }
+}

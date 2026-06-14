@@ -1,0 +1,230 @@
+{
+  "schema_version": "scenario_pack.v1",
+  "scenario_id": "travel_taxi_destination",
+  "brief_id": "ml4_a1_015_travel_taxi_destination",
+  "source_neutral_brief": "release-aggregator/docs/tasks/A1_MULTILINGUAL_KO_B1_PARALLEL_ORCHESTRATION/work_products/ml0/ML4_NEUTRAL_ADAPTATION_BRIEFS_20260614.md#brief-ml4-a1-015-taxi-destination",
+  "blueprint_ledger": "release-aggregator/docs/tasks/A1_MULTILINGUAL_KO_B1_PARALLEL_ORCHESTRATION/work_products/ml0/ML4_BLUEPRINT_LEDGER_20260614.md",
+  "repo": "content-zh",
+  "staging_path": "content/core/content_assets/scenario_packs/current_flow/travel_taxi_destination.zh.v1.json",
+  "title": "在計程車說目的地",
+  "setting_label": "計程車",
+  "wrap_title": "目的地確認好了",
+  "wrap_friend": "你已經說出目的地、確認正確，也聽懂大概時間並禮貌收尾。",
+  "language": "zh",
+  "ui_language": "zh_tw",
+  "source_status": "candidate_runtime_verified",
+  "review_state": "draft",
+  "review_status_framework_state": "candidate_runtime_verified",
+  "native_review_state": "native_pending",
+  "production_mode_default": {
+    "required": [
+      "choice"
+    ],
+    "optional_visible": [
+      "speaking"
+    ],
+    "optional_hidden": [
+      "typing"
+    ]
+  },
+  "support_text": "你上了計程車。用簡短中文說目的地、確認，並聽懂大概時間。",
+  "roles": {
+    "npc": {
+      "label": "司機"
+    },
+    "learner": {
+      "label": "乘客"
+    }
+  },
+  "turns": [
+    {
+      "turn_id": "t1",
+      "speaker": "npc",
+      "act": "destination_question",
+      "act_slots": {
+        "topic": "destination",
+        "keyword": "去哪裡",
+        "gloss": "where to"
+      },
+      "learning_role": "listen_only",
+      "surface": "您好，要去哪裡？",
+      "speak": "您好，要去哪裡？",
+      "translation": "您好，要去哪裡？",
+      "friend": "在台灣計程車情境，乘客可以用 到 + 地點 + 謝謝。",
+      "reply_set": {
+        "correct": "c1",
+        "choices": [
+          {
+            "id": "c1",
+            "surface": "到星光飯店，謝謝。",
+            "translation": "到星光飯店，謝謝。",
+            "speak": "到星光飯店，謝謝。",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "c2",
+            "surface": "洗手間在哪裡？",
+            "translation": "洗手間在哪裡？",
+            "speak": "洗手間在哪裡？",
+            "contrast_type": "directions_request_not_destination",
+            "feedback": "這是在問路。司機問的是要開去哪裡。"
+          },
+          {
+            "id": "c3",
+            "surface": "我要買一張票。",
+            "translation": "我要買一張票。",
+            "speak": "我要買一張票。",
+            "contrast_type": "ticket_purchase_wrong_scenario",
+            "feedback": "這像是在車站買票，不是在計程車上說目的地。"
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t2",
+      "speaker": "npc",
+      "act": "destination_confirmation",
+      "act_slots": {
+        "topic": "confirm destination",
+        "keyword": "對嗎",
+        "gloss": "right"
+      },
+      "learning_role": "listen_only",
+      "surface": "星光飯店，對嗎？",
+      "speak": "星光飯店，對嗎？",
+      "translation": "星光飯店，對嗎？",
+      "friend": "目的地正確時，用 對，沒錯 確認即可。",
+      "inline_explain": "對，沒錯 = yes, that's right.",
+      "reply_set": {
+        "correct": "c1",
+        "choices": [
+          {
+            "id": "c1",
+            "surface": "對，沒錯。",
+            "translation": "對，沒錯。",
+            "speak": "對，沒錯。",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "c2",
+            "surface": "到星光飯店，謝謝。",
+            "translation": "到星光飯店，謝謝。",
+            "speak": "到星光飯店，謝謝。",
+            "contrast_type": "repeated_prior_destination",
+            "feedback": "目的地已經說過了。現在司機是在確認，要回答對或不對。"
+          },
+          {
+            "id": "c3",
+            "surface": "不用了，我在這裡下車。",
+            "translation": "不用了，我在這裡下車。",
+            "speak": "不用了，我在這裡下車。",
+            "contrast_type": "cancellation_instead_of_confirmation",
+            "feedback": "這會改變行程。目的地正確時應該確認。"
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t3",
+      "speaker": "npc",
+      "act": "duration_notice",
+      "act_slots": {
+        "topic": "short duration",
+        "keyword": "分鐘",
+        "gloss": "minutes"
+      },
+      "learning_role": "listen_only",
+      "surface": "好，大概十分鐘。",
+      "speak": "好，大概十分鐘。",
+      "translation": "好，大概十分鐘。",
+      "friend": "聽到時間後，用 好的 表示知道了。",
+      "reply_set": {
+        "correct": "c1",
+        "choices": [
+          {
+            "id": "c1",
+            "surface": "好的。",
+            "translation": "好的。",
+            "speak": "好的。"
+          },
+          {
+            "id": "c2",
+            "surface": "多少錢？",
+            "translation": "多少錢？",
+            "speak": "多少錢？",
+            "contrast_type": "fare_detail_out_of_scope",
+            "feedback": "這會切到費用細節；本場景只練目的地和簡短行程狀態。"
+          },
+          {
+            "id": "c3",
+            "surface": "我要一杯咖啡。",
+            "translation": "我要一杯咖啡。",
+            "speak": "我要一杯咖啡。",
+            "contrast_type": "wrong_scenario_request",
+            "feedback": "這是咖啡店句子，不是回應司機說的時間。"
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t4",
+      "speaker": "npc",
+      "act": "arrival_notice",
+      "act_slots": {
+        "topic": "arrival",
+        "keyword": "到了",
+        "gloss": "arrived"
+      },
+      "learning_role": "listen_only",
+      "surface": "到了。",
+      "speak": "到了。",
+      "translation": "到了。",
+      "friend": "到達時，用謝謝收尾即可。",
+      "reply_set": {
+        "correct": "c1",
+        "choices": [
+          {
+            "id": "c1",
+            "surface": "謝謝您。",
+            "translation": "謝謝您。",
+            "speak": "謝謝您。",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "c2",
+            "surface": "要去哪裡？",
+            "translation": "要去哪裡？",
+            "speak": "要去哪裡？",
+            "contrast_type": "driver_role_sentence",
+            "feedback": "這是司機會問的句子。乘客到達時應該道謝。"
+          },
+          {
+            "id": "c3",
+            "surface": "我要買去台中的票。",
+            "translation": "我要買去台中的票。",
+            "speak": "我要買去台中的票。",
+            "contrast_type": "ticket_purchase_wrong_scenario",
+            "feedback": "這回到買票情境，不是計程車到達結尾。"
+          }
+        ]
+      },
+      "closing": true
+    }
+  ],
+  "formula_moments": [
+    {
+      "after_turn": "t1",
+      "pattern_id": "zh.taxi.dao_destination_xiexie"
+    },
+    {
+      "after_turn": "t2",
+      "pattern_id": "zh.confirm.dui_meicuo"
+    }
+  ],
+  "notes": {
+    "authoring_source": "Authored from ML-4 neutral brief ml4_a1_015_travel_taxi_destination; KO and other target-language packs were not used as translation sources.",
+    "review_policy": "AI-authored candidate only; keep review_state=draft, review_status_framework_state=candidate_needs_review, native_review_state=native_pending until tracked review evidence exists.",
+    "canonical_policy": "Staging current-flow candidate only. Do not add to manifests, production exports, schema, runtime, or frontend in this authoring lane.",
+    "chinese_voice_note": "Uses Traditional-character Mandarin with Taiwan-leaning taxi terms such as 計程車 and 飯店; native review should confirm broader Mandarin compatibility."
+  }
+}

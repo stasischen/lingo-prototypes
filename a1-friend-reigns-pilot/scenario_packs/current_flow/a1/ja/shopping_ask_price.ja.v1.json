@@ -1,0 +1,251 @@
+{
+  "schema_version": "scenario_pack.v1",
+  "scenario_id": "shopping_ask_price",
+  "brief_id": "ml2_a1_009_shopping_ask_price",
+  "source_neutral_brief": "release-aggregator/docs/tasks/A1_MULTILINGUAL_KO_B1_PARALLEL_ORCHESTRATION/work_products/ml0/ML2_NEUTRAL_ADAPTATION_BRIEFS_20260614.md#brief-ml2-a1-009-shopping-ask-price",
+  "blueprint_ledger": "release-aggregator/docs/tasks/A1_MULTILINGUAL_KO_B1_PARALLEL_ORCHESTRATION/work_products/ml0/ML2_BLUEPRINT_LEDGER_20260614.md",
+  "repo": "content-ja",
+  "staging_path": "content/review/current_flow/scenario_pack.v1/ja/shopping_ask_price.ja.v1.json",
+  "title": "値段を聞く",
+  "setting_label": "小さな店",
+  "wrap_title": "値段を聞けた",
+  "wrap_friend": "店員に声をかけて、一つの商品について値段を聞き、短く返事できました。",
+  "language": "ja",
+  "ui_language": "zh_tw",
+  "source_status": "candidate_runtime_verified",
+  "review_state": "draft",
+  "review_status_framework_state": "candidate_runtime_verified",
+  "native_review_state": "native_pending",
+  "production_mode_default": {
+    "required": [
+      "choice"
+    ],
+    "optional_visible": [
+      "speaking"
+    ],
+    "optional_hidden": [
+      "typing"
+    ]
+  },
+  "support_text": "你在小店想問一件商品的價格。選自然、簡短的日文。",
+  "roles": {
+    "npc": {
+      "label": "店員"
+    },
+    "learner": {
+      "label": "あなた"
+    }
+  },
+  "turns": [
+    {
+      "turn_id": "t1",
+      "speaker": "npc",
+      "act": "shop_greeting",
+      "learning_role": "listen_only",
+      "surface": "いらっしゃいませ。",
+      "speak": "いらっしゃいませ。",
+      "translation": "歡迎光臨。",
+      "friend": {
+        "hint": "店員在招呼。用すみません自然地叫住對方。"
+      },
+      "inline_explain": {
+        "pattern_id": "ja.shopping.attention.v1",
+        "formula_ref": null,
+        "title": "すみません",
+        "explain": "店で店員に声をかけるときの短い丁寧表現です。",
+        "items": [
+          {
+            "surface": "すみません。",
+            "translation": "不好意思。",
+            "speak": "すみません。"
+          }
+        ]
+      },
+      "reply_set": {
+        "correct": "r1a",
+        "choices": [
+          {
+            "id": "r1a",
+            "surface": "すみません。",
+            "translation": "不好意思。",
+            "speak": "すみません。",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r1b",
+            "surface": "駅はどこですか。",
+            "translation": "車站在哪裡？",
+            "speak": "駅はどこですか。",
+            "contrast_type": "directions_instead_of_shop_attention",
+            "feedback": "這是在問路。現在是在店裡先叫住店員。"
+          },
+          {
+            "id": "r1c",
+            "surface": "コーヒーをください。",
+            "translation": "請給我咖啡。",
+            "speak": "コーヒーをください。",
+            "contrast_type": "food_order_in_shop_price_scene",
+            "feedback": "這像是在點飲料，不是在問商品價格。"
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t2",
+      "speaker": "learner",
+      "act": "ask_item_price",
+      "learning_role": "production_target",
+      "surface": "これはいくらですか。",
+      "speak": "これは、いくらですか。",
+      "translation": "這個多少錢？",
+      "friend": {
+        "hint": "これは指眼前的一件東西。いくらですか是價格問題。"
+      },
+      "inline_explain": {
+        "pattern_id": "ja.shopping.price_question.v1",
+        "formula_ref": null,
+        "title": "これはいくらですか",
+        "explain": "近くの商品一つの値段を聞く自然なA1表現です。",
+        "items": [
+          {
+            "surface": "これはいくらですか。",
+            "translation": "這個多少錢？",
+            "speak": "これは、いくらですか。"
+          }
+        ]
+      },
+      "reply_set": {
+        "correct": "r2a",
+        "choices": [
+          {
+            "id": "r2a",
+            "surface": "これはいくらですか。",
+            "translation": "這個多少錢？",
+            "speak": "これは、いくらですか。",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r2b",
+            "surface": "カードで払えますか。",
+            "translation": "可以刷卡嗎？",
+            "speak": "カードで払えますか。",
+            "contrast_type": "payment_method_before_price",
+            "feedback": "這是在問付款方式。先問價格更符合情境。"
+          },
+          {
+            "id": "r2c",
+            "surface": "二つください。",
+            "translation": "請給我兩個。",
+            "speak": "二つください。",
+            "contrast_type": "quantity_before_price",
+            "feedback": "這是在說數量。現在是問一個商品的價格。"
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t3",
+      "speaker": "npc",
+      "act": "give_price",
+      "learning_role": "listen_only",
+      "surface": "五百円です。",
+      "speak": "ごひゃくえんです。",
+      "translation": "五百日圓。",
+      "friend": {
+        "hint": "店員回答價格：五百円。"
+      },
+      "reply_set": {
+        "correct": "r4a",
+        "choices": [
+          {
+            "id": "r4a",
+            "surface": "じゃあ、これをください。",
+            "translation": "那我要這個。",
+            "speak": "じゃあ、これをください。",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r4b",
+            "surface": "トイレはどこですか。",
+            "translation": "洗手間在哪裡？",
+            "speak": "トイレはどこですか。",
+            "contrast_type": "directions_after_price",
+            "feedback": "這突然變成問路。聽到價格後要買或道謝離開。"
+          },
+          {
+            "id": "r4c",
+            "surface": "お会計をお願いします。",
+            "translation": "麻煩結帳。",
+            "speak": "お会計をお願いします。",
+            "contrast_type": "restaurant_bill_in_shop",
+            "feedback": "這比較像餐廳結帳。店裡買商品時說これをください即可。"
+          }
+        ]
+      },
+      "runtime_note": "Reply choices mirror the next learner response so the current prototype can render every round."
+    },
+    {
+      "turn_id": "t4",
+      "speaker": "learner",
+      "act": "accept_or_close",
+      "learning_role": "production_target",
+      "surface": "じゃあ、これをください。",
+      "speak": "じゃあ、これをください。",
+      "translation": "那我要這個。",
+      "friend": {
+        "hint": "決定購買時，用これをください很自然。"
+      },
+      "reply_set": {
+        "correct": "r4a",
+        "choices": [
+          {
+            "id": "r4a",
+            "surface": "じゃあ、これをください。",
+            "translation": "那我要這個。",
+            "speak": "じゃあ、これをください。",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r4b",
+            "surface": "トイレはどこですか。",
+            "translation": "洗手間在哪裡？",
+            "speak": "トイレはどこですか。",
+            "contrast_type": "directions_after_price",
+            "feedback": "這突然變成問路。聽到價格後要買或道謝離開。"
+          },
+          {
+            "id": "r4c",
+            "surface": "お会計をお願いします。",
+            "translation": "麻煩結帳。",
+            "speak": "お会計をお願いします。",
+            "contrast_type": "restaurant_bill_in_shop",
+            "feedback": "這比較像餐廳結帳。店裡買商品時說これをください即可。"
+          }
+        ]
+      },
+      "closing": {
+        "act": "price_understood",
+        "learning_role": "listen_only",
+        "surface": "値段を聞いて、買うことを伝えました。",
+        "speak": "ねだんをきいて、かうことをつたえました。",
+        "translation": "你問到價格，也表達要買了。"
+      }
+    }
+  ],
+  "formula_moments": [
+    {
+      "after_turn": "t1",
+      "pattern_id": "ja.shopping.attention.v1"
+    },
+    {
+      "after_turn": "t2",
+      "pattern_id": "ja.shopping.price_question.v1"
+    }
+  ],
+  "notes": {
+    "authoring_source": "Authored from ML-2 neutral brief, not Korean surface text or another target-language pack.",
+    "review_policy": "AI-authored Japanese candidate. Requires AI review, runtime smoke, and tracked native review before any stronger status.",
+    "canonical_policy": "Staging candidate only. Do not write back to manifests, production exports, schemas, or legacy content.",
+    "register_note": "Polite customer Japanese with short A1-sized formulas."
+  }
+}

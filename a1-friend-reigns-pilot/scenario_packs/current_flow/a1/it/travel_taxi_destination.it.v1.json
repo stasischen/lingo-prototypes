@@ -1,0 +1,230 @@
+{
+  "schema_version": "scenario_pack.v1",
+  "scenario_id": "travel_taxi_destination",
+  "brief_id": "ml4_a1_015_travel_taxi_destination",
+  "source_neutral_brief": "release-aggregator/docs/tasks/A1_MULTILINGUAL_KO_B1_PARALLEL_ORCHESTRATION/work_products/ml0/ML4_NEUTRAL_ADAPTATION_BRIEFS_20260614.md#brief-ml4-a1-015-taxi-destination",
+  "blueprint_ledger": "release-aggregator/docs/tasks/A1_MULTILINGUAL_KO_B1_PARALLEL_ORCHESTRATION/work_products/ml0/ML4_BLUEPRINT_LEDGER_20260614.md",
+  "repo": "content-it",
+  "staging_path": "content/core/content_assets/scenario_packs/current_flow/travel_taxi_destination.it.v1.json",
+  "title": "Dire la destinazione in taxi",
+  "setting_label": "Taxi",
+  "wrap_title": "Destinazione confermata",
+  "wrap_friend": "Hai dato una destinazione breve, hai confermato, e hai chiuso con un grazie naturale.",
+  "language": "it",
+  "ui_language": "zh_tw",
+  "source_status": "candidate_runtime_verified",
+  "review_state": "draft",
+  "review_status_framework_state": "candidate_runtime_verified",
+  "native_review_state": "native_pending",
+  "production_mode_default": {
+    "required": [
+      "choice"
+    ],
+    "optional_visible": [
+      "speaking"
+    ],
+    "optional_hidden": [
+      "typing"
+    ]
+  },
+  "support_text": "你上了計程車。用簡短義大利語說目的地、確認，並聽懂大概時間。",
+  "roles": {
+    "npc": {
+      "label": "Autista"
+    },
+    "learner": {
+      "label": "Passeggero"
+    }
+  },
+  "turns": [
+    {
+      "turn_id": "t1",
+      "speaker": "npc",
+      "act": "destination_question",
+      "act_slots": {
+        "topic": "destination",
+        "keyword": "dove",
+        "gloss": "where to"
+      },
+      "learning_role": "listen_only",
+      "surface": "Buongiorno. Dove andiamo?",
+      "speak": "Buongiorno. Dove andiamo?",
+      "translation": "早安。要去哪裡？",
+      "friend": "在義大利計程車上，可以用 A + 地點 + per favore 直接說目的地。",
+      "reply_set": {
+        "correct": "c1",
+        "choices": [
+          {
+            "id": "c1",
+            "surface": "All'hotel Roma, per favore.",
+            "translation": "到羅馬飯店，謝謝。",
+            "speak": "All'hotel Roma, per favore.",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "c2",
+            "surface": "Dov'è il bagno?",
+            "translation": "洗手間在哪裡？",
+            "speak": "Dov'è il bagno?",
+            "contrast_type": "directions_request_not_destination",
+            "feedback": "這是在問路。司機問的是要開去哪裡。"
+          },
+          {
+            "id": "c3",
+            "surface": "Un biglietto, per favore.",
+            "translation": "一張票，謝謝。",
+            "speak": "Un biglietto, per favore.",
+            "contrast_type": "ticket_purchase_wrong_scenario",
+            "feedback": "這像是在車站買票，不是在計程車上說目的地。"
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t2",
+      "speaker": "npc",
+      "act": "destination_confirmation",
+      "act_slots": {
+        "topic": "confirm destination",
+        "keyword": "giusto",
+        "gloss": "right"
+      },
+      "learning_role": "listen_only",
+      "surface": "All'hotel Roma, giusto?",
+      "speak": "All'hotel Roma, giusto?",
+      "translation": "到羅馬飯店，對嗎？",
+      "friend": "司機確認目的地時，用 Sì, esatto 簡短確認。",
+      "inline_explain": "Sì, esatto = 對，沒錯。",
+      "reply_set": {
+        "correct": "c1",
+        "choices": [
+          {
+            "id": "c1",
+            "surface": "Sì, esatto.",
+            "translation": "對，沒錯。",
+            "speak": "Sì, esatto.",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "c2",
+            "surface": "All'hotel Roma, per favore.",
+            "translation": "到羅馬飯店，謝謝。",
+            "speak": "All'hotel Roma, per favore.",
+            "contrast_type": "repeated_prior_destination",
+            "feedback": "目的地已經說過了。現在司機是在確認，要回答對或不對。"
+          },
+          {
+            "id": "c3",
+            "surface": "No, scendo qui.",
+            "translation": "不，我在這裡下車。",
+            "speak": "No, scendo qui.",
+            "contrast_type": "cancellation_instead_of_confirmation",
+            "feedback": "這會改變行程。目的地正確時應該確認。"
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t3",
+      "speaker": "npc",
+      "act": "duration_notice",
+      "act_slots": {
+        "topic": "short duration",
+        "keyword": "minuti",
+        "gloss": "minutes"
+      },
+      "learning_role": "listen_only",
+      "surface": "Va bene. Ci vogliono circa dieci minuti.",
+      "speak": "Va bene. Ci vogliono circa dieci minuti.",
+      "translation": "好的。大約需要十分鐘。",
+      "friend": "聽到時間後，用 Va bene 表示知道了。",
+      "reply_set": {
+        "correct": "c1",
+        "choices": [
+          {
+            "id": "c1",
+            "surface": "Va bene.",
+            "translation": "好的。",
+            "speak": "Va bene."
+          },
+          {
+            "id": "c2",
+            "surface": "Quanto costa?",
+            "translation": "多少錢？",
+            "speak": "Quanto costa?",
+            "contrast_type": "fare_detail_out_of_scope",
+            "feedback": "這會切到費用細節；本場景只練目的地和簡短行程狀態。"
+          },
+          {
+            "id": "c3",
+            "surface": "Vorrei un caffè.",
+            "translation": "我想要一杯咖啡。",
+            "speak": "Vorrei un caffè.",
+            "contrast_type": "wrong_scenario_request",
+            "feedback": "這是咖啡店句子，不是回應司機說的時間。"
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t4",
+      "speaker": "npc",
+      "act": "arrival_notice",
+      "act_slots": {
+        "topic": "arrival",
+        "keyword": "arrivati",
+        "gloss": "arrived"
+      },
+      "learning_role": "listen_only",
+      "surface": "Eccoci, siamo arrivati.",
+      "speak": "Eccoci, siamo arrivati.",
+      "translation": "到了，我們到了。",
+      "friend": "到達時，用 grazie 收尾即可。",
+      "reply_set": {
+        "correct": "c1",
+        "choices": [
+          {
+            "id": "c1",
+            "surface": "Grazie, buona giornata.",
+            "translation": "謝謝，祝您有美好的一天。",
+            "speak": "Grazie, buona giornata.",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "c2",
+            "surface": "Dove andiamo?",
+            "translation": "我們去哪裡？",
+            "speak": "Dove andiamo?",
+            "contrast_type": "driver_role_sentence",
+            "feedback": "這是司機會問的句子。乘客到達時應該道謝。"
+          },
+          {
+            "id": "c3",
+            "surface": "Un biglietto per Roma.",
+            "translation": "一張去羅馬的票。",
+            "speak": "Un biglietto per Roma.",
+            "contrast_type": "ticket_purchase_wrong_scenario",
+            "feedback": "這回到買票情境，不是計程車到達結尾。"
+          }
+        ]
+      },
+      "closing": true
+    }
+  ],
+  "formula_moments": [
+    {
+      "after_turn": "t1",
+      "pattern_id": "it.taxi.a_destination_per_favore"
+    },
+    {
+      "after_turn": "t2",
+      "pattern_id": "it.confirm.si_esatto"
+    }
+  ],
+  "notes": {
+    "authoring_source": "Authored from ML-4 neutral brief ml4_a1_015_travel_taxi_destination; KO and other target-language packs were not used as translation sources.",
+    "review_policy": "AI-authored candidate only; keep review_state=draft, review_status_framework_state=candidate_needs_review, native_review_state=native_pending until tracked review evidence exists.",
+    "canonical_policy": "Staging current-flow candidate only. Do not add to manifests, production exports, schema, runtime, or frontend in this authoring lane.",
+    "native_risk_note": "Native review should confirm the taxi formula All'hotel Roma and the arrival close sound natural across Italian locales."
+  }
+}

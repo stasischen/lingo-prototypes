@@ -1,0 +1,257 @@
+{
+  "schema_version": "scenario_pack.v1",
+  "scenario_id": "a2_app_booking_confirmation",
+  "title": "ยืนยันการจองในแอป",
+  "setting_label": "low-risk help message",
+  "wrap_title": "ยืนยันการจองในแอป",
+  "wrap_friend": "ทำได้ดีค่ะ คุณจัดการงานดิจิทัลหรือเอกสารแบบความเสี่ยงต่ำโดยใช้เฉพาะข้อมูลที่จำเป็น",
+  "language": "th",
+  "ui_language": "zh-Hant",
+  "cefr_level": "A2",
+  "source_status": "candidate_runtime_verified",
+  "review_state": "ai_reviewed",
+  "review_status_framework_state": "candidate_runtime_verified",
+  "native_review_state": "native_pending",
+  "scenario": {
+    "domain": "digital_documents_low_risk_help",
+    "review_slice": "digital_documents",
+    "interaction": "low_risk_confirmation_or_help",
+    "source_brief": "A2_DIGITAL_DOCUMENTS_NEUTRAL_ADAPTATION_BRIEFS_20260614",
+    "blueprint_source": "language_neutral_adaptation_brief",
+    "ko_pack_role": "mature_scenario_blueprint_not_translation_source"
+  },
+  "learner_goal": "จัดการงานดิจิทัลหรือเอกสารง่าย ๆ แบบความเสี่ยงต่ำด้วยประโยคสั้นระดับ A2",
+  "target_functions": [
+    "confirm_booking_or_message",
+    "request_simple_change",
+    "ask_simple_form_help",
+    "follow_up_low_risk_item"
+  ],
+  "register_notes": "Thai A2 low-risk digital/documents register: short polite help/service Thai, TTS-friendly, no passwords, payment, ID, medical, legal, police, or immigration framing.",
+  "production_mode_default": {
+    "required": [
+      "choice"
+    ],
+    "optional_visible": [
+      "speaking"
+    ],
+    "optional_hidden": [
+      "typing"
+    ]
+  },
+  "support_text": "ใช้เฉพาะข้อมูลที่จำเป็น ห้ามให้รหัสผ่าน ข้อมูลจ่ายเงิน บัตรประจำตัว หรือข้อมูลกฎหมาย/แพทย์ค่ะ",
+  "roles": {
+    "npc": {
+      "label": "พนักงาน"
+    },
+    "learner": {
+      "label": "你"
+    }
+  },
+  "turns": [
+    {
+      "turn_id": "t1",
+      "speaker": "npc",
+      "act": "start",
+      "act_slots": {
+        "topic": "a2_app_booking_confirmation",
+        "keyword": "1",
+        "gloss": "A2 digital/documents"
+      },
+      "learning_role": "listen_only",
+      "surface": "การจองยืนยันวันนี้บ่ายสามค่ะ",
+      "speak": "การจองยืนยันวันนี้บ่ายสามค่ะ",
+      "translation": "預約確認為今天下午三點。",
+      "friend": {
+        "hint": "ยืนยันเฉพาะรายละเอียดที่จำเป็นและปลอดภัยค่ะ"
+      },
+      "reply_set": {
+        "correct": "r1a",
+        "choices": [
+          {
+            "id": "r1a",
+            "surface": "สถานที่อยู่ที่ไหนคะ",
+            "translation": "地點在哪裡？",
+            "speak": "สถานที่อยู่ที่ไหนคะ",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r1b",
+            "surface": "ฉันจะบอกรหัสผ่านค่ะ",
+            "translation": "我會告訴你密碼。",
+            "speak": "ฉันจะบอกรหัสผ่านค่ะ",
+            "contrast_type": "forbidden_sensitive",
+            "feedback": "รหัสผ่านอยู่นอกขอบเขตงาน A2 นี้ค่ะ"
+          },
+          {
+            "id": "r1c",
+            "surface": "ขอคืนเงินค่ะ",
+            "translation": "請退款。",
+            "speak": "ขอคืนเงินค่ะ",
+            "contrast_type": "wrong_dispute_domain",
+            "feedback": "การคืนเงินหรือข้อพิพาทอยู่นอกขอบเขตงานนี้ค่ะ"
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t2",
+      "speaker": "npc",
+      "act": "clarify",
+      "act_slots": {
+        "topic": "a2_app_booking_confirmation",
+        "keyword": "2",
+        "gloss": "A2 digital/documents"
+      },
+      "learning_role": "listen_only",
+      "surface": "อยู่ชั้นสองของคาเฟ่ค่ะ",
+      "speak": "อยู่ชั้นสองของคาเฟ่ค่ะ",
+      "translation": "在咖啡店二樓。",
+      "friend": {
+        "hint": "ยืนยันเฉพาะรายละเอียดที่จำเป็นและปลอดภัยค่ะ"
+      },
+      "reply_set": {
+        "correct": "r2a",
+        "choices": [
+          {
+            "id": "r2a",
+            "surface": "ชั้นสองของคาเฟ่ใช่ไหมคะ",
+            "translation": "是在咖啡店二樓，對嗎？",
+            "speak": "ชั้นสองของคาเฟ่ใช่ไหมคะ",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r2b",
+            "surface": "ฉันจะบอกรหัสผ่านค่ะ",
+            "translation": "我會告訴你密碼。",
+            "speak": "ฉันจะบอกรหัสผ่านค่ะ",
+            "contrast_type": "forbidden_sensitive",
+            "feedback": "รหัสผ่านอยู่นอกขอบเขตงาน A2 นี้ค่ะ"
+          },
+          {
+            "id": "r2c",
+            "surface": "ขอคืนเงินค่ะ",
+            "translation": "請退款。",
+            "speak": "ขอคืนเงินค่ะ",
+            "contrast_type": "wrong_dispute_domain",
+            "feedback": "การคืนเงินหรือข้อพิพาทอยู่นอกขอบเขตงานนี้ค่ะ"
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t3",
+      "speaker": "npc",
+      "act": "confirm_detail",
+      "act_slots": {
+        "topic": "a2_app_booking_confirmation",
+        "keyword": "3",
+        "gloss": "A2 digital/documents"
+      },
+      "learning_role": "listen_only",
+      "surface": "ใช่ค่ะ ชื่อจองคือมีนาค่ะ",
+      "speak": "ใช่ค่ะ ชื่อจองคือมีนาค่ะ",
+      "translation": "對，預約姓名是 Mina。",
+      "friend": {
+        "hint": "ยืนยันเฉพาะรายละเอียดที่จำเป็นและปลอดภัยค่ะ"
+      },
+      "reply_set": {
+        "correct": "r3a",
+        "choices": [
+          {
+            "id": "r3a",
+            "surface": "ใช่ค่ะ เป็นชื่อของฉัน",
+            "translation": "對，是我的名字。",
+            "speak": "ใช่ค่ะ เป็นชื่อของฉัน",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r3b",
+            "surface": "ฉันจะบอกรหัสผ่านค่ะ",
+            "translation": "我會告訴你密碼。",
+            "speak": "ฉันจะบอกรหัสผ่านค่ะ",
+            "contrast_type": "forbidden_sensitive",
+            "feedback": "รหัสผ่านอยู่นอกขอบเขตงาน A2 นี้ค่ะ"
+          },
+          {
+            "id": "r3c",
+            "surface": "ขอคืนเงินค่ะ",
+            "translation": "請退款。",
+            "speak": "ขอคืนเงินค่ะ",
+            "contrast_type": "wrong_dispute_domain",
+            "feedback": "การคืนเงินหรือข้อพิพาทอยู่นอกขอบเขตงานนี้ค่ะ"
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t4",
+      "speaker": "npc",
+      "act": "close",
+      "act_slots": {
+        "topic": "a2_app_booking_confirmation",
+        "keyword": "4",
+        "gloss": "A2 digital/documents"
+      },
+      "learning_role": "listen_only",
+      "surface": "งั้นเจอกันบ่ายสามนะคะ",
+      "speak": "งั้นเจอกันบ่ายสามนะคะ",
+      "translation": "那下午三點見。",
+      "friend": {
+        "hint": "ยืนยันเฉพาะรายละเอียดที่จำเป็นและปลอดภัยค่ะ"
+      },
+      "reply_set": {
+        "correct": "r4a",
+        "choices": [
+          {
+            "id": "r4a",
+            "surface": "ค่ะ ฉันจะไปบ่ายสาม",
+            "translation": "好，我下午三點會去。",
+            "speak": "ค่ะ ฉันจะไปบ่ายสาม",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r4b",
+            "surface": "ฉันจะบอกรหัสผ่านค่ะ",
+            "translation": "我會告訴你密碼。",
+            "speak": "ฉันจะบอกรหัสผ่านค่ะ",
+            "contrast_type": "forbidden_sensitive",
+            "feedback": "รหัสผ่านอยู่นอกขอบเขตงาน A2 นี้ค่ะ"
+          },
+          {
+            "id": "r4c",
+            "surface": "ขอคืนเงินค่ะ",
+            "translation": "請退款。",
+            "speak": "ขอคืนเงินค่ะ",
+            "contrast_type": "wrong_dispute_domain",
+            "feedback": "การคืนเงินหรือข้อพิพาทอยู่นอกขอบเขตงานนี้ค่ะ"
+          }
+        ]
+      }
+    }
+  ],
+  "choice_sets": [
+    "t1.reply_set",
+    "t2.reply_set",
+    "t3.reply_set",
+    "t4.reply_set"
+  ],
+  "feedback": "ใช้เฉพาะข้อมูลที่จำเป็น ห้ามให้รหัสผ่าน ข้อมูลจ่ายเงิน บัตรประจำตัว หรือข้อมูลกฎหมาย/แพทย์ค่ะ",
+  "tts_segments": [
+    "สถานที่อยู่ที่ไหนคะ",
+    "ชั้นสองของคาเฟ่ใช่ไหมคะ",
+    "ใช่ค่ะ เป็นชื่อของฉัน",
+    "ค่ะ ฉันจะไปบ่ายสาม"
+  ],
+  "formula_moments": [
+    {
+      "after_turn": "t2",
+      "pattern_id": "th.a2.digital.app_booking_confirmation.v1"
+    }
+  ],
+  "runtime_notes": "Fresh A2 digital/documents candidate. Requires full-walk runtime before closeout evidence is recorded.",
+  "notes": {
+    "authoring_policy": "Fresh-authored from A2 digital/documents neutral adaptation brief. KO surface text was not copied or translated.",
+    "a2_boundary": "Low-risk confirmation/help only; avoids sensitive identity, payment, legal, medical, police, and immigration workflows."
+  }
+}

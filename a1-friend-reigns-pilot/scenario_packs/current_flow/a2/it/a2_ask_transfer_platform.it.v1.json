@@ -1,0 +1,242 @@
+{
+  "schema_version": "scenario_pack.v1",
+  "scenario_id": "a2_ask_transfer_platform",
+  "title": "Chiedere il Binario per il Cambio",
+  "setting_label": "Al punto informazioni",
+  "wrap_title": "Binario per il cambio",
+  "wrap_friend": "你剛剛完成了一段 A2 交通服務情境，確認重點並做出簡單回應。",
+  "language": "it",
+  "ui_language": "zh_tw",
+  "cefr_level": "A2",
+  "source_status": "candidate_runtime_verified",
+  "review_state": "ai_reviewed",
+  "review_status_framework_state": "candidate_runtime_verified",
+  "native_review_state": "native_pending",
+  "scenario": "A2 transport scenario: a2_ask_transfer_platform.",
+  "learner_goal": "Ask where to transfer and confirm a short two-step direction.",
+  "target_functions": [
+    "transfer_question",
+    "platform_confirmation",
+    "two_step_direction"
+  ],
+  "register_notes": "Italian public transport/service language with polite everyday responses; no refund, legal, medical, police, or identity-sensitive handling.",
+  "production_mode_default": {
+    "required": [
+      "choice"
+    ],
+    "optional_visible": [
+      "speaking"
+    ],
+    "optional_hidden": [
+      "typing"
+    ]
+  },
+  "support_text": "Chiedi dove cambiare, ascolta stazione e binario, poi conferma il percorso.",
+  "roles": {
+    "npc": {
+      "label": "Addetto"
+    },
+    "learner": {
+      "label": "Tu"
+    }
+  },
+  "turns": [
+    {
+      "turn_id": "t1",
+      "speaker": "npc",
+      "act": "destination_prompt",
+      "act_slots": {
+        "topic": "destination_prompt"
+      },
+      "learning_role": "listen_only",
+      "surface": "Dove deve andare?",
+      "speak": "Dove deve andare?",
+      "translation": "您要去哪裡？",
+      "friend": {
+        "hint": "詢問轉乘"
+      },
+      "reply_set": {
+        "correct": "r1a",
+        "choices": [
+          {
+            "id": "r1a",
+            "surface": "Vado all’aeroporto. Dove devo cambiare?",
+            "translation": "詢問轉乘",
+            "speak": "Vado all’aeroporto. Dove devo cambiare?",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r1b",
+            "surface": "Ieri sono andato all’aeroporto.",
+            "translation": "我昨天去了機場。",
+            "speak": "Ieri sono andato all’aeroporto.",
+            "learning_role": "wrong_time_or_detail",
+            "feedback": "Chiedi il cambio per adesso, non per ieri."
+          },
+          {
+            "id": "r1c",
+            "surface": "Vorrei lasciare un bagaglio.",
+            "translation": "我想寄放行李。",
+            "speak": "Vorrei lasciare un bagaglio.",
+            "learning_role": "wrong_scenario_or_escalation",
+            "feedback": "Questa è custodia bagagli, non cambio."
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t2",
+      "speaker": "npc",
+      "act": "transfer_instruction",
+      "act_slots": {
+        "topic": "transfer_instruction"
+      },
+      "learning_role": "listen_only",
+      "surface": "Scenda a Central e vada al binario tre.",
+      "speak": "Scenda a Central e vada al binario tre.",
+      "translation": "請在 Central 下車，然後到 3 號月台。",
+      "friend": {
+        "hint": "確認兩步指示"
+      },
+      "reply_set": {
+        "correct": "r2a",
+        "choices": [
+          {
+            "id": "r2a",
+            "surface": "Scendo a Central e vado al binario tre, giusto?",
+            "translation": "確認路線",
+            "speak": "Scendo a Central e vado al binario tre, giusto?",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r2b",
+            "surface": "Prendo un caffè a Central, giusto?",
+            "translation": "我在 Central 喝咖啡，對嗎？",
+            "speak": "Prendo un caffè a Central, giusto?",
+            "learning_role": "wrong_time_or_detail",
+            "feedback": "L’indicazione è andare al binario tre."
+          },
+          {
+            "id": "r2c",
+            "surface": "La camera tre, giusto?",
+            "translation": "3 號房，對嗎？",
+            "speak": "La camera tre, giusto?",
+            "learning_role": "wrong_scenario_or_escalation",
+            "feedback": "È un binario, non una camera."
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t3",
+      "speaker": "npc",
+      "act": "platform_detail",
+      "act_slots": {
+        "topic": "platform_detail"
+      },
+      "learning_role": "listen_only",
+      "surface": "Al binario tre prenda il treno per l’aeroporto.",
+      "speak": "Al binario tre prenda il treno per l’aeroporto.",
+      "translation": "在 3 號月台搭往機場的車。",
+      "friend": {
+        "hint": "確認方向"
+      },
+      "reply_set": {
+        "correct": "r3a",
+        "choices": [
+          {
+            "id": "r3a",
+            "surface": "Al binario tre prendo il treno per l’aeroporto, giusto?",
+            "translation": "確認月台與方向",
+            "speak": "Al binario tre prendo il treno per l’aeroporto, giusto?",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r3b",
+            "surface": "Il treno per l’aeroporto è arrivato ieri.",
+            "translation": "往機場的車昨天到了。",
+            "speak": "Il treno per l’aeroporto è arrivato ieri.",
+            "learning_role": "wrong_time_or_detail",
+            "feedback": "Conferma il treno che ti serve adesso."
+          },
+          {
+            "id": "r3c",
+            "surface": "Dove vado in caso di emergenza?",
+            "translation": "緊急時我要去哪裡？",
+            "speak": "Dove vado in caso di emergenza?",
+            "learning_role": "wrong_scenario_or_escalation",
+            "feedback": "Le procedure di emergenza sono fuori da questa attività."
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t4",
+      "speaker": "npc",
+      "act": "route_confirmation",
+      "act_slots": {
+        "topic": "route_confirmation"
+      },
+      "learning_role": "listen_only",
+      "surface": "Sì, cambi a Central.",
+      "speak": "Sì, cambi a Central.",
+      "translation": "對，請在 Central 轉乘。",
+      "friend": {
+        "hint": "收尾"
+      },
+      "reply_set": {
+        "correct": "r4a",
+        "choices": [
+          {
+            "id": "r4a",
+            "surface": "Grazie. Cambio a Central.",
+            "translation": "禮貌收尾",
+            "speak": "Grazie. Cambio a Central.",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r4b",
+            "surface": "Vorrei cambiare l’orario del biglietto.",
+            "translation": "我想更改票的時間。",
+            "speak": "Vorrei cambiare l’orario del biglietto.",
+            "learning_role": "wrong_time_or_detail",
+            "feedback": "Questo non è un cambio di biglietto."
+          },
+          {
+            "id": "r4c",
+            "surface": "Vado dalla polizia all’aeroporto.",
+            "translation": "我要去機場找警察。",
+            "speak": "Vado dalla polizia all’aeroporto.",
+            "learning_role": "wrong_scenario_or_escalation",
+            "feedback": "Le procedure di polizia sono fuori da questa attività."
+          }
+        ]
+      }
+    }
+  ],
+  "choice_sets": [
+    "t1.reply_set",
+    "t2.reply_set",
+    "t3.reply_set",
+    "t4.reply_set"
+  ],
+  "feedback": "I distrattori verificano orario sbagliato, contesto sbagliato o una richiesta fuori dal perimetro A2.",
+  "tts_segments": [
+    "Dove deve andare?",
+    "Scenda a Central e vada al binario tre.",
+    "Al binario tre prenda il treno per l’aeroporto.",
+    "Sì, cambi a Central."
+  ],
+  "formula_moments": [
+    {
+      "after_turn": "t2",
+      "pattern_id": "it.a2.transport.transfer.v1"
+    }
+  ],
+  "runtime_notes": "IT A2 transport candidate. Full-walk runtime gate required before final closeout; target-language surfaces and feedback localized on 2026-06-14.",
+  "notes": {
+    "authoring_policy": "Fresh-authored from the neutral A2 transport brief. KO surfaces were used only as scenario blueprint, not as translation source.",
+    "a2_boundary": "Low-risk A2 transport/service task; avoids refund, compensation, emergency, identity-sensitive, legal, medical, banking, immigration, or police handling.",
+    "language_specific_adaptation": "NPC lines, learner targets, distractors, feedback, support text, and translations are adapted for this language; native review remains pending."
+  }
+}

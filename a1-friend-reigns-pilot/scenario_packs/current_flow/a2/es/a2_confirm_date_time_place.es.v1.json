@@ -1,0 +1,268 @@
+{
+  "schema_version": "scenario_pack.v1",
+  "scenario_id": "a2_confirm_date_time_place",
+  "title": "Confirmar fecha, hora y lugar",
+  "setting_label": "Mensaje de una amiga",
+  "wrap_title": "Detalles confirmados",
+  "wrap_friend": "你剛剛讀懂一則西班牙語短訊，確認了日期、時間和地點。",
+  "language": "es",
+  "ui_language": "zh_tw",
+  "cefr_level": "A2",
+  "source_status": "candidate_runtime_verified",
+  "review_state": "ai_reviewed",
+  "review_status_framework_state": "candidate_runtime_verified",
+  "native_review_state": "native_pending",
+  "scenario": "Una amiga te pide confirmar los datos de un mensaje corto.",
+  "learner_goal": "Extraer fecha, hora y lugar de un mensaje breve y confirmarlos de forma natural.",
+  "target_functions": [
+    "message_comprehension",
+    "date_time_place_extraction",
+    "confirmation_question"
+  ],
+  "register_notes": "Español cotidiano de mensajes personales. No incluye direcciones largas, mapas ni navegación.",
+  "production_mode_default": {
+    "required": [
+      "choice"
+    ],
+    "optional_visible": [
+      "speaking"
+    ],
+    "optional_hidden": [
+      "typing"
+    ]
+  },
+  "support_text": "你的朋友提到一則短訊。從訊息中確認日期、時間和地點，不需要問路或處理複雜安排。",
+  "roles": {
+    "npc": {
+      "label": "amiga"
+    },
+    "learner": {
+      "label": "tú"
+    }
+  },
+  "message_excerpt": {
+    "surface": "Mensaje: Sábado, 17:30, en la biblioteca.",
+    "translation": "訊息：星期六，17:30，在圖書館。",
+    "speak": "Mensaje: sábado, diecisiete treinta, en la biblioteca."
+  },
+  "turns": [
+    {
+      "turn_id": "t1",
+      "speaker": "npc",
+      "act": "message_reference",
+      "act_slots": {
+        "topic": "short message",
+        "keyword": "mensaje",
+        "gloss": "訊息"
+      },
+      "learning_role": "listen_only",
+      "surface": "¿Puedes revisar el mensaje?",
+      "speak": "¿Puedes revisar el mensaje?",
+      "translation": "你可以看一下訊息嗎？",
+      "friend": {
+        "hint": "先表示你正在看訊息。重點是後面確認日期、時間和地點。"
+      },
+      "reply_set": {
+        "correct": "r1a",
+        "choices": [
+          {
+            "id": "r1a",
+            "surface": "Sí, lo estoy mirando.",
+            "translation": "可以，我正在看。",
+            "speak": "Sí, lo estoy mirando.",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r1b",
+            "surface": "Sí, quiero cambiar la hora.",
+            "translation": "可以，我想改時間。",
+            "speak": "Sí, quiero cambiar la hora.",
+            "contrast_type": "wrong_function_reschedule",
+            "feedback": "這是在改時間。現在只是要看訊息並確認內容。"
+          },
+          {
+            "id": "r1c",
+            "surface": "Perdón, llego tarde.",
+            "translation": "抱歉，我會晚到。",
+            "speak": "Perdón, llego tarde.",
+            "contrast_type": "wrong_scenario_delay",
+            "feedback": "這是在說遲到。現在要確認訊息內容。"
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t2",
+      "speaker": "npc",
+      "act": "date_time_prompt",
+      "act_slots": {
+        "topic": "date and time",
+        "keyword": "cuándo",
+        "gloss": "什麼時候"
+      },
+      "learning_role": "listen_only",
+      "surface": "¿Qué día y a qué hora es?",
+      "speak": "¿Qué día y a qué hora es?",
+      "translation": "是哪一天、幾點？",
+      "friend": {
+        "hint": "從短訊中找日期和時間：sábado, 17:30。"
+      },
+      "inline_explain": {
+        "pattern_id": "es.a2.confirm.fecha_hora_lugar.v1",
+        "title": "Es el... a las...",
+        "explain": "確認活動日期和時間時，可以用「Es el sábado a las cinco y media」。",
+        "items": [
+          {
+            "surface": "Es el sábado.",
+            "translation": "是星期六。",
+            "speak": "Es el sábado."
+          },
+          {
+            "surface": "A las cinco y media.",
+            "translation": "五點半。",
+            "speak": "A las cinco y media."
+          }
+        ]
+      },
+      "reply_set": {
+        "correct": "r2a",
+        "choices": [
+          {
+            "id": "r2a",
+            "surface": "Es el sábado a las cinco y media.",
+            "translation": "是星期六五點半。",
+            "speak": "Es el sábado a las cinco y media.",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r2b",
+            "surface": "Es el domingo a las cinco y media.",
+            "translation": "是星期日五點半。",
+            "speak": "Es el domingo a las cinco y media.",
+            "contrast_type": "wrong_date",
+            "feedback": "訊息寫的是星期六，不是星期日。"
+          },
+          {
+            "id": "r2c",
+            "surface": "Es el sábado a las siete y media.",
+            "translation": "是星期六七點半。",
+            "speak": "Es el sábado a las siete y media.",
+            "contrast_type": "wrong_time",
+            "feedback": "17:30 是五點半，不是七點半。"
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t3",
+      "speaker": "npc",
+      "act": "place_prompt",
+      "act_slots": {
+        "topic": "place",
+        "keyword": "dónde",
+        "gloss": "哪裡"
+      },
+      "learning_role": "listen_only",
+      "surface": "¿Y dónde quedamos?",
+      "speak": "¿Y dónde quedamos?",
+      "translation": "那我們在哪裡見？",
+      "friend": {
+        "hint": "從訊息中找地點：en la biblioteca。"
+      },
+      "reply_set": {
+        "correct": "r3a",
+        "choices": [
+          {
+            "id": "r3a",
+            "surface": "En la biblioteca.",
+            "translation": "在圖書館。",
+            "speak": "En la biblioteca."
+          },
+          {
+            "id": "r3b",
+            "surface": "Al lado de la biblioteca.",
+            "translation": "在圖書館旁邊。",
+            "speak": "Al lado de la biblioteca.",
+            "contrast_type": "wrong_place_relation",
+            "feedback": "訊息說在圖書館，不是在旁邊。"
+          },
+          {
+            "id": "r3c",
+            "surface": "En el parque.",
+            "translation": "在公園。",
+            "speak": "En el parque.",
+            "contrast_type": "wrong_place",
+            "feedback": "訊息中的地點是圖書館，不是公園。"
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t4",
+      "speaker": "npc",
+      "act": "closing_confirmation",
+      "act_slots": {
+        "topic": "details confirmed"
+      },
+      "learning_role": "listen_only",
+      "surface": "Entonces, sábado a las cinco y media en la biblioteca.",
+      "speak": "Entonces, sábado a las cinco y media en la biblioteca.",
+      "translation": "那就是星期六五點半在圖書館。",
+      "friend": {
+        "hint": "三個資訊都確認了。用自然短句收尾。"
+      },
+      "reply_set": {
+        "correct": "r4a",
+        "choices": [
+          {
+            "id": "r4a",
+            "surface": "Sí, exacto. Nos vemos allí.",
+            "translation": "對，沒錯。那裡見。",
+            "speak": "Sí, exacto. Nos vemos allí."
+          },
+          {
+            "id": "r4b",
+            "surface": "No, voy a llegar tarde.",
+            "translation": "不，我會晚到。",
+            "speak": "No, voy a llegar tarde.",
+            "contrast_type": "wrong_function_delay",
+            "feedback": "這是在說遲到。現在只是確認日期、時間和地點。"
+          },
+          {
+            "id": "r4c",
+            "surface": "Sí, quiero una mesa para dos.",
+            "translation": "對，我要兩人桌。",
+            "speak": "Sí, quiero una mesa para dos.",
+            "contrast_type": "wrong_scenario_restaurant",
+            "feedback": "這是餐廳情境。現在是在確認訊息內容。"
+          }
+        ]
+      }
+    }
+  ],
+  "choice_sets": [
+    "t1.reply_set",
+    "t2.reply_set",
+    "t3.reply_set",
+    "t4.reply_set"
+  ],
+  "feedback": "Distractors test wrong date, wrong time, wrong place relation, and wrong scenario without adding navigation complexity.",
+  "tts_segments": [
+    "Sí, lo estoy mirando.",
+    "Es el sábado a las cinco y media.",
+    "En la biblioteca.",
+    "Sí, exacto. Nos vemos allí."
+  ],
+  "formula_moments": [
+    {
+      "after_turn": "t2",
+      "pattern_id": "es.a2.confirm.fecha_hora_lugar.v1"
+    }
+  ],
+  "runtime_notes": "Fresh ES A2 candidate. Structural checks and two AI semantic review passes completed on 2026-06-14 before metadata promotion.",
+  "notes": {
+    "authoring_policy": "Fresh-authored from the neutral A2 brief. KO, JA, EN, and TH packs were not used as translation sources.",
+    "a2_boundary": "Uses short-message comprehension and date/time/place extraction; avoids map reading, directions, or multi-step navigation.",
+    "spanish_register_note": "Uses everyday message-checking language with quedar and nos vemos allí."
+  }
+}

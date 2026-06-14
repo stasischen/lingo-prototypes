@@ -1,0 +1,212 @@
+{
+  "schema_version": "scenario_pack.v1",
+  "scenario_id": "travel_restroom_directions",
+  "brief_id": "ml0_a1_003_travel_restroom_directions",
+  "source_neutral_brief": "release-aggregator/docs/tasks/A1_MULTILINGUAL_KO_B1_PARALLEL_ORCHESTRATION/work_products/ml0/ML0_NEUTRAL_ADAPTATION_BRIEFS_20260613.md#brief-ml0-a1-003-asking-for-restroom-directions",
+  "blueprint_ledger": "release-aggregator/docs/tasks/A1_MULTILINGUAL_KO_B1_PARALLEL_ORCHESTRATION/work_products/ml0/ML0_BLUEPRINT_LEDGER_20260613.md",
+  "repo": "content-th",
+  "staging_path": "content/core/content_assets/scenario_packs/current_flow/travel_restroom_directions.th.v1.json",
+  "title": "ถามทางไปห้องน้ำ",
+  "setting_label": "ในคาเฟ่",
+  "wrap_title": "ถามทางไปห้องน้ำได้แล้ว",
+  "wrap_friend": "คุณเรียกพนักงาน ถามห้องน้ำ และตอบรับทิศทางได้ด้วยประโยคสั้น ๆ",
+  "language": "th",
+  "ui_language": "zh_tw",
+  "source_status": "candidate_runtime_verified",
+  "review_state": "draft",
+  "review_status_framework_state": "candidate_runtime_verified",
+  "native_review_state": "native_pending",
+  "production_mode_default": {
+    "required": [
+      "choice"
+    ],
+    "optional_visible": [
+      "speaking"
+    ],
+    "optional_hidden": [
+      "typing"
+    ]
+  },
+  "support_text": "你在泰國的咖啡店或公共場所。禮貌開口，問洗手間在哪裡。",
+  "roles": {
+    "npc": {
+      "label": "พนักงาน"
+    },
+    "learner": {
+      "label": "คุณ"
+    }
+  },
+  "turns": [
+    {
+      "turn_id": "t1",
+      "speaker": "npc",
+      "act": "attention_response",
+      "act_slots": {
+        "topic": "開口求助",
+        "keyword": "ช่วย",
+        "gloss": "幫忙"
+      },
+      "learning_role": "listen_only",
+      "surface": "มีอะไรให้ช่วยไหมคะ",
+      "speak": "มีอะไรให้ช่วยไหมคะ",
+      "translation": "需要幫忙嗎？",
+      "friend": {
+        "hint": "對方問你需要什麼。直接問洗手間在哪裡。"
+      },
+      "reply_set": {
+        "correct": "r1a",
+        "choices": [
+          {
+            "id": "r1a",
+            "surface": "ห้องน้ำอยู่ที่ไหนคะ",
+            "translation": "洗手間在哪裡？",
+            "speak": "ห้องน้ำอยู่ที่ไหนคะ",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r1b",
+            "surface": "เอากาแฟเย็นค่ะ",
+            "translation": "我要冰咖啡。",
+            "speak": "เอากาแฟเย็นค่ะ",
+            "contrast_type": "wrong_scenario_request",
+            "feedback": "這句是在點咖啡。現在你要問洗手間。"
+          },
+          {
+            "id": "r1c",
+            "surface": "เท่าไหร่คะ",
+            "translation": "多少錢？",
+            "speak": "เท่าไหร่คะ",
+            "contrast_type": "wrong_scenario_request",
+            "feedback": "這句是在問價格。要找洗手間時，問「ห้องน้ำอยู่ที่ไหนคะ」。"
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t2",
+      "speaker": "npc",
+      "act": "simple_direction",
+      "act_slots": {
+        "topic": "方向",
+        "keyword": "ตรงไป",
+        "gloss": "直走"
+      },
+      "learning_role": "listen_only",
+      "surface": "ตรงไป แล้วเลี้ยวขวาค่ะ",
+      "speak": "ตรงไป แล้วเลี้ยวขวาค่ะ",
+      "translation": "直走，然後右轉。",
+      "friend": {
+        "hint": "ตรงไป 是直走，เลี้ยวขวา 是右轉。你可以確認右邊。"
+      },
+      "inline_explain": {
+        "pattern_id": "th.directions.straight_right.v1",
+        "formula_ref": null,
+        "title": "ตรงไป / เลี้ยวขวา",
+        "explain": "「ตรงไป」是直走，「เลี้ยวขวา」是右轉。",
+        "items": [
+          {
+            "surface": "ตรงไป",
+            "translation": "直走",
+            "speak": "ตรงไป"
+          },
+          {
+            "surface": "เลี้ยวขวา",
+            "translation": "右轉",
+            "speak": "เลี้ยวขวา"
+          }
+        ]
+      },
+      "reply_set": {
+        "correct": "r2a",
+        "choices": [
+          {
+            "id": "r2a",
+            "surface": "เลี้ยวขวาใช่ไหมคะ",
+            "translation": "是右轉，對嗎？",
+            "speak": "เลี้ยวขวาใช่ไหมคะ",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r2b",
+            "surface": "เอากลับบ้านค่ะ",
+            "translation": "外帶。",
+            "speak": "เอากลับบ้านค่ะ",
+            "contrast_type": "wrong_scenario_response",
+            "feedback": "這是咖啡店外帶時用的回答。現在對方在說方向。"
+          },
+          {
+            "id": "r2c",
+            "surface": "ใช่ค่ะ",
+            "translation": "是的。",
+            "speak": "ใช่ค่ะ",
+            "contrast_type": "underspecified_confirmation",
+            "feedback": "只說是有點不清楚。確認方向時，可以說「เลี้ยวขวาใช่ไหมคะ」。"
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t3",
+      "speaker": "npc",
+      "act": "direction_confirmation",
+      "act_slots": {
+        "topic": "確認方向",
+        "keyword": "ด้านขวา",
+        "gloss": "右側"
+      },
+      "learning_role": "listen_only",
+      "surface": "ใช่ค่ะ เลี้ยวขวาค่ะ",
+      "speak": "ใช่ค่ะ เลี้ยวขวาค่ะ",
+      "translation": "是的，右轉。",
+      "friend": {
+        "hint": "你確認方向了。最後說謝謝就好。"
+      },
+      "reply_set": {
+        "correct": "r3a",
+        "choices": [
+          {
+            "id": "r3a",
+            "surface": "ขอบคุณค่ะ",
+            "translation": "謝謝。",
+            "speak": "ขอบคุณค่ะ"
+          },
+          {
+            "id": "r3b",
+            "surface": "เอากาแฟเย็นค่ะ",
+            "translation": "我要冰咖啡。",
+            "speak": "เอากาแฟเย็นค่ะ",
+            "contrast_type": "wrong_scenario_request",
+            "feedback": "這又回到點飲料了。你已經問完方向，可以說謝謝。"
+          },
+          {
+            "id": "r3c",
+            "surface": "ชื่อหลินค่ะ",
+            "translation": "名字是林。",
+            "speak": "ชื่อหลินค่ะ",
+            "contrast_type": "wrong_scenario_response",
+            "feedback": "這是飯店入住時說名字。現在是問路情境。"
+          }
+        ]
+      },
+      "closing": {
+        "act": "helper_close",
+        "learning_role": "listen_only",
+        "surface": "ไม่เป็นไรค่ะ",
+        "speak": "ไม่เป็นไรค่ะ",
+        "translation": "不客氣。"
+      }
+    }
+  ],
+  "formula_moments": [
+    {
+      "after_turn": "t2",
+      "pattern_id": "th.directions.straight_right.v1"
+    }
+  ],
+  "notes": {
+    "authoring_source": "Authored from ML-0 neutral brief, not Korean surface text.",
+    "review_policy": "AI-authored Thai candidate. Requires AI review, runtime smoke, and tracked native review before any stronger status.",
+    "canonical_policy": "Staging candidate only. Do not write back to manifests, production exports, schemas, or legacy content.",
+    "thai_voice_note": "Pilot uses ค่ะ/คะ consistently to avoid slash-form TTS and beginner-input ambiguity."
+  }
+}

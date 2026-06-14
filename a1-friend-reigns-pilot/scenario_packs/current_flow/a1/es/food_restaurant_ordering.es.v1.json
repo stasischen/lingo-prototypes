@@ -1,0 +1,257 @@
+{
+  "schema_version": "scenario_pack.v1",
+  "scenario_id": "food_restaurant_ordering",
+  "brief_id": "ml1_a1_006_food_restaurant_ordering",
+  "source_neutral_brief": "release-aggregator/docs/tasks/A1_MULTILINGUAL_KO_B1_PARALLEL_ORCHESTRATION/work_products/ml0/ML1_NEUTRAL_ADAPTATION_BRIEFS_20260614.md#brief-ml1-a1-006-restaurant-ordering",
+  "blueprint_ledger": "release-aggregator/docs/tasks/A1_MULTILINGUAL_KO_B1_PARALLEL_ORCHESTRATION/work_products/ml0/ML1_BLUEPRINT_LEDGER_20260614.md",
+  "repo": "content-es",
+  "staging_path": "content/core/content_assets/scenario_packs/current_flow/food_restaurant_ordering.es.v1.json",
+  "title": "Pedir en un restaurante",
+  "setting_label": "Mesa de restaurante sencillo",
+  "wrap_title": "Ya puedes pedir una comida",
+  "wrap_friend": "Contestaste si estabas listo, pediste un plato y confirmaste el pedido con frases cortas.",
+  "language": "es",
+  "ui_language": "zh_tw",
+  "source_status": "candidate_runtime_verified",
+  "review_state": "draft",
+  "review_status_framework_state": "candidate_runtime_verified",
+  "native_review_state": "native_pending",
+  "production_mode_default": {
+    "required": [
+      "choice"
+    ],
+    "optional_visible": [
+      "speaking"
+    ],
+    "optional_hidden": [
+      "typing"
+    ]
+  },
+  "support_text": "你在西語餐廳。聽服務生問什麼，選一句短而自然的西班牙語回答。",
+  "roles": {
+    "npc": {
+      "label": "camarero"
+    },
+    "learner": {
+      "label": "cliente"
+    }
+  },
+  "turns": [
+    {
+      "turn_id": "t1",
+      "speaker": "npc",
+      "act": "readiness_question",
+      "act_slots": {
+        "topic": "empezar pedido",
+        "keyword": "listo",
+        "gloss": "準備好了"
+      },
+      "learning_role": "listen_only",
+      "surface": "Buenas tardes. ¿Ya sabe qué va a pedir?",
+      "speak": "Buenas tardes. ¿Ya sabe qué va a pedir?",
+      "translation": "午安。您已經知道要點什麼了嗎？",
+      "friend": {
+        "hint": "服務生在問你準備好點餐了嗎。可以先簡短說「Sí」。"
+      },
+      "reply_set": {
+        "correct": "r1a",
+        "choices": [
+          {
+            "id": "r1a",
+            "surface": "Sí, estoy listo.",
+            "translation": "是的，我準備好了。",
+            "speak": "Sí, estoy listo.",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r1b",
+            "surface": "La cuenta, por favor.",
+            "translation": "請結帳。",
+            "speak": "La cuenta, por favor.",
+            "contrast_type": "wrong_sequence_bill",
+            "feedback": "這句是在用餐後結帳。現在才要開始點餐。"
+          },
+          {
+            "id": "r1c",
+            "surface": "Un café para llevar.",
+            "translation": "一杯咖啡外帶。",
+            "speak": "Un café para llevar.",
+            "contrast_type": "wrong_setting_cafe",
+            "feedback": "這像咖啡店外帶。餐廳點餐先回答你準備好了。"
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t2",
+      "speaker": "npc",
+      "act": "order_request",
+      "act_slots": {
+        "topic": "pedir plato",
+        "keyword": "tomar",
+        "gloss": "點餐"
+      },
+      "learning_role": "listen_only",
+      "surface": "Perfecto. ¿Qué va a tomar?",
+      "speak": "Perfecto. ¿Qué va a tomar?",
+      "translation": "好的。您要點什麼？",
+      "friend": {
+        "hint": "用「Quiero」或「Me trae」加一道菜，最後加 por favor。"
+      },
+      "inline_explain": {
+        "pattern_id": "es.restaurant.order_dish.v1",
+        "formula_ref": null,
+        "title": "Quiero + un plato",
+        "explain": "在一般餐廳，可以用 Quiero 或 Me trae 來點一道菜。A1 先用 Quiero 就好。",
+        "items": [
+          {
+            "surface": "Quiero una sopa, por favor.",
+            "translation": "我想要一份湯，謝謝。",
+            "speak": "Quiero una sopa, por favor."
+          },
+          {
+            "surface": "Me trae una ensalada, por favor.",
+            "translation": "請給我一份沙拉。",
+            "speak": "Me trae una ensalada, por favor."
+          }
+        ]
+      },
+      "reply_set": {
+        "correct": "r2a",
+        "choices": [
+          {
+            "id": "r2a",
+            "surface": "Quiero una sopa, por favor.",
+            "translation": "我想要一份湯，謝謝。",
+            "speak": "Quiero una sopa, por favor.",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r2b",
+            "surface": "Somos dos personas.",
+            "translation": "我們是兩個人。",
+            "speak": "Somos dos personas.",
+            "contrast_type": "wrong_prior_context",
+            "feedback": "人數不是現在的問題。服務生正在問你要點哪一道菜。"
+          },
+          {
+            "id": "r2c",
+            "surface": "Pago con tarjeta.",
+            "translation": "我用卡付款。",
+            "speak": "Pago con tarjeta.",
+            "contrast_type": "wrong_sequence_payment",
+            "feedback": "付款還太早。現在要先點餐。"
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t3",
+      "speaker": "npc",
+      "act": "order_confirmation",
+      "act_slots": {
+        "topic": "confirmar plato",
+        "keyword": "sopa",
+        "gloss": "湯"
+      },
+      "learning_role": "listen_only",
+      "surface": "Una sopa, entonces. ¿Algo más?",
+      "speak": "Una sopa, entonces. ¿Algo más?",
+      "translation": "那就是一份湯。還需要別的嗎？",
+      "friend": {
+        "hint": "訂單對了，而且不加點時，用 No, gracias。"
+      },
+      "reply_set": {
+        "correct": "r3a",
+        "choices": [
+          {
+            "id": "r3a",
+            "surface": "No, gracias. Está bien.",
+            "translation": "不用了，謝謝。這樣可以。",
+            "speak": "No, gracias. Está bien.",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r3b",
+            "surface": "Un café para llevar.",
+            "translation": "一杯咖啡外帶。",
+            "speak": "Un café para llevar.",
+            "contrast_type": "wrong_setting_cafe",
+            "feedback": "這會換到咖啡外帶情境。這裡只要確認餐點即可。"
+          },
+          {
+            "id": "r3c",
+            "surface": "Quiero tres sopas.",
+            "translation": "我要三份湯。",
+            "speak": "Quiero tres sopas.",
+            "contrast_type": "wrong_quantity",
+            "feedback": "服務生確認的是一份湯。若沒有要改數量，就不要說三份。"
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t4",
+      "speaker": "npc",
+      "act": "service_close",
+      "act_slots": {
+        "topic": "pedido recibido",
+        "keyword": "sale",
+        "gloss": "準備"
+      },
+      "learning_role": "listen_only",
+      "surface": "Muy bien. Su sopa sale en unos minutos.",
+      "speak": "Muy bien. Su sopa sale en unos minutos.",
+      "translation": "很好。您的湯幾分鐘後會好。",
+      "friend": {
+        "hint": "服務生說訂單會準備。簡短道謝就好。"
+      },
+      "reply_set": {
+        "correct": "r4a",
+        "choices": [
+          {
+            "id": "r4a",
+            "surface": "Gracias.",
+            "translation": "謝謝。",
+            "speak": "Gracias."
+          },
+          {
+            "id": "r4b",
+            "surface": "¿Dónde está la estación?",
+            "translation": "車站在哪裡？",
+            "speak": "¿Dónde está la estación?",
+            "contrast_type": "wrong_scenario_request",
+            "feedback": "這是問路情境。餐廳點餐完成時，只要道謝。"
+          },
+          {
+            "id": "r4c",
+            "surface": "La cuenta, por favor.",
+            "translation": "請結帳。",
+            "speak": "La cuenta, por favor.",
+            "contrast_type": "wrong_sequence_bill",
+            "feedback": "你還沒吃完。服務生只是說餐點會送來。"
+          }
+        ]
+      },
+      "closing": {
+        "act": "kitchen_acknowledgement",
+        "learning_role": "listen_only",
+        "surface": "De nada.",
+        "speak": "De nada.",
+        "translation": "不客氣。"
+      }
+    }
+  ],
+  "formula_moments": [
+    {
+      "after_turn": "t2",
+      "pattern_id": "es.restaurant.order_dish.v1"
+    }
+  ],
+  "notes": {
+    "authoring_source": "Authored from ML-1 neutral brief, not Korean surface text or another target-language pack.",
+    "review_policy": "AI-authored Spanish candidate. Requires AI review, runtime smoke, and tracked native review before any stronger status.",
+    "canonical_policy": "Staging candidate only. Do not write back to manifests, production exports, schemas, or legacy content.",
+    "spanish_register_note": "Uses broad neutral service Spanish with usted-facing staff questions and short learner replies."
+  }
+}

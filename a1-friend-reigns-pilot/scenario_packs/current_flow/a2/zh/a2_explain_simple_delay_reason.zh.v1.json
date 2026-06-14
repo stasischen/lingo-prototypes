@@ -1,0 +1,265 @@
+{
+  "schema_version": "scenario_pack.v1",
+  "scenario_id": "a2_explain_simple_delay_reason",
+  "title": "說明簡單遲到原因",
+  "setting_label": "傳訊息給朋友",
+  "wrap_title": "遲到原因說明完成",
+  "wrap_friend": "你剛剛用簡單中文說明會晚一點到，給了一個日常原因，並說了大概時間。",
+  "language": "zh",
+  "ui_language": "zh_tw",
+  "cefr_level": "A2",
+  "source_status": "candidate_runtime_verified",
+  "review_state": "ai_reviewed",
+  "review_status_framework_state": "candidate_runtime_verified",
+  "native_review_state": "native_pending",
+  "scenario": "朋友問你快到了沒，你要說會晚一點到並給一個簡單原因。",
+  "learner_goal": "道歉、說會晚一點到，並給一個安全日常原因和時間估計。",
+  "target_functions": [
+    "apology",
+    "simple_reason",
+    "delay_estimate"
+  ],
+  "register_notes": "自然朋友訊息語氣，使用「不好意思」「會晚一點到」「因為公車晚了」。",
+  "production_mode_default": {
+    "required": [
+      "choice"
+    ],
+    "optional_visible": [
+      "speaking"
+    ],
+    "optional_hidden": [
+      "typing"
+    ]
+  },
+  "support_text": "你要跟朋友見面，但會晚到。簡單說抱歉、原因和大概幾分鐘。",
+  "roles": {
+    "npc": {
+      "label": "朋友"
+    },
+    "learner": {
+      "label": "你"
+    }
+  },
+  "turns": [
+    {
+      "turn_id": "t1",
+      "speaker": "npc",
+      "act": "arrival_check",
+      "act_slots": {
+        "topic": "arrival",
+        "keyword": "快到了嗎",
+        "gloss": "almost here"
+      },
+      "learning_role": "listen_only",
+      "surface": "你快到了嗎？",
+      "speak": "你快到了嗎？",
+      "translation": "你快到了嗎？",
+      "friend": {
+        "hint": "先用自然的道歉，說會晚一點到。"
+      },
+      "reply_set": {
+        "correct": "r1a",
+        "choices": [
+          {
+            "id": "r1a",
+            "surface": "不好意思，我會晚一點到。",
+            "translation": "不好意思，我會晚一點到。",
+            "speak": "不好意思，我會晚一點到。",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r1b",
+            "surface": "我已經到了昨天。",
+            "translation": "我已經到了昨天。",
+            "speak": "我已經到了昨天。",
+            "contrast_type": "wrong_time_past",
+            "feedback": "朋友問現在快到了沒，不是昨天。"
+          },
+          {
+            "id": "r1c",
+            "surface": "我要兩杯咖啡。",
+            "translation": "我要兩杯咖啡。",
+            "speak": "我要兩杯咖啡。",
+            "contrast_type": "wrong_scenario_ordering",
+            "feedback": "這是在點餐，沒有說你會晚到。"
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t2",
+      "speaker": "npc",
+      "act": "reason_request",
+      "act_slots": {
+        "topic": "reason",
+        "keyword": "怎麼了",
+        "gloss": "what happened"
+      },
+      "learning_role": "listen_only",
+      "surface": "怎麼了？",
+      "speak": "怎麼了？",
+      "translation": "怎麼了？",
+      "friend": {
+        "hint": "給一個安全日常原因，例如公車晚了。"
+      },
+      "inline_explain": {
+        "pattern_id": "zh.a2.delay.reason.yinwei.v1",
+        "title": "因為 + 原因",
+        "explain": "用「因為」接一個簡單原因。",
+        "items": [
+          {
+            "surface": "因為公車晚了。",
+            "translation": "因為公車晚了。",
+            "speak": "因為公車晚了。"
+          },
+          {
+            "surface": "我大概晚十分鐘。",
+            "translation": "我大概晚十分鐘。",
+            "speak": "我大概晚十分鐘。"
+          }
+        ]
+      },
+      "reply_set": {
+        "correct": "r2a",
+        "choices": [
+          {
+            "id": "r2a",
+            "surface": "因為公車晚了。",
+            "translation": "因為公車晚了。",
+            "speak": "因為公車晚了。",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r2b",
+            "surface": "我大概晚十分鐘。",
+            "translation": "我大概晚十分鐘。",
+            "speak": "我大概晚十分鐘。",
+            "contrast_type": "time_estimate_not_reason",
+            "feedback": "這是時間估計，不是原因。朋友現在問怎麼了。"
+          },
+          {
+            "id": "r2c",
+            "surface": "公車站在哪裡？",
+            "translation": "公車站在哪裡？",
+            "speak": "公車站在哪裡？",
+            "contrast_type": "wrong_function_location_question",
+            "feedback": "這是在問地點，沒有說明為什麼晚到。"
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t3",
+      "speaker": "npc",
+      "act": "delay_time_request",
+      "act_slots": {
+        "topic": "delay estimate",
+        "keyword": "幾分鐘",
+        "gloss": "how many minutes"
+      },
+      "learning_role": "listen_only",
+      "surface": "大概會晚幾分鐘？",
+      "speak": "大概會晚幾分鐘？",
+      "translation": "大概會晚幾分鐘？",
+      "friend": {
+        "hint": "回答簡短時間估計即可。"
+      },
+      "reply_set": {
+        "correct": "r3a",
+        "choices": [
+          {
+            "id": "r3a",
+            "surface": "大概晚十分鐘。",
+            "translation": "大概晚十分鐘。",
+            "speak": "大概晚十分鐘。"
+          },
+          {
+            "id": "r3b",
+            "surface": "因為公車晚了。",
+            "translation": "因為公車晚了。",
+            "speak": "因為公車晚了。",
+            "contrast_type": "repeated_reason_not_time",
+            "feedback": "原因已經說了。現在要回答幾分鐘。"
+          },
+          {
+            "id": "r3c",
+            "surface": "我坐三號公車。",
+            "translation": "我坐三號公車。",
+            "speak": "我坐三號公車。",
+            "contrast_type": "bus_number_not_delay",
+            "feedback": "公車號碼不是晚到時間。"
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t4",
+      "speaker": "npc",
+      "act": "friend_waits",
+      "act_slots": {
+        "topic": "waiting",
+        "keyword": "等",
+        "gloss": "wait"
+      },
+      "learning_role": "listen_only",
+      "surface": "好，我等你。",
+      "speak": "好，我等你。",
+      "translation": "好，我等你。",
+      "friend": {
+        "hint": "朋友願意等，說謝謝並自然收尾。"
+      },
+      "reply_set": {
+        "correct": "r4a",
+        "choices": [
+          {
+            "id": "r4a",
+            "surface": "謝謝你，我快到了。",
+            "translation": "謝謝你，我快到了。",
+            "speak": "謝謝你，我快到了。"
+          },
+          {
+            "id": "r4b",
+            "surface": "請幫我換房間。",
+            "translation": "請幫我換房間。",
+            "speak": "請幫我換房間。",
+            "contrast_type": "wrong_scenario_hotel",
+            "feedback": "這是旅館情境，不是朋友等你的訊息。"
+          },
+          {
+            "id": "r4c",
+            "surface": "你為什麼不等我？",
+            "translation": "你為什麼不等我？",
+            "speak": "你為什麼不等我？",
+            "contrast_type": "conflict_blame_out_of_scope",
+            "feedback": "這會變成責怪。這裡只要謝謝朋友。"
+          }
+        ]
+      }
+    }
+  ],
+  "choice_sets": [
+    "t1.reply_set",
+    "t2.reply_set",
+    "t3.reply_set",
+    "t4.reply_set"
+  ],
+  "feedback": "干擾選項分別測試錯誤時間、錯誤場景、原因與時間估計混淆，以及不必要的衝突。",
+  "tts_segments": [
+    "不好意思，我會晚一點到。",
+    "因為公車晚了。",
+    "大概晚十分鐘。",
+    "謝謝你，我快到了。"
+  ],
+  "formula_moments": [
+    {
+      "after_turn": "t2",
+      "pattern_id": "zh.a2.delay.reason.yinwei.v1"
+    }
+  ],
+  "runtime_notes": "Fresh ZH A2 candidate. Structural checks and two AI semantic review passes completed on 2026-06-14 before metadata promotion.",
+  "notes": {
+    "authoring_policy": "Fresh-authored from the neutral A2 brief. KO/JA/EN/TH packs were not translation sources.",
+    "a2_boundary": "Uses apology, simple reason clause, and short delay estimate; avoids emergency, workplace, medical, or formal excuse framing.",
+    "chinese_voice_note": "Uses Traditional Mandarin friend-chat wording with `不好意思` and compact reason/time answers."
+  }
+}

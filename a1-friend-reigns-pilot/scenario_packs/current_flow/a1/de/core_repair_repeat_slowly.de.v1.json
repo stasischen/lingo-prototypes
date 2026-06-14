@@ -1,0 +1,237 @@
+{
+  "schema_version": "scenario_pack.v1",
+  "scenario_id": "core_repair_repeat_slowly",
+  "brief_id": "ml3_a1_014_core_repair_repeat_slowly",
+  "source_neutral_brief": "release-aggregator/docs/tasks/A1_MULTILINGUAL_KO_B1_PARALLEL_ORCHESTRATION/work_products/ml0/ML3_NEUTRAL_ADAPTATION_BRIEFS_20260614.md#brief-ml3-a1-014-ask-to-repeat-or-speak-slowly",
+  "blueprint_ledger": "release-aggregator/docs/tasks/A1_MULTILINGUAL_KO_B1_PARALLEL_ORCHESTRATION/work_products/ml0/ML3_BLUEPRINT_LEDGER_20260614.md",
+  "repo": "content-de",
+  "staging_path": "content/core/content_assets/scenario_packs/current_flow/core_repair_repeat_slowly.de.v1.json",
+  "title": "Um Wiederholung bitten",
+  "setting_label": "Serviceschalter",
+  "wrap_title": "Gespräch repariert",
+  "wrap_friend": "你用 Sie 服務語氣請對方重複、說慢一點，然後回答簡單問題。",
+  "language": "de",
+  "ui_language": "zh_tw",
+  "source_status": "candidate_runtime_verified",
+  "review_state": "draft",
+  "review_status_framework_state": "candidate_runtime_verified",
+  "native_review_state": "native_pending",
+  "production_mode_default": {
+    "required": [
+      "choice"
+    ],
+    "optional_visible": [
+      "speaking"
+    ],
+    "optional_hidden": [
+      "typing"
+    ]
+  },
+  "support_text": "你在服務櫃台沒聽懂一句簡短問題。先請對方重複，再請對方說慢一點，最後回答。",
+  "roles": {
+    "npc": {
+      "label": "Mitarbeiter"
+    },
+    "learner": {
+      "label": "Kunde"
+    }
+  },
+  "turns": [
+    {
+      "turn_id": "t1",
+      "speaker": "npc",
+      "act": "unclear_service_question",
+      "act_slots": {
+        "topic": "bag",
+        "keyword": "Tüte",
+        "gloss": "bag"
+      },
+      "learning_role": "listen_only",
+      "surface": "Möchten Sie eine Tüte?",
+      "speak": "Möchten Sie eine Tüte?",
+      "translation": "您要袋子嗎？",
+      "friend": {
+        "hint": "沒聽懂時，先請對方再說一次。"
+      },
+      "reply_set": {
+        "correct": "r1a",
+        "choices": [
+          {
+            "id": "r1a",
+            "surface": "Können Sie das bitte wiederholen?",
+            "translation": "可以請您再說一次嗎？",
+            "speak": "Können Sie das bitte wiederholen?",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r1b",
+            "surface": "Ja, in Ordnung.",
+            "translation": "好，沒問題。",
+            "speak": "Ja, in Ordnung.",
+            "contrast_type": "blind_confirmation",
+            "feedback": "你還沒聽懂時不要直接確認。先請對方重複。"
+          },
+          {
+            "id": "r1c",
+            "surface": "Auf Wiedersehen.",
+            "translation": "再見。",
+            "speak": "Auf Wiedersehen.",
+            "contrast_type": "closing_before_understanding",
+            "feedback": "這會直接結束對話，沒有修復理解問題。"
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t2",
+      "speaker": "npc",
+      "act": "question_repeated",
+      "act_slots": {
+        "topic": "bag",
+        "keyword": "Tüte",
+        "gloss": "bag"
+      },
+      "learning_role": "listen_only",
+      "surface": "Möchten Sie eine Tüte?",
+      "speak": "Möchten Sie eine Tüte?",
+      "translation": "您要袋子嗎？",
+      "friend": {
+        "hint": "還是太快時，請對方說慢一點。"
+      },
+      "reply_set": {
+        "correct": "r2a",
+        "choices": [
+          {
+            "id": "r2a",
+            "surface": "Sprechen Sie bitte langsamer.",
+            "translation": "請您說慢一點。",
+            "speak": "Sprechen Sie bitte langsamer.",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r2b",
+            "surface": "Eine Fahrkarte nach Berlin.",
+            "translation": "一張到柏林的票。",
+            "speak": "Eine Fahrkarte nach Berlin.",
+            "contrast_type": "travel_ticket_answer",
+            "feedback": "這是買票用語，不是在請對方放慢速度。"
+          },
+          {
+            "id": "r2c",
+            "surface": "Ich bin Lukas.",
+            "translation": "我是 Lukas。",
+            "speak": "Ich bin Lukas.",
+            "contrast_type": "self_intro_answer",
+            "feedback": "這是自我介紹，不是修復聽不懂的服務問題。"
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t3",
+      "speaker": "npc",
+      "act": "slow_restatement",
+      "act_slots": {
+        "topic": "bag",
+        "keyword": "möchten",
+        "gloss": "would like"
+      },
+      "learning_role": "listen_only",
+      "surface": "Natürlich. Möchten Sie eine Tüte?",
+      "speak": "Natürlich. Möchten Sie eine Tüte?",
+      "translation": "當然。您要袋子嗎？",
+      "friend": {
+        "hint": "現在聽懂了，簡短回答要或不要。"
+      },
+      "reply_set": {
+        "correct": "r3a",
+        "choices": [
+          {
+            "id": "r3a",
+            "surface": "Nein, danke.",
+            "translation": "不用，謝謝。",
+            "speak": "Nein, danke.",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r3b",
+            "surface": "Können Sie das wiederholen?",
+            "translation": "您可以再說一次嗎？",
+            "speak": "Können Sie das wiederholen?",
+            "contrast_type": "repair_repeated_after_clear_prompt",
+            "feedback": "對方已經慢慢重述了。現在要回答袋子問題。"
+          },
+          {
+            "id": "r3c",
+            "surface": "Was kostet das?",
+            "translation": "這個多少錢？",
+            "speak": "Was kostet das?",
+            "contrast_type": "shopping_price_question",
+            "feedback": "這是在問價格，不是在回答是否要袋子。"
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t4",
+      "speaker": "npc",
+      "act": "service_close",
+      "act_slots": {
+        "topic": "close",
+        "keyword": "alles",
+        "gloss": "everything"
+      },
+      "learning_role": "listen_only",
+      "surface": "Alles klar.",
+      "speak": "Alles klar.",
+      "translation": "好的。",
+      "friend": {
+        "hint": "最後道謝。"
+      },
+      "reply_set": {
+        "correct": "r4a",
+        "choices": [
+          {
+            "id": "r4a",
+            "surface": "Danke.",
+            "translation": "謝謝。",
+            "speak": "Danke."
+          },
+          {
+            "id": "r4b",
+            "surface": "Freut mich.",
+            "translation": "很高興認識你。",
+            "speak": "Freut mich.",
+            "contrast_type": "first_meeting_formula",
+            "feedback": "這是第一次見面用語，不是服務櫃台收尾。"
+          },
+          {
+            "id": "r4c",
+            "surface": "Mit Karte, bitte.",
+            "translation": "刷卡，謝謝。",
+            "speak": "Mit Karte, bitte.",
+            "contrast_type": "payment_phrase",
+            "feedback": "這是付款方式，不是對方完成服務後的道謝。"
+          }
+        ]
+      },
+      "closing": true
+    }
+  ],
+  "formula_moments": [
+    {
+      "after_turn": "t1",
+      "pattern_id": "de.repair.koennen_sie_wiederholen.v1"
+    },
+    {
+      "after_turn": "t2",
+      "pattern_id": "de.repair.sprechen_sie_langsamer.v1"
+    }
+  ],
+  "notes": {
+    "authoring_source": "Authored from ML-3 neutral brief ml3_a1_014_core_repair_repeat_slowly; KO and other target-language packs were not used as translation sources.",
+    "review_policy": "AI-authored candidate only; keep review_state=draft, review_status_framework_state=candidate_needs_review, native_review_state=native_pending until tracked review evidence exists.",
+    "canonical_policy": "Staging current-flow candidate only. Do not add to manifests, production exports, schema, runtime, frontend, review artifacts, or legacy content.",
+    "german_voice_note": "Uses consistent Sie service register; native review should check Tüte versus Tasche for the target region."
+  }
+}

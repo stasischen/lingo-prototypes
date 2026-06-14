@@ -1,0 +1,284 @@
+{
+  "schema_version": "scenario_pack.v1",
+  "scenario_id": "a2_ask_ingredient_preference",
+  "title": "Chiedere un Ingrediente",
+  "setting_label": "bancone del ristorante",
+  "wrap_title": "Preferenza sull’ingrediente confermata",
+  "wrap_friend": "Bene. Hai confermato una preferenza e un dettaglio in una semplice situazione di cibo o acquisti.",
+  "language": "it",
+  "ui_language": "zh-Hant",
+  "cefr_level": "A2",
+  "source_status": "candidate_runtime_verified",
+  "review_state": "ai_reviewed",
+  "review_status_framework_state": "candidate_runtime_verified",
+  "native_review_state": "native_pending",
+  "scenario": {
+    "domain": "food_shopping_preferences",
+    "review_slice": "food_shopping",
+    "interaction": "service_preference_or_exchange",
+    "source_brief": "A2_FOOD_SHOPPING_NEUTRAL_ADAPTATION_BRIEFS_20260614",
+    "blueprint_source": "language_neutral_adaptation_brief",
+    "ko_pack_role": "mature_scenario_blueprint_not_translation_source"
+  },
+  "learner_goal": "Chiedi se c’è un ingrediente comune e scegli in base alla tua preferenza.",
+  "target_functions": [
+    "compare_or_state_preference",
+    "confirm_key_detail",
+    "make_polite_low_risk_request",
+    "close_with_correct_next_step"
+  ],
+  "register_notes": "Italian A2 food/shopping register: everyday polite service Italian, no allergy/medical/refund-dispute framing.",
+  "production_mode_default": {
+    "required": [
+      "choice"
+    ],
+    "optional_visible": [
+      "speaking"
+    ],
+    "optional_hidden": [
+      "typing"
+    ]
+  },
+  "support_text": "Chiedi se c’è un ingrediente comune e scegli in base alla tua preferenza.",
+  "roles": {
+    "npc": {
+      "label": "addetto"
+    },
+    "learner": {
+      "label": "你"
+    }
+  },
+  "turns": [
+    {
+      "turn_id": "t1",
+      "speaker": "npc",
+      "act": "ask_ingredient",
+      "act_slots": {
+        "topic": "ask-ingredient-preference",
+        "keyword": "1",
+        "gloss": "A2 food/shopping"
+      },
+      "learning_role": "listen_only",
+      "surface": "Che cosa desidera ordinare?",
+      "speak": "Che cosa desidera ordinare?",
+      "translation": "您想點什麼？",
+      "friend": {
+        "hint": "Chiedi se c’è un ingrediente comune."
+      },
+      "reply_set": {
+        "correct": "r1a",
+        "choices": [
+          {
+            "id": "r1a",
+            "surface": "Questa insalata contiene cipolla?",
+            "translation": "這個沙拉裡有洋蔥嗎？",
+            "speak": "Questa insalata contiene cipolla?",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r1b",
+            "surface": "A che piano è questa insalata?",
+            "translation": "這個沙拉在幾樓？",
+            "speak": "A che piano è questa insalata?",
+            "contrast_type": "wrong_detail_or_domain",
+            "feedback": "Il piano non ha a che fare con gli ingredienti."
+          },
+          {
+            "id": "r1c",
+            "surface": "Per favore, cambi l’orario del mio biglietto.",
+            "translation": "請幫我改票的時間。",
+            "speak": "Per favore, cambi l’orario del mio biglietto.",
+            "contrast_type": "forbidden_or_wrong_domain",
+            "feedback": "Questo passa a una situazione di biglietto."
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t2",
+      "speaker": "npc",
+      "act": "answer_ingredient",
+      "act_slots": {
+        "topic": "ask-ingredient-preference",
+        "keyword": "2",
+        "gloss": "A2 food/shopping"
+      },
+      "learning_role": "listen_only",
+      "surface": "Sì, contiene un po’ di cipolla.",
+      "speak": "Sì, contiene un po’ di cipolla.",
+      "translation": "有，放一點洋蔥。",
+      "friend": {
+        "hint": "Conferma l’informazione sull’ingrediente."
+      },
+      "reply_set": {
+        "correct": "r2a",
+        "choices": [
+          {
+            "id": "r2a",
+            "surface": "Contiene un po’ di cipolla, giusto?",
+            "translation": "有一點洋蔥，對嗎？",
+            "speak": "Contiene un po’ di cipolla, giusto?",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r2b",
+            "surface": "Contiene molta carne, giusto?",
+            "translation": "有很多肉，對嗎？",
+            "speak": "Contiene molta carne, giusto?",
+            "contrast_type": "wrong_detail_or_domain",
+            "feedback": "La carne non è stata menzionata."
+          },
+          {
+            "id": "r2c",
+            "surface": "La camera è rumorosa, giusto?",
+            "translation": "房間很吵，對嗎？",
+            "speak": "La camera è rumorosa, giusto?",
+            "contrast_type": "forbidden_or_wrong_domain",
+            "feedback": "Questo passa a un problema in hotel."
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t3",
+      "speaker": "npc",
+      "act": "choose_preference",
+      "act_slots": {
+        "topic": "ask-ingredient-preference",
+        "keyword": "3",
+        "gloss": "A2 food/shopping"
+      },
+      "learning_role": "listen_only",
+      "surface": "Se vuole, possiamo prepararla senza cipolla.",
+      "speak": "Se vuole, possiamo prepararla senza cipolla.",
+      "translation": "如果您想要，可以不加洋蔥。",
+      "friend": {
+        "hint": "Scegli come preferenza, non come tema medico."
+      },
+      "reply_set": {
+        "correct": "r3a",
+        "choices": [
+          {
+            "id": "r3a",
+            "surface": "Sì, senza cipolla, per favore.",
+            "translation": "好的，請不要加洋蔥。",
+            "speak": "Sì, senza cipolla, per favore.",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r3b",
+            "surface": "Sì, mi dia una medicina per l’allergia.",
+            "translation": "好的，請給我過敏藥。",
+            "speak": "Sì, mi dia una medicina per l’allergia.",
+            "contrast_type": "wrong_detail_or_domain",
+            "feedback": "Medicina/allergia è fuori da questo compito."
+          },
+          {
+            "id": "r3c",
+            "surface": "Sì, mi rimborsi, per favore.",
+            "translation": "好的，請退款。",
+            "speak": "Sì, mi rimborsi, per favore.",
+            "contrast_type": "forbidden_or_wrong_domain",
+            "feedback": "Non è una richiesta di rimborso."
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t4",
+      "speaker": "npc",
+      "act": "confirm_order",
+      "act_slots": {
+        "topic": "ask-ingredient-preference",
+        "keyword": "4",
+        "gloss": "A2 food/shopping"
+      },
+      "learning_role": "listen_only",
+      "surface": "Certo. La preparo senza cipolla.",
+      "speak": "Certo. La preparo senza cipolla.",
+      "translation": "可以，我會準備不加洋蔥的。",
+      "friend": {
+        "hint": "Chiudi confermando l’ordine."
+      },
+      "reply_set": {
+        "correct": "r4a",
+        "choices": [
+          {
+            "id": "r4a",
+            "surface": "Grazie. La prepari così, per favore.",
+            "translation": "謝謝，請這樣做。",
+            "speak": "Grazie. La prepari così, per favore.",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r4b",
+            "surface": "Mi dica il numero del passaporto, per favore.",
+            "translation": "請告訴我護照號碼。",
+            "speak": "Mi dica il numero del passaporto, per favore.",
+            "contrast_type": "wrong_detail_or_domain",
+            "feedback": "I dati del passaporto non servono."
+          },
+          {
+            "id": "r4c",
+            "surface": "Vorrei lasciare il bagaglio.",
+            "translation": "我想寄放行李。",
+            "speak": "Vorrei lasciare il bagaglio.",
+            "contrast_type": "forbidden_or_wrong_domain",
+            "feedback": "Questo passa al deposito bagagli."
+          }
+        ]
+      }
+    }
+  ],
+  "choice_sets": {
+    "count_per_turn": 3,
+    "correct_path": [
+      "r1a",
+      "r2a",
+      "r3a",
+      "r4a"
+    ],
+    "distractor_policy": "one near-domain wrong detail plus one out-of-scope/unsafe-domain option per turn"
+  },
+  "feedback": {
+    "correct": "Bene. Continua dentro il compito di cibo o acquisti.",
+    "incorrect": "Scegli la risposta adatta a menu, ingrediente, cambio o consiglio con budget."
+  },
+  "tts_segments": [
+    "Che cosa desidera ordinare?",
+    "Questa insalata contiene cipolla?",
+    "A che piano è questa insalata?",
+    "Per favore, cambi l’orario del mio biglietto.",
+    "Sì, contiene un po’ di cipolla.",
+    "Contiene un po’ di cipolla, giusto?",
+    "Contiene molta carne, giusto?",
+    "La camera è rumorosa, giusto?",
+    "Se vuole, possiamo prepararla senza cipolla.",
+    "Sì, senza cipolla, per favore.",
+    "Sì, mi dia una medicina per l’allergia.",
+    "Sì, mi rimborsi, per favore.",
+    "Certo. La preparo senza cipolla.",
+    "Grazie. La prepari così, per favore.",
+    "Mi dica il numero del passaporto, per favore.",
+    "Vorrei lasciare il bagaglio."
+  ],
+  "formula_moments": [
+    {
+      "after_turn": "t2",
+      "pattern_id": "it.a2.food.ingredient.preference.v1",
+      "label": "C’è + ingrediente?",
+      "learner_takeaway": "senza + ingrediente"
+    }
+  ],
+  "runtime_notes": {
+    "expected_turns": 4,
+    "expected_choices_per_turn": 3,
+    "full_walk_required": true,
+    "expected_final_screen": "Wrap"
+  },
+  "notes": {
+    "generated_at": "2026-06-14",
+    "authoring_scope": "A2 food/shopping IT adaptation",
+    "native_review_state": "native_pending"
+  }
+}

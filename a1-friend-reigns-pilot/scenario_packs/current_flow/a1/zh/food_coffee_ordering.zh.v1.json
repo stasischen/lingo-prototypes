@@ -1,0 +1,229 @@
+{
+  "schema_version": "scenario_pack.v1",
+  "scenario_id": "food_coffee_ordering",
+  "brief_id": "ml0_a1_001_food_coffee_ordering",
+  "source_neutral_brief": "release-aggregator/docs/tasks/A1_MULTILINGUAL_KO_B1_PARALLEL_ORCHESTRATION/work_products/ml0/ML0_NEUTRAL_ADAPTATION_BRIEFS_20260613.md#ml0-a1-001",
+  "blueprint_ledger": "release-aggregator/docs/tasks/A1_MULTILINGUAL_KO_B1_PARALLEL_ORCHESTRATION/work_products/ml0/ML0_BLUEPRINT_LEDGER_20260613.md",
+  "repo": "content-zh",
+  "staging_path": "content/core/content_assets/scenario_packs/current_flow/food_coffee_ordering.zh.v1.json",
+  "title": "點一杯咖啡",
+  "setting_label": "咖啡店櫃台",
+  "wrap_title": "點餐完成",
+  "wrap_friend": "你已經用簡短自然的中文點了一杯飲料，也回答了服務人員的選項問題。",
+  "language": "zh",
+  "ui_language": "zh_tw",
+  "source_status": "candidate_runtime_verified",
+  "review_state": "draft",
+  "review_status_framework_state": "candidate_runtime_verified",
+  "native_review_state": "native_pending",
+  "production_mode_default": {
+    "required": [
+      "choice"
+    ],
+    "optional_visible": [
+      "speaking"
+    ],
+    "optional_hidden": [
+      "typing"
+    ]
+  },
+  "support_text": "你在咖啡店櫃台。用簡短、禮貌的中文點一杯飲料，並回答要在店裡喝還是帶走。",
+  "roles": {
+    "npc": {
+      "label": "店員"
+    },
+    "learner": {
+      "label": "客人"
+    }
+  },
+  "turns": [
+    {
+      "turn_id": "t1",
+      "speaker": "npc",
+      "act": "service_opening",
+      "act_slots": {
+        "topic": "drink_order",
+        "keyword": "喝",
+        "gloss": "drink"
+      },
+      "learning_role": "listen_only",
+      "surface": "您好，請問要喝什麼？",
+      "speak": "您好，請問要喝什麼？",
+      "translation": "您好，請問要喝什麼？",
+      "friend": "服務情境用您好很自然。回答時直接說想要的飲料。",
+      "reply_set": {
+        "correct": "c1",
+        "choices": [
+          {
+            "id": "c1",
+            "surface": "一杯熱拿鐵，謝謝。",
+            "translation": "一杯熱拿鐵，謝謝。",
+            "speak": "一杯熱拿鐵，謝謝。",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "c2",
+            "surface": "請問飯店在哪裡？",
+            "translation": "請問飯店在哪裡？",
+            "speak": "請問飯店在哪裡？",
+            "contrast_type": "wrong_scenario",
+            "feedback": "這是在問飯店位置，不是在點咖啡。先說出要點的飲料。"
+          },
+          {
+            "id": "c3",
+            "surface": "不用，我不喝。",
+            "translation": "不用，我不喝。",
+            "speak": "不用，我不喝。",
+            "contrast_type": "refusal_when_order_expected",
+            "feedback": "這像是在拒絕點餐。本回合要練習點一杯飲料。"
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t2",
+      "speaker": "npc",
+      "act": "choice_question",
+      "act_slots": {
+        "topic": "service_option",
+        "keyword": "帶走",
+        "gloss": "to go"
+      },
+      "learning_role": "listen_only",
+      "surface": "在這裡喝，還是帶走？",
+      "speak": "在這裡喝，還是帶走？",
+      "translation": "在這裡喝，還是帶走？",
+      "friend": "這個問法避免太地方性的用詞，也很容易理解。",
+      "inline_explain": "帶走 = 外帶。",
+      "reply_set": {
+        "correct": "c1",
+        "choices": [
+          {
+            "id": "c1",
+            "surface": "帶走，謝謝。",
+            "translation": "帶走，謝謝。",
+            "speak": "帶走，謝謝。",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "c2",
+            "surface": "我有預訂。",
+            "translation": "我有預訂。",
+            "speak": "我有預訂。",
+            "contrast_type": "wrong_scenario",
+            "feedback": "這是飯店入住常用句，不是在回答咖啡要不要帶走。"
+          },
+          {
+            "id": "c3",
+            "surface": "我要一杯很大杯、少冰、半糖、加很多牛奶的咖啡。",
+            "translation": "我要一杯很大杯、少冰、半糖、加很多牛奶的咖啡。",
+            "speak": "我要一杯很大杯、少冰、半糖、加很多牛奶的咖啡。",
+            "contrast_type": "overlong_non_a1",
+            "feedback": "資訊太多，超出這個 A1 回合。先練習帶走，謝謝。"
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t3",
+      "speaker": "npc",
+      "act": "confirmation",
+      "act_slots": {
+        "topic": "order_confirmation",
+        "keyword": "九十元",
+        "gloss": "90 dollars"
+      },
+      "learning_role": "listen_only",
+      "surface": "好的，一共九十元。",
+      "speak": "好的，一共九十元。",
+      "translation": "好的，一共九十元。",
+      "friend": "聽到金額後，簡短確認即可。",
+      "reply_set": {
+        "correct": "c1",
+        "choices": [
+          {
+            "id": "c1",
+            "surface": "好的。",
+            "translation": "好的。",
+            "speak": "好的。"
+          },
+          {
+            "id": "c2",
+            "surface": "往前走，然後左轉。",
+            "translation": "往前走，然後左轉。",
+            "speak": "往前走，然後左轉。",
+            "contrast_type": "mismatched_service_option",
+            "feedback": "這是在給方向，不是在回應付款金額。"
+          },
+          {
+            "id": "c3",
+            "surface": "我要退房。",
+            "translation": "我要退房。",
+            "speak": "我要退房。",
+            "contrast_type": "wrong_scenario",
+            "feedback": "這是飯店退房，不是咖啡店付款。"
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t4",
+      "speaker": "npc",
+      "act": "pickup_instruction",
+      "act_slots": {
+        "topic": "pickup",
+        "keyword": "稍等",
+        "gloss": "wait briefly"
+      },
+      "learning_role": "listen_only",
+      "surface": "請在旁邊稍等一下。",
+      "speak": "請在旁邊稍等一下。",
+      "translation": "請在旁邊稍等一下。",
+      "friend": "點餐流程完成了。用謝謝收尾很自然。",
+      "reply_set": {
+        "correct": "c1",
+        "choices": [
+          {
+            "id": "c1",
+            "surface": "謝謝。",
+            "translation": "謝謝。",
+            "speak": "謝謝。"
+          },
+          {
+            "id": "c2",
+            "surface": "請給我一間房。",
+            "translation": "請給我一間房。",
+            "speak": "請給我一間房。",
+            "contrast_type": "wrong_location_request",
+            "feedback": "這像是在飯店櫃台，不是咖啡店點餐結尾。"
+          },
+          {
+            "id": "c3",
+            "surface": "洗手間在哪裡？",
+            "translation": "洗手間在哪裡？",
+            "speak": "洗手間在哪裡？",
+            "contrast_type": "wrong_scenario",
+            "feedback": "這換成問路情境了。現在只需要道謝完成點餐。"
+          }
+        ]
+      },
+      "closing": true
+    }
+  ],
+  "formula_moments": [
+    {
+      "after_turn": "t1",
+      "pattern_id": "zh_one_drink_please"
+    },
+    {
+      "after_turn": "t2",
+      "pattern_id": "zh_to_go_thanks"
+    }
+  ],
+  "notes": {
+    "authoring_source": "Authored from ML-0 neutral brief ml0_a1_001_food_coffee_ordering; existing KO/JA/EN/TH and legacy-language text were not used as source strings.",
+    "review_policy": "AI-authored candidate only; keep review_state=draft, review_status_framework_state=candidate_needs_review, native_review_state=native_pending until tracked review evidence exists.",
+    "canonical_policy": "Staging current-flow candidate only. Do not add to manifests, production exports, schema, runtime, or frontend in this authoring lane.",
+    "chinese_voice_note": "Uses broadly understood Mandarin in Traditional characters to align with ui_language zh_tw; avoids mixing simplified/regional wording inside learner targets."
+  }
+}

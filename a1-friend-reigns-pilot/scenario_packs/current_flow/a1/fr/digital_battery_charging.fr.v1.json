@@ -1,0 +1,250 @@
+{
+  "schema_version": "scenario_pack.v1",
+  "scenario_id": "digital_battery_charging",
+  "brief_id": "ml5_a1_018_digital_battery_charging",
+  "source_neutral_brief": "release-aggregator/docs/tasks/A1_MULTILINGUAL_KO_B1_PARALLEL_ORCHESTRATION/work_products/ml0/ML5_NEUTRAL_ADAPTATION_BRIEFS_20260614.md#brief-ml5-a1-018-ask-permission-to-charge-a-phone",
+  "blueprint_ledger": "release-aggregator/docs/tasks/A1_MULTILINGUAL_KO_B1_PARALLEL_ORCHESTRATION/work_products/ml0/ML5_BLUEPRINT_LEDGER_20260614.md",
+  "repo": "content-fr",
+  "staging_path": "content/core/content_assets/scenario_packs/current_flow/digital_battery_charging.fr.v1.json",
+  "title": "Demander à charger son téléphone",
+  "setting_label": "Café",
+  "wrap_title": "Tu peux demander à charger ton téléphone",
+  "wrap_friend": "你問了可不可以充手機、插座在哪裡，確認位置並道謝。",
+  "language": "fr",
+  "ui_language": "zh_tw",
+  "source_status": "candidate_runtime_verified",
+  "review_state": "draft",
+  "review_status_framework_state": "candidate_runtime_verified",
+  "native_review_state": "native_pending",
+  "production_mode_default": {
+    "required": [
+      "choice"
+    ],
+    "optional_visible": [
+      "speaking"
+    ],
+    "optional_hidden": [
+      "typing"
+    ]
+  },
+  "support_text": "你在咖啡店。先問可不可以充手機，再問插座在哪裡，確認位置並道謝。",
+  "roles": {
+    "npc": {
+      "label": "employé"
+    },
+    "learner": {
+      "label": "client"
+    }
+  },
+  "turns": [
+    {
+      "turn_id": "t1",
+      "speaker": "npc",
+      "act": "offer_help",
+      "act_slots": {
+        "topic": "aide",
+        "keyword": "aider",
+        "gloss": "幫忙"
+      },
+      "learning_role": "listen_only",
+      "surface": "Bonjour, je peux vous aider ?",
+      "speak": "Bonjour, je peux vous aider ?",
+      "translation": "您好，我可以幫您嗎？",
+      "friend": {
+        "hint": "先問可不可以充手機。法語用 Je peux...? 很簡潔。"
+      },
+      "reply_set": {
+        "correct": "r1a",
+        "choices": [
+          {
+            "id": "r1a",
+            "surface": "Je peux charger mon téléphone ici ?",
+            "translation": "我可以在這裡充手機嗎？",
+            "speak": "Je peux charger mon téléphone ici ?",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r1b",
+            "surface": "Quel est le mot de passe wifi ?",
+            "translation": "wifi 密碼是什麼？",
+            "speak": "Quel est le mot de passe wifi ?",
+            "contrast_type": "wrong_scenario_wifi",
+            "feedback": "這是在問 wifi 密碼。現在要問能不能充手機。"
+          },
+          {
+            "id": "r1c",
+            "surface": "Un café, s'il vous plaît.",
+            "translation": "一杯咖啡，謝謝。",
+            "speak": "Un café, s'il vous plaît.",
+            "contrast_type": "wrong_scenario_order",
+            "feedback": "這是在點咖啡，不是詢問充電許可。"
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t2",
+      "speaker": "npc",
+      "act": "grant_permission",
+      "act_slots": {
+        "topic": "permission",
+        "keyword": "bien sûr",
+        "gloss": "當然"
+      },
+      "learning_role": "listen_only",
+      "surface": "Oui, bien sûr.",
+      "speak": "Oui, bien sûr.",
+      "translation": "可以，當然。",
+      "friend": {
+        "hint": "對方同意了。接著問插座在哪裡。"
+      },
+      "inline_explain": {
+        "pattern_id": "fr.digital.battery_charging.v1",
+        "formula_ref": null,
+        "title": "Je peux...? / Où est...?",
+        "explain": "問許可可用 Je peux...?；問位置可用 Où est...?。",
+        "items": [
+          {
+            "surface": "Je peux charger mon téléphone ici ?",
+            "translation": "我可以在這裡充手機嗎？",
+            "speak": "Je peux charger mon téléphone ici ?"
+          },
+          {
+            "surface": "Où est la prise ?",
+            "translation": "插座在哪裡？",
+            "speak": "Où est la prise ?"
+          }
+        ]
+      },
+      "reply_set": {
+        "correct": "r2a",
+        "choices": [
+          {
+            "id": "r2a",
+            "surface": "Où est la prise ?",
+            "translation": "插座在哪裡？",
+            "speak": "Où est la prise ?",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r2b",
+            "surface": "Je peux charger mon téléphone ici ?",
+            "translation": "我可以在這裡充手機嗎？",
+            "speak": "Je peux charger mon téléphone ici ?",
+            "contrast_type": "repeated_prior_question",
+            "feedback": "對方已經同意。現在要問插座在哪裡。"
+          },
+          {
+            "id": "r2c",
+            "surface": "Où sont les toilettes ?",
+            "translation": "洗手間在哪裡？",
+            "speak": "Où sont les toilettes ?",
+            "contrast_type": "wrong_scenario_directions",
+            "feedback": "這是在問洗手間，不是問插座位置。"
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t3",
+      "speaker": "npc",
+      "act": "give_location",
+      "act_slots": {
+        "topic": "prise",
+        "keyword": "table",
+        "gloss": "桌子"
+      },
+      "learning_role": "listen_only",
+      "surface": "La prise est près de la table.",
+      "speak": "La prise est près de la table.",
+      "translation": "插座在桌子旁邊。",
+      "friend": {
+        "hint": "確認位置就好。重複關鍵位置。"
+      },
+      "reply_set": {
+        "correct": "r3a",
+        "choices": [
+          {
+            "id": "r3a",
+            "surface": "Près de la table ?",
+            "translation": "在桌子旁邊嗎？",
+            "speak": "Près de la table ?",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r3b",
+            "surface": "La sortie trois ?",
+            "translation": "三號出口嗎？",
+            "speak": "La sortie trois ?",
+            "contrast_type": "wrong_scenario_station",
+            "feedback": "這像是在車站問出口。現在要確認插座位置。"
+          },
+          {
+            "id": "r3c",
+            "surface": "L'addition, s'il vous plaît.",
+            "translation": "請結帳。",
+            "speak": "L'addition, s'il vous plaît.",
+            "contrast_type": "wrong_scenario_bill",
+            "feedback": "這是在結帳，沒有確認插座位置。"
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t4",
+      "speaker": "npc",
+      "act": "confirm_location",
+      "act_slots": {
+        "topic": "confirmation",
+        "keyword": "là",
+        "gloss": "那裡"
+      },
+      "learning_role": "listen_only",
+      "surface": "Oui, juste là.",
+      "speak": "Oui, juste là.",
+      "translation": "對，就在那裡。",
+      "friend": {
+        "hint": "已經知道位置了。簡短道謝。"
+      },
+      "reply_set": {
+        "correct": "r4a",
+        "choices": [
+          {
+            "id": "r4a",
+            "surface": "Merci.",
+            "translation": "謝謝。",
+            "speak": "Merci."
+          },
+          {
+            "id": "r4b",
+            "surface": "Non, merci.",
+            "translation": "不用了，謝謝。",
+            "speak": "Non, merci.",
+            "contrast_type": "wrong_act_refusal",
+            "feedback": "對方已經幫你確認位置。現在直接道謝。"
+          },
+          {
+            "id": "r4c",
+            "surface": "Je voudrais une table.",
+            "translation": "我想要一張桌子。",
+            "speak": "Je voudrais une table.",
+            "contrast_type": "wrong_scenario_restaurant",
+            "feedback": "這是在問座位，不是完成充電位置確認。"
+          }
+        ]
+      }
+    }
+  ],
+  "formula_moments": [
+    {
+      "after_turn": "t2",
+      "pattern_id": "fr.digital.battery_charging.v1"
+    }
+  ],
+  "notes": {
+    "authoring_source": "Authored from ML-5 neutral brief, not Korean surface text or another target-language pack.",
+    "review_policy": "AI-authored French candidate. Requires AI review, runtime smoke, and tracked native review before any stronger status.",
+    "canonical_policy": "Staging candidate only. Do not write back to manifests, production exports, schemas, or legacy content.",
+    "french_register_note": "Concise spoken French with vous service framing, téléphone, and prise; charging remains a simple permission/location task."
+  }
+}

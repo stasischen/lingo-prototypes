@@ -1,0 +1,242 @@
+{
+  "schema_version": "scenario_pack.v1",
+  "scenario_id": "a2_luggage_storage_pickup",
+  "title": "Guardar e Retirar Bagagem",
+  "setting_label": "No guarda-volumes da estação",
+  "wrap_title": "Retirada da bagagem",
+  "wrap_friend": "你剛剛完成了一段 A2 交通服務情境，確認重點並做出簡單回應。",
+  "language": "pt",
+  "ui_language": "zh_tw",
+  "cefr_level": "A2",
+  "source_status": "candidate_runtime_verified",
+  "review_state": "ai_reviewed",
+  "review_status_framework_state": "candidate_runtime_verified",
+  "native_review_state": "native_pending",
+  "scenario": "A2 transport scenario: a2_luggage_storage_pickup.",
+  "learner_goal": "Ask to store luggage and confirm pickup time and receipt.",
+  "target_functions": [
+    "polite_service_request",
+    "pickup_time",
+    "receipt_confirmation"
+  ],
+  "register_notes": "Brazilian Portuguese public transport/service language with polite everyday responses; no refund, legal, medical, police, or identity-sensitive handling.",
+  "production_mode_default": {
+    "required": [
+      "choice"
+    ],
+    "optional_visible": [
+      "speaking"
+    ],
+    "optional_hidden": [
+      "typing"
+    ]
+  },
+  "support_text": "Guarde uma mala, escute o prazo de retirada e confirme o comprovante necessário.",
+  "roles": {
+    "npc": {
+      "label": "Atendente"
+    },
+    "learner": {
+      "label": "Você"
+    }
+  },
+  "turns": [
+    {
+      "turn_id": "t1",
+      "speaker": "npc",
+      "act": "service_opening",
+      "act_slots": {
+        "topic": "service_opening"
+      },
+      "learning_role": "listen_only",
+      "surface": "Você quer guardar bagagem?",
+      "speak": "Você quer guardar bagagem?",
+      "translation": "您要寄放行李嗎？",
+      "friend": {
+        "hint": "寄放行李"
+      },
+      "reply_set": {
+        "correct": "r1a",
+        "choices": [
+          {
+            "id": "r1a",
+            "surface": "Quero guardar esta mala.",
+            "translation": "寄放行李",
+            "speak": "Quero guardar esta mala.",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r1b",
+            "surface": "Retirei esta mala ontem.",
+            "translation": "我昨天領了這個行李箱。",
+            "speak": "Retirei esta mala ontem.",
+            "learning_role": "wrong_time_or_detail",
+            "feedback": "Você está guardando agora, não retirando."
+          },
+          {
+            "id": "r1c",
+            "surface": "Onde fica a plataforma?",
+            "translation": "月台在哪裡？",
+            "speak": "Onde fica a plataforma?",
+            "learning_role": "wrong_scenario_or_escalation",
+            "feedback": "Esta situação é de guarda-volumes."
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t2",
+      "speaker": "npc",
+      "act": "pickup_time_info",
+      "act_slots": {
+        "topic": "pickup_time_info"
+      },
+      "learning_role": "listen_only",
+      "surface": "Você pode retirar hoje antes das sete da noite.",
+      "speak": "Você pode retirar hoje antes das sete da noite.",
+      "translation": "今天晚上領取期限前可以來領。",
+      "friend": {
+        "hint": "確認取件時間"
+      },
+      "reply_set": {
+        "correct": "r2a",
+        "choices": [
+          {
+            "id": "r2a",
+            "surface": "Eu retiro antes das sete, certo?",
+            "translation": "確認取件時間",
+            "speak": "Eu retiro antes das sete, certo?",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r2b",
+            "surface": "Posso guardar às sete da manhã, certo?",
+            "translation": "我早上 7 點寄放，對嗎？",
+            "speak": "Posso guardar às sete da manhã, certo?",
+            "learning_role": "wrong_time_or_detail",
+            "feedback": "O prazo é antes das sete da noite."
+          },
+          {
+            "id": "r2c",
+            "surface": "Onde pego o reembolso?",
+            "translation": "退款在哪裡拿？",
+            "speak": "Onde pego o reembolso?",
+            "learning_role": "wrong_scenario_or_escalation",
+            "feedback": "Reembolsos ficam fora desta tarefa."
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t3",
+      "speaker": "npc",
+      "act": "receipt_instruction",
+      "act_slots": {
+        "topic": "receipt_instruction"
+      },
+      "learning_role": "listen_only",
+      "surface": "Para retirar, mostre este comprovante.",
+      "speak": "Para retirar, mostre este comprovante.",
+      "translation": "領取時請出示這張收據。",
+      "friend": {
+        "hint": "確認寄物單"
+      },
+      "reply_set": {
+        "correct": "r3a",
+        "choices": [
+          {
+            "id": "r3a",
+            "surface": "Sim, mostro o comprovante para retirar.",
+            "translation": "確認文件",
+            "speak": "Sim, mostro o comprovante para retirar.",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r3b",
+            "surface": "Posso jogar fora o comprovante?",
+            "translation": "我可以把收據丟掉嗎？",
+            "speak": "Posso jogar fora o comprovante?",
+            "learning_role": "wrong_time_or_detail",
+            "feedback": "Você precisa do comprovante para retirar."
+          },
+          {
+            "id": "r3c",
+            "surface": "Vou mostrar meu passaporte.",
+            "translation": "我出示護照。",
+            "speak": "Vou mostrar meu passaporte.",
+            "learning_role": "wrong_scenario_or_escalation",
+            "feedback": "Passaporte não é necessário aqui."
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t4",
+      "speaker": "npc",
+      "act": "service_close",
+      "act_slots": {
+        "topic": "service_close"
+      },
+      "learning_role": "listen_only",
+      "surface": "Certo. Volte antes das sete, por favor.",
+      "speak": "Certo. Volte antes das sete, por favor.",
+      "translation": "好的，請 7 點前回來。",
+      "friend": {
+        "hint": "收尾"
+      },
+      "reply_set": {
+        "correct": "r4a",
+        "choices": [
+          {
+            "id": "r4a",
+            "surface": "Obrigado. Volto antes das sete.",
+            "translation": "禮貌收尾",
+            "speak": "Obrigado. Volto antes das sete.",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r4b",
+            "surface": "O trem está quinze minutos atrasado.",
+            "translation": "火車晚 15 分鐘。",
+            "speak": "O trem está quinze minutos atrasado.",
+            "learning_role": "wrong_time_or_detail",
+            "feedback": "Isso não é um aviso de atraso."
+          },
+          {
+            "id": "r4c",
+            "surface": "Quero avisar que perdi uma mala.",
+            "translation": "我想申報行李遺失。",
+            "speak": "Quero avisar que perdi uma mala.",
+            "learning_role": "wrong_scenario_or_escalation",
+            "feedback": "Achados e perdidos ficam fora desta tarefa."
+          }
+        ]
+      }
+    }
+  ],
+  "choice_sets": [
+    "t1.reply_set",
+    "t2.reply_set",
+    "t3.reply_set",
+    "t4.reply_set"
+  ],
+  "feedback": "Os distratores testam horário errado, contexto errado ou uma escalada fora do escopo A2.",
+  "tts_segments": [
+    "Você quer guardar bagagem?",
+    "Você pode retirar hoje antes das sete da noite.",
+    "Para retirar, mostre este comprovante.",
+    "Certo. Volte antes das sete, por favor."
+  ],
+  "formula_moments": [
+    {
+      "after_turn": "t2",
+      "pattern_id": "pt.a2.transport.luggage.v1"
+    }
+  ],
+  "runtime_notes": "PT A2 transport candidate. Full-walk runtime gate required before final closeout; target-language surfaces and feedback localized on 2026-06-14.",
+  "notes": {
+    "authoring_policy": "Fresh-authored from the neutral A2 transport brief. KO surfaces were used only as scenario blueprint, not as translation source.",
+    "a2_boundary": "Low-risk A2 transport/service task; avoids refund, compensation, emergency, identity-sensitive, legal, medical, banking, immigration, or police handling.",
+    "language_specific_adaptation": "NPC lines, learner targets, distractors, feedback, support text, and translations are adapted for this language; native review remains pending."
+  }
+}

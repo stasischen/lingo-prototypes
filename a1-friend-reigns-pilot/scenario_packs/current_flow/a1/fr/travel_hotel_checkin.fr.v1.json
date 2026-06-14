@@ -1,0 +1,255 @@
+{
+  "schema_version": "scenario_pack.v1",
+  "scenario_id": "travel_hotel_checkin",
+  "brief_id": "ml0_a1_002_travel_hotel_checkin",
+  "source_neutral_brief": "release-aggregator/docs/tasks/A1_MULTILINGUAL_KO_B1_PARALLEL_ORCHESTRATION/work_products/ml0/ML0_NEUTRAL_ADAPTATION_BRIEFS_20260613.md#brief-ml0-a1-002-hotel-check-in",
+  "blueprint_ledger": "release-aggregator/docs/tasks/A1_MULTILINGUAL_KO_B1_PARALLEL_ORCHESTRATION/work_products/ml0/ML0_BLUEPRINT_LEDGER_20260613.md",
+  "repo": "content-fr",
+  "staging_path": "content/core/content_assets/scenario_packs/current_flow/travel_hotel_checkin.fr.v1.json",
+  "title": "Arrivée à l'hôtel",
+  "setting_label": "Réception d'hôtel",
+  "wrap_title": "Tu as fait l'arrivée à l'hôtel",
+  "wrap_friend": "你用簡短法語說明有訂房、提供姓名，並聽懂房間樓層。這就是第一輪飯店入住的核心流程。",
+  "language": "fr",
+  "ui_language": "zh_tw",
+  "source_status": "candidate_runtime_verified",
+  "review_state": "draft",
+  "review_status_framework_state": "candidate_runtime_verified",
+  "native_review_state": "native_pending",
+  "production_mode_default": {
+    "required": [
+      "choice"
+    ],
+    "optional_visible": [
+      "speaking"
+    ],
+    "optional_hidden": [
+      "typing"
+    ]
+  },
+  "support_text": "你在飯店櫃台。說你有訂房，提供姓名，聽懂下一步。",
+  "roles": {
+    "npc": {
+      "label": "櫃台人員"
+    },
+    "learner": {
+      "label": "你"
+    }
+  },
+  "turns": [
+    {
+      "turn_id": "t1",
+      "speaker": "npc",
+      "act": "front_desk_greeting",
+      "act_slots": {
+        "topic": "check-in opening",
+        "keyword": "réservation",
+        "gloss": "arrive for a reservation"
+      },
+      "learning_role": "listen_only",
+      "surface": "Bonsoir. Comment puis-je vous aider ?",
+      "speak": "Bonsoir. Comment puis-je vous aider ?",
+      "translation": "櫃台人員在問你需要什麼協助。",
+      "friend": {
+        "hint": "先說你有訂房。"
+      },
+      "reply_set": {
+        "correct": "r1a",
+        "choices": [
+          {
+            "id": "r1a",
+            "surface": "Bonsoir, j'ai une réservation.",
+            "translation": "你好，我有訂房。",
+            "speak": "Bonsoir, j'ai une réservation.",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r1b",
+            "surface": "Je voudrais un café.",
+            "translation": "我想要一杯咖啡。",
+            "speak": "Je voudrais un café.",
+            "contrast_type": "wrong_scenario_request",
+            "feedback": "這是在咖啡店點餐。飯店櫃台要先說你有訂房。"
+          },
+          {
+            "id": "r1c",
+            "surface": "Où est la gare ?",
+            "translation": "車站在哪裡？",
+            "speak": "Où est la gare ?",
+            "contrast_type": "wrong_scenario_request",
+            "feedback": "這是在問外面的路。現在是入住櫃台流程。"
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t2",
+      "speaker": "npc",
+      "act": "name_request",
+      "act_slots": {
+        "topic": "reservation name",
+        "keyword": "nom",
+        "gloss": "give your name"
+      },
+      "learning_role": "listen_only",
+      "surface": "Très bien. À quel nom ?",
+      "speak": "Très bien. À quel nom ?",
+      "translation": "櫃台人員在問訂房姓名。",
+      "friend": {
+        "hint": "用 Au nom de 加姓氏就可以。"
+      },
+      "inline_explain": {
+        "pattern_id": "fr.hotel.au_nom_de.v1",
+        "formula_ref": null,
+        "title": "Au nom de...",
+        "explain": "飯店詢問訂房姓名時，可以用 Au nom de 加姓名回答。",
+        "items": [
+          {
+            "surface": "Au nom de Lee.",
+            "translation": "訂房姓名是 Lee。",
+            "speak": "Au nom de Lee."
+          },
+          {
+            "surface": "C'est au nom de Lee.",
+            "translation": "是用 Lee 的名字訂的。",
+            "speak": "C'est au nom de Lee."
+          }
+        ]
+      },
+      "reply_set": {
+        "correct": "r2a",
+        "choices": [
+          {
+            "id": "r2a",
+            "surface": "Au nom de Lee.",
+            "translation": "訂房姓名是 Lee。",
+            "speak": "Au nom de Lee.",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r2b",
+            "surface": "Je voudrais partir.",
+            "translation": "我想離開。",
+            "speak": "Je voudrais partir.",
+            "contrast_type": "wrong_act_checkout",
+            "feedback": "這像是在退房或離開。現在要提供訂房姓名。"
+          },
+          {
+            "id": "r2c",
+            "surface": "C'est à droite.",
+            "translation": "在右邊。",
+            "speak": "C'est à droite.",
+            "contrast_type": "wrong_scenario_response",
+            "feedback": "這是在回答方向。櫃台問的是訂房姓名。"
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t3",
+      "speaker": "npc",
+      "act": "reservation_confirmation",
+      "act_slots": {
+        "topic": "reservation found",
+        "keyword": "trouvé",
+        "gloss": "confirm reservation"
+      },
+      "learning_role": "listen_only",
+      "surface": "J'ai trouvé votre réservation. Une nuit, c'est bien ça ?",
+      "speak": "J'ai trouvé votre réservation. Une nuit, c'est bien ça ?",
+      "translation": "櫃台找到訂房，並確認住一晚。",
+      "friend": {
+        "hint": "資料正確時，用 Oui 簡短確認。"
+      },
+      "reply_set": {
+        "correct": "r3a",
+        "choices": [
+          {
+            "id": "r3a",
+            "surface": "Oui, c'est bien ça.",
+            "translation": "對，沒錯。",
+            "speak": "Oui, c'est bien ça."
+          },
+          {
+            "id": "r3b",
+            "surface": "Je voudrais un café.",
+            "translation": "我想要一杯咖啡。",
+            "speak": "Je voudrais un café.",
+            "contrast_type": "wrong_scenario_request",
+            "feedback": "這不是咖啡店。櫃台正在確認你的訂房。"
+          },
+          {
+            "id": "r3c",
+            "surface": "Non, merci.",
+            "translation": "不用了，謝謝。",
+            "speak": "Non, merci.",
+            "contrast_type": "wrong_act_refusal",
+            "feedback": "這像是在拒絕協助。資料正確時要確認。"
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t4",
+      "speaker": "npc",
+      "act": "key_direction",
+      "act_slots": {
+        "topic": "room and key",
+        "keyword": "chambre",
+        "gloss": "next step"
+      },
+      "learning_role": "listen_only",
+      "surface": "Voici votre clé. Votre chambre est au troisième étage.",
+      "speak": "Voici votre clé. Votre chambre est au troisième étage.",
+      "translation": "櫃台給你鑰匙，並告訴你房間在三樓。",
+      "friend": {
+        "hint": "拿到鑰匙後，用簡短謝謝收尾。"
+      },
+      "reply_set": {
+        "correct": "r4a",
+        "choices": [
+          {
+            "id": "r4a",
+            "surface": "Merci.",
+            "translation": "謝謝。",
+            "speak": "Merci."
+          },
+          {
+            "id": "r4b",
+            "surface": "Au nom de Lee.",
+            "translation": "訂房姓名是 Lee。",
+            "speak": "Au nom de Lee.",
+            "contrast_type": "repeated_prior_answer",
+            "feedback": "你已經提供姓名了。現在櫃台正在給你鑰匙。"
+          },
+          {
+            "id": "r4c",
+            "surface": "Où sont les toilettes ?",
+            "translation": "洗手間在哪裡？",
+            "speak": "Où sont les toilettes ?",
+            "contrast_type": "off_topic_statement",
+            "feedback": "這是另一個請求。先把入住流程收尾。"
+          }
+        ]
+      },
+      "closing": {
+        "act": "front_desk_close",
+        "learning_role": "context_support",
+        "surface": "Le petit déjeuner est dans le hall, de sept heures à dix heures.",
+        "speak": "Le petit déjeuner est dans le hall, de sept heures à dix heures.",
+        "translation": "早餐在大廳，時間是七點到十點。"
+      }
+    }
+  ],
+  "formula_moments": [
+    {
+      "after_turn": "t2",
+      "pattern_id": "fr.hotel.au_nom_de.v1"
+    }
+  ],
+  "notes": {
+    "review_policy": "AI-authored candidate. Requires AI review, runtime smoke, and tracked native review before any stronger status.",
+    "canonical_policy": "Staging candidate only. Do not write back to manifests, production exports, schemas, or legacy content.",
+    "authoring_source": "Authored from ML-0 neutral brief, not Korean surface text."
+  }
+}

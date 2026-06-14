@@ -1,0 +1,268 @@
+{
+  "schema_version": "scenario_pack.v1",
+  "scenario_id": "a2_change_ticket_time",
+  "brief_id": "a2_change_ticket_time",
+  "source_neutral_brief": "release-aggregator/docs/tasks/A2_BASELINE_INVENTORY/A2_TRANSPORT_NEUTRAL_ADAPTATION_BRIEFS_20260614.md#a2_change_ticket_time",
+  "blueprint_ledger": "release-aggregator/docs/tasks/A2_BASELINE_INVENTORY/A2_TRANSPORT_BLUEPRINT_LEDGER_20260614.md",
+  "repo": "content-th",
+  "staging_path": "content/core/content_assets/scenario_packs/current_flow/a2/a2_change_ticket_time.th.v1.json",
+  "title": "เปลี่ยนเวลาตั๋ว",
+  "setting_label": "เคาน์เตอร์ตั๋วที่สถานี",
+  "wrap_title": "เวลาตั๋วใหม่",
+  "wrap_friend": "คุณขอเปลี่ยนเวลาตั๋ว และยืนยันเวลาใหม่ด้วยประโยคสั้น ๆ",
+  "language": "th",
+  "ui_language": "zh_tw",
+  "cefr_level": "A2",
+  "source_status": "candidate_runtime_verified",
+  "review_state": "ai_reviewed",
+  "review_status_framework_state": "candidate_runtime_verified",
+  "native_review_state": "native_pending",
+  "scenario": "You ask to change a ticket time at a station counter.",
+  "learner_goal": "Make a polite time-change request and confirm a new time.",
+  "target_functions": [
+    "polite_change_request",
+    "alternative_time",
+    "confirmation"
+  ],
+  "register_notes": "Polite Thai at a ticket counter; avoids refund rules, penalties, and identity-sensitive booking details.",
+  "production_mode_default": {
+    "required": [
+      "choice"
+    ],
+    "optional_visible": [
+      "speaking"
+    ],
+    "optional_hidden": [
+      "typing"
+    ]
+  },
+  "support_text": "ที่เคาน์เตอร์ตั๋ว ขอเปลี่ยนเวลา แล้วตอบรับเวลาใหม่แบบสั้น ๆ",
+  "roles": {
+    "npc": {
+      "label": "เจ้าหน้าที่"
+    },
+    "learner": {
+      "label": "คุณ"
+    }
+  },
+  "turns": [
+    {
+      "turn_id": "t1",
+      "speaker": "npc",
+      "act": "service_opening",
+      "act_slots": {
+        "topic": "ticket help",
+        "keyword": "ช่วยอะไร",
+        "gloss": "需要幫忙嗎"
+      },
+      "learning_role": "listen_only",
+      "surface": "สวัสดีค่ะ ให้ช่วยอะไรคะ",
+      "speak": "สวัสดีค่ะ ให้ช่วยอะไรคะ",
+      "translation": "您好，需要幫什麼嗎？",
+      "friend": {
+        "hint": "บอกว่าต้องการเปลี่ยนเวลาตั๋ว"
+      },
+      "reply_set": {
+        "correct": "r1a",
+        "choices": [
+          {
+            "id": "r1a",
+            "surface": "อยากเปลี่ยนเวลาตั๋วค่ะ",
+            "translation": "我想改票的時間。",
+            "speak": "อยากเปลี่ยนเวลาตั๋วค่ะ",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r1b",
+            "surface": "ตั๋วเป็นของเมื่อวานค่ะ",
+            "translation": "票是昨天的。",
+            "speak": "ตั๋วเป็นของเมื่อวานค่ะ",
+            "contrast_type": "wrong_time_past",
+            "feedback": "ตอนนี้ต้องขอเปลี่ยนเวลา ไม่ใช่เล่าเรื่องเมื่อวาน"
+          },
+          {
+            "id": "r1c",
+            "surface": "ขอกาแฟหนึ่งแก้วค่ะ",
+            "translation": "請給我一杯咖啡。",
+            "speak": "ขอกาแฟหนึ่งแก้วค่ะ",
+            "contrast_type": "wrong_scenario_cafe",
+            "feedback": "นี่เป็นประโยคในคาเฟ่ ไม่ใช่เคาน์เตอร์ตั๋ว"
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t2",
+      "speaker": "npc",
+      "act": "alternative_offer",
+      "act_slots": {
+        "available_time": "3 p.m.",
+        "keyword": "บ่ายสาม",
+        "gloss": "下午三點"
+      },
+      "learning_role": "listen_only",
+      "surface": "เปลี่ยนเป็นตั๋วบ่ายสามวันนี้ได้ค่ะ",
+      "speak": "เปลี่ยนเป็นตั๋วบ่ายสามวันนี้ได้ค่ะ",
+      "translation": "可以改成今天下午三點的票。",
+      "friend": {
+        "hint": "ถ้ารับเวลาใหม่นี้ ให้ตอบว่าขอเป็นบ่ายสาม"
+      },
+      "inline_explain": {
+        "pattern_id": "th.a2.ticket.change.pen.v1",
+        "title": "เปลี่ยนเป็น = 改成",
+        "explain": "เปลี่ยนเป็นตั๋วบ่ายสาม means change it to a 3 p.m. ticket.",
+        "items": [
+          {
+            "surface": "เปลี่ยนเป็น",
+            "translation": "改成",
+            "speak": "เปลี่ยนเป็น"
+          },
+          {
+            "surface": "ตั๋วบ่ายสาม",
+            "translation": "下午三點的票",
+            "speak": "ตั๋วบ่ายสาม"
+          }
+        ]
+      },
+      "reply_set": {
+        "correct": "r2a",
+        "choices": [
+          {
+            "id": "r2a",
+            "surface": "ได้ค่ะ ขอเป็นตั๋วบ่ายสาม",
+            "translation": "可以，請改成下午三點的票。",
+            "speak": "ได้ค่ะ ขอเป็นตั๋วบ่ายสาม",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r2b",
+            "surface": "บ่ายสามมีห้องไหมคะ",
+            "translation": "下午三點有房間嗎？",
+            "speak": "บ่ายสามมีห้องไหมคะ",
+            "contrast_type": "wrong_scenario_hotel",
+            "feedback": "นี่เป็นเรื่องตั๋ว ไม่ใช่ห้องพัก"
+          },
+          {
+            "id": "r2c",
+            "surface": "เมื่อวานขึ้นตอนบ่ายสามแล้วค่ะ",
+            "translation": "我昨天已經下午三點搭了。",
+            "speak": "เมื่อวานขึ้นตอนบ่ายสามแล้วค่ะ",
+            "contrast_type": "wrong_time_past",
+            "feedback": "เจ้าหน้าที่พูดถึงเวลาที่เปลี่ยนได้วันนี้"
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t3",
+      "speaker": "npc",
+      "act": "confirmation_question",
+      "act_slots": {
+        "new_time": "3 p.m.",
+        "keyword": "บ่ายสาม",
+        "gloss": "下午三點"
+      },
+      "learning_role": "listen_only",
+      "surface": "ยืนยันเป็นรอบบ่ายสามนะคะ",
+      "speak": "ยืนยันเป็นรอบบ่ายสามนะคะ",
+      "translation": "確認改成下午三點那班，對嗎？",
+      "friend": {
+        "hint": "ยืนยันเวลาใหม่ให้ชัดเจน"
+      },
+      "reply_set": {
+        "correct": "r3a",
+        "choices": [
+          {
+            "id": "r3a",
+            "surface": "ใช่ค่ะ รอบบ่ายสามถูกต้อง",
+            "translation": "對，下午三點那班正確。",
+            "speak": "ใช่ค่ะ รอบบ่ายสามถูกต้อง",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r3b",
+            "surface": "ไม่ค่ะ บ่ายสามเป็นเมื่อวาน",
+            "translation": "不是，下午三點是昨天。",
+            "speak": "ไม่ค่ะ บ่ายสามเป็นเมื่อวาน",
+            "contrast_type": "wrong_time_past",
+            "feedback": "กำลังยืนยันเวลาใหม่ ไม่ใช่เวลาเมื่อวาน"
+          },
+          {
+            "id": "r3c",
+            "surface": "ช่วยอธิบายกฎคืนเงินค่ะ",
+            "translation": "請說明退款規則。",
+            "speak": "ช่วยอธิบายกฎคืนเงินค่ะ",
+            "contrast_type": "forbidden_refund_rules",
+            "feedback": "กฎคืนเงินเกินขอบเขตงานนี้ ให้ยืนยันเวลาใหม่ก็พอ"
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t4",
+      "speaker": "npc",
+      "act": "service_close",
+      "act_slots": {
+        "new_time": "3 p.m."
+      },
+      "learning_role": "listen_only",
+      "surface": "เปลี่ยนเรียบร้อยแล้วค่ะ ขึ้นรอบบ่ายสามได้เลย",
+      "speak": "เปลี่ยนเรียบร้อยแล้วค่ะ ขึ้นรอบบ่ายสามได้เลย",
+      "translation": "已經更改好了，可以搭下午三點那班。",
+      "friend": {
+        "hint": "บริการเสร็จแล้ว ขอบคุณสั้น ๆ"
+      },
+      "reply_set": {
+        "correct": "r4a",
+        "choices": [
+          {
+            "id": "r4a",
+            "surface": "ขอบคุณค่ะ จะขึ้นรอบบ่ายสาม",
+            "translation": "謝謝，我會搭下午三點那班。",
+            "speak": "ขอบคุณค่ะ จะขึ้นรอบบ่ายสาม"
+          },
+          {
+            "id": "r4b",
+            "surface": "พรุ่งนี้จะดื่มกาแฟค่ะ",
+            "translation": "我明天會喝咖啡。",
+            "speak": "พรุ่งนี้จะดื่มกาแฟค่ะ",
+            "contrast_type": "wrong_topic_plan",
+            "feedback": "นี่ไม่ใช่การปิดบทสนทนาเรื่องเปลี่ยนตั๋ว"
+          },
+          {
+            "id": "r4c",
+            "surface": "เลขพาสปอร์ตของฉันคืออะไรคะ",
+            "translation": "我的護照號碼是什麼？",
+            "speak": "เลขพาสปอร์ตของฉันคืออะไรคะ",
+            "contrast_type": "forbidden_identity_detail",
+            "feedback": "เลขพาสปอร์ตไม่จำเป็นสำหรับการเปลี่ยนเวลาตั๋วแบบง่าย ๆ"
+          }
+        ]
+      }
+    }
+  ],
+  "choice_sets": [
+    "t1.reply_set",
+    "t2.reply_set",
+    "t3.reply_set",
+    "t4.reply_set"
+  ],
+  "feedback": "Distractors test wrong scenario, wrong time, and out-of-scope refund/identity requests.",
+  "tts_segments": [
+    "อยากเปลี่ยนเวลาตั๋วค่ะ",
+    "เปลี่ยนเป็นตั๋วบ่ายสามวันนี้ได้ค่ะ",
+    "ใช่ค่ะ รอบบ่ายสามถูกต้อง",
+    "ขอบคุณค่ะ จะขึ้นรอบบ่ายสาม"
+  ],
+  "formula_moments": [
+    {
+      "after_turn": "t2",
+      "pattern_id": "th.a2.ticket.change.pen.v1"
+    }
+  ],
+  "runtime_notes": "TH A2 transport candidate. Full-walk runtime gate required before final closeout.",
+  "notes": {
+    "authoring_policy": "Fresh-authored from the neutral A2 transport brief. KO surfaces were not translated.",
+    "a2_boundary": "Uses simple ticket time change and confirmation; avoids refund, penalties, and identity details."
+  }
+}

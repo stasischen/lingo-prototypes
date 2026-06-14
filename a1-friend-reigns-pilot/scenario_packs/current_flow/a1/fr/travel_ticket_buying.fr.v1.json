@@ -1,0 +1,241 @@
+{
+  "schema_version": "scenario_pack.v1",
+  "scenario_id": "travel_ticket_buying",
+  "brief_id": "ml3_a1_013_travel_ticket_buying",
+  "source_neutral_brief": "release-aggregator/docs/tasks/A1_MULTILINGUAL_KO_B1_PARALLEL_ORCHESTRATION/work_products/ml0/ML3_NEUTRAL_ADAPTATION_BRIEFS_20260614.md#brief-ml3-a1-013-buy-a-ticket",
+  "blueprint_ledger": "release-aggregator/docs/tasks/A1_MULTILINGUAL_KO_B1_PARALLEL_ORCHESTRATION/work_products/ml0/ML3_BLUEPRINT_LEDGER_20260614.md",
+  "repo": "content-fr",
+  "staging_path": "content/core/content_assets/scenario_packs/current_flow/travel_ticket_buying.fr.v1.json",
+  "title": "Acheter un billet",
+  "setting_label": "Guichet de gare",
+  "wrap_title": "Tu peux acheter un billet",
+  "wrap_friend": "你買了一張票、確認目的地，並用短句完成付款。",
+  "language": "fr",
+  "ui_language": "zh_tw",
+  "source_status": "candidate_runtime_verified",
+  "review_state": "draft",
+  "review_status_framework_state": "candidate_runtime_verified",
+  "native_review_state": "native_pending",
+  "production_mode_default": {
+    "required": [
+      "choice"
+    ],
+    "optional_visible": [
+      "speaking"
+    ],
+    "optional_hidden": [
+      "typing"
+    ]
+  },
+  "support_text": "你在火車站售票窗口買一張簡單車票。選一句自然、簡短的法語。",
+  "roles": {
+    "npc": {
+      "label": "agent"
+    },
+    "learner": {
+      "label": "voyageur"
+    }
+  },
+  "turns": [
+    {
+      "turn_id": "t1",
+      "speaker": "npc",
+      "act": "offer_help",
+      "learning_role": "listen_only",
+      "surface": "Bonjour. Vous allez où ?",
+      "speak": "Bonjour. Vous allez où ?",
+      "translation": "您好。您要去哪裡？",
+      "friend": {
+        "hint": "售票員問目的地。說你要一張去 Lyon 的票。"
+      },
+      "reply_set": {
+        "correct": "r1a",
+        "choices": [
+          {
+            "id": "r1a",
+            "surface": "Un billet pour Lyon, s'il vous plaît.",
+            "translation": "請給我一張去里昂的票。",
+            "speak": "Un billet pour Lyon, s'il vous plaît.",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r1b",
+            "surface": "Où sont les toilettes ?",
+            "translation": "洗手間在哪裡？",
+            "speak": "Où sont les toilettes ?",
+            "contrast_type": "wrong_scenario_directions",
+            "feedback": "這是在問路，不是在買車票。"
+          },
+          {
+            "id": "r1c",
+            "surface": "Un café, s'il vous plaît.",
+            "translation": "請給我一杯咖啡。",
+            "speak": "Un café, s'il vous plaît.",
+            "contrast_type": "wrong_scenario_food_order",
+            "feedback": "這是在點咖啡，不是在售票窗口買票。"
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t2",
+      "speaker": "npc",
+      "act": "confirm_ticket",
+      "learning_role": "listen_only",
+      "surface": "Un billet pour Lyon ?",
+      "speak": "Un billet pour Lyon ?",
+      "translation": "一張去里昂的票嗎？",
+      "friend": {
+        "hint": "售票員確認目的地和數量。用簡短句確認。"
+      },
+      "inline_explain": {
+        "pattern_id": "fr.ticket.one_to_destination.v1",
+        "formula_ref": null,
+        "title": "Un billet pour...",
+        "explain": "在法語售票窗口可用 Un billet pour Lyon, s'il vous plaît 表示一張去某地的票。",
+        "items": [
+          {
+            "surface": "Un billet pour Lyon, s'il vous plaît.",
+            "translation": "請給我一張去里昂的票。",
+            "speak": "Un billet pour Lyon, s'il vous plaît."
+          },
+          {
+            "surface": "Oui, c'est ça.",
+            "translation": "對，就是這樣。",
+            "speak": "Oui, c'est ça."
+          }
+        ]
+      },
+      "reply_set": {
+        "correct": "r2a",
+        "choices": [
+          {
+            "id": "r2a",
+            "surface": "Oui, c'est ça.",
+            "translation": "對，就是這樣。",
+            "speak": "Oui, c'est ça.",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r2b",
+            "surface": "Non, merci.",
+            "translation": "不用，謝謝。",
+            "speak": "Non, merci.",
+            "contrast_type": "cancel_when_confirming",
+            "feedback": "你正在確認買票。這樣會像取消交易。"
+          },
+          {
+            "id": "r2c",
+            "surface": "Deux billets pour Lyon.",
+            "translation": "兩張去里昂的票。",
+            "speak": "Deux billets pour Lyon.",
+            "contrast_type": "wrong_quantity",
+            "feedback": "你只需要一張票，不要改成兩張。"
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t3",
+      "speaker": "npc",
+      "act": "price_payment",
+      "learning_role": "listen_only",
+      "surface": "Ça fait dix euros. Vous payez par carte ?",
+      "speak": "Ça fait dix euros. Vous payez par carte ?",
+      "translation": "十歐元。您用卡付款嗎？",
+      "friend": {
+        "hint": "售票員問付款方式。回答用卡。"
+      },
+      "reply_set": {
+        "correct": "r3a",
+        "choices": [
+          {
+            "id": "r3a",
+            "surface": "Oui, par carte.",
+            "translation": "對，用卡。",
+            "speak": "Oui, par carte.",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r3b",
+            "surface": "Je viens de Taipei.",
+            "translation": "我來自台北。",
+            "speak": "Je viens de Taipei.",
+            "contrast_type": "wrong_scenario_self_intro",
+            "feedback": "這是自我介紹，不是回答付款方式。"
+          },
+          {
+            "id": "r3c",
+            "surface": "L'addition, s'il vous plaît.",
+            "translation": "請結帳。",
+            "speak": "L'addition, s'il vous plaît.",
+            "contrast_type": "wrong_scenario_restaurant_bill",
+            "feedback": "這像餐廳結帳，不是售票窗口付款。"
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t4",
+      "speaker": "npc",
+      "act": "ticket_handover",
+      "learning_role": "listen_only",
+      "surface": "Voilà. Quai deux.",
+      "speak": "Voilà. Quai deux.",
+      "translation": "給您。二號月台。",
+      "friend": {
+        "hint": "拿到票和月台資訊後，簡短道謝。"
+      },
+      "reply_set": {
+        "correct": "r4a",
+        "choices": [
+          {
+            "id": "r4a",
+            "surface": "Merci.",
+            "translation": "謝謝。",
+            "speak": "Merci."
+          },
+          {
+            "id": "r4b",
+            "surface": "Vous pouvez répéter ?",
+            "translation": "您可以再說一次嗎？",
+            "speak": "Vous pouvez répéter ?",
+            "contrast_type": "repair_after_clear_handover",
+            "feedback": "如果已理解票和月台，這裡直接道謝即可。"
+          },
+          {
+            "id": "r4c",
+            "surface": "Moi aussi.",
+            "translation": "我也是。",
+            "speak": "Moi aussi.",
+            "contrast_type": "wrong_scenario_self_intro",
+            "feedback": "這是第一次見面的回應，不是買票結尾。"
+          }
+        ]
+      },
+      "closing": {
+        "act": "staff_close",
+        "learning_role": "listen_only",
+        "surface": "Bon voyage.",
+        "speak": "Bon voyage.",
+        "translation": "旅途愉快。"
+      }
+    }
+  ],
+  "formula_moments": [
+    {
+      "after_turn": "t2",
+      "pattern_id": "fr.ticket.one_to_destination.v1"
+    },
+    {
+      "after_turn": "t4",
+      "pattern_id": "fr.ticket.thanks_handover.v1"
+    }
+  ],
+  "notes": {
+    "authoring_source": "Authored from ML-3 neutral brief, not Korean surface text or another target-language pack.",
+    "review_policy": "AI-authored French candidate. Requires AI review, runtime smoke, and tracked native review before any stronger status.",
+    "canonical_policy": "Staging candidate only. Do not write back to manifests, production exports, schemas, or legacy content.",
+    "french_locale_note": "Broad French train-station baseline using billet, euros, and quai; avoids fare classes or reserved-seat rules."
+  }
+}

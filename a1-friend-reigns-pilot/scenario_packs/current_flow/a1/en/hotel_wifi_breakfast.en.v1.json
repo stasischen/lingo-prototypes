@@ -1,0 +1,277 @@
+{
+  "schema_version": "scenario_pack.v1",
+  "scenario_id": "hotel_wifi_breakfast",
+  "brief_id": "ml1_a1_008_hotel_wifi_breakfast",
+  "source_neutral_brief": "release-aggregator/docs/tasks/A1_MULTILINGUAL_KO_B1_PARALLEL_ORCHESTRATION/work_products/ml0/ML1_NEUTRAL_ADAPTATION_BRIEFS_20260614.md#brief-ml1-a1-008-hotel-wi-fi-and-breakfast",
+  "blueprint_ledger": "release-aggregator/docs/tasks/A1_MULTILINGUAL_KO_B1_PARALLEL_ORCHESTRATION/work_products/ml0/ML1_BLUEPRINT_LEDGER_20260614.md",
+  "repo": "content-en",
+  "staging_path": "curriculum/a1_travel_v1/staging/scenario_pack.v1/hotel_wifi_breakfast.en.v1.json",
+  "title": "Hotel Wi-Fi and Breakfast",
+  "setting_label": "Hotel front desk",
+  "wrap_title": "You got the hotel information",
+  "wrap_friend": "You asked about Wi-Fi, asked about breakfast, confirmed the time, and thanked the staff.",
+  "language": "en",
+  "ui_language": "zh_tw",
+  "source_status": "candidate_runtime_verified",
+  "review_state": "draft",
+  "review_status_framework_state": "candidate_runtime_verified",
+  "native_review_state": "native_pending",
+  "production_mode_default": {
+    "required": [
+      "choice"
+    ],
+    "optional_visible": [
+      "speaking"
+    ],
+    "optional_hidden": [
+      "typing"
+    ]
+  },
+  "support_text": "你在飯店櫃台。聽櫃台人員回答，選一句自然接得上的英文。",
+  "roles": {
+    "npc": {
+      "label": "Front desk"
+    },
+    "learner": {
+      "label": "You"
+    }
+  },
+  "turns": [
+    {
+      "turn_id": "t1",
+      "speaker": "npc",
+      "act": "greet_guest",
+      "act_slots": {
+        "topic": "front desk help",
+        "keyword": "help",
+        "gloss": "幫忙"
+      },
+      "learning_role": "listen_only",
+      "surface": "Hi. How can I help?",
+      "speak": "Hi. How can I help?",
+      "translation": "你好。需要什麼幫忙？",
+      "friend": {
+        "hint": "你想問Wi-Fi密碼。用短句就可以。"
+      },
+      "inline_explain": {
+        "pattern_id": "en.hotel.wifi_question.v1",
+        "formula_ref": null,
+        "title": "What's the Wi-Fi password?",
+        "explain": "Use \"What's the Wi-Fi password?\" to ask directly and politely.",
+        "items": [
+          {
+            "surface": "What's the Wi-Fi password?",
+            "translation": "Wi-Fi密碼是什麼？",
+            "speak": "What's the Wi-Fi password?"
+          }
+        ]
+      },
+      "reply_set": {
+        "correct": "r1a",
+        "choices": [
+          {
+            "id": "r1a",
+            "surface": "What's the Wi-Fi password?",
+            "translation": "Wi-Fi密碼是什麼？",
+            "speak": "What's the Wi-Fi password?",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r1b",
+            "surface": "I need a room key.",
+            "translation": "我需要房卡。",
+            "speak": "I need a room key.",
+            "contrast_type": "room_key_question_instead_of_wifi",
+            "feedback": "這是在要房卡。你的目標是問Wi-Fi密碼。"
+          },
+          {
+            "id": "r1c",
+            "surface": "I'd like to check out.",
+            "translation": "我想退房。",
+            "speak": "I'd like to check out.",
+            "contrast_type": "checkout_payment_phrase",
+            "feedback": "這像是退房。現在要問Wi-Fi。"
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t2",
+      "speaker": "npc",
+      "act": "give_wifi_info",
+      "act_slots": {
+        "topic": "Wi-Fi info",
+        "keyword": "card",
+        "gloss": "卡片"
+      },
+      "learning_role": "listen_only",
+      "surface": "It's on your key card.",
+      "speak": "It's on your key card.",
+      "translation": "在你的房卡上。",
+      "friend": {
+        "hint": "Wi-Fi資訊知道了。接著問早餐時間。"
+      },
+      "inline_explain": {
+        "pattern_id": "en.hotel.breakfast_time.v1",
+        "formula_ref": null,
+        "title": "What time is breakfast?",
+        "explain": "Use \"What time is breakfast?\" to ask about breakfast time.",
+        "items": [
+          {
+            "surface": "What time is breakfast?",
+            "translation": "早餐是幾點？",
+            "speak": "What time is breakfast?"
+          }
+        ]
+      },
+      "reply_set": {
+        "correct": "r2a",
+        "choices": [
+          {
+            "id": "r2a",
+            "surface": "Thanks. What time is breakfast?",
+            "translation": "謝謝。早餐是幾點？",
+            "speak": "Thanks. What time is breakfast?",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r2b",
+            "surface": "I'd like the chicken rice.",
+            "translation": "我想要雞肉飯。",
+            "speak": "I'd like the chicken rice.",
+            "contrast_type": "restaurant_order_when_breakfast_info_expected",
+            "feedback": "這是在餐廳點餐。現在是在飯店櫃台問早餐資訊。"
+          },
+          {
+            "id": "r2c",
+            "surface": "I'll pay by card.",
+            "translation": "我用卡付款。",
+            "speak": "I'll pay by card.",
+            "contrast_type": "payment_answer_in_hotel_info_context",
+            "feedback": "這是在付款。現在要問早餐時間或地點。"
+          },
+          {
+            "id": "r2d",
+            "surface": "Where is my room key?",
+            "translation": "我的房卡在哪裡？",
+            "speak": "Where is my room key?",
+            "contrast_type": "room_key_question_instead_of_breakfast",
+            "feedback": "這又回到房卡。Wi-Fi已知道，接著問早餐。"
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t3",
+      "speaker": "npc",
+      "act": "give_breakfast_time",
+      "act_slots": {
+        "topic": "breakfast time",
+        "keyword": "seven",
+        "gloss": "七點"
+      },
+      "learning_role": "listen_only",
+      "surface": "Breakfast starts at seven.",
+      "speak": "Breakfast starts at seven.",
+      "translation": "早餐七點開始。",
+      "friend": {
+        "hint": "櫃台告訴你早餐時間。可以確認並道謝。"
+      },
+      "reply_set": {
+        "correct": "r3a",
+        "choices": [
+          {
+            "id": "r3a",
+            "surface": "Seven, thanks.",
+            "translation": "七點，謝謝。",
+            "speak": "Seven, thanks.",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r3b",
+            "surface": "Nine, thanks.",
+            "translation": "九點，謝謝。",
+            "speak": "Nine, thanks.",
+            "contrast_type": "wrong_time_confirmation",
+            "feedback": "櫃台說的是七點，不是九點。"
+          },
+          {
+            "id": "r3c",
+            "surface": "I'd like to check out.",
+            "translation": "我想退房。",
+            "speak": "I'd like to check out.",
+            "contrast_type": "checkout_payment_phrase",
+            "feedback": "這像是退房。現在只要確認早餐時間。"
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t4",
+      "speaker": "npc",
+      "act": "closing",
+      "act_slots": {
+        "topic": "front desk close",
+        "keyword": "anything else",
+        "gloss": "還有其他需要嗎"
+      },
+      "learning_role": "listen_only",
+      "surface": "Anything else?",
+      "speak": "Anything else?",
+      "translation": "還有其他需要嗎？",
+      "friend": {
+        "hint": "資訊都問完了。簡短道謝收尾。"
+      },
+      "reply_set": {
+        "correct": "r4a",
+        "choices": [
+          {
+            "id": "r4a",
+            "surface": "No, thank you.",
+            "translation": "沒有了，謝謝。",
+            "speak": "No, thank you."
+          },
+          {
+            "id": "r4b",
+            "surface": "I'd like the chicken rice.",
+            "translation": "我想要雞肉飯。",
+            "speak": "I'd like the chicken rice.",
+            "contrast_type": "restaurant_order_after_hotel_info",
+            "feedback": "這是餐廳點餐。飯店資訊已經問完了。"
+          },
+          {
+            "id": "r4c",
+            "surface": "Nine, thanks.",
+            "translation": "九點，謝謝。",
+            "speak": "Nine, thanks.",
+            "contrast_type": "repeated_wrong_time",
+            "feedback": "早餐時間是七點。結尾時說沒有了、謝謝比較自然。"
+          }
+        ]
+      },
+      "closing": {
+        "act": "hotel_info_understood",
+        "learning_role": "listen_only",
+        "surface": "You know the Wi-Fi and breakfast time.",
+        "speak": "You know the Wi-Fi and breakfast time.",
+        "translation": "你知道Wi-Fi和早餐時間了。"
+      }
+    }
+  ],
+  "formula_moments": [
+    {
+      "after_turn": "t1",
+      "pattern_id": "en.hotel.wifi_question.v1"
+    },
+    {
+      "after_turn": "t2",
+      "pattern_id": "en.hotel.breakfast_time.v1"
+    }
+  ],
+  "notes": {
+    "authoring_source": "Authored from ML-1 neutral brief, not Korean surface text or another target-language pack.",
+    "review_policy": "AI-authored English candidate. Requires AI review, runtime smoke, and tracked native review before any stronger status.",
+    "canonical_policy": "Staging candidate only. Do not write back to manifests, production exports, schemas, or legacy content.",
+    "register_note": "Uses normal hotel front-desk guest English with short A1-sized targets."
+  }
+}

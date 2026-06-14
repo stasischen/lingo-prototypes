@@ -1,0 +1,255 @@
+{
+  "schema_version": "scenario_pack.v1",
+  "scenario_id": "food_coffee_ordering",
+  "brief_id": "ml0_a1_001_food_coffee_ordering",
+  "source_neutral_brief": "release-aggregator/docs/tasks/A1_MULTILINGUAL_KO_B1_PARALLEL_ORCHESTRATION/work_products/ml0/ML0_NEUTRAL_ADAPTATION_BRIEFS_20260613.md#brief-ml0-a1-001-coffee-ordering",
+  "blueprint_ledger": "release-aggregator/docs/tasks/A1_MULTILINGUAL_KO_B1_PARALLEL_ORCHESTRATION/work_products/ml0/ML0_BLUEPRINT_LEDGER_20260613.md",
+  "repo": "content-it",
+  "staging_path": "content/core/content_assets/scenario_packs/current_flow/food_coffee_ordering.it.v1.json",
+  "title": "Ordinare un caffè",
+  "setting_label": "Bancone del bar",
+  "wrap_title": "Hai ordinato un caffè",
+  "wrap_friend": "你用簡短義大利語完成點飲料、回答外帶選項，並接上付款。A1 階段先把固定服務句說自然。",
+  "language": "it",
+  "ui_language": "zh_tw",
+  "source_status": "candidate_runtime_verified",
+  "review_state": "draft",
+  "review_status_framework_state": "candidate_runtime_verified",
+  "native_review_state": "native_pending",
+  "production_mode_default": {
+    "required": [
+      "choice"
+    ],
+    "optional_visible": [
+      "speaking"
+    ],
+    "optional_hidden": [
+      "typing"
+    ]
+  },
+  "support_text": "你在義大利咖啡吧櫃台。聽店員的問題，選一個短而自然的義大利語回答。",
+  "roles": {
+    "npc": {
+      "label": "店員"
+    },
+    "learner": {
+      "label": "你"
+    }
+  },
+  "turns": [
+    {
+      "turn_id": "t1",
+      "speaker": "npc",
+      "act": "service_opening",
+      "act_slots": {
+        "topic": "starting an order",
+        "keyword": "ordinare",
+        "gloss": "say what you want"
+      },
+      "learning_role": "listen_only",
+      "surface": "Buongiorno. Cosa prende?",
+      "speak": "Buongiorno. Cosa prende?",
+      "translation": "店員在問你要點什麼。",
+      "friend": {
+        "hint": "直接說飲品，加 per favore 就很自然。"
+      },
+      "reply_set": {
+        "correct": "r1a",
+        "choices": [
+          {
+            "id": "r1a",
+            "surface": "Un cappuccino, per favore.",
+            "translation": "一杯卡布奇諾，謝謝。",
+            "speak": "Un cappuccino, per favore.",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r1b",
+            "surface": "Dov'è il bagno?",
+            "translation": "洗手間在哪裡？",
+            "speak": "Dov'è il bagno?",
+            "contrast_type": "wrong_scenario_request",
+            "feedback": "這句是在問洗手間。現在店員等你點飲料。"
+          },
+          {
+            "id": "r1c",
+            "surface": "No, grazie.",
+            "translation": "不用了，謝謝。",
+            "speak": "No, grazie.",
+            "contrast_type": "wrong_act_refusal",
+            "feedback": "這聽起來像是不點了。此處要說你想要的飲品。"
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t2",
+      "speaker": "npc",
+      "act": "choice_question",
+      "act_slots": {
+        "topic": "service option",
+        "keyword": "portare via",
+        "gloss": "choose where you will drink it"
+      },
+      "learning_role": "listen_only",
+      "surface": "Qui o da portare via?",
+      "speak": "Qui o da portare via?",
+      "translation": "店員在問你要在這裡喝，還是外帶。",
+      "friend": {
+        "hint": "選一個服務選項。da portare via 是外帶。"
+      },
+      "inline_explain": {
+        "pattern_id": "it.cafe.qui.portare_via.v1",
+        "formula_ref": null,
+        "title": "Qui / da portare via",
+        "explain": "qui 表示在這裡用，da portare via 表示外帶。",
+        "items": [
+          {
+            "surface": "Qui, per favore.",
+            "translation": "在這裡，謝謝。",
+            "speak": "Qui, per favore."
+          },
+          {
+            "surface": "Da portare via, per favore.",
+            "translation": "外帶，謝謝。",
+            "speak": "Da portare via, per favore."
+          }
+        ]
+      },
+      "reply_set": {
+        "correct": "r2a",
+        "choices": [
+          {
+            "id": "r2a",
+            "surface": "Da portare via, per favore.",
+            "translation": "外帶，謝謝。",
+            "speak": "Da portare via, per favore.",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r2b",
+            "surface": "Un cappuccino, per favore.",
+            "translation": "一杯卡布奇諾，謝謝。",
+            "speak": "Un cappuccino, per favore.",
+            "contrast_type": "repeated_prior_answer",
+            "feedback": "你已經點飲料了。現在要回答在這裡或外帶。"
+          },
+          {
+            "id": "r2c",
+            "surface": "Sì, giusto.",
+            "translation": "對，沒錯。",
+            "speak": "Sì, giusto.",
+            "contrast_type": "wrong_act_confirmation",
+            "feedback": "這是在確認，不是在選選項。請選 qui 或 da portare via。"
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t3",
+      "speaker": "npc",
+      "act": "confirmation",
+      "act_slots": {
+        "topic": "order confirmation",
+        "keyword": "giusto",
+        "gloss": "confirm the order"
+      },
+      "learning_role": "listen_only",
+      "surface": "Un cappuccino da portare via, giusto?",
+      "speak": "Un cappuccino da portare via, giusto?",
+      "translation": "店員在確認你的訂單。",
+      "friend": {
+        "hint": "如果訂單正確，用 Sì, giusto 確認。"
+      },
+      "reply_set": {
+        "correct": "r3a",
+        "choices": [
+          {
+            "id": "r3a",
+            "surface": "Sì, giusto.",
+            "translation": "對，沒錯。",
+            "speak": "Sì, giusto."
+          },
+          {
+            "id": "r3b",
+            "surface": "No, grazie.",
+            "translation": "不用了，謝謝。",
+            "speak": "No, grazie.",
+            "contrast_type": "wrong_act_refusal",
+            "feedback": "這像是在拒絕或取消。訂單正確時，用 Sì 確認。"
+          },
+          {
+            "id": "r3c",
+            "surface": "Dov'è il bagno?",
+            "translation": "洗手間在哪裡？",
+            "speak": "Dov'è il bagno?",
+            "contrast_type": "off_topic_statement",
+            "feedback": "這是另一個情境。先確認咖啡訂單。"
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t4",
+      "speaker": "npc",
+      "act": "payment",
+      "act_slots": {
+        "topic": "payment",
+        "keyword": "pagare",
+        "gloss": "complete the order"
+      },
+      "learning_role": "listen_only",
+      "surface": "Sono tre euro. Può pagare qui.",
+      "speak": "Sono tre euro. Può pagare qui.",
+      "translation": "店員告訴你金額，並請你在這裡付款。",
+      "friend": {
+        "hint": "付款步驟用簡短回應就好。"
+      },
+      "reply_set": {
+        "correct": "r4a",
+        "choices": [
+          {
+            "id": "r4a",
+            "surface": "Va bene, grazie.",
+            "translation": "好的，謝謝。",
+            "speak": "Va bene, grazie."
+          },
+          {
+            "id": "r4b",
+            "surface": "Da portare via, per favore.",
+            "translation": "外帶，謝謝。",
+            "speak": "Da portare via, per favore.",
+            "contrast_type": "repeated_prior_answer",
+            "feedback": "你已經回答外帶了。現在是付款步驟。"
+          },
+          {
+            "id": "r4c",
+            "surface": "Un cappuccino, per favore.",
+            "translation": "一杯卡布奇諾，謝謝。",
+            "speak": "Un cappuccino, per favore.",
+            "contrast_type": "repeated_prior_answer",
+            "feedback": "飲料已經點好了。現在要回應付款。"
+          }
+        ]
+      },
+      "closing": {
+        "act": "handover",
+        "learning_role": "context_support",
+        "surface": "Il cappuccino sarà pronto al banco.",
+        "speak": "Il cappuccino sarà pronto al banco.",
+        "translation": "卡布奇諾會在櫃台準備好。"
+      }
+    }
+  ],
+  "formula_moments": [
+    {
+      "after_turn": "t2",
+      "pattern_id": "it.cafe.qui.portare_via.v1"
+    }
+  ],
+  "notes": {
+    "review_policy": "AI-authored candidate. Requires AI review, runtime smoke, and tracked native review before any stronger status.",
+    "canonical_policy": "Staging candidate only. Do not write back to manifests, production exports, schemas, or legacy content.",
+    "authoring_source": "Authored from ML-0 neutral brief, not Korean surface text."
+  }
+}

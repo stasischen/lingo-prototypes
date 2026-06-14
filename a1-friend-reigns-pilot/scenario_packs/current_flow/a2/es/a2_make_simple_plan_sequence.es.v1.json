@@ -1,0 +1,257 @@
+{
+  "schema_version": "scenario_pack.v1",
+  "scenario_id": "a2_make_simple_plan_sequence",
+  "title": "Hacer un Plan Sencillo de Dos Pasos",
+  "setting_label": "friend chat",
+  "wrap_title": "Plan de dos pasos confirmado",
+  "wrap_friend": "Bien. Conectaste el primer paso y el siguiente, y confirmaste el plan.",
+  "language": "es",
+  "ui_language": "zh-Hant",
+  "cefr_level": "A2",
+  "source_status": "candidate_runtime_verified",
+  "review_state": "ai_reviewed",
+  "review_status_framework_state": "candidate_runtime_verified",
+  "native_review_state": "native_pending",
+  "scenario": {
+    "domain": "daily_social_coordination",
+    "review_slice": "daily_social",
+    "interaction": "friend_social_coordination",
+    "source_brief": "A2_DAILY_SOCIAL_NEUTRAL_ADAPTATION_BRIEFS_20260614",
+    "blueprint_source": "language_neutral_adaptation_brief",
+    "ko_pack_role": "mature_scenario_blueprint_not_translation_source"
+  },
+  "learner_goal": "Coordina una situación social sencilla con un amigo en frases cortas de A2.",
+  "target_functions": [
+    "friend_invitation_or_response",
+    "simple_reason_or_past_event",
+    "two_step_plan_or_confirmation",
+    "close_with_relationship_maintenance"
+  ],
+  "register_notes": "Neutral Spanish A2 friend/social register: natural tu friend register, warm and concise, no formal service language or regional slang.",
+  "production_mode_default": {
+    "required": [
+      "choice"
+    ],
+    "optional_visible": [
+      "speaking"
+    ],
+    "optional_hidden": [
+      "typing"
+    ]
+  },
+  "support_text": "Usa lenguaje natural con un amigo. Mantén la actividad y la razón sencillas.",
+  "roles": {
+    "npc": {
+      "label": "amigo"
+    },
+    "learner": {
+      "label": "你"
+    }
+  },
+  "turns": [
+    {
+      "turn_id": "t1",
+      "speaker": "npc",
+      "act": "suggest_first_step",
+      "act_slots": {
+        "topic": "sequence",
+        "keyword": "1",
+        "gloss": "A2 daily/social"
+      },
+      "learning_role": "listen_only",
+      "surface": "¿Nos vemos primero en la estación?",
+      "speak": "¿Nos vemos primero en la estación?",
+      "translation": "我們先在車站見，好嗎？",
+      "friend": {
+        "hint": "Keep the plan to two simple steps."
+      },
+      "reply_set": {
+        "correct": "r1a",
+        "choices": [
+          {
+            "id": "r1a",
+            "surface": "Sí, primero nos vemos en la estación.",
+            "translation": "好，我們先在車站見。",
+            "speak": "Sí, primero nos vemos en la estación.",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r1b",
+            "surface": "Sí, primero devuélveme el dinero.",
+            "translation": "好，先退款給我。",
+            "speak": "Sí, primero devuélveme el dinero.",
+            "contrast_type": "wrong_scenario_refund",
+            "feedback": "No corresponde a esta situación con un amigo."
+          },
+          {
+            "id": "r1c",
+            "surface": "No, de ninguna manera.",
+            "translation": "不，絕對不要。",
+            "speak": "No, de ninguna manera.",
+            "contrast_type": "too_blunt",
+            "feedback": "Suena demasiado fuerte para un amigo."
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t2",
+      "speaker": "npc",
+      "act": "suggest_second_step",
+      "act_slots": {
+        "topic": "sequence",
+        "keyword": "2",
+        "gloss": "A2 daily/social"
+      },
+      "learning_role": "listen_only",
+      "surface": "¿Después vamos al parque?",
+      "speak": "¿Después vamos al parque?",
+      "translation": "接著去公園嗎？",
+      "friend": {
+        "hint": "Keep the plan to two simple steps."
+      },
+      "reply_set": {
+        "correct": "r2a",
+        "choices": [
+          {
+            "id": "r2a",
+            "surface": "Bien. Después caminamos al parque.",
+            "translation": "好，接著走去公園。",
+            "speak": "Bien. Después caminamos al parque.",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r2b",
+            "surface": "Sí, primero devuélveme el dinero.",
+            "translation": "好，先退款給我。",
+            "speak": "Sí, primero devuélveme el dinero.",
+            "contrast_type": "wrong_scenario_refund",
+            "feedback": "No corresponde a esta situación con un amigo."
+          },
+          {
+            "id": "r2c",
+            "surface": "No, de ninguna manera.",
+            "translation": "不，絕對不要。",
+            "speak": "No, de ninguna manera.",
+            "contrast_type": "too_blunt",
+            "feedback": "Suena demasiado fuerte para un amigo."
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t3",
+      "speaker": "npc",
+      "act": "confirm_sequence",
+      "act_slots": {
+        "topic": "sequence",
+        "keyword": "3",
+        "gloss": "A2 daily/social"
+      },
+      "learning_role": "listen_only",
+      "surface": "Entonces, primero la estación y después el parque, ¿no?",
+      "speak": "Entonces, primero la estación y después el parque, ¿no?",
+      "translation": "所以先車站，接著公園，對嗎？",
+      "friend": {
+        "hint": "Keep the plan to two simple steps."
+      },
+      "reply_set": {
+        "correct": "r3a",
+        "choices": [
+          {
+            "id": "r3a",
+            "surface": "Sí, primero la estación y después el parque.",
+            "translation": "對，先車站，接著公園。",
+            "speak": "Sí, primero la estación y después el parque.",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r3b",
+            "surface": "Sí, primero devuélveme el dinero.",
+            "translation": "好，先退款給我。",
+            "speak": "Sí, primero devuélveme el dinero.",
+            "contrast_type": "wrong_scenario_refund",
+            "feedback": "No corresponde a esta situación con un amigo."
+          },
+          {
+            "id": "r3c",
+            "surface": "No, de ninguna manera.",
+            "translation": "不，絕對不要。",
+            "speak": "No, de ninguna manera.",
+            "contrast_type": "too_blunt",
+            "feedback": "Suena demasiado fuerte para un amigo."
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t4",
+      "speaker": "npc",
+      "act": "confirm_time",
+      "act_slots": {
+        "topic": "sequence",
+        "keyword": "4",
+        "gloss": "A2 daily/social"
+      },
+      "learning_role": "listen_only",
+      "surface": "Perfecto. Nos vemos el sábado a las dos.",
+      "speak": "Perfecto. Nos vemos el sábado a las dos.",
+      "translation": "好，星期六兩點見。",
+      "friend": {
+        "hint": "Keep the plan to two simple steps."
+      },
+      "reply_set": {
+        "correct": "r4a",
+        "choices": [
+          {
+            "id": "r4a",
+            "surface": "Vale, nos vemos el sábado a las dos.",
+            "translation": "好，星期六兩點見。",
+            "speak": "Vale, nos vemos el sábado a las dos.",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r4b",
+            "surface": "Sí, primero devuélveme el dinero.",
+            "translation": "好，先退款給我。",
+            "speak": "Sí, primero devuélveme el dinero.",
+            "contrast_type": "wrong_scenario_refund",
+            "feedback": "No corresponde a esta situación con un amigo."
+          },
+          {
+            "id": "r4c",
+            "surface": "No, de ninguna manera.",
+            "translation": "不，絕對不要。",
+            "speak": "No, de ninguna manera.",
+            "contrast_type": "too_blunt",
+            "feedback": "Suena demasiado fuerte para un amigo."
+          }
+        ]
+      }
+    }
+  ],
+  "choice_sets": [
+    "t1.reply_set",
+    "t2.reply_set",
+    "t3.reply_set",
+    "t4.reply_set"
+  ],
+  "feedback": "Los distractores prueban registro social, tiempo, función y límite A2.",
+  "tts_segments": [
+    "Sí, primero nos vemos en la estación.",
+    "Bien. Después caminamos al parque.",
+    "Sí, primero la estación y después el parque.",
+    "Vale, nos vemos el sábado a las dos."
+  ],
+  "formula_moments": [
+    {
+      "after_turn": "t3",
+      "pattern_id": "es.a2.daily.sequence.v1"
+    }
+  ],
+  "runtime_notes": "Fresh A2 daily/social candidate. Requires full-walk runtime before closeout evidence is recorded.",
+  "notes": {
+    "authoring_policy": "Fresh-authored from A2 daily/social neutral adaptation brief. KO surface text was not copied or translated.",
+    "a2_boundary": "Friend/social register, ordinary low-risk activities and reasons, short A2 responses only."
+  }
+}

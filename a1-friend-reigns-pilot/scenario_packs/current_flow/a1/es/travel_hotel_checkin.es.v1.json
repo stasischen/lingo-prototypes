@@ -1,0 +1,256 @@
+{
+  "schema_version": "scenario_pack.v1",
+  "scenario_id": "travel_hotel_checkin",
+  "brief_id": "ml0_a1_002_travel_hotel_checkin",
+  "source_neutral_brief": "release-aggregator/docs/tasks/A1_MULTILINGUAL_KO_B1_PARALLEL_ORCHESTRATION/work_products/ml0/ML0_NEUTRAL_ADAPTATION_BRIEFS_20260613.md#brief-ml0-a1-002-hotel-check-in",
+  "blueprint_ledger": "release-aggregator/docs/tasks/A1_MULTILINGUAL_KO_B1_PARALLEL_ORCHESTRATION/work_products/ml0/ML0_BLUEPRINT_LEDGER_20260613.md",
+  "repo": "content-es",
+  "staging_path": "content/core/content_assets/scenario_packs/current_flow/travel_hotel_checkin.es.v1.json",
+  "title": "Hacer el check-in en el hotel",
+  "setting_label": "Recepción de hotel",
+  "wrap_title": "Ya puedes registrarte en el hotel",
+  "wrap_friend": "Dijiste que tienes una reserva, diste el nombre y entendiste el siguiente paso.",
+  "language": "es",
+  "ui_language": "zh_tw",
+  "source_status": "candidate_runtime_verified",
+  "review_state": "draft",
+  "review_status_framework_state": "candidate_runtime_verified",
+  "native_review_state": "native_pending",
+  "production_mode_default": {
+    "required": [
+      "choice"
+    ],
+    "optional_visible": [
+      "speaking"
+    ],
+    "optional_hidden": [
+      "typing"
+    ]
+  },
+  "support_text": "你在西語飯店櫃台。辦理入住、說訂房姓名，並聽懂下一步。",
+  "roles": {
+    "npc": {
+      "label": "recepcionista"
+    },
+    "learner": {
+      "label": "huésped"
+    }
+  },
+  "turns": [
+    {
+      "turn_id": "t1",
+      "speaker": "npc",
+      "act": "front_desk_greeting",
+      "act_slots": {
+        "topic": "entrada",
+        "keyword": "ayudar",
+        "gloss": "協助"
+      },
+      "learning_role": "listen_only",
+      "surface": "Buenas tardes, ¿en qué le puedo ayudar?",
+      "speak": "Buenas tardes, ¿en qué le puedo ayudar?",
+      "translation": "午安，有什麼可以幫您的？",
+      "friend": {
+        "hint": "櫃台在問你需要什麼。入住時可以說「Tengo una reserva」。"
+      },
+      "reply_set": {
+        "correct": "r1a",
+        "choices": [
+          {
+            "id": "r1a",
+            "surface": "Tengo una reserva.",
+            "translation": "我有訂房。",
+            "speak": "Tengo una reserva.",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r1b",
+            "surface": "Un café, por favor.",
+            "translation": "一杯咖啡，謝謝。",
+            "speak": "Un café, por favor.",
+            "contrast_type": "wrong_scenario_request",
+            "feedback": "這句是在點咖啡。現在是在飯店櫃台辦理入住。"
+          },
+          {
+            "id": "r1c",
+            "surface": "¿Dónde está la estación?",
+            "translation": "車站在哪裡？",
+            "speak": "¿Dónde está la estación?",
+            "contrast_type": "wrong_scenario_request",
+            "feedback": "這句是在問路。櫃台現在在處理入住。"
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t2",
+      "speaker": "npc",
+      "act": "name_request",
+      "act_slots": {
+        "topic": "nombre de reserva",
+        "keyword": "nombre",
+        "gloss": "名字"
+      },
+      "learning_role": "listen_only",
+      "surface": "¿A nombre de quién está la reserva?",
+      "speak": "¿A nombre de quién está la reserva?",
+      "translation": "訂房是用誰的名字？",
+      "friend": {
+        "hint": "櫃台在問訂房姓名。用「A nombre de...」回答。"
+      },
+      "inline_explain": {
+        "pattern_id": "es.hotel.name_under.v1",
+        "formula_ref": null,
+        "title": "A nombre de...",
+        "explain": "「A nombre de...」可用來說訂房登記的名字。",
+        "items": [
+          {
+            "surface": "A nombre de Lin.",
+            "translation": "用 Lin 的名字。",
+            "speak": "A nombre de Lin."
+          },
+          {
+            "surface": "La reserva está a nombre de Lin.",
+            "translation": "訂房是 Lin 的名字。",
+            "speak": "La reserva está a nombre de Lin."
+          }
+        ]
+      },
+      "reply_set": {
+        "correct": "r2a",
+        "choices": [
+          {
+            "id": "r2a",
+            "surface": "A nombre de Lin.",
+            "translation": "用 Lin 的名字。",
+            "speak": "A nombre de Lin.",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r2b",
+            "surface": "Quiero salir del hotel.",
+            "translation": "我要離開飯店／退房。",
+            "speak": "Quiero salir del hotel.",
+            "contrast_type": "wrong_act_checkout",
+            "feedback": "這像是在說退房或離開。你現在是入住，要說訂房姓名。"
+          },
+          {
+            "id": "r2c",
+            "surface": "Está a la derecha.",
+            "translation": "在右邊。",
+            "speak": "Está a la derecha.",
+            "contrast_type": "wrong_scenario_response",
+            "feedback": "這是在回答方向。櫃台問的是訂房姓名。"
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t3",
+      "speaker": "npc",
+      "act": "reservation_confirmation",
+      "act_slots": {
+        "topic": "confirmar reserva",
+        "keyword": "noche",
+        "gloss": "晚"
+      },
+      "learning_role": "listen_only",
+      "surface": "La encontré. Una noche, ¿verdad?",
+      "speak": "La encontré. Una noche, ¿verdad?",
+      "translation": "找到了。一晚，對嗎？",
+      "friend": {
+        "hint": "櫃台在確認資料。正確的話，簡短說是。"
+      },
+      "reply_set": {
+        "correct": "r3a",
+        "choices": [
+          {
+            "id": "r3a",
+            "surface": "Sí, correcto.",
+            "translation": "是的，沒錯。",
+            "speak": "Sí, correcto."
+          },
+          {
+            "id": "r3b",
+            "surface": "Un café con leche.",
+            "translation": "一杯牛奶咖啡。",
+            "speak": "Un café con leche.",
+            "contrast_type": "wrong_scenario_request",
+            "feedback": "這不是咖啡店。櫃台在確認你的訂房。"
+          },
+          {
+            "id": "r3c",
+            "surface": "No, gracias.",
+            "translation": "不用了，謝謝。",
+            "speak": "No, gracias.",
+            "contrast_type": "wrong_act_refusal",
+            "feedback": "這樣像是在拒絕。資料正確時，說「Sí, correcto」。"
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t4",
+      "speaker": "npc",
+      "act": "key_direction",
+      "act_slots": {
+        "topic": "llave y habitación",
+        "keyword": "habitación",
+        "gloss": "房間"
+      },
+      "learning_role": "listen_only",
+      "surface": "Esta es su llave. La habitación está en el tercer piso.",
+      "speak": "Esta es su llave. La habitación está en el tercer piso.",
+      "translation": "這是您的鑰匙。房間在三樓。",
+      "friend": {
+        "hint": "你拿到鑰匙了。簡短說謝謝就可以。"
+      },
+      "reply_set": {
+        "correct": "r4a",
+        "choices": [
+          {
+            "id": "r4a",
+            "surface": "Gracias.",
+            "translation": "謝謝。",
+            "speak": "Gracias."
+          },
+          {
+            "id": "r4b",
+            "surface": "A nombre de Lin.",
+            "translation": "用 Lin 的名字。",
+            "speak": "A nombre de Lin.",
+            "contrast_type": "repeated_prior_answer",
+            "feedback": "名字剛剛已經說過了。現在櫃台給你鑰匙和房間資訊。"
+          },
+          {
+            "id": "r4c",
+            "surface": "¿Dónde está el baño?",
+            "translation": "洗手間在哪裡？",
+            "speak": "¿Dónde está el baño?",
+            "contrast_type": "off_topic_statement",
+            "feedback": "這是另一個需求。先把入住流程結束。"
+          }
+        ]
+      },
+      "closing": {
+        "act": "front_desk_close",
+        "learning_role": "context_support",
+        "surface": "El desayuno es en la planta baja, de siete a diez.",
+        "speak": "El desayuno es en la planta baja, de siete a diez.",
+        "translation": "早餐在一樓，七點到十點。"
+      }
+    }
+  ],
+  "formula_moments": [
+    {
+      "after_turn": "t2",
+      "pattern_id": "es.hotel.name_under.v1"
+    }
+  ],
+  "notes": {
+    "authoring_source": "Authored from ML-0 neutral brief, not Korean surface text.",
+    "review_policy": "AI-authored Spanish candidate. Requires AI review, runtime smoke, and tracked native review before any stronger status.",
+    "canonical_policy": "Staging candidate only. Do not write back to manifests, production exports, schemas, or legacy content.",
+    "spanish_register_note": "Uses usted/service-register staff phrasing and short learner replies."
+  }
+}

@@ -1,0 +1,261 @@
+{
+  "schema_version": "scenario_pack.v1",
+  "scenario_id": "a2_request_room_change",
+  "title": "Request a Room Change",
+  "setting_label": "At the hotel front desk",
+  "wrap_title": "Room Change Confirmed",
+  "wrap_friend": "你剛剛完成了一段 A2 住宿服務情境，說明需求、聽懂回覆，並確認下一步。",
+  "language": "en",
+  "ui_language": "zh_tw",
+  "cefr_level": "A2",
+  "source_status": "candidate_runtime_verified",
+  "review_state": "ai_reviewed",
+  "review_status_framework_state": "candidate_runtime_verified",
+  "native_review_state": "native_pending",
+  "scenario": "A hotel/accommodation service scenario: a2_request_room_change.",
+  "learner_goal": "Ask for a room change with a simple reason and confirm the move timing.",
+  "target_functions": [
+    "room_change_request",
+    "simple_reason",
+    "alternative_room_confirmation"
+  ],
+  "register_notes": "Broad everyday English hotel-service register; polite, short A2 responses; no complaint escalation.",
+  "production_mode_default": {
+    "required": [
+      "choice"
+    ],
+    "optional_visible": [
+      "speaking"
+    ],
+    "optional_hidden": [
+      "typing"
+    ]
+  },
+  "support_text": "Give one simple reason and ask whether you can change rooms.",
+  "roles": {
+    "npc": {
+      "label": "Hotel Staff"
+    },
+    "learner": {
+      "label": "You"
+    }
+  },
+  "turns": [
+    {
+      "turn_id": "t1",
+      "speaker": "npc",
+      "act": "service_prompt",
+      "act_slots": {
+        "topic": "service_prompt",
+        "keyword": "help",
+        "gloss": "協助"
+      },
+      "learning_role": "listen_only",
+      "surface": "How can I help?",
+      "speak": "How can I help?",
+      "translation": "我可以怎麼幫忙？",
+      "friend": {
+        "hint": "Ask for a room change with one reason."
+      },
+      "reply_set": {
+        "correct": "r1a",
+        "choices": [
+          {
+            "id": "r1a",
+            "surface": "My room is a little noisy. Can I change rooms?",
+            "translation": "我的房間有點吵。可以換房嗎？",
+            "speak": "My room is a little noisy. Can I change rooms?",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r1b",
+            "surface": "Can I change my restaurant table?",
+            "translation": "可以換餐廳座位嗎？",
+            "speak": "Can I change my restaurant table?",
+            "contrast_type": "wrong_detail_or_domain",
+            "feedback": "This is about a hotel room, not a restaurant table."
+          },
+          {
+            "id": "r1c",
+            "surface": "I will make an official report.",
+            "translation": "我要正式申訴。",
+            "speak": "I will make an official report.",
+            "contrast_type": "forbidden_or_wrong_domain",
+            "feedback": "Formal reporting is outside this A2 task."
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t2",
+      "speaker": "npc",
+      "act": "alternative_offer",
+      "act_slots": {
+        "topic": "alternative_offer",
+        "keyword": "another room",
+        "gloss": "另一間房"
+      },
+      "learning_role": "listen_only",
+      "surface": "I checked. We have one other room.",
+      "speak": "I checked. We have one other room.",
+      "translation": "我確認了，有另一間房。",
+      "friend": {
+        "hint": "Listen for the alternative."
+      },
+      "inline_explain": {
+        "pattern_id": "en.a2.accommodation.room_change.reason.v1",
+        "title": "A2 pattern",
+        "explain": "A useful pattern for this accommodation situation.",
+        "items": [
+          {
+            "surface": "another room",
+            "translation": "另一間房",
+            "speak": "another room"
+          }
+        ]
+      },
+      "reply_set": {
+        "correct": "r2a",
+        "choices": [
+          {
+            "id": "r2a",
+            "surface": "There is one other room, right?",
+            "translation": "有另一間房，對嗎？",
+            "speak": "There is one other room, right?",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r2b",
+            "surface": "There is one other ticket, right?",
+            "translation": "有另一張票，對嗎？",
+            "speak": "There is one other ticket, right?",
+            "contrast_type": "wrong_detail_or_domain",
+            "feedback": "This is a room, not a ticket."
+          },
+          {
+            "id": "r2c",
+            "surface": "Can I also get compensation?",
+            "translation": "也可以得到賠償嗎？",
+            "speak": "Can I also get compensation?",
+            "contrast_type": "forbidden_or_wrong_domain",
+            "feedback": "Compensation is outside this simple room-change task."
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t3",
+      "speaker": "npc",
+      "act": "move_time",
+      "act_slots": {
+        "topic": "move_time",
+        "keyword": "thirty minutes",
+        "gloss": "三十分鐘"
+      },
+      "learning_role": "listen_only",
+      "surface": "You can move to the new room in thirty minutes.",
+      "speak": "You can move to the new room in thirty minutes.",
+      "translation": "三十分鐘後可以搬到新房間。",
+      "friend": {
+        "hint": "Confirm the move time."
+      },
+      "reply_set": {
+        "correct": "r3a",
+        "choices": [
+          {
+            "id": "r3a",
+            "surface": "I can move in thirty minutes, right?",
+            "translation": "三十分鐘後可以搬，對嗎？",
+            "speak": "I can move in thirty minutes, right?",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r3b",
+            "surface": "I check out in three hours, right?",
+            "translation": "三小時後退房，對嗎？",
+            "speak": "I check out in three hours, right?",
+            "contrast_type": "wrong_detail_or_domain",
+            "feedback": "The staff said you can move in thirty minutes."
+          },
+          {
+            "id": "r3c",
+            "surface": "I will move because I need a hospital.",
+            "translation": "因為要去醫院，所以要換。",
+            "speak": "I will move because I need a hospital.",
+            "contrast_type": "forbidden_or_wrong_domain",
+            "feedback": "Medical reasons are outside this task."
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t4",
+      "speaker": "npc",
+      "act": "close",
+      "act_slots": {
+        "topic": "close",
+        "keyword": "new key card",
+        "gloss": "新房卡"
+      },
+      "learning_role": "listen_only",
+      "surface": "When it is ready, I will give you the new key card.",
+      "speak": "When it is ready, I will give you the new key card.",
+      "translation": "準備好後，我會給您新房卡。",
+      "friend": {
+        "hint": "Accept and close."
+      },
+      "reply_set": {
+        "correct": "r4a",
+        "choices": [
+          {
+            "id": "r4a",
+            "surface": "Okay. I will take the new key when it is ready.",
+            "translation": "好，準備好後我拿新房卡。",
+            "speak": "Okay. I will take the new key when it is ready.",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r4b",
+            "surface": "No, I will change my train time.",
+            "translation": "不，我要改火車時間。",
+            "speak": "No, I will change my train time.",
+            "contrast_type": "wrong_detail_or_domain",
+            "feedback": "This is room change, not transport."
+          },
+          {
+            "id": "r4c",
+            "surface": "I will tell the police now.",
+            "translation": "我現在會告訴警察。",
+            "speak": "I will tell the police now.",
+            "contrast_type": "forbidden_or_wrong_domain",
+            "feedback": "Police workflows are outside this task."
+          }
+        ]
+      }
+    }
+  ],
+  "choice_sets": [
+    "t1.reply_set",
+    "t2.reply_set",
+    "t3.reply_set",
+    "t4.reply_set"
+  ],
+  "feedback": "Distractors test wrong time, place, service domain, or out-of-scope escalation while preserving A2 boundaries.",
+  "tts_segments": [
+    "How can I help?",
+    "I checked. We have one other room.",
+    "You can move to the new room in thirty minutes.",
+    "When it is ready, I will give you the new key card."
+  ],
+  "formula_moments": [
+    {
+      "after_turn": "t2",
+      "pattern_id": "en.a2.accommodation.room_change.reason.v1"
+    }
+  ],
+  "runtime_notes": "EN A2 accommodation candidate. Full-walk runtime gate required before final closeout.",
+  "notes": {
+    "authoring_policy": "Fresh-authored from the neutral A2 accommodation brief. KO surfaces were not translated.",
+    "a2_boundary": "Low-risk accommodation/service task; avoids compensation, emergency, legal, medical, police, immigration, banking, insurance, or identity-sensitive handling."
+  }
+}

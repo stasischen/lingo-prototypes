@@ -1,0 +1,284 @@
+{
+  "schema_version": "scenario_pack.v1",
+  "scenario_id": "a2_ask_ingredient_preference",
+  "title": "Ask About an Ingredient Preference",
+  "setting_label": "restaurant counter",
+  "wrap_title": "Ingredient preference confirmed",
+  "wrap_friend": "Good. You handled a low-risk food or shopping task with a clear preference and polite confirmation.",
+  "language": "en",
+  "ui_language": "zh-Hant",
+  "cefr_level": "A2",
+  "source_status": "candidate_runtime_verified",
+  "review_state": "ai_reviewed",
+  "review_status_framework_state": "candidate_runtime_verified",
+  "native_review_state": "native_pending",
+  "scenario": {
+    "domain": "food_shopping_preferences",
+    "review_slice": "food_shopping",
+    "interaction": "service_preference_or_exchange",
+    "source_brief": "A2_FOOD_SHOPPING_NEUTRAL_ADAPTATION_BRIEFS_20260614",
+    "blueprint_source": "language_neutral_adaptation_brief",
+    "ko_pack_role": "mature_scenario_blueprint_not_translation_source"
+  },
+  "learner_goal": "Ask whether a common ingredient is included and choose based on preference.",
+  "target_functions": [
+    "compare_or_state_preference",
+    "confirm_key_detail",
+    "make_polite_low_risk_request",
+    "close_with_correct_next_step"
+  ],
+  "register_notes": "English A2 food/shopping register: everyday polite service language, broad international English, no allergy/medical/refund-dispute framing.",
+  "production_mode_default": {
+    "required": [
+      "choice"
+    ],
+    "optional_visible": [
+      "speaking"
+    ],
+    "optional_hidden": [
+      "typing"
+    ]
+  },
+  "support_text": "Ask whether a common ingredient is included and choose based on preference.",
+  "roles": {
+    "npc": {
+      "label": "staff member"
+    },
+    "learner": {
+      "label": "你"
+    }
+  },
+  "turns": [
+    {
+      "turn_id": "t1",
+      "speaker": "npc",
+      "act": "ask_ingredient",
+      "act_slots": {
+        "topic": "ask-ingredient-preference",
+        "keyword": "1",
+        "gloss": "A2 food/shopping"
+      },
+      "learning_role": "listen_only",
+      "surface": "What would you like to order?",
+      "speak": "What would you like to order?",
+      "translation": "您想點什麼？",
+      "friend": {
+        "hint": "Ask about a common ingredient."
+      },
+      "reply_set": {
+        "correct": "r1a",
+        "choices": [
+          {
+            "id": "r1a",
+            "surface": "Does this salad have onion?",
+            "translation": "這個沙拉裡有洋蔥嗎？",
+            "speak": "Does this salad have onion?",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r1b",
+            "surface": "What floor is this salad on?",
+            "translation": "這個沙拉在幾樓？",
+            "speak": "What floor is this salad on?",
+            "contrast_type": "wrong_detail_or_domain",
+            "feedback": "A floor question does not fit food ingredients."
+          },
+          {
+            "id": "r1c",
+            "surface": "Please change my ticket time.",
+            "translation": "請幫我改票的時間。",
+            "speak": "Please change my ticket time.",
+            "contrast_type": "forbidden_or_wrong_domain",
+            "feedback": "This switches to a ticket situation."
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t2",
+      "speaker": "npc",
+      "act": "answer_ingredient",
+      "act_slots": {
+        "topic": "ask-ingredient-preference",
+        "keyword": "2",
+        "gloss": "A2 food/shopping"
+      },
+      "learning_role": "listen_only",
+      "surface": "Yes, it has a little onion.",
+      "speak": "Yes, it has a little onion.",
+      "translation": "有，放一點洋蔥。",
+      "friend": {
+        "hint": "Confirm the ingredient information."
+      },
+      "reply_set": {
+        "correct": "r2a",
+        "choices": [
+          {
+            "id": "r2a",
+            "surface": "It has a little onion, right?",
+            "translation": "有一點洋蔥，對嗎？",
+            "speak": "It has a little onion, right?",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r2b",
+            "surface": "It has a lot of meat, right?",
+            "translation": "有很多肉，對嗎？",
+            "speak": "It has a lot of meat, right?",
+            "contrast_type": "wrong_detail_or_domain",
+            "feedback": "Meat was not mentioned."
+          },
+          {
+            "id": "r2c",
+            "surface": "The room is noisy, right?",
+            "translation": "房間很吵，對嗎？",
+            "speak": "The room is noisy, right?",
+            "contrast_type": "forbidden_or_wrong_domain",
+            "feedback": "This switches to a hotel problem."
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t3",
+      "speaker": "npc",
+      "act": "choose_preference",
+      "act_slots": {
+        "topic": "ask-ingredient-preference",
+        "keyword": "3",
+        "gloss": "A2 food/shopping"
+      },
+      "learning_role": "listen_only",
+      "surface": "If you like, we can make it without onion.",
+      "speak": "If you like, we can make it without onion.",
+      "translation": "如果您想要，可以不加洋蔥。",
+      "friend": {
+        "hint": "Choose by preference only."
+      },
+      "reply_set": {
+        "correct": "r3a",
+        "choices": [
+          {
+            "id": "r3a",
+            "surface": "Yes, without onion, please.",
+            "translation": "好的，請不要加洋蔥。",
+            "speak": "Yes, without onion, please.",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r3b",
+            "surface": "Yes, please give me allergy medicine.",
+            "translation": "好的，請給我過敏藥。",
+            "speak": "Yes, please give me allergy medicine.",
+            "contrast_type": "wrong_detail_or_domain",
+            "feedback": "Medicine/allergy handling is outside this task."
+          },
+          {
+            "id": "r3c",
+            "surface": "Yes, please refund it.",
+            "translation": "好的，請退款。",
+            "speak": "Yes, please refund it.",
+            "contrast_type": "forbidden_or_wrong_domain",
+            "feedback": "This is not a refund request."
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t4",
+      "speaker": "npc",
+      "act": "confirm_order",
+      "act_slots": {
+        "topic": "ask-ingredient-preference",
+        "keyword": "4",
+        "gloss": "A2 food/shopping"
+      },
+      "learning_role": "listen_only",
+      "surface": "Sure. I’ll prepare it without onion.",
+      "speak": "Sure. I’ll prepare it without onion.",
+      "translation": "可以，我會準備不加洋蔥的。",
+      "friend": {
+        "hint": "Close by confirming the order."
+      },
+      "reply_set": {
+        "correct": "r4a",
+        "choices": [
+          {
+            "id": "r4a",
+            "surface": "Thank you. Please make it that way.",
+            "translation": "謝謝，請這樣做。",
+            "speak": "Thank you. Please make it that way.",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r4b",
+            "surface": "Please tell me my passport number.",
+            "translation": "請告訴我護照號碼。",
+            "speak": "Please tell me my passport number.",
+            "contrast_type": "wrong_detail_or_domain",
+            "feedback": "Passport details are not needed."
+          },
+          {
+            "id": "r4c",
+            "surface": "I want to store my luggage.",
+            "translation": "我想寄放行李。",
+            "speak": "I want to store my luggage.",
+            "contrast_type": "forbidden_or_wrong_domain",
+            "feedback": "This switches to luggage storage."
+          }
+        ]
+      }
+    }
+  ],
+  "choice_sets": {
+    "count_per_turn": 3,
+    "correct_path": [
+      "r1a",
+      "r2a",
+      "r3a",
+      "r4a"
+    ],
+    "distractor_policy": "one near-domain wrong detail plus one out-of-scope/unsafe-domain option per turn"
+  },
+  "feedback": {
+    "correct": "Good. Continue within the food or shopping task.",
+    "incorrect": "Choose the reply that fits the menu, ingredient, exchange, or budget recommendation task."
+  },
+  "tts_segments": [
+    "What would you like to order?",
+    "Does this salad have onion?",
+    "What floor is this salad on?",
+    "Please change my ticket time.",
+    "Yes, it has a little onion.",
+    "It has a little onion, right?",
+    "It has a lot of meat, right?",
+    "The room is noisy, right?",
+    "If you like, we can make it without onion.",
+    "Yes, without onion, please.",
+    "Yes, please give me allergy medicine.",
+    "Yes, please refund it.",
+    "Sure. I’ll prepare it without onion.",
+    "Thank you. Please make it that way.",
+    "Please tell me my passport number.",
+    "I want to store my luggage."
+  ],
+  "formula_moments": [
+    {
+      "after_turn": "t2",
+      "pattern_id": "en.a2.food.ingredient.preference.v1",
+      "label": "Does it have + ingredient?",
+      "learner_takeaway": "without + ingredient"
+    }
+  ],
+  "runtime_notes": {
+    "expected_turns": 4,
+    "expected_choices_per_turn": 3,
+    "full_walk_required": true,
+    "expected_final_screen": "Wrap"
+  },
+  "notes": {
+    "generated_at": "2026-06-14",
+    "authoring_scope": "A2 food/shopping EN adaptation",
+    "native_review_state": "native_pending"
+  }
+}

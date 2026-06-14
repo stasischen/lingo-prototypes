@@ -1,0 +1,257 @@
+{
+  "schema_version": "scenario_pack.v1",
+  "scenario_id": "a2_describe_weekend_activity",
+  "title": "Contar una Actividad del Fin de Semana",
+  "setting_label": "friend chat",
+  "wrap_title": "Actividad del fin de semana contada",
+  "wrap_friend": "Bien. Contaste una actividad del fin de semana con detalles breves de nivel A2.",
+  "language": "es",
+  "ui_language": "zh-Hant",
+  "cefr_level": "A2",
+  "source_status": "candidate_runtime_verified",
+  "review_state": "ai_reviewed",
+  "review_status_framework_state": "candidate_runtime_verified",
+  "native_review_state": "native_pending",
+  "scenario": {
+    "domain": "daily_social_coordination",
+    "review_slice": "daily_social",
+    "interaction": "friend_social_coordination",
+    "source_brief": "A2_DAILY_SOCIAL_NEUTRAL_ADAPTATION_BRIEFS_20260614",
+    "blueprint_source": "language_neutral_adaptation_brief",
+    "ko_pack_role": "mature_scenario_blueprint_not_translation_source"
+  },
+  "learner_goal": "Coordina una situación social sencilla con un amigo en frases cortas de A2.",
+  "target_functions": [
+    "friend_invitation_or_response",
+    "simple_reason_or_past_event",
+    "two_step_plan_or_confirmation",
+    "close_with_relationship_maintenance"
+  ],
+  "register_notes": "Neutral Spanish A2 friend/social register: natural tu friend register, warm and concise, no formal service language or regional slang.",
+  "production_mode_default": {
+    "required": [
+      "choice"
+    ],
+    "optional_visible": [
+      "speaking"
+    ],
+    "optional_hidden": [
+      "typing"
+    ]
+  },
+  "support_text": "Usa lenguaje natural con un amigo. Mantén la actividad y la razón sencillas.",
+  "roles": {
+    "npc": {
+      "label": "amigo"
+    },
+    "learner": {
+      "label": "你"
+    }
+  },
+  "turns": [
+    {
+      "turn_id": "t1",
+      "speaker": "npc",
+      "act": "ask_weekend",
+      "act_slots": {
+        "topic": "weekend",
+        "keyword": "1",
+        "gloss": "A2 daily/social"
+      },
+      "learning_role": "listen_only",
+      "surface": "¿Qué hiciste el fin de semana?",
+      "speak": "¿Qué hiciste el fin de semana?",
+      "translation": "你週末做了什麼？",
+      "friend": {
+        "hint": "Use a short A2 past-time answer."
+      },
+      "reply_set": {
+        "correct": "r1a",
+        "choices": [
+          {
+            "id": "r1a",
+            "surface": "Me encontré con un amigo y almorcé.",
+            "translation": "我見了朋友，也吃了午餐。",
+            "speak": "Me encontré con un amigo y almorcé.",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r1b",
+            "surface": "Mañana voy a ver a un amigo.",
+            "translation": "我明天會見朋友。",
+            "speak": "Mañana voy a ver a un amigo.",
+            "contrast_type": "wrong_time_future",
+            "feedback": "No corresponde a esta situación con un amigo."
+          },
+          {
+            "id": "r1c",
+            "surface": "¿A qué andén voy?",
+            "translation": "要去哪個月台？",
+            "speak": "¿A qué andén voy?",
+            "contrast_type": "wrong_scenario_transport",
+            "feedback": "Suena demasiado fuerte para un amigo."
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t2",
+      "speaker": "npc",
+      "act": "ask_place",
+      "act_slots": {
+        "topic": "weekend",
+        "keyword": "2",
+        "gloss": "A2 daily/social"
+      },
+      "learning_role": "listen_only",
+      "surface": "¿Dónde se vieron?",
+      "speak": "¿Dónde se vieron?",
+      "translation": "你們在哪裡見面？",
+      "friend": {
+        "hint": "Use a short A2 past-time answer."
+      },
+      "reply_set": {
+        "correct": "r2a",
+        "choices": [
+          {
+            "id": "r2a",
+            "surface": "Nos vimos en una cafetería cerca de mi casa.",
+            "translation": "我們在我家附近的咖啡店見。",
+            "speak": "Nos vimos en una cafetería cerca de mi casa.",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r2b",
+            "surface": "Mañana voy a ver a un amigo.",
+            "translation": "我明天會見朋友。",
+            "speak": "Mañana voy a ver a un amigo.",
+            "contrast_type": "wrong_time_future",
+            "feedback": "No corresponde a esta situación con un amigo."
+          },
+          {
+            "id": "r2c",
+            "surface": "¿A qué andén voy?",
+            "translation": "要去哪個月台？",
+            "speak": "¿A qué andén voy?",
+            "contrast_type": "wrong_scenario_transport",
+            "feedback": "Suena demasiado fuerte para un amigo."
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t3",
+      "speaker": "npc",
+      "act": "ask_feeling",
+      "act_slots": {
+        "topic": "weekend",
+        "keyword": "3",
+        "gloss": "A2 daily/social"
+      },
+      "learning_role": "listen_only",
+      "surface": "¿Fue agradable?",
+      "speak": "¿Fue agradable?",
+      "translation": "還不錯嗎？",
+      "friend": {
+        "hint": "Use a short A2 past-time answer."
+      },
+      "reply_set": {
+        "correct": "r3a",
+        "choices": [
+          {
+            "id": "r3a",
+            "surface": "Sí, fue tranquilo y agradable.",
+            "translation": "嗯，很安靜，也很好。",
+            "speak": "Sí, fue tranquilo y agradable.",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r3b",
+            "surface": "Mañana voy a ver a un amigo.",
+            "translation": "我明天會見朋友。",
+            "speak": "Mañana voy a ver a un amigo.",
+            "contrast_type": "wrong_time_future",
+            "feedback": "No corresponde a esta situación con un amigo."
+          },
+          {
+            "id": "r3c",
+            "surface": "¿A qué andén voy?",
+            "translation": "要去哪個月台？",
+            "speak": "¿A qué andén voy?",
+            "contrast_type": "wrong_scenario_transport",
+            "feedback": "Suena demasiado fuerte para un amigo."
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t4",
+      "speaker": "npc",
+      "act": "close_weekend",
+      "act_slots": {
+        "topic": "weekend",
+        "keyword": "4",
+        "gloss": "A2 daily/social"
+      },
+      "learning_role": "listen_only",
+      "surface": "Suena bien. La próxima vez voy contigo.",
+      "speak": "Suena bien. La próxima vez voy contigo.",
+      "translation": "聽起來不錯。下次我也一起去。",
+      "friend": {
+        "hint": "Use a short A2 past-time answer."
+      },
+      "reply_set": {
+        "correct": "r4a",
+        "choices": [
+          {
+            "id": "r4a",
+            "surface": "Claro, vamos juntos la próxima vez.",
+            "translation": "好，下次一起去。",
+            "speak": "Claro, vamos juntos la próxima vez.",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r4b",
+            "surface": "Mañana voy a ver a un amigo.",
+            "translation": "我明天會見朋友。",
+            "speak": "Mañana voy a ver a un amigo.",
+            "contrast_type": "wrong_time_future",
+            "feedback": "No corresponde a esta situación con un amigo."
+          },
+          {
+            "id": "r4c",
+            "surface": "¿A qué andén voy?",
+            "translation": "要去哪個月台？",
+            "speak": "¿A qué andén voy?",
+            "contrast_type": "wrong_scenario_transport",
+            "feedback": "Suena demasiado fuerte para un amigo."
+          }
+        ]
+      }
+    }
+  ],
+  "choice_sets": [
+    "t1.reply_set",
+    "t2.reply_set",
+    "t3.reply_set",
+    "t4.reply_set"
+  ],
+  "feedback": "Los distractores prueban registro social, tiempo, función y límite A2.",
+  "tts_segments": [
+    "Me encontré con un amigo y almorcé.",
+    "Nos vimos en una cafetería cerca de mi casa.",
+    "Sí, fue tranquilo y agradable.",
+    "Claro, vamos juntos la próxima vez."
+  ],
+  "formula_moments": [
+    {
+      "after_turn": "t2",
+      "pattern_id": "es.a2.daily.weekend.v1"
+    }
+  ],
+  "runtime_notes": "Fresh A2 daily/social candidate. Requires full-walk runtime before closeout evidence is recorded.",
+  "notes": {
+    "authoring_policy": "Fresh-authored from A2 daily/social neutral adaptation brief. KO surface text was not copied or translated.",
+    "a2_boundary": "Friend/social register, ordinary low-risk activities and reasons, short A2 responses only."
+  }
+}

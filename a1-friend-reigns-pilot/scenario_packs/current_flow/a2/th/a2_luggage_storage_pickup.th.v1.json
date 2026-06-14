@@ -1,0 +1,269 @@
+{
+  "schema_version": "scenario_pack.v1",
+  "scenario_id": "a2_luggage_storage_pickup",
+  "brief_id": "a2_luggage_storage_pickup",
+  "source_neutral_brief": "release-aggregator/docs/tasks/A2_BASELINE_INVENTORY/A2_TRANSPORT_NEUTRAL_ADAPTATION_BRIEFS_20260614.md#a2_luggage_storage_pickup",
+  "blueprint_ledger": "release-aggregator/docs/tasks/A2_BASELINE_INVENTORY/A2_TRANSPORT_BLUEPRINT_LEDGER_20260614.md",
+  "repo": "content-th",
+  "staging_path": "content/core/content_assets/scenario_packs/current_flow/a2/a2_luggage_storage_pickup.th.v1.json",
+  "title": "ฝากกระเป๋าและถามเวลารับคืน",
+  "setting_label": "จุดฝากกระเป๋าในสถานี",
+  "wrap_title": "เวลารับกระเป๋าคืน",
+  "wrap_friend": "คุณฝากกระเป๋า ถามเวลารับคืน และยืนยันใบรับฝากได้แล้ว",
+  "language": "th",
+  "ui_language": "zh_tw",
+  "cefr_level": "A2",
+  "source_status": "candidate_runtime_verified",
+  "review_state": "ai_reviewed",
+  "review_status_framework_state": "candidate_runtime_verified",
+  "native_review_state": "native_pending",
+  "scenario": "You store luggage and confirm pickup time with a simple receipt.",
+  "learner_goal": "Ask to store luggage and confirm pickup time/receipt.",
+  "target_functions": [
+    "polite_service_request",
+    "pickup_time",
+    "receipt_confirmation"
+  ],
+  "register_notes": "Polite Thai at a luggage counter. Uses ใบรับฝาก for a simple storage receipt; avoids lost-property, compensation, passport, or ID handling.",
+  "production_mode_default": {
+    "required": [
+      "choice"
+    ],
+    "optional_visible": [
+      "speaking"
+    ],
+    "optional_hidden": [
+      "typing"
+    ]
+  },
+  "support_text": "ฝากกระเป๋าที่สถานี แล้วถามว่าต้องมารับคืนกี่โมงและใช้ใบอะไร",
+  "roles": {
+    "npc": {
+      "label": "พนักงาน"
+    },
+    "learner": {
+      "label": "คุณ"
+    }
+  },
+  "turns": [
+    {
+      "turn_id": "t1",
+      "speaker": "npc",
+      "act": "service_opening",
+      "act_slots": {
+        "topic": "luggage storage",
+        "keyword": "ฝากกระเป๋า",
+        "gloss": "寄放行李"
+      },
+      "learning_role": "listen_only",
+      "surface": "จะฝากกระเป๋าไหมคะ",
+      "speak": "จะฝากกระเป๋าไหมคะ",
+      "translation": "要寄放包包嗎？",
+      "friend": {
+        "hint": "บอกว่าต้องการฝากกระเป๋าใบนี้"
+      },
+      "reply_set": {
+        "correct": "r1a",
+        "choices": [
+          {
+            "id": "r1a",
+            "surface": "ค่ะ อยากฝากกระเป๋าใบนี้",
+            "translation": "是的，我想寄放這個包包。",
+            "speak": "ค่ะ อยากฝากกระเป๋าใบนี้",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r1b",
+            "surface": "เมื่อวานรับกระเป๋าใบนี้แล้วค่ะ",
+            "translation": "我昨天已經取了這個包包。",
+            "speak": "เมื่อวานรับกระเป๋าใบนี้แล้วค่ะ",
+            "contrast_type": "wrong_time_past",
+            "feedback": "ตอนนี้จะฝากกระเป๋า ไม่ใช่เล่าเรื่องเมื่อวาน"
+          },
+          {
+            "id": "r1c",
+            "surface": "ชานชาลาอยู่ที่ไหนคะ",
+            "translation": "月台在哪裡？",
+            "speak": "ชานชาลาอยู่ที่ไหนคะ",
+            "contrast_type": "wrong_scenario_platform",
+            "feedback": "นี่เป็นจุดฝากกระเป๋า ไม่ใช่ถามชานชาลา"
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t2",
+      "speaker": "npc",
+      "act": "pickup_time_info",
+      "act_slots": {
+        "pickup_time": "before 7 p.m.",
+        "keyword": "ก่อนหนึ่งทุ่ม",
+        "gloss": "晚上 7 點前"
+      },
+      "learning_role": "listen_only",
+      "surface": "มารับคืนได้ก่อนหนึ่งทุ่มวันนี้ค่ะ",
+      "speak": "มารับคืนได้ก่อนหนึ่งทุ่มวันนี้ค่ะ",
+      "translation": "今天晚上七點前可以來取回。",
+      "friend": {
+        "hint": "เวลารับคืนคือก่อนหนึ่งทุ่ม"
+      },
+      "inline_explain": {
+        "pattern_id": "th.a2.luggage.deadline.kon.v1",
+        "title": "ก่อน = 在...之前",
+        "explain": "ก่อนหนึ่งทุ่ม means before 7 p.m.",
+        "items": [
+          {
+            "surface": "ก่อนหนึ่งทุ่ม",
+            "translation": "晚上 7 點前",
+            "speak": "ก่อนหนึ่งทุ่ม"
+          },
+          {
+            "surface": "มารับคืน",
+            "translation": "來取回",
+            "speak": "มารับคืน"
+          }
+        ]
+      },
+      "reply_set": {
+        "correct": "r2a",
+        "choices": [
+          {
+            "id": "r2a",
+            "surface": "มารับก่อนหนึ่งทุ่มได้ใช่ไหมคะ",
+            "translation": "晚上七點前來取就可以，對嗎？",
+            "speak": "มารับก่อนหนึ่งทุ่มได้ ใช่ไหมคะ",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r2b",
+            "surface": "ฝากตอนเจ็ดโมงเช้าได้ใช่ไหมคะ",
+            "translation": "早上七點寄放就可以，對嗎？",
+            "speak": "ฝากตอนเจ็ดโมงเช้าได้ ใช่ไหมคะ",
+            "contrast_type": "wrong_time_pickup",
+            "feedback": "พนักงานบอกเวลารับคืนก่อนหนึ่งทุ่ม ไม่ใช่ฝากตอนเช้า"
+          },
+          {
+            "id": "r2c",
+            "surface": "ขอคืนเงินได้ที่ไหนคะ",
+            "translation": "退款在哪裡拿？",
+            "speak": "ขอคืนเงินได้ที่ไหนคะ",
+            "contrast_type": "forbidden_refund_domain",
+            "feedback": "เรื่องคืนเงินไม่ใช่เนื้อหาของการฝากกระเป๋านี้"
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t3",
+      "speaker": "npc",
+      "act": "receipt_instruction",
+      "act_slots": {
+        "receipt": "storage receipt",
+        "keyword": "ใบรับฝาก",
+        "gloss": "寄物單"
+      },
+      "learning_role": "listen_only",
+      "surface": "ตอนมารับคืน กรุณาแสดงใบรับฝากใบนี้ค่ะ",
+      "speak": "ตอนมารับคืน กรุณาแสดงใบรับฝากใบนี้ค่ะ",
+      "translation": "取件時請出示這張寄物單。",
+      "friend": {
+        "hint": "ต้องแสดงอะไรตอนมารับคืน"
+      },
+      "reply_set": {
+        "correct": "r3a",
+        "choices": [
+          {
+            "id": "r3a",
+            "surface": "ค่ะ ตอนรับคืนจะแสดงใบรับฝาก",
+            "translation": "好，取件時我會出示寄物單。",
+            "speak": "ค่ะ ตอนรับคืนจะแสดงใบรับฝาก",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r3b",
+            "surface": "ทิ้งใบรับฝากได้ไหมคะ",
+            "translation": "可以丟掉寄物單嗎？",
+            "speak": "ทิ้งใบรับฝากได้ไหมคะ",
+            "contrast_type": "wrong_instruction",
+            "feedback": "พนักงานบอกให้แสดงใบรับฝากตอนรับคืน จึงไม่ควรทิ้ง"
+          },
+          {
+            "id": "r3c",
+            "surface": "จะแสดงพาสปอร์ตค่ะ",
+            "translation": "我會出示護照。",
+            "speak": "จะแสดงพาสปอร์ตค่ะ",
+            "contrast_type": "forbidden_identity_detail",
+            "feedback": "งานนี้ใช้ใบรับฝาก ไม่ใช่พาสปอร์ต"
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t4",
+      "speaker": "npc",
+      "act": "service_close",
+      "act_slots": {
+        "pickup": "before 7 p.m.",
+        "receipt": "storage receipt"
+      },
+      "learning_role": "listen_only",
+      "surface": "ค่ะ มารับก่อนหนึ่งทุ่มนะคะ",
+      "speak": "ค่ะ มารับก่อนหนึ่งทุ่มนะคะ",
+      "translation": "好的，請晚上七點前來取。",
+      "friend": {
+        "hint": "ยืนยันเวลาแล้ว ขอบคุณสั้น ๆ"
+      },
+      "reply_set": {
+        "correct": "r4a",
+        "choices": [
+          {
+            "id": "r4a",
+            "surface": "ขอบคุณค่ะ จะมาก่อนหนึ่งทุ่ม",
+            "translation": "謝謝，我會七點前來。",
+            "speak": "ขอบคุณค่ะ จะมาก่อนหนึ่งทุ่ม"
+          },
+          {
+            "id": "r4b",
+            "surface": "รถไฟช้าสิบนาทีค่ะ",
+            "translation": "火車晚十分鐘。",
+            "speak": "รถไฟช้าสิบนาทีค่ะ",
+            "contrast_type": "wrong_scenario_delay",
+            "feedback": "นี่เป็นสถานการณ์รถไฟล่าช้า ไม่ใช่รับกระเป๋าคืน"
+          },
+          {
+            "id": "r4c",
+            "surface": "อยากแจ้งกระเป๋าหายค่ะ",
+            "translation": "我想申報行李遺失。",
+            "speak": "อยากแจ้งกระเป๋าหายค่ะ",
+            "contrast_type": "forbidden_lost_property_claim",
+            "feedback": "เรื่องกระเป๋าหายเกินขอบเขตงานฝากและรับคืนแบบง่ายนี้"
+          }
+        ]
+      }
+    }
+  ],
+  "choice_sets": [
+    "t1.reply_set",
+    "t2.reply_set",
+    "t3.reply_set",
+    "t4.reply_set"
+  ],
+  "feedback": "Distractors test wrong time, wrong document, wrong transport context, and out-of-scope lost-property/identity/refund content.",
+  "tts_segments": [
+    "ค่ะ อยากฝากกระเป๋าใบนี้",
+    "มารับคืนได้ก่อนหนึ่งทุ่มวันนี้ค่ะ",
+    "ค่ะ ตอนรับคืนจะแสดงใบรับฝาก",
+    "ขอบคุณค่ะ จะมาก่อนหนึ่งทุ่ม"
+  ],
+  "formula_moments": [
+    {
+      "after_turn": "t2",
+      "pattern_id": "th.a2.luggage.deadline.kon.v1"
+    }
+  ],
+  "runtime_notes": "TH A2 transport candidate. Full-walk runtime gate required before final closeout.",
+  "notes": {
+    "authoring_policy": "Fresh-authored from the neutral A2 transport brief. KO surfaces were not translated.",
+    "a2_boundary": "Uses luggage storage, pickup deadline, and receipt confirmation; avoids lost-property, compensation, passport, or ID handling."
+  }
+}

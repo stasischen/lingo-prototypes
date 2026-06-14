@@ -1,0 +1,266 @@
+{
+  "schema_version": "scenario_pack.v1",
+  "scenario_id": "a2_confirm_date_time_place",
+  "title": "Confermare data, ora e luogo",
+  "setting_label": "Controllare un breve messaggio",
+  "wrap_title": "Dettagli del messaggio",
+  "wrap_friend": "你剛剛從短訊息中抓出日期、時間、地點，並用簡單義大利語確認。",
+  "language": "it",
+  "ui_language": "zh_tw",
+  "cefr_level": "A2",
+  "source_status": "candidate_runtime_verified",
+  "review_state": "ai_reviewed",
+  "review_status_framework_state": "candidate_runtime_verified",
+  "native_review_state": "native_pending",
+  "scenario": "Confermi data, ora e luogo da un breve messaggio.",
+  "learner_goal": "Capire un messaggio breve e confermare i dettagli principali.",
+  "target_functions": [
+    "message_comprehension",
+    "date_time_place_confirmation",
+    "repair_check"
+  ],
+  "register_notes": "Italiano quotidiano e amichevole. Il messaggio è breve, naturale e senza indicazioni complesse.",
+  "input_message": {
+    "surface": "Domani alle 10, ci vediamo davanti al municipio.",
+    "translation": "明天十點，我們在市政廳前面見。"
+  },
+  "production_mode_default": {
+    "required": [
+      "choice"
+    ],
+    "optional_visible": [
+      "speaking"
+    ],
+    "optional_hidden": [
+      "typing"
+    ]
+  },
+  "support_text": "Leggi il breve messaggio del tuo amico. Conferma data, ora e luogo.",
+  "roles": {
+    "npc": {
+      "label": "Amico"
+    },
+    "learner": {
+      "label": "Tu"
+    }
+  },
+  "turns": [
+    {
+      "turn_id": "t1",
+      "speaker": "npc",
+      "act": "message_reference",
+      "act_slots": {
+        "topic": "sent message",
+        "keyword": "messaggio",
+        "gloss": "訊息"
+      },
+      "learning_role": "listen_only",
+      "surface": "Hai letto il mio messaggio?",
+      "speak": "Hai letto il mio messaggio?",
+      "translation": "你看過我的訊息了嗎？",
+      "friend": {
+        "hint": "Il messaggio dice: Domani alle 10, ci vediamo davanti al municipio. Conferma prima il giorno e l'ora."
+      },
+      "reply_set": {
+        "correct": "r1a",
+        "choices": [
+          {
+            "id": "r1a",
+            "surface": "Sì, domani alle dieci, giusto?",
+            "translation": "有，明天十點，對吧？",
+            "speak": "Sì, domani alle dieci, giusto?",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r1b",
+            "surface": "Sì, stasera alle dieci, giusto?",
+            "translation": "有，今晚十點，對吧？",
+            "speak": "Sì, stasera alle dieci, giusto?",
+            "contrast_type": "wrong_date_time",
+            "feedback": "Il messaggio dice domani alle dieci, non stasera alle dieci."
+          },
+          {
+            "id": "r1c",
+            "surface": "Sì, ho letto il menù.",
+            "translation": "有，我看過菜單了。",
+            "speak": "Sì, ho letto il menù.",
+            "contrast_type": "wrong_scenario_menu",
+            "feedback": "Il messaggio riguarda un incontro, non un menù."
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t2",
+      "speaker": "npc",
+      "act": "place_prompt",
+      "act_slots": {
+        "topic": "place",
+        "keyword": "dove",
+        "gloss": "哪裡"
+      },
+      "learning_role": "listen_only",
+      "surface": "Sì. Dove ci vediamo?",
+      "speak": "Sì. Dove ci vediamo?",
+      "translation": "對。我們在哪裡見？",
+      "friend": {
+        "hint": "Il luogo nel messaggio è davanti al municipio."
+      },
+      "inline_explain": {
+        "pattern_id": "it.a2.confirm.place.davanti_a.v1",
+        "title": "davanti a + luogo",
+        "explain": "Usa davanti a per indicare un punto davanti a un luogo.",
+        "items": [
+          {
+            "surface": "davanti al municipio",
+            "translation": "在市政廳前面",
+            "speak": "davanti al municipio"
+          },
+          {
+            "surface": "davanti al bar",
+            "translation": "在咖啡吧前面",
+            "speak": "davanti al bar"
+          }
+        ]
+      },
+      "reply_set": {
+        "correct": "r2a",
+        "choices": [
+          {
+            "id": "r2a",
+            "surface": "Davanti al municipio.",
+            "translation": "在市政廳前面。",
+            "speak": "Davanti al municipio.",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r2b",
+            "surface": "Dentro il municipio.",
+            "translation": "在市政廳裡面。",
+            "speak": "Dentro il municipio.",
+            "contrast_type": "wrong_place_relation",
+            "feedback": "Il messaggio dice davanti al municipio, non dentro."
+          },
+          {
+            "id": "r2c",
+            "surface": "Domani riposo a casa.",
+            "translation": "我明天在家休息。",
+            "speak": "Domani riposo a casa.",
+            "contrast_type": "wrong_function_plan",
+            "feedback": "Questa frase parla del tuo piano. Non conferma il luogo dell'incontro."
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t3",
+      "speaker": "npc",
+      "act": "small_change_notice",
+      "act_slots": {
+        "topic": "small change",
+        "keyword": "se",
+        "gloss": "如果"
+      },
+      "learning_role": "listen_only",
+      "surface": "Se faccio tardi, ti scrivo.",
+      "speak": "Se faccio tardi, ti scrivo.",
+      "translation": "如果我晚到，我會傳訊息給你。",
+      "friend": {
+        "hint": "Il tuo amico dice solo cosa farà se è in ritardo. Basta una risposta breve."
+      },
+      "reply_set": {
+        "correct": "r3a",
+        "choices": [
+          {
+            "id": "r3a",
+            "surface": "Va bene, ho capito.",
+            "translation": "好，我知道了。",
+            "speak": "Va bene, ho capito."
+          },
+          {
+            "id": "r3b",
+            "surface": "Va bene, sono in ritardo.",
+            "translation": "好，我遲到了。",
+            "speak": "Va bene, sono in ritardo.",
+            "contrast_type": "wrong_subject_status",
+            "feedback": "Il tuo amico parla di sé, non dice che tu sei in ritardo."
+          },
+          {
+            "id": "r3c",
+            "surface": "Se il tram è in ritardo, chiamo.",
+            "translation": "如果電車誤點，我會打電話。",
+            "speak": "Se il tram è in ritardo, chiamo.",
+            "contrast_type": "wrong_focus_self_delay",
+            "feedback": "Questa frase cambia il focus sul tuo possibile ritardo. Basta confermare."
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t4",
+      "speaker": "npc",
+      "act": "final_confirmation",
+      "act_slots": {
+        "topic": "final check"
+      },
+      "learning_role": "listen_only",
+      "surface": "Perfetto. A domani.",
+      "speak": "Perfetto. A domani.",
+      "translation": "太好了。明天見。",
+      "friend": {
+        "hint": "I dettagli sono chiari. Chiudi in modo naturale."
+      },
+      "reply_set": {
+        "correct": "r4a",
+        "choices": [
+          {
+            "id": "r4a",
+            "surface": "Sì, a domani.",
+            "translation": "好，明天見。",
+            "speak": "Sì, a domani."
+          },
+          {
+            "id": "r4b",
+            "surface": "Sì, a ieri.",
+            "translation": "好，昨天見。",
+            "speak": "Sì, a ieri.",
+            "contrast_type": "wrong_time_expression",
+            "feedback": "A ieri non è una chiusura naturale. Usa a domani."
+          },
+          {
+            "id": "r4c",
+            "surface": "Posso avere il conto?",
+            "translation": "可以給我帳單嗎？",
+            "speak": "Posso avere il conto?",
+            "contrast_type": "wrong_scenario_payment",
+            "feedback": "Questa è una frase per pagare. Qui stai solo chiudendo il piano."
+          }
+        ]
+      }
+    }
+  ],
+  "choice_sets": [
+    "t1.reply_set",
+    "t2.reply_set",
+    "t3.reply_set",
+    "t4.reply_set"
+  ],
+  "feedback": "I distrattori verificano data, ora, relazione del luogo e lingua di scenari non collegati.",
+  "tts_segments": [
+    "Sì, domani alle dieci, giusto?",
+    "Davanti al municipio.",
+    "Va bene, ho capito.",
+    "Sì, a domani."
+  ],
+  "formula_moments": [
+    {
+      "after_turn": "t2",
+      "pattern_id": "it.a2.confirm.place.davanti_a.v1"
+    }
+  ],
+  "runtime_notes": "Fresh IT A2 candidate. Structural checks and two AI semantic review passes completed on 2026-06-14 before metadata promotion.",
+  "notes": {
+    "authoring_policy": "Fresh-authored from the neutral A2 brief. KO/JA/EN/TH were used only as schema-shape and workflow references.",
+    "a2_boundary": "Short message comprehension with date, time, and place confirmation; avoids navigation and multi-step directions."
+  }
+}

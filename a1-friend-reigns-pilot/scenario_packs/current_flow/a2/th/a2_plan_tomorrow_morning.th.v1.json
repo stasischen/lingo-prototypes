@@ -1,0 +1,268 @@
+{
+  "schema_version": "scenario_pack.v1",
+  "scenario_id": "a2_plan_tomorrow_morning",
+  "brief_id": "a2_2_plan_tomorrow_morning",
+  "source_neutral_brief": "release-aggregator/docs/tasks/A2_BASELINE_INVENTORY/A2_2_NEUTRAL_ADAPTATION_BRIEFS_20260614.md#brief-1-a2_plan_tomorrow_morning",
+  "blueprint_ledger": "release-aggregator/docs/tasks/A2_BASELINE_INVENTORY/A2_2_BLUEPRINT_LEDGER_20260614.md",
+  "repo": "content-th",
+  "staging_path": "content/core/content_assets/scenario_packs/current_flow/a2/a2_plan_tomorrow_morning.th.v1.json",
+  "title": "บอกแผนพรุ่งนี้เช้า",
+  "setting_label": "คุยกับเพื่อนเรื่องพรุ่งนี้เช้า",
+  "wrap_title": "แผนพรุ่งนี้เช้า",
+  "wrap_friend": "คุณบอกแผนพรุ่งนี้เช้า เพิ่มขั้นตอนต่อไป และยืนยันเวลาว่างได้ด้วยประโยคสั้น ๆ",
+  "language": "th",
+  "ui_language": "zh_tw",
+  "cefr_level": "A2",
+  "source_status": "candidate_runtime_verified",
+  "review_state": "ai_reviewed",
+  "review_status_framework_state": "candidate_runtime_verified",
+  "native_review_state": "native_pending",
+  "scenario": "A friend asks what you plan to do tomorrow morning.",
+  "learner_goal": "Say a near-future plan with one simple next step and an approximate time.",
+  "target_functions": [
+    "near_future_plan",
+    "simple_sequence",
+    "time_expression"
+  ],
+  "register_notes": "Friendly Thai. Uses soft particles such as นะ where natural; avoids formal itinerary language.",
+  "production_mode_default": {
+    "required": [
+      "choice"
+    ],
+    "optional_visible": [
+      "speaking"
+    ],
+    "optional_hidden": [
+      "typing"
+    ]
+  },
+  "support_text": "เพื่อนถามแผนพรุ่งนี้เช้า เลือกคำตอบสั้น ๆ ที่บอกว่าจะทำอะไร แล้วทำอะไรต่อ",
+  "roles": {
+    "npc": {
+      "label": "เพื่อน"
+    },
+    "learner": {
+      "label": "คุณ"
+    }
+  },
+  "turns": [
+    {
+      "turn_id": "t1",
+      "speaker": "npc",
+      "act": "info_request",
+      "act_slots": {
+        "topic": "tomorrow morning plan",
+        "keyword": "พรุ่งนี้เช้า",
+        "gloss": "明天早上"
+      },
+      "learning_role": "listen_only",
+      "surface": "พรุ่งนี้เช้า จะทำอะไรเหรอ",
+      "speak": "พรุ่งนี้เช้า จะทำอะไรเหรอ",
+      "translation": "明天早上你要做什麼？",
+      "friend": {
+        "hint": "เพื่อนถามแผนพรุ่งนี้เช้า ใช้ จะ ไป... เพื่อบอกสิ่งที่ตั้งใจทำ"
+      },
+      "reply_set": {
+        "correct": "r1a",
+        "choices": [
+          {
+            "id": "r1a",
+            "surface": "จะไปตลาดตอนเช้า",
+            "translation": "我早上要去市場。",
+            "speak": "จะไปตลาดตอนเช้า",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r1b",
+            "surface": "เมื่อวานไปตลาดแล้ว",
+            "translation": "我昨天已經去市場了。",
+            "speak": "เมื่อวานไปตลาดแล้ว",
+            "contrast_type": "wrong_time_past",
+            "feedback": "เพื่อนถามพรุ่งนี้เช้า ไม่ใช่เมื่อวาน"
+          },
+          {
+            "id": "r1c",
+            "surface": "ตลาดอยู่ที่ไหน",
+            "translation": "市場在哪裡？",
+            "speak": "ตลาดอยู่ที่ไหน",
+            "contrast_type": "wrong_function_location_question",
+            "feedback": "นี่เป็นคำถามเรื่องสถานที่ แต่ตอนนี้ต้องบอกแผนของคุณ"
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t2",
+      "speaker": "npc",
+      "act": "followup_sequence",
+      "act_slots": {
+        "topic": "next step",
+        "keyword": "แล้วต่อ",
+        "gloss": "接著"
+      },
+      "learning_role": "listen_only",
+      "surface": "แล้วต่อจากนั้นล่ะ",
+      "speak": "แล้วต่อจากนั้นล่ะ",
+      "translation": "那之後呢？",
+      "friend": {
+        "hint": "ใช้ แล้วก็ เพื่อบอกขั้นตอนต่อไปแบบสั้น ๆ"
+      },
+      "inline_explain": {
+        "pattern_id": "th.a2.plan.sequence.laewko.v1",
+        "title": "แล้วก็ = 然後",
+        "explain": "แล้วก็ connects a simple next step in everyday Thai.",
+        "items": [
+          {
+            "surface": "แล้วก็ไปคาเฟ่",
+            "translation": "然後去咖啡店",
+            "speak": "แล้วก็ไปคาเฟ่"
+          },
+          {
+            "surface": "แล้วก็กลับบ้าน",
+            "translation": "然後回家",
+            "speak": "แล้วก็กลับบ้าน"
+          }
+        ]
+      },
+      "reply_set": {
+        "correct": "r2a",
+        "choices": [
+          {
+            "id": "r2a",
+            "surface": "แล้วก็จะไปอ่านหนังสือที่คาเฟ่",
+            "translation": "然後我會去咖啡店讀書。",
+            "speak": "แล้วก็จะไปอ่านหนังสือ ที่คาเฟ่",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r2b",
+            "surface": "เจอกันที่คาเฟ่ไหม",
+            "translation": "要在咖啡店見嗎？",
+            "speak": "เจอกันที่คาเฟ่ไหม",
+            "contrast_type": "wrong_function_meeting_place",
+            "feedback": "คำนี้ใช้ชวนเจอ แต่เพื่อนถามว่าคุณจะทำอะไรต่อ"
+          },
+          {
+            "id": "r2c",
+            "surface": "ตอนนี้อ่านเสร็จแล้ว",
+            "translation": "我現在讀完了。",
+            "speak": "ตอนนี้อ่านเสร็จแล้ว",
+            "contrast_type": "wrong_time_aspect",
+            "feedback": "ต้องบอกแผนพรุ่งนี้ต่อจากนั้น ไม่ใช่สิ่งที่ทำเสร็จแล้วตอนนี้"
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t3",
+      "speaker": "npc",
+      "act": "time_confirmation",
+      "act_slots": {
+        "topic": "availability",
+        "keyword": "ก่อนเที่ยง",
+        "gloss": "中午前"
+      },
+      "learning_role": "listen_only",
+      "surface": "งั้นก่อนเที่ยงว่างไหม",
+      "speak": "งั้นก่อนเที่ยง ว่างไหม",
+      "translation": "那中午前有空嗎？",
+      "friend": {
+        "hint": "ตอบเวลาคร่าว ๆ ได้ เช่น ประมาณสิบเอ็ดโมง"
+      },
+      "reply_set": {
+        "correct": "r3a",
+        "choices": [
+          {
+            "id": "r3a",
+            "surface": "ว่าง ประมาณสิบเอ็ดโมงนะ",
+            "translation": "有空，大約十一點。",
+            "speak": "ว่าง ประมาณสิบเอ็ดโมงนะ"
+          },
+          {
+            "id": "r3b",
+            "surface": "เมื่อวานว่างนะ",
+            "translation": "我昨天有空。",
+            "speak": "เมื่อวานว่างนะ",
+            "contrast_type": "wrong_time_past",
+            "feedback": "เพื่อนถามพรุ่งนี้ก่อนเที่ยง ไม่ใช่เมื่อวาน"
+          },
+          {
+            "id": "r3c",
+            "surface": "ตลาดปิดสิบเอ็ดโมงไหม",
+            "translation": "市場十一點關門嗎？",
+            "speak": "ตลาดปิดสิบเอ็ดโมงไหม",
+            "contrast_type": "wrong_focus_market_hours",
+            "feedback": "ตอนนี้เพื่อนถามว่าคุณว่างไหม ไม่ได้ถามเวลาปิดตลาด"
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t4",
+      "speaker": "npc",
+      "act": "closing_confirmation",
+      "act_slots": {
+        "topic": "plan confirmed"
+      },
+      "learning_role": "listen_only",
+      "surface": "โอเค งั้นสิบเอ็ดโมงค่อยคุยกัน",
+      "speak": "โอเค งั้นสิบเอ็ดโมง ค่อยคุยกัน",
+      "translation": "好，那十一點再聊。",
+      "friend": {
+        "hint": "แผนตกลงแล้ว ปิดด้วยคำสั้น ๆ แบบเพื่อนได้"
+      },
+      "reply_set": {
+        "correct": "r4a",
+        "choices": [
+          {
+            "id": "r4a",
+            "surface": "ได้เลย พรุ่งนี้เจอกันนะ",
+            "translation": "可以，明天見。",
+            "speak": "ได้เลย พรุ่งนี้เจอกันนะ"
+          },
+          {
+            "id": "r4b",
+            "surface": "ขอสั่งอีกครั้ง",
+            "translation": "我想再點一次。",
+            "speak": "ขอสั่งอีกครั้ง",
+            "contrast_type": "wrong_scenario_ordering",
+            "feedback": "นี่เป็นสถานการณ์สั่งอาหาร ไม่ใช่คุยแผนพรุ่งนี้"
+          },
+          {
+            "id": "r4c",
+            "surface": "อยากเปลี่ยนห้อง",
+            "translation": "我想換房間。",
+            "speak": "อยากเปลี่ยนห้อง",
+            "contrast_type": "wrong_scenario_hotel",
+            "feedback": "นี่เป็นสถานการณ์โรงแรม ตอนนี้แค่ยืนยันว่าเจอกันพรุ่งนี้"
+          }
+        ]
+      }
+    }
+  ],
+  "choice_sets": [
+    "t1.reply_set",
+    "t2.reply_set",
+    "t3.reply_set",
+    "t4.reply_set"
+  ],
+  "feedback": "Distractors test wrong time, wrong function, and wrong scenario without being valid alternate answers.",
+  "tts_segments": [
+    "จะไปตลาดตอนเช้า",
+    "แล้วก็จะไปอ่านหนังสือ ที่คาเฟ่",
+    "ว่าง ประมาณสิบเอ็ดโมงนะ",
+    "ได้เลย พรุ่งนี้เจอกันนะ"
+  ],
+  "formula_moments": [
+    {
+      "after_turn": "t2",
+      "pattern_id": "th.a2.plan.sequence.laewko.v1"
+    }
+  ],
+  "runtime_notes": "Thai A2 pilot candidate. Structural check passed locally on 2026-06-14; runtime smoke is represented by required shape only and still needs UI execution if available.",
+  "notes": {
+    "authoring_policy": "Fresh-authored from A2 neutral brief. KO pack was used only for schema shape.",
+    "a2_boundary": "Uses near-future plan plus one simple sequence and approximate time; avoids formal itinerary language.",
+    "thai_voice_note": "Friendly Thai with natural spacing for TTS; no English or Korean-shaped phrasing intended."
+  }
+}

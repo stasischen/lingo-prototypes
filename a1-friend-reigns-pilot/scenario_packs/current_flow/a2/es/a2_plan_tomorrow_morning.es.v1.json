@@ -1,0 +1,263 @@
+{
+  "schema_version": "scenario_pack.v1",
+  "scenario_id": "a2_plan_tomorrow_morning",
+  "title": "Plan para mañana por la mañana",
+  "setting_label": "Charla con una amiga",
+  "wrap_title": "Plan de mañana confirmado",
+  "wrap_friend": "你剛剛用西班牙語說了明天早上的安排，接上一個下一步，並確認了有空的時間。",
+  "language": "es",
+  "ui_language": "zh_tw",
+  "cefr_level": "A2",
+  "source_status": "candidate_runtime_verified",
+  "review_state": "ai_reviewed",
+  "review_status_framework_state": "candidate_runtime_verified",
+  "native_review_state": "native_pending",
+  "scenario": "Una amiga pregunta qué piensas hacer mañana por la mañana.",
+  "learner_goal": "Decir un plan cercano con un paso siguiente y una hora aproximada.",
+  "target_functions": [
+    "near_future_plan",
+    "simple_sequence",
+    "time_expression"
+  ],
+  "register_notes": "Español cotidiano con trato de tú. Usa voy a, después y sobre las once sin sonar como itinerario formal.",
+  "production_mode_default": {
+    "required": [
+      "choice"
+    ],
+    "optional_visible": [
+      "speaking"
+    ],
+    "optional_hidden": [
+      "typing"
+    ]
+  },
+  "support_text": "你的朋友問你明天早上的計畫。先說一件你打算做的事，再接一個簡單的下一步。",
+  "roles": {
+    "npc": {
+      "label": "amiga"
+    },
+    "learner": {
+      "label": "tú"
+    }
+  },
+  "turns": [
+    {
+      "turn_id": "t1",
+      "speaker": "npc",
+      "act": "info_request",
+      "act_slots": {
+        "topic": "plan de mañana por la mañana",
+        "keyword": "mañana por la mañana",
+        "gloss": "明天早上"
+      },
+      "learning_role": "listen_only",
+      "surface": "¿Qué vas a hacer mañana por la mañana?",
+      "speak": "¿Qué vas a hacer mañana por la mañana?",
+      "translation": "你明天早上打算做什麼？",
+      "friend": {
+        "hint": "對方問明天早上的計畫。用「voy a」加動詞回答。"
+      },
+      "reply_set": {
+        "correct": "r1a",
+        "choices": [
+          {
+            "id": "r1a",
+            "surface": "Voy a ir a la biblioteca.",
+            "translation": "我打算去圖書館。",
+            "speak": "Voy a ir a la biblioteca.",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r1b",
+            "surface": "Fui a la biblioteca ayer.",
+            "translation": "我昨天去了圖書館。",
+            "speak": "Fui a la biblioteca ayer.",
+            "contrast_type": "wrong_time_past",
+            "feedback": "對方問的是明天早上，不是昨天。"
+          },
+          {
+            "id": "r1c",
+            "surface": "¿Dónde está la biblioteca?",
+            "translation": "圖書館在哪裡？",
+            "speak": "¿Dónde está la biblioteca?",
+            "contrast_type": "wrong_function_location_question",
+            "feedback": "這是在問地點，沒有說你的計畫。"
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t2",
+      "speaker": "npc",
+      "act": "followup_sequence",
+      "act_slots": {
+        "topic": "siguiente paso",
+        "keyword": "después",
+        "gloss": "之後"
+      },
+      "learning_role": "listen_only",
+      "surface": "¿Y después?",
+      "speak": "¿Y después?",
+      "translation": "那之後呢？",
+      "friend": {
+        "hint": "對方在問下一步。用「Después」接下一個活動。"
+      },
+      "inline_explain": {
+        "pattern_id": "es.a2.plan.sequence.voy_a.v1",
+        "title": "voy a + verbo",
+        "explain": "說近期計畫時，西班牙語常用「voy a」加原形動詞。用「después」接下一步。",
+        "items": [
+          {
+            "surface": "Voy a ir a la biblioteca.",
+            "translation": "我打算去圖書館。",
+            "speak": "Voy a ir a la biblioteca."
+          },
+          {
+            "surface": "Después voy a estudiar.",
+            "translation": "之後我打算讀書。",
+            "speak": "Después voy a estudiar."
+          }
+        ]
+      },
+      "reply_set": {
+        "correct": "r2a",
+        "choices": [
+          {
+            "id": "r2a",
+            "surface": "Después voy a estudiar en una cafetería.",
+            "translation": "之後我打算在咖啡店讀書。",
+            "speak": "Después voy a estudiar en una cafetería.",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r2b",
+            "surface": "Quedamos en la cafetería.",
+            "translation": "我們在咖啡店見。",
+            "speak": "Quedamos en la cafetería.",
+            "contrast_type": "wrong_function_meeting_place",
+            "feedback": "這是在約地點。對方問的是你的下一個活動。"
+          },
+          {
+            "id": "r2c",
+            "surface": "Estoy estudiando ahora.",
+            "translation": "我現在正在讀書。",
+            "speak": "Estoy estudiando ahora.",
+            "contrast_type": "wrong_time_now",
+            "feedback": "這是在說現在。對方問的是明天早上的下一步。"
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t3",
+      "speaker": "npc",
+      "act": "time_confirmation",
+      "act_slots": {
+        "topic": "disponibilidad",
+        "keyword": "antes de comer",
+        "gloss": "午餐前"
+      },
+      "learning_role": "listen_only",
+      "surface": "Entonces, ¿estás libre antes de comer?",
+      "speak": "Entonces, ¿estás libre antes de comer?",
+      "translation": "所以你午餐前有空嗎？",
+      "friend": {
+        "hint": "對方問你什麼時候有空。用「sobre las...」說大約時間。"
+      },
+      "reply_set": {
+        "correct": "r3a",
+        "choices": [
+          {
+            "id": "r3a",
+            "surface": "Sí, estoy libre sobre las once.",
+            "translation": "可以，我大約十一點有空。",
+            "speak": "Sí, estoy libre sobre las once."
+          },
+          {
+            "id": "r3b",
+            "surface": "No, estuve libre ayer.",
+            "translation": "不，我昨天有空。",
+            "speak": "No, estuve libre ayer.",
+            "contrast_type": "wrong_time_past",
+            "feedback": "問題是明天午餐前，不是昨天。"
+          },
+          {
+            "id": "r3c",
+            "surface": "¿Abre la biblioteca a las once?",
+            "translation": "圖書館十一點開嗎？",
+            "speak": "¿Abre la biblioteca a las once?",
+            "contrast_type": "wrong_focus_opening_hours",
+            "feedback": "這是在問圖書館時間。朋友問的是你什麼時候有空。"
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t4",
+      "speaker": "npc",
+      "act": "closing_confirmation",
+      "act_slots": {
+        "topic": "plan confirmed"
+      },
+      "learning_role": "listen_only",
+      "surface": "Perfecto. Te escribo a las once.",
+      "speak": "Perfecto. Te escribo a las once.",
+      "translation": "很好。我十一點傳訊息給你。",
+      "friend": {
+        "hint": "計畫已經清楚了。用簡短自然的句子收尾。"
+      },
+      "reply_set": {
+        "correct": "r4a",
+        "choices": [
+          {
+            "id": "r4a",
+            "surface": "Vale, nos vemos mañana.",
+            "translation": "好，明天見。",
+            "speak": "Vale, nos vemos mañana."
+          },
+          {
+            "id": "r4b",
+            "surface": "Lo pido otra vez.",
+            "translation": "我再點一次。",
+            "speak": "Lo pido otra vez.",
+            "contrast_type": "wrong_scenario_ordering",
+            "feedback": "這像是在點餐或購物。現在只是確認明天的安排。"
+          },
+          {
+            "id": "r4c",
+            "surface": "Quiero cambiar de habitación.",
+            "translation": "我想換房間。",
+            "speak": "Quiero cambiar de habitación.",
+            "contrast_type": "wrong_scenario_hotel",
+            "feedback": "這是飯店情境。這裡用簡短道別就可以。"
+          }
+        ]
+      }
+    }
+  ],
+  "choice_sets": [
+    "t1.reply_set",
+    "t2.reply_set",
+    "t3.reply_set",
+    "t4.reply_set"
+  ],
+  "feedback": "Distractors contrast wrong time, wrong function, and wrong scenario without making another choice a valid answer.",
+  "tts_segments": [
+    "Voy a ir a la biblioteca.",
+    "Después voy a estudiar en una cafetería.",
+    "Sí, estoy libre sobre las once.",
+    "Vale, nos vemos mañana."
+  ],
+  "formula_moments": [
+    {
+      "after_turn": "t2",
+      "pattern_id": "es.a2.plan.sequence.voy_a.v1"
+    }
+  ],
+  "runtime_notes": "Fresh ES A2 candidate. Structural checks and two AI semantic review passes completed on 2026-06-14 before metadata promotion.",
+  "notes": {
+    "authoring_policy": "Fresh-authored from the neutral A2 brief. KO, JA, EN, and TH packs were not used as translation sources.",
+    "a2_boundary": "Uses near-future plan plus one simple sequence and approximate availability; avoids formal itinerary language.",
+    "spanish_register_note": "Uses neutral informal tú speech common across Spanish-learning materials."
+  }
+}

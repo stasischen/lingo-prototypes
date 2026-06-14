@@ -1,0 +1,284 @@
+{
+  "schema_version": "scenario_pack.v1",
+  "scenario_id": "a2_exchange_wrong_item",
+  "title": "잘못 받은 물건 바꾸기",
+  "setting_label": "가게 카운터",
+  "wrap_title": "교환 요청 확인",
+  "wrap_friend": "잘했어요. 낮은 위험의 음식/쇼핑 상황에서 필요한 정보를 확인하고 정중하게 선택했어요.",
+  "language": "ko",
+  "ui_language": "zh-Hant",
+  "cefr_level": "A2",
+  "source_status": "candidate_runtime_verified",
+  "review_state": "ai_reviewed",
+  "review_status_framework_state": "candidate_runtime_verified",
+  "native_review_state": "native_pending",
+  "scenario": {
+    "domain": "food_shopping_preferences",
+    "review_slice": "food_shopping",
+    "interaction": "service_preference_or_exchange",
+    "source_brief": "A2_FOOD_SHOPPING_NEUTRAL_ADAPTATION_BRIEFS_20260614",
+    "blueprint_source": "language_neutral_adaptation_brief",
+    "ko_pack_role": "mature_scenario_blueprint_not_translation_source_after_gate"
+  },
+  "learner_goal": "주문한 것과 다른 물건을 받았을 때 정중하게 바꿔 달라고 해 보세요.",
+  "target_functions": [
+    "compare_or_state_preference",
+    "confirm_key_detail",
+    "make_polite_low_risk_request",
+    "close_with_correct_next_step"
+  ],
+  "register_notes": "Korean A2 food/shopping register: polite -요/-드릴게요 service language, concise learner replies, no allergy/medical/refund-dispute framing.",
+  "production_mode_default": {
+    "required": [
+      "choice"
+    ],
+    "optional_visible": [
+      "speaking"
+    ],
+    "optional_hidden": [
+      "typing"
+    ]
+  },
+  "support_text": "주문한 것과 다른 물건을 받았을 때 정중하게 바꿔 달라고 해 보세요.",
+  "roles": {
+    "npc": {
+      "label": "호텔 직원"
+    },
+    "learner": {
+      "label": "你"
+    }
+  },
+  "turns": [
+    {
+      "turn_id": "t1",
+      "speaker": "npc",
+      "act": "report_wrong_item",
+      "act_slots": {
+        "topic": "exchange-wrong-item",
+        "keyword": "1",
+        "gloss": "A2 food/shopping"
+      },
+      "learning_role": "listen_only",
+      "surface": "도와드릴까요?",
+      "speak": "도와드릴까요?",
+      "translation": "需要幫忙嗎？",
+      "friend": {
+        "hint": "받은 물건이 주문과 다르다고 말하세요."
+      },
+      "reply_set": {
+        "correct": "r1a",
+        "choices": [
+          {
+            "id": "r1a",
+            "surface": "제가 주문한 건 작은 컵인데 큰 컵을 받았어요.",
+            "translation": "我訂的是小杯，但拿到大杯。",
+            "speak": "제가 주문한 건 작은 컵인데 큰 컵을 받았어요.",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r1b",
+            "surface": "작은 컵은 어디에서 만들어요?",
+            "translation": "小杯在哪裡製作？",
+            "speak": "작은 컵은 어디에서 만들어요?",
+            "contrast_type": "wrong_detail_or_domain",
+            "feedback": "제조 장소를 묻는 말이 아니에요."
+          },
+          {
+            "id": "r1c",
+            "surface": "가격을 깎아 주세요.",
+            "translation": "請降價。",
+            "speak": "가격을 깎아 주세요.",
+            "contrast_type": "forbidden_or_wrong_domain",
+            "feedback": "가격 흥정은 이 과제 밖이에요."
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t2",
+      "speaker": "npc",
+      "act": "staff_check",
+      "act_slots": {
+        "topic": "exchange-wrong-item",
+        "keyword": "2",
+        "gloss": "A2 food/shopping"
+      },
+      "learning_role": "listen_only",
+      "surface": "확인해 보겠습니다. 영수증을 보여 주시겠어요?",
+      "speak": "확인해 보겠습니다. 영수증을 보여 주시겠어요?",
+      "translation": "我確認一下。可以給我看收據嗎？",
+      "friend": {
+        "hint": "간단한 영수증 확인에 답하세요."
+      },
+      "reply_set": {
+        "correct": "r2a",
+        "choices": [
+          {
+            "id": "r2a",
+            "surface": "네, 여기 영수증이 있어요.",
+            "translation": "好的，這是收據。",
+            "speak": "네, 여기 영수증이 있어요.",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r2b",
+            "surface": "네, 여기 여권이 있어요.",
+            "translation": "好的，這是護照。",
+            "speak": "네, 여기 여권이 있어요.",
+            "contrast_type": "wrong_detail_or_domain",
+            "feedback": "여권은 필요하지 않아요."
+          },
+          {
+            "id": "r2c",
+            "surface": "네, 내일 기차를 탈게요.",
+            "translation": "好的，我明天搭火車。",
+            "speak": "네, 내일 기차를 탈게요.",
+            "contrast_type": "forbidden_or_wrong_domain",
+            "feedback": "교통 상황이 아니에요."
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t3",
+      "speaker": "npc",
+      "act": "offer_replacement",
+      "act_slots": {
+        "topic": "exchange-wrong-item",
+        "keyword": "3",
+        "gloss": "A2 food/shopping"
+      },
+      "learning_role": "listen_only",
+      "surface": "맞네요. 작은 컵으로 바로 바꿔 드릴게요.",
+      "speak": "맞네요. 작은 컵으로 바로 바꿔 드릴게요.",
+      "translation": "沒錯。我馬上幫您換成小杯。",
+      "friend": {
+        "hint": "교환 내용을 확인하세요."
+      },
+      "reply_set": {
+        "correct": "r3a",
+        "choices": [
+          {
+            "id": "r3a",
+            "surface": "작은 컵으로 바꿔 주시는 거죠?",
+            "translation": "您會幫我換成小杯，對嗎？",
+            "speak": "작은 컵으로 바꿔 주시는 거죠?",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r3b",
+            "surface": "환불 규정을 설명해 주세요.",
+            "translation": "請說明退款規則。",
+            "speak": "환불 규정을 설명해 주세요.",
+            "contrast_type": "wrong_detail_or_domain",
+            "feedback": "환불 규정은 너무 넓어요."
+          },
+          {
+            "id": "r3c",
+            "surface": "경찰에 신고할게요.",
+            "translation": "我要報警。",
+            "speak": "경찰에 신고할게요.",
+            "contrast_type": "forbidden_or_wrong_domain",
+            "feedback": "너무 심각한 대응이에요."
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t4",
+      "speaker": "npc",
+      "act": "confirm_replacement",
+      "act_slots": {
+        "topic": "exchange-wrong-item",
+        "keyword": "4",
+        "gloss": "A2 food/shopping"
+      },
+      "learning_role": "listen_only",
+      "surface": "네, 잠시만 기다려 주세요.",
+      "speak": "네, 잠시만 기다려 주세요.",
+      "translation": "好的，請稍等一下。",
+      "friend": {
+        "hint": "짧게 기다리겠다고 말하세요."
+      },
+      "reply_set": {
+        "correct": "r4a",
+        "choices": [
+          {
+            "id": "r4a",
+            "surface": "감사합니다. 여기서 기다릴게요.",
+            "translation": "謝謝，我在這裡等。",
+            "speak": "감사합니다. 여기서 기다릴게요.",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r4b",
+            "surface": "병원에 가야 해요.",
+            "translation": "我需要去醫院。",
+            "speak": "병원에 가야 해요.",
+            "contrast_type": "wrong_detail_or_domain",
+            "feedback": "의료 상황이 아니에요."
+          },
+          {
+            "id": "r4c",
+            "surface": "방을 바꾸고 싶어요.",
+            "translation": "我想換房。",
+            "speak": "방을 바꾸고 싶어요.",
+            "contrast_type": "forbidden_or_wrong_domain",
+            "feedback": "호텔 상황으로 바뀌었어요."
+          }
+        ]
+      }
+    }
+  ],
+  "choice_sets": {
+    "count_per_turn": 3,
+    "correct_path": [
+      "r1a",
+      "r2a",
+      "r3a",
+      "r4a"
+    ],
+    "distractor_policy": "one near-domain wrong detail plus one out-of-scope/unsafe-domain option per turn"
+  },
+  "feedback": {
+    "correct": "좋아요. 음식/쇼핑 상황 안에서 필요한 정보를 확인했어요.",
+    "incorrect": "이 상황의 메뉴, 재료, 교환, 예산 추천에 맞는 답을 고르세요."
+  },
+  "tts_segments": [
+    "도와드릴까요?",
+    "제가 주문한 건 작은 컵인데 큰 컵을 받았어요.",
+    "작은 컵은 어디에서 만들어요?",
+    "가격을 깎아 주세요.",
+    "확인해 보겠습니다. 영수증을 보여 주시겠어요?",
+    "네, 여기 영수증이 있어요.",
+    "네, 여기 여권이 있어요.",
+    "네, 내일 기차를 탈게요.",
+    "맞네요. 작은 컵으로 바로 바꿔 드릴게요.",
+    "작은 컵으로 바꿔 주시는 거죠?",
+    "환불 규정을 설명해 주세요.",
+    "경찰에 신고할게요.",
+    "네, 잠시만 기다려 주세요.",
+    "감사합니다. 여기서 기다릴게요.",
+    "병원에 가야 해요.",
+    "방을 바꾸고 싶어요."
+  ],
+  "formula_moments": [
+    {
+      "after_turn": "t2",
+      "pattern_id": "ko.a2.shopping.exchange.wrong_item.v1",
+      "label": "제가 주문한 건 X인데 Y를 받았어요",
+      "learner_takeaway": "바꿔 주실 수 있나요?"
+    }
+  ],
+  "runtime_notes": {
+    "expected_turns": 4,
+    "expected_choices_per_turn": 3,
+    "full_walk_required": true,
+    "expected_final_screen": "Wrap"
+  },
+  "notes": {
+    "generated_at": "2026-06-14",
+    "authoring_scope": "A2 food/shopping KO authoring",
+    "native_review_state": "native_pending"
+  }
+}

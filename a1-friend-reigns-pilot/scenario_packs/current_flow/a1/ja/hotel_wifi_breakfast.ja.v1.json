@@ -1,0 +1,277 @@
+{
+  "schema_version": "scenario_pack.v1",
+  "scenario_id": "hotel_wifi_breakfast",
+  "brief_id": "ml1_a1_008_hotel_wifi_breakfast",
+  "source_neutral_brief": "release-aggregator/docs/tasks/A1_MULTILINGUAL_KO_B1_PARALLEL_ORCHESTRATION/work_products/ml0/ML1_NEUTRAL_ADAPTATION_BRIEFS_20260614.md#brief-ml1-a1-008-hotel-wi-fi-and-breakfast",
+  "blueprint_ledger": "release-aggregator/docs/tasks/A1_MULTILINGUAL_KO_B1_PARALLEL_ORCHESTRATION/work_products/ml0/ML1_BLUEPRINT_LEDGER_20260614.md",
+  "repo": "content-ja",
+  "staging_path": "content/review/current_flow/scenario_pack.v1/ja/hotel_wifi_breakfast.ja.v1.json",
+  "title": "ホテルでWi-Fiと朝食を聞く",
+  "setting_label": "ホテルのフロント",
+  "wrap_title": "Wi-Fiと朝食がわかりました",
+  "wrap_friend": "Wi-Fiの情報と朝食時間を短く質問し、答えを確認してお礼を言えました。",
+  "language": "ja",
+  "ui_language": "zh_tw",
+  "source_status": "candidate_runtime_verified",
+  "review_state": "draft",
+  "review_status_framework_state": "candidate_runtime_verified",
+  "native_review_state": "native_pending",
+  "production_mode_default": {
+    "required": [
+      "choice"
+    ],
+    "optional_visible": [
+      "speaking"
+    ],
+    "optional_hidden": [
+      "typing"
+    ]
+  },
+  "support_text": "你在日本飯店櫃台。聽櫃台人員回答，選一句自然接得上的日文。",
+  "roles": {
+    "npc": {
+      "label": "フロント"
+    },
+    "learner": {
+      "label": "あなた"
+    }
+  },
+  "turns": [
+    {
+      "turn_id": "t1",
+      "speaker": "npc",
+      "act": "greet_guest",
+      "act_slots": {
+        "topic": "フロント対応",
+        "keyword": "ご用件",
+        "gloss": "需求"
+      },
+      "learning_role": "listen_only",
+      "surface": "はい、ご用件をどうぞ。",
+      "speak": "はい、ご用件をどうぞ。",
+      "translation": "好的，請問需要什麼？",
+      "friend": {
+        "hint": "你想問Wi-Fi密碼。用簡短禮貌的問題。"
+      },
+      "inline_explain": {
+        "pattern_id": "ja.hotel.wifi_question.v1",
+        "formula_ref": null,
+        "title": "Wi-Fiのパスワード",
+        "explain": "在飯店可問「Wi-Fiのパスワードはどこですか」。",
+        "items": [
+          {
+            "surface": "Wi-Fiのパスワードはどこですか。",
+            "translation": "Wi-Fi密碼在哪裡？",
+            "speak": "Wi-Fiのパスワードはどこですか。"
+          }
+        ]
+      },
+      "reply_set": {
+        "correct": "r1a",
+        "choices": [
+          {
+            "id": "r1a",
+            "surface": "Wi-Fiのパスワードはどこですか。",
+            "translation": "Wi-Fi密碼在哪裡？",
+            "speak": "Wi-Fiのパスワードはどこですか。",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r1b",
+            "surface": "ルームキーをください。",
+            "translation": "請給我房卡。",
+            "speak": "ルームキーをください。",
+            "contrast_type": "room_key_question_instead_of_wifi",
+            "feedback": "這是在要房卡。你的目標是問Wi-Fi密碼。"
+          },
+          {
+            "id": "r1c",
+            "surface": "お会計お願いします。",
+            "translation": "我要結帳。",
+            "speak": "お会計お願いします。",
+            "contrast_type": "checkout_payment_phrase",
+            "feedback": "這像是退房或付款。現在要問Wi-Fi。"
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t2",
+      "speaker": "npc",
+      "act": "give_wifi_info",
+      "act_slots": {
+        "topic": "Wi-Fi案内",
+        "keyword": "カード",
+        "gloss": "卡片"
+      },
+      "learning_role": "listen_only",
+      "surface": "パスワードはこのカードにあります。",
+      "speak": "パスワードはこのカードにあります。",
+      "translation": "密碼在這張卡上。",
+      "friend": {
+        "hint": "Wi-Fi資訊知道了。接著問早餐時間。"
+      },
+      "inline_explain": {
+        "pattern_id": "ja.hotel.breakfast_time.v1",
+        "formula_ref": null,
+        "title": "朝食は何時ですか",
+        "explain": "問早餐時間時，可以說「朝食は何時ですか」。",
+        "items": [
+          {
+            "surface": "朝食は何時ですか。",
+            "translation": "早餐是幾點？",
+            "speak": "朝食は何時ですか。"
+          }
+        ]
+      },
+      "reply_set": {
+        "correct": "r2a",
+        "choices": [
+          {
+            "id": "r2a",
+            "surface": "ありがとうございます。朝食は何時ですか。",
+            "translation": "謝謝。早餐是幾點？",
+            "speak": "ありがとうございます。朝食は何時ですか。",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r2b",
+            "surface": "カレーをください。",
+            "translation": "請給我咖哩。",
+            "speak": "カレーをください。",
+            "contrast_type": "restaurant_order_when_breakfast_info_expected",
+            "feedback": "這是在餐廳點餐。現在是在飯店櫃台問早餐資訊。"
+          },
+          {
+            "id": "r2c",
+            "surface": "カードで払います。",
+            "translation": "我用卡付款。",
+            "speak": "カードで払います。",
+            "contrast_type": "payment_answer_in_hotel_info_context",
+            "feedback": "這是在付款。現在要問早餐時間或地點。"
+          },
+          {
+            "id": "r2d",
+            "surface": "ルームキーはどこですか。",
+            "translation": "房卡在哪裡？",
+            "speak": "ルームキーはどこですか。",
+            "contrast_type": "room_key_question_instead_of_breakfast",
+            "feedback": "這又回到房卡。Wi-Fi已知道，接著問早餐。"
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t3",
+      "speaker": "npc",
+      "act": "give_breakfast_time",
+      "act_slots": {
+        "topic": "朝食時間",
+        "keyword": "7時",
+        "gloss": "七點"
+      },
+      "learning_role": "listen_only",
+      "surface": "朝食は7時からです。",
+      "speak": "朝食は7時からです。",
+      "translation": "早餐從七點開始。",
+      "friend": {
+        "hint": "櫃台告訴你早餐時間。可以確認並道謝。"
+      },
+      "reply_set": {
+        "correct": "r3a",
+        "choices": [
+          {
+            "id": "r3a",
+            "surface": "7時ですね。ありがとうございます。",
+            "translation": "七點對吧？謝謝。",
+            "speak": "7時ですね。ありがとうございます。",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r3b",
+            "surface": "9時ですね。",
+            "translation": "九點對吧？",
+            "speak": "9時ですね。",
+            "contrast_type": "wrong_time_confirmation",
+            "feedback": "櫃台說的是七點，不是九點。"
+          },
+          {
+            "id": "r3c",
+            "surface": "お会計お願いします。",
+            "translation": "我要結帳。",
+            "speak": "お会計お願いします。",
+            "contrast_type": "checkout_payment_phrase",
+            "feedback": "這像是付款或退房。現在只要確認早餐時間。"
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t4",
+      "speaker": "npc",
+      "act": "closing",
+      "act_slots": {
+        "topic": "案内終了",
+        "keyword": "どうぞ",
+        "gloss": "請"
+      },
+      "learning_role": "listen_only",
+      "surface": "どうぞごゆっくり。",
+      "speak": "どうぞごゆっくり。",
+      "translation": "請好好休息。",
+      "friend": {
+        "hint": "櫃台在結束對話。簡短道謝即可。"
+      },
+      "reply_set": {
+        "correct": "r4a",
+        "choices": [
+          {
+            "id": "r4a",
+            "surface": "ありがとうございます。",
+            "translation": "謝謝。",
+            "speak": "ありがとうございます。"
+          },
+          {
+            "id": "r4b",
+            "surface": "カレーをください。",
+            "translation": "請給我咖哩。",
+            "speak": "カレーをください。",
+            "contrast_type": "restaurant_order_after_hotel_info",
+            "feedback": "這是餐廳點餐。飯店資訊已經問完了。"
+          },
+          {
+            "id": "r4c",
+            "surface": "9時ですね。",
+            "translation": "九點對吧？",
+            "speak": "9時ですね。",
+            "contrast_type": "repeated_wrong_time",
+            "feedback": "早餐時間是七點。結尾時道謝比較自然。"
+          }
+        ]
+      },
+      "closing": {
+        "act": "hotel_info_understood",
+        "learning_role": "listen_only",
+        "surface": "Wi-Fiと朝食時間がわかりました。",
+        "speak": "Wi-Fiと朝食時間がわかりました。",
+        "translation": "你知道Wi-Fi和早餐時間了。"
+      }
+    }
+  ],
+  "formula_moments": [
+    {
+      "after_turn": "t1",
+      "pattern_id": "ja.hotel.wifi_question.v1"
+    },
+    {
+      "after_turn": "t2",
+      "pattern_id": "ja.hotel.breakfast_time.v1"
+    }
+  ],
+  "notes": {
+    "authoring_source": "Authored from ML-1 neutral brief, not Korean surface text or another target-language pack.",
+    "review_policy": "AI-authored Japanese candidate. Requires AI review, runtime smoke, and tracked native review before any stronger status.",
+    "canonical_policy": "Staging candidate only. Do not write back to manifests, production exports, schemas, or legacy content.",
+    "register_note": "Uses natural but compact hotel guest politeness."
+  }
+}

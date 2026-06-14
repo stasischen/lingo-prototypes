@@ -1,0 +1,260 @@
+{
+  "schema_version": "scenario_pack.v1",
+  "scenario_id": "a2_reschedule_meeting_time",
+  "title": "待ち合わせの時間を変える",
+  "setting_label": "友だちと時間を調整",
+  "wrap_title": "時間の変更",
+  "wrap_friend": "你剛剛用日文請對方改時間，提出新時間，最後再次確認。",
+  "language": "ja",
+  "ui_language": "zh_tw",
+  "cefr_level": "A2",
+  "source_status": "candidate_runtime_verified",
+  "review_state": "ai_reviewed",
+  "review_status_framework_state": "candidate_runtime_verified",
+  "native_review_state": "native_pending",
+  "scenario": "You need to ask a friend to move a meeting time.",
+  "learner_goal": "Ask to change a time and confirm the new time.",
+  "target_functions": [
+    "reschedule_request",
+    "alternative_time",
+    "confirmation"
+  ],
+  "register_notes": "Friendly polite です/ます. Low-stakes personal schedule, not workplace negotiation.",
+  "production_mode_default": {
+    "required": [
+      "choice"
+    ],
+    "optional_visible": [
+      "speaking"
+    ],
+    "optional_hidden": [
+      "typing"
+    ]
+  },
+  "support_text": "今日の待ち合わせ時間を少し変えたいです。別の時間にできるか聞いてみましょう。",
+  "roles": {
+    "npc": {
+      "label": "友だち"
+    },
+    "learner": {
+      "label": "你"
+    }
+  },
+  "turns": [
+    {
+      "turn_id": "t1",
+      "speaker": "npc",
+      "act": "schedule_confirmation",
+      "act_slots": {
+        "topic": "three o'clock plan",
+        "keyword": "3時",
+        "gloss": "3 點"
+      },
+      "learning_role": "listen_only",
+      "surface": "今日、3時に会う予定ですよね。",
+      "speak": "今日、三時に会う予定ですよね。",
+      "translation": "今天 3 點見，對吧？",
+      "friend": {
+        "hint": "相手は元の時間を確認しています。時間を変えたいと丁寧に言いましょう。"
+      },
+      "reply_set": {
+        "correct": "r1a",
+        "choices": [
+          {
+            "id": "r1a",
+            "surface": "すみません、時間を変えてもいいですか。",
+            "translation": "不好意思，可以改時間嗎？",
+            "speak": "すみません、時間を変えてもいいですか。",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r1b",
+            "surface": "はい、昨日会いました。",
+            "translation": "對，昨天見過了。",
+            "speak": "はい、昨日会いました。",
+            "contrast_type": "wrong_time_past",
+            "feedback": "相手は今日3時の予定を確認しています。昨日の話ではありません。"
+          },
+          {
+            "id": "r1c",
+            "surface": "カードで払います。",
+            "translation": "我用卡付款。",
+            "speak": "カードで払います。",
+            "contrast_type": "wrong_scenario_payment",
+            "feedback": "これは支払いの場面です。今は待ち合わせ時間の変更です。"
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t2",
+      "speaker": "npc",
+      "act": "alternative_request",
+      "act_slots": {
+        "topic": "new time",
+        "keyword": "何時",
+        "gloss": "幾點"
+      },
+      "learning_role": "listen_only",
+      "surface": "大丈夫です。何時がいいですか。",
+      "speak": "大丈夫です。何時がいいですか。",
+      "translation": "可以。幾點比較好？",
+      "friend": {
+        "hint": "新しい時間を一つ言いましょう。4時に変える is clear and natural."
+      },
+      "inline_explain": {
+        "pattern_id": "ja.a2.reschedule.ni_kaeru.v1",
+        "title": "時間 + に変える",
+        "explain": "Use time + に変える to say change to a different time.",
+        "items": [
+          {
+            "surface": "4時に変える",
+            "translation": "改到 4 點",
+            "speak": "四時に変える"
+          },
+          {
+            "surface": "明日に変える",
+            "translation": "改到明天",
+            "speak": "明日に変える"
+          }
+        ]
+      },
+      "reply_set": {
+        "correct": "r2a",
+        "choices": [
+          {
+            "id": "r2a",
+            "surface": "4時に変えられますか。",
+            "translation": "可以改到 4 點嗎？",
+            "speak": "四時に変えられますか。",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r2b",
+            "surface": "4番出口に行きますか。",
+            "translation": "要去 4 號出口嗎？",
+            "speak": "四番出口に行きますか。",
+            "contrast_type": "wrong_entity_exit_number",
+            "feedback": "4番出口 is exit 4. Here you need a meeting time, 4時."
+          },
+          {
+            "id": "r2c",
+            "surface": "4時に行きました。",
+            "translation": "我 4 點去了。",
+            "speak": "四時に行きました。",
+            "contrast_type": "wrong_time_past",
+            "feedback": "これは過去の話です。今は新しい時間を提案します。"
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t3",
+      "speaker": "npc",
+      "act": "accept_new_time",
+      "act_slots": {
+        "topic": "new time accepted"
+      },
+      "learning_role": "listen_only",
+      "surface": "はい、4時で大丈夫です。",
+      "speak": "はい、四時で大丈夫です。",
+      "translation": "好，4 點可以。",
+      "friend": {
+        "hint": "新しい時間が決まりました。もう一度短く確認しましょう。"
+      },
+      "reply_set": {
+        "correct": "r3a",
+        "choices": [
+          {
+            "id": "r3a",
+            "surface": "では、4時に会いましょう。",
+            "translation": "那 4 點見。",
+            "speak": "では、四時に会いましょう。"
+          },
+          {
+            "id": "r3b",
+            "surface": "では、3時に会いましょう。",
+            "translation": "那 3 點見。",
+            "speak": "では、三時に会いましょう。",
+            "contrast_type": "repeats_old_time",
+            "feedback": "新しい時間は4時です。3時は元の時間です。"
+          },
+          {
+            "id": "r3c",
+            "surface": "部屋のカードをください。",
+            "translation": "請給我房卡。",
+            "speak": "部屋のカードをください。",
+            "contrast_type": "wrong_scenario_hotel",
+            "feedback": "これはホテルの場面です。今は新しい時間を確認します。"
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t4",
+      "speaker": "npc",
+      "act": "closing",
+      "act_slots": {
+        "topic": "close plan"
+      },
+      "learning_role": "listen_only",
+      "surface": "わかりました。あとで会いましょう。",
+      "speak": "わかりました。あとで会いましょう。",
+      "translation": "知道了。等一下見。",
+      "friend": {
+        "hint": "約束が決まりました。自然に終わりましょう。"
+      },
+      "reply_set": {
+        "correct": "r4a",
+        "choices": [
+          {
+            "id": "r4a",
+            "surface": "はい、あとで会いましょう。",
+            "translation": "好，等一下見。",
+            "speak": "はい、あとで会いましょう。"
+          },
+          {
+            "id": "r4b",
+            "surface": "遅れたので。",
+            "translation": "因為遲到了。",
+            "speak": "遅れたので。",
+            "contrast_type": "fragment_without_need",
+            "feedback": "時間はもう変わりました。ここで理由の断片を足す必要はありません。"
+          },
+          {
+            "id": "r4c",
+            "surface": "もう一度予約しました。",
+            "translation": "我重新預約了。",
+            "speak": "もう一度予約しました。",
+            "contrast_type": "wrong_scenario_reservation",
+            "feedback": "これは予約の話です。友だちとの待ち合わせ時間を確認する場面です。"
+          }
+        ]
+      }
+    }
+  ],
+  "choice_sets": [
+    "t1.reply_set",
+    "t2.reply_set",
+    "t3.reply_set",
+    "t4.reply_set"
+  ],
+  "feedback": "Distractors test old versus new time, exit-number confusion, and unrelated scenario phrases.",
+  "tts_segments": [
+    "すみません、時間を変えてもいいですか。",
+    "4時に変えられますか。",
+    "では、4時に会いましょう。",
+    "はい、あとで会いましょう。"
+  ],
+  "formula_moments": [
+    {
+      "after_turn": "t2",
+      "pattern_id": "ja.a2.reschedule.ni_kaeru.v1"
+    }
+  ],
+  "runtime_notes": "JA A2 pilot candidate. Structural checks and two AI semantic review passes completed on 2026-06-14; runtime-style metadata promoted for pilot handoff. Browser/TTS runtime smoke remains native/product pending.",
+  "notes": {
+    "authoring_policy": "Fresh-authored from the neutral A2 brief. KO surfaces were read only for schema shape and not translated.",
+    "a2_boundary": "Low-stakes rescheduling with one alternative time and confirmation; no negotiation loop or long reason."
+  }
+}

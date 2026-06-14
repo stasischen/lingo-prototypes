@@ -1,0 +1,256 @@
+{
+  "schema_version": "scenario_pack.v1",
+  "scenario_id": "travel_hotel_checkin",
+  "brief_id": "ml0_a1_002_travel_hotel_checkin",
+  "source_neutral_brief": "release-aggregator/docs/tasks/A1_MULTILINGUAL_KO_B1_PARALLEL_ORCHESTRATION/work_products/ml0/ML0_NEUTRAL_ADAPTATION_BRIEFS_20260613.md#brief-ml0-a1-002-hotel-check-in",
+  "blueprint_ledger": "release-aggregator/docs/tasks/A1_MULTILINGUAL_KO_B1_PARALLEL_ORCHESTRATION/work_products/ml0/ML0_BLUEPRINT_LEDGER_20260613.md",
+  "repo": "content-th",
+  "staging_path": "content/core/content_assets/scenario_packs/current_flow/travel_hotel_checkin.th.v1.json",
+  "title": "เช็กอินที่โรงแรม",
+  "setting_label": "เคาน์เตอร์โรงแรม",
+  "wrap_title": "เช็กอินที่โรงแรมได้แล้ว",
+  "wrap_friend": "คุณบอกว่าจะเช็กอิน ให้ชื่อ และตอบรับข้อมูลห้องได้ด้วยประโยคสั้น ๆ",
+  "language": "th",
+  "ui_language": "zh_tw",
+  "source_status": "candidate_runtime_verified",
+  "review_state": "draft",
+  "review_status_framework_state": "candidate_runtime_verified",
+  "native_review_state": "native_pending",
+  "production_mode_default": {
+    "required": [
+      "choice"
+    ],
+    "optional_visible": [
+      "speaking"
+    ],
+    "optional_hidden": [
+      "typing"
+    ]
+  },
+  "support_text": "你在泰國飯店櫃台。辦理入住、說名字，並聽懂下一步。",
+  "roles": {
+    "npc": {
+      "label": "พนักงานต้อนรับ"
+    },
+    "learner": {
+      "label": "คุณ"
+    }
+  },
+  "turns": [
+    {
+      "turn_id": "t1",
+      "speaker": "npc",
+      "act": "front_desk_greeting",
+      "act_slots": {
+        "topic": "入住開場",
+        "keyword": "เช็กอิน",
+        "gloss": "入住"
+      },
+      "learning_role": "listen_only",
+      "surface": "สวัสดีค่ะ เช็กอินใช่ไหมคะ",
+      "speak": "สวัสดีค่ะ เช็กอินใช่ไหมคะ",
+      "translation": "您好。是要辦理入住嗎？",
+      "friend": {
+        "hint": "櫃台在確認你是不是要入住。可以直接說要入住。"
+      },
+      "reply_set": {
+        "correct": "r1a",
+        "choices": [
+          {
+            "id": "r1a",
+            "surface": "มาเช็กอินค่ะ",
+            "translation": "我來辦理入住。",
+            "speak": "มาเช็กอินค่ะ",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r1b",
+            "surface": "เอากาแฟค่ะ",
+            "translation": "我要咖啡。",
+            "speak": "เอากาแฟค่ะ",
+            "contrast_type": "wrong_scenario_request",
+            "feedback": "這句是在點咖啡。現在是在飯店櫃台辦理入住。"
+          },
+          {
+            "id": "r1c",
+            "surface": "สถานีอยู่ที่ไหนคะ",
+            "translation": "車站在哪裡？",
+            "speak": "สถานีอยู่ที่ไหนคะ",
+            "contrast_type": "wrong_scenario_request",
+            "feedback": "這句是在問路。櫃台現在在處理入住。"
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t2",
+      "speaker": "npc",
+      "act": "name_request",
+      "act_slots": {
+        "topic": "訂房姓名",
+        "keyword": "ชื่อ",
+        "gloss": "名字"
+      },
+      "learning_role": "listen_only",
+      "surface": "ขอชื่อที่จองไว้ด้วยค่ะ",
+      "speak": "ขอชื่อที่จองไว้ด้วยค่ะ",
+      "translation": "請給我訂房姓名。",
+      "friend": {
+        "hint": "櫃台在問訂房名字。用短句說「名字是...」。"
+      },
+      "inline_explain": {
+        "pattern_id": "th.hotel.name_is.v1",
+        "formula_ref": null,
+        "title": "ชื่อ + name",
+        "explain": "「ชื่อ...」可以用來說名字。飯店櫃台常用短句就能溝通。",
+        "items": [
+          {
+            "surface": "ชื่อหลินค่ะ",
+            "translation": "名字是林。",
+            "speak": "ชื่อหลินค่ะ"
+          },
+          {
+            "surface": "จองชื่อหลินค่ะ",
+            "translation": "用林的名字訂的。",
+            "speak": "จองชื่อหลินค่ะ"
+          }
+        ]
+      },
+      "reply_set": {
+        "correct": "r2a",
+        "choices": [
+          {
+            "id": "r2a",
+            "surface": "ชื่อหลินค่ะ",
+            "translation": "名字是林。",
+            "speak": "ชื่อหลินค่ะ",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r2b",
+            "surface": "จะเช็กเอาต์ค่ะ",
+            "translation": "我要退房。",
+            "speak": "จะเช็กเอาต์ค่ะ",
+            "contrast_type": "wrong_act_checkout",
+            "feedback": "เช็กเอาต์ 是退房。你現在是入住，要說訂房姓名。"
+          },
+          {
+            "id": "r2c",
+            "surface": "อยู่ทางซ้ายค่ะ",
+            "translation": "在左邊。",
+            "speak": "อยู่ทางซ้ายค่ะ",
+            "contrast_type": "wrong_scenario_response",
+            "feedback": "這是在回答方向。櫃台問的是訂房姓名。"
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t3",
+      "speaker": "npc",
+      "act": "reservation_confirmation",
+      "act_slots": {
+        "topic": "訂房確認",
+        "keyword": "คืน",
+        "gloss": "晚"
+      },
+      "learning_role": "listen_only",
+      "surface": "พบแล้วค่ะ พักหนึ่งคืนใช่ไหมคะ",
+      "speak": "พบแล้วค่ะ พักหนึ่งคืนใช่ไหมคะ",
+      "translation": "找到了。是一晚，對嗎？",
+      "friend": {
+        "hint": "櫃台在確認資料。正確的話，簡短說是。"
+      },
+      "reply_set": {
+        "correct": "r3a",
+        "choices": [
+          {
+            "id": "r3a",
+            "surface": "ใช่ค่ะ",
+            "translation": "是的。",
+            "speak": "ใช่ค่ะ"
+          },
+          {
+            "id": "r3b",
+            "surface": "เอากาแฟค่ะ",
+            "translation": "我要咖啡。",
+            "speak": "เอากาแฟค่ะ",
+            "contrast_type": "wrong_scenario_request",
+            "feedback": "這不是咖啡店。櫃台在確認你的訂房。"
+          },
+          {
+            "id": "r3c",
+            "surface": "ไม่เป็นไรค่ะ",
+            "translation": "不用了／沒關係。",
+            "speak": "ไม่เป็นไรค่ะ",
+            "contrast_type": "wrong_act_refusal",
+            "feedback": "這樣像是在拒絕。資料正確時，說「ใช่ค่ะ」。"
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t4",
+      "speaker": "npc",
+      "act": "key_direction",
+      "act_slots": {
+        "topic": "房卡樓層",
+        "keyword": "ชั้น",
+        "gloss": "樓層"
+      },
+      "learning_role": "listen_only",
+      "surface": "นี่คีย์การ์ดค่ะ ห้องอยู่ชั้นสามนะคะ",
+      "speak": "นี่คีย์การ์ดค่ะ ห้องอยู่ชั้นสามนะคะ",
+      "translation": "這是房卡。房間在三樓。",
+      "friend": {
+        "hint": "你拿到房卡了。簡短說謝謝就可以。"
+      },
+      "reply_set": {
+        "correct": "r4a",
+        "choices": [
+          {
+            "id": "r4a",
+            "surface": "ขอบคุณค่ะ",
+            "translation": "謝謝。",
+            "speak": "ขอบคุณค่ะ"
+          },
+          {
+            "id": "r4b",
+            "surface": "ชื่อหลินค่ะ",
+            "translation": "名字是林。",
+            "speak": "ชื่อหลินค่ะ",
+            "contrast_type": "repeated_prior_answer",
+            "feedback": "名字剛剛已經說過了。現在櫃台給你房卡。"
+          },
+          {
+            "id": "r4c",
+            "surface": "ห้องน้ำอยู่ที่ไหนคะ",
+            "translation": "洗手間在哪裡？",
+            "speak": "ห้องน้ำอยู่ที่ไหนคะ",
+            "contrast_type": "off_topic_statement",
+            "feedback": "這是另一個需求。先把入住流程結束。"
+          }
+        ]
+      },
+      "closing": {
+        "act": "front_desk_close",
+        "learning_role": "context_support",
+        "surface": "อาหารเช้าอยู่ที่ล็อบบี้ เจ็ดโมงถึงสิบโมงค่ะ",
+        "speak": "อาหารเช้าอยู่ที่ล็อบบี้ เจ็ดโมงถึงสิบโมงค่ะ",
+        "translation": "早餐在大廳，七點到十點。"
+      }
+    }
+  ],
+  "formula_moments": [
+    {
+      "after_turn": "t2",
+      "pattern_id": "th.hotel.name_is.v1"
+    }
+  ],
+  "notes": {
+    "authoring_source": "Authored from ML-0 neutral brief, not Korean surface text.",
+    "review_policy": "AI-authored Thai candidate. Requires AI review, runtime smoke, and tracked native review before any stronger status.",
+    "canonical_policy": "Staging candidate only. Do not write back to manifests, production exports, schemas, or legacy content.",
+    "thai_voice_note": "Pilot uses ค่ะ/คะ consistently to avoid slash-form TTS and beginner-input ambiguity."
+  }
+}

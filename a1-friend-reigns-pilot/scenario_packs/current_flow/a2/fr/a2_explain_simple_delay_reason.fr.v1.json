@@ -1,0 +1,265 @@
+{
+  "schema_version": "scenario_pack.v1",
+  "scenario_id": "a2_explain_simple_delay_reason",
+  "title": "Expliquer un petit retard",
+  "setting_label": "Message à une amie",
+  "wrap_title": "Dire pourquoi tu es en retard",
+  "wrap_friend": "你剛剛用簡單法語道歉、說會晚一點，並給出一個日常原因和時間估計。",
+  "language": "fr",
+  "ui_language": "zh_tw",
+  "cefr_level": "A2",
+  "source_status": "candidate_runtime_verified",
+  "review_state": "ai_reviewed",
+  "review_status_framework_state": "candidate_runtime_verified",
+  "native_review_state": "native_pending",
+  "scenario": "Une amie demande ou tu es parce que tu n'es pas encore arrive.",
+  "learner_goal": "Dire que tu vas etre un peu en retard et donner une raison simple.",
+  "target_functions": [
+    "apology",
+    "simple_reason",
+    "delay_estimate"
+  ],
+  "register_notes": "Français familier et amical. L'excuse reste basse tension et quotidienne.",
+  "production_mode_default": {
+    "required": [
+      "choice"
+    ],
+    "optional_visible": [
+      "speaking"
+    ],
+    "optional_hidden": [
+      "typing"
+    ]
+  },
+  "support_text": "Ton amie t'attend. Excuse-toi, dis que tu arrives un peu en retard, puis donne une raison simple et une estimation.",
+  "roles": {
+    "npc": {
+      "label": "amie"
+    },
+    "learner": {
+      "label": "toi"
+    }
+  },
+  "turns": [
+    {
+      "turn_id": "t1",
+      "speaker": "npc",
+      "act": "location_check",
+      "act_slots": {
+        "topic": "arrivee",
+        "keyword": "tu es ou",
+        "gloss": "你在哪裡"
+      },
+      "learning_role": "listen_only",
+      "surface": "Tu es où ? Tu es presque arrivé ?",
+      "speak": "Tu es où ? Tu es presque arrivé ?",
+      "translation": "你在哪裡？你快到了嗎？",
+      "friend": {
+        "hint": "Ton amie veut savoir si tu arrives bientot. Commence par une excuse simple."
+      },
+      "reply_set": {
+        "correct": "r1a",
+        "choices": [
+          {
+            "id": "r1a",
+            "surface": "Désolé, je vais être un peu en retard.",
+            "translation": "抱歉，我會晚一點。",
+            "speak": "Désolé, je vais être un peu en retard.",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r1b",
+            "surface": "Je suis arrivé hier.",
+            "translation": "我昨天到了。",
+            "speak": "Je suis arrivé hier.",
+            "contrast_type": "wrong_time_past",
+            "feedback": "Ton amie parle de maintenant, pas d'hier."
+          },
+          {
+            "id": "r1c",
+            "surface": "Je voudrais une table pour deux.",
+            "translation": "我想要一張兩人桌。",
+            "speak": "Je voudrais une table pour deux.",
+            "contrast_type": "wrong_scenario_restaurant",
+            "feedback": "C'est une phrase de restaurant. Ici, tu dois expliquer ton retard."
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t2",
+      "speaker": "npc",
+      "act": "delay_question",
+      "act_slots": {
+        "topic": "duree du retard",
+        "keyword": "combien de temps",
+        "gloss": "多久"
+      },
+      "learning_role": "listen_only",
+      "surface": "D'accord. Tu arrives dans combien de temps ?",
+      "speak": "D'accord. Tu arrives dans combien de temps ?",
+      "translation": "好。你多久會到？",
+      "friend": {
+        "hint": "Donne une estimation courte avec dans."
+      },
+      "inline_explain": {
+        "pattern_id": "fr.a2.delay.dans_minutes.v1",
+        "title": "dans + duree",
+        "explain": "Pour dire une estimation, utilise dans + une duree: dans dix minutes.",
+        "items": [
+          {
+            "surface": "J'arrive dans dix minutes.",
+            "translation": "我十分鐘後到。",
+            "speak": "J'arrive dans dix minutes."
+          },
+          {
+            "surface": "Je vais être un peu en retard.",
+            "translation": "我會晚一點。",
+            "speak": "Je vais être un peu en retard."
+          }
+        ]
+      },
+      "reply_set": {
+        "correct": "r2a",
+        "choices": [
+          {
+            "id": "r2a",
+            "surface": "J'arrive dans dix minutes.",
+            "translation": "我十分鐘後到。",
+            "speak": "J'arrive dans dix minutes.",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r2b",
+            "surface": "Le rendez-vous est à dix heures.",
+            "translation": "約會是十點。",
+            "speak": "Le rendez-vous est à dix heures.",
+            "contrast_type": "wrong_focus_original_time",
+            "feedback": "Cette phrase donne l'heure du rendez-vous, pas ton retard estime."
+          },
+          {
+            "id": "r2c",
+            "surface": "Je prends le café sans sucre.",
+            "translation": "我喝不加糖的咖啡。",
+            "speak": "Je prends le café sans sucre.",
+            "contrast_type": "wrong_scenario_ordering",
+            "feedback": "Cette phrase parle d'une commande, pas de ton arrivee."
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t3",
+      "speaker": "npc",
+      "act": "reason_prompt",
+      "act_slots": {
+        "topic": "raison",
+        "keyword": "pourquoi",
+        "gloss": "為什麼"
+      },
+      "learning_role": "listen_only",
+      "surface": "Pas de problème. Pourquoi ?",
+      "speak": "Pas de problème. Pourquoi ?",
+      "translation": "沒問題。為什麼？",
+      "friend": {
+        "hint": "Donne une raison quotidienne et courte."
+      },
+      "reply_set": {
+        "correct": "r3a",
+        "choices": [
+          {
+            "id": "r3a",
+            "surface": "Le bus est en retard.",
+            "translation": "公車晚點了。",
+            "speak": "Le bus est en retard.",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r3b",
+            "surface": "Le bus est très bon.",
+            "translation": "公車很好。",
+            "speak": "Le bus est très bon.",
+            "contrast_type": "wrong_meaning_quality",
+            "feedback": "Cette phrase donne une opinion, pas une raison pour ton retard."
+          },
+          {
+            "id": "r3c",
+            "surface": "J'ai déjà payé par carte.",
+            "translation": "我已經用卡付款了。",
+            "speak": "J'ai déjà payé par carte.",
+            "contrast_type": "wrong_scenario_payment",
+            "feedback": "C'est une phrase de paiement. Elle n'explique pas ton retard."
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t4",
+      "speaker": "npc",
+      "act": "closing_reassurance",
+      "act_slots": {
+        "topic": "attente"
+      },
+      "learning_role": "listen_only",
+      "surface": "D'accord, je t'attends.",
+      "speak": "D'accord, je t'attends.",
+      "translation": "好，我等你。",
+      "friend": {
+        "hint": "Remercie et confirme que tu arrives bientot."
+      },
+      "reply_set": {
+        "correct": "r4a",
+        "choices": [
+          {
+            "id": "r4a",
+            "surface": "Merci, j'arrive bientôt.",
+            "translation": "謝謝，我很快到。",
+            "speak": "Merci, j'arrive bientôt.",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r4b",
+            "surface": "Je voudrais changer l'heure.",
+            "translation": "我想改時間。",
+            "speak": "Je voudrais changer l'heure.",
+            "contrast_type": "wrong_function_reschedule",
+            "feedback": "Changer l'heure est une autre situation. Ici, ton amie accepte d'attendre."
+          },
+          {
+            "id": "r4c",
+            "surface": "Où est la gare ?",
+            "translation": "車站在哪裡？",
+            "speak": "Où est la gare ?",
+            "contrast_type": "wrong_scenario_directions",
+            "feedback": "Cette phrase demande un chemin. Il faut simplement confirmer que tu arrives."
+          }
+        ]
+      }
+    }
+  ],
+  "choice_sets": [
+    "t1.reply_set",
+    "t2.reply_set",
+    "t3.reply_set",
+    "t4.reply_set"
+  ],
+  "feedback": "Les distracteurs separent excuse, raison, estimation et autres scenarios sans introduire d'urgence.",
+  "tts_segments": [
+    "Désolé, je vais être un peu en retard.",
+    "J'arrive dans dix minutes.",
+    "Le bus est en retard.",
+    "Merci, j'arrive bientôt."
+  ],
+  "formula_moments": [
+    {
+      "after_turn": "t2",
+      "pattern_id": "fr.a2.delay.dans_minutes.v1"
+    }
+  ],
+  "runtime_notes": "Fresh FR A2 candidate. Structural checks and two AI semantic review passes completed on 2026-06-14 before metadata promotion.",
+  "notes": {
+    "authoring_policy": "Fresh-authored from the neutral A2 brief. KO, JA, EN, and TH packs were not used as translation sources.",
+    "a2_boundary": "Uses apology, simple bus-delay reason, and short estimate; avoids emergencies and formal excuses.",
+    "native_review_boundary": "AI-reviewed only; native_review_state remains native_pending."
+  }
+}

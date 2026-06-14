@@ -1,0 +1,250 @@
+{
+  "schema_version": "scenario_pack.v1",
+  "scenario_id": "social_running_late",
+  "brief_id": "ml5_a1_019_social_running_late",
+  "source_neutral_brief": "release-aggregator/docs/tasks/A1_MULTILINGUAL_KO_B1_PARALLEL_ORCHESTRATION/work_products/ml0/ML5_NEUTRAL_ADAPTATION_BRIEFS_20260614.md#brief-ml5-a1-019-say-you-are-running-late",
+  "blueprint_ledger": "release-aggregator/docs/tasks/A1_MULTILINGUAL_KO_B1_PARALLEL_ORCHESTRATION/work_products/ml0/ML5_BLUEPRINT_LEDGER_20260614.md",
+  "repo": "content-pt",
+  "staging_path": "content/core/content_assets/scenario_packs/current_flow/social_running_late.pt.v1.json",
+  "title": "Avisar que vai se atrasar",
+  "setting_label": "Mensagem para um amigo",
+  "wrap_title": "Você já pode avisar um atraso simples",
+  "wrap_friend": "Você pediu desculpa, deu uma estimativa curta, agradeceu e fechou com até já.",
+  "language": "pt",
+  "ui_language": "zh_tw",
+  "source_status": "candidate_runtime_verified",
+  "review_state": "draft",
+  "review_status_framework_state": "candidate_runtime_verified",
+  "native_review_state": "native_pending",
+  "production_mode_default": {
+    "required": [
+      "choice"
+    ],
+    "optional_visible": [
+      "speaking"
+    ],
+    "optional_hidden": [
+      "typing"
+    ]
+  },
+  "support_text": "你要和朋友見面，但會晚到。簡短說抱歉、幾分鐘後到、謝謝對方等待，最後說等一下見。",
+  "roles": {
+    "npc": {
+      "label": "amigo"
+    },
+    "learner": {
+      "label": "amigo atrasado"
+    }
+  },
+  "turns": [
+    {
+      "turn_id": "t1",
+      "speaker": "npc",
+      "act": "ask_arrival",
+      "act_slots": {
+        "topic": "chegada",
+        "keyword": "chega",
+        "gloss": "到達"
+      },
+      "learning_role": "listen_only",
+      "surface": "Você chega logo?",
+      "speak": "Você chega logo?",
+      "translation": "你快到了嗎？",
+      "friend": {
+        "hint": "朋友在等你。先簡短道歉並說會晚到。"
+      },
+      "reply_set": {
+        "correct": "r1a",
+        "choices": [
+          {
+            "id": "r1a",
+            "surface": "Desculpa, vou me atrasar.",
+            "translation": "抱歉，我會晚到。",
+            "speak": "Desculpa, vou me atrasar.",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r1b",
+            "surface": "Um café, por favor.",
+            "translation": "一杯咖啡，謝謝。",
+            "speak": "Um café, por favor.",
+            "contrast_type": "wrong_scenario_order",
+            "feedback": "這是在點餐。現在要告訴朋友你會晚到。"
+          },
+          {
+            "id": "r1c",
+            "surface": "Estou na Rua Central.",
+            "translation": "我在中央街。",
+            "speak": "Estou na Rua Central.",
+            "contrast_type": "sensitive_location_detail",
+            "feedback": "這給了精準位置。這個情境只需要說會晚到。"
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t2",
+      "speaker": "npc",
+      "act": "ask_minutes",
+      "act_slots": {
+        "topic": "tempo",
+        "keyword": "minutos",
+        "gloss": "分鐘"
+      },
+      "learning_role": "listen_only",
+      "surface": "Quantos minutos?",
+      "speak": "Quantos minutos?",
+      "translation": "幾分鐘？",
+      "friend": {
+        "hint": "給一個短估計，不要解釋太多。"
+      },
+      "inline_explain": {
+        "pattern_id": "pt.social.running_late.v1",
+        "formula_ref": null,
+        "title": "vou me atrasar / uns dez minutos",
+        "explain": "說會晚到可用 Vou me atrasar；估時間可用 uns + 分鐘。",
+        "items": [
+          {
+            "surface": "Desculpa, vou me atrasar.",
+            "translation": "抱歉，我會晚到。",
+            "speak": "Desculpa, vou me atrasar."
+          },
+          {
+            "surface": "Uns dez minutos.",
+            "translation": "大約十分鐘。",
+            "speak": "Uns dez minutos."
+          }
+        ]
+      },
+      "reply_set": {
+        "correct": "r2a",
+        "choices": [
+          {
+            "id": "r2a",
+            "surface": "Uns dez minutos.",
+            "translation": "大約十分鐘。",
+            "speak": "Uns dez minutos.",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r2b",
+            "surface": "Na saída três.",
+            "translation": "在三號出口。",
+            "speak": "Na saída três.",
+            "contrast_type": "wrong_number_context",
+            "feedback": "這是在說出口，不是回答幾分鐘。"
+          },
+          {
+            "id": "r2c",
+            "surface": "Não, obrigado.",
+            "translation": "不用了，謝謝。",
+            "speak": "Não, obrigado.",
+            "contrast_type": "wrong_act_refusal",
+            "feedback": "朋友問時間。需要給分鐘估計。"
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t3",
+      "speaker": "npc",
+      "act": "accept_waiting",
+      "act_slots": {
+        "topic": "esperar",
+        "keyword": "espero",
+        "gloss": "等"
+      },
+      "learning_role": "listen_only",
+      "surface": "Tá bom, eu espero.",
+      "speak": "Tá bom, eu espero.",
+      "translation": "好，我等你。",
+      "friend": {
+        "hint": "朋友願意等。謝謝對方等待。"
+      },
+      "reply_set": {
+        "correct": "r3a",
+        "choices": [
+          {
+            "id": "r3a",
+            "surface": "Obrigado por esperar.",
+            "translation": "謝謝你等我。",
+            "speak": "Obrigado por esperar.",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r3b",
+            "surface": "Onde fica a tomada?",
+            "translation": "插座在哪裡？",
+            "speak": "Onde fica a tomada?",
+            "contrast_type": "wrong_scenario_charging",
+            "feedback": "這是在問充電。現在要謝謝朋友等待。"
+          },
+          {
+            "id": "r3c",
+            "surface": "A conta, por favor.",
+            "translation": "請結帳。",
+            "speak": "A conta, por favor.",
+            "contrast_type": "wrong_scenario_bill",
+            "feedback": "這是餐廳結帳，不是朋友聊天。"
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t4",
+      "speaker": "npc",
+      "act": "close_see_soon",
+      "act_slots": {
+        "topic": "fechamento",
+        "keyword": "até",
+        "gloss": "見"
+      },
+      "learning_role": "listen_only",
+      "surface": "Até já.",
+      "speak": "Até já.",
+      "translation": "等一下見。",
+      "friend": {
+        "hint": "用自然的朋友收尾。"
+      },
+      "reply_set": {
+        "correct": "r4a",
+        "choices": [
+          {
+            "id": "r4a",
+            "surface": "Até já.",
+            "translation": "等一下見。",
+            "speak": "Até já."
+          },
+          {
+            "id": "r4b",
+            "surface": "Muito obrigado, senhor.",
+            "translation": "非常謝謝您，先生。",
+            "speak": "Muito obrigado, senhor.",
+            "contrast_type": "wrong_register_formal",
+            "feedback": "這太像正式服務場合。朋友之間用 Até já。"
+          },
+          {
+            "id": "r4c",
+            "surface": "Quero pagar.",
+            "translation": "我想付款。",
+            "speak": "Quero pagar.",
+            "contrast_type": "wrong_scenario_payment",
+            "feedback": "這是在付款，不是結束遲到訊息。"
+          }
+        ]
+      }
+    }
+  ],
+  "formula_moments": [
+    {
+      "after_turn": "t2",
+      "pattern_id": "pt.social.running_late.v1"
+    }
+  ],
+  "notes": {
+    "authoring_source": "Authored from ML-5 neutral brief, not Korean surface text or another target-language pack.",
+    "review_policy": "AI-authored Portuguese candidate. Requires AI review, runtime smoke, and tracked native review before any stronger status.",
+    "canonical_policy": "Staging candidate only. Do not write back to manifests, production exports, schemas, or legacy content.",
+    "portuguese_locale_note": "Brazilian friend-chat baseline with Desculpa, vou me atrasar, uns dez minutos, and Até já; no precise location or conflict."
+  }
+}

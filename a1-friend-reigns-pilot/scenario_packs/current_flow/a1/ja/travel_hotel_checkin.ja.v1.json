@@ -1,0 +1,237 @@
+{
+  "schema_version": "scenario_pack.v1",
+  "scenario_id": "travel_hotel_checkin",
+  "brief_id": "ml0_a1_002_travel_hotel_checkin",
+  "source_neutral_brief": "release-aggregator/docs/tasks/A1_MULTILINGUAL_KO_B1_PARALLEL_ORCHESTRATION/work_products/ml0/ML0_NEUTRAL_ADAPTATION_BRIEFS_20260613.md#brief-ml0-a1-002-hotel-check-in",
+  "blueprint_ledger": "release-aggregator/docs/tasks/A1_MULTILINGUAL_KO_B1_PARALLEL_ORCHESTRATION/work_products/ml0/ML0_BLUEPRINT_LEDGER_20260613.md",
+  "repo": "content-ja",
+  "staging_path": "content/review/current_flow/scenario_pack.v1/ja/travel_hotel_checkin.ja.v1.json",
+  "title": "ホテルでチェックインする",
+  "setting_label": "ホテルのフロント",
+  "wrap_title": "ホテルでチェックインできました",
+  "wrap_friend": "予約があることを伝え、名前を言って、部屋の案内まで聞けました。短い文でも手続きは進められます。",
+  "language": "ja",
+  "ui_language": "zh_tw",
+  "source_status": "candidate_runtime_verified",
+  "review_state": "draft",
+  "review_status_framework_state": "candidate_runtime_verified",
+  "native_review_state": "native_pending",
+  "production_mode_default": {
+    "required": [
+      "choice"
+    ],
+    "optional_visible": [
+      "speaking"
+    ],
+    "optional_hidden": [
+      "typing"
+    ]
+  },
+  "support_text": "你到飯店櫃台要辦理入住。用短句說有預約，再回答姓名。",
+  "roles": {
+    "npc": {
+      "label": "フロント"
+    },
+    "learner": {
+      "label": "あなた"
+    }
+  },
+  "turns": [
+    {
+      "turn_id": "t1",
+      "speaker": "npc",
+      "act": "front_desk_greeting",
+      "act_slots": {
+        "topic": "入住開場",
+        "keyword": "チェックイン",
+        "gloss": "入住"
+      },
+      "learning_role": "listen_only",
+      "surface": "いらっしゃいませ。チェックインでございますか。",
+      "speak": "いらっしゃいませ。チェックインでございますか。",
+      "translation": "歡迎光臨。要辦理入住嗎？",
+      "friend": {
+        "hint": "櫃台在確認你是不是要入住。有預約時，可以說「予約しています」。"
+      },
+      "reply_set": {
+        "correct": "r1a",
+        "choices": [
+          {
+            "id": "r1a",
+            "surface": "はい、予約しています。",
+            "translation": "是的，我有預約。",
+            "speak": "はい、予約しています。",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r1b",
+            "surface": "コーヒーをください。",
+            "translation": "請給我咖啡。",
+            "speak": "コーヒーをください。",
+            "contrast_type": "wrong_scenario_request",
+            "feedback": "這句是在點咖啡。現在是在飯店櫃台辦理入住。"
+          },
+          {
+            "id": "r1c",
+            "surface": "チェックアウトです。",
+            "translation": "我要退房。",
+            "speak": "チェックアウトです。",
+            "contrast_type": "wrong_flow_checkout",
+            "feedback": "チェックアウト是退房。剛到飯店時要說チェックイン或予約しています。"
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t2",
+      "speaker": "npc",
+      "act": "identity_prompt",
+      "act_slots": {
+        "topic": "姓名確認",
+        "keyword": "お名前",
+        "gloss": "姓名"
+      },
+      "learning_role": "listen_only",
+      "surface": "お名前をお願いします。",
+      "speak": "お名前をお願いします。",
+      "translation": "請問您的姓名。",
+      "friend": {
+        "hint": "他在問名字。用「〜です」回答就可以。"
+      },
+      "reply_set": {
+        "correct": "r2a",
+        "choices": [
+          {
+            "id": "r2a",
+            "surface": "リンです。",
+            "translation": "我是 Lin。",
+            "speak": "リンです。",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r2b",
+            "surface": "トイレはどこですか。",
+            "translation": "洗手間在哪裡？",
+            "speak": "トイレはどこですか。",
+            "contrast_type": "wrong_scenario_request",
+            "feedback": "這句是在問洗手間。櫃台現在需要你的姓名。"
+          },
+          {
+            "id": "r2c",
+            "surface": "駅に行きたいです。",
+            "translation": "我想去車站。",
+            "speak": "駅に行きたいです。",
+            "contrast_type": "wrong_scenario_directions",
+            "feedback": "這句是在問外面的方向。入住時先回答名字。"
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t3",
+      "speaker": "npc",
+      "act": "reservation_confirmation",
+      "act_slots": {
+        "topic": "預約確認",
+        "keyword": "確認",
+        "gloss": "確認"
+      },
+      "learning_role": "listen_only",
+      "surface": "はい、確認できました。シングルルームでございますね。",
+      "speak": "はい、確認できました。シングルルームでございますね。",
+      "translation": "好的，確認到了。是單人房對吧？",
+      "friend": {
+        "hint": "櫃台確認了預約和房型。沒問題時，短短回答「はい」。"
+      },
+      "reply_set": {
+        "correct": "r3a",
+        "choices": [
+          {
+            "id": "r3a",
+            "surface": "はい。",
+            "translation": "是的。",
+            "speak": "はい。"
+          },
+          {
+            "id": "r3b",
+            "surface": "いいえ、予約していません。",
+            "translation": "不，我沒有預約。",
+            "speak": "いいえ、予約していません。",
+            "contrast_type": "wrong_act_contradiction",
+            "feedback": "你剛剛已經說有預約。房型沒問題時，回答「はい」。"
+          },
+          {
+            "id": "r3c",
+            "surface": "コーヒーをください。",
+            "translation": "請給我咖啡。",
+            "speak": "コーヒーをください。",
+            "contrast_type": "off_topic_statement",
+            "feedback": "這裡不是咖啡店。先完成入住確認。"
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t4",
+      "speaker": "npc",
+      "act": "key_direction",
+      "act_slots": {
+        "topic": "房卡與樓層",
+        "keyword": "カードキー",
+        "gloss": "房卡"
+      },
+      "learning_role": "listen_only",
+      "surface": "こちらがカードキーでございます。お部屋は5階でございます。",
+      "speak": "こちらがカードキーでございます。お部屋は5階でございます。",
+      "translation": "這是房卡。您的房間在五樓。",
+      "friend": {
+        "hint": "カードキー是房卡，五階是五樓。拿到資訊後可以道謝。"
+      },
+      "reply_set": {
+        "correct": "r4a",
+        "choices": [
+          {
+            "id": "r4a",
+            "surface": "ありがとうございます。",
+            "translation": "謝謝。",
+            "speak": "ありがとうございます。"
+          },
+          {
+            "id": "r4b",
+            "surface": "リンです。",
+            "translation": "我是 Lin。",
+            "speak": "リンです。",
+            "contrast_type": "repeated_prior_answer",
+            "feedback": "名字剛剛已經說過了。現在拿到房卡，可以道謝。"
+          },
+          {
+            "id": "r4c",
+            "surface": "チェックアウトです。",
+            "translation": "我要退房。",
+            "speak": "チェックアウトです。",
+            "contrast_type": "wrong_flow_checkout",
+            "feedback": "這裡是入住完成，不是退房。"
+          }
+        ]
+      },
+      "closing": {
+        "act": "closing",
+        "learning_role": "listen_only",
+        "surface": "ごゆっくりお過ごしください。",
+        "speak": "ごゆっくりお過ごしください。",
+        "translation": "祝您住宿愉快。"
+      }
+    }
+  ],
+  "formula_moments": [
+    {
+      "after_turn": "t2",
+      "pattern_id": "ja.hotel.name.response.v1"
+    }
+  ],
+  "notes": {
+    "authoring_source": "Authored from ML-0 neutral brief, not Korean surface text.",
+    "review_policy": "AI review required before closed pilot; native review pending.",
+    "canonical_policy": "Pilot-authored staging candidate only; do not write back to canonical schema."
+  }
+}

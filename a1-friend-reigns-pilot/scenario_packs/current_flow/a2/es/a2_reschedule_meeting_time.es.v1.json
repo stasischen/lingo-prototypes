@@ -1,0 +1,263 @@
+{
+  "schema_version": "scenario_pack.v1",
+  "scenario_id": "a2_reschedule_meeting_time",
+  "title": "Cambiar la hora de una quedada",
+  "setting_label": "Plan con una amiga",
+  "wrap_title": "Nueva hora confirmada",
+  "wrap_friend": "你剛剛用西班牙語請朋友改時間，提出新的時間，並確認了新舊時間。",
+  "language": "es",
+  "ui_language": "zh_tw",
+  "cefr_level": "A2",
+  "source_status": "candidate_runtime_verified",
+  "review_state": "ai_reviewed",
+  "review_status_framework_state": "candidate_runtime_verified",
+  "native_review_state": "native_pending",
+  "scenario": "Una amiga confirma la hora original y necesitas pedir un cambio sencillo.",
+  "learner_goal": "Pedir cambiar la hora, proponer una alternativa y confirmar la nueva hora.",
+  "target_functions": [
+    "rescheduling_request",
+    "alternative_time",
+    "old_new_time_confirmation"
+  ],
+  "register_notes": "Contexto personal y de bajo riesgo. La petición es amable, corta y sin negociación larga.",
+  "production_mode_default": {
+    "required": [
+      "choice"
+    ],
+    "optional_visible": [
+      "speaking"
+    ],
+    "optional_hidden": [
+      "typing"
+    ]
+  },
+  "support_text": "你的朋友確認原本時間。用西班牙語簡短請對方改時間，提出一個新的時間，最後確認。",
+  "roles": {
+    "npc": {
+      "label": "amiga"
+    },
+    "learner": {
+      "label": "tú"
+    }
+  },
+  "turns": [
+    {
+      "turn_id": "t1",
+      "speaker": "npc",
+      "act": "original_time_confirmation",
+      "act_slots": {
+        "topic": "original meeting time",
+        "keyword": "a las tres",
+        "gloss": "三點"
+      },
+      "learning_role": "listen_only",
+      "surface": "Entonces, quedamos a las tres, ¿verdad?",
+      "speak": "Entonces, quedamos a las tres, ¿verdad?",
+      "translation": "那我們三點見，對嗎？",
+      "friend": {
+        "hint": "對方確認原本時間。如果要改時間，先禮貌提出。"
+      },
+      "reply_set": {
+        "correct": "r1a",
+        "choices": [
+          {
+            "id": "r1a",
+            "surface": "Perdona, ¿podemos cambiar la hora?",
+            "translation": "不好意思，我們可以改時間嗎？",
+            "speak": "Perdona, ¿podemos cambiar la hora?",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r1b",
+            "surface": "Sí, a las tres.",
+            "translation": "對，三點。",
+            "speak": "Sí, a las tres.",
+            "contrast_type": "old_time_repetition",
+            "feedback": "這是在確認原本時間，沒有提出改時間。"
+          },
+          {
+            "id": "r1c",
+            "surface": "La estación está cerca.",
+            "translation": "車站很近。",
+            "speak": "La estación está cerca.",
+            "contrast_type": "wrong_scenario_location",
+            "feedback": "這是在說地點。現在要請朋友改時間。"
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t2",
+      "speaker": "npc",
+      "act": "alternative_time_prompt",
+      "act_slots": {
+        "topic": "new time",
+        "keyword": "hora",
+        "gloss": "時間"
+      },
+      "learning_role": "listen_only",
+      "surface": "Claro. ¿A qué hora te va bien?",
+      "speak": "Claro. ¿A qué hora te va bien?",
+      "translation": "當然。你幾點方便？",
+      "friend": {
+        "hint": "對方問新的時間。直接提出一個可行時間。"
+      },
+      "inline_explain": {
+        "pattern_id": "es.a2.reschedule.podemos_cambiar.v1",
+        "title": "¿Podemos cambiar...?",
+        "explain": "請人改低風險安排時，可以用「¿Podemos cambiar...?」再提出新時間。",
+        "items": [
+          {
+            "surface": "¿Podemos cambiar la hora?",
+            "translation": "我們可以改時間嗎？",
+            "speak": "¿Podemos cambiar la hora?"
+          },
+          {
+            "surface": "¿Te va bien a las cuatro?",
+            "translation": "四點你方便嗎？",
+            "speak": "¿Te va bien a las cuatro?"
+          }
+        ]
+      },
+      "reply_set": {
+        "correct": "r2a",
+        "choices": [
+          {
+            "id": "r2a",
+            "surface": "¿Te va bien a las cuatro?",
+            "translation": "四點你方便嗎？",
+            "speak": "¿Te va bien a las cuatro?",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r2b",
+            "surface": "A las tres está bien.",
+            "translation": "三點可以。",
+            "speak": "A las tres está bien.",
+            "contrast_type": "old_time_repetition",
+            "feedback": "這又回到原本三點。你需要提出新的時間。"
+          },
+          {
+            "id": "r2c",
+            "surface": "En la entrada principal.",
+            "translation": "在正門。",
+            "speak": "En la entrada principal.",
+            "contrast_type": "wrong_slot_place",
+            "feedback": "這是在回答地點。對方問的是新的時間。"
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t3",
+      "speaker": "npc",
+      "act": "new_time_acceptance",
+      "act_slots": {
+        "topic": "new time accepted",
+        "keyword": "cuatro",
+        "gloss": "四點"
+      },
+      "learning_role": "listen_only",
+      "surface": "Sí, a las cuatro puedo.",
+      "speak": "Sí, a las cuatro puedo.",
+      "translation": "可以，我四點可以。",
+      "friend": {
+        "hint": "對方接受新時間。確認從三點改到四點。"
+      },
+      "reply_set": {
+        "correct": "r3a",
+        "choices": [
+          {
+            "id": "r3a",
+            "surface": "Perfecto, entonces a las cuatro.",
+            "translation": "太好了，那就四點。",
+            "speak": "Perfecto, entonces a las cuatro."
+          },
+          {
+            "id": "r3b",
+            "surface": "Perfecto, entonces a las tres.",
+            "translation": "太好了，那就三點。",
+            "speak": "Perfecto, entonces a las tres.",
+            "contrast_type": "wrong_old_time",
+            "feedback": "三點是原本時間。現在已經改成四點。"
+          },
+          {
+            "id": "r3c",
+            "surface": "Perfecto, dos entradas.",
+            "translation": "太好了，兩張票。",
+            "speak": "Perfecto, dos entradas.",
+            "contrast_type": "wrong_scenario_ticket",
+            "feedback": "這像是在買票。現在是在確認新的見面時間。"
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t4",
+      "speaker": "npc",
+      "act": "closing_summary",
+      "act_slots": {
+        "topic": "rescheduled plan"
+      },
+      "learning_role": "listen_only",
+      "surface": "Genial. Nos vemos a las cuatro.",
+      "speak": "Genial. Nos vemos a las cuatro.",
+      "translation": "很好。我們四點見。",
+      "friend": {
+        "hint": "新時間已確認。簡短道謝收尾。"
+      },
+      "reply_set": {
+        "correct": "r4a",
+        "choices": [
+          {
+            "id": "r4a",
+            "surface": "Gracias, nos vemos.",
+            "translation": "謝謝，到時見。",
+            "speak": "Gracias, nos vemos."
+          },
+          {
+            "id": "r4b",
+            "surface": "Voy a llegar diez minutos tarde.",
+            "translation": "我會晚十分鐘到。",
+            "speak": "Voy a llegar diez minutos tarde.",
+            "contrast_type": "wrong_function_delay",
+            "feedback": "這是在說遲到。這裡新時間已經確認了。"
+          },
+          {
+            "id": "r4c",
+            "surface": "Quiero pagar con tarjeta.",
+            "translation": "我想刷卡付款。",
+            "speak": "Quiero pagar con tarjeta.",
+            "contrast_type": "wrong_scenario_payment",
+            "feedback": "這是付款情境。現在只要自然收尾。"
+          }
+        ]
+      }
+    }
+  ],
+  "choice_sets": [
+    "t1.reply_set",
+    "t2.reply_set",
+    "t3.reply_set",
+    "t4.reply_set"
+  ],
+  "feedback": "Distractors test old-time repetition, place confusion, and wrong scenario while keeping the new time unambiguous.",
+  "tts_segments": [
+    "Perdona, ¿podemos cambiar la hora?",
+    "¿Te va bien a las cuatro?",
+    "Perfecto, entonces a las cuatro.",
+    "Gracias, nos vemos."
+  ],
+  "formula_moments": [
+    {
+      "after_turn": "t2",
+      "pattern_id": "es.a2.reschedule.podemos_cambiar.v1"
+    }
+  ],
+  "runtime_notes": "Fresh ES A2 candidate. Structural checks and two AI semantic review passes completed on 2026-06-14 before metadata promotion.",
+  "notes": {
+    "authoring_policy": "Fresh-authored from the neutral A2 brief. KO, JA, EN, and TH packs were not used as translation sources.",
+    "a2_boundary": "Uses one polite rescheduling request, one alternative time, and direct confirmation; avoids negotiation loops and long reasons.",
+    "spanish_register_note": "Uses friendly personal speech with Perdona, ¿te va bien...? and nos vemos."
+  }
+}

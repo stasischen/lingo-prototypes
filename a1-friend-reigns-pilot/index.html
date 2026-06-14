@@ -31,10 +31,10 @@
       color: var(--ink);
       min-height: 100vh;
     }
-    button, input { font: inherit; }
+    button, input, select { font: inherit; }
     button { border: 0; cursor: pointer; }
     .app {
-      width: min(100%, 440px);
+      width: min(100%, 760px);
       min-height: 100vh;
       margin: 0 auto;
       display: flex;
@@ -63,29 +63,111 @@
     .progress { display: grid; grid-template-columns: repeat(2, 1fr); gap: 4px; margin-top: 12px; }
     .dot { height: 5px; border-radius: 999px; background: #ddd3c6; }
     .dot.active, .dot.done { background: var(--friend); }
-    .scenario-tabs {
+    .scenario-bar {
       display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 6px;
+      grid-template-columns: 1fr auto;
+      gap: 8px;
+      align-items: center;
       margin-top: 12px;
     }
-    .scenario-tab {
-      min-height: 34px;
-      padding: 6px 8px;
+    .scenario-current {
+      min-height: 38px;
+      padding: 8px 10px;
       border-radius: 8px;
       background: rgba(255,253,248,.9);
       border: 1px solid var(--line);
-      color: var(--muted);
-      font-size: 12px;
+      color: var(--ink);
+      font-size: 13px;
       font-weight: 850;
+      text-align: left;
       overflow-wrap: anywhere;
     }
-    .scenario-tab.active {
-      background: var(--friend-soft);
-      border-color: #b9ddd7;
-      color: var(--friend);
+    .scenario-current small {
+      display: block;
+      margin-top: 2px;
+      color: var(--muted);
+      font-size: 11px;
+      font-weight: 780;
+    }
+    .scenario-picker-button {
+      min-height: 38px;
+      padding: 0 12px;
+      border-radius: 8px;
+      background: var(--friend);
+      color: white;
+      font-size: 13px;
+      font-weight: 850;
+      white-space: nowrap;
     }
     main { flex: 1; padding: 18px 18px 132px; display: flex; flex-direction: column; gap: 14px; }
+    .browser {
+      display: none;
+      padding: 2px 0 10px;
+    }
+    .browser.active { display: block; }
+    .browser-head {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 10px;
+      align-items: start;
+      margin-bottom: 12px;
+    }
+    .browser-title { margin: 0; font-size: 22px; line-height: 1.18; }
+    .browser-count { color: var(--muted); font-size: 13px; font-weight: 760; margin-top: 4px; }
+    .browser-close {
+      width: 38px;
+      height: 38px;
+      border-radius: 8px;
+      border: 1px solid var(--line);
+      background: #fff;
+      color: var(--ink);
+      font-size: 20px;
+      font-weight: 850;
+    }
+    .filters {
+      display: grid;
+      grid-template-columns: 1fr 120px 160px;
+      gap: 8px;
+      margin-bottom: 12px;
+    }
+    .filters input,
+    .filters select {
+      min-height: 42px;
+      border-radius: 8px;
+      border: 1px solid var(--line);
+      background: #fff;
+      color: var(--ink);
+      padding: 0 10px;
+    }
+    .scenario-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 10px;
+    }
+    .scenario-card {
+      text-align: left;
+      min-height: 112px;
+      padding: 12px;
+      border-radius: 8px;
+      border: 1px solid var(--line);
+      background: #fff;
+      color: var(--ink);
+      box-shadow: 0 8px 18px rgba(57, 45, 32, .06);
+      overflow-wrap: anywhere;
+    }
+    .scenario-card.active {
+      border-color: #87c7bd;
+      background: var(--friend-soft);
+    }
+    .scenario-card b { display: block; font-size: 15px; line-height: 1.25; }
+    .scenario-meta { margin-top: 8px; color: var(--muted); font-size: 12px; line-height: 1.35; font-weight: 760; }
+    .empty-state {
+      padding: 18px;
+      border-radius: 8px;
+      border: 1px dashed var(--line);
+      color: var(--muted);
+      background: rgba(255,253,248,.72);
+    }
     .screen { display: none; animation: rise .18s ease-out; }
     .screen.active { display: block; }
     @keyframes rise { from { transform: translateY(8px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
@@ -331,7 +413,7 @@
     .wrap-list { display: grid; gap: 9px; margin: 12px 0 0; }
     .wrap-item { padding: 10px; border-radius: 8px; background: #fff; border: 1px solid var(--line); }
     .friend-bar {
-      position: fixed; left: 50%; bottom: 0; transform: translateX(-50%); width: min(100%, 440px);
+      position: fixed; left: 50%; bottom: 0; transform: translateX(-50%); width: min(100%, 760px);
       padding: 10px 14px max(10px, env(safe-area-inset-bottom)); background: rgba(255,253,248,.96);
       border-top: 1px solid var(--line); display: grid; grid-template-columns: 34px 1fr auto; gap: 10px;
       align-items: center; z-index: 10; box-shadow: 0 -12px 26px rgba(57,45,32,.10);
@@ -340,6 +422,13 @@
     .bar-text { font-size: 14px; line-height: 1.35; color: var(--ink); }
     .next { min-width: 58px; height: 40px; border-radius: 8px; background: var(--friend); color: white; font-weight: 850; }
     .next:disabled { opacity: .45; cursor: not-allowed; }
+    @media (max-width: 620px) {
+      .filters { grid-template-columns: 1fr 1fr; }
+      .filters input { grid-column: 1 / -1; }
+      .scenario-grid { grid-template-columns: 1fr; }
+      .scenario-bar { grid-template-columns: 1fr; }
+      .scenario-picker-button { width: 100%; }
+    }
   </style>
 </head>
 <body>
@@ -350,9 +439,27 @@
       <div class="progress" aria-label="flow progress">
         <div class="dot active"></div><div class="dot"></div>
       </div>
-      <div class="scenario-tabs" id="scenarioTabs" aria-label="scenario selector"></div>
+      <div class="scenario-bar">
+        <button class="scenario-current" type="button" id="currentScenarioButton">載入場景中</button>
+        <button class="scenario-picker-button" type="button" id="openScenarioBrowser">選場景</button>
+      </div>
     </header>
     <main>
+      <section class="browser active" id="scenarioBrowser" aria-label="scenario browser">
+        <div class="browser-head">
+          <div>
+            <h2 class="browser-title">選擇練習場景</h2>
+            <div class="browser-count" id="browserCount">載入中</div>
+          </div>
+          <button class="browser-close" type="button" id="closeScenarioBrowser" aria-label="close scenario browser">×</button>
+        </div>
+        <div class="filters">
+          <input id="scenarioSearch" type="search" placeholder="搜尋標題、場景、地點">
+          <select id="levelFilter" aria-label="level filter"></select>
+          <select id="languageFilter" aria-label="language filter"></select>
+        </div>
+        <div class="scenario-grid" id="scenarioGrid"></div>
+      </section>
       <section class="screen active" data-title="櫃台對話" data-friend="到櫃台了。聽聽看他說什麼，挑一句回他。">
         <div class="chat-shell">
           <div class="chat-status">
@@ -394,9 +501,11 @@
     let visibleChoices = [];
     let scenarioManifest = null;
     let currentScenarioId = null;
+    let currentEntryId = null;
     let awaitingAdvanceTap = false;
     let scenarioPack = null;
     let rounds = [];
+    const browserState = { query: '', level: 'all', language: 'all' };
     const transcript = [];
     let missesByRound = [];
     function normalize(text) { return text.normalize('NFC').replace(/[.,!?，。！？\s]/g, '').trim(); }
@@ -404,7 +513,18 @@
     function npcLabel() { return scenarioPack && scenarioPack.roles && scenarioPack.roles.npc ? scenarioPack.roles.npc.label : '對方'; }
     function learnerLabel() { return scenarioPack && scenarioPack.roles && scenarioPack.roles.learner ? scenarioPack.roles.learner.label : '你'; }
     function targetLangCode() {
-      const map = { ko: 'ko-KR', ja: 'ja-JP', en: 'en-US', th: 'th-TH' };
+      const map = {
+        ko: 'ko-KR',
+        ja: 'ja-JP',
+        en: 'en-US',
+        th: 'th-TH',
+        es: 'es-ES',
+        fr: 'fr-FR',
+        de: 'de-DE',
+        it: 'it-IT',
+        zh: 'zh-CN',
+        pt: 'pt-BR'
+      };
       return map[scenarioPack && scenarioPack.language] || 'ko-KR';
     }
     function buildRounds(pack) {
@@ -760,31 +880,117 @@
       });
       list.innerHTML = items.map((item) => `<div class="wrap-item"><b>${item.surface}</b><div class="meta">${item.translation}</div></div>`).join('');
     }
-    function renderScenarioTabs() {
-      const tabs = document.getElementById('scenarioTabs');
-      if (!tabs || !scenarioManifest) return;
-      tabs.innerHTML = scenarioManifest.scenarios.map((scenario) => `<button class="scenario-tab${scenario.scenario_id === currentScenarioId ? ' active' : ''}" type="button" data-scenario-id="${scenario.scenario_id}">${scenario.label}</button>`).join('');
+    function currentEntry() {
+      if (!scenarioManifest) return null;
+      return scenarioManifest.scenarios.find((scenario) => scenario.entry_id === currentEntryId) || null;
+    }
+    function updateCurrentScenarioButton() {
+      const button = document.getElementById('currentScenarioButton');
+      const entry = currentEntry();
+      if (!button) return;
+      if (!entry) {
+        button.textContent = '尚未選擇場景';
+        return;
+      }
+      button.innerHTML = `${entry.label}<small>${entry.level.toUpperCase()} · ${entry.language_label || entry.language} · ${entry.setting_label || entry.scenario_id}</small>`;
+    }
+    function setBrowserVisible(visible) {
+      const browser = document.getElementById('scenarioBrowser');
+      if (!browser) return;
+      browser.classList.toggle('active', visible);
+      if (visible) renderScenarioBrowser();
+    }
+    function renderFilterOptions() {
+      if (!scenarioManifest) return;
+      const levelFilter = document.getElementById('levelFilter');
+      const languageFilter = document.getElementById('languageFilter');
+      const levels = Array.from(new Set(scenarioManifest.scenarios.map((scenario) => scenario.level))).sort();
+      const languages = Array.from(new Map(scenarioManifest.scenarios.map((scenario) => [scenario.language, scenario.language_label || scenario.language])).entries())
+        .sort((a, b) => a[1].localeCompare(b[1]));
+      levelFilter.innerHTML = `<option value="all">全部級別</option>${levels.map((level) => `<option value="${level}">${level.toUpperCase()}</option>`).join('')}`;
+      languageFilter.innerHTML = `<option value="all">全部語言</option>${languages.map(([code, label]) => `<option value="${code}">${label}</option>`).join('')}`;
+      levelFilter.value = browserState.level;
+      languageFilter.value = browserState.language;
+    }
+    function filteredScenarios() {
+      if (!scenarioManifest) return [];
+      const query = browserState.query.trim().toLowerCase();
+      return scenarioManifest.scenarios.filter((scenario) => {
+        if (browserState.level !== 'all' && scenario.level !== browserState.level) return false;
+        if (browserState.language !== 'all' && scenario.language !== browserState.language) return false;
+        if (!query) return true;
+        const haystack = [
+          scenario.label,
+          scenario.scenario_id,
+          scenario.setting_label,
+          scenario.language_label,
+          scenario.source_status
+        ].filter(Boolean).join(' ').toLowerCase();
+        return haystack.includes(query);
+      });
+    }
+    function renderScenarioBrowser() {
+      const grid = document.getElementById('scenarioGrid');
+      const count = document.getElementById('browserCount');
+      if (!grid || !count || !scenarioManifest) return;
+      const scenarios = filteredScenarios();
+      const summary = scenarioManifest.summary || {};
+      count.textContent = `${scenarios.length} / ${summary.total || scenarioManifest.scenarios.length} 個場景`;
+      if (!scenarios.length) {
+        grid.innerHTML = '<div class="empty-state">沒有符合條件的場景。</div>';
+        return;
+      }
+      grid.innerHTML = scenarios.map((scenario) => {
+        const active = scenario.entry_id === currentEntryId ? ' active' : '';
+        const status = scenario.source_status ? ` · ${scenario.source_status}` : '';
+        return `<button class="scenario-card${active}" type="button" data-entry-id="${scenario.entry_id}">
+          <b>${scenario.label}</b>
+          <div class="scenario-meta">${scenario.level.toUpperCase()} · ${scenario.language_label || scenario.language} · ${scenario.setting_label || scenario.scenario_id}</div>
+          <div class="scenario-meta">${scenario.turns || 0} turns${status}</div>
+        </button>`;
+      }).join('');
     }
     async function loadScenario(entry) {
       const response = await fetch(entry.path, { cache: 'no-store' });
       if (!response.ok) throw new Error(`scenario pack load failed: ${response.status}`);
       scenarioPack = await response.json();
       currentScenarioId = scenarioPack.scenario_id;
+      currentEntryId = entry.entry_id || `${entry.level || 'a1'}:${entry.language || scenarioPack.language}:${scenarioPack.scenario_id}`;
       rounds = buildRounds(scenarioPack);
       missesByRound = Array(rounds.length).fill(0);
       document.getElementById('settingLabel').textContent = scenarioPack.setting_label || entry.label;
       document.querySelector('section[data-title="櫃台對話"]').dataset.friend = scenarioPack.support_text || supportText();
       title.textContent = scenarioPack.title || entry.label;
-      renderScenarioTabs();
+      updateCurrentScenarioButton();
+      renderScenarioBrowser();
       renderWrap();
       resetDialogue();
+      setBrowserVisible(false);
       show(0);
     }
-    document.getElementById('scenarioTabs').addEventListener('click', async (event) => {
-      const button = event.target.closest('.scenario-tab');
+    document.getElementById('openScenarioBrowser').addEventListener('click', () => setBrowserVisible(true));
+    document.getElementById('currentScenarioButton').addEventListener('click', () => setBrowserVisible(true));
+    document.getElementById('closeScenarioBrowser').addEventListener('click', () => setBrowserVisible(false));
+    document.getElementById('scenarioSearch').addEventListener('input', (event) => {
+      browserState.query = event.target.value;
+      renderScenarioBrowser();
+    });
+    document.getElementById('levelFilter').addEventListener('change', (event) => {
+      browserState.level = event.target.value;
+      renderScenarioBrowser();
+    });
+    document.getElementById('languageFilter').addEventListener('change', (event) => {
+      browserState.language = event.target.value;
+      renderScenarioBrowser();
+    });
+    document.getElementById('scenarioGrid').addEventListener('click', async (event) => {
+      const button = event.target.closest('.scenario-card');
       if (!button || !scenarioManifest) return;
-      const entry = scenarioManifest.scenarios.find((scenario) => scenario.scenario_id === button.dataset.scenarioId);
-      if (!entry || entry.scenario_id === currentScenarioId) return;
+      const entry = scenarioManifest.scenarios.find((scenario) => scenario.entry_id === button.dataset.entryId);
+      if (!entry || entry.entry_id === currentEntryId) {
+        setBrowserVisible(false);
+        return;
+      }
       try {
         await loadScenario(entry);
       } catch (error) {
@@ -798,9 +1004,17 @@
         const manifestResponse = await fetch('scenario_manifest.v1.json', { cache: 'no-store' });
         if (!manifestResponse.ok) throw new Error(`scenario manifest load failed: ${manifestResponse.status}`);
         scenarioManifest = await manifestResponse.json();
-        const requestedId = new URLSearchParams(window.location.search).get('scenario') || scenarioManifest.default_scenario_id;
-        const entry = scenarioManifest.scenarios.find((scenario) => scenario.scenario_id === requestedId) || scenarioManifest.scenarios[0];
+        renderFilterOptions();
+        const params = new URLSearchParams(window.location.search);
+        const requestedEntryId = params.get('entry') || params.get('scenario');
+        const requestedScenarioId = params.get('scenario');
+        const requestedLanguage = params.get('lang');
+        const entry = scenarioManifest.scenarios.find((scenario) => scenario.entry_id === requestedEntryId)
+          || scenarioManifest.scenarios.find((scenario) => scenario.scenario_id === requestedScenarioId && (!requestedLanguage || scenario.language === requestedLanguage))
+          || scenarioManifest.scenarios.find((scenario) => scenario.entry_id === scenarioManifest.default_entry_id)
+          || scenarioManifest.scenarios[0];
         await loadScenario(entry);
+        if (!requestedEntryId && !requestedScenarioId) setBrowserVisible(true);
       } catch (error) {
         friendText.textContent = '這份練習資料載入失敗，先重新整理看看。';
         const hand = document.getElementById('responseHand');

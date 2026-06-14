@@ -1,0 +1,262 @@
+{
+  "schema_version": "scenario_pack.v1",
+  "scenario_id": "a2_plan_tomorrow_morning",
+  "title": "내일 아침 계획 말하기",
+  "setting_label": "친구와 메시지 후 통화",
+  "wrap_title": "내일 아침 계획",
+  "wrap_friend": "你剛剛說了明天早上的簡單安排。A2 要能把時間、順序和打算接起來。",
+  "language": "ko",
+  "ui_language": "zh_tw",
+  "cefr_level": "A2",
+  "source_status": "candidate_runtime_verified",
+  "review_state": "ai_reviewed",
+  "review_status_framework_state": "candidate_runtime_verified",
+  "native_review_state": "native_pending",
+  "scenario": "A friend asks what you plan to do tomorrow morning.",
+  "learner_goal": "Say a near-future plan with one simple sequence.",
+  "target_functions": [
+    "near_future_plan",
+    "simple_sequence",
+    "time_expression"
+  ],
+  "register_notes": "Friends using polite-casual -요 because the relationship is friendly but not banmal in this pack.",
+  "production_mode_default": {
+    "required": [
+      "choice"
+    ],
+    "optional_visible": [
+      "speaking"
+    ],
+    "optional_hidden": [
+      "typing"
+    ]
+  },
+  "support_text": "친구가 내일 아침 계획을 물어봐요. 무엇을 먼저 할지 짧게 말해 보세요.",
+  "roles": {
+    "npc": {
+      "label": "친구"
+    },
+    "learner": {
+      "label": "你"
+    }
+  },
+  "turns": [
+    {
+      "turn_id": "t1",
+      "speaker": "npc",
+      "act": "info_request",
+      "act_slots": {
+        "topic": "tomorrow morning plan",
+        "keyword": "내일 아침",
+        "gloss": "明天早上"
+      },
+      "learning_role": "listen_only",
+      "surface": "내일 아침에는 뭐 할 거예요?",
+      "speak": "내일 아침에는 뭐 할 거예요?",
+      "translation": "明天早上你要做什麼？",
+      "friend": {
+        "hint": "他問的是明天早上的計畫。可以用 -려고 해요 說「打算」。"
+      },
+      "reply_set": {
+        "correct": "r1a",
+        "choices": [
+          {
+            "id": "r1a",
+            "surface": "은행에 가려고 해요.",
+            "translation": "我打算去銀行。",
+            "speak": "은행에 가려고 해요.",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r1b",
+            "surface": "어제 은행에 갔어요.",
+            "translation": "我昨天去了銀行。",
+            "speak": "어제 은행에 갔어요.",
+            "contrast_type": "wrong_time_past",
+            "feedback": "他問明天早上，不是昨天。"
+          },
+          {
+            "id": "r1c",
+            "surface": "은행이 어디예요?",
+            "translation": "銀行在哪裡？",
+            "speak": "은행이 어디예요?",
+            "contrast_type": "wrong_function_location_question",
+            "feedback": "這是在問地點，不是在說你的計畫。"
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t2",
+      "speaker": "npc",
+      "act": "followup_sequence",
+      "act_slots": {
+        "topic": "after bank",
+        "keyword": "그다음에",
+        "gloss": "接著"
+      },
+      "learning_role": "listen_only",
+      "surface": "그다음에는요?",
+      "speak": "그다음에는요?",
+      "translation": "那之後呢？",
+      "friend": {
+        "hint": "그다음에는요? 是問「接下來呢？」用一句話接第二步。"
+      },
+      "inline_explain": {
+        "pattern_id": "ko.a2.plan.sequence.ryeogo.v1",
+        "title": "-려고 해요 = 打算",
+        "explain": "動詞接 -려고 해요，可以說接下來打算做什麼。",
+        "items": [
+          {
+            "surface": "가려고 해요",
+            "translation": "打算去",
+            "speak": "가려고 해요"
+          },
+          {
+            "surface": "공부하려고 해요",
+            "translation": "打算讀書",
+            "speak": "공부하려고 해요"
+          }
+        ]
+      },
+      "reply_set": {
+        "correct": "r2a",
+        "choices": [
+          {
+            "id": "r2a",
+            "surface": "그다음에 카페에서 공부하려고 해요.",
+            "translation": "接著我打算在咖啡店讀書。",
+            "speak": "그다음에 카페에서 공부하려고 해요.",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r2b",
+            "surface": "카페에서 만나요.",
+            "translation": "在咖啡店見。",
+            "speak": "카페에서 만나요.",
+            "contrast_type": "wrong_function_meeting_place",
+            "feedback": "這句可以用來約地點，但他問的是你接下來要做什麼。"
+          },
+          {
+            "id": "r2c",
+            "surface": "지금 공부했어요.",
+            "translation": "我現在讀過了。",
+            "speak": "지금 공부했어요.",
+            "contrast_type": "wrong_time_aspect",
+            "feedback": "要說明天接下來的計畫，用 -려고 해요 更合適。"
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t3",
+      "speaker": "npc",
+      "act": "time_confirmation",
+      "act_slots": {
+        "topic": "meeting after plan",
+        "keyword": "점심 전에",
+        "gloss": "午餐前"
+      },
+      "learning_role": "listen_only",
+      "surface": "그럼 점심 전에 시간 있어요?",
+      "speak": "그럼 점심 전에 시간 있어요?",
+      "translation": "那午餐前你有時間嗎？",
+      "friend": {
+        "hint": "점심 전에 是午餐前。可以說大概幾點之後有空。"
+      },
+      "reply_set": {
+        "correct": "r3a",
+        "choices": [
+          {
+            "id": "r3a",
+            "surface": "네, 11시쯤 괜찮아요.",
+            "translation": "可以，11 點左右可以。",
+            "speak": "네, 열한 시쯤 괜찮아요."
+          },
+          {
+            "id": "r3b",
+            "surface": "아니요, 어제 괜찮았어요.",
+            "translation": "不，昨天可以。",
+            "speak": "아니요, 어제 괜찮았어요.",
+            "contrast_type": "wrong_time_past",
+            "feedback": "他問明天午餐前，不是昨天。"
+          },
+          {
+            "id": "r3c",
+            "surface": "은행은 11시에 문을 닫아요?",
+            "translation": "銀行 11 點關門嗎？",
+            "speak": "은행은 열한 시에 문을 닫아요?",
+            "contrast_type": "wrong_focus_bank_hours",
+            "feedback": "現在他在問你有沒有時間。"
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t4",
+      "speaker": "npc",
+      "act": "closing_confirmation",
+      "act_slots": {
+        "topic": "plan confirmed"
+      },
+      "learning_role": "listen_only",
+      "surface": "좋아요. 그럼 11시에 연락할게요.",
+      "speak": "좋아요. 그럼 열한 시에 연락할게요.",
+      "translation": "好。那我 11 點聯絡你。",
+      "friend": {
+        "hint": "計畫確認了，用短句收尾就好。"
+      },
+      "reply_set": {
+        "correct": "r4a",
+        "choices": [
+          {
+            "id": "r4a",
+            "surface": "네, 내일 봐요.",
+            "translation": "好，明天見。",
+            "speak": "네, 내일 봐요."
+          },
+          {
+            "id": "r4b",
+            "surface": "다시 주문할게요.",
+            "translation": "我會再點一次。",
+            "speak": "다시 주문할게요.",
+            "contrast_type": "wrong_scenario_ordering",
+            "feedback": "這是點餐情境，不是約明天。"
+          },
+          {
+            "id": "r4c",
+            "surface": "방을 바꾸고 싶어요.",
+            "translation": "我想換房間。",
+            "speak": "방을 바꾸고 싶어요.",
+            "contrast_type": "wrong_scenario_hotel",
+            "feedback": "這是飯店情境。現在只要確認明天見。"
+          }
+        ]
+      }
+    }
+  ],
+  "choice_sets": [
+    "t1.reply_set",
+    "t2.reply_set",
+    "t3.reply_set",
+    "t4.reply_set"
+  ],
+  "feedback": "Distractors test wrong time, wrong function, and wrong scenario without using valid alternate answers.",
+  "tts_segments": [
+    "내일 아침에는 뭐 할 거예요?",
+    "은행에 가려고 해요.",
+    "그다음에 카페에서 공부하려고 해요.",
+    "네, 11시쯤 괜찮아요."
+  ],
+  "formula_moments": [
+    {
+      "after_turn": "t2",
+      "pattern_id": "ko.a2.plan.sequence.ryeogo.v1"
+    }
+  ],
+  "runtime_notes": "Fresh KO A2 candidate. Runtime smoke passed on 2026-06-14 before metadata promotion.",
+  "notes": {
+    "authoring_policy": "Fresh-authored from A2 scope. Legacy A2 lines were not copied or paraphrased.",
+    "a2_boundary": "Uses near-future plan plus one simple sequence; avoids extended explanation."
+  }
+}

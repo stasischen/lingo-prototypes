@@ -1,0 +1,241 @@
+{
+  "schema_version": "scenario_pack.v1",
+  "scenario_id": "travel_ticket_buying",
+  "brief_id": "ml3_a1_013_travel_ticket_buying",
+  "source_neutral_brief": "release-aggregator/docs/tasks/A1_MULTILINGUAL_KO_B1_PARALLEL_ORCHESTRATION/work_products/ml0/ML3_NEUTRAL_ADAPTATION_BRIEFS_20260614.md#brief-ml3-a1-013-buy-a-ticket",
+  "blueprint_ledger": "release-aggregator/docs/tasks/A1_MULTILINGUAL_KO_B1_PARALLEL_ORCHESTRATION/work_products/ml0/ML3_BLUEPRINT_LEDGER_20260614.md",
+  "repo": "content-en",
+  "staging_path": "curriculum/a1_travel_v1/staging/scenario_pack.v1/travel_ticket_buying.en.v1.json",
+  "title": "Buying a Ticket",
+  "setting_label": "Train ticket counter",
+  "wrap_title": "You bought one ticket",
+  "wrap_friend": "You asked for one ticket, confirmed the destination, and thanked the clerk.",
+  "language": "en",
+  "ui_language": "zh_tw",
+  "source_status": "candidate_runtime_verified",
+  "review_state": "draft",
+  "review_status_framework_state": "candidate_runtime_verified",
+  "native_review_state": "native_pending",
+  "production_mode_default": {
+    "required": [
+      "choice"
+    ],
+    "optional_visible": [
+      "speaking"
+    ],
+    "optional_hidden": [
+      "typing"
+    ]
+  },
+  "support_text": "你在火車售票櫃台買一張票。選自然、簡短的英文。",
+  "roles": {
+    "npc": {
+      "label": "Ticket clerk"
+    },
+    "learner": {
+      "label": "You"
+    }
+  },
+  "turns": [
+    {
+      "turn_id": "t1",
+      "speaker": "npc",
+      "act": "offer_help",
+      "learning_role": "listen_only",
+      "surface": "Hello. Where are you going?",
+      "speak": "Hello. Where are you going?",
+      "translation": "您好。您要去哪裡？",
+      "friend": {
+        "hint": "售票員問目的地。說 one ticket to 加地名。"
+      },
+      "reply_set": {
+        "correct": "r1a",
+        "choices": [
+          {
+            "id": "r1a",
+            "surface": "One ticket to Central Station, please.",
+            "translation": "請給我一張到中央車站的票。",
+            "speak": "One ticket to Central Station, please.",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r1b",
+            "surface": "Where is Central Station?",
+            "translation": "中央車站在哪裡？",
+            "speak": "Where is Central Station?",
+            "contrast_type": "directions_instead_of_ticket_purchase",
+            "feedback": "這是在問路，不是在買票。"
+          },
+          {
+            "id": "r1c",
+            "surface": "I'd like a sandwich.",
+            "translation": "我想要一份三明治。",
+            "speak": "I'd like a sandwich.",
+            "contrast_type": "food_order_at_ticket_counter",
+            "feedback": "這是在點餐，不適合售票櫃台。"
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t2",
+      "speaker": "npc",
+      "act": "confirm_destination_quantity",
+      "learning_role": "listen_only",
+      "surface": "One ticket to Central Station?",
+      "speak": "One ticket to Central Station?",
+      "translation": "一張到中央車站的票嗎？",
+      "friend": {
+        "hint": "確認目的地和張數。直接說 yes, please。"
+      },
+      "inline_explain": {
+        "pattern_id": "en.ticket.confirm.v1",
+        "formula_ref": null,
+        "title": "Yes, please",
+        "explain": "Use this short polite answer when staff confirms your request.",
+        "items": [
+          {
+            "surface": "Yes, please.",
+            "translation": "是的，麻煩你。",
+            "speak": "Yes, please."
+          }
+        ]
+      },
+      "reply_set": {
+        "correct": "r2a",
+        "choices": [
+          {
+            "id": "r2a",
+            "surface": "Yes, please.",
+            "translation": "是的，麻煩你。",
+            "speak": "Yes, please.",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r2b",
+            "surface": "No, cancel it.",
+            "translation": "不用，取消。",
+            "speak": "No, cancel it.",
+            "contrast_type": "cancel_when_confirmation_expected",
+            "feedback": "售票員確認的是正確資訊；這裡不該取消。"
+          },
+          {
+            "id": "r2c",
+            "surface": "Two tickets to the airport.",
+            "translation": "兩張到機場的票。",
+            "speak": "Two tickets to the airport.",
+            "contrast_type": "wrong_quantity_and_destination",
+            "feedback": "這改變了張數和目的地，和前一句不一致。"
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t3",
+      "speaker": "npc",
+      "act": "handover_ticket",
+      "learning_role": "listen_only",
+      "surface": "That's three dollars. Platform two.",
+      "speak": "That's three dollars. Platform two.",
+      "translation": "三美元。二號月台。",
+      "friend": {
+        "hint": "售票員給價格和月台。付款後簡短道謝。"
+      },
+      "reply_set": {
+        "correct": "r4a",
+        "choices": [
+          {
+            "id": "r4a",
+            "surface": "Here you go. Thank you.",
+            "translation": "給你。謝謝。",
+            "speak": "Here you go. Thank you.",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r4b",
+            "surface": "Are you going to Central Station?",
+            "translation": "你要去中央車站嗎？",
+            "speak": "Are you going to Central Station?",
+            "contrast_type": "staff_role_sentence_by_customer",
+            "feedback": "這像售票員問旅客，不是旅客付款。"
+          },
+          {
+            "id": "r4c",
+            "surface": "Nice to meet you.",
+            "translation": "很高興認識你。",
+            "speak": "Nice to meet you.",
+            "contrast_type": "social_closing_at_ticket_counter",
+            "feedback": "這是社交初次見面語，不是買票收尾。"
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t4",
+      "speaker": "npc",
+      "act": "ticket_handover",
+      "learning_role": "listen_only",
+      "surface": "Here is your ticket. Platform two.",
+      "speak": "Here is your ticket. Platform two.",
+      "translation": "這是您的票。二號月台。",
+      "friend": {
+        "hint": "拿到票和月台資訊後，簡短道謝。"
+      },
+      "reply_set": {
+        "correct": "r4a",
+        "choices": [
+          {
+            "id": "r4a",
+            "surface": "Thank you.",
+            "translation": "謝謝。",
+            "speak": "Thank you.",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r4b",
+            "surface": "Can I have a coffee?",
+            "translation": "可以給我一杯咖啡嗎？",
+            "speak": "Can I have a coffee?",
+            "contrast_type": "food_order_at_ticket_counter",
+            "feedback": "這是在點咖啡，不是售票窗口收尾。"
+          },
+          {
+            "id": "r4c",
+            "surface": "Nice to meet you.",
+            "translation": "很高興認識你。",
+            "speak": "Nice to meet you.",
+            "contrast_type": "social_closing_at_ticket_counter",
+            "feedback": "這是社交初次見面語，不是買票收尾。"
+          }
+        ]
+      },
+      "closing": {
+        "act": "travel_ticket_buying_complete",
+        "learning_role": "listen_only",
+        "surface": "Here is your ticket. Platform two.",
+        "speak": "Here is your ticket. Platform two.",
+        "translation": "這是您的票。二號月台。"
+      }
+    }
+  ],
+  "formula_moments": [
+    {
+      "after_turn": "t1",
+      "pattern_id": "en.ticket.one_to_destination.v1"
+    },
+    {
+      "after_turn": "t2",
+      "pattern_id": "en.ticket.confirm_yes_please.v1"
+    },
+    {
+      "after_turn": "t4",
+      "pattern_id": "en.ticket.here_you_go.v1"
+    }
+  ],
+  "notes": {
+    "authoring_source": "Authored from ML-3 neutral brief, not Korean surface text or another target-language pack.",
+    "review_policy": "AI-authored English candidate. Requires AI review, runtime smoke, and tracked native review before any stronger status.",
+    "canonical_policy": "Staging candidate only. Do not write back to manifests, production exports, schemas, or legacy content.",
+    "register_note": "Concise service-counter English for a simple train ticket."
+  }
+}

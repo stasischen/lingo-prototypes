@@ -1,0 +1,257 @@
+{
+  "schema_version": "scenario_pack.v1",
+  "scenario_id": "food_bill_payment",
+  "brief_id": "ml2_a1_011_food_bill_payment",
+  "source_neutral_brief": "release-aggregator/docs/tasks/A1_MULTILINGUAL_KO_B1_PARALLEL_ORCHESTRATION/work_products/ml0/ML2_NEUTRAL_ADAPTATION_BRIEFS_20260614.md#brief-ml2-a1-011-pay-the-bill",
+  "blueprint_ledger": "release-aggregator/docs/tasks/A1_MULTILINGUAL_KO_B1_PARALLEL_ORCHESTRATION/work_products/ml0/ML2_BLUEPRINT_LEDGER_20260614.md",
+  "repo": "content-es",
+  "staging_path": "content/core/content_assets/scenario_packs/current_flow/food_bill_payment.es.v1.json",
+  "title": "Pagar la cuenta",
+  "setting_label": "Cafetería sencilla",
+  "wrap_title": "Ya puedes pedir y pagar la cuenta",
+  "wrap_friend": "Pediste la cuenta, respondiste cómo pagar y cerraste con un gracias.",
+  "language": "es",
+  "ui_language": "zh_tw",
+  "source_status": "candidate_runtime_verified",
+  "review_state": "draft",
+  "review_status_framework_state": "candidate_runtime_verified",
+  "native_review_state": "native_pending",
+  "production_mode_default": {
+    "required": [
+      "choice"
+    ],
+    "optional_visible": [
+      "speaking"
+    ],
+    "optional_hidden": [
+      "typing"
+    ]
+  },
+  "support_text": "你在西語咖啡店用餐後要結帳。選一句簡短自然的西班牙語。",
+  "roles": {
+    "npc": {
+      "label": "camarero"
+    },
+    "learner": {
+      "label": "cliente"
+    }
+  },
+  "turns": [
+    {
+      "turn_id": "t1",
+      "speaker": "npc",
+      "act": "service_check",
+      "act_slots": {
+        "topic": "atender mesa",
+        "keyword": "algo",
+        "gloss": "需要什麼"
+      },
+      "learning_role": "listen_only",
+      "surface": "¿Todo bien? ¿Necesita algo más?",
+      "speak": "¿Todo bien? ¿Necesita algo más?",
+      "translation": "都還好嗎？還需要什麼嗎？",
+      "friend": {
+        "hint": "你已經吃完了。現在可以請服務生拿帳單。"
+      },
+      "reply_set": {
+        "correct": "r1a",
+        "choices": [
+          {
+            "id": "r1a",
+            "surface": "La cuenta, por favor.",
+            "translation": "請結帳。",
+            "speak": "La cuenta, por favor.",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r1b",
+            "surface": "Quiero otra sopa.",
+            "translation": "我想再要一份湯。",
+            "speak": "Quiero otra sopa.",
+            "contrast_type": "wrong_sequence_more_food",
+            "feedback": "這是在加點食物。現在的目標是結帳。"
+          },
+          {
+            "id": "r1c",
+            "surface": "¿Dónde está la estación?",
+            "translation": "車站在哪裡？",
+            "speak": "¿Dónde está la estación?",
+            "contrast_type": "wrong_scenario_directions",
+            "feedback": "這是在問路，不是在餐廳結帳。"
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t2",
+      "speaker": "npc",
+      "act": "payment_prompt",
+      "act_slots": {
+        "topic": "forma de pago",
+        "keyword": "tarjeta",
+        "gloss": "卡"
+      },
+      "learning_role": "listen_only",
+      "surface": "Claro. ¿Paga con tarjeta o en efectivo?",
+      "speak": "Claro. ¿Paga con tarjeta o en efectivo?",
+      "translation": "好的。您用卡還是現金付款？",
+      "friend": {
+        "hint": "服務生在問付款方式。選一個短回答。"
+      },
+      "inline_explain": {
+        "pattern_id": "es.restaurant.bill_payment.v1",
+        "formula_ref": null,
+        "title": "La cuenta + pago",
+        "explain": "在餐廳要結帳，可以說 La cuenta, por favor。付款時說 Con tarjeta 或 En efectivo。",
+        "items": [
+          {
+            "surface": "La cuenta, por favor.",
+            "translation": "請結帳。",
+            "speak": "La cuenta, por favor."
+          },
+          {
+            "surface": "Con tarjeta, por favor.",
+            "translation": "請用卡。",
+            "speak": "Con tarjeta, por favor."
+          }
+        ]
+      },
+      "reply_set": {
+        "correct": "r2a",
+        "choices": [
+          {
+            "id": "r2a",
+            "surface": "Con tarjeta, por favor.",
+            "translation": "請用卡。",
+            "speak": "Con tarjeta, por favor.",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r2b",
+            "surface": "Sin recibo, gracias.",
+            "translation": "不用收據，謝謝。",
+            "speak": "Sin recibo, gracias.",
+            "contrast_type": "wrong_prompt_receipt",
+            "feedback": "這是在回答收據問題。現在問的是付款方式。"
+          },
+          {
+            "id": "r2c",
+            "surface": "¿Cuánto cuesta esto?",
+            "translation": "這個多少錢？",
+            "speak": "¿Cuánto cuesta esto?",
+            "contrast_type": "wrong_scenario_shopping",
+            "feedback": "這是在商店問商品價格，不是餐廳付帳。"
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t3",
+      "speaker": "npc",
+      "act": "receipt_prompt",
+      "act_slots": {
+        "topic": "recibo",
+        "keyword": "recibo",
+        "gloss": "收據"
+      },
+      "learning_role": "listen_only",
+      "surface": "Perfecto. ¿Quiere recibo?",
+      "speak": "Perfecto. ¿Quiere recibo?",
+      "translation": "好的。您要收據嗎？",
+      "friend": {
+        "hint": "如果不需要收據，簡短說不用。"
+      },
+      "reply_set": {
+        "correct": "r3a",
+        "choices": [
+          {
+            "id": "r3a",
+            "surface": "No, gracias.",
+            "translation": "不用，謝謝。",
+            "speak": "No, gracias.",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r3b",
+            "surface": "Somos dos personas.",
+            "translation": "我們是兩個人。",
+            "speak": "Somos dos personas.",
+            "contrast_type": "wrong_prior_context",
+            "feedback": "人數不是現在的問題。服務生問你要不要收據。"
+          },
+          {
+            "id": "r3c",
+            "surface": "Quedamos aquí.",
+            "translation": "我們在這裡見。",
+            "speak": "Quedamos aquí.",
+            "contrast_type": "wrong_scenario_meeting",
+            "feedback": "這是朋友碰面情境，不是付款收據。"
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t4",
+      "speaker": "npc",
+      "act": "payment_close",
+      "act_slots": {
+        "topic": "cerrar pago",
+        "keyword": "listo",
+        "gloss": "完成"
+      },
+      "learning_role": "listen_only",
+      "surface": "Listo, muchas gracias.",
+      "speak": "Listo, muchas gracias.",
+      "translation": "好了，非常謝謝。",
+      "friend": {
+        "hint": "交易完成了，禮貌回謝即可。"
+      },
+      "reply_set": {
+        "correct": "r4a",
+        "choices": [
+          {
+            "id": "r4a",
+            "surface": "Gracias. Adiós.",
+            "translation": "謝謝。再見。",
+            "speak": "Gracias. Adiós."
+          },
+          {
+            "id": "r4b",
+            "surface": "Quiero un café.",
+            "translation": "我想要一杯咖啡。",
+            "speak": "Quiero un café.",
+            "contrast_type": "wrong_sequence_ordering",
+            "feedback": "付款已完成，現在不是再點餐。"
+          },
+          {
+            "id": "r4c",
+            "surface": "¿Cuánto cuesta esto?",
+            "translation": "這個多少錢？",
+            "speak": "¿Cuánto cuesta esto?",
+            "contrast_type": "wrong_scenario_shopping",
+            "feedback": "這是購物問價，不是結帳結尾。"
+          }
+        ]
+      },
+      "closing": {
+        "act": "server_close",
+        "learning_role": "listen_only",
+        "surface": "Hasta luego.",
+        "speak": "Hasta luego.",
+        "translation": "再見。"
+      }
+    }
+  ],
+  "formula_moments": [
+    {
+      "after_turn": "t2",
+      "pattern_id": "es.restaurant.bill_payment.v1"
+    }
+  ],
+  "notes": {
+    "authoring_source": "Authored from ML-2 neutral brief, not Korean surface text or another target-language pack.",
+    "review_policy": "AI-authored Spanish candidate. Requires AI review, runtime smoke, and tracked native review before any stronger status.",
+    "canonical_policy": "Staging candidate only. Do not write back to manifests, production exports, schemas, or legacy content.",
+    "spanish_register_note": "Uses broad neutral restaurant Spanish with cuenta and tarjeta/efectivo payment wording."
+  }
+}

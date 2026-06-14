@@ -1,0 +1,273 @@
+{
+  "schema_version": "scenario_pack.v1",
+  "scenario_id": "a2_request_room_change",
+  "title": "Pedir Troca de Quarto",
+  "setting_label": "recepção do hotel",
+  "wrap_title": "Troca de quarto confirmada",
+  "wrap_friend": "你剛剛完成了一段 A2 住宿服務情境，說明需求、聽懂回覆，並確認下一步。",
+  "language": "pt",
+  "ui_language": "zh-Hant",
+  "cefr_level": "A2",
+  "source_status": "candidate_runtime_verified",
+  "review_state": "ai_reviewed",
+  "review_status_framework_state": "candidate_runtime_verified",
+  "native_review_state": "native_pending",
+  "scenario": "A hotel/accommodation service scenario: a2_request_room_change.",
+  "learner_goal": "Ask for a room change with a simple reason and confirm the move timing.",
+  "target_functions": [
+    "room_change_request",
+    "simple_reason",
+    "alternative_room_confirmation"
+  ],
+  "register_notes": "pt-BR A2 accommodation register: polite, practical, low-risk hotel-service language; language-specific adaptation from the neutral brief, not a KO translation.",
+  "production_mode_default": {
+    "required": [
+      "choice"
+    ],
+    "optional_visible": [
+      "speaking"
+    ],
+    "optional_hidden": [
+      "typing"
+    ]
+  },
+  "support_text": "Dê um motivo simples e pergunte se pode trocar de quarto.",
+  "roles": {
+    "npc": {
+      "label": "Empleado del hotel"
+    },
+    "learner": {
+      "label": "Tú"
+    }
+  },
+  "turns": [
+    {
+      "turn_id": "t1",
+      "speaker": "npc",
+      "act": "service_prompt",
+      "act_slots": {
+        "topic": "request-room-change",
+        "keyword": "1",
+        "gloss": "A2 accommodation"
+      },
+      "learning_role": "listen_only",
+      "surface": "Como posso ajudar?",
+      "speak": "Como posso ajudar?",
+      "translation": "我可以怎麼幫您？",
+      "friend": {
+        "hint": "Dê um motivo simples e peça a troca de quarto."
+      },
+      "reply_set": {
+        "correct": "r1a",
+        "choices": [
+          {
+            "id": "r1a",
+            "surface": "Meu quarto é um pouco barulhento. Posso trocar de quarto?",
+            "translation": "我的房間有點吵，可以換房嗎？",
+            "speak": "Meu quarto é um pouco barulhento. Posso trocar de quarto?",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r1b",
+            "surface": "Posso trocar a mesa do restaurante?",
+            "translation": "我可以換餐廳座位嗎？",
+            "speak": "Posso trocar a mesa do restaurante?",
+            "contrast_type": "wrong_detail_or_domain",
+            "feedback": "Mesa é outro contexto."
+          },
+          {
+            "id": "r1c",
+            "surface": "Vou fazer uma reclamação formal.",
+            "translation": "我要提出正式投訴。",
+            "speak": "Vou fazer uma reclamação formal.",
+            "contrast_type": "forbidden_or_wrong_domain",
+            "feedback": "Reclamação formal é forte demais para esta tarefa."
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t2",
+      "speaker": "npc",
+      "act": "confirm_availability",
+      "act_slots": {
+        "topic": "request-room-change",
+        "keyword": "2",
+        "gloss": "A2 accommodation"
+      },
+      "learning_role": "listen_only",
+      "surface": "Verifiquei. Temos outro quarto disponível.",
+      "speak": "Verifiquei. Temos outro quarto disponível.",
+      "translation": "我查了一下，還有另一間房可以換。",
+      "friend": {
+        "hint": "Confirme se há quarto disponível."
+      },
+      "reply_set": {
+        "correct": "r2a",
+        "choices": [
+          {
+            "id": "r2a",
+            "surface": "Tem outro quarto disponível, certo?",
+            "translation": "有另一間房可以換，對嗎？",
+            "speak": "Tem outro quarto disponível, certo?",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r2b",
+            "surface": "Tem outra passagem disponível, certo?",
+            "translation": "有另一張票可以換，對嗎？",
+            "speak": "Tem outra passagem disponível, certo?",
+            "contrast_type": "wrong_detail_or_domain",
+            "feedback": "Passagem é o domínio errado."
+          },
+          {
+            "id": "r2c",
+            "surface": "Também posso receber compensação?",
+            "translation": "我也可以拿到賠償嗎？",
+            "speak": "Também posso receber compensação?",
+            "contrast_type": "forbidden_or_wrong_domain",
+            "feedback": "Compensação não foi oferecida."
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t3",
+      "speaker": "npc",
+      "act": "confirm_timing",
+      "act_slots": {
+        "topic": "request-room-change",
+        "keyword": "3",
+        "gloss": "A2 accommodation"
+      },
+      "learning_role": "listen_only",
+      "surface": "Você pode mudar para o novo quarto em trinta minutos.",
+      "speak": "Você pode mudar para o novo quarto em trinta minutos.",
+      "translation": "三十分鐘後可以搬到新房間。",
+      "friend": {
+        "hint": "Confirme quando pode mudar."
+      },
+      "reply_set": {
+        "correct": "r3a",
+        "choices": [
+          {
+            "id": "r3a",
+            "surface": "Posso mudar em trinta minutos, certo?",
+            "translation": "我三十分鐘後可以搬，對嗎？",
+            "speak": "Posso mudar em trinta minutos, certo?",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r3b",
+            "surface": "Faço check-out em três horas, certo?",
+            "translation": "我三小時後退房，對嗎？",
+            "speak": "Faço check-out em três horas, certo?",
+            "contrast_type": "wrong_detail_or_domain",
+            "feedback": "Isso muda para check-out."
+          },
+          {
+            "id": "r3c",
+            "surface": "Vou mudar porque preciso ir ao hospital.",
+            "translation": "我換房是因為要去醫院。",
+            "speak": "Vou mudar porque preciso ir ao hospital.",
+            "contrast_type": "forbidden_or_wrong_domain",
+            "feedback": "O motivo hospital não é necessário."
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t4",
+      "speaker": "npc",
+      "act": "confirm_card",
+      "act_slots": {
+        "topic": "request-room-change",
+        "keyword": "4",
+        "gloss": "A2 accommodation"
+      },
+      "learning_role": "listen_only",
+      "surface": "Quando estiver pronto, eu dou o novo cartão.",
+      "speak": "Quando estiver pronto, eu dou o novo cartão.",
+      "translation": "房間準備好後，我會給您新的房卡。",
+      "friend": {
+        "hint": "Finalize com o novo cartão."
+      },
+      "reply_set": {
+        "correct": "r4a",
+        "choices": [
+          {
+            "id": "r4a",
+            "surface": "Certo. Pego o novo cartão quando estiver pronto.",
+            "translation": "好的，準備好後我拿新的房卡。",
+            "speak": "Certo. Pego o novo cartão quando estiver pronto.",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r4b",
+            "surface": "Não, vou mudar o horário do trem.",
+            "translation": "不，我要改火車時間。",
+            "speak": "Não, vou mudar o horário do trem.",
+            "contrast_type": "wrong_detail_or_domain",
+            "feedback": "Trem é outro domínio."
+          },
+          {
+            "id": "r4c",
+            "surface": "Vou falar com a polícia agora.",
+            "translation": "我現在要去找警察。",
+            "speak": "Vou falar com a polícia agora.",
+            "contrast_type": "forbidden_or_wrong_domain",
+            "feedback": "Polícia é grave demais aqui."
+          }
+        ]
+      }
+    }
+  ],
+  "choice_sets": {
+    "count_per_turn": 3,
+    "correct_path": [
+      "r1a",
+      "r2a",
+      "r3a",
+      "r4a"
+    ],
+    "distractor_policy": "one near-domain wrong detail plus one out-of-scope/over-escalated option per turn"
+  },
+  "feedback": "Los distractores prueban tiempo, lugar, servicio equivocado o una petición fuera del alcance A2.",
+  "tts_segments": [
+    "Como posso ajudar?",
+    "Meu quarto é um pouco barulhento. Posso trocar de quarto?",
+    "Posso trocar a mesa do restaurante?",
+    "Vou fazer uma reclamação formal.",
+    "Verifiquei. Temos outro quarto disponível.",
+    "Tem outro quarto disponível, certo?",
+    "Tem outra passagem disponível, certo?",
+    "Também posso receber compensação?",
+    "Você pode mudar para o novo quarto em trinta minutos.",
+    "Posso mudar em trinta minutos, certo?",
+    "Faço check-out em três horas, certo?",
+    "Vou mudar porque preciso ir ao hospital.",
+    "Quando estiver pronto, eu dou o novo cartão.",
+    "Certo. Pego o novo cartão quando estiver pronto.",
+    "Não, vou mudar o horário do trem.",
+    "Vou falar com a polícia agora."
+  ],
+  "formula_moments": [
+    {
+      "after_turn": "t2",
+      "pattern_id": "pt.a2.accommodation.room_change.reason.v1",
+      "label": "reason + posso trocar de quarto",
+      "learner_takeaway": "quarto disponível"
+    }
+  ],
+  "runtime_notes": {
+    "expected_turns": 4,
+    "expected_choices_per_turn": 3,
+    "full_walk_required": true,
+    "expected_final_screen": "Wrap"
+  },
+  "notes": {
+    "generated_at": "2026-06-14",
+    "authoring_scope": "A2 accommodation remaining six-language wave",
+    "native_review_state": "native_pending"
+  }
+}

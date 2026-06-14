@@ -1,0 +1,257 @@
+{
+  "schema_version": "scenario_pack.v1",
+  "scenario_id": "a2_make_simple_plan_sequence",
+  "title": "Fazer um Plano Simples em Dois Passos",
+  "setting_label": "friend chat",
+  "wrap_title": "Plano em dois passos confirmado",
+  "wrap_friend": "Muito bem. Você conectou o primeiro passo e o próximo, e confirmou o plano.",
+  "language": "pt",
+  "ui_language": "zh-Hant",
+  "cefr_level": "A2",
+  "source_status": "candidate_runtime_verified",
+  "review_state": "ai_reviewed",
+  "review_status_framework_state": "candidate_runtime_verified",
+  "native_review_state": "native_pending",
+  "scenario": {
+    "domain": "daily_social_coordination",
+    "review_slice": "daily_social",
+    "interaction": "friend_social_coordination",
+    "source_brief": "A2_DAILY_SOCIAL_NEUTRAL_ADAPTATION_BRIEFS_20260614",
+    "blueprint_source": "language_neutral_adaptation_brief",
+    "ko_pack_role": "mature_scenario_blueprint_not_translation_source"
+  },
+  "learner_goal": "Resolver uma situação social simples com um amigo usando frases curtas de A2.",
+  "target_functions": [
+    "friend_invitation_or_response",
+    "simple_reason_or_past_event",
+    "two_step_plan_or_confirmation",
+    "close_with_relationship_maintenance"
+  ],
+  "register_notes": "Brazilian Portuguese A2 friend/social register: natural você friend wording, warm and concise, no European/formal service phrasing.",
+  "production_mode_default": {
+    "required": [
+      "choice"
+    ],
+    "optional_visible": [
+      "speaking"
+    ],
+    "optional_hidden": [
+      "typing"
+    ]
+  },
+  "support_text": "Use linguagem natural com um amigo. Mantenha a atividade e o motivo simples.",
+  "roles": {
+    "npc": {
+      "label": "amigo"
+    },
+    "learner": {
+      "label": "你"
+    }
+  },
+  "turns": [
+    {
+      "turn_id": "t1",
+      "speaker": "npc",
+      "act": "suggest_first_step",
+      "act_slots": {
+        "topic": "sequence",
+        "keyword": "1",
+        "gloss": "A2 daily/social"
+      },
+      "learning_role": "listen_only",
+      "surface": "A gente se encontra primeiro na estação?",
+      "speak": "A gente se encontra primeiro na estação?",
+      "translation": "我們先在車站見，好嗎？",
+      "friend": {
+        "hint": "Keep the plan to two simple steps."
+      },
+      "reply_set": {
+        "correct": "r1a",
+        "choices": [
+          {
+            "id": "r1a",
+            "surface": "Sim, primeiro vamos nos encontrar na estação.",
+            "translation": "好，我們先在車站見。",
+            "speak": "Sim, primeiro vamos nos encontrar na estação.",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r1b",
+            "surface": "Sim, primeiro me devolva o dinheiro.",
+            "translation": "好，先退款給我。",
+            "speak": "Sim, primeiro me devolva o dinheiro.",
+            "contrast_type": "wrong_scenario_refund",
+            "feedback": "Isso não combina com esta situação com um amigo."
+          },
+          {
+            "id": "r1c",
+            "surface": "Não, de jeito nenhum.",
+            "translation": "不，絕對不要。",
+            "speak": "Não, de jeito nenhum.",
+            "contrast_type": "too_blunt",
+            "feedback": "Isso soa forte demais para falar com um amigo."
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t2",
+      "speaker": "npc",
+      "act": "suggest_second_step",
+      "act_slots": {
+        "topic": "sequence",
+        "keyword": "2",
+        "gloss": "A2 daily/social"
+      },
+      "learning_role": "listen_only",
+      "surface": "Depois vamos ao parque?",
+      "speak": "Depois vamos ao parque?",
+      "translation": "接著去公園嗎？",
+      "friend": {
+        "hint": "Keep the plan to two simple steps."
+      },
+      "reply_set": {
+        "correct": "r2a",
+        "choices": [
+          {
+            "id": "r2a",
+            "surface": "Boa. Depois vamos caminhar até o parque.",
+            "translation": "好，接著走去公園。",
+            "speak": "Boa. Depois vamos caminhar até o parque.",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r2b",
+            "surface": "Sim, primeiro me devolva o dinheiro.",
+            "translation": "好，先退款給我。",
+            "speak": "Sim, primeiro me devolva o dinheiro.",
+            "contrast_type": "wrong_scenario_refund",
+            "feedback": "Isso não combina com esta situação com um amigo."
+          },
+          {
+            "id": "r2c",
+            "surface": "Não, de jeito nenhum.",
+            "translation": "不，絕對不要。",
+            "speak": "Não, de jeito nenhum.",
+            "contrast_type": "too_blunt",
+            "feedback": "Isso soa forte demais para falar com um amigo."
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t3",
+      "speaker": "npc",
+      "act": "confirm_sequence",
+      "act_slots": {
+        "topic": "sequence",
+        "keyword": "3",
+        "gloss": "A2 daily/social"
+      },
+      "learning_role": "listen_only",
+      "surface": "Então, primeiro a estação e depois o parque?",
+      "speak": "Então, primeiro a estação e depois o parque?",
+      "translation": "所以先車站，接著公園，對嗎？",
+      "friend": {
+        "hint": "Keep the plan to two simple steps."
+      },
+      "reply_set": {
+        "correct": "r3a",
+        "choices": [
+          {
+            "id": "r3a",
+            "surface": "Sim, primeiro a estação, depois o parque.",
+            "translation": "對，先車站，接著公園。",
+            "speak": "Sim, primeiro a estação, depois o parque.",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r3b",
+            "surface": "Sim, primeiro me devolva o dinheiro.",
+            "translation": "好，先退款給我。",
+            "speak": "Sim, primeiro me devolva o dinheiro.",
+            "contrast_type": "wrong_scenario_refund",
+            "feedback": "Isso não combina com esta situação com um amigo."
+          },
+          {
+            "id": "r3c",
+            "surface": "Não, de jeito nenhum.",
+            "translation": "不，絕對不要。",
+            "speak": "Não, de jeito nenhum.",
+            "contrast_type": "too_blunt",
+            "feedback": "Isso soa forte demais para falar com um amigo."
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t4",
+      "speaker": "npc",
+      "act": "confirm_time",
+      "act_slots": {
+        "topic": "sequence",
+        "keyword": "4",
+        "gloss": "A2 daily/social"
+      },
+      "learning_role": "listen_only",
+      "surface": "Ótimo. Até sábado às duas.",
+      "speak": "Ótimo. Até sábado às duas.",
+      "translation": "好，星期六兩點見。",
+      "friend": {
+        "hint": "Keep the plan to two simple steps."
+      },
+      "reply_set": {
+        "correct": "r4a",
+        "choices": [
+          {
+            "id": "r4a",
+            "surface": "Tá bom, até sábado às duas.",
+            "translation": "好，星期六兩點見。",
+            "speak": "Tá bom, até sábado às duas.",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r4b",
+            "surface": "Sim, primeiro me devolva o dinheiro.",
+            "translation": "好，先退款給我。",
+            "speak": "Sim, primeiro me devolva o dinheiro.",
+            "contrast_type": "wrong_scenario_refund",
+            "feedback": "Isso não combina com esta situação com um amigo."
+          },
+          {
+            "id": "r4c",
+            "surface": "Não, de jeito nenhum.",
+            "translation": "不，絕對不要。",
+            "speak": "Não, de jeito nenhum.",
+            "contrast_type": "too_blunt",
+            "feedback": "Isso soa forte demais para falar com um amigo."
+          }
+        ]
+      }
+    }
+  ],
+  "choice_sets": [
+    "t1.reply_set",
+    "t2.reply_set",
+    "t3.reply_set",
+    "t4.reply_set"
+  ],
+  "feedback": "Os distratores testam registro social, tempo, função e limite A2.",
+  "tts_segments": [
+    "Sim, primeiro vamos nos encontrar na estação.",
+    "Boa. Depois vamos caminhar até o parque.",
+    "Sim, primeiro a estação, depois o parque.",
+    "Tá bom, até sábado às duas."
+  ],
+  "formula_moments": [
+    {
+      "after_turn": "t3",
+      "pattern_id": "pt.a2.daily.sequence.v1"
+    }
+  ],
+  "runtime_notes": "Fresh A2 daily/social candidate. Requires full-walk runtime before closeout evidence is recorded.",
+  "notes": {
+    "authoring_policy": "Fresh-authored from A2 daily/social neutral adaptation brief. KO surface text was not copied or translated.",
+    "a2_boundary": "Friend/social register, ordinary low-risk activities and reasons, short A2 responses only."
+  }
+}

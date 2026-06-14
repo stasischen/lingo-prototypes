@@ -1,0 +1,261 @@
+{
+  "schema_version": "scenario_pack.v1",
+  "scenario_id": "a2_request_room_change",
+  "title": "객실 변경 요청하기",
+  "setting_label": "호텔 프런트",
+  "wrap_title": "객실 변경 확인",
+  "wrap_friend": "你剛剛完成了一段 A2 住宿服務情境，用簡短韓文說明需求、聽懂回覆，並確認下一步。",
+  "language": "ko",
+  "ui_language": "zh_tw",
+  "cefr_level": "A2",
+  "source_status": "candidate_runtime_verified",
+  "review_state": "ai_reviewed",
+  "review_status_framework_state": "candidate_runtime_verified",
+  "native_review_state": "native_pending",
+  "scenario": "A hotel/accommodation service scenario: a2_request_room_change.",
+  "learner_goal": "Ask for a room change with a simple reason and confirm the move timing.",
+  "target_functions": [
+    "room_change_request",
+    "simple_reason",
+    "alternative_room_confirmation"
+  ],
+  "register_notes": "Polite but direct hotel-service Korean; no complaint escalation or safety/legal claims.",
+  "production_mode_default": {
+    "required": [
+      "choice"
+    ],
+    "optional_visible": [
+      "speaking"
+    ],
+    "optional_hidden": [
+      "typing"
+    ]
+  },
+  "support_text": "간단한 이유를 말하며 방을 바꿀 수 있는지 묻고, 가능한 대안을 확인해 보세요.",
+  "roles": {
+    "npc": {
+      "label": "호텔 직원"
+    },
+    "learner": {
+      "label": "你"
+    }
+  },
+  "turns": [
+    {
+      "turn_id": "t1",
+      "speaker": "npc",
+      "act": "service_prompt",
+      "act_slots": {
+        "topic": "service_prompt",
+        "keyword": "무엇을 도와드릴까요",
+        "gloss": "可以怎麼幫您"
+      },
+      "learning_role": "listen_only",
+      "surface": "네, 무엇을 도와드릴까요?",
+      "speak": "네, 무엇을 도와드릴까요?",
+      "translation": "好的，我可以怎麼幫您？",
+      "friend": {
+        "hint": "방 변경과 이유를 짧게 말해요."
+      },
+      "reply_set": {
+        "correct": "r1a",
+        "choices": [
+          {
+            "id": "r1a",
+            "surface": "방이 조금 시끄러워서 바꿀 수 있을까요?",
+            "translation": "房間有點吵，可以換房嗎？",
+            "speak": "방이 조금 시끄러워서 바꿀 수 있을까요?",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r1b",
+            "surface": "식당 자리를 바꿀 수 있을까요?",
+            "translation": "可以換餐廳座位嗎？",
+            "speak": "식당 자리를 바꿀 수 있을까요?",
+            "contrast_type": "wrong_detail_or_domain",
+            "feedback": "식당 자리가 아니라 호텔 객실을 바꾸는 상황이에요."
+          },
+          {
+            "id": "r1c",
+            "surface": "정식으로 신고하겠습니다.",
+            "translation": "我要正式申訴。",
+            "speak": "정식으로 신고하겠습니다.",
+            "contrast_type": "forbidden_or_wrong_domain",
+            "feedback": "공식 신고나 법적 절차는 이 A2 과제 범위를 넘어가요."
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t2",
+      "speaker": "npc",
+      "act": "alternative_offer",
+      "act_slots": {
+        "topic": "alternative_offer",
+        "keyword": "다른 방 하나",
+        "gloss": "另一間房"
+      },
+      "learning_role": "listen_only",
+      "surface": "확인해 보니 다른 방 하나가 있습니다.",
+      "speak": "확인해 보니 다른 방 하나가 있습니다.",
+      "translation": "我確認了一下，有另一間房。",
+      "friend": {
+        "hint": "가능한 대안을 들어요."
+      },
+      "reply_set": {
+        "correct": "r2a",
+        "choices": [
+          {
+            "id": "r2a",
+            "surface": "다른 방이 하나 있군요.",
+            "translation": "有另一間房，對嗎？",
+            "speak": "다른 방이 하나 있군요.",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r2b",
+            "surface": "다른 표가 하나 있군요.",
+            "translation": "有另一張票，對嗎？",
+            "speak": "다른 표가 하나 있군요.",
+            "contrast_type": "wrong_detail_or_domain",
+            "feedback": "표가 아니라 객실 이야기예요."
+          },
+          {
+            "id": "r2c",
+            "surface": "보상도 같이 받을 수 있나요?",
+            "translation": "也可以一起得到賠償嗎？",
+            "speak": "보상도 같이 받을 수 있나요?",
+            "contrast_type": "forbidden_or_wrong_domain",
+            "feedback": "보상 요청은 이 간단한 객실 변경 과제를 넘어가요."
+          }
+        ]
+      },
+      "inline_explain": {
+        "pattern_id": "ko.a2.accommodation.room_change.reason.v1",
+        "title": "-아서/어서 = 因為...所以...",
+        "explain": "이 상황에서 자주 쓰는 A2 표현입니다.",
+        "items": [
+          {
+            "surface": "다른 방 하나",
+            "translation": "另一間房",
+            "speak": "다른 방 하나"
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t3",
+      "speaker": "npc",
+      "act": "move_time",
+      "act_slots": {
+        "topic": "move_time",
+        "keyword": "삼십 분 뒤",
+        "gloss": "三十分鐘後"
+      },
+      "learning_role": "listen_only",
+      "surface": "삼십 분 뒤에 새 방으로 옮기실 수 있어요.",
+      "speak": "삼십 분 뒤에 새 방으로 옮기실 수 있어요.",
+      "translation": "三十分鐘後可以搬到新房間。",
+      "friend": {
+        "hint": "이동 시간을 확인해요."
+      },
+      "reply_set": {
+        "correct": "r3a",
+        "choices": [
+          {
+            "id": "r3a",
+            "surface": "삼십 분 뒤에 옮길 수 있네요.",
+            "translation": "三十分鐘後可以搬，對嗎？",
+            "speak": "삼십 분 뒤에 옮길 수 있네요.",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r3b",
+            "surface": "세 시간 뒤에 체크아웃하네요.",
+            "translation": "三小時後退房，對嗎？",
+            "speak": "세 시간 뒤에 체크아웃하네요.",
+            "contrast_type": "wrong_detail_or_domain",
+            "feedback": "직원은 삼십 분 뒤에 방을 옮길 수 있다고 했어요."
+          },
+          {
+            "id": "r3c",
+            "surface": "병원에 가야 해서 옮길게요.",
+            "translation": "因為要去醫院，所以要換。",
+            "speak": "병원에 가야 해서 옮길게요.",
+            "contrast_type": "forbidden_or_wrong_domain",
+            "feedback": "의료 이유는 이 과제 범위에 넣지 않아요."
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t4",
+      "speaker": "npc",
+      "act": "close",
+      "act_slots": {
+        "topic": "close",
+        "keyword": "새 방 키",
+        "gloss": "新房卡"
+      },
+      "learning_role": "listen_only",
+      "surface": "준비되면 새 방 키를 드리겠습니다.",
+      "speak": "준비되면 새 방 키를 드리겠습니다.",
+      "translation": "準備好後，我們會給您新房卡。",
+      "friend": {
+        "hint": "대안을 받아들이고 마무리해요."
+      },
+      "reply_set": {
+        "correct": "r4a",
+        "choices": [
+          {
+            "id": "r4a",
+            "surface": "네, 준비되면 새 키를 받을게요.",
+            "translation": "好，準備好後我拿新房卡。",
+            "speak": "네, 준비되면 새 키를 받을게요.",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r4b",
+            "surface": "아니요, 기차 시간을 바꿀게요.",
+            "translation": "不，我要改火車時間。",
+            "speak": "아니요, 기차 시간을 바꿀게요.",
+            "contrast_type": "wrong_detail_or_domain",
+            "feedback": "교통 티켓 변경이 아니라 객실 변경 상황이에요."
+          },
+          {
+            "id": "r4c",
+            "surface": "경찰에 바로 말할게요.",
+            "translation": "我會直接告訴警察。",
+            "speak": "경찰에 바로 말할게요.",
+            "contrast_type": "forbidden_or_wrong_domain",
+            "feedback": "경찰 절차는 이 A2 과제 범위를 넘어가요."
+          }
+        ]
+      }
+    }
+  ],
+  "choice_sets": [
+    "t1.reply_set",
+    "t2.reply_set",
+    "t3.reply_set",
+    "t4.reply_set"
+  ],
+  "feedback": "오답은 시간, 장소, 서비스 영역을 잘못 이해하거나 A2 범위를 넘는 요청으로 흐르는지를 확인합니다.",
+  "tts_segments": [
+    "네, 무엇을 도와드릴까요?",
+    "확인해 보니 다른 방 하나가 있습니다.",
+    "삼십 분 뒤에 새 방으로 옮기실 수 있어요.",
+    "준비되면 새 방 키를 드리겠습니다."
+  ],
+  "formula_moments": [
+    {
+      "after_turn": "t2",
+      "pattern_id": "ko.a2.accommodation.room_change.reason.v1"
+    }
+  ],
+  "runtime_notes": "KO A2 accommodation candidate. Full-walk runtime gate required before final closeout.",
+  "notes": {
+    "authoring_policy": "Fresh-authored from the neutral A2 accommodation brief. Legacy KO A2 was not used as a line source.",
+    "a2_boundary": "Low-risk accommodation/service task; avoids compensation, emergency, legal, medical, police, immigration, banking, insurance, or identity-sensitive handling."
+  }
+}

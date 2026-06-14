@@ -1,0 +1,273 @@
+{
+  "schema_version": "scenario_pack.v1",
+  "scenario_id": "a2_report_room_problem",
+  "title": "Informar um Problema no Quarto",
+  "setting_label": "recepção do hotel",
+  "wrap_title": "Ajuda confirmada",
+  "wrap_friend": "你剛剛完成了一段 A2 住宿服務情境，說明需求、聽懂回覆，並確認下一步。",
+  "language": "pt",
+  "ui_language": "zh-Hant",
+  "cefr_level": "A2",
+  "source_status": "candidate_runtime_verified",
+  "review_state": "ai_reviewed",
+  "review_status_framework_state": "candidate_runtime_verified",
+  "native_review_state": "native_pending",
+  "scenario": "A hotel/accommodation service scenario: a2_report_room_problem.",
+  "learner_goal": "Report a simple room problem and confirm the next step.",
+  "target_functions": [
+    "room_problem_description",
+    "polite_help_request",
+    "service_next_step_confirmation"
+  ],
+  "register_notes": "pt-BR A2 accommodation register: polite, practical, low-risk hotel-service language; language-specific adaptation from the neutral brief, not a KO translation.",
+  "production_mode_default": {
+    "required": [
+      "choice"
+    ],
+    "optional_visible": [
+      "speaking"
+    ],
+    "optional_hidden": [
+      "typing"
+    ]
+  },
+  "support_text": "Informe um problema simples no quarto e confirme o que a equipe vai fazer.",
+  "roles": {
+    "npc": {
+      "label": "Empleado del hotel"
+    },
+    "learner": {
+      "label": "Tú"
+    }
+  },
+  "turns": [
+    {
+      "turn_id": "t1",
+      "speaker": "npc",
+      "act": "service_prompt",
+      "act_slots": {
+        "topic": "report-room-problem",
+        "keyword": "1",
+        "gloss": "A2 accommodation"
+      },
+      "learning_role": "listen_only",
+      "surface": "Olá. Como posso ajudar?",
+      "speak": "Olá. Como posso ajudar?",
+      "translation": "您好，我可以怎麼幫您？",
+      "friend": {
+        "hint": "Diga o problema do quarto em uma frase curta."
+      },
+      "reply_set": {
+        "correct": "r1a",
+        "choices": [
+          {
+            "id": "r1a",
+            "surface": "No meu quarto não tem toalhas. Pode me ajudar?",
+            "translation": "我的房間裡沒有毛巾。可以幫忙嗎？",
+            "speak": "No meu quarto não tem toalhas. Pode me ajudar?",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r1b",
+            "surface": "Quero reservar um quarto.",
+            "translation": "我想訂房。",
+            "speak": "Quero reservar um quarto.",
+            "contrast_type": "wrong_detail_or_domain",
+            "feedback": "Agora você não está reservando; precisa explicar um problema no quarto."
+          },
+          {
+            "id": "r1c",
+            "surface": "Quero uma compensação.",
+            "translation": "我想要賠償。",
+            "speak": "Quero uma compensação.",
+            "contrast_type": "forbidden_or_wrong_domain",
+            "feedback": "Compensação fica fora desta tarefa A2."
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t2",
+      "speaker": "npc",
+      "act": "confirm_action",
+      "act_slots": {
+        "topic": "report-room-problem",
+        "keyword": "2",
+        "gloss": "A2 accommodation"
+      },
+      "learning_role": "listen_only",
+      "surface": "Sim, vou levar toalhas agora mesmo.",
+      "speak": "Sim, vou levar toalhas agora mesmo.",
+      "translation": "好的，我現在幫您送毛巾。",
+      "friend": {
+        "hint": "Confirme a ação da equipe."
+      },
+      "reply_set": {
+        "correct": "r2a",
+        "choices": [
+          {
+            "id": "r2a",
+            "surface": "Você vai levar toalhas, certo?",
+            "translation": "您會幫我送毛巾，對嗎？",
+            "speak": "Você vai levar toalhas, certo?",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r2b",
+            "surface": "Você vai trocar meu quarto, certo?",
+            "translation": "您會幫我換房，對嗎？",
+            "speak": "Você vai trocar meu quarto, certo?",
+            "contrast_type": "wrong_detail_or_domain",
+            "feedback": "Aqui a equipe leva toalhas, não troca o quarto."
+          },
+          {
+            "id": "r2c",
+            "surface": "O trem está atrasado, certo?",
+            "translation": "火車晚點了，對嗎？",
+            "speak": "O trem está atrasado, certo?",
+            "contrast_type": "forbidden_or_wrong_domain",
+            "feedback": "Este distrator muda para transporte."
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t3",
+      "speaker": "npc",
+      "act": "confirm_wait",
+      "act_slots": {
+        "topic": "report-room-problem",
+        "keyword": "3",
+        "gloss": "A2 accommodation"
+      },
+      "learning_role": "listen_only",
+      "surface": "Vai demorar uns dez minutos.",
+      "speak": "Vai demorar uns dez minutos.",
+      "translation": "大約需要十分鐘。",
+      "friend": {
+        "hint": "Confirme o tempo de espera."
+      },
+      "reply_set": {
+        "correct": "r3a",
+        "choices": [
+          {
+            "id": "r3a",
+            "surface": "Uns dez minutos, tudo bem.",
+            "translation": "大約十分鐘，好的。",
+            "speak": "Uns dez minutos, tudo bem.",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r3b",
+            "surface": "Faço check-out em uma hora.",
+            "translation": "我一小時後退房。",
+            "speak": "Faço check-out em uma hora.",
+            "contrast_type": "wrong_detail_or_domain",
+            "feedback": "Isso fala de check-out, não de espera."
+          },
+          {
+            "id": "r3c",
+            "surface": "Preciso ir ao hospital.",
+            "translation": "我需要去醫院。",
+            "speak": "Preciso ir ao hospital.",
+            "contrast_type": "forbidden_or_wrong_domain",
+            "feedback": "Hospital está fora do contexto."
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t4",
+      "speaker": "npc",
+      "act": "confirm_place",
+      "act_slots": {
+        "topic": "report-room-problem",
+        "keyword": "4",
+        "gloss": "A2 accommodation"
+      },
+      "learning_role": "listen_only",
+      "surface": "Vamos mandar para o seu quarto.",
+      "speak": "Vamos mandar para o seu quarto.",
+      "translation": "我們會送到您的房間。",
+      "friend": {
+        "hint": "Finalize esperando no lugar certo."
+      },
+      "reply_set": {
+        "correct": "r4a",
+        "choices": [
+          {
+            "id": "r4a",
+            "surface": "Obrigado. Vou esperar no quarto.",
+            "translation": "謝謝，我在房間等。",
+            "speak": "Obrigado. Vou esperar no quarto.",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r4b",
+            "surface": "Explique as regras de reembolso, por favor.",
+            "translation": "請說明退款規則。",
+            "speak": "Explique as regras de reembolso, por favor.",
+            "contrast_type": "wrong_detail_or_domain",
+            "feedback": "Reembolso é amplo demais aqui."
+          },
+          {
+            "id": "r4c",
+            "surface": "Dois cafés, por favor.",
+            "translation": "兩杯咖啡，謝謝。",
+            "speak": "Dois cafés, por favor.",
+            "contrast_type": "forbidden_or_wrong_domain",
+            "feedback": "Café é outro serviço."
+          }
+        ]
+      }
+    }
+  ],
+  "choice_sets": {
+    "count_per_turn": 3,
+    "correct_path": [
+      "r1a",
+      "r2a",
+      "r3a",
+      "r4a"
+    ],
+    "distractor_policy": "one near-domain wrong detail plus one out-of-scope/over-escalated option per turn"
+  },
+  "feedback": "Los distractores prueban tiempo, lugar, servicio equivocado o una petición fuera del alcance A2.",
+  "tts_segments": [
+    "Olá. Como posso ajudar?",
+    "No meu quarto não tem toalhas. Pode me ajudar?",
+    "Quero reservar um quarto.",
+    "Quero uma compensação.",
+    "Sim, vou levar toalhas agora mesmo.",
+    "Você vai levar toalhas, certo?",
+    "Você vai trocar meu quarto, certo?",
+    "O trem está atrasado, certo?",
+    "Vai demorar uns dez minutos.",
+    "Uns dez minutos, tudo bem.",
+    "Faço check-out em uma hora.",
+    "Preciso ir ao hospital.",
+    "Vamos mandar para o seu quarto.",
+    "Obrigado. Vou esperar no quarto.",
+    "Explique as regras de reembolso, por favor.",
+    "Dois cafés, por favor."
+  ],
+  "formula_moments": [
+    {
+      "after_turn": "t2",
+      "pattern_id": "pt.a2.accommodation.problem.help.v1",
+      "label": "problema no quarto + pode ajudar",
+      "learner_takeaway": "não tem + item"
+    }
+  ],
+  "runtime_notes": {
+    "expected_turns": 4,
+    "expected_choices_per_turn": 3,
+    "full_walk_required": true,
+    "expected_final_screen": "Wrap"
+  },
+  "notes": {
+    "generated_at": "2026-06-14",
+    "authoring_scope": "A2 accommodation remaining six-language wave",
+    "native_review_state": "native_pending"
+  }
+}

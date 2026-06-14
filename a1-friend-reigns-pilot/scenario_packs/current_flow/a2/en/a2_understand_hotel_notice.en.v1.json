@@ -1,0 +1,261 @@
+{
+  "schema_version": "scenario_pack.v1",
+  "scenario_id": "a2_understand_hotel_notice",
+  "title": "Understand a Hotel Notice",
+  "setting_label": "In the hotel lobby",
+  "wrap_title": "Hotel Notice Confirmed",
+  "wrap_friend": "你剛剛完成了一段 A2 住宿服務情境，說明需求、聽懂回覆，並確認下一步。",
+  "language": "en",
+  "ui_language": "zh_tw",
+  "cefr_level": "A2",
+  "source_status": "candidate_runtime_verified",
+  "review_state": "ai_reviewed",
+  "review_status_framework_state": "candidate_runtime_verified",
+  "native_review_state": "native_pending",
+  "scenario": "A hotel/accommodation service scenario: a2_understand_hotel_notice.",
+  "learner_goal": "Understand a short hotel notice and confirm time, place, and rule details.",
+  "target_functions": [
+    "notice_comprehension",
+    "time_place_rule_confirmation",
+    "simple_clarification"
+  ],
+  "register_notes": "Broad everyday English hotel-service register; polite, short A2 responses; no complaint escalation.",
+  "production_mode_default": {
+    "required": [
+      "choice"
+    ],
+    "optional_visible": [
+      "speaking"
+    ],
+    "optional_hidden": [
+      "typing"
+    ]
+  },
+  "support_text": "Understand a short hotel notice and confirm the time, place, and rule.",
+  "roles": {
+    "npc": {
+      "label": "Hotel Staff"
+    },
+    "learner": {
+      "label": "You"
+    }
+  },
+  "turns": [
+    {
+      "turn_id": "t1",
+      "speaker": "npc",
+      "act": "notice_intro",
+      "act_slots": {
+        "topic": "notice_intro",
+        "keyword": "breakfast time",
+        "gloss": "早餐時間"
+      },
+      "learning_role": "listen_only",
+      "surface": "Please look at the notice. Breakfast is from seven to nine in the morning.",
+      "speak": "Please look at the notice. Breakfast is from seven to nine in the morning.",
+      "translation": "請看公告。早餐是早上七點到九點。",
+      "friend": {
+        "hint": "Find the time in the notice."
+      },
+      "reply_set": {
+        "correct": "r1a",
+        "choices": [
+          {
+            "id": "r1a",
+            "surface": "Breakfast is from seven to nine in the morning, right?",
+            "translation": "早餐是早上七點到九點，對嗎？",
+            "speak": "Breakfast is from seven to nine in the morning, right?",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r1b",
+            "surface": "Breakfast is from seven to nine at night, right?",
+            "translation": "早餐是晚上七點到九點，對嗎？",
+            "speak": "Breakfast is from seven to nine at night, right?",
+            "contrast_type": "wrong_detail_or_domain",
+            "feedback": "The notice says in the morning."
+          },
+          {
+            "id": "r1c",
+            "surface": "Checkout is at nine in the morning, right?",
+            "translation": "退房是早上九點，對嗎？",
+            "speak": "Checkout is at nine in the morning, right?",
+            "contrast_type": "forbidden_or_wrong_domain",
+            "feedback": "This notice is about breakfast, not checkout."
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t2",
+      "speaker": "npc",
+      "act": "place_detail",
+      "act_slots": {
+        "topic": "place_detail",
+        "keyword": "second-floor restaurant",
+        "gloss": "二樓餐廳"
+      },
+      "learning_role": "listen_only",
+      "surface": "It is in the restaurant on the second floor.",
+      "speak": "It is in the restaurant on the second floor.",
+      "translation": "地點是二樓餐廳。",
+      "friend": {
+        "hint": "Confirm the place."
+      },
+      "inline_explain": {
+        "pattern_id": "en.a2.accommodation.notice.time_place.v1",
+        "title": "A2 pattern",
+        "explain": "A useful pattern for this accommodation situation.",
+        "items": [
+          {
+            "surface": "second-floor restaurant",
+            "translation": "二樓餐廳",
+            "speak": "second-floor restaurant"
+          }
+        ]
+      },
+      "reply_set": {
+        "correct": "r2a",
+        "choices": [
+          {
+            "id": "r2a",
+            "surface": "I go to the second-floor restaurant, right?",
+            "translation": "去二樓餐廳就可以，對嗎？",
+            "speak": "I go to the second-floor restaurant, right?",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r2b",
+            "surface": "I go to a third-floor room, right?",
+            "translation": "去三樓房間就可以，對嗎？",
+            "speak": "I go to a third-floor room, right?",
+            "contrast_type": "wrong_detail_or_domain",
+            "feedback": "The place is the restaurant on the second floor."
+          },
+          {
+            "id": "r2c",
+            "surface": "I show my passport, right?",
+            "translation": "給您看護照就可以，對嗎？",
+            "speak": "I show my passport, right?",
+            "contrast_type": "forbidden_or_wrong_domain",
+            "feedback": "A passport is not needed for this notice."
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t3",
+      "speaker": "npc",
+      "act": "clarification",
+      "act_slots": {
+        "topic": "clarification",
+        "keyword": "room number",
+        "gloss": "房號"
+      },
+      "learning_role": "listen_only",
+      "surface": "At the entrance, please just say your room number.",
+      "speak": "At the entrance, please just say your room number.",
+      "translation": "入口只要告知房號即可。",
+      "friend": {
+        "hint": "Confirm the simple condition."
+      },
+      "reply_set": {
+        "correct": "r3a",
+        "choices": [
+          {
+            "id": "r3a",
+            "surface": "I just say my room number at the entrance, right?",
+            "translation": "入口只要說房號就可以，對嗎？",
+            "speak": "I just say my room number at the entrance, right?",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r3b",
+            "surface": "I talk to the police at the entrance, right?",
+            "translation": "入口要跟警察說，對嗎？",
+            "speak": "I talk to the police at the entrance, right?",
+            "contrast_type": "wrong_detail_or_domain",
+            "feedback": "This is a breakfast notice, not a police process."
+          },
+          {
+            "id": "r3c",
+            "surface": "I get a refund at the entrance, right?",
+            "translation": "入口可以拿退款，對嗎？",
+            "speak": "I get a refund at the entrance, right?",
+            "contrast_type": "forbidden_or_wrong_domain",
+            "feedback": "Refunds do not fit this notice task."
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t4",
+      "speaker": "npc",
+      "act": "close",
+      "act_slots": {
+        "topic": "close",
+        "keyword": "tomorrow morning",
+        "gloss": "明天早上"
+      },
+      "learning_role": "listen_only",
+      "surface": "Yes, please come tomorrow morning.",
+      "speak": "Yes, please come tomorrow morning.",
+      "translation": "對，明天早上來就可以。",
+      "friend": {
+        "hint": "Confirm what you will do."
+      },
+      "reply_set": {
+        "correct": "r4a",
+        "choices": [
+          {
+            "id": "r4a",
+            "surface": "Okay. I will go to the second-floor restaurant tomorrow morning.",
+            "translation": "好，我明天早上去二樓餐廳。",
+            "speak": "Okay. I will go to the second-floor restaurant tomorrow morning.",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r4b",
+            "surface": "Okay. I will pick up laundry tonight.",
+            "translation": "好，我今晚去拿洗衣。",
+            "speak": "Okay. I will pick up laundry tonight.",
+            "contrast_type": "wrong_detail_or_domain",
+            "feedback": "This is breakfast, not laundry."
+          },
+          {
+            "id": "r4c",
+            "surface": "Okay. I will write an accident report.",
+            "translation": "好，我會寫事故報告。",
+            "speak": "Okay. I will write an accident report.",
+            "contrast_type": "forbidden_or_wrong_domain",
+            "feedback": "Accident reports are outside this task."
+          }
+        ]
+      }
+    }
+  ],
+  "choice_sets": [
+    "t1.reply_set",
+    "t2.reply_set",
+    "t3.reply_set",
+    "t4.reply_set"
+  ],
+  "feedback": "Distractors test wrong time, place, service domain, or out-of-scope escalation while preserving A2 boundaries.",
+  "tts_segments": [
+    "Please look at the notice. Breakfast is from seven to nine in the morning.",
+    "It is in the restaurant on the second floor.",
+    "At the entrance, please just say your room number.",
+    "Yes, please come tomorrow morning."
+  ],
+  "formula_moments": [
+    {
+      "after_turn": "t2",
+      "pattern_id": "en.a2.accommodation.notice.time_place.v1"
+    }
+  ],
+  "runtime_notes": "EN A2 accommodation candidate. Full-walk runtime gate required before final closeout.",
+  "notes": {
+    "authoring_policy": "Fresh-authored from the neutral A2 accommodation brief. KO surfaces were not translated.",
+    "a2_boundary": "Low-risk accommodation/service task; avoids compensation, emergency, legal, medical, police, immigration, banking, insurance, or identity-sensitive handling."
+  }
+}

@@ -1,0 +1,263 @@
+{
+  "schema_version": "scenario_pack.v1",
+  "scenario_id": "a2_explain_simple_delay_reason",
+  "title": "Spiegare un piccolo ritardo",
+  "setting_label": "Per strada verso un incontro",
+  "wrap_title": "Motivo del ritardo",
+  "wrap_friend": "你剛剛用簡單義大利語說明會晚一點到，並給出一個日常理由。",
+  "language": "it",
+  "ui_language": "zh_tw",
+  "cefr_level": "A2",
+  "source_status": "candidate_runtime_verified",
+  "review_state": "ai_reviewed",
+  "review_status_framework_state": "candidate_runtime_verified",
+  "native_review_state": "native_pending",
+  "scenario": "Stai arrivando un po' in ritardo e devi spiegare il motivo.",
+  "learner_goal": "Scusarsi, dare un motivo semplice e stimare il ritardo.",
+  "target_functions": [
+    "apology",
+    "simple_reason",
+    "delay_estimate"
+  ],
+  "register_notes": "Italiano amichevole e quotidiano. Ritardo leggero e sicuro; nessuna emergenza, salute, lavoro o scusa formale.",
+  "production_mode_default": {
+    "required": [
+      "choice"
+    ],
+    "optional_visible": [
+      "speaking"
+    ],
+    "optional_hidden": [
+      "typing"
+    ]
+  },
+  "support_text": "Il tuo amico chiede dove sei. Scusati, spiega un motivo semplice e dai una breve stima del ritardo.",
+  "roles": {
+    "npc": {
+      "label": "Amico"
+    },
+    "learner": {
+      "label": "Tu"
+    }
+  },
+  "turns": [
+    {
+      "turn_id": "t1",
+      "speaker": "npc",
+      "act": "location_check",
+      "act_slots": {
+        "topic": "where are you",
+        "keyword": "vicino",
+        "gloss": "快到了嗎"
+      },
+      "learning_role": "listen_only",
+      "surface": "Dove sei? Sei vicino?",
+      "speak": "Dove sei? Sei vicino?",
+      "translation": "你在哪裡？快到了嗎？",
+      "friend": {
+        "hint": "Il tuo amico controlla dove sei. Inizia con scusa e di' che arrivi un po' in ritardo."
+      },
+      "reply_set": {
+        "correct": "r1a",
+        "choices": [
+          {
+            "id": "r1a",
+            "surface": "Scusa, arrivo un po' in ritardo.",
+            "translation": "不好意思，我會晚一點到。",
+            "speak": "Scusa, arrivo un po' in ritardo.",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r1b",
+            "surface": "Sì, sono arrivato ieri.",
+            "translation": "對，我昨天到了。",
+            "speak": "Sì, sono arrivato ieri.",
+            "contrast_type": "wrong_time_past",
+            "feedback": "Il tuo amico chiede di adesso, non di ieri."
+          },
+          {
+            "id": "r1c",
+            "surface": "Mi consigli un piatto?",
+            "translation": "你可以推薦一道菜嗎？",
+            "speak": "Mi consigli un piatto?",
+            "contrast_type": "wrong_scenario_restaurant",
+            "feedback": "Questa è lingua da ristorante. Qui devi spiegare che sei in ritardo."
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t2",
+      "speaker": "npc",
+      "act": "reason_request",
+      "act_slots": {
+        "topic": "why late",
+        "keyword": "perché",
+        "gloss": "為什麼"
+      },
+      "learning_role": "listen_only",
+      "surface": "Perché? Che cosa è successo?",
+      "speak": "Perché? Che cosa è successo?",
+      "translation": "為什麼？怎麼了？",
+      "friend": {
+        "hint": "Dai un solo motivo quotidiano. Tienilo breve."
+      },
+      "inline_explain": {
+        "pattern_id": "it.a2.reason.delay.perche.v1",
+        "title": "perché + motivo",
+        "explain": "Usa perché per dare un motivo semplice.",
+        "items": [
+          {
+            "surface": "perché c'è traffico",
+            "translation": "因為塞車",
+            "speak": "perché c'è traffico"
+          },
+          {
+            "surface": "perché il tram è in ritardo",
+            "translation": "因為電車誤點",
+            "speak": "perché il tram è in ritardo"
+          }
+        ]
+      },
+      "reply_set": {
+        "correct": "r2a",
+        "choices": [
+          {
+            "id": "r2a",
+            "surface": "C'è traffico.",
+            "translation": "塞車了。",
+            "speak": "C'è traffico.",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r2b",
+            "surface": "Mi piace il traffico.",
+            "translation": "我喜歡交通堵塞。",
+            "speak": "Mi piace il traffico.",
+            "contrast_type": "wrong_reason_semantics",
+            "feedback": "Questa frase non spiega perché sei in ritardo."
+          },
+          {
+            "id": "r2c",
+            "surface": "Dov'è la fermata del tram?",
+            "translation": "電車站在哪裡？",
+            "speak": "Dov'è la fermata del tram?",
+            "contrast_type": "wrong_function_location_question",
+            "feedback": "Il tuo amico chiede il motivo, non un luogo."
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t3",
+      "speaker": "npc",
+      "act": "delay_estimate_request",
+      "act_slots": {
+        "topic": "how late",
+        "keyword": "quanto",
+        "gloss": "會晚多久"
+      },
+      "learning_role": "listen_only",
+      "surface": "Quanto ritardo hai?",
+      "speak": "Quanto ritardo hai?",
+      "translation": "你會晚多久？",
+      "friend": {
+        "hint": "Usa circa piu' i minuti per una stima semplice."
+      },
+      "reply_set": {
+        "correct": "r3a",
+        "choices": [
+          {
+            "id": "r3a",
+            "surface": "Arrivo tra circa dieci minuti.",
+            "translation": "我大約十分鐘後到。",
+            "speak": "Arrivo tra circa dieci minuti.",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r3b",
+            "surface": "Il tram numero dieci è comodo.",
+            "translation": "十號電車很方便。",
+            "speak": "Il tram numero dieci è comodo.",
+            "contrast_type": "wrong_entity_tram_number",
+            "feedback": "Qui dieci deve indicare i minuti, non il numero del tram."
+          },
+          {
+            "id": "r3c",
+            "surface": "Non sono in ritardo.",
+            "translation": "我沒有遲到。",
+            "speak": "Non sono in ritardo.",
+            "contrast_type": "contradicts_context",
+            "feedback": "Hai già detto che arrivi in ritardo. Ora devi stimare il tempo."
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t4",
+      "speaker": "npc",
+      "act": "acceptance",
+      "act_slots": {
+        "topic": "wait"
+      },
+      "learning_role": "listen_only",
+      "surface": "Va bene. Ti aspetto.",
+      "speak": "Va bene. Ti aspetto.",
+      "translation": "好。我等你。",
+      "friend": {
+        "hint": "Il tuo amico accetta il ritardo. Ringrazia e chiudi in modo naturale."
+      },
+      "reply_set": {
+        "correct": "r4a",
+        "choices": [
+          {
+            "id": "r4a",
+            "surface": "Grazie. Arrivo presto.",
+            "translation": "謝謝。我很快就到。",
+            "speak": "Grazie. Arrivo presto."
+          },
+          {
+            "id": "r4b",
+            "surface": "Ho una prenotazione.",
+            "translation": "我有預約。",
+            "speak": "Ho una prenotazione.",
+            "contrast_type": "wrong_scenario_reservation",
+            "feedback": "Sembra una situazione in hotel o al ristorante, non un messaggio di ritardo."
+          },
+          {
+            "id": "r4c",
+            "surface": "Posso pagare adesso?",
+            "translation": "我現在可以付款嗎？",
+            "speak": "Posso pagare adesso?",
+            "contrast_type": "wrong_scenario_payment",
+            "feedback": "Questa è una frase di pagamento. Qui è meglio ringraziare."
+          }
+        ]
+      }
+    }
+  ],
+  "choice_sets": [
+    "t1.reply_set",
+    "t2.reply_set",
+    "t3.reply_set",
+    "t4.reply_set"
+  ],
+  "feedback": "I distrattori separano motivo, stima del tempo e lingua di scenari non collegati.",
+  "tts_segments": [
+    "Scusa, arrivo un po' in ritardo.",
+    "C'è traffico.",
+    "Arrivo tra circa dieci minuti.",
+    "Grazie. Arrivo presto."
+  ],
+  "formula_moments": [
+    {
+      "after_turn": "t2",
+      "pattern_id": "it.a2.reason.delay.perche.v1"
+    }
+  ],
+  "runtime_notes": "Fresh IT A2 candidate. Structural checks and two AI semantic review passes completed on 2026-06-14 before metadata promotion.",
+  "notes": {
+    "authoring_policy": "Fresh-authored from the neutral A2 brief. KO/JA/EN/TH were used only as schema-shape and workflow references.",
+    "a2_boundary": "Low-stakes delay with one reason and one estimate; avoids emergency, health, workplace, or formal excuse content."
+  }
+}

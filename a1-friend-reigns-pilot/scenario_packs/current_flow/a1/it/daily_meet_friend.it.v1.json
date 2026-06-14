@@ -1,0 +1,237 @@
+{
+  "schema_version": "scenario_pack.v1",
+  "scenario_id": "daily_meet_friend",
+  "brief_id": "ml2_a1_010_daily_meet_friend",
+  "source_neutral_brief": "release-aggregator/docs/tasks/A1_MULTILINGUAL_KO_B1_PARALLEL_ORCHESTRATION/work_products/ml0/ML2_NEUTRAL_ADAPTATION_BRIEFS_20260614.md#brief-ml2-a1-010-meet-a-friend",
+  "blueprint_ledger": "release-aggregator/docs/tasks/A1_MULTILINGUAL_KO_B1_PARALLEL_ORCHESTRATION/work_products/ml0/ML2_BLUEPRINT_LEDGER_20260614.md",
+  "repo": "content-it",
+  "staging_path": "content/core/content_assets/scenario_packs/current_flow/daily_meet_friend.it.v1.json",
+  "title": "Incontrare un amico",
+  "setting_label": "Davanti a un bar",
+  "wrap_title": "Incontro confermato",
+  "wrap_friend": "你用自然的義大利語和朋友打招呼、確認計畫，並說可以走了。",
+  "language": "it",
+  "ui_language": "zh_tw",
+  "source_status": "candidate_runtime_verified",
+  "review_state": "draft",
+  "review_status_framework_state": "candidate_runtime_verified",
+  "native_review_state": "native_pending",
+  "production_mode_default": {
+    "required": [
+      "choice"
+    ],
+    "optional_visible": [
+      "speaking"
+    ],
+    "optional_hidden": [
+      "typing"
+    ]
+  },
+  "support_text": "你在咖啡店門口遇到朋友。用朋友之間的簡短義大利語確認對方和計畫。",
+  "roles": {
+    "npc": {
+      "label": "Amico"
+    },
+    "learner": {
+      "label": "Amico"
+    }
+  },
+  "turns": [
+    {
+      "turn_id": "t1",
+      "speaker": "npc",
+      "act": "friend_greeting",
+      "act_slots": {
+        "topic": "greeting",
+        "keyword": "ciao",
+        "gloss": "hi"
+      },
+      "learning_role": "listen_only",
+      "surface": "Ciao! Sei qui.",
+      "speak": "Ciao! Sei qui.",
+      "translation": "嗨！你到了。",
+      "friend": {
+        "hint": "朋友之間可用 Ciao，再確認對方。"
+      },
+      "reply_set": {
+        "correct": "r1a",
+        "choices": [
+          {
+            "id": "r1a",
+            "surface": "Ciao, Marco!",
+            "translation": "嗨，Marco！",
+            "speak": "Ciao, Marco!",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r1b",
+            "surface": "Buongiorno, vorrei pagare.",
+            "translation": "您好，我想付款。",
+            "speak": "Buongiorno, vorrei pagare.",
+            "contrast_type": "service_counter_payment",
+            "feedback": "這是服務櫃台付款語氣，不像朋友見面。"
+          },
+          {
+            "id": "r1c",
+            "surface": "Quanto costa questo?",
+            "translation": "這個多少錢？",
+            "speak": "Quanto costa questo?",
+            "contrast_type": "shopping_price_question",
+            "feedback": "這是在商店問價格，不是在和朋友打招呼。"
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t2",
+      "speaker": "npc",
+      "act": "confirm_plan",
+      "act_slots": {
+        "topic": "meeting_plan",
+        "keyword": "andiamo",
+        "gloss": "we go"
+      },
+      "learning_role": "listen_only",
+      "surface": "Andiamo al museo, vero?",
+      "speak": "Andiamo al museo, vero?",
+      "translation": "我們去博物館，對吧？",
+      "friend": {
+        "hint": "計畫正確時，用短句確認。"
+      },
+      "reply_set": {
+        "correct": "r2a",
+        "choices": [
+          {
+            "id": "r2a",
+            "surface": "Sì, al museo.",
+            "translation": "對，去博物館。",
+            "speak": "Sì, al museo.",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r2b",
+            "surface": "Un tavolo per due, per favore.",
+            "translation": "請給我們兩人桌。",
+            "speak": "Un tavolo per due, per favore.",
+            "contrast_type": "restaurant_service_phrase",
+            "feedback": "這是在餐廳對服務人員說的，不是在確認朋友計畫。"
+          },
+          {
+            "id": "r2c",
+            "surface": "No, lei è il mio direttore.",
+            "translation": "不是，您是我的主管。",
+            "speak": "No, lei è il mio direttore.",
+            "contrast_type": "overly_formal_wrong_relationship",
+            "feedback": "這換成正式商務關係，和朋友見面不一致。"
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t3",
+      "speaker": "npc",
+      "act": "readiness_question",
+      "act_slots": {
+        "topic": "ready",
+        "keyword": "pronto",
+        "gloss": "ready"
+      },
+      "learning_role": "listen_only",
+      "surface": "Sei pronto?",
+      "speak": "Sei pronto?",
+      "translation": "你準備好了嗎？",
+      "friend": {
+        "hint": "準備好了可說 Sì, sono pronto/pronta。"
+      },
+      "reply_set": {
+        "correct": "r3a",
+        "choices": [
+          {
+            "id": "r3a",
+            "surface": "Sì, sono pronto.",
+            "translation": "對，我準備好了。",
+            "speak": "Sì, sono pronto.",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r3b",
+            "surface": "Dov'è il bagno?",
+            "translation": "洗手間在哪裡？",
+            "speak": "Dov'è il bagno?",
+            "contrast_type": "directions_instead_of_readiness",
+            "feedback": "這是在問地點，不是在回答準備好了沒有。"
+          },
+          {
+            "id": "r3c",
+            "surface": "Vorrei il conto.",
+            "translation": "我想結帳。",
+            "speak": "Vorrei il conto.",
+            "contrast_type": "restaurant_bill_request",
+            "feedback": "這是餐廳結帳，不是朋友問你是否準備好。"
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t4",
+      "speaker": "npc",
+      "act": "next_step",
+      "act_slots": {
+        "topic": "go",
+        "keyword": "andiamo",
+        "gloss": "let's go"
+      },
+      "learning_role": "listen_only",
+      "surface": "Perfetto. Andiamo?",
+      "speak": "Perfetto. Andiamo?",
+      "translation": "太好了。走吧？",
+      "friend": {
+        "hint": "朋友之間用 Andiamo 很自然。"
+      },
+      "reply_set": {
+        "correct": "r4a",
+        "choices": [
+          {
+            "id": "r4a",
+            "surface": "Andiamo.",
+            "translation": "走吧。",
+            "speak": "Andiamo."
+          },
+          {
+            "id": "r4b",
+            "surface": "Mi fa uno sconto?",
+            "translation": "可以給我折扣嗎？",
+            "speak": "Mi fa uno sconto?",
+            "contrast_type": "shopping_bargaining",
+            "feedback": "這是購物議價，不是朋友準備出發。"
+          },
+          {
+            "id": "r4c",
+            "surface": "Carta o contanti?",
+            "translation": "刷卡還是現金？",
+            "speak": "Carta o contanti?",
+            "contrast_type": "cashier_payment_prompt",
+            "feedback": "這是收銀員付款問題，不是朋友之間的下一步。"
+          }
+        ]
+      },
+      "closing": true
+    }
+  ],
+  "formula_moments": [
+    {
+      "after_turn": "t1",
+      "pattern_id": "it.friend.ciao_name.v1"
+    },
+    {
+      "after_turn": "t4",
+      "pattern_id": "it.friend.andiamo.v1"
+    }
+  ],
+  "notes": {
+    "authoring_source": "Authored from ML-2 neutral brief ml2_a1_010_daily_meet_friend; KO and other target-language packs were not used as translation sources.",
+    "review_policy": "AI-authored candidate only; keep review_state=draft, review_status_framework_state=candidate_needs_review, native_review_state=native_pending until tracked review evidence exists.",
+    "canonical_policy": "Staging current-flow candidate only. Do not add to manifests, production exports, schema, runtime, frontend, review artifacts, or legacy content.",
+    "italian_voice_note": "Uses casual friend register with tu forms; native review should check gender variation for pronto/pronta."
+  }
+}

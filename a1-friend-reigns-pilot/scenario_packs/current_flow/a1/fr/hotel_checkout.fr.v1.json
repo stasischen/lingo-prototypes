@@ -1,0 +1,250 @@
+{
+  "schema_version": "scenario_pack.v1",
+  "scenario_id": "hotel_checkout",
+  "brief_id": "ml4_a1_016_hotel_checkout",
+  "source_neutral_brief": "release-aggregator/docs/tasks/A1_MULTILINGUAL_KO_B1_PARALLEL_ORCHESTRATION/work_products/ml0/ML4_NEUTRAL_ADAPTATION_BRIEFS_20260614.md#brief-ml4-a1-016-hotel-checkout",
+  "blueprint_ledger": "release-aggregator/docs/tasks/A1_MULTILINGUAL_KO_B1_PARALLEL_ORCHESTRATION/work_products/ml0/ML4_BLUEPRINT_LEDGER_20260614.md",
+  "repo": "content-fr",
+  "staging_path": "content/core/content_assets/scenario_packs/current_flow/hotel_checkout.fr.v1.json",
+  "title": "Rendre la chambre",
+  "setting_label": "Réception de l'hôtel",
+  "wrap_title": "Tu peux faire le départ de l'hôtel",
+  "wrap_friend": "你說要退房、給了房號、交回房卡，並道謝。",
+  "language": "fr",
+  "ui_language": "zh_tw",
+  "source_status": "candidate_runtime_verified",
+  "review_state": "draft",
+  "review_status_framework_state": "candidate_runtime_verified",
+  "native_review_state": "native_pending",
+  "production_mode_default": {
+    "required": [
+      "choice"
+    ],
+    "optional_visible": [
+      "speaking"
+    ],
+    "optional_hidden": [
+      "typing"
+    ]
+  },
+  "support_text": "你在飯店櫃台退房。用簡短法語說要退房、房號、交回房卡，並道謝。",
+  "roles": {
+    "npc": {
+      "label": "réceptionniste"
+    },
+    "learner": {
+      "label": "client"
+    }
+  },
+  "turns": [
+    {
+      "turn_id": "t1",
+      "speaker": "npc",
+      "act": "front_desk_opening",
+      "act_slots": {
+        "topic": "aide à la réception",
+        "keyword": "aider",
+        "gloss": "協助"
+      },
+      "learning_role": "listen_only",
+      "surface": "Bonjour, je peux vous aider ?",
+      "speak": "Bonjour, je peux vous aider ?",
+      "translation": "您好，我可以幫您嗎？",
+      "friend": {
+        "hint": "你要退房。法語可以簡短說 Je voudrais rendre la chambre。"
+      },
+      "reply_set": {
+        "correct": "r1a",
+        "choices": [
+          {
+            "id": "r1a",
+            "surface": "Je voudrais rendre la chambre.",
+            "translation": "我想退房／交回房間。",
+            "speak": "Je voudrais rendre la chambre.",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r1b",
+            "surface": "Quel est le mot de passe wifi ?",
+            "translation": "wifi 密碼是什麼？",
+            "speak": "Quel est le mot de passe wifi ?",
+            "contrast_type": "wrong_hotel_request",
+            "feedback": "這是在問 wifi。現在目標是退房。"
+          },
+          {
+            "id": "r1c",
+            "surface": "J'ai une réservation.",
+            "translation": "我有訂房。",
+            "speak": "J'ai une réservation.",
+            "contrast_type": "wrong_act_checkin",
+            "feedback": "這是入住句。你現在要辦退房。"
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t2",
+      "speaker": "npc",
+      "act": "ask_room_number",
+      "act_slots": {
+        "topic": "numéro de chambre",
+        "keyword": "chambre",
+        "gloss": "房間"
+      },
+      "learning_role": "listen_only",
+      "surface": "Bien sûr. Votre numéro de chambre ?",
+      "speak": "Bien sûr. Votre numéro de chambre ?",
+      "translation": "好的。您的房號是？",
+      "friend": {
+        "hint": "櫃台問房號。用 Chambre 加數字。"
+      },
+      "inline_explain": {
+        "pattern_id": "fr.hotel.checkout_room_card.v1",
+        "formula_ref": null,
+        "title": "Chambre... / La voici",
+        "explain": "退房時可以用 Chambre 加房號；交房卡時可說 La voici。",
+        "items": [
+          {
+            "surface": "Chambre 304.",
+            "translation": "304 號房。",
+            "speak": "Chambre 304."
+          },
+          {
+            "surface": "Oui, la voici.",
+            "translation": "好的，房卡在這裡。",
+            "speak": "Oui, la voici."
+          }
+        ]
+      },
+      "reply_set": {
+        "correct": "r2a",
+        "choices": [
+          {
+            "id": "r2a",
+            "surface": "Chambre 304.",
+            "translation": "304 號房。",
+            "speak": "Chambre 304.",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r2b",
+            "surface": "Sortie deux.",
+            "translation": "二號出口。",
+            "speak": "Sortie deux.",
+            "contrast_type": "wrong_number_type",
+            "feedback": "這是出口號碼。櫃台問的是房號。"
+          },
+          {
+            "id": "r2c",
+            "surface": "Une table pour deux.",
+            "translation": "兩位用餐。",
+            "speak": "Une table pour deux.",
+            "contrast_type": "wrong_scenario_restaurant",
+            "feedback": "這是餐廳入座句，不是飯店退房。"
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t3",
+      "speaker": "npc",
+      "act": "ask_key_card",
+      "act_slots": {
+        "topic": "carte de chambre",
+        "keyword": "carte",
+        "gloss": "卡片"
+      },
+      "learning_role": "listen_only",
+      "surface": "Vous avez la carte, s'il vous plaît ?",
+      "speak": "Vous avez la carte, s'il vous plaît ?",
+      "translation": "請問您有房卡嗎？",
+      "friend": {
+        "hint": "櫃台要房卡。交給對方時說 Oui, la voici。"
+      },
+      "reply_set": {
+        "correct": "r3a",
+        "choices": [
+          {
+            "id": "r3a",
+            "surface": "Oui, la voici.",
+            "translation": "有，房卡在這裡。",
+            "speak": "Oui, la voici.",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r3b",
+            "surface": "Non, merci.",
+            "translation": "不用了，謝謝。",
+            "speak": "Non, merci.",
+            "contrast_type": "wrong_act_refusal",
+            "feedback": "這像是在拒絕。退房時要交回房卡。"
+          },
+          {
+            "id": "r3c",
+            "surface": "À l'hôtel Central.",
+            "translation": "到中央飯店。",
+            "speak": "À l'hôtel Central.",
+            "contrast_type": "wrong_scenario_taxi",
+            "feedback": "這是計程車目的地。櫃台現在要房卡。"
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t4",
+      "speaker": "npc",
+      "act": "checkout_complete",
+      "act_slots": {
+        "topic": "départ terminé",
+        "keyword": "fait",
+        "gloss": "完成"
+      },
+      "learning_role": "listen_only",
+      "surface": "C'est fait, merci.",
+      "speak": "C'est fait, merci.",
+      "translation": "好了，謝謝。",
+      "friend": {
+        "hint": "流程完成。用 Merci beaucoup 結束。"
+      },
+      "reply_set": {
+        "correct": "r4a",
+        "choices": [
+          {
+            "id": "r4a",
+            "surface": "Merci beaucoup.",
+            "translation": "非常謝謝。",
+            "speak": "Merci beaucoup."
+          },
+          {
+            "id": "r4b",
+            "surface": "Je voudrais rendre la chambre.",
+            "translation": "我想退房。",
+            "speak": "Je voudrais rendre la chambre.",
+            "contrast_type": "repeated_prior_request",
+            "feedback": "退房已經完成了。現在道謝即可。"
+          },
+          {
+            "id": "r4c",
+            "surface": "À quelle heure est le petit déjeuner ?",
+            "translation": "早餐是幾點？",
+            "speak": "À quelle heure est le petit déjeuner ?",
+            "contrast_type": "wrong_hotel_request",
+            "feedback": "這是早餐問題。退房已完成，先結束對話。"
+          }
+        ]
+      }
+    }
+  ],
+  "formula_moments": [
+    {
+      "after_turn": "t2",
+      "pattern_id": "fr.hotel.checkout_room_card.v1"
+    }
+  ],
+  "notes": {
+    "authoring_source": "Authored from ML-4 neutral brief, not Korean surface text or another target-language pack.",
+    "review_policy": "AI-authored French candidate. Requires AI review, runtime smoke, and tracked native review before any stronger status.",
+    "canonical_policy": "Staging candidate only. Do not write back to manifests, production exports, schemas, or legacy content.",
+    "french_register_note": "Concise spoken French with vous at the front desk and short learner replies."
+  }
+}

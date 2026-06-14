@@ -1,0 +1,230 @@
+{
+  "schema_version": "scenario_pack.v1",
+  "scenario_id": "hotel_checkout",
+  "brief_id": "ml4_a1_016_hotel_checkout",
+  "source_neutral_brief": "release-aggregator/docs/tasks/A1_MULTILINGUAL_KO_B1_PARALLEL_ORCHESTRATION/work_products/ml0/ML4_NEUTRAL_ADAPTATION_BRIEFS_20260614.md#brief-ml4-a1-016-hotel-checkout",
+  "blueprint_ledger": "release-aggregator/docs/tasks/A1_MULTILINGUAL_KO_B1_PARALLEL_ORCHESTRATION/work_products/ml0/ML4_BLUEPRINT_LEDGER_20260614.md",
+  "repo": "content-it",
+  "staging_path": "content/core/content_assets/scenario_packs/current_flow/hotel_checkout.it.v1.json",
+  "title": "Fare il check-out in hotel",
+  "setting_label": "Reception dell'hotel",
+  "wrap_title": "Check-out completato",
+  "wrap_friend": "Hai chiesto il check-out, dato il numero della camera e consegnato la carta.",
+  "language": "it",
+  "ui_language": "zh_tw",
+  "source_status": "candidate_runtime_verified",
+  "review_state": "draft",
+  "review_status_framework_state": "candidate_runtime_verified",
+  "native_review_state": "native_pending",
+  "production_mode_default": {
+    "required": [
+      "choice"
+    ],
+    "optional_visible": [
+      "speaking"
+    ],
+    "optional_hidden": [
+      "typing"
+    ]
+  },
+  "support_text": "你在飯店櫃台退房。說明要退房、提供房號、交回房卡，最後道謝。",
+  "roles": {
+    "npc": {
+      "label": "Reception"
+    },
+    "learner": {
+      "label": "Ospite"
+    }
+  },
+  "turns": [
+    {
+      "turn_id": "t1",
+      "speaker": "npc",
+      "act": "front_desk_offer",
+      "act_slots": {
+        "topic": "checkout opening",
+        "keyword": "aiutarla",
+        "gloss": "help you"
+      },
+      "learning_role": "listen_only",
+      "surface": "Buongiorno. Come posso aiutarla?",
+      "speak": "Buongiorno. Come posso aiutarla?",
+      "translation": "早安。請問有什麼可以幫您？",
+      "friend": "退房時可以直接說 Vorrei fare il check-out.",
+      "reply_set": {
+        "correct": "c1",
+        "choices": [
+          {
+            "id": "c1",
+            "surface": "Vorrei fare il check-out.",
+            "translation": "我想退房。",
+            "speak": "Vorrei fare il check-out.",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "c2",
+            "surface": "Qual è la password del Wi-Fi?",
+            "translation": "Wi-Fi 密碼是什麼？",
+            "speak": "Qual è la password del Wi-Fi?",
+            "contrast_type": "wrong_scenario_request",
+            "feedback": "這是在問網路密碼，不是在辦理退房。"
+          },
+          {
+            "id": "c3",
+            "surface": "Un cappuccino, per favore.",
+            "translation": "一杯卡布奇諾，謝謝。",
+            "speak": "Un cappuccino, per favore.",
+            "contrast_type": "food_order_wrong_scenario",
+            "feedback": "這是點飲料。飯店櫃台退房要說 check-out。"
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t2",
+      "speaker": "npc",
+      "act": "room_number_request",
+      "act_slots": {
+        "topic": "room number",
+        "keyword": "camera",
+        "gloss": "room"
+      },
+      "learning_role": "listen_only",
+      "surface": "Certo. Numero della camera?",
+      "speak": "Certo. Numero della camera?",
+      "translation": "好的。房號是多少？",
+      "friend": "回答房號時，用 Camera + 數字即可。",
+      "inline_explain": "Camera 204 = 204 號房。",
+      "reply_set": {
+        "correct": "c1",
+        "choices": [
+          {
+            "id": "c1",
+            "surface": "Camera 204.",
+            "translation": "204 號房。",
+            "speak": "Camera duecentoquattro.",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "c2",
+            "surface": "Binario due.",
+            "translation": "第二月台。",
+            "speak": "Binario due.",
+            "contrast_type": "station_number_not_room",
+            "feedback": "binario 是車站月台，不是飯店房號。"
+          },
+          {
+            "id": "c3",
+            "surface": "Vorrei un biglietto.",
+            "translation": "我想要一張票。",
+            "speak": "Vorrei un biglietto.",
+            "contrast_type": "ticket_purchase_wrong_scenario",
+            "feedback": "這是在買票。櫃台現在問的是房號。"
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t3",
+      "speaker": "npc",
+      "act": "key_card_request",
+      "act_slots": {
+        "topic": "key card handover",
+        "keyword": "carta",
+        "gloss": "card"
+      },
+      "learning_role": "listen_only",
+      "surface": "Perfetto. Mi lascia la carta, per favore?",
+      "speak": "Perfetto. Mi lascia la carta, per favore?",
+      "translation": "很好。請把房卡交給我，好嗎？",
+      "friend": "交東西時，Ecco la carta 很自然。",
+      "reply_set": {
+        "correct": "c1",
+        "choices": [
+          {
+            "id": "c1",
+            "surface": "Sì, ecco la carta.",
+            "translation": "好，房卡在這裡。",
+            "speak": "Sì, ecco la carta.",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "c2",
+            "surface": "No, la tengo.",
+            "translation": "不，我留著。",
+            "speak": "No, la tengo.",
+            "contrast_type": "refusal_instead_of_handover",
+            "feedback": "退房流程需要交回房卡；這裡不應拒絕。"
+          },
+          {
+            "id": "c3",
+            "surface": "A nome di Lee.",
+            "translation": "訂房姓名是 Lee。",
+            "speak": "A nome di Lee.",
+            "contrast_type": "checkin_name_answer",
+            "feedback": "這是入住時回答訂房姓名，不是交房卡。"
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t4",
+      "speaker": "npc",
+      "act": "checkout_complete",
+      "act_slots": {
+        "topic": "completion",
+        "keyword": "finito",
+        "gloss": "finished"
+      },
+      "learning_role": "listen_only",
+      "surface": "Grazie. Il check-out è fatto.",
+      "speak": "Grazie. Il check-out è fatto.",
+      "translation": "謝謝。退房完成了。",
+      "friend": "流程完成後，用 grazie mille 收尾。",
+      "reply_set": {
+        "correct": "c1",
+        "choices": [
+          {
+            "id": "c1",
+            "surface": "Grazie mille.",
+            "translation": "非常謝謝。",
+            "speak": "Grazie mille."
+          },
+          {
+            "id": "c2",
+            "surface": "Quanto costa in più?",
+            "translation": "還要多付多少？",
+            "speak": "Quanto costa in più?",
+            "contrast_type": "extra_charge_dispute_out_of_scope",
+            "feedback": "這會進入額外費用或爭議；本場景只練基本退房。"
+          },
+          {
+            "id": "c3",
+            "surface": "Qual è il gate?",
+            "translation": "登機門是哪一個？",
+            "speak": "Qual è il gate?",
+            "contrast_type": "airport_question_wrong_scenario",
+            "feedback": "這是機場問題，不是飯店退房結尾。"
+          }
+        ]
+      },
+      "closing": true
+    }
+  ],
+  "formula_moments": [
+    {
+      "after_turn": "t1",
+      "pattern_id": "it.hotel.vorrei_fare_checkout"
+    },
+    {
+      "after_turn": "t3",
+      "pattern_id": "it.handover.ecco_la_carta"
+    }
+  ],
+  "notes": {
+    "authoring_source": "Authored from ML-4 neutral brief ml4_a1_016_hotel_checkout; KO and other target-language packs were not used as translation sources.",
+    "review_policy": "AI-authored candidate only; keep review_state=draft, review_status_framework_state=candidate_needs_review, native_review_state=native_pending until tracked review evidence exists.",
+    "canonical_policy": "Staging current-flow candidate only. Do not add to manifests, production exports, schema, runtime, or frontend in this authoring lane.",
+    "native_risk_note": "Native review should confirm that the card-handover wording fits ordinary Italian hotel checkout."
+  }
+}

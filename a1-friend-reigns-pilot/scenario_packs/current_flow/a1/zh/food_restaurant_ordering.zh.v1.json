@@ -1,0 +1,254 @@
+{
+  "schema_version": "scenario_pack.v1",
+  "scenario_id": "food_restaurant_ordering",
+  "brief_id": "ml1_a1_006_food_restaurant_ordering",
+  "source_neutral_brief": "release-aggregator/docs/tasks/A1_MULTILINGUAL_KO_B1_PARALLEL_ORCHESTRATION/work_products/ml0/ML1_NEUTRAL_ADAPTATION_BRIEFS_20260614.md#brief-ml1-a1-006-restaurant-ordering",
+  "blueprint_ledger": "release-aggregator/docs/tasks/A1_MULTILINGUAL_KO_B1_PARALLEL_ORCHESTRATION/work_products/ml0/ML1_BLUEPRINT_LEDGER_20260614.md",
+  "repo": "content-zh",
+  "staging_path": "content/core/content_assets/scenario_packs/current_flow/food_restaurant_ordering.zh.v1.json",
+  "title": "在餐廳點餐",
+  "setting_label": "餐廳座位",
+  "wrap_title": "點餐完成",
+  "wrap_friend": "你用自然的繁體中文回答人數、點一道餐，並確認訂單。",
+  "language": "zh",
+  "ui_language": "zh_tw",
+  "source_status": "candidate_runtime_verified",
+  "review_state": "draft",
+  "review_status_framework_state": "candidate_runtime_verified",
+  "native_review_state": "native_pending",
+  "production_mode_default": {
+    "required": [
+      "choice"
+    ],
+    "optional_visible": [
+      "speaking"
+    ],
+    "optional_hidden": [
+      "typing"
+    ]
+  },
+  "support_text": "你在台灣常見的簡單餐廳。用短句回答店員，點一道餐並確認。",
+  "roles": {
+    "npc": {
+      "label": "店員"
+    },
+    "learner": {
+      "label": "客人"
+    }
+  },
+  "turns": [
+    {
+      "turn_id": "t1",
+      "speaker": "npc",
+      "act": "readiness_party_size",
+      "act_slots": {
+        "topic": "party_size",
+        "keyword": "兩位",
+        "gloss": "two people"
+      },
+      "learning_role": "listen_only",
+      "surface": "您好，準備好點餐了嗎？",
+      "speak": "您好，準備好點餐了嗎？",
+      "translation": "您好，準備好點餐了嗎？",
+      "friend": {
+        "hint": "先說準備好了，也可以補上兩位。"
+      },
+      "reply_set": {
+        "correct": "r1a",
+        "choices": [
+          {
+            "id": "r1a",
+            "surface": "好了，我們兩位。",
+            "translation": "好了，我們兩位。",
+            "speak": "好了，我們兩位。",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r1b",
+            "surface": "我要結帳，謝謝。",
+            "translation": "我要結帳，謝謝。",
+            "speak": "我要結帳，謝謝。",
+            "contrast_type": "asking_bill_before_ordering",
+            "feedback": "這是在還沒點餐前就要結帳。現在要回答是否準備好點餐。"
+          },
+          {
+            "id": "r1c",
+            "surface": "一杯熱拿鐵，謝謝。",
+            "translation": "一杯熱拿鐵，謝謝。",
+            "speak": "一杯熱拿鐵，謝謝。",
+            "contrast_type": "cafe_only_request",
+            "feedback": "這像咖啡店點飲料。現在是在餐廳座位回答店員。"
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t2",
+      "speaker": "npc",
+      "act": "ask_order",
+      "act_slots": {
+        "topic": "meal_order",
+        "keyword": "想要",
+        "gloss": "would like"
+      },
+      "learning_role": "listen_only",
+      "surface": "今天想吃什麼？",
+      "speak": "今天想吃什麼？",
+      "translation": "今天想吃什麼？",
+      "friend": {
+        "hint": "用我想要一份...就能點一道餐。"
+      },
+      "inline_explain": {
+        "pattern_id": "zh.restaurant.wo_xiang_yao_yi_fen.v1",
+        "formula_ref": null,
+        "title": "我想要一份...",
+        "explain": "我想要一份... 是點一道餐的簡短自然說法。",
+        "items": [
+          {
+            "surface": "我想要一份牛肉麵。",
+            "translation": "我想要一份牛肉麵。",
+            "speak": "我想要一份牛肉麵。"
+          },
+          {
+            "surface": "我要一份水餃，謝謝。",
+            "translation": "我要一份水餃，謝謝。",
+            "speak": "我要一份水餃，謝謝。"
+          }
+        ]
+      },
+      "reply_set": {
+        "correct": "r2a",
+        "choices": [
+          {
+            "id": "r2a",
+            "surface": "我想要一份牛肉麵，謝謝。",
+            "translation": "我想要一份牛肉麵，謝謝。",
+            "speak": "我想要一份牛肉麵，謝謝。",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r2b",
+            "surface": "外帶，謝謝。",
+            "translation": "外帶，謝謝。",
+            "speak": "外帶，謝謝。",
+            "contrast_type": "takeout_answer_in_dine_in_context",
+            "feedback": "這是在回答內用外帶，不是在點一道餐。"
+          },
+          {
+            "id": "r2c",
+            "surface": "我要一份很大碗、不要蔥、不要香菜、少鹽、加辣的牛肉麵。",
+            "translation": "我要一份很大碗、不要蔥、不要香菜、少鹽、加辣的牛肉麵。",
+            "speak": "我要一份很大碗、不要蔥、不要香菜、少鹽、加辣的牛肉麵。",
+            "contrast_type": "overlong_customization",
+            "feedback": "資訊太多，超出這個 A1 回合。先練習點一道簡單餐點。"
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t3",
+      "speaker": "npc",
+      "act": "order_confirmation",
+      "act_slots": {
+        "topic": "confirm_order",
+        "keyword": "對嗎",
+        "gloss": "right"
+      },
+      "learning_role": "listen_only",
+      "surface": "一份牛肉麵，對嗎？",
+      "speak": "一份牛肉麵，對嗎？",
+      "translation": "一份牛肉麵，對嗎？",
+      "friend": {
+        "hint": "訂單正確時，說對，謝謝。"
+      },
+      "reply_set": {
+        "correct": "r3a",
+        "choices": [
+          {
+            "id": "r3a",
+            "surface": "對，謝謝。",
+            "translation": "對，謝謝。",
+            "speak": "對，謝謝。"
+          },
+          {
+            "id": "r3b",
+            "surface": "不是，一杯咖啡。",
+            "translation": "不是，一杯咖啡。",
+            "speak": "不是，一杯咖啡。",
+            "contrast_type": "wrong_item_confirmation",
+            "feedback": "這把餐點換成咖啡了。若訂單正確，直接確認即可。"
+          },
+          {
+            "id": "r3c",
+            "surface": "我刷卡。",
+            "translation": "我刷卡。",
+            "speak": "我刷卡。",
+            "contrast_type": "payment_answer_too_early",
+            "feedback": "這是付款資訊。現在店員只是在確認餐點。"
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t4",
+      "speaker": "npc",
+      "act": "service_close",
+      "act_slots": {
+        "topic": "order_accepted",
+        "keyword": "稍等",
+        "gloss": "wait briefly"
+      },
+      "learning_role": "listen_only",
+      "surface": "好的，請稍等一下。",
+      "speak": "好的，請稍等一下。",
+      "translation": "好的，請稍等一下。",
+      "friend": {
+        "hint": "點餐完成，用謝謝收尾。"
+      },
+      "reply_set": {
+        "correct": "r4a",
+        "choices": [
+          {
+            "id": "r4a",
+            "surface": "謝謝。",
+            "translation": "謝謝。",
+            "speak": "謝謝。"
+          },
+          {
+            "id": "r4b",
+            "surface": "請問二號月台在哪裡？",
+            "translation": "請問二號月台在哪裡？",
+            "speak": "請問二號月台在哪裡？",
+            "contrast_type": "wrong_scenario_request",
+            "feedback": "這是車站問路，不是餐廳點餐收尾。"
+          },
+          {
+            "id": "r4c",
+            "surface": "早餐幾點開始？",
+            "translation": "早餐幾點開始？",
+            "speak": "早餐幾點開始？",
+            "contrast_type": "hotel_question",
+            "feedback": "這是飯店早餐問題。餐點已確認，只要道謝。"
+          }
+        ]
+      },
+      "closing": true
+    }
+  ],
+  "formula_moments": [
+    {
+      "after_turn": "t1",
+      "pattern_id": "zh.restaurant.women_liang_wei.v1"
+    },
+    {
+      "after_turn": "t2",
+      "pattern_id": "zh.restaurant.wo_xiang_yao_yi_fen.v1"
+    }
+  ],
+  "notes": {
+    "authoring_source": "Authored from ML-1 neutral brief ml1_a1_006_food_restaurant_ordering; KO and other target-language packs were not used as translation sources.",
+    "review_policy": "AI-authored candidate only; keep review_state=draft, review_status_framework_state=candidate_needs_review, native_review_state=native_pending until tracked review evidence exists.",
+    "canonical_policy": "Staging current-flow candidate only. Do not add to manifests, production exports, schema, runtime, frontend, review artifacts, or legacy content.",
+    "chinese_voice_note": "Uses Traditional-character Mandarin with Taiwan-leaning restaurant terms such as 牛肉麵 and 外帶; native review should check if the dish choice is too Taiwan-specific for a broader Mandarin lane."
+  }
+}

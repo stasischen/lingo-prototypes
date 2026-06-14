@@ -1,0 +1,284 @@
+{
+  "schema_version": "scenario_pack.v1",
+  "scenario_id": "a2_ask_recommendation_budget",
+  "title": "Chiedere un Consiglio entro un Budget",
+  "setting_label": "piccolo negozio",
+  "wrap_title": "Consiglio confermato",
+  "wrap_friend": "Bene. Hai confermato una preferenza e un dettaglio in una semplice situazione di cibo o acquisti.",
+  "language": "it",
+  "ui_language": "zh-Hant",
+  "cefr_level": "A2",
+  "source_status": "candidate_runtime_verified",
+  "review_state": "ai_reviewed",
+  "review_status_framework_state": "candidate_runtime_verified",
+  "native_review_state": "native_pending",
+  "scenario": {
+    "domain": "food_shopping_preferences",
+    "review_slice": "food_shopping",
+    "interaction": "service_preference_or_exchange",
+    "source_brief": "A2_FOOD_SHOPPING_NEUTRAL_ADAPTATION_BRIEFS_20260614",
+    "blueprint_source": "language_neutral_adaptation_brief",
+    "ko_pack_role": "mature_scenario_blueprint_not_translation_source"
+  },
+  "learner_goal": "Chiedi un consiglio semplice entro un piccolo budget.",
+  "target_functions": [
+    "compare_or_state_preference",
+    "confirm_key_detail",
+    "make_polite_low_risk_request",
+    "close_with_correct_next_step"
+  ],
+  "register_notes": "Italian A2 food/shopping register: everyday polite service Italian, no allergy/medical/refund-dispute framing.",
+  "production_mode_default": {
+    "required": [
+      "choice"
+    ],
+    "optional_visible": [
+      "speaking"
+    ],
+    "optional_hidden": [
+      "typing"
+    ]
+  },
+  "support_text": "Chiedi un consiglio semplice entro un piccolo budget.",
+  "roles": {
+    "npc": {
+      "label": "addetto"
+    },
+    "learner": {
+      "label": "你"
+    }
+  },
+  "turns": [
+    {
+      "turn_id": "t1",
+      "speaker": "npc",
+      "act": "state_budget",
+      "act_slots": {
+        "topic": "ask-recommendation-budget",
+        "keyword": "1",
+        "gloss": "A2 food/shopping"
+      },
+      "learning_role": "listen_only",
+      "surface": "Che cosa cerca?",
+      "speak": "Che cosa cerca?",
+      "translation": "您在找什麼？",
+      "friend": {
+        "hint": "Chiedi un consiglio entro un piccolo budget."
+      },
+      "reply_set": {
+        "correct": "r1a",
+        "choices": [
+          {
+            "id": "r1a",
+            "surface": "Mi può consigliare un regalo sotto i dieci euro?",
+            "translation": "可以推薦十歐元以內的禮物嗎？",
+            "speak": "Mi può consigliare un regalo sotto i dieci euro?",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r1b",
+            "surface": "Controlli il mio conto bancario, per favore.",
+            "translation": "請查看我的銀行帳戶。",
+            "speak": "Controlli il mio conto bancario, per favore.",
+            "contrast_type": "wrong_detail_or_domain",
+            "feedback": "Non è un compito bancario."
+          },
+          {
+            "id": "r1c",
+            "surface": "Vorrei fare una denuncia per un oggetto perso.",
+            "translation": "我想申報遺失物。",
+            "speak": "Vorrei fare una denuncia per un oggetto perso.",
+            "contrast_type": "forbidden_or_wrong_domain",
+            "feedback": "La denuncia di oggetto perso è un altro compito."
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t2",
+      "speaker": "npc",
+      "act": "ask_preference",
+      "act_slots": {
+        "topic": "ask-recommendation-budget",
+        "keyword": "2",
+        "gloss": "A2 food/shopping"
+      },
+      "learning_role": "listen_only",
+      "surface": "Preferisce qualcosa di leggero o di pratico?",
+      "speak": "Preferisce qualcosa di leggero o di pratico?",
+      "translation": "您想要輕巧的，還是實用的？",
+      "friend": {
+        "hint": "Dai una preferenza semplice."
+      },
+      "reply_set": {
+        "correct": "r2a",
+        "choices": [
+          {
+            "id": "r2a",
+            "surface": "Qualcosa di pratico, per favore.",
+            "translation": "請推薦實用的。",
+            "speak": "Qualcosa di pratico, per favore.",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r2b",
+            "surface": "Qualcosa di piccante, per favore.",
+            "translation": "請推薦辣的。",
+            "speak": "Qualcosa di piccante, per favore.",
+            "contrast_type": "wrong_detail_or_domain",
+            "feedback": "Piccante appartiene più a un menu."
+          },
+          {
+            "id": "r2c",
+            "surface": "Vorrei fare il check-out più tardi.",
+            "translation": "我想晚點退房。",
+            "speak": "Vorrei fare il check-out più tardi.",
+            "contrast_type": "forbidden_or_wrong_domain",
+            "feedback": "Questo passa all’hotel."
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t3",
+      "speaker": "npc",
+      "act": "confirm_preference",
+      "act_slots": {
+        "topic": "ask-recommendation-budget",
+        "keyword": "3",
+        "gloss": "A2 food/shopping"
+      },
+      "learning_role": "listen_only",
+      "surface": "Allora questo piccolo quaderno costa meno di dieci euro.",
+      "speak": "Allora questo piccolo quaderno costa meno di dieci euro.",
+      "translation": "那這本小筆記本在十歐元以內。",
+      "friend": {
+        "hint": "Conferma consiglio e budget."
+      },
+      "reply_set": {
+        "correct": "r3a",
+        "choices": [
+          {
+            "id": "r3a",
+            "surface": "Quel quaderno costa meno di dieci euro, giusto?",
+            "translation": "那本筆記本在十歐元以內，對嗎？",
+            "speak": "Quel quaderno costa meno di dieci euro, giusto?",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r3b",
+            "surface": "Quella camera costa meno di dieci euro, giusto?",
+            "translation": "那個房間在十歐元以內，對嗎？",
+            "speak": "Quella camera costa meno di dieci euro, giusto?",
+            "contrast_type": "wrong_detail_or_domain",
+            "feedback": "Una camera non è l’articolo consigliato."
+          },
+          {
+            "id": "r3c",
+            "surface": "Quel biglietto era per ieri, giusto?",
+            "translation": "那張票是昨天的，對嗎？",
+            "speak": "Quel biglietto era per ieri, giusto?",
+            "contrast_type": "forbidden_or_wrong_domain",
+            "feedback": "Questo passa ai biglietti."
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t4",
+      "speaker": "npc",
+      "act": "accept_recommendation",
+      "act_slots": {
+        "topic": "ask-recommendation-budget",
+        "keyword": "4",
+        "gloss": "A2 food/shopping"
+      },
+      "learning_role": "listen_only",
+      "surface": "Sì, ed è possibile confezionarlo come regalo.",
+      "speak": "Sì, ed è possibile confezionarlo come regalo.",
+      "translation": "對，也可以包裝成禮物。",
+      "friend": {
+        "hint": "Accetta il consiglio con cortesia."
+      },
+      "reply_set": {
+        "correct": "r4a",
+        "choices": [
+          {
+            "id": "r4a",
+            "surface": "Perfetto. Prendo quel quaderno.",
+            "translation": "很好，我要那本筆記本。",
+            "speak": "Perfetto. Prendo quel quaderno.",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r4b",
+            "surface": "Voglio un rimborso.",
+            "translation": "請退款。",
+            "speak": "Voglio un rimborso.",
+            "contrast_type": "wrong_detail_or_domain",
+            "feedback": "Non è una richiesta di rimborso."
+          },
+          {
+            "id": "r4c",
+            "surface": "Controlli la mia assicurazione, per favore.",
+            "translation": "請查看我的保險。",
+            "speak": "Controlli la mia assicurazione, per favore.",
+            "contrast_type": "forbidden_or_wrong_domain",
+            "feedback": "L’assicurazione è fuori da questo compito a basso rischio."
+          }
+        ]
+      }
+    }
+  ],
+  "choice_sets": {
+    "count_per_turn": 3,
+    "correct_path": [
+      "r1a",
+      "r2a",
+      "r3a",
+      "r4a"
+    ],
+    "distractor_policy": "one near-domain wrong detail plus one out-of-scope/unsafe-domain option per turn"
+  },
+  "feedback": {
+    "correct": "Bene. Continua dentro il compito di cibo o acquisti.",
+    "incorrect": "Scegli la risposta adatta a menu, ingrediente, cambio o consiglio con budget."
+  },
+  "tts_segments": [
+    "Che cosa cerca?",
+    "Mi può consigliare un regalo sotto i dieci euro?",
+    "Controlli il mio conto bancario, per favore.",
+    "Vorrei fare una denuncia per un oggetto perso.",
+    "Preferisce qualcosa di leggero o di pratico?",
+    "Qualcosa di pratico, per favore.",
+    "Qualcosa di piccante, per favore.",
+    "Vorrei fare il check-out più tardi.",
+    "Allora questo piccolo quaderno costa meno di dieci euro.",
+    "Quel quaderno costa meno di dieci euro, giusto?",
+    "Quella camera costa meno di dieci euro, giusto?",
+    "Quel biglietto era per ieri, giusto?",
+    "Sì, ed è possibile confezionarlo come regalo.",
+    "Perfetto. Prendo quel quaderno.",
+    "Voglio un rimborso.",
+    "Controlli la mia assicurazione, per favore."
+  ],
+  "formula_moments": [
+    {
+      "after_turn": "t2",
+      "pattern_id": "it.a2.shopping.recommendation.budget.v1",
+      "label": "sotto + budget",
+      "learner_takeaway": "qualcosa di pratico/leggero/piccolo"
+    }
+  ],
+  "runtime_notes": {
+    "expected_turns": 4,
+    "expected_choices_per_turn": 3,
+    "full_walk_required": true,
+    "expected_final_screen": "Wrap"
+  },
+  "notes": {
+    "generated_at": "2026-06-14",
+    "authoring_scope": "A2 food/shopping IT adaptation",
+    "native_review_state": "native_pending"
+  }
+}

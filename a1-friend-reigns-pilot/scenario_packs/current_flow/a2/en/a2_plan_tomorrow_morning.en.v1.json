@@ -1,0 +1,262 @@
+{
+  "schema_version": "scenario_pack.v1",
+  "scenario_id": "a2_plan_tomorrow_morning",
+  "title": "Plan Tomorrow Morning",
+  "setting_label": "Chat with a friend",
+  "wrap_title": "Tomorrow Morning Plan",
+  "wrap_friend": "你剛剛用簡單英文說了明天早上的安排，並接上一個下一步。",
+  "language": "en",
+  "ui_language": "zh_tw",
+  "cefr_level": "A2",
+  "source_status": "candidate_runtime_verified",
+  "review_state": "ai_reviewed",
+  "review_status_framework_state": "candidate_runtime_verified",
+  "native_review_state": "native_pending",
+  "scenario": "A friend asks what you plan to do tomorrow morning.",
+  "learner_goal": "Say a near-future plan with one simple next step.",
+  "target_functions": [
+    "near_future_plan",
+    "simple_sequence",
+    "time_expression"
+  ],
+  "register_notes": "Friendly everyday English. Uses common A2 forms such as going to, then, and around.",
+  "production_mode_default": {
+    "required": [
+      "choice"
+    ],
+    "optional_visible": [
+      "speaking"
+    ],
+    "optional_hidden": [
+      "typing"
+    ]
+  },
+  "support_text": "Your friend asks about tomorrow morning. Say what you are going to do first, then add one next step.",
+  "roles": {
+    "npc": {
+      "label": "Friend"
+    },
+    "learner": {
+      "label": "You"
+    }
+  },
+  "turns": [
+    {
+      "turn_id": "t1",
+      "speaker": "npc",
+      "act": "info_request",
+      "act_slots": {
+        "topic": "tomorrow morning plan",
+        "keyword": "tomorrow morning",
+        "gloss": "明天早上"
+      },
+      "learning_role": "listen_only",
+      "surface": "What are you going to do tomorrow morning?",
+      "speak": "What are you going to do tomorrow morning?",
+      "translation": "你明天早上打算做什麼？",
+      "friend": {
+        "hint": "The question is about tomorrow morning. Use going to for a simple plan."
+      },
+      "reply_set": {
+        "correct": "r1a",
+        "choices": [
+          {
+            "id": "r1a",
+            "surface": "I am going to go to the bank.",
+            "translation": "我打算去銀行。",
+            "speak": "I am going to go to the bank.",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r1b",
+            "surface": "I went to the bank yesterday.",
+            "translation": "我昨天去了銀行。",
+            "speak": "I went to the bank yesterday.",
+            "contrast_type": "wrong_time_past",
+            "feedback": "Your friend asks about tomorrow morning, not yesterday."
+          },
+          {
+            "id": "r1c",
+            "surface": "Where is the bank?",
+            "translation": "銀行在哪裡？",
+            "speak": "Where is the bank?",
+            "contrast_type": "wrong_function_location_question",
+            "feedback": "This asks for a place. It does not say your plan."
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t2",
+      "speaker": "npc",
+      "act": "followup_sequence",
+      "act_slots": {
+        "topic": "after bank",
+        "keyword": "after that",
+        "gloss": "接著"
+      },
+      "learning_role": "listen_only",
+      "surface": "What will you do after that?",
+      "speak": "What will you do after that?",
+      "translation": "那之後你要做什麼？",
+      "friend": {
+        "hint": "After that asks for the next step. Answer with then or after that."
+      },
+      "inline_explain": {
+        "pattern_id": "en.a2.plan.sequence.going_to.v1",
+        "title": "going to + verb",
+        "explain": "Use going to for a plan. Use then to add the next step.",
+        "items": [
+          {
+            "surface": "I am going to go.",
+            "translation": "我打算去。",
+            "speak": "I am going to go."
+          },
+          {
+            "surface": "Then I will study.",
+            "translation": "接著我會讀書。",
+            "speak": "Then I will study."
+          }
+        ]
+      },
+      "reply_set": {
+        "correct": "r2a",
+        "choices": [
+          {
+            "id": "r2a",
+            "surface": "Then I am going to study at a cafe.",
+            "translation": "接著我打算在咖啡店讀書。",
+            "speak": "Then I am going to study at a cafe.",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r2b",
+            "surface": "Let's meet at the cafe.",
+            "translation": "我們在咖啡店見吧。",
+            "speak": "Let's meet at the cafe.",
+            "contrast_type": "wrong_function_meeting_place",
+            "feedback": "This suggests a meeting place. Your friend asked about your next activity."
+          },
+          {
+            "id": "r2c",
+            "surface": "I am studying now.",
+            "translation": "我現在正在讀書。",
+            "speak": "I am studying now.",
+            "contrast_type": "wrong_time_aspect",
+            "feedback": "This is about now. Your friend asks about the next step tomorrow."
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t3",
+      "speaker": "npc",
+      "act": "time_confirmation",
+      "act_slots": {
+        "topic": "meeting after plan",
+        "keyword": "before lunch",
+        "gloss": "午餐前"
+      },
+      "learning_role": "listen_only",
+      "surface": "So are you free before lunch?",
+      "speak": "So are you free before lunch?",
+      "translation": "所以你午餐前有空嗎？",
+      "friend": {
+        "hint": "Before lunch means late morning. You can say around plus a time."
+      },
+      "reply_set": {
+        "correct": "r3a",
+        "choices": [
+          {
+            "id": "r3a",
+            "surface": "Yes, I am free around eleven.",
+            "translation": "可以，我十一點左右有空。",
+            "speak": "Yes, I am free around eleven."
+          },
+          {
+            "id": "r3b",
+            "surface": "No, I was free yesterday.",
+            "translation": "不，我昨天有空。",
+            "speak": "No, I was free yesterday.",
+            "contrast_type": "wrong_time_past",
+            "feedback": "The question is about tomorrow before lunch, not yesterday."
+          },
+          {
+            "id": "r3c",
+            "surface": "Does the bank close at eleven?",
+            "translation": "銀行十一點關門嗎？",
+            "speak": "Does the bank close at eleven?",
+            "contrast_type": "wrong_focus_bank_hours",
+            "feedback": "Your friend is asking when you are free."
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t4",
+      "speaker": "npc",
+      "act": "closing_confirmation",
+      "act_slots": {
+        "topic": "plan confirmed"
+      },
+      "learning_role": "listen_only",
+      "surface": "Great. I will message you at eleven.",
+      "speak": "Great. I will message you at eleven.",
+      "translation": "太好了。我十一點傳訊息給你。",
+      "friend": {
+        "hint": "The plan is clear now. Close with a short friendly answer."
+      },
+      "reply_set": {
+        "correct": "r4a",
+        "choices": [
+          {
+            "id": "r4a",
+            "surface": "Okay, see you tomorrow.",
+            "translation": "好，明天見。",
+            "speak": "Okay, see you tomorrow."
+          },
+          {
+            "id": "r4b",
+            "surface": "I will order it again.",
+            "translation": "我會再點一次。",
+            "speak": "I will order it again.",
+            "contrast_type": "wrong_scenario_ordering",
+            "feedback": "This sounds like ordering food or a product. Here you are confirming tomorrow."
+          },
+          {
+            "id": "r4c",
+            "surface": "I want to change rooms.",
+            "translation": "我想換房間。",
+            "speak": "I want to change rooms.",
+            "contrast_type": "wrong_scenario_hotel",
+            "feedback": "This is a hotel sentence. A short goodbye is enough here."
+          }
+        ]
+      }
+    }
+  ],
+  "choice_sets": [
+    "t1.reply_set",
+    "t2.reply_set",
+    "t3.reply_set",
+    "t4.reply_set"
+  ],
+  "feedback": "Distractors test wrong time, wrong function, and wrong scenario without offering a valid alternate answer.",
+  "tts_segments": [
+    "I am going to go to the bank.",
+    "Then I am going to study at a cafe.",
+    "Yes, I am free around eleven.",
+    "Okay, see you tomorrow."
+  ],
+  "formula_moments": [
+    {
+      "after_turn": "t2",
+      "pattern_id": "en.a2.plan.sequence.going_to.v1"
+    }
+  ],
+  "runtime_notes": "Fresh EN A2 candidate. Structural checks and two AI semantic review passes completed on 2026-06-14 before metadata promotion.",
+  "notes": {
+    "authoring_policy": "Fresh-authored from the neutral A2 brief. KO was used only as schema-shape reference.",
+    "a2_boundary": "Uses near-future plan plus one simple sequence and time availability; avoids a formal itinerary."
+  }
+}

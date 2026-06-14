@@ -1,0 +1,239 @@
+{
+  "schema_version": "scenario_pack.v1",
+  "scenario_id": "digital_battery_charging",
+  "title": "手機充電情境",
+  "setting_label": "咖啡店座位區",
+  "wrap_title": "今天這段手機充電",
+  "wrap_friend": "你剛剛問了能不能充電，也問到插座在哪裡。手機快沒電時，能先徵求同意再找插座，比直接使用更自然。",
+  "language": "ko",
+  "ui_language": "zh_tw",
+  "source_status": "pilot_authored_ai_review_pending",
+  "review_state": "draft",
+  "production_mode_default": {
+    "required": [
+      "choice"
+    ],
+    "optional_visible": [
+      "speaking"
+    ],
+    "optional_hidden": [
+      "typing"
+    ]
+  },
+  "support_text": "你的手機快沒電了。在店裡先問可不可以充電，再問插座位置。",
+  "roles": {
+    "npc": {
+      "label": "店員"
+    },
+    "learner": {
+      "label": "你"
+    }
+  },
+  "turns": [
+    {
+      "turn_id": "t1",
+      "speaker": "npc",
+      "act": "service_opening",
+      "act_slots": {
+        "topic": "help request",
+        "keyword": "필요",
+        "gloss": "需要"
+      },
+      "learning_role": "listen_only",
+      "surface": "뭐 필요하세요?",
+      "speak": "뭐 필요하세요?",
+      "translation": "你需要什麼嗎？",
+      "friend": {
+        "hint": "충전하다 是充電。要先問可不可以，可以說 휴대폰 충전해도 돼요?"
+      },
+      "inline_explain": {
+        "pattern_id": "ko.digital.charge.permission.outlet.v1",
+        "formula_ref": null,
+        "title": "충전해도 돼요? / 콘센트가 어디예요?",
+        "explain": "動詞後接 -아도/어도 돼요? 可以問可不可以。콘센트 是插座。",
+        "items": [
+          {
+            "surface": "휴대폰 충전해도 돼요?",
+            "translation": "可以幫手機充電嗎？",
+            "speak": "휴대폰 충전해도 돼요?"
+          },
+          {
+            "surface": "콘센트가 어디예요?",
+            "translation": "插座在哪裡？",
+            "speak": "콘센트가 어디예요?"
+          }
+        ]
+      },
+      "reply_set": {
+        "correct": "r1a",
+        "choices": [
+          {
+            "id": "r1a",
+            "surface": "휴대폰 충전해도 돼요?",
+            "translation": "可以幫手機充電嗎？",
+            "speak": "휴대폰 충전해도 돼요?",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r1b",
+            "surface": "와이파이 비밀번호가 뭐예요?",
+            "translation": "Wi-Fi 密碼是什麼？",
+            "speak": "와이파이 비밀번호가 뭐예요?",
+            "contrast_type": "wrong_scenario_request",
+            "feedback": "這句是在問 Wi-Fi。現在你的手機快沒電，要問充電。"
+          },
+          {
+            "id": "r1c",
+            "surface": "카드로 할게요.",
+            "translation": "我用卡。",
+            "speak": "카드로 할게요.",
+            "contrast_type": "wrong_act_payment",
+            "feedback": "這句是在付款。現在是詢問能不能充電。"
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t2",
+      "speaker": "npc",
+      "act": "permission_response",
+      "act_slots": {
+        "topic": "charging permission",
+        "keyword": "돼요",
+        "gloss": "可以"
+      },
+      "learning_role": "listen_only",
+      "surface": "네, 괜찮아요.",
+      "speak": "네, 괜찮아요.",
+      "translation": "可以，沒問題。",
+      "friend": {
+        "hint": "店員說 네, 괜찮아요，就是可以。接著可以問插座在哪裡。"
+      },
+      "reply_set": {
+        "correct": "r2a",
+        "choices": [
+          {
+            "id": "r2a",
+            "surface": "콘센트가 어디예요?",
+            "translation": "插座在哪裡？",
+            "speak": "콘센트가 어디예요?",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r2b",
+            "surface": "휴대폰 충전해도 돼요?",
+            "translation": "可以幫手機充電嗎？",
+            "speak": "휴대폰 충전해도 돼요?",
+            "contrast_type": "repeated_prior_answer",
+            "feedback": "店員已經同意了。現在要問插座位置。"
+          },
+          {
+            "id": "r2c",
+            "surface": "영수증 드릴까요?",
+            "translation": "需要收據嗎？",
+            "speak": "영수증 드릴까요?",
+            "contrast_type": "wrong_speaker_role",
+            "feedback": "這是店員會問客人的句子，不是你要回的句子。"
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t3",
+      "speaker": "npc",
+      "act": "direction",
+      "act_slots": {
+        "topic": "outlet location",
+        "keyword": "저쪽",
+        "gloss": "那邊"
+      },
+      "learning_role": "listen_only",
+      "surface": "저쪽 테이블 옆에 있어요.",
+      "speak": "저쪽 테이블 옆에 있어요.",
+      "translation": "在那邊桌子旁邊。",
+      "friend": {
+        "hint": "저쪽 是那邊，옆에 是旁邊。聽懂位置後可以確認。"
+      },
+      "reply_set": {
+        "correct": "r3a",
+        "choices": [
+          {
+            "id": "r3a",
+            "surface": "저쪽 테이블 옆이요?",
+            "translation": "那邊桌子旁邊嗎？",
+            "speak": "저쪽 테이블 옆이요?"
+          },
+          {
+            "id": "r3b",
+            "surface": "콘센트가 어디예요?",
+            "translation": "插座在哪裡？",
+            "speak": "콘센트가 어디예요?",
+            "contrast_type": "repeated_prior_answer",
+            "feedback": "店員已經說了位置。現在可以確認你聽到的位置。"
+          },
+          {
+            "id": "r3c",
+            "surface": "3번 출구요?",
+            "translation": "3 號出口嗎？",
+            "speak": "삼번 출구요?",
+            "contrast_type": "wrong_entity",
+            "feedback": "3번 출구 是出口號碼。現在說的是店裡的插座位置。"
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t4",
+      "speaker": "npc",
+      "act": "confirmation",
+      "act_slots": {
+        "topic": "outlet location confirmation"
+      },
+      "learning_role": "listen_only",
+      "surface": "네, 거기에서 충전하세요.",
+      "speak": "네, 거기에서 충전하세요.",
+      "translation": "對，請在那裡充電。",
+      "friend": {
+        "hint": "거기에서 是在那裡。得到同意和位置後，最後道謝就好。"
+      },
+      "reply_set": {
+        "correct": "r4a",
+        "choices": [
+          {
+            "id": "r4a",
+            "surface": "감사합니다.",
+            "translation": "謝謝。",
+            "speak": "감사합니다."
+          },
+          {
+            "id": "r4b",
+            "surface": "아니요, 괜찮아요.",
+            "translation": "不用了，沒關係。",
+            "speak": "아니요, 괜찮아요.",
+            "contrast_type": "wrong_act_refusal",
+            "feedback": "這樣像拒絕充電。店員已經說可以用了。"
+          },
+          {
+            "id": "r4c",
+            "surface": "비빔밥 하나 주세요.",
+            "translation": "請給我一份拌飯。",
+            "speak": "비빔밥 하나 주세요.",
+            "contrast_type": "wrong_scenario_request",
+            "feedback": "這句是在餐廳點餐。現在是在店裡借插座充電。"
+          }
+        ]
+      }
+    }
+  ],
+  "formula_moments": [
+    {
+      "after_turn": "t1",
+      "pattern_id": "ko.digital.charge.permission.outlet.v1"
+    }
+  ],
+  "notes": {
+    "practice_plan": "Primary production target is 휴대폰 충전해도 돼요? Optional support is 콘센트가 어디예요? Location confirmation and thanks are choice-only practiced.",
+    "review_policy": "AI review pass 1 recorded in digital_battery_charging.review.ai_20260613.md and pass 2 recorded in digital_battery_charging.review.ai_pass2_20260613.md; native review remains pending.",
+    "canonical_policy": "Pilot-authored derived fixture only; do not write back to canonical schema."
+  }
+}

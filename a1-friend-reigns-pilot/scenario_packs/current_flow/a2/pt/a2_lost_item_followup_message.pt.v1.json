@@ -1,0 +1,257 @@
+{
+  "schema_version": "scenario_pack.v1",
+  "scenario_id": "a2_lost_item_followup_message",
+  "title": "Perguntar sobre um Item Perdido",
+  "setting_label": "low-risk help message",
+  "wrap_title": "Perguntar sobre um Item Perdido",
+  "wrap_friend": "Muito bem. Você lidou com uma tarefa digital ou de formulário usando só o detalhe necessário.",
+  "language": "pt",
+  "ui_language": "zh-Hant",
+  "cefr_level": "A2",
+  "source_status": "candidate_runtime_verified",
+  "review_state": "ai_reviewed",
+  "review_status_framework_state": "candidate_runtime_verified",
+  "native_review_state": "native_pending",
+  "scenario": {
+    "domain": "digital_documents_low_risk_help",
+    "review_slice": "digital_documents",
+    "interaction": "low_risk_confirmation_or_help",
+    "source_brief": "A2_DIGITAL_DOCUMENTS_NEUTRAL_ADAPTATION_BRIEFS_20260614",
+    "blueprint_source": "language_neutral_adaptation_brief",
+    "ko_pack_role": "mature_scenario_blueprint_not_translation_source"
+  },
+  "learner_goal": "Resolver uma tarefa digital ou de formulário simples de baixo risco com frases curtas de A2.",
+  "target_functions": [
+    "confirm_booking_or_message",
+    "request_simple_change",
+    "ask_simple_form_help",
+    "follow_up_low_risk_item"
+  ],
+  "register_notes": "Brazilian Portuguese A2 low-risk digital/documents register: concise polite help/service Portuguese, no passwords, payment, ID, medical, legal, police, or immigration framing.",
+  "production_mode_default": {
+    "required": [
+      "choice"
+    ],
+    "optional_visible": [
+      "speaking"
+    ],
+    "optional_hidden": [
+      "typing"
+    ]
+  },
+  "support_text": "Mantenha a tarefa de baixo risco. Não dê senhas, dados de pagamento, ID sensível nem informações legais ou médicas.",
+  "roles": {
+    "npc": {
+      "label": "atendente"
+    },
+    "learner": {
+      "label": "你"
+    }
+  },
+  "turns": [
+    {
+      "turn_id": "t1",
+      "speaker": "npc",
+      "act": "start",
+      "act_slots": {
+        "topic": "a2_lost_item_followup_message",
+        "keyword": "1",
+        "gloss": "A2 digital/documents"
+      },
+      "learning_role": "listen_only",
+      "surface": "Que item você está procurando?",
+      "speak": "Que item você está procurando?",
+      "translation": "您在找什麼？",
+      "friend": {
+        "hint": "Confirme só o detalhe necessário e de baixo risco."
+      },
+      "reply_set": {
+        "correct": "r1a",
+        "choices": [
+          {
+            "id": "r1a",
+            "surface": "Acho que deixei um guarda-chuva preto.",
+            "translation": "我好像把黑色雨傘忘在那裡。",
+            "speak": "Acho que deixei um guarda-chuva preto.",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r1b",
+            "surface": "Vou dizer minha senha.",
+            "translation": "我會告訴你密碼。",
+            "speak": "Vou dizer minha senha.",
+            "contrast_type": "forbidden_sensitive",
+            "feedback": "Senha está fora desta tarefa A2."
+          },
+          {
+            "id": "r1c",
+            "surface": "Quero um reembolso.",
+            "translation": "請退款。",
+            "speak": "Quero um reembolso.",
+            "contrast_type": "wrong_dispute_domain",
+            "feedback": "Reembolsos ou disputas estão fora desta tarefa."
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t2",
+      "speaker": "npc",
+      "act": "clarify",
+      "act_slots": {
+        "topic": "a2_lost_item_followup_message",
+        "keyword": "2",
+        "gloss": "A2 digital/documents"
+      },
+      "learning_role": "listen_only",
+      "surface": "Onde você deixou?",
+      "speak": "Onde você deixou?",
+      "translation": "放在哪裡？",
+      "friend": {
+        "hint": "Confirme só o detalhe necessário e de baixo risco."
+      },
+      "reply_set": {
+        "correct": "r2a",
+        "choices": [
+          {
+            "id": "r2a",
+            "surface": "Acho que ao lado de uma cadeira do café.",
+            "translation": "好像放在咖啡店椅子旁邊。",
+            "speak": "Acho que ao lado de uma cadeira do café.",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r2b",
+            "surface": "Vou dizer minha senha.",
+            "translation": "我會告訴你密碼。",
+            "speak": "Vou dizer minha senha.",
+            "contrast_type": "forbidden_sensitive",
+            "feedback": "Senha está fora desta tarefa A2."
+          },
+          {
+            "id": "r2c",
+            "surface": "Quero um reembolso.",
+            "translation": "請退款。",
+            "speak": "Quero um reembolso.",
+            "contrast_type": "wrong_dispute_domain",
+            "feedback": "Reembolsos ou disputas estão fora desta tarefa."
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t3",
+      "speaker": "npc",
+      "act": "confirm_detail",
+      "act_slots": {
+        "topic": "a2_lost_item_followup_message",
+        "keyword": "3",
+        "gloss": "A2 digital/documents"
+      },
+      "learning_role": "listen_only",
+      "surface": "Por favor, deixe seu nome e contato.",
+      "speak": "Por favor, deixe seu nome e contato.",
+      "translation": "請留下姓名和聯絡方式。",
+      "friend": {
+        "hint": "Confirme só o detalhe necessário e de baixo risco."
+      },
+      "reply_set": {
+        "correct": "r3a",
+        "choices": [
+          {
+            "id": "r3a",
+            "surface": "Sim, vou deixar nome e telefone.",
+            "translation": "好，我會留下姓名和電話。",
+            "speak": "Sim, vou deixar nome e telefone.",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r3b",
+            "surface": "Vou dizer minha senha.",
+            "translation": "我會告訴你密碼。",
+            "speak": "Vou dizer minha senha.",
+            "contrast_type": "forbidden_sensitive",
+            "feedback": "Senha está fora desta tarefa A2."
+          },
+          {
+            "id": "r3c",
+            "surface": "Quero um reembolso.",
+            "translation": "請退款。",
+            "speak": "Quero um reembolso.",
+            "contrast_type": "wrong_dispute_domain",
+            "feedback": "Reembolsos ou disputas estão fora desta tarefa."
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t4",
+      "speaker": "npc",
+      "act": "close",
+      "act_slots": {
+        "topic": "a2_lost_item_followup_message",
+        "keyword": "4",
+        "gloss": "A2 digital/documents"
+      },
+      "learning_role": "listen_only",
+      "surface": "Vamos verificar e entrar em contato.",
+      "speak": "Vamos verificar e entrar em contato.",
+      "translation": "我確認後會聯絡您。",
+      "friend": {
+        "hint": "Confirme só o detalhe necessário e de baixo risco."
+      },
+      "reply_set": {
+        "correct": "r4a",
+        "choices": [
+          {
+            "id": "r4a",
+            "surface": "Obrigado. Vou esperar a mensagem.",
+            "translation": "謝謝，我等您聯絡。",
+            "speak": "Obrigado. Vou esperar a mensagem.",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r4b",
+            "surface": "Vou dizer minha senha.",
+            "translation": "我會告訴你密碼。",
+            "speak": "Vou dizer minha senha.",
+            "contrast_type": "forbidden_sensitive",
+            "feedback": "Senha está fora desta tarefa A2."
+          },
+          {
+            "id": "r4c",
+            "surface": "Quero um reembolso.",
+            "translation": "請退款。",
+            "speak": "Quero um reembolso.",
+            "contrast_type": "wrong_dispute_domain",
+            "feedback": "Reembolsos ou disputas estão fora desta tarefa."
+          }
+        ]
+      }
+    }
+  ],
+  "choice_sets": [
+    "t1.reply_set",
+    "t2.reply_set",
+    "t3.reply_set",
+    "t4.reply_set"
+  ],
+  "feedback": "Mantenha a tarefa de baixo risco. Não dê senhas, dados de pagamento, ID sensível nem informações legais ou médicas.",
+  "tts_segments": [
+    "Acho que deixei um guarda-chuva preto.",
+    "Acho que ao lado de uma cadeira do café.",
+    "Sim, vou deixar nome e telefone.",
+    "Obrigado. Vou esperar a mensagem."
+  ],
+  "formula_moments": [
+    {
+      "after_turn": "t2",
+      "pattern_id": "pt.a2.digital.lost_item_followup_message.v1"
+    }
+  ],
+  "runtime_notes": "Fresh A2 digital/documents candidate. Requires full-walk runtime before closeout evidence is recorded.",
+  "notes": {
+    "authoring_policy": "Fresh-authored from A2 digital/documents neutral adaptation brief. KO surface text was not copied or translated.",
+    "a2_boundary": "Low-risk confirmation/help only; avoids sensitive identity, payment, legal, medical, police, and immigration workflows."
+  }
+}

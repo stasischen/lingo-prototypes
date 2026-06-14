@@ -1,0 +1,284 @@
+{
+  "schema_version": "scenario_pack.v1",
+  "scenario_id": "a2_ask_recommendation_budget",
+  "title": "予算内でおすすめを聞く",
+  "setting_label": "小さな店",
+  "wrap_title": "おすすめを確認",
+  "wrap_friend": "よくできました。食事や買い物の低リスク場面で、好みと確認を自然に伝えました。",
+  "language": "ja",
+  "ui_language": "zh-Hant",
+  "cefr_level": "A2",
+  "source_status": "candidate_runtime_verified",
+  "review_state": "ai_reviewed",
+  "review_status_framework_state": "candidate_runtime_verified",
+  "native_review_state": "native_pending",
+  "scenario": {
+    "domain": "food_shopping_preferences",
+    "review_slice": "food_shopping",
+    "interaction": "service_preference_or_exchange",
+    "source_brief": "A2_FOOD_SHOPPING_NEUTRAL_ADAPTATION_BRIEFS_20260614",
+    "blueprint_source": "language_neutral_adaptation_brief",
+    "ko_pack_role": "mature_scenario_blueprint_not_translation_source"
+  },
+  "learner_goal": "小さな予算内でおすすめを聞き、条件を短く伝えます。",
+  "target_functions": [
+    "compare_or_state_preference",
+    "confirm_key_detail",
+    "make_polite_low_risk_request",
+    "close_with_correct_next_step"
+  ],
+  "register_notes": "Japanese A2 food/shopping register: natural polite service Japanese, concise learner replies, no allergy/medical/refund-dispute framing.",
+  "production_mode_default": {
+    "required": [
+      "choice"
+    ],
+    "optional_visible": [
+      "speaking"
+    ],
+    "optional_hidden": [
+      "typing"
+    ]
+  },
+  "support_text": "小さな予算内でおすすめを聞き、条件を短く伝えます。",
+  "roles": {
+    "npc": {
+      "label": "店員"
+    },
+    "learner": {
+      "label": "你"
+    }
+  },
+  "turns": [
+    {
+      "turn_id": "t1",
+      "speaker": "npc",
+      "act": "state_budget",
+      "act_slots": {
+        "topic": "ask-recommendation-budget",
+        "keyword": "1",
+        "gloss": "A2 food/shopping"
+      },
+      "learning_role": "listen_only",
+      "surface": "何をお探しですか。",
+      "speak": "何をお探しですか。",
+      "translation": "您在找什麼？",
+      "friend": {
+        "hint": "小さな予算内でおすすめを聞きましょう。"
+      },
+      "reply_set": {
+        "correct": "r1a",
+        "choices": [
+          {
+            "id": "r1a",
+            "surface": "千円以内でプレゼントをおすすめしてもらえますか。",
+            "translation": "可以推薦一千日圓以內的禮物嗎？",
+            "speak": "千円以内でプレゼントをおすすめしてもらえますか。",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r1b",
+            "surface": "銀行口座を確認してください。",
+            "translation": "請確認我的銀行帳戶。",
+            "speak": "銀行口座を確認してください。",
+            "contrast_type": "wrong_detail_or_domain",
+            "feedback": "銀行の場面ではありません。"
+          },
+          {
+            "id": "r1c",
+            "surface": "落とし物の届けを出したいです。",
+            "translation": "我想申報遺失物。",
+            "speak": "落とし物の届けを出したいです。",
+            "contrast_type": "forbidden_or_wrong_domain",
+            "feedback": "落とし物の手続きは別のタスクです。"
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t2",
+      "speaker": "npc",
+      "act": "ask_preference",
+      "act_slots": {
+        "topic": "ask-recommendation-budget",
+        "keyword": "2",
+        "gloss": "A2 food/shopping"
+      },
+      "learning_role": "listen_only",
+      "surface": "軽いものと実用的なもの、どちらがいいですか。",
+      "speak": "軽いものと実用的なもの、どちらがいいですか。",
+      "translation": "您想要輕巧的，還是實用的？",
+      "friend": {
+        "hint": "簡単な好みを伝えましょう。"
+      },
+      "reply_set": {
+        "correct": "r2a",
+        "choices": [
+          {
+            "id": "r2a",
+            "surface": "実用的なものがいいです。",
+            "translation": "我想要實用的。",
+            "speak": "実用的なものがいいです。",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r2b",
+            "surface": "辛いものがいいです。",
+            "translation": "我想要辣的。",
+            "speak": "辛いものがいいです。",
+            "contrast_type": "wrong_detail_or_domain",
+            "feedback": "辛さは食品メニューの話です。"
+          },
+          {
+            "id": "r2c",
+            "surface": "チェックアウトを遅くしたいです。",
+            "translation": "我想晚點退房。",
+            "speak": "チェックアウトを遅くしたいです。",
+            "contrast_type": "forbidden_or_wrong_domain",
+            "feedback": "ホテルの場面に変わっています。"
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t3",
+      "speaker": "npc",
+      "act": "confirm_preference",
+      "act_slots": {
+        "topic": "ask-recommendation-budget",
+        "keyword": "3",
+        "gloss": "A2 food/shopping"
+      },
+      "learning_role": "listen_only",
+      "surface": "では、この小さいノートは千円以内です。",
+      "speak": "では、この小さいノートは千円以内です。",
+      "translation": "那這本小筆記本在一千日圓以內。",
+      "friend": {
+        "hint": "おすすめと予算を確認しましょう。"
+      },
+      "reply_set": {
+        "correct": "r3a",
+        "choices": [
+          {
+            "id": "r3a",
+            "surface": "そのノートは千円以内なんですね。",
+            "translation": "那本筆記本在一千日圓以內，對嗎？",
+            "speak": "そのノートは千円以内なんですね。",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r3b",
+            "surface": "その部屋は千円以内なんですね。",
+            "translation": "那個房間在一千日圓以內，對嗎？",
+            "speak": "その部屋は千円以内なんですね。",
+            "contrast_type": "wrong_detail_or_domain",
+            "feedback": "部屋はおすすめ商品ではありません。"
+          },
+          {
+            "id": "r3c",
+            "surface": "そのチケットは昨日のものなんですね。",
+            "translation": "那張票是昨天的，對嗎？",
+            "speak": "そのチケットは昨日のものなんですね。",
+            "contrast_type": "forbidden_or_wrong_domain",
+            "feedback": "チケットの話に変わっています。"
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t4",
+      "speaker": "npc",
+      "act": "accept_recommendation",
+      "act_slots": {
+        "topic": "ask-recommendation-budget",
+        "keyword": "4",
+        "gloss": "A2 food/shopping"
+      },
+      "learning_role": "listen_only",
+      "surface": "はい、プレゼント包装もできます。",
+      "speak": "はい、プレゼント包装もできます。",
+      "translation": "對，也可以包裝成禮物。",
+      "friend": {
+        "hint": "おすすめを受け入れて終わりましょう。"
+      },
+      "reply_set": {
+        "correct": "r4a",
+        "choices": [
+          {
+            "id": "r4a",
+            "surface": "いいですね。そのノートにします。",
+            "translation": "很好，我要那本筆記本。",
+            "speak": "いいですね。そのノートにします。",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r4b",
+            "surface": "返金してください。",
+            "translation": "請退款。",
+            "speak": "返金してください。",
+            "contrast_type": "wrong_detail_or_domain",
+            "feedback": "返金依頼ではありません。"
+          },
+          {
+            "id": "r4c",
+            "surface": "保険を確認してください。",
+            "translation": "請確認我的保險。",
+            "speak": "保険を確認してください。",
+            "contrast_type": "forbidden_or_wrong_domain",
+            "feedback": "保険はこの低リスク課題の外です。"
+          }
+        ]
+      }
+    }
+  ],
+  "choice_sets": {
+    "count_per_turn": 3,
+    "correct_path": [
+      "r1a",
+      "r2a",
+      "r3a",
+      "r4a"
+    ],
+    "distractor_policy": "one near-domain wrong detail plus one out-of-scope/unsafe-domain option per turn"
+  },
+  "feedback": {
+    "correct": "いいですね。食事や買い物の場面に合う確認です。",
+    "incorrect": "メニュー、材料、交換、予算内のおすすめに合う答えを選びましょう。"
+  },
+  "tts_segments": [
+    "何をお探しですか。",
+    "千円以内でプレゼントをおすすめしてもらえますか。",
+    "銀行口座を確認してください。",
+    "落とし物の届けを出したいです。",
+    "軽いものと実用的なもの、どちらがいいですか。",
+    "実用的なものがいいです。",
+    "辛いものがいいです。",
+    "チェックアウトを遅くしたいです。",
+    "では、この小さいノートは千円以内です。",
+    "そのノートは千円以内なんですね。",
+    "その部屋は千円以内なんですね。",
+    "そのチケットは昨日のものなんですね。",
+    "はい、プレゼント包装もできます。",
+    "いいですね。そのノートにします。",
+    "返金してください。",
+    "保険を確認してください。"
+  ],
+  "formula_moments": [
+    {
+      "after_turn": "t2",
+      "pattern_id": "ja.a2.shopping.recommendation.budget.v1",
+      "label": "budget 以内でおすすめ",
+      "learner_takeaway": "実用的なものがいいです"
+    }
+  ],
+  "runtime_notes": {
+    "expected_turns": 4,
+    "expected_choices_per_turn": 3,
+    "full_walk_required": true,
+    "expected_final_screen": "Wrap"
+  },
+  "notes": {
+    "generated_at": "2026-06-14",
+    "authoring_scope": "A2 food/shopping JA adaptation",
+    "native_review_state": "native_pending"
+  }
+}

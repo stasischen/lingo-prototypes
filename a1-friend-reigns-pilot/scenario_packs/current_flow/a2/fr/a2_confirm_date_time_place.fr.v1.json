@@ -1,0 +1,269 @@
+{
+  "schema_version": "scenario_pack.v1",
+  "scenario_id": "a2_confirm_date_time_place",
+  "title": "Confirmer la date, l'heure et le lieu",
+  "setting_label": "Message court d'une amie",
+  "wrap_title": "Confirmer les details",
+  "wrap_friend": "你剛剛用簡單法語從短訊息中確認日期、時間和地點。",
+  "language": "fr",
+  "ui_language": "zh_tw",
+  "cefr_level": "A2",
+  "source_status": "candidate_runtime_verified",
+  "review_state": "ai_reviewed",
+  "review_status_framework_state": "candidate_runtime_verified",
+  "native_review_state": "native_pending",
+  "scenario": "Une amie te demande de confirmer les details d'un court message.",
+  "learner_goal": "Confirmer la date, l'heure et le lieu a partir d'un message court.",
+  "target_functions": [
+    "message_comprehension",
+    "date_time_place_extraction",
+    "confirmation_question"
+  ],
+  "register_notes": "Français amical et direct. Le message court utilise une formulation naturelle de texto.",
+  "production_mode_default": {
+    "required": [
+      "choice"
+    ],
+    "optional_visible": [
+      "speaking"
+    ],
+    "optional_hidden": [
+      "typing"
+    ]
+  },
+  "support_text": "Lis le court message de ton amie. Confirme la date, l'heure, puis le lieu sans ajouter d'itineraire.",
+  "roles": {
+    "npc": {
+      "label": "amie"
+    },
+    "learner": {
+      "label": "toi"
+    }
+  },
+  "message_notice": {
+    "surface": "Message : Samedi, 10 h, devant le cinéma Lumière.",
+    "translation": "訊息：星期六，10點，在 Lumière 電影院前。"
+  },
+  "turns": [
+    {
+      "turn_id": "t1",
+      "speaker": "npc",
+      "act": "message_reference",
+      "act_slots": {
+        "topic": "message court",
+        "keyword": "message",
+        "gloss": "訊息"
+      },
+      "learning_role": "listen_only",
+      "surface": "Tu as vu mon message ? Samedi, 10 h, devant le cinéma Lumière.",
+      "speak": "Tu as vu mon message ? Samedi, dix heures, devant le cinéma Lumière.",
+      "translation": "你看到我的訊息了嗎？星期六，10點，在 Lumière 電影院前。",
+      "friend": {
+        "hint": "Repere la date et l'heure dans le message."
+      },
+      "reply_set": {
+        "correct": "r1a",
+        "choices": [
+          {
+            "id": "r1a",
+            "surface": "Oui, c'est samedi à dix heures.",
+            "translation": "有，是星期六十點。",
+            "speak": "Oui, c'est samedi à dix heures.",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r1b",
+            "surface": "Oui, c'est dimanche à dix heures.",
+            "translation": "有，是星期日十點。",
+            "speak": "Oui, c'est dimanche à dix heures.",
+            "contrast_type": "wrong_date",
+            "feedback": "Le message dit samedi, pas dimanche."
+          },
+          {
+            "id": "r1c",
+            "surface": "Oui, c'est samedi à huit heures.",
+            "translation": "有，是星期六八點。",
+            "speak": "Oui, c'est samedi à huit heures.",
+            "contrast_type": "wrong_time",
+            "feedback": "Le message dit dix heures, pas huit heures."
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t2",
+      "speaker": "npc",
+      "act": "place_prompt",
+      "act_slots": {
+        "topic": "lieu",
+        "keyword": "ou",
+        "gloss": "哪裡"
+      },
+      "learning_role": "listen_only",
+      "surface": "Et on se retrouve où ?",
+      "speak": "Et on se retrouve où ?",
+      "translation": "那我們在哪裡見？",
+      "friend": {
+        "hint": "Confirme le lieu exact du message."
+      },
+      "inline_explain": {
+        "pattern_id": "fr.a2.confirm.devant_lieu.v1",
+        "title": "devant + lieu",
+        "explain": "Pour dire le point de rendez-vous, utilise devant + le lieu: devant le cinéma.",
+        "items": [
+          {
+            "surface": "Devant le cinéma.",
+            "translation": "在電影院前。",
+            "speak": "Devant le cinéma."
+          },
+          {
+            "surface": "On se retrouve devant le cinéma.",
+            "translation": "我們在電影院前見。",
+            "speak": "On se retrouve devant le cinéma."
+          }
+        ]
+      },
+      "reply_set": {
+        "correct": "r2a",
+        "choices": [
+          {
+            "id": "r2a",
+            "surface": "Devant le cinéma Lumière.",
+            "translation": "在 Lumière 電影院前。",
+            "speak": "Devant le cinéma Lumière.",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r2b",
+            "surface": "Dans le train.",
+            "translation": "在火車上。",
+            "speak": "Dans le train.",
+            "contrast_type": "wrong_place_relation",
+            "feedback": "Le message donne un lieu de rendez-vous, pas un moyen de transport."
+          },
+          {
+            "id": "r2c",
+            "surface": "À la banque Lumière.",
+            "translation": "在 Lumière 銀行。",
+            "speak": "À la banque Lumière.",
+            "contrast_type": "wrong_place_type",
+            "feedback": "Le message dit cinema Lumiere, pas banque."
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t3",
+      "speaker": "npc",
+      "act": "full_confirmation_prompt",
+      "act_slots": {
+        "topic": "confirmation complete",
+        "keyword": "c'est bien ca",
+        "gloss": "是這樣嗎"
+      },
+      "learning_role": "listen_only",
+      "surface": "C'est bien ça ?",
+      "speak": "C'est bien ça ?",
+      "translation": "是這樣嗎？",
+      "friend": {
+        "hint": "Repete les trois informations: date, heure, lieu."
+      },
+      "reply_set": {
+        "correct": "r3a",
+        "choices": [
+          {
+            "id": "r3a",
+            "surface": "Oui, samedi à dix heures, devant le cinéma.",
+            "translation": "對，星期六十點，在電影院前。",
+            "speak": "Oui, samedi à dix heures, devant le cinéma.",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r3b",
+            "surface": "Oui, samedi à dix heures, dans le cinéma.",
+            "translation": "對，星期六十點，在電影院裡。",
+            "speak": "Oui, samedi à dix heures, dans le cinéma.",
+            "contrast_type": "wrong_place_relation",
+            "feedback": "Le message dit devant le cinéma, pas dans le cinéma."
+          },
+          {
+            "id": "r3c",
+            "surface": "Oui, je vais être en retard.",
+            "translation": "對，我會遲到。",
+            "speak": "Oui, je vais être en retard.",
+            "contrast_type": "wrong_scenario_delay",
+            "feedback": "Cette phrase parle d'un retard. Ici, il faut confirmer les details."
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t4",
+      "speaker": "npc",
+      "act": "closing",
+      "act_slots": {
+        "topic": "confirmation close"
+      },
+      "learning_role": "listen_only",
+      "surface": "Parfait, à samedi.",
+      "speak": "Parfait, à samedi.",
+      "translation": "太好了，星期六見。",
+      "friend": {
+        "hint": "Ferme naturellement avec une courte reponse."
+      },
+      "reply_set": {
+        "correct": "r4a",
+        "choices": [
+          {
+            "id": "r4a",
+            "surface": "À samedi !",
+            "translation": "星期六見！",
+            "speak": "À samedi !",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r4b",
+            "surface": "À demain matin à la banque !",
+            "translation": "明天早上銀行見！",
+            "speak": "À demain matin à la banque !",
+            "contrast_type": "wrong_scenario_plan",
+            "feedback": "Cette phrase reprend un autre scenario. Le message dit samedi au cinema."
+          },
+          {
+            "id": "r4c",
+            "surface": "Je peux changer l'heure ?",
+            "translation": "可以改時間嗎？",
+            "speak": "Je peux changer l'heure ?",
+            "contrast_type": "wrong_function_reschedule",
+            "feedback": "Cette phrase demande un changement. Ici, les details sont deja confirmes."
+          }
+        ]
+      }
+    }
+  ],
+  "choice_sets": [
+    "t1.reply_set",
+    "t2.reply_set",
+    "t3.reply_set",
+    "t4.reply_set"
+  ],
+  "feedback": "Les distracteurs testent mauvaise date, mauvaise heure, mauvaise relation au lieu et mauvais scenario.",
+  "tts_segments": [
+    "Oui, c'est samedi à dix heures.",
+    "Devant le cinéma Lumière.",
+    "Oui, samedi à dix heures, devant le cinéma.",
+    "À samedi !"
+  ],
+  "formula_moments": [
+    {
+      "after_turn": "t2",
+      "pattern_id": "fr.a2.confirm.devant_lieu.v1"
+    }
+  ],
+  "runtime_notes": "Fresh FR A2 candidate. Structural checks and two AI semantic review passes completed on 2026-06-14 before metadata promotion.",
+  "notes": {
+    "authoring_policy": "Fresh-authored from the neutral A2 brief. KO, JA, EN, and TH packs were not used as translation sources.",
+    "a2_boundary": "Uses short message comprehension for date, time, and place only; no directions or map-reading.",
+    "native_review_boundary": "AI-reviewed only; native_review_state remains native_pending."
+  }
+}

@@ -1,0 +1,273 @@
+{
+  "schema_version": "scenario_pack.v1",
+  "scenario_id": "a2_request_room_change",
+  "title": "Chiedere un Cambio Camera",
+  "setting_label": "reception dell’hotel",
+  "wrap_title": "Cambio camera confermato",
+  "wrap_friend": "你剛剛完成了一段 A2 住宿服務情境，說明需求、聽懂回覆，並確認下一步。",
+  "language": "it",
+  "ui_language": "zh-Hant",
+  "cefr_level": "A2",
+  "source_status": "candidate_runtime_verified",
+  "review_state": "ai_reviewed",
+  "review_status_framework_state": "candidate_runtime_verified",
+  "native_review_state": "native_pending",
+  "scenario": "A hotel/accommodation service scenario: a2_request_room_change.",
+  "learner_goal": "Ask for a room change with a simple reason and confirm the move timing.",
+  "target_functions": [
+    "room_change_request",
+    "simple_reason",
+    "alternative_room_confirmation"
+  ],
+  "register_notes": "it A2 accommodation register: polite, practical, low-risk hotel-service language; language-specific adaptation from the neutral brief, not a KO translation.",
+  "production_mode_default": {
+    "required": [
+      "choice"
+    ],
+    "optional_visible": [
+      "speaking"
+    ],
+    "optional_hidden": [
+      "typing"
+    ]
+  },
+  "support_text": "Dai un motivo semplice e chiedi se puoi cambiare camera.",
+  "roles": {
+    "npc": {
+      "label": "Empleado del hotel"
+    },
+    "learner": {
+      "label": "Tú"
+    }
+  },
+  "turns": [
+    {
+      "turn_id": "t1",
+      "speaker": "npc",
+      "act": "service_prompt",
+      "act_slots": {
+        "topic": "request-room-change",
+        "keyword": "1",
+        "gloss": "A2 accommodation"
+      },
+      "learning_role": "listen_only",
+      "surface": "Come posso aiutarla?",
+      "speak": "Come posso aiutarla?",
+      "translation": "我可以怎麼幫您？",
+      "friend": {
+        "hint": "Dica un motivo semplice e chieda il cambio camera."
+      },
+      "reply_set": {
+        "correct": "r1a",
+        "choices": [
+          {
+            "id": "r1a",
+            "surface": "La mia camera è un po’ rumorosa. Posso cambiare camera?",
+            "translation": "我的房間有點吵，可以換房嗎？",
+            "speak": "La mia camera è un po’ rumorosa. Posso cambiare camera?",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r1b",
+            "surface": "Posso cambiare tavolo al ristorante?",
+            "translation": "我可以換餐廳座位嗎？",
+            "speak": "Posso cambiare tavolo al ristorante?",
+            "contrast_type": "wrong_detail_or_domain",
+            "feedback": "Tavolo è un altro contesto."
+          },
+          {
+            "id": "r1c",
+            "surface": "Voglio fare un reclamo ufficiale.",
+            "translation": "我要提出正式投訴。",
+            "speak": "Voglio fare un reclamo ufficiale.",
+            "contrast_type": "forbidden_or_wrong_domain",
+            "feedback": "Reclamo ufficiale è troppo forte per questo scenario."
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t2",
+      "speaker": "npc",
+      "act": "confirm_availability",
+      "act_slots": {
+        "topic": "request-room-change",
+        "keyword": "2",
+        "gloss": "A2 accommodation"
+      },
+      "learning_role": "listen_only",
+      "surface": "Ho controllato. Abbiamo un’altra camera disponibile.",
+      "speak": "Ho controllato. Abbiamo un’altra camera disponibile.",
+      "translation": "我查了一下，還有另一間房可以換。",
+      "friend": {
+        "hint": "Confermi la disponibilità della camera."
+      },
+      "reply_set": {
+        "correct": "r2a",
+        "choices": [
+          {
+            "id": "r2a",
+            "surface": "C’è un’altra camera disponibile, giusto?",
+            "translation": "有另一間房可以換，對嗎？",
+            "speak": "C’è un’altra camera disponibile, giusto?",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r2b",
+            "surface": "C’è un altro biglietto disponibile, giusto?",
+            "translation": "有另一張票可以換，對嗎？",
+            "speak": "C’è un altro biglietto disponibile, giusto?",
+            "contrast_type": "wrong_detail_or_domain",
+            "feedback": "Biglietto è il dominio sbagliato."
+          },
+          {
+            "id": "r2c",
+            "surface": "Posso anche ricevere un rimborso?",
+            "translation": "我也可以拿到賠償嗎？",
+            "speak": "Posso anche ricevere un rimborso?",
+            "contrast_type": "forbidden_or_wrong_domain",
+            "feedback": "Rimborso non è stato offerto."
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t3",
+      "speaker": "npc",
+      "act": "confirm_timing",
+      "act_slots": {
+        "topic": "request-room-change",
+        "keyword": "3",
+        "gloss": "A2 accommodation"
+      },
+      "learning_role": "listen_only",
+      "surface": "Può spostarsi nella nuova camera tra trenta minuti.",
+      "speak": "Può spostarsi nella nuova camera tra trenta minuti.",
+      "translation": "三十分鐘後可以搬到新房間。",
+      "friend": {
+        "hint": "Confermi quando può spostarsi."
+      },
+      "reply_set": {
+        "correct": "r3a",
+        "choices": [
+          {
+            "id": "r3a",
+            "surface": "Posso spostarmi tra trenta minuti, giusto?",
+            "translation": "我三十分鐘後可以搬，對嗎？",
+            "speak": "Posso spostarmi tra trenta minuti, giusto?",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r3b",
+            "surface": "Faccio il check-out tra tre ore, giusto?",
+            "translation": "我三小時後退房，對嗎？",
+            "speak": "Faccio il check-out tra tre ore, giusto?",
+            "contrast_type": "wrong_detail_or_domain",
+            "feedback": "Questo cambia scenario."
+          },
+          {
+            "id": "r3c",
+            "surface": "Mi sposto perché devo andare in ospedale.",
+            "translation": "我換房是因為要去醫院。",
+            "speak": "Mi sposto perché devo andare in ospedale.",
+            "contrast_type": "forbidden_or_wrong_domain",
+            "feedback": "La ragione ospedale non è necessaria."
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t4",
+      "speaker": "npc",
+      "act": "confirm_card",
+      "act_slots": {
+        "topic": "request-room-change",
+        "keyword": "4",
+        "gloss": "A2 accommodation"
+      },
+      "learning_role": "listen_only",
+      "surface": "Quando è pronta, le do la nuova tessera.",
+      "speak": "Quando è pronta, le do la nuova tessera.",
+      "translation": "房間準備好後，我會給您新的房卡。",
+      "friend": {
+        "hint": "Chiuda con la nuova tessera."
+      },
+      "reply_set": {
+        "correct": "r4a",
+        "choices": [
+          {
+            "id": "r4a",
+            "surface": "Va bene. Prendo la nuova tessera quando è pronta.",
+            "translation": "好的，準備好後我拿新的房卡。",
+            "speak": "Va bene. Prendo la nuova tessera quando è pronta.",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r4b",
+            "surface": "No, cambio l’orario del treno.",
+            "translation": "不，我要改火車時間。",
+            "speak": "No, cambio l’orario del treno.",
+            "contrast_type": "wrong_detail_or_domain",
+            "feedback": "Treno è un altro dominio."
+          },
+          {
+            "id": "r4c",
+            "surface": "Parlo con la polizia adesso.",
+            "translation": "我現在要去找警察。",
+            "speak": "Parlo con la polizia adesso.",
+            "contrast_type": "forbidden_or_wrong_domain",
+            "feedback": "Polizia è troppo grave qui."
+          }
+        ]
+      }
+    }
+  ],
+  "choice_sets": {
+    "count_per_turn": 3,
+    "correct_path": [
+      "r1a",
+      "r2a",
+      "r3a",
+      "r4a"
+    ],
+    "distractor_policy": "one near-domain wrong detail plus one out-of-scope/over-escalated option per turn"
+  },
+  "feedback": "Los distractores prueban tiempo, lugar, servicio equivocado o una petición fuera del alcance A2.",
+  "tts_segments": [
+    "Come posso aiutarla?",
+    "La mia camera è un po’ rumorosa. Posso cambiare camera?",
+    "Posso cambiare tavolo al ristorante?",
+    "Voglio fare un reclamo ufficiale.",
+    "Ho controllato. Abbiamo un’altra camera disponibile.",
+    "C’è un’altra camera disponibile, giusto?",
+    "C’è un altro biglietto disponibile, giusto?",
+    "Posso anche ricevere un rimborso?",
+    "Può spostarsi nella nuova camera tra trenta minuti.",
+    "Posso spostarmi tra trenta minuti, giusto?",
+    "Faccio il check-out tra tre ore, giusto?",
+    "Mi sposto perché devo andare in ospedale.",
+    "Quando è pronta, le do la nuova tessera.",
+    "Va bene. Prendo la nuova tessera quando è pronta.",
+    "No, cambio l’orario del treno.",
+    "Parlo con la polizia adesso."
+  ],
+  "formula_moments": [
+    {
+      "after_turn": "t2",
+      "pattern_id": "it.a2.accommodation.room_change.reason.v1",
+      "label": "reason + posso cambiare camera",
+      "learner_takeaway": "available room confirmation"
+    }
+  ],
+  "runtime_notes": {
+    "expected_turns": 4,
+    "expected_choices_per_turn": 3,
+    "full_walk_required": true,
+    "expected_final_screen": "Wrap"
+  },
+  "notes": {
+    "generated_at": "2026-06-14",
+    "authoring_scope": "A2 accommodation remaining six-language wave",
+    "native_review_state": "native_pending"
+  }
+}

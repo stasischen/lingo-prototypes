@@ -1,0 +1,287 @@
+{
+  "schema_version": "scenario_pack.v1",
+  "scenario_id": "a2_describe_weekend_activity",
+  "title": "週末にしたことを話す",
+  "setting_label": "友だちとの週明けの会話",
+  "wrap_title": "週末の話",
+  "wrap_friend": "よくできました。週末にしたことを短く話し、友だちの質問に一つだけ詳しく答えました。",
+  "language": "ja",
+  "ui_language": "zh-Hant",
+  "cefr_level": "A2",
+  "source_status": "candidate_runtime_verified",
+  "review_state": "ai_reviewed",
+  "review_status_framework_state": "candidate_runtime_verified",
+  "native_review_state": "native_pending",
+  "scenario": {
+    "domain": "daily_social_coordination",
+    "review_slice": "daily_social",
+    "interaction": "weekend_activity_chat",
+    "source_brief": "A2_DAILY_SOCIAL_NEUTRAL_ADAPTATION_BRIEFS_20260614",
+    "blueprint_source": "language_neutral_adaptation_brief",
+    "ko_pack_role": "not_used_as_translation_source"
+  },
+  "learner_goal": "週末にした普通の活動を一つ言い、簡単な質問に短く答えます。",
+  "target_functions": [
+    "recent_past_activity",
+    "answer_simple_followup",
+    "state_short_detail",
+    "avoid_long_narration"
+  ],
+  "register_notes": "Japanese A2 daily/social register: natural friend chat, simple past forms, one short detail only, no B1 storytelling or work evaluation.",
+  "production_mode_default": {
+    "required": [
+      "choice"
+    ],
+    "optional_visible": [
+      "speaking"
+    ],
+    "optional_hidden": [
+      "typing"
+    ]
+  },
+  "support_text": "友だちが週末のことを聞いています。したことを一つ言って、短い詳しい情報を足しましょう。",
+  "roles": {
+    "npc": {
+      "label": "友だち"
+    },
+    "learner": {
+      "label": "你"
+    }
+  },
+  "turns": [
+    {
+      "turn_id": "t1",
+      "speaker": "npc",
+      "act": "ask_weekend",
+      "act_slots": {
+        "topic": "weekend activity",
+        "keyword": "週末",
+        "gloss": "週末"
+      },
+      "learning_role": "listen_only",
+      "surface": "週末、何したの？",
+      "speak": "週末、何したの？",
+      "translation": "週末你做了什麼？",
+      "friend": {
+        "hint": "週末にしたことを一つ、短く言いましょう。"
+      },
+      "reply_set": {
+        "correct": "r1a",
+        "choices": [
+          {
+            "id": "r1a",
+            "surface": "公園を散歩したよ。",
+            "translation": "我去公園散步了。",
+            "speak": "公園を散歩したよ。",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r1b",
+            "surface": "明日、公園を散歩するよ。",
+            "translation": "明天我要去公園散步。",
+            "speak": "明日、公園を散歩するよ。",
+            "contrast_type": "wrong_time_future",
+            "feedback": "聞かれているのは週末にしたことです。未来の予定ではありません。"
+          },
+          {
+            "id": "r1c",
+            "surface": "公園は何時に閉まりますか。",
+            "translation": "公園幾點關門？",
+            "speak": "公園は何時に閉まりますか。",
+            "contrast_type": "wrong_function_facility_question",
+            "feedback": "施設情報ではなく、自分がしたことを答えます。"
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t2",
+      "speaker": "npc",
+      "act": "ask_with_whom",
+      "act_slots": {
+        "topic": "companion",
+        "keyword": "誰と",
+        "gloss": "和誰"
+      },
+      "learning_role": "listen_only",
+      "surface": "誰と行ったの？",
+      "speak": "誰と行ったの？",
+      "translation": "你跟誰去的？",
+      "friend": {
+        "hint": "誰と means with whom. One short answer is enough."
+      },
+      "inline_explain": {
+        "pattern_id": "ja.a2.social.past_activity.to_itta.v1",
+        "title": "誰と + 行った",
+        "explain": "Use person + と to say who you did something with.",
+        "items": [
+          {
+            "surface": "友だちと行った",
+            "translation": "和朋友去了",
+            "speak": "友だちと行った"
+          },
+          {
+            "surface": "一人で行った",
+            "translation": "一個人去了",
+            "speak": "一人で行った"
+          }
+        ]
+      },
+      "reply_set": {
+        "correct": "r2a",
+        "choices": [
+          {
+            "id": "r2a",
+            "surface": "友だちと行ったよ。",
+            "translation": "我跟朋友去的。",
+            "speak": "友だちと行ったよ。",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r2b",
+            "surface": "友だちを待っているよ。",
+            "translation": "我正在等朋友。",
+            "speak": "友だちを待っているよ。",
+            "contrast_type": "wrong_time_current_action",
+            "feedback": "今していることではなく、週末に誰と行ったかを答えます。"
+          },
+          {
+            "id": "r2c",
+            "surface": "店員さんと注文したよ。",
+            "translation": "我跟店員點餐了。",
+            "speak": "店員さんと注文したよ。",
+            "contrast_type": "wrong_domain_service",
+            "feedback": "散歩の話です。注文の場面に変えないようにしましょう。"
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t3",
+      "speaker": "npc",
+      "act": "ask_simple_opinion",
+      "act_slots": {
+        "topic": "how it was",
+        "keyword": "どうだった",
+        "gloss": "怎麼樣"
+      },
+      "learning_role": "listen_only",
+      "surface": "へえ、どうだった？",
+      "speak": "へえ、どうだった？",
+      "translation": "喔，怎麼樣？",
+      "friend": {
+        "hint": "感想は短く一つだけで大丈夫です。"
+      },
+      "reply_set": {
+        "correct": "r3a",
+        "choices": [
+          {
+            "id": "r3a",
+            "surface": "天気がよくて、気持ちよかったよ。",
+            "translation": "天氣很好，感覺很舒服。",
+            "speak": "天気がよくて、気持ちよかったよ。",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r3b",
+            "surface": "天気がいいから、明日行こう。",
+            "translation": "因為天氣好，明天去吧。",
+            "speak": "天気がいいから、明日行こう。",
+            "contrast_type": "wrong_function_invitation",
+            "feedback": "今は週末の感想を聞かれています。新しい誘いではありません。"
+          },
+          {
+            "id": "r3c",
+            "surface": "天気について詳しく説明します。",
+            "translation": "我來詳細說明天氣。",
+            "speak": "天気について詳しく説明します。",
+            "contrast_type": "too_formal_b1",
+            "feedback": "A2では短い感想で十分です。説明文にしないようにしましょう。"
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t4",
+      "speaker": "npc",
+      "act": "close_chat",
+      "act_slots": {
+        "topic": "close weekend chat"
+      },
+      "learning_role": "listen_only",
+      "surface": "いいね。私も今度行きたいな。",
+      "speak": "いいね。私も今度行きたいな。",
+      "translation": "不錯耶。我下次也想去。",
+      "friend": {
+        "hint": "自然に反応して、会話を軽く終えましょう。"
+      },
+      "reply_set": {
+        "correct": "r4a",
+        "choices": [
+          {
+            "id": "r4a",
+            "surface": "うん、今度一緒に行こう。",
+            "translation": "嗯，下次一起去吧。",
+            "speak": "うん、今度一緒に行こう。",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r4b",
+            "surface": "うん、昨日は忙しいです。",
+            "translation": "嗯，昨天很忙。",
+            "speak": "うん、昨日は忙しいです。",
+            "contrast_type": "wrong_time_register_mismatch",
+            "feedback": "流れに合わない過去の状態です。自然に返しましょう。"
+          },
+          {
+            "id": "r4c",
+            "surface": "うん、部屋を変えてください。",
+            "translation": "嗯，請幫我換房間。",
+            "speak": "うん、部屋を変えてください。",
+            "contrast_type": "wrong_domain_hotel",
+            "feedback": "ホテルの場面ではありません。友だちとの会話です。"
+          }
+        ]
+      }
+    }
+  ],
+  "choice_sets": {
+    "count_per_turn": 3,
+    "correct_path": [
+      "r1a",
+      "r2a",
+      "r3a",
+      "r4a"
+    ],
+    "distractor_policy": "wrong time, wrong function, formal/B1 drift, or unrelated service-domain contrast"
+  },
+  "feedback": {
+    "correct": "いいですね。週末にしたことを短く自然に話せました。",
+    "incorrect": "週末にしたこと、誰と行ったか、短い感想に合う答えを選びましょう。"
+  },
+  "tts_segments": [
+    "公園を散歩したよ。",
+    "友だちと行ったよ。",
+    "天気がよくて、気持ちよかったよ。",
+    "うん、今度一緒に行こう。"
+  ],
+  "formula_moments": [
+    {
+      "after_turn": "t2",
+      "pattern_id": "ja.a2.social.past_activity.to_itta.v1",
+      "label": "person + と行った",
+      "learner_takeaway": "友だちと行ったよ。"
+    }
+  ],
+  "runtime_notes": {
+    "expected_turns": 4,
+    "expected_choices_per_turn": 3,
+    "full_walk_required": true,
+    "expected_final_screen": "Wrap"
+  },
+  "notes": {
+    "generated_at": "2026-06-14",
+    "authoring_scope": "A2 daily/social JA adaptation",
+    "native_review_state": "native_pending"
+  }
+}

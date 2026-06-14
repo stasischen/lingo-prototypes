@@ -1,0 +1,253 @@
+{
+  "schema_version": "scenario_pack.v1",
+  "scenario_id": "social_running_late",
+  "brief_id": "ml5_a1_019_social_running_late",
+  "source_neutral_brief": "release-aggregator/docs/tasks/A1_MULTILINGUAL_KO_B1_PARALLEL_ORCHESTRATION/work_products/ml0/ML5_NEUTRAL_ADAPTATION_BRIEFS_20260614.md#brief-ml5-a1-019-say-you-are-running-late",
+  "blueprint_ledger": "release-aggregator/docs/tasks/A1_MULTILINGUAL_KO_B1_PARALLEL_ORCHESTRATION/work_products/ml0/ML5_BLUEPRINT_LEDGER_20260614.md",
+  "repo": "content-en",
+  "staging_path": "curriculum/a1_travel_v1/staging/scenario_pack.v1/social_running_late.en.v1.json",
+  "title": "Say You Are Running Late",
+  "setting_label": "Message to a friend",
+  "wrap_title": "You told your friend you are late",
+  "wrap_friend": "You apologized, gave a short time estimate, thanked your friend, and closed naturally.",
+  "language": "en",
+  "ui_language": "zh_tw",
+  "source_status": "candidate_runtime_verified",
+  "review_state": "draft",
+  "review_status_framework_state": "candidate_runtime_verified",
+  "native_review_state": "native_pending",
+  "production_mode_default": {
+    "required": [
+      "choice"
+    ],
+    "optional_visible": [
+      "speaking"
+    ],
+    "optional_hidden": [
+      "typing"
+    ]
+  },
+  "support_text": "你要傳訊息給朋友說會晚到。選自然、簡短的英文。",
+  "roles": {
+    "npc": {
+      "label": "Friend"
+    },
+    "learner": {
+      "label": "You"
+    }
+  },
+  "turns": [
+    {
+      "turn_id": "t1",
+      "speaker": "npc",
+      "act": "ask_delay_status",
+      "learning_role": "listen_only",
+      "surface": "Are you close?",
+      "speak": "Are you close?",
+      "translation": "你快到了嗎？",
+      "friend": {
+        "hint": "用朋友間自然英文說抱歉，會晚到。"
+      },
+      "inline_explain": {
+        "pattern_id": "en.social.running_late.v1",
+        "formula_ref": null,
+        "title": "I'm running late",
+        "explain": "Use this common phrase to say you will arrive late.",
+        "items": [
+          {
+            "surface": "Sorry, I'm running late.",
+            "translation": "抱歉，我會晚到。",
+            "speak": "Sorry, I'm running late."
+          }
+        ]
+      },
+      "reply_set": {
+        "correct": "r1a",
+        "choices": [
+          {
+            "id": "r1a",
+            "surface": "Sorry, I'm running late.",
+            "translation": "抱歉，我會晚到。",
+            "speak": "Sorry, I'm running late.",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r1b",
+            "surface": "I'd like a coffee.",
+            "translation": "我想要一杯咖啡。",
+            "speak": "I'd like a coffee.",
+            "contrast_type": "food_order_instead_of_late_message",
+            "feedback": "這是在點餐。現在要跟朋友說會晚到。"
+          },
+          {
+            "id": "r1c",
+            "surface": "Where is the outlet?",
+            "translation": "插座在哪裡？",
+            "speak": "Where is the outlet?",
+            "contrast_type": "charging_question_instead_of_late_message",
+            "feedback": "這是在問充電位置。現在是晚到訊息。"
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t2",
+      "speaker": "npc",
+      "act": "ask_minutes",
+      "learning_role": "listen_only",
+      "surface": "How many minutes?",
+      "speak": "How many minutes?",
+      "translation": "幾分鐘？",
+      "friend": {
+        "hint": "給簡短時間估計，不需要精準位置。"
+      },
+      "inline_explain": {
+        "pattern_id": "en.social.minutes_estimate.v1",
+        "formula_ref": null,
+        "title": "About ten minutes",
+        "explain": "Use `about` for a simple time estimate.",
+        "items": [
+          {
+            "surface": "About ten minutes.",
+            "translation": "大約十分鐘。",
+            "speak": "About ten minutes."
+          }
+        ]
+      },
+      "reply_set": {
+        "correct": "r2a",
+        "choices": [
+          {
+            "id": "r2a",
+            "surface": "About ten minutes.",
+            "translation": "大約十分鐘。",
+            "speak": "About ten minutes.",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r2b",
+            "surface": "Room 305.",
+            "translation": "305號房。",
+            "speak": "Room three oh five.",
+            "contrast_type": "room_number_instead_of_minutes",
+            "feedback": "這是房號，不是抵達時間。"
+          },
+          {
+            "id": "r2c",
+            "surface": "Can I pay now?",
+            "translation": "我可以現在付款嗎？",
+            "speak": "Can I pay now?",
+            "contrast_type": "payment_question_instead_of_minutes",
+            "feedback": "這是在付款。朋友問的是幾分鐘。"
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t3",
+      "speaker": "npc",
+      "act": "accept_waiting",
+      "learning_role": "listen_only",
+      "surface": "No problem. I'll wait.",
+      "speak": "No problem. I'll wait.",
+      "translation": "沒問題。我會等。",
+      "friend": {
+        "hint": "朋友願意等。簡短道謝。"
+      },
+      "reply_set": {
+        "correct": "r3a",
+        "choices": [
+          {
+            "id": "r3a",
+            "surface": "Thanks for waiting.",
+            "translation": "謝謝你等我。",
+            "speak": "Thanks for waiting.",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r3b",
+            "surface": "Sorry, I'm running late.",
+            "translation": "抱歉，我會晚到。",
+            "speak": "Sorry, I'm running late.",
+            "contrast_type": "repeat_apology_after_acceptance",
+            "feedback": "朋友已經接受並會等。現在道謝更自然。"
+          },
+          {
+            "id": "r3c",
+            "surface": "Where is the restroom?",
+            "translation": "廁所在哪裡？",
+            "speak": "Where is the restroom?",
+            "contrast_type": "directions_question_instead_of_thanks",
+            "feedback": "這是在問路，沒有回應朋友願意等。"
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t4",
+      "speaker": "npc",
+      "act": "close_see_you_soon",
+      "learning_role": "listen_only",
+      "surface": "See you soon.",
+      "speak": "See you soon.",
+      "translation": "待會見。",
+      "friend": {
+        "hint": "用同樣自然的朋友間收尾。"
+      },
+      "reply_set": {
+        "correct": "r4a",
+        "choices": [
+          {
+            "id": "r4a",
+            "surface": "See you soon.",
+            "translation": "待會見。",
+            "speak": "See you soon."
+          },
+          {
+            "id": "r4b",
+            "surface": "Thank you for your help.",
+            "translation": "謝謝您的幫忙。",
+            "speak": "Thank you for your help.",
+            "contrast_type": "over_formal_service_thanks_in_friend_context",
+            "feedback": "這像服務情境的正式道謝。朋友訊息用自然收尾即可。"
+          },
+          {
+            "id": "r4c",
+            "surface": "I lost my bag.",
+            "translation": "我的包包不見了。",
+            "speak": "I lost my bag.",
+            "contrast_type": "lost_item_statement_instead_of_close",
+            "feedback": "這是遺失物情境。現在只要跟朋友收尾。"
+          }
+        ]
+      },
+      "closing": {
+        "act": "late_message_complete",
+        "learning_role": "listen_only",
+        "surface": "You told your friend you are late and gave a time.",
+        "speak": "You told your friend you are late and gave a time.",
+        "translation": "你告訴朋友會晚到，也給了時間。"
+      }
+    }
+  ],
+  "formula_moments": [
+    {
+      "after_turn": "t1",
+      "pattern_id": "en.social.running_late.v1"
+    },
+    {
+      "after_turn": "t2",
+      "pattern_id": "en.social.minutes_estimate.v1"
+    },
+    {
+      "after_turn": "t4",
+      "pattern_id": "en.social.see_you_soon.v1"
+    }
+  ],
+  "notes": {
+    "authoring_source": "Authored from ML-5 neutral brief, not Korean surface text or another target-language pack.",
+    "review_policy": "AI-authored English candidate. Requires AI review, runtime smoke, and tracked native review before any stronger status.",
+    "canonical_policy": "Staging candidate only. Do not write back to manifests, production exports, schemas, runtime exports, frontend, or legacy content.",
+    "register_note": "Uses low-stakes friend-message English and avoids exact live location, safety incidents, blame, or conflict."
+  }
+}

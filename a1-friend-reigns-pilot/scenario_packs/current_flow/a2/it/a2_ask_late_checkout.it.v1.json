@@ -1,0 +1,273 @@
+{
+  "schema_version": "scenario_pack.v1",
+  "scenario_id": "a2_ask_late_checkout",
+  "title": "Chiedere il Check-out Posticipato",
+  "setting_label": "reception dell’hotel",
+  "wrap_title": "Orario di check-out confermato",
+  "wrap_friend": "你剛剛完成了一段 A2 住宿服務情境，說明需求、聽懂回覆，並確認下一步。",
+  "language": "it",
+  "ui_language": "zh-Hant",
+  "cefr_level": "A2",
+  "source_status": "candidate_runtime_verified",
+  "review_state": "ai_reviewed",
+  "review_status_framework_state": "candidate_runtime_verified",
+  "native_review_state": "native_pending",
+  "scenario": "A hotel/accommodation service scenario: a2_ask_late_checkout.",
+  "learner_goal": "Ask if late checkout is possible and confirm the allowed time.",
+  "target_functions": [
+    "late_checkout_request",
+    "availability_time",
+    "polite_confirmation"
+  ],
+  "register_notes": "it A2 accommodation register: polite, practical, low-risk hotel-service language; language-specific adaptation from the neutral brief, not a KO translation.",
+  "production_mode_default": {
+    "required": [
+      "choice"
+    ],
+    "optional_visible": [
+      "speaking"
+    ],
+    "optional_hidden": [
+      "typing"
+    ]
+  },
+  "support_text": "Chiedi se puoi uscire un po’ più tardi e conferma l’orario finale.",
+  "roles": {
+    "npc": {
+      "label": "Empleado del hotel"
+    },
+    "learner": {
+      "label": "Tú"
+    }
+  },
+  "turns": [
+    {
+      "turn_id": "t1",
+      "speaker": "npc",
+      "act": "service_prompt",
+      "act_slots": {
+        "topic": "ask-late-checkout",
+        "keyword": "1",
+        "gloss": "A2 accommodation"
+      },
+      "learning_role": "listen_only",
+      "surface": "Come posso aiutarla?",
+      "speak": "Come posso aiutarla?",
+      "translation": "我可以怎麼幫您？",
+      "friend": {
+        "hint": "Chieda un check-out posticipato."
+      },
+      "reply_set": {
+        "correct": "r1a",
+        "choices": [
+          {
+            "id": "r1a",
+            "surface": "Posso fare il check-out un po’ più tardi?",
+            "translation": "我可以晚一點退房嗎？",
+            "speak": "Posso fare il check-out un po’ più tardi?",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r1b",
+            "surface": "Posso fare il check-in un po’ più tardi?",
+            "translation": "我可以晚一點入住嗎？",
+            "speak": "Posso fare il check-in un po’ più tardi?",
+            "contrast_type": "wrong_detail_or_domain",
+            "feedback": "Check-in è il momento sbagliato."
+          },
+          {
+            "id": "r1c",
+            "surface": "Può abbassare il prezzo?",
+            "translation": "可以降低價格嗎？",
+            "speak": "Può abbassare il prezzo?",
+            "contrast_type": "forbidden_or_wrong_domain",
+            "feedback": "Prezzo non è il compito."
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t2",
+      "speaker": "npc",
+      "act": "confirm_deadline",
+      "act_slots": {
+        "topic": "ask-late-checkout",
+        "keyword": "2",
+        "gloss": "A2 accommodation"
+      },
+      "learning_role": "listen_only",
+      "surface": "Oggi può fare il check-out fino all’una.",
+      "speak": "Oggi può fare il check-out fino all’una.",
+      "translation": "今天可以延到下午一點退房。",
+      "friend": {
+        "hint": "Confermi l’orario finale."
+      },
+      "reply_set": {
+        "correct": "r2a",
+        "choices": [
+          {
+            "id": "r2a",
+            "surface": "Fino all’una va bene, giusto?",
+            "translation": "可以到下午一點，對嗎？",
+            "speak": "Fino all’una va bene, giusto?",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r2b",
+            "surface": "Fino alle dieci va bene, giusto?",
+            "translation": "可以到十點，對嗎？",
+            "speak": "Fino alle dieci va bene, giusto?",
+            "contrast_type": "wrong_detail_or_domain",
+            "feedback": "Dieci è il tempo sbagliato."
+          },
+          {
+            "id": "r2c",
+            "surface": "Prenoto un’altra camera.",
+            "translation": "我想再訂一間房。",
+            "speak": "Prenoto un’altra camera.",
+            "contrast_type": "forbidden_or_wrong_domain",
+            "feedback": "Non sta prenotando una nuova camera."
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t3",
+      "speaker": "npc",
+      "act": "confirm_requirement",
+      "act_slots": {
+        "topic": "ask-late-checkout",
+        "keyword": "3",
+        "gloss": "A2 accommodation"
+      },
+      "learning_role": "listen_only",
+      "surface": "Per favore, mostri la tessera della camera alla reception prima di mezzogiorno.",
+      "speak": "Per favore, mostri la tessera della camera alla reception prima di mezzogiorno.",
+      "translation": "請在中午前到櫃台出示房卡。",
+      "friend": {
+        "hint": "Confermi il requisito semplice."
+      },
+      "reply_set": {
+        "correct": "r3a",
+        "choices": [
+          {
+            "id": "r3a",
+            "surface": "Mostro la tessera prima di mezzogiorno, giusto?",
+            "translation": "我中午前出示房卡，對嗎？",
+            "speak": "Mostro la tessera prima di mezzogiorno, giusto?",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r3b",
+            "surface": "Le dico il mio numero di passaporto, giusto?",
+            "translation": "我告訴您我的護照號碼，對嗎？",
+            "speak": "Le dico il mio numero di passaporto, giusto?",
+            "contrast_type": "wrong_detail_or_domain",
+            "feedback": "Il passaporto non è richiesto."
+          },
+          {
+            "id": "r3c",
+            "surface": "Ritiro i bagagli alle sette, giusto?",
+            "translation": "我晚上七點拿行李，對嗎？",
+            "speak": "Ritiro i bagagli alle sette, giusto?",
+            "contrast_type": "forbidden_or_wrong_domain",
+            "feedback": "Bagagli è un altro servizio."
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t4",
+      "speaker": "npc",
+      "act": "confirm_result",
+      "act_slots": {
+        "topic": "ask-late-checkout",
+        "keyword": "4",
+        "gloss": "A2 accommodation"
+      },
+      "learning_role": "listen_only",
+      "surface": "Va bene, lo segno come check-out all’una.",
+      "speak": "Va bene, lo segno come check-out all’una.",
+      "translation": "好的，我幫您記成下午一點退房。",
+      "friend": {
+        "hint": "Chiuda confermando l’orario."
+      },
+      "reply_set": {
+        "correct": "r4a",
+        "choices": [
+          {
+            "id": "r4a",
+            "surface": "Grazie. Faccio il check-out all’una.",
+            "translation": "謝謝，我下午一點退房。",
+            "speak": "Grazie. Faccio il check-out all’una.",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r4b",
+            "surface": "Chiedo un rimborso.",
+            "translation": "我要申請退款。",
+            "speak": "Chiedo un rimborso.",
+            "contrast_type": "wrong_detail_or_domain",
+            "feedback": "Rimborso è fuori obiettivo."
+          },
+          {
+            "id": "r4c",
+            "surface": "Domani mattina prendo il treno.",
+            "translation": "明天早上我要搭火車。",
+            "speak": "Domani mattina prendo il treno.",
+            "contrast_type": "forbidden_or_wrong_domain",
+            "feedback": "Treno è un altro contesto."
+          }
+        ]
+      }
+    }
+  ],
+  "choice_sets": {
+    "count_per_turn": 3,
+    "correct_path": [
+      "r1a",
+      "r2a",
+      "r3a",
+      "r4a"
+    ],
+    "distractor_policy": "one near-domain wrong detail plus one out-of-scope/over-escalated option per turn"
+  },
+  "feedback": "Los distractores prueban tiempo, lugar, servicio equivocado o una petición fuera del alcance A2.",
+  "tts_segments": [
+    "Come posso aiutarla?",
+    "Posso fare il check-out un po’ più tardi?",
+    "Posso fare il check-in un po’ più tardi?",
+    "Può abbassare il prezzo?",
+    "Oggi può fare il check-out fino all’una.",
+    "Fino all’una va bene, giusto?",
+    "Fino alle dieci va bene, giusto?",
+    "Prenoto un’altra camera.",
+    "Per favore, mostri la tessera della camera alla reception prima di mezzogiorno.",
+    "Mostro la tessera prima di mezzogiorno, giusto?",
+    "Le dico il mio numero di passaporto, giusto?",
+    "Ritiro i bagagli alle sette, giusto?",
+    "Va bene, lo segno come check-out all’una.",
+    "Grazie. Faccio il check-out all’una.",
+    "Chiedo un rimborso.",
+    "Domani mattina prendo il treno."
+  ],
+  "formula_moments": [
+    {
+      "after_turn": "t2",
+      "pattern_id": "it.a2.accommodation.checkout.until.v1",
+      "label": "posso + infinitive + più tardi",
+      "learner_takeaway": "fino all’una"
+    }
+  ],
+  "runtime_notes": {
+    "expected_turns": 4,
+    "expected_choices_per_turn": 3,
+    "full_walk_required": true,
+    "expected_final_screen": "Wrap"
+  },
+  "notes": {
+    "generated_at": "2026-06-14",
+    "authoring_scope": "A2 accommodation remaining six-language wave",
+    "native_review_state": "native_pending"
+  }
+}

@@ -1,0 +1,257 @@
+{
+  "schema_version": "scenario_pack.v1",
+  "scenario_id": "a2_describe_weekend_activity",
+  "title": "เล่าเรื่องที่ทำช่วงสุดสัปดาห์",
+  "setting_label": "คุยกับเพื่อนวันจันทร์",
+  "wrap_title": "เล่ากิจกรรมสุดสัปดาห์แล้ว",
+  "wrap_friend": "ทำได้ดีค่ะ คุณเล่าเรื่องสุดสัปดาห์ด้วยรายละเอียดสั้น ๆ ระดับ A2",
+  "language": "th",
+  "ui_language": "zh-Hant",
+  "cefr_level": "A2",
+  "source_status": "candidate_runtime_verified",
+  "review_state": "ai_reviewed",
+  "review_status_framework_state": "candidate_runtime_verified",
+  "native_review_state": "native_pending",
+  "scenario": {
+    "domain": "daily_social_coordination",
+    "review_slice": "daily_social",
+    "interaction": "friend_social_coordination",
+    "source_brief": "A2_DAILY_SOCIAL_NEUTRAL_ADAPTATION_BRIEFS_20260614",
+    "blueprint_source": "language_neutral_adaptation_brief",
+    "ko_pack_role": "mature_scenario_blueprint_not_translation_source"
+  },
+  "learner_goal": "เล่าสิ่งที่ทำในช่วงสุดสัปดาห์หนึ่งหรือสองอย่าง",
+  "target_functions": [
+    "friend_invitation_or_response",
+    "simple_reason_or_past_event",
+    "two_step_plan_or_confirmation",
+    "close_with_relationship_maintenance"
+  ],
+  "register_notes": "Thai A2 friend/social register: natural friendly Thai with soft polite particles, TTS-friendly segmentation, no service-counter register or date pressure.",
+  "production_mode_default": {
+    "required": [
+      "choice"
+    ],
+    "optional_visible": [
+      "speaking"
+    ],
+    "optional_hidden": [
+      "typing"
+    ]
+  },
+  "support_text": "เล่าให้เพื่อนฟังว่าช่วงสุดสัปดาห์ทำอะไร ด้วยรายละเอียดสั้น ๆ ค่ะ",
+  "roles": {
+    "npc": {
+      "label": "เพื่อน"
+    },
+    "learner": {
+      "label": "你"
+    }
+  },
+  "turns": [
+    {
+      "turn_id": "t1",
+      "speaker": "npc",
+      "act": "ask_weekend",
+      "act_slots": {
+        "topic": "weekend activity",
+        "keyword": "สุดสัปดาห์",
+        "gloss": "A2 daily/social"
+      },
+      "learning_role": "listen_only",
+      "surface": "สุดสัปดาห์ทำอะไรมา",
+      "speak": "สุดสัปดาห์ทำอะไรมา",
+      "translation": "週末做了什麼？",
+      "friend": {
+        "hint": "บอกสิ่งที่ทำหนึ่งอย่างค่ะ"
+      },
+      "reply_set": {
+        "correct": "r1a",
+        "choices": [
+          {
+            "id": "r1a",
+            "surface": "ไปกินข้าวกับเพื่อนมา",
+            "translation": "和朋友去吃飯了。",
+            "speak": "ไปกินข้าวกับเพื่อนมา",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r1b",
+            "surface": "พรุ่งนี้จะไปเจอเพื่อน",
+            "translation": "明天會去見朋友。",
+            "speak": "พรุ่งนี้จะไปเจอเพื่อน",
+            "contrast_type": "wrong_time_future",
+            "feedback": "เพื่อนถามเรื่องสุดสัปดาห์ที่ผ่านมาแล้วค่ะ"
+          },
+          {
+            "id": "r1c",
+            "surface": "ต้องไปชานชาลาไหน",
+            "translation": "要去哪個月台？",
+            "speak": "ต้องไปชานชาลาไหน",
+            "contrast_type": "wrong_scenario_transport",
+            "feedback": "นี่ไม่ใช่คำถามเรื่องเดินทางค่ะ"
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t2",
+      "speaker": "npc",
+      "act": "ask_place",
+      "act_slots": {
+        "topic": "place followup",
+        "keyword": "ที่ไหน",
+        "gloss": "A2 daily/social"
+      },
+      "learning_role": "listen_only",
+      "surface": "เจอกันที่ไหน",
+      "speak": "เจอกันที่ไหน",
+      "translation": "在哪裡見面？",
+      "friend": {
+        "hint": "ตอบสถานที่สั้น ๆ ค่ะ"
+      },
+      "reply_set": {
+        "correct": "r2a",
+        "choices": [
+          {
+            "id": "r2a",
+            "surface": "เจอกันที่คาเฟ่ใกล้บ้าน",
+            "translation": "在家附近的咖啡店見。",
+            "speak": "เจอกันที่คาเฟ่ใกล้บ้าน",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r2b",
+            "surface": "เจอกันที่คาเฟ่ไหม",
+            "translation": "要在咖啡店見嗎？",
+            "speak": "เจอกันที่คาเฟ่ไหม",
+            "contrast_type": "wrong_function_invite",
+            "feedback": "กำลังพูดถึงเรื่องที่เกิดไปแล้วค่ะ"
+          },
+          {
+            "id": "r2c",
+            "surface": "ห้องหนาวเกินไป",
+            "translation": "房間太冷了。",
+            "speak": "ห้องหนาวเกินไป",
+            "contrast_type": "wrong_scenario_hotel",
+            "feedback": "นี่ไม่ใช่ปัญหาโรงแรมค่ะ"
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t3",
+      "speaker": "npc",
+      "act": "ask_feeling",
+      "act_slots": {
+        "topic": "simple followup",
+        "keyword": "เป็นยังไง",
+        "gloss": "A2 daily/social"
+      },
+      "learning_role": "listen_only",
+      "surface": "ดีไหม",
+      "speak": "ดีไหม",
+      "translation": "還不錯嗎？",
+      "friend": {
+        "hint": "บอกความรู้สึกสั้น ๆ ค่ะ"
+      },
+      "reply_set": {
+        "correct": "r3a",
+        "choices": [
+          {
+            "id": "r3a",
+            "surface": "ดีนะ เงียบแล้วก็ดี",
+            "translation": "很好，很安靜也不錯。",
+            "speak": "ดีนะ เงียบแล้วก็ดี",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r3b",
+            "surface": "ทำให้คิดถึงสังคม",
+            "translation": "讓我想到社會。",
+            "speak": "ทำให้คิดถึงสังคม",
+            "contrast_type": "too_advanced_or_abstract",
+            "feedback": "นามธรรมเกินไปสำหรับบทสนทนา A2 นี้ค่ะ"
+          },
+          {
+            "id": "r3c",
+            "surface": "ไม่ค่ะ อยากคืนเงิน",
+            "translation": "不，想退款。",
+            "speak": "ไม่ค่ะ อยากคืนเงิน",
+            "contrast_type": "wrong_scenario_refund",
+            "feedback": "นี่ไม่ใช่สถานการณ์คืนเงินค่ะ"
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t4",
+      "speaker": "npc",
+      "act": "close_weekend",
+      "act_slots": {
+        "topic": "close",
+        "keyword": "ครั้งหน้า",
+        "gloss": "A2 daily/social"
+      },
+      "learning_role": "listen_only",
+      "surface": "ฟังดูดี ครั้งหน้าฉันไปด้วยได้ไหม",
+      "speak": "ฟังดูดี ครั้งหน้าฉันไปด้วยได้ไหม",
+      "translation": "聽起來不錯。下次我可以一起去嗎？",
+      "friend": {
+        "hint": "ตอบเพื่อนอย่างเป็นธรรมชาติค่ะ"
+      },
+      "reply_set": {
+        "correct": "r4a",
+        "choices": [
+          {
+            "id": "r4a",
+            "surface": "ได้ ครั้งหน้าไปด้วยกันนะ",
+            "translation": "好，下次一起去。",
+            "speak": "ได้ ครั้งหน้าไปด้วยกันนะ",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r4b",
+            "surface": "ลงสถานีถัดไปค่ะ",
+            "translation": "下一站下車。",
+            "speak": "ลงสถานีถัดไปค่ะ",
+            "contrast_type": "wrong_scenario_transport",
+            "feedback": "นี่เป็นคำแนะนำเรื่องเดินทางค่ะ"
+          },
+          {
+            "id": "r4c",
+            "surface": "ฉันจะแสดงบัตรประชาชนค่ะ",
+            "translation": "我會出示身分證。",
+            "speak": "ฉันจะแสดงบัตรประชาชนค่ะ",
+            "contrast_type": "wrong_scenario_document",
+            "feedback": "นี่ไม่ใช่สถานการณ์เอกสารค่ะ"
+          }
+        ]
+      }
+    }
+  ],
+  "choice_sets": [
+    "t1.reply_set",
+    "t2.reply_set",
+    "t3.reply_set",
+    "t4.reply_set"
+  ],
+  "feedback": "Distractors test social register, time/function/domain contrast, and A2 boundary without offering valid alternate answers.",
+  "tts_segments": [
+    "ไปกินข้าวกับเพื่อนมา",
+    "เจอกันที่คาเฟ่ใกล้บ้าน",
+    "ดีนะ เงียบแล้วก็ดี",
+    "ได้ ครั้งหน้าไปด้วยกันนะ"
+  ],
+  "formula_moments": [
+    {
+      "after_turn": "t2",
+      "pattern_id": "th.a2.daily.weekend.v1"
+    }
+  ],
+  "runtime_notes": "Fresh A2 daily/social candidate. Requires full-walk runtime before closeout evidence is recorded.",
+  "notes": {
+    "authoring_policy": "Fresh-authored from A2 daily/social neutral adaptation brief. KO surface text was not copied or translated.",
+    "a2_boundary": "Friend/social register, low-risk ordinary reasons and activities, short A2 responses only."
+  }
+}

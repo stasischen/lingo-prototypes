@@ -1,0 +1,261 @@
+{
+  "schema_version": "scenario_pack.v1",
+  "scenario_id": "a2_report_room_problem",
+  "title": "Report a Room Problem",
+  "setting_label": "At the hotel front desk",
+  "wrap_title": "Help Request Confirmed",
+  "wrap_friend": "你剛剛完成了一段 A2 住宿服務情境，說明需求、聽懂回覆，並確認下一步。",
+  "language": "en",
+  "ui_language": "zh_tw",
+  "cefr_level": "A2",
+  "source_status": "candidate_runtime_verified",
+  "review_state": "ai_reviewed",
+  "review_status_framework_state": "candidate_runtime_verified",
+  "native_review_state": "native_pending",
+  "scenario": "A hotel/accommodation service scenario: a2_report_room_problem.",
+  "learner_goal": "Report a simple room problem and confirm the next step.",
+  "target_functions": [
+    "room_problem_description",
+    "polite_help_request",
+    "service_next_step_confirmation"
+  ],
+  "register_notes": "Broad everyday English hotel-service register; polite, short A2 responses; no complaint escalation.",
+  "production_mode_default": {
+    "required": [
+      "choice"
+    ],
+    "optional_visible": [
+      "speaking"
+    ],
+    "optional_hidden": [
+      "typing"
+    ]
+  },
+  "support_text": "Report a small room problem and confirm what the hotel staff will do next.",
+  "roles": {
+    "npc": {
+      "label": "Hotel Staff"
+    },
+    "learner": {
+      "label": "You"
+    }
+  },
+  "turns": [
+    {
+      "turn_id": "t1",
+      "speaker": "npc",
+      "act": "service_prompt",
+      "act_slots": {
+        "topic": "service_prompt",
+        "keyword": "help",
+        "gloss": "幫忙"
+      },
+      "learning_role": "listen_only",
+      "surface": "Hello. How can I help you?",
+      "speak": "Hello. How can I help you?",
+      "translation": "您好，我可以怎麼幫您？",
+      "friend": {
+        "hint": "Say the room problem briefly."
+      },
+      "reply_set": {
+        "correct": "r1a",
+        "choices": [
+          {
+            "id": "r1a",
+            "surface": "There are no towels in my room. Could you help?",
+            "translation": "我的房間裡沒有毛巾。可以幫忙嗎？",
+            "speak": "There are no towels in my room. Could you help?",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r1b",
+            "surface": "I want to book a room.",
+            "translation": "我想訂房。",
+            "speak": "I want to book a room.",
+            "contrast_type": "wrong_detail_or_domain",
+            "feedback": "You need to report a room problem, not make a booking."
+          },
+          {
+            "id": "r1c",
+            "surface": "Please compensate me.",
+            "translation": "請賠償我。",
+            "speak": "Please compensate me.",
+            "contrast_type": "forbidden_or_wrong_domain",
+            "feedback": "Compensation is outside this A2 task."
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t2",
+      "speaker": "npc",
+      "act": "service_response",
+      "act_slots": {
+        "topic": "service_response",
+        "keyword": "bring towels",
+        "gloss": "拿毛巾"
+      },
+      "learning_role": "listen_only",
+      "surface": "Yes, I will bring towels right away.",
+      "speak": "Yes, I will bring towels right away.",
+      "translation": "好的，我馬上拿毛巾過去。",
+      "friend": {
+        "hint": "Confirm what the staff will do."
+      },
+      "inline_explain": {
+        "pattern_id": "en.a2.accommodation.problem.help.v1",
+        "title": "A2 pattern",
+        "explain": "A useful pattern for this accommodation situation.",
+        "items": [
+          {
+            "surface": "bring towels",
+            "translation": "拿毛巾",
+            "speak": "bring towels"
+          }
+        ]
+      },
+      "reply_set": {
+        "correct": "r2a",
+        "choices": [
+          {
+            "id": "r2a",
+            "surface": "You will bring towels, right?",
+            "translation": "您會拿毛巾過來，對嗎？",
+            "speak": "You will bring towels, right?",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r2b",
+            "surface": "You will change my room, right?",
+            "translation": "您會幫我換房間，對嗎？",
+            "speak": "You will change my room, right?",
+            "contrast_type": "wrong_detail_or_domain",
+            "feedback": "The staff said towels, not a room change."
+          },
+          {
+            "id": "r2c",
+            "surface": "The train is delayed, right?",
+            "translation": "是火車延誤，對嗎？",
+            "speak": "The train is delayed, right?",
+            "contrast_type": "forbidden_or_wrong_domain",
+            "feedback": "This is a hotel service situation, not transport."
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t3",
+      "speaker": "npc",
+      "act": "time_estimate",
+      "act_slots": {
+        "topic": "time_estimate",
+        "keyword": "ten minutes",
+        "gloss": "十分鐘"
+      },
+      "learning_role": "listen_only",
+      "surface": "It will take about ten minutes.",
+      "speak": "It will take about ten minutes.",
+      "translation": "大約需要十分鐘。",
+      "friend": {
+        "hint": "Confirm the time estimate."
+      },
+      "reply_set": {
+        "correct": "r3a",
+        "choices": [
+          {
+            "id": "r3a",
+            "surface": "About ten minutes, okay.",
+            "translation": "大約十分鐘，好的。",
+            "speak": "About ten minutes, okay.",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r3b",
+            "surface": "I check out in one hour.",
+            "translation": "我一小時後退房。",
+            "speak": "I check out in one hour.",
+            "contrast_type": "wrong_detail_or_domain",
+            "feedback": "This is about towel delivery time, not checkout."
+          },
+          {
+            "id": "r3c",
+            "surface": "I need to go to the hospital.",
+            "translation": "我需要去醫院。",
+            "speak": "I need to go to the hospital.",
+            "contrast_type": "forbidden_or_wrong_domain",
+            "feedback": "Medical content is outside this task."
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t4",
+      "speaker": "npc",
+      "act": "close",
+      "act_slots": {
+        "topic": "close",
+        "keyword": "send to room",
+        "gloss": "送到房間"
+      },
+      "learning_role": "listen_only",
+      "surface": "I will send them to your room.",
+      "speak": "I will send them to your room.",
+      "translation": "我會送到您的房間。",
+      "friend": {
+        "hint": "Thank them and close."
+      },
+      "reply_set": {
+        "correct": "r4a",
+        "choices": [
+          {
+            "id": "r4a",
+            "surface": "Thank you. I will wait in my room.",
+            "translation": "謝謝。我會在房間等。",
+            "speak": "Thank you. I will wait in my room.",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r4b",
+            "surface": "Please explain the refund rules.",
+            "translation": "請說明退款規則。",
+            "speak": "Please explain the refund rules.",
+            "contrast_type": "wrong_detail_or_domain",
+            "feedback": "Refund rules are outside this simple room problem task."
+          },
+          {
+            "id": "r4c",
+            "surface": "Two coffees, please.",
+            "translation": "請給我兩杯咖啡。",
+            "speak": "Two coffees, please.",
+            "contrast_type": "forbidden_or_wrong_domain",
+            "feedback": "That is a restaurant order, not hotel room service."
+          }
+        ]
+      }
+    }
+  ],
+  "choice_sets": [
+    "t1.reply_set",
+    "t2.reply_set",
+    "t3.reply_set",
+    "t4.reply_set"
+  ],
+  "feedback": "Distractors test wrong time, place, service domain, or out-of-scope escalation while preserving A2 boundaries.",
+  "tts_segments": [
+    "Hello. How can I help you?",
+    "Yes, I will bring towels right away.",
+    "It will take about ten minutes.",
+    "I will send them to your room."
+  ],
+  "formula_moments": [
+    {
+      "after_turn": "t2",
+      "pattern_id": "en.a2.accommodation.problem.help.v1"
+    }
+  ],
+  "runtime_notes": "EN A2 accommodation candidate. Full-walk runtime gate required before final closeout.",
+  "notes": {
+    "authoring_policy": "Fresh-authored from the neutral A2 accommodation brief. KO surfaces were not translated.",
+    "a2_boundary": "Low-risk accommodation/service task; avoids compensation, emergency, legal, medical, police, immigration, banking, insurance, or identity-sensitive handling."
+  }
+}

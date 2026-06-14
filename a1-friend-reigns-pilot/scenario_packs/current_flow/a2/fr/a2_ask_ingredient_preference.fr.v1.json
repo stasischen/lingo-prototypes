@@ -1,0 +1,284 @@
+{
+  "schema_version": "scenario_pack.v1",
+  "scenario_id": "a2_ask_ingredient_preference",
+  "title": "Demander un Ingrédient",
+  "setting_label": "comptoir du restaurant",
+  "wrap_title": "Préférence d’ingrédient confirmée",
+  "wrap_friend": "Bien. Vous avez confirmé une préférence et un détail dans une situation simple de restauration ou d’achat.",
+  "language": "fr",
+  "ui_language": "zh-Hant",
+  "cefr_level": "A2",
+  "source_status": "candidate_runtime_verified",
+  "review_state": "ai_reviewed",
+  "review_status_framework_state": "candidate_runtime_verified",
+  "native_review_state": "native_pending",
+  "scenario": {
+    "domain": "food_shopping_preferences",
+    "review_slice": "food_shopping",
+    "interaction": "service_preference_or_exchange",
+    "source_brief": "A2_FOOD_SHOPPING_NEUTRAL_ADAPTATION_BRIEFS_20260614",
+    "blueprint_source": "language_neutral_adaptation_brief",
+    "ko_pack_role": "mature_scenario_blueprint_not_translation_source"
+  },
+  "learner_goal": "Demandez s’il y a un ingrédient courant et choisissez selon votre préférence.",
+  "target_functions": [
+    "compare_or_state_preference",
+    "confirm_key_detail",
+    "make_polite_low_risk_request",
+    "close_with_correct_next_step"
+  ],
+  "register_notes": "French A2 food/shopping register: natural spoken polite service French, no allergy/medical/refund-dispute framing.",
+  "production_mode_default": {
+    "required": [
+      "choice"
+    ],
+    "optional_visible": [
+      "speaking"
+    ],
+    "optional_hidden": [
+      "typing"
+    ]
+  },
+  "support_text": "Demandez s’il y a un ingrédient courant et choisissez selon votre préférence.",
+  "roles": {
+    "npc": {
+      "label": "employé"
+    },
+    "learner": {
+      "label": "你"
+    }
+  },
+  "turns": [
+    {
+      "turn_id": "t1",
+      "speaker": "npc",
+      "act": "ask_ingredient",
+      "act_slots": {
+        "topic": "ask-ingredient-preference",
+        "keyword": "1",
+        "gloss": "A2 food/shopping"
+      },
+      "learning_role": "listen_only",
+      "surface": "Vous voulez commander quoi ?",
+      "speak": "Vous voulez commander quoi ?",
+      "translation": "您想點什麼？",
+      "friend": {
+        "hint": "Demandez s’il y a un ingrédient courant."
+      },
+      "reply_set": {
+        "correct": "r1a",
+        "choices": [
+          {
+            "id": "r1a",
+            "surface": "Cette salade contient de l’oignon ?",
+            "translation": "這個沙拉裡有洋蔥嗎？",
+            "speak": "Cette salade contient de l’oignon ?",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r1b",
+            "surface": "Cette salade est à quel étage ?",
+            "translation": "這個沙拉在幾樓？",
+            "speak": "Cette salade est à quel étage ?",
+            "contrast_type": "wrong_detail_or_domain",
+            "feedback": "Un étage n’a pas de rapport avec les ingrédients."
+          },
+          {
+            "id": "r1c",
+            "surface": "Veuillez changer l’heure de mon billet.",
+            "translation": "請幫我改票的時間。",
+            "speak": "Veuillez changer l’heure de mon billet.",
+            "contrast_type": "forbidden_or_wrong_domain",
+            "feedback": "Cela passe à une situation de billet."
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t2",
+      "speaker": "npc",
+      "act": "answer_ingredient",
+      "act_slots": {
+        "topic": "ask-ingredient-preference",
+        "keyword": "2",
+        "gloss": "A2 food/shopping"
+      },
+      "learning_role": "listen_only",
+      "surface": "Oui, il y a un peu d’oignon.",
+      "speak": "Oui, il y a un peu d’oignon.",
+      "translation": "有，放一點洋蔥。",
+      "friend": {
+        "hint": "Confirmez l’information sur l’ingrédient."
+      },
+      "reply_set": {
+        "correct": "r2a",
+        "choices": [
+          {
+            "id": "r2a",
+            "surface": "Il y a un peu d’oignon, c’est ça ?",
+            "translation": "有一點洋蔥，對嗎？",
+            "speak": "Il y a un peu d’oignon, c’est ça ?",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r2b",
+            "surface": "Il y a beaucoup de viande, c’est ça ?",
+            "translation": "有很多肉，對嗎？",
+            "speak": "Il y a beaucoup de viande, c’est ça ?",
+            "contrast_type": "wrong_detail_or_domain",
+            "feedback": "La viande n’a pas été mentionnée."
+          },
+          {
+            "id": "r2c",
+            "surface": "La chambre est bruyante, c’est ça ?",
+            "translation": "房間很吵，對嗎？",
+            "speak": "La chambre est bruyante, c’est ça ?",
+            "contrast_type": "forbidden_or_wrong_domain",
+            "feedback": "Cela passe à un problème d’hôtel."
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t3",
+      "speaker": "npc",
+      "act": "choose_preference",
+      "act_slots": {
+        "topic": "ask-ingredient-preference",
+        "keyword": "3",
+        "gloss": "A2 food/shopping"
+      },
+      "learning_role": "listen_only",
+      "surface": "Si vous voulez, on peut la préparer sans oignon.",
+      "speak": "Si vous voulez, on peut la préparer sans oignon.",
+      "translation": "如果您想要，可以不加洋蔥。",
+      "friend": {
+        "hint": "Choisissez comme préférence seulement."
+      },
+      "reply_set": {
+        "correct": "r3a",
+        "choices": [
+          {
+            "id": "r3a",
+            "surface": "Oui, sans oignon, s’il vous plaît.",
+            "translation": "好的，請不要加洋蔥。",
+            "speak": "Oui, sans oignon, s’il vous plaît.",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r3b",
+            "surface": "Oui, donnez-moi un médicament contre l’allergie.",
+            "translation": "好的，請給我過敏藥。",
+            "speak": "Oui, donnez-moi un médicament contre l’allergie.",
+            "contrast_type": "wrong_detail_or_domain",
+            "feedback": "Médicament/allergie sort de cette tâche."
+          },
+          {
+            "id": "r3c",
+            "surface": "Oui, remboursez-moi, s’il vous plaît.",
+            "translation": "好的，請退款。",
+            "speak": "Oui, remboursez-moi, s’il vous plaît.",
+            "contrast_type": "forbidden_or_wrong_domain",
+            "feedback": "Ce n’est pas une demande de remboursement."
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t4",
+      "speaker": "npc",
+      "act": "confirm_order",
+      "act_slots": {
+        "topic": "ask-ingredient-preference",
+        "keyword": "4",
+        "gloss": "A2 food/shopping"
+      },
+      "learning_role": "listen_only",
+      "surface": "Bien sûr. Je la prépare sans oignon.",
+      "speak": "Bien sûr. Je la prépare sans oignon.",
+      "translation": "可以，我會準備不加洋蔥的。",
+      "friend": {
+        "hint": "Terminez en confirmant la commande."
+      },
+      "reply_set": {
+        "correct": "r4a",
+        "choices": [
+          {
+            "id": "r4a",
+            "surface": "Merci. Préparez-la comme ça, s’il vous plaît.",
+            "translation": "謝謝，請這樣做。",
+            "speak": "Merci. Préparez-la comme ça, s’il vous plaît.",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r4b",
+            "surface": "Dites-moi mon numéro de passeport, s’il vous plaît.",
+            "translation": "請告訴我護照號碼。",
+            "speak": "Dites-moi mon numéro de passeport, s’il vous plaît.",
+            "contrast_type": "wrong_detail_or_domain",
+            "feedback": "Les données de passeport ne sont pas nécessaires."
+          },
+          {
+            "id": "r4c",
+            "surface": "Je veux déposer mes bagages.",
+            "translation": "我想寄放行李。",
+            "speak": "Je veux déposer mes bagages.",
+            "contrast_type": "forbidden_or_wrong_domain",
+            "feedback": "Cela passe au dépôt de bagages."
+          }
+        ]
+      }
+    }
+  ],
+  "choice_sets": {
+    "count_per_turn": 3,
+    "correct_path": [
+      "r1a",
+      "r2a",
+      "r3a",
+      "r4a"
+    ],
+    "distractor_policy": "one near-domain wrong detail plus one out-of-scope/unsafe-domain option per turn"
+  },
+  "feedback": {
+    "correct": "Bien. Continuez dans la tâche de restauration ou d’achat.",
+    "incorrect": "Choisissez la réponse qui correspond au menu, à l’ingrédient, à l’échange ou à la recommandation avec budget."
+  },
+  "tts_segments": [
+    "Vous voulez commander quoi ?",
+    "Cette salade contient de l’oignon ?",
+    "Cette salade est à quel étage ?",
+    "Veuillez changer l’heure de mon billet.",
+    "Oui, il y a un peu d’oignon.",
+    "Il y a un peu d’oignon, c’est ça ?",
+    "Il y a beaucoup de viande, c’est ça ?",
+    "La chambre est bruyante, c’est ça ?",
+    "Si vous voulez, on peut la préparer sans oignon.",
+    "Oui, sans oignon, s’il vous plaît.",
+    "Oui, donnez-moi un médicament contre l’allergie.",
+    "Oui, remboursez-moi, s’il vous plaît.",
+    "Bien sûr. Je la prépare sans oignon.",
+    "Merci. Préparez-la comme ça, s’il vous plaît.",
+    "Dites-moi mon numéro de passeport, s’il vous plaît.",
+    "Je veux déposer mes bagages."
+  ],
+  "formula_moments": [
+    {
+      "after_turn": "t2",
+      "pattern_id": "fr.a2.food.ingredient.preference.v1",
+      "label": "Il y a + ingrédient ?",
+      "learner_takeaway": "sans + ingrédient"
+    }
+  ],
+  "runtime_notes": {
+    "expected_turns": 4,
+    "expected_choices_per_turn": 3,
+    "full_walk_required": true,
+    "expected_final_screen": "Wrap"
+  },
+  "notes": {
+    "generated_at": "2026-06-14",
+    "authoring_scope": "A2 food/shopping FR adaptation",
+    "native_review_state": "native_pending"
+  }
+}

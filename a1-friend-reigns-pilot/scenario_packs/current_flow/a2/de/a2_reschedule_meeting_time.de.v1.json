@@ -1,0 +1,260 @@
+{
+  "schema_version": "scenario_pack.v1",
+  "scenario_id": "a2_reschedule_meeting_time",
+  "title": "Eine Uhrzeit ändern",
+  "setting_label": "Plaene mit einem Freund ändern",
+  "wrap_title": "Neue Uhrzeit",
+  "wrap_friend": "你剛剛用簡單德文請朋友改時間，提出新時間，並再次確認。",
+  "language": "de",
+  "ui_language": "zh_tw",
+  "cefr_level": "A2",
+  "source_status": "candidate_runtime_verified",
+  "review_state": "ai_reviewed",
+  "review_status_framework_state": "candidate_runtime_verified",
+  "native_review_state": "native_pending",
+  "scenario": "Du musst einen Freund bitten, die Uhrzeit für ein Treffen zu ändern.",
+  "learner_goal": "Bitte um eine andere Uhrzeit und bestätige die neue Uhrzeit.",
+  "target_functions": [
+    "reschedule_request",
+    "alternative_time",
+    "confirmation"
+  ],
+  "register_notes": "Freundliches, niedrigschwelliges Deutsch. Höflich, aber nicht formell; keine Verhandlung und kein Arbeitskontext.",
+  "production_mode_default": {
+    "required": [
+      "choice"
+    ],
+    "optional_visible": [
+      "speaking"
+    ],
+    "optional_hidden": [
+      "typing"
+    ]
+  },
+  "support_text": "Die alte Uhrzeit passt dir nicht gut. Bitte um eine Änderung, nenne eine neue Uhrzeit und bestätige sie.",
+  "roles": {
+    "npc": {
+      "label": "Freund"
+    },
+    "learner": {
+      "label": "Du"
+    }
+  },
+  "turns": [
+    {
+      "turn_id": "t1",
+      "speaker": "npc",
+      "act": "schedule_confirmation",
+      "act_slots": {
+        "topic": "three o'clock plan",
+        "keyword": "drei",
+        "gloss": "三點"
+      },
+      "learning_role": "listen_only",
+      "surface": "Wir treffen uns heute um drei, oder?",
+      "speak": "Wir treffen uns heute um drei, oder?",
+      "translation": "我們今天三點見，對吧？",
+      "friend": {
+        "hint": "Dein Freund bestätigt die alte Uhrzeit. Bitte darum, die Zeit zu ändern."
+      },
+      "reply_set": {
+        "correct": "r1a",
+        "choices": [
+          {
+            "id": "r1a",
+            "surface": "Entschuldige, können wir die Zeit ändern?",
+            "translation": "不好意思，我們可以改時間嗎？",
+            "speak": "Entschuldige, können wir die Zeit ändern?",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r1b",
+            "surface": "Ja, wir haben uns gestern getroffen.",
+            "translation": "對，我們昨天見過了。",
+            "speak": "Ja, wir haben uns gestern getroffen.",
+            "contrast_type": "wrong_time_past",
+            "feedback": "Dein Freund bestätigt den Plan für heute, nicht für gestern."
+          },
+          {
+            "id": "r1c",
+            "surface": "Ich bezahle mit Karte.",
+            "translation": "我會用卡付款。",
+            "speak": "Ich bezahle mit Karte.",
+            "contrast_type": "wrong_scenario_payment",
+            "feedback": "Das ist Bezahlsprache. Hier geht es um die Uhrzeit des Treffens."
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t2",
+      "speaker": "npc",
+      "act": "alternative_request",
+      "act_slots": {
+        "topic": "new time",
+        "keyword": "wann",
+        "gloss": "幾點"
+      },
+      "learning_role": "listen_only",
+      "surface": "Klar. Wann passt es dir?",
+      "speak": "Klar. Wann passt es dir?",
+      "translation": "可以。你幾點方便？",
+      "friend": {
+        "hint": "Nenne eine neue Uhrzeit. Bleib einfach."
+      },
+      "inline_explain": {
+        "pattern_id": "de.a2.reschedule.um_vier.v1",
+        "title": "Können wir ... um + Uhrzeit?",
+        "explain": "Mit können wir und um plus Uhrzeit fragst du hoeflich nach einer neuen Zeit.",
+        "items": [
+          {
+            "surface": "Können wir uns um vier treffen?",
+            "translation": "我們可以四點見面嗎？",
+            "speak": "Können wir uns um vier treffen?"
+          },
+          {
+            "surface": "Passt dir vier Uhr?",
+            "translation": "四點你方便嗎？",
+            "speak": "Passt dir vier Uhr?"
+          }
+        ]
+      },
+      "reply_set": {
+        "correct": "r2a",
+        "choices": [
+          {
+            "id": "r2a",
+            "surface": "Können wir uns um vier treffen?",
+            "translation": "我們可以四點見面嗎？",
+            "speak": "Können wir uns um vier treffen?",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r2b",
+            "surface": "Nehmen wir Ausgang vier?",
+            "translation": "我們要走四號出口嗎？",
+            "speak": "Nehmen wir Ausgang vier?",
+            "contrast_type": "wrong_entity_exit_number",
+            "feedback": "Ausgang vier ist ein Ort. Dein Freund fragt nach einer neuen Uhrzeit."
+          },
+          {
+            "id": "r2c",
+            "surface": "Ich war um vier dort.",
+            "translation": "我四點在那裡了。",
+            "speak": "Ich war um vier dort.",
+            "contrast_type": "wrong_time_past",
+            "feedback": "Das spricht über die Vergangenheit. Bitte um die neue Uhrzeit vier."
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t3",
+      "speaker": "npc",
+      "act": "accept_new_time",
+      "act_slots": {
+        "topic": "new time accepted"
+      },
+      "learning_role": "listen_only",
+      "surface": "Ja, vier passt.",
+      "speak": "Ja, vier passt.",
+      "translation": "可以，四點沒問題。",
+      "friend": {
+        "hint": "Die neue Uhrzeit ist akzeptiert. Bestätige sie einmal."
+      },
+      "reply_set": {
+        "correct": "r3a",
+        "choices": [
+          {
+            "id": "r3a",
+            "surface": "Super, dann bis vier.",
+            "translation": "太好了，那四點見。",
+            "speak": "Super, dann bis vier."
+          },
+          {
+            "id": "r3b",
+            "surface": "Super, dann bis drei.",
+            "translation": "太好了，那三點見。",
+            "speak": "Super, dann bis drei.",
+            "contrast_type": "repeats_old_time",
+            "feedback": "Drei war die alte Uhrzeit. Ihr habt auf vier geändert."
+          },
+          {
+            "id": "r3c",
+            "surface": "Gib mir bitte die Zimmerkarte.",
+            "translation": "請給我房卡。",
+            "speak": "Gib mir bitte die Zimmerkarte.",
+            "contrast_type": "wrong_scenario_hotel",
+            "feedback": "Das ist Hotelsprache. Hier bestätigst du die neue Uhrzeit."
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t4",
+      "speaker": "npc",
+      "act": "closing",
+      "act_slots": {
+        "topic": "close plan"
+      },
+      "learning_role": "listen_only",
+      "surface": "Okay, bis später.",
+      "speak": "Okay, bis später.",
+      "translation": "好，晚點見。",
+      "friend": {
+        "hint": "Der Plan ist fertig. Schließ natürlich ab."
+      },
+      "reply_set": {
+        "correct": "r4a",
+        "choices": [
+          {
+            "id": "r4a",
+            "surface": "Okay, bis später.",
+            "translation": "好，晚點見。",
+            "speak": "Okay, bis später."
+          },
+          {
+            "id": "r4b",
+            "surface": "Weil ich spät bin.",
+            "translation": "因為我遲到了。",
+            "speak": "Weil ich spät bin.",
+            "contrast_type": "fragment_without_need",
+            "feedback": "Die Zeit ist schon geändert. Ein Grundfragment ist jetzt nicht nötig."
+          },
+          {
+            "id": "r4c",
+            "surface": "Ich habe es noch einmal gebucht.",
+            "translation": "我重新預約了。",
+            "speak": "Ich habe es noch einmal gebucht.",
+            "contrast_type": "wrong_scenario_reservation",
+            "feedback": "Das klingt nach einer Buchung, nicht nach einem einfachen Treffen mit einem Freund."
+          }
+        ]
+      }
+    }
+  ],
+  "choice_sets": [
+    "t1.reply_set",
+    "t2.reply_set",
+    "t3.reply_set",
+    "t4.reply_set"
+  ],
+  "feedback": "Die Distraktoren testen alte gegen neue Uhrzeit, Zahlen-Ort-Verwechslung und unpassende Szenarien.",
+  "tts_segments": [
+    "Entschuldige, können wir die Zeit ändern?",
+    "Können wir uns um vier treffen?",
+    "Super, dann bis vier.",
+    "Okay, bis später."
+  ],
+  "formula_moments": [
+    {
+      "after_turn": "t2",
+      "pattern_id": "de.a2.reschedule.um_vier.v1"
+    }
+  ],
+  "runtime_notes": "Fresh DE A2 candidate. Structural checks and two AI semantic review passes completed on 2026-06-14 before metadata promotion.",
+  "notes": {
+    "authoring_policy": "Fresh-authored from the neutral A2 brief. KO/JA/EN/TH packs were used only for schema-shape reference.",
+    "a2_boundary": "Low-stakes rescheduling with one alternative time; avoids negotiation loops and workplace framing."
+  }
+}

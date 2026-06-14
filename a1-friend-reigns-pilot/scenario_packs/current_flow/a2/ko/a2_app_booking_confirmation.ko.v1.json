@@ -1,0 +1,257 @@
+{
+  "schema_version": "scenario_pack.v1",
+  "scenario_id": "a2_app_booking_confirmation",
+  "title": "앱 예약 확인하기",
+  "setting_label": "앱 예약 화면",
+  "wrap_title": "예약 확인 완료",
+  "wrap_friend": "잘했어요. 낮은 위험의 디지털/문서 도움 상황에서 필요한 정보만 짧게 확인했어요.",
+  "language": "ko",
+  "ui_language": "zh-Hant",
+  "cefr_level": "A2",
+  "source_status": "candidate_runtime_verified",
+  "review_state": "ai_reviewed",
+  "review_status_framework_state": "candidate_runtime_verified",
+  "native_review_state": "native_pending",
+  "scenario": {
+    "domain": "digital_documents_low_risk_help",
+    "review_slice": "digital_documents",
+    "interaction": "low_risk_confirmation_or_help",
+    "source_brief": "A2_DIGITAL_DOCUMENTS_NEUTRAL_ADAPTATION_BRIEFS_20260614",
+    "blueprint_source": "language_neutral_adaptation_brief",
+    "ko_pack_role": "mature_scenario_blueprint_not_translation_source_after_gate"
+  },
+  "learner_goal": "앱 예약 시간과 장소를 확인해 보세요.",
+  "target_functions": [
+    "confirm_booking_or_message",
+    "request_simple_change",
+    "ask_simple_form_help",
+    "follow_up_low_risk_item"
+  ],
+  "register_notes": "Korean A2 digital/documents register: polite concise -요 service/help language, no password, payment, ID, medical, legal, police, or immigration framing.",
+  "production_mode_default": {
+    "required": [
+      "choice"
+    ],
+    "optional_visible": [
+      "speaking"
+    ],
+    "optional_hidden": [
+      "typing"
+    ]
+  },
+  "support_text": "앱 예약 시간과 장소를 확인해 보세요.",
+  "roles": {
+    "npc": {
+      "label": "직원"
+    },
+    "learner": {
+      "label": "你"
+    }
+  },
+  "turns": [
+    {
+      "turn_id": "t1",
+      "speaker": "npc",
+      "act": "start",
+      "act_slots": {
+        "topic": "a2_app_booking_confirmation",
+        "keyword": "1",
+        "gloss": "A2 digital/documents"
+      },
+      "learning_role": "listen_only",
+      "surface": "예약이 오늘 오후 3시로 확인됐어요.",
+      "speak": "예약이 오늘 오후 3시로 확인됐어요.",
+      "translation": "預約確認為今天下午三點。",
+      "friend": {
+        "hint": "필요한 정보만 짧게 확인하세요."
+      },
+      "reply_set": {
+        "correct": "r1a",
+        "choices": [
+          {
+            "id": "r1a",
+            "surface": "장소가 어디예요?",
+            "translation": "地點在哪裡？",
+            "speak": "장소가 어디예요?",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r1b",
+            "surface": "비밀번호를 알려드릴게요.",
+            "translation": "我會告訴你密碼。",
+            "speak": "비밀번호를 알려드릴게요.",
+            "contrast_type": "forbidden_sensitive",
+            "feedback": "비밀번호는 이 과제에서 다루지 않아요."
+          },
+          {
+            "id": "r1c",
+            "surface": "환불해 주세요.",
+            "translation": "請退款。",
+            "speak": "환불해 주세요.",
+            "contrast_type": "wrong_dispute_domain",
+            "feedback": "환불이나 분쟁 상황이 아니에요."
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t2",
+      "speaker": "npc",
+      "act": "clarify",
+      "act_slots": {
+        "topic": "a2_app_booking_confirmation",
+        "keyword": "2",
+        "gloss": "A2 digital/documents"
+      },
+      "learning_role": "listen_only",
+      "surface": "카페 2층이에요.",
+      "speak": "카페 2층이에요.",
+      "translation": "在咖啡店二樓。",
+      "friend": {
+        "hint": "필요한 정보만 짧게 확인하세요."
+      },
+      "reply_set": {
+        "correct": "r2a",
+        "choices": [
+          {
+            "id": "r2a",
+            "surface": "카페 2층이 맞나요?",
+            "translation": "是在咖啡店二樓，對嗎？",
+            "speak": "카페 2층이 맞나요?",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r2b",
+            "surface": "비밀번호를 알려드릴게요.",
+            "translation": "我會告訴你密碼。",
+            "speak": "비밀번호를 알려드릴게요.",
+            "contrast_type": "forbidden_sensitive",
+            "feedback": "비밀번호는 이 과제에서 다루지 않아요."
+          },
+          {
+            "id": "r2c",
+            "surface": "환불해 주세요.",
+            "translation": "請退款。",
+            "speak": "환불해 주세요.",
+            "contrast_type": "wrong_dispute_domain",
+            "feedback": "환불이나 분쟁 상황이 아니에요."
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t3",
+      "speaker": "npc",
+      "act": "confirm_detail",
+      "act_slots": {
+        "topic": "a2_app_booking_confirmation",
+        "keyword": "3",
+        "gloss": "A2 digital/documents"
+      },
+      "learning_role": "listen_only",
+      "surface": "네, 예약 이름은 민수 씨예요.",
+      "speak": "네, 예약 이름은 민수 씨예요.",
+      "translation": "對，預約姓名是敏洙。",
+      "friend": {
+        "hint": "필요한 정보만 짧게 확인하세요."
+      },
+      "reply_set": {
+        "correct": "r3a",
+        "choices": [
+          {
+            "id": "r3a",
+            "surface": "네, 제 이름이 맞아요.",
+            "translation": "對，是我的名字。",
+            "speak": "네, 제 이름이 맞아요.",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r3b",
+            "surface": "비밀번호를 알려드릴게요.",
+            "translation": "我會告訴你密碼。",
+            "speak": "비밀번호를 알려드릴게요.",
+            "contrast_type": "forbidden_sensitive",
+            "feedback": "비밀번호는 이 과제에서 다루지 않아요."
+          },
+          {
+            "id": "r3c",
+            "surface": "환불해 주세요.",
+            "translation": "請退款。",
+            "speak": "환불해 주세요.",
+            "contrast_type": "wrong_dispute_domain",
+            "feedback": "환불이나 분쟁 상황이 아니에요."
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t4",
+      "speaker": "npc",
+      "act": "close",
+      "act_slots": {
+        "topic": "a2_app_booking_confirmation",
+        "keyword": "4",
+        "gloss": "A2 digital/documents"
+      },
+      "learning_role": "listen_only",
+      "surface": "그럼 오후 3시에 뵐게요.",
+      "speak": "그럼 오후 3시에 뵐게요.",
+      "translation": "那下午三點見。",
+      "friend": {
+        "hint": "필요한 정보만 짧게 확인하세요."
+      },
+      "reply_set": {
+        "correct": "r4a",
+        "choices": [
+          {
+            "id": "r4a",
+            "surface": "네, 오후 3시에 갈게요.",
+            "translation": "好，我下午三點會去。",
+            "speak": "네, 오후 3시에 갈게요.",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r4b",
+            "surface": "비밀번호를 알려드릴게요.",
+            "translation": "我會告訴你密碼。",
+            "speak": "비밀번호를 알려드릴게요.",
+            "contrast_type": "forbidden_sensitive",
+            "feedback": "비밀번호는 이 과제에서 다루지 않아요."
+          },
+          {
+            "id": "r4c",
+            "surface": "환불해 주세요.",
+            "translation": "請退款。",
+            "speak": "환불해 주세요.",
+            "contrast_type": "wrong_dispute_domain",
+            "feedback": "환불이나 분쟁 상황이 아니에요."
+          }
+        ]
+      }
+    }
+  ],
+  "choice_sets": [
+    "t1.reply_set",
+    "t2.reply_set",
+    "t3.reply_set",
+    "t4.reply_set"
+  ],
+  "feedback": "Distractors test sensitive password leakage, refund/dispute drift, and wrong domain.",
+  "tts_segments": [
+    "장소가 어디예요?",
+    "카페 2층이 맞나요?",
+    "네, 제 이름이 맞아요.",
+    "네, 오후 3시에 갈게요."
+  ],
+  "formula_moments": [
+    {
+      "after_turn": "t2",
+      "pattern_id": "ko.a2.digital.app_booking_confirmation.v1"
+    }
+  ],
+  "runtime_notes": "Fresh KO A2 digital/documents candidate. Requires full-walk runtime before closeout evidence is recorded.",
+  "notes": {
+    "authoring_policy": "Fresh-authored from A2 digital/documents neutral adaptation brief. Legacy A2 lines were not copied or paraphrased.",
+    "a2_boundary": "Low-risk confirmation/help only; avoids sensitive identity, payment, legal, medical, police, and immigration workflows."
+  }
+}

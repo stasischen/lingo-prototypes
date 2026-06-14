@@ -1,0 +1,284 @@
+{
+  "schema_version": "scenario_pack.v1",
+  "scenario_id": "a2_exchange_wrong_item",
+  "title": "更換拿錯的商品",
+  "setting_label": "商店櫃台",
+  "wrap_title": "已確認更換",
+  "wrap_friend": "做得好。你在低風險的餐飲或購物情境中，清楚確認偏好和細節。",
+  "language": "zh",
+  "ui_language": "zh-Hant",
+  "cefr_level": "A2",
+  "source_status": "candidate_runtime_verified",
+  "review_state": "ai_reviewed",
+  "review_status_framework_state": "candidate_runtime_verified",
+  "native_review_state": "native_pending",
+  "scenario": {
+    "domain": "food_shopping_preferences",
+    "review_slice": "food_shopping",
+    "interaction": "service_preference_or_exchange",
+    "source_brief": "A2_FOOD_SHOPPING_NEUTRAL_ADAPTATION_BRIEFS_20260614",
+    "blueprint_source": "language_neutral_adaptation_brief",
+    "ko_pack_role": "mature_scenario_blueprint_not_translation_source"
+  },
+  "learner_goal": "禮貌說明拿到的商品不對，請店員換成正確的。",
+  "target_functions": [
+    "compare_or_state_preference",
+    "confirm_key_detail",
+    "make_polite_low_risk_request",
+    "close_with_correct_next_step"
+  ],
+  "register_notes": "Traditional Chinese A2 food/shopping register: Taiwan-leaning polite everyday service language, no allergy/medical/refund-dispute framing.",
+  "production_mode_default": {
+    "required": [
+      "choice"
+    ],
+    "optional_visible": [
+      "speaking"
+    ],
+    "optional_hidden": [
+      "typing"
+    ]
+  },
+  "support_text": "禮貌說明拿到的商品不對，請店員換成正確的。",
+  "roles": {
+    "npc": {
+      "label": "店員"
+    },
+    "learner": {
+      "label": "你"
+    }
+  },
+  "turns": [
+    {
+      "turn_id": "t1",
+      "speaker": "npc",
+      "act": "report_wrong_item",
+      "act_slots": {
+        "topic": "exchange-wrong-item",
+        "keyword": "1",
+        "gloss": "A2 food/shopping"
+      },
+      "learning_role": "listen_only",
+      "surface": "需要幫忙嗎？",
+      "speak": "需要幫忙嗎？",
+      "translation": "需要幫忙嗎？",
+      "friend": {
+        "hint": "說明拿到的商品和訂的不一樣。"
+      },
+      "reply_set": {
+        "correct": "r1a",
+        "choices": [
+          {
+            "id": "r1a",
+            "surface": "我訂的是小杯，但拿到大杯。",
+            "translation": "我訂的是小杯，但拿到大杯。",
+            "speak": "我訂的是小杯，但拿到大杯。",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r1b",
+            "surface": "小杯在哪裡製作？",
+            "translation": "小杯在哪裡製作？",
+            "speak": "小杯在哪裡製作？",
+            "contrast_type": "wrong_detail_or_domain",
+            "feedback": "製作地點不是問題。"
+          },
+          {
+            "id": "r1c",
+            "surface": "請降價。",
+            "translation": "請降價。",
+            "speak": "請降價。",
+            "contrast_type": "forbidden_or_wrong_domain",
+            "feedback": "殺價不在這個任務內。"
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t2",
+      "speaker": "npc",
+      "act": "staff_check",
+      "act_slots": {
+        "topic": "exchange-wrong-item",
+        "keyword": "2",
+        "gloss": "A2 food/shopping"
+      },
+      "learning_role": "listen_only",
+      "surface": "我確認一下。可以看收據嗎？",
+      "speak": "我確認一下。可以看收據嗎？",
+      "translation": "我確認一下。可以看收據嗎？",
+      "friend": {
+        "hint": "回應簡單的收據確認。"
+      },
+      "reply_set": {
+        "correct": "r2a",
+        "choices": [
+          {
+            "id": "r2a",
+            "surface": "可以，這是收據。",
+            "translation": "可以，這是收據。",
+            "speak": "可以，這是收據。",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r2b",
+            "surface": "可以，這是護照。",
+            "translation": "可以，這是護照。",
+            "speak": "可以，這是護照。",
+            "contrast_type": "wrong_detail_or_domain",
+            "feedback": "這裡不需要護照。"
+          },
+          {
+            "id": "r2c",
+            "surface": "可以，我明天搭火車。",
+            "translation": "可以，我明天搭火車。",
+            "speak": "可以，我明天搭火車。",
+            "contrast_type": "forbidden_or_wrong_domain",
+            "feedback": "這變成交通情境。"
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t3",
+      "speaker": "npc",
+      "act": "offer_replacement",
+      "act_slots": {
+        "topic": "exchange-wrong-item",
+        "keyword": "3",
+        "gloss": "A2 food/shopping"
+      },
+      "learning_role": "listen_only",
+      "surface": "您說得對。我現在可以換成小杯。",
+      "speak": "您說得對。我現在可以換成小杯。",
+      "translation": "您說得對。我現在可以換成小杯。",
+      "friend": {
+        "hint": "確認更換內容。"
+      },
+      "reply_set": {
+        "correct": "r3a",
+        "choices": [
+          {
+            "id": "r3a",
+            "surface": "您會幫我換成小杯，對嗎？",
+            "translation": "您會幫我換成小杯，對嗎？",
+            "speak": "您會幫我換成小杯，對嗎？",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r3b",
+            "surface": "請說明退款規則。",
+            "translation": "請說明退款規則。",
+            "speak": "請說明退款規則。",
+            "contrast_type": "wrong_detail_or_domain",
+            "feedback": "退款規則太廣。"
+          },
+          {
+            "id": "r3c",
+            "surface": "我要報警。",
+            "translation": "我要報警。",
+            "speak": "我要報警。",
+            "contrast_type": "forbidden_or_wrong_domain",
+            "feedback": "這個反應太嚴重。"
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t4",
+      "speaker": "npc",
+      "act": "confirm_replacement",
+      "act_slots": {
+        "topic": "exchange-wrong-item",
+        "keyword": "4",
+        "gloss": "A2 food/shopping"
+      },
+      "learning_role": "listen_only",
+      "surface": "好的，請稍等。",
+      "speak": "好的，請稍等。",
+      "translation": "好的，請稍等。",
+      "friend": {
+        "hint": "接受等待並結束。"
+      },
+      "reply_set": {
+        "correct": "r4a",
+        "choices": [
+          {
+            "id": "r4a",
+            "surface": "謝謝，我在這裡等。",
+            "translation": "謝謝，我在這裡等。",
+            "speak": "謝謝，我在這裡等。",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r4b",
+            "surface": "我需要去醫院。",
+            "translation": "我需要去醫院。",
+            "speak": "我需要去醫院。",
+            "contrast_type": "wrong_detail_or_domain",
+            "feedback": "這不是醫療情境。"
+          },
+          {
+            "id": "r4c",
+            "surface": "我想換房。",
+            "translation": "我想換房。",
+            "speak": "我想換房。",
+            "contrast_type": "forbidden_or_wrong_domain",
+            "feedback": "這變成飯店情境。"
+          }
+        ]
+      }
+    }
+  ],
+  "choice_sets": {
+    "count_per_turn": 3,
+    "correct_path": [
+      "r1a",
+      "r2a",
+      "r3a",
+      "r4a"
+    ],
+    "distractor_policy": "one near-domain wrong detail plus one out-of-scope/unsafe-domain option per turn"
+  },
+  "feedback": {
+    "correct": "很好。這個回答符合餐飲或購物任務。",
+    "incorrect": "請選擇符合菜單、食材、更換商品或預算推薦的回答。"
+  },
+  "tts_segments": [
+    "需要幫忙嗎？",
+    "我訂的是小杯，但拿到大杯。",
+    "小杯在哪裡製作？",
+    "請降價。",
+    "我確認一下。可以看收據嗎？",
+    "可以，這是收據。",
+    "可以，這是護照。",
+    "可以，我明天搭火車。",
+    "您說得對。我現在可以換成小杯。",
+    "您會幫我換成小杯，對嗎？",
+    "請說明退款規則。",
+    "我要報警。",
+    "好的，請稍等。",
+    "謝謝，我在這裡等。",
+    "我需要去醫院。",
+    "我想換房。"
+  ],
+  "formula_moments": [
+    {
+      "after_turn": "t2",
+      "pattern_id": "zh.a2.shopping.exchange.wrong_item.v1",
+      "label": "我點的是 X，但拿到 Y",
+      "learner_takeaway": "可以幫我換嗎"
+    }
+  ],
+  "runtime_notes": {
+    "expected_turns": 4,
+    "expected_choices_per_turn": 3,
+    "full_walk_required": true,
+    "expected_final_screen": "Wrap"
+  },
+  "notes": {
+    "generated_at": "2026-06-14",
+    "authoring_scope": "A2 food/shopping ZH adaptation",
+    "native_review_state": "native_pending"
+  }
+}

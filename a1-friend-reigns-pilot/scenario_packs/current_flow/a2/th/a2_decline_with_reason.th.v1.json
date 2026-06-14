@@ -1,0 +1,257 @@
+{
+  "schema_version": "scenario_pack.v1",
+  "scenario_id": "a2_decline_with_reason",
+  "title": "ปฏิเสธพร้อมเหตุผลง่าย ๆ",
+  "setting_label": "แชตกับเพื่อน",
+  "wrap_title": "ปฏิเสธอย่างนุ่มนวลแล้ว",
+  "wrap_friend": "ทำได้ดีค่ะ คุณปฏิเสธสั้น ๆ พร้อมเหตุผลง่าย ๆ และยังรักษาความสัมพันธ์ไว้",
+  "language": "th",
+  "ui_language": "zh-Hant",
+  "cefr_level": "A2",
+  "source_status": "candidate_runtime_verified",
+  "review_state": "ai_reviewed",
+  "review_status_framework_state": "candidate_runtime_verified",
+  "native_review_state": "native_pending",
+  "scenario": {
+    "domain": "daily_social_coordination",
+    "review_slice": "daily_social",
+    "interaction": "friend_social_coordination",
+    "source_brief": "A2_DAILY_SOCIAL_NEUTRAL_ADAPTATION_BRIEFS_20260614",
+    "blueprint_source": "language_neutral_adaptation_brief",
+    "ko_pack_role": "mature_scenario_blueprint_not_translation_source"
+  },
+  "learner_goal": "ปฏิเสธคำชวนของเพื่อนอย่างสุภาพ พร้อมเหตุผลง่าย ๆ หนึ่งข้อ",
+  "target_functions": [
+    "friend_invitation_or_response",
+    "simple_reason_or_past_event",
+    "two_step_plan_or_confirmation",
+    "close_with_relationship_maintenance"
+  ],
+  "register_notes": "Thai A2 friend/social register: natural friendly Thai with soft polite particles, TTS-friendly segmentation, no service-counter register or date pressure.",
+  "production_mode_default": {
+    "required": [
+      "choice"
+    ],
+    "optional_visible": [
+      "speaking"
+    ],
+    "optional_hidden": [
+      "typing"
+    ]
+  },
+  "support_text": "ปฏิเสธคำชวนของเพื่อนอย่างนุ่มนวล พร้อมเหตุผลสั้น ๆ ธรรมดาค่ะ",
+  "roles": {
+    "npc": {
+      "label": "เพื่อน"
+    },
+    "learner": {
+      "label": "你"
+    }
+  },
+  "turns": [
+    {
+      "turn_id": "t1",
+      "speaker": "npc",
+      "act": "receive_invite",
+      "act_slots": {
+        "topic": "friend invite",
+        "keyword": "หนัง",
+        "gloss": "A2 daily/social"
+      },
+      "learning_role": "listen_only",
+      "surface": "คืนนี้ไปดูหนังไหม",
+      "speak": "คืนนี้ไปดูหนังไหม",
+      "translation": "今晚要看電影嗎？",
+      "friend": {
+        "hint": "เริ่มปฏิเสธอย่างนุ่มนวลค่ะ"
+      },
+      "reply_set": {
+        "correct": "r1a",
+        "choices": [
+          {
+            "id": "r1a",
+            "surface": "ขอโทษนะ คืนนี้ไปไม่ได้",
+            "translation": "不好意思，今晚不能去。",
+            "speak": "ขอโทษนะ คืนนี้ไปไม่ได้",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r1b",
+            "surface": "ไม่ไป ไม่อยากไป",
+            "translation": "不要，不想去。",
+            "speak": "ไม่ไป ไม่อยากไป",
+            "contrast_type": "too_blunt",
+            "feedback": "ฟังดูห้วนเกินไปกับเพื่อนค่ะ"
+          },
+          {
+            "id": "r1c",
+            "surface": "ขอใบเสร็จอีกครั้งค่ะ",
+            "translation": "請再給我收據。",
+            "speak": "ขอใบเสร็จอีกครั้งค่ะ",
+            "contrast_type": "wrong_scenario_shop",
+            "feedback": "นี่เป็นสถานการณ์ร้านค้าค่ะ"
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t2",
+      "speaker": "npc",
+      "act": "ask_reason",
+      "act_slots": {
+        "topic": "simple reason",
+        "keyword": "ยุ่ง",
+        "gloss": "A2 daily/social"
+      },
+      "learning_role": "listen_only",
+      "surface": "ไม่เป็นไร ยุ่งอยู่เหรอ",
+      "speak": "ไม่เป็นไร ยุ่งอยู่เหรอ",
+      "translation": "沒關係。你很忙嗎？",
+      "friend": {
+        "hint": "ให้เหตุผลง่าย ๆ หนึ่งข้อค่ะ"
+      },
+      "reply_set": {
+        "correct": "r2a",
+        "choices": [
+          {
+            "id": "r2a",
+            "surface": "ใช่ ยังมีงานนิดหน่อย",
+            "translation": "對，還有一點事。",
+            "speak": "ใช่ ยังมีงานนิดหน่อย",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r2b",
+            "surface": "มีเหตุฉุกเฉินร้ายแรง",
+            "translation": "發生嚴重緊急事件。",
+            "speak": "มีเหตุฉุกเฉินร้ายแรง",
+            "contrast_type": "too_heavy_or_sensitive",
+            "feedback": "หนักเกินไปสำหรับงาน A2 นี้ค่ะ"
+          },
+          {
+            "id": "r2c",
+            "surface": "หนังเมื่อวานสนุกมาก",
+            "translation": "昨天的電影很好看。",
+            "speak": "หนังเมื่อวานสนุกมาก",
+            "contrast_type": "wrong_time_or_function",
+            "feedback": "ไม่ได้บอกเหตุผลที่คืนนี้ไปไม่ได้ค่ะ"
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t3",
+      "speaker": "npc",
+      "act": "maintain_relation",
+      "act_slots": {
+        "topic": "another time",
+        "keyword": "วันอื่น",
+        "gloss": "A2 daily/social"
+      },
+      "learning_role": "listen_only",
+      "surface": "ไว้วันอื่นไหม",
+      "speak": "ไว้วันอื่นไหม",
+      "translation": "改天嗎？",
+      "friend": {
+        "hint": "รักษาความสัมพันธ์ไว้ค่ะ"
+      },
+      "reply_set": {
+        "correct": "r3a",
+        "choices": [
+          {
+            "id": "r3a",
+            "surface": "ได้ อาจจะสุดสัปดาห์นี้",
+            "translation": "好，也許這個週末。",
+            "speak": "ได้ อาจจะสุดสัปดาห์นี้",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r3b",
+            "surface": "ไม่ต้องถามอีกนะ",
+            "translation": "不要再問了。",
+            "speak": "ไม่ต้องถามอีกนะ",
+            "contrast_type": "too_cold",
+            "feedback": "ฟังดูแรงเกินไปกับเพื่อนค่ะ"
+          },
+          {
+            "id": "r3c",
+            "surface": "ได้ ฉันจะเปลี่ยนห้อง",
+            "translation": "好，我會換房間。",
+            "speak": "ได้ ฉันจะเปลี่ยนห้อง",
+            "contrast_type": "wrong_scenario_hotel",
+            "feedback": "นี่ไม่ใช่สถานการณ์โรงแรมค่ะ"
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t4",
+      "speaker": "npc",
+      "act": "close_warmly",
+      "act_slots": {
+        "topic": "close refusal",
+        "keyword": "ขอบคุณ",
+        "gloss": "A2 daily/social"
+      },
+      "learning_role": "listen_only",
+      "surface": "โอเค งั้นคุยกันสุดสัปดาห์นะ",
+      "speak": "โอเค งั้นคุยกันสุดสัปดาห์นะ",
+      "translation": "好，那週末再說。",
+      "friend": {
+        "hint": "ขอบคุณเพื่อนแล้วปิดบทสนทนาอย่างอบอุ่นค่ะ"
+      },
+      "reply_set": {
+        "correct": "r4a",
+        "choices": [
+          {
+            "id": "r4a",
+            "surface": "ขอบคุณนะ เจอกันสุดสัปดาห์",
+            "translation": "謝謝，週末見。",
+            "speak": "ขอบคุณนะ เจอกันสุดสัปดาห์",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "r4b",
+            "surface": "ฉันจะจ่ายตอนนี้ค่ะ",
+            "translation": "我現在會付款。",
+            "speak": "ฉันจะจ่ายตอนนี้ค่ะ",
+            "contrast_type": "wrong_scenario_payment",
+            "feedback": "นี่ไม่ใช่สถานการณ์จ่ายเงินค่ะ"
+          },
+          {
+            "id": "r4c",
+            "surface": "งั้นคืนนี้ฉันจะไปแน่นอน",
+            "translation": "那今晚一定會去。",
+            "speak": "งั้นคืนนี้ฉันจะไปแน่นอน",
+            "contrast_type": "contradicts_decline",
+            "feedback": "ก่อนหน้านี้บอกว่าคืนนี้ไปไม่ได้ค่ะ"
+          }
+        ]
+      }
+    }
+  ],
+  "choice_sets": [
+    "t1.reply_set",
+    "t2.reply_set",
+    "t3.reply_set",
+    "t4.reply_set"
+  ],
+  "feedback": "Distractors test social register, time/function/domain contrast, and A2 boundary without offering valid alternate answers.",
+  "tts_segments": [
+    "ขอโทษนะ คืนนี้ไปไม่ได้",
+    "ใช่ ยังมีงานนิดหน่อย",
+    "ได้ อาจจะสุดสัปดาห์นี้",
+    "ขอบคุณนะ เจอกันสุดสัปดาห์"
+  ],
+  "formula_moments": [
+    {
+      "after_turn": "t2",
+      "pattern_id": "th.a2.daily.decline.v1"
+    }
+  ],
+  "runtime_notes": "Fresh A2 daily/social candidate. Requires full-walk runtime before closeout evidence is recorded.",
+  "notes": {
+    "authoring_policy": "Fresh-authored from A2 daily/social neutral adaptation brief. KO surface text was not copied or translated.",
+    "a2_boundary": "Friend/social register, low-risk ordinary reasons and activities, short A2 responses only."
+  }
+}

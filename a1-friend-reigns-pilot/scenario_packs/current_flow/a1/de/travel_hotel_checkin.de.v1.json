@@ -1,0 +1,229 @@
+{
+  "schema_version": "scenario_pack.v1",
+  "scenario_id": "travel_hotel_checkin",
+  "brief_id": "ml0_a1_002_travel_hotel_checkin",
+  "source_neutral_brief": "release-aggregator/docs/tasks/A1_MULTILINGUAL_KO_B1_PARALLEL_ORCHESTRATION/work_products/ml0/ML0_NEUTRAL_ADAPTATION_BRIEFS_20260613.md#ml0-a1-002",
+  "blueprint_ledger": "release-aggregator/docs/tasks/A1_MULTILINGUAL_KO_B1_PARALLEL_ORCHESTRATION/work_products/ml0/ML0_BLUEPRINT_LEDGER_20260613.md",
+  "repo": "content-de",
+  "staging_path": "content/core/content_assets/scenario_packs/current_flow/travel_hotel_checkin.de.v1.json",
+  "title": "Im Hotel einchecken",
+  "setting_label": "Hotelrezeption",
+  "wrap_title": "Check-in geschafft",
+  "wrap_friend": "Du hast gesagt, dass du eine Reservierung hast, und deinen Namen genannt. Das reicht für einen ersten Check-in.",
+  "language": "de",
+  "ui_language": "zh_tw",
+  "source_status": "candidate_runtime_verified",
+  "review_state": "draft",
+  "review_status_framework_state": "candidate_runtime_verified",
+  "native_review_state": "native_pending",
+  "production_mode_default": {
+    "required": [
+      "choice"
+    ],
+    "optional_visible": [
+      "speaking"
+    ],
+    "optional_hidden": [
+      "typing"
+    ]
+  },
+  "support_text": "你到飯店櫃台辦理入住。用簡短德文說你有預訂，並回答姓名問題。",
+  "roles": {
+    "npc": {
+      "label": "Rezeption"
+    },
+    "learner": {
+      "label": "Gast"
+    }
+  },
+  "turns": [
+    {
+      "turn_id": "t1",
+      "speaker": "npc",
+      "act": "front_desk_greeting",
+      "act_slots": {
+        "topic": "check_in",
+        "keyword": "Reservierung",
+        "gloss": "預訂"
+      },
+      "learning_role": "listen_only",
+      "surface": "Guten Abend. Haben Sie eine Reservierung?",
+      "speak": "Guten Abend. Haben Sie eine Reservierung?",
+      "translation": "晚安。您有預訂嗎？",
+      "friend": "飯店櫃台會用 Sie。回答可以直接說自己有預訂。",
+      "reply_set": {
+        "correct": "c1",
+        "choices": [
+          {
+            "id": "c1",
+            "surface": "Ja, ich habe eine Reservierung.",
+            "translation": "是的，我有預訂。",
+            "speak": "Ja, ich habe eine Reservierung.",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "c2",
+            "surface": "Einen Kaffee, bitte.",
+            "translation": "一杯咖啡，謝謝。",
+            "speak": "Einen Kaffee, bitte.",
+            "contrast_type": "restaurant_cafe_request",
+            "feedback": "這是咖啡店點餐，不是飯店入住。"
+          },
+          {
+            "id": "c3",
+            "surface": "Wo ist die Toilette?",
+            "translation": "洗手間在哪裡？",
+            "speak": "Wo ist die Toilette?",
+            "contrast_type": "directions_request",
+            "feedback": "這是在問路。現在櫃台問的是你是否有預訂。"
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t2",
+      "speaker": "npc",
+      "act": "name_request",
+      "act_slots": {
+        "topic": "guest_name",
+        "keyword": "Name",
+        "gloss": "姓名"
+      },
+      "learning_role": "listen_only",
+      "surface": "Auf welchen Namen?",
+      "speak": "Auf welchen Namen?",
+      "translation": "是用哪個名字預訂的？",
+      "friend": "這是飯店確認訂房姓名的短問句。用 Auf 加名字即可。",
+      "inline_explain": "Auf welchen Namen? = 用哪個名字？",
+      "reply_set": {
+        "correct": "c1",
+        "choices": [
+          {
+            "id": "c1",
+            "surface": "Auf den Namen Chen.",
+            "translation": "用 Chen 這個名字。",
+            "speak": "Auf den Namen Chen.",
+            "learning_role": "production_target"
+          },
+          {
+            "id": "c2",
+            "surface": "Ich checke aus.",
+            "translation": "我要退房。",
+            "speak": "Ich checke aus.",
+            "contrast_type": "checkout_instead_of_checkin",
+            "feedback": "這是退房，不是提供入住姓名。"
+          },
+          {
+            "id": "c3",
+            "surface": "Ich komme aus Taiwan und bleibe vielleicht zwei oder drei Tage.",
+            "translation": "我來自台灣，可能住兩三天。",
+            "speak": "Ich komme aus Taiwan und bleibe vielleicht zwei oder drei Tage.",
+            "contrast_type": "overly_complex_explanation",
+            "feedback": "資訊太多。A1 回合只要說預訂姓名。"
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t3",
+      "speaker": "npc",
+      "act": "reservation_confirmation",
+      "act_slots": {
+        "topic": "reservation_found",
+        "keyword": "gefunden",
+        "gloss": "找到了"
+      },
+      "learning_role": "listen_only",
+      "surface": "Danke. Ich habe Ihre Reservierung gefunden.",
+      "speak": "Danke. Ich habe Ihre Reservierung gefunden.",
+      "translation": "謝謝。我找到您的預訂了。",
+      "friend": "聽懂確認即可，用簡短回應。",
+      "reply_set": {
+        "correct": "c1",
+        "choices": [
+          {
+            "id": "c1",
+            "surface": "Danke.",
+            "translation": "謝謝。",
+            "speak": "Danke."
+          },
+          {
+            "id": "c2",
+            "surface": "Zum Mitnehmen?",
+            "translation": "要外帶嗎？",
+            "speak": "Zum Mitnehmen?",
+            "contrast_type": "wrong_scenario",
+            "feedback": "這是咖啡店服務問題，和飯店確認不合。"
+          },
+          {
+            "id": "c3",
+            "surface": "Links und dann rechts.",
+            "translation": "先左邊再右邊。",
+            "speak": "Links und dann rechts.",
+            "contrast_type": "directions_request",
+            "feedback": "這是在給方向，不是在回應預訂確認。"
+          }
+        ]
+      }
+    },
+    {
+      "turn_id": "t4",
+      "speaker": "npc",
+      "act": "key_direction",
+      "act_slots": {
+        "topic": "room_key",
+        "keyword": "Zimmer",
+        "gloss": "房間"
+      },
+      "learning_role": "listen_only",
+      "surface": "Hier ist Ihre Zimmerkarte. Zimmer 204.",
+      "speak": "Hier ist Ihre Zimmerkarte. Zimmer zweihundertvier.",
+      "translation": "這是您的房卡。204 號房。",
+      "friend": "你拿到房卡了。用謝謝收尾。",
+      "reply_set": {
+        "correct": "c1",
+        "choices": [
+          {
+            "id": "c1",
+            "surface": "Vielen Dank.",
+            "translation": "非常謝謝。",
+            "speak": "Vielen Dank."
+          },
+          {
+            "id": "c2",
+            "surface": "Ich möchte bezahlen.",
+            "translation": "我想付款。",
+            "speak": "Ich möchte bezahlen.",
+            "contrast_type": "wrong_flow",
+            "feedback": "櫃台已經給房卡了，不需要切到付款句。"
+          },
+          {
+            "id": "c3",
+            "surface": "Noch einen Kaffee, bitte.",
+            "translation": "再一杯咖啡，謝謝。",
+            "speak": "Noch einen Kaffee, bitte.",
+            "contrast_type": "restaurant_cafe_request",
+            "feedback": "這又回到咖啡店點餐，不是飯店入住結尾。"
+          }
+        ]
+      },
+      "closing": true
+    }
+  ],
+  "formula_moments": [
+    {
+      "after_turn": "t1",
+      "pattern_id": "de_haben_reservierung"
+    },
+    {
+      "after_turn": "t2",
+      "pattern_id": "de_auf_name"
+    }
+  ],
+  "notes": {
+    "authoring_source": "Authored from ML-0 neutral brief ml0_a1_002_travel_hotel_checkin; existing KO/JA/EN/TH and Lingourmet_german text were not used as source strings.",
+    "review_policy": "AI-authored candidate only; keep review_state=draft, review_status_framework_state=candidate_needs_review, native_review_state=native_pending until tracked review evidence exists.",
+    "canonical_policy": "Staging current-flow candidate only. Do not add to manifests, production exports, schema, runtime, or frontend in this authoring lane.",
+    "german_voice_note": "Uses Sie service register and a fuller hotel name formula after pass1 review; native review should still confirm local hotel-card wording."
+  }
+}
