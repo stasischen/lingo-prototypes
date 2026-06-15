@@ -1,7 +1,7 @@
 {
   "schema_version": "scenario_pack.v1",
   "scenario_id": "a2_transport_delay_announcement",
-  "title": "Entender um Aviso de Atraso",
+  "title": "Confirmar um Atraso no Transporte",
   "setting_label": "Na plataforma do trem",
   "wrap_title": "Atraso confirmado",
   "wrap_friend": "你剛剛完成了一段 A2 交通服務情境，確認重點並做出簡單回應。",
@@ -13,7 +13,7 @@
   "review_status_framework_state": "candidate_runtime_verified",
   "native_review_state": "native_pending",
   "scenario": "A2 transport scenario: a2_transport_delay_announcement.",
-  "learner_goal": "Understand a delay duration and choose whether to wait.",
+  "learner_goal": "Understand a delay duration and choose whether to wait or take another route.",
   "target_functions": [
     "delay_comprehension",
     "duration_confirmation",
@@ -31,7 +31,7 @@
       "typing"
     ]
   },
-  "support_text": "Ouça o aviso na estação, confirme o atraso e escolha uma resposta simples.",
+  "support_text": "Pergunte ao funcionário da estação sobre um atraso, confirme a duração e escolha um próximo passo simples.",
   "roles": {
     "npc": {
       "label": "Atendente"
@@ -44,14 +44,14 @@
     {
       "turn_id": "t1",
       "speaker": "npc",
-      "act": "delay_announcement",
+      "act": "delay_information",
       "act_slots": {
-        "topic": "delay_announcement"
+        "topic": "delay_information"
       },
       "learning_role": "listen_only",
-      "surface": "Atenção, por favor. O trem para Central está atrasado quinze minutos.",
-      "speak": "Atenção, por favor. O trem para Central está atrasado quinze minutos.",
-      "translation": "請注意，開往 Central 的列車晚 15 分鐘。",
+      "surface": "Sim. O trem para Central está atrasado quinze minutos.",
+      "speak": "Sim. O trem para Central está atrasado quinze minutos.",
+      "translation": "對，開往 Central 的列車晚 15 分鐘。",
       "friend": {
         "hint": "聽懂延誤時間"
       },
@@ -87,14 +87,14 @@
     {
       "turn_id": "t2",
       "speaker": "npc",
-      "act": "choice_prompt",
+      "act": "travel_option_prompt",
       "act_slots": {
-        "topic": "choice_prompt"
+        "topic": "travel_option_prompt"
       },
       "learning_role": "listen_only",
-      "surface": "Se forem quinze minutos, você prefere esperar ou pegar o ônibus?",
-      "speak": "Se forem quinze minutos, você prefere esperar ou pegar o ônibus?",
-      "translation": "如果是 15 分鐘，您要等，還是搭公車？",
+      "surface": "Se você estiver com pressa, pode esperar aqui ou pegar o ônibus lá fora.",
+      "speak": "Se você estiver com pressa, pode esperar aqui ou pegar o ônibus lá fora.",
+      "translation": "如果您趕時間，可以在這裡等，或搭外面的公車。",
       "friend": {
         "hint": "做出簡單選擇"
       },
@@ -103,9 +103,9 @@
         "choices": [
           {
             "id": "r2a",
-            "surface": "Se forem quinze minutos, eu espero.",
+            "surface": "Se forem quinze minutos, eu espero aqui.",
             "translation": "選擇等待",
-            "speak": "Se forem quinze minutos, eu espero.",
+            "speak": "Se forem quinze minutos, eu espero aqui.",
             "learning_role": "production_target"
           },
           {
@@ -123,7 +123,19 @@
             "speak": "Pode me dar um recibo, por favor?",
             "learning_role": "wrong_scenario_or_escalation",
             "feedback": "Os distratores testam horário errado, contexto errado ou uma escalada fora do escopo A2."
+          },
+          {
+            "id": "r2d",
+            "surface": "Então vou pegar o ônibus lá fora.",
+            "translation": "選擇搭公車",
+            "speak": "Então vou pegar o ônibus lá fora.",
+            "learning_role": "production_target",
+            "ends_dialogue": true
           }
+        ],
+        "accepted": [
+          "r2a",
+          "r2d"
         ]
       }
     },
@@ -189,9 +201,9 @@
         "choices": [
           {
             "id": "r4a",
-            "surface": "Tudo bem, vou esperar aqui.",
+            "surface": "Tudo bem, vou esperar aqui. Obrigado.",
             "translation": "確認等待",
-            "speak": "Tudo bem, vou esperar aqui.",
+            "speak": "Tudo bem, vou esperar aqui. Obrigado.",
             "learning_role": "production_target"
           },
           {
@@ -222,8 +234,8 @@
   ],
   "feedback": "Os distratores testam horário errado, contexto errado ou uma escalada fora do escopo A2.",
   "tts_segments": [
-    "Atenção, por favor. O trem para Central está atrasado quinze minutos.",
-    "Se forem quinze minutos, você prefere esperar ou pegar o ônibus?",
+    "Sim. O trem para Central está atrasado quinze minutos.",
+    "Se você estiver com pressa, pode esperar aqui ou pegar o ônibus lá fora.",
     "O próximo trem chega por volta das dez e vinte.",
     "Certo. Por favor, espere nesta plataforma."
   ],
@@ -237,6 +249,7 @@
   "notes": {
     "authoring_policy": "Fresh-authored from the neutral A2 transport brief. KO surfaces were used only as scenario blueprint, not as translation source.",
     "a2_boundary": "Low-risk A2 transport/service task; avoids refund, compensation, emergency, identity-sensitive, legal, medical, banking, immigration, or police handling.",
-    "language_specific_adaptation": "NPC lines, learner targets, distractors, feedback, support text, and translations are adapted for this language; native review remains pending."
+    "language_specific_adaptation": "NPC lines, learner targets, distractors, feedback, support text, and translations are adapted for this language; native review remains pending.",
+    "scenario_realism_repair_20260615": "Reframed from a broadcast-to-dialogue hybrid into a station-staff information request flow: staff states the delay, learner confirms it, staff offers wait/bus options, and the bus option may end the dialogue."
   }
 }

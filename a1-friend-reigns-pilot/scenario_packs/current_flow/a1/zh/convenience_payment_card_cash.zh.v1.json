@@ -76,7 +76,19 @@
             "speak": "請問洗手間在哪裡？",
             "contrast_type": "asking_directions_instead_of_paying",
             "feedback": "這是在問位置，不是在結帳付款。"
+          },
+          {
+            "id": "c4",
+            "surface": "付現，謝謝。",
+            "translation": "付現，謝謝。",
+            "speak": "付現，謝謝。",
+            "learning_role": "production_target",
+            "ends_dialogue": true
           }
+        ],
+        "accepted": [
+          "c1",
+          "c4"
         ]
       }
     },
@@ -85,14 +97,14 @@
       "speaker": "npc",
       "act": "cashier_instruction",
       "act_slots": {
-        "topic": "card_payment",
-        "keyword": "感應",
-        "gloss": "tap"
+        "topic": "payment",
+        "keyword": "付款",
+        "gloss": "pay here"
       },
       "learning_role": "listen_only",
-      "surface": "好，請在這裡感應。",
-      "speak": "好，請在這裡感應。",
-      "translation": "好，請在這裡感應。",
+      "surface": "好，請在這裡付款。",
+      "speak": "好，請在這裡付款。",
+      "translation": "好，請在這裡付款。",
       "friend": "聽到付款指示時，用好的確認即可。",
       "inline_explain": "刷卡 = 用卡付款。付現 = 用現金付款。",
       "reply_set": {
@@ -111,7 +123,7 @@
             "translation": "刷卡，謝謝。",
             "speak": "刷卡，謝謝。",
             "contrast_type": "repeated_prior_answer",
-            "feedback": "你已經回答刷卡了。現在只要確認付款動作。"
+            "feedback": "你已經回答付款方式了。現在只要確認付款動作。"
           },
           {
             "id": "c3",

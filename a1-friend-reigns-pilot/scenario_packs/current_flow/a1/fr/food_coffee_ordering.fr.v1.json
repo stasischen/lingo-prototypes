@@ -141,7 +141,19 @@
             "speak": "Oui, c'est ça.",
             "contrast_type": "wrong_act_confirmation",
             "feedback": "這是在確認，不是在二選一。請選 sur place 或 à emporter。"
+          },
+          {
+            "id": "r2d",
+            "surface": "Sur place, s'il vous plaît.",
+            "translation": "內用，謝謝。",
+            "speak": "Sur place, s'il vous plaît.",
+            "learning_role": "production_target",
+            "ends_dialogue": true
           }
+        ],
+        "accepted": [
+          "r2a",
+          "r2d"
         ]
       }
     },

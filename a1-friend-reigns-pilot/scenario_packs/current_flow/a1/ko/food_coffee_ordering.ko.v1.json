@@ -134,7 +134,19 @@
             "speak": "네, 맞아요.",
             "contrast_type": "wrong_act_confirmation",
             "feedback": "這句是確認用的，但他給你兩個選項，要選內用或外帶。"
+          },
+          {
+            "id": "r2d",
+            "surface": "먹고 갈게요.",
+            "translation": "我要內用。",
+            "speak": "먹고 갈게요.",
+            "learning_role": "production_target",
+            "ends_dialogue": true
           }
+        ],
+        "accepted": [
+          "r2a",
+          "r2d"
         ]
       }
     },

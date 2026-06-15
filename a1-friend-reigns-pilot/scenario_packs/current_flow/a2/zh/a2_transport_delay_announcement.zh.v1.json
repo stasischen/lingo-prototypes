@@ -1,7 +1,7 @@
 {
   "schema_version": "scenario_pack.v1",
   "scenario_id": "a2_transport_delay_announcement",
-  "title": "聽懂交通延誤廣播",
+  "title": "確認交通延誤資訊",
   "setting_label": "車站月台",
   "wrap_title": "延誤資訊確認",
   "wrap_friend": "你剛剛完成了一段 A2 交通服務情境，確認重點並做出簡單回應。",
@@ -13,7 +13,7 @@
   "review_status_framework_state": "candidate_runtime_verified",
   "native_review_state": "native_pending",
   "scenario": "A2 transport scenario: a2_transport_delay_announcement.",
-  "learner_goal": "Understand a delay duration and choose whether to wait.",
+  "learner_goal": "Understand a delay duration and choose whether to wait or take another route.",
   "target_functions": [
     "delay_comprehension",
     "duration_confirmation",
@@ -31,7 +31,7 @@
       "typing"
     ]
   },
-  "support_text": "聽車站廣播，確認列車晚多久，並選擇一個簡單下一步。",
+  "support_text": "向站務人員詢問列車延誤，確認晚多久，並選擇等待或改搭其他交通方式。",
   "roles": {
     "npc": {
       "label": "站務人員"
@@ -44,16 +44,16 @@
     {
       "turn_id": "t1",
       "speaker": "npc",
-      "act": "delay_announcement",
+      "act": "delay_information",
       "act_slots": {
-        "topic": "delay_announcement"
+        "topic": "delay_information"
       },
       "learning_role": "listen_only",
-      "surface": "請注意，開往 Central 的列車將延誤十五分鐘。",
-      "speak": "請注意，開往 Central 的列車將延誤十五分鐘。",
-      "translation": "請注意，開往 Central 的列車晚 15 分鐘。",
+      "surface": "是的，開往 Central 的列車會延誤十五分鐘。",
+      "speak": "是的，開往 Central 的列車會延誤十五分鐘。",
+      "translation": "對，開往 Central 的列車晚 15 分鐘。",
       "friend": {
-        "hint": "聽懂延誤時間"
+        "hint": "確認延誤時間"
       },
       "reply_set": {
         "correct": "r1a",
@@ -87,25 +87,25 @@
     {
       "turn_id": "t2",
       "speaker": "npc",
-      "act": "choice_prompt",
+      "act": "travel_option_prompt",
       "act_slots": {
-        "topic": "choice_prompt"
+        "topic": "travel_option_prompt"
       },
       "learning_role": "listen_only",
-      "surface": "如果延誤十五分鐘，您要等還是改搭公車？",
-      "speak": "如果延誤十五分鐘，您要等還是改搭公車？",
-      "translation": "如果是 15 分鐘，您要等，還是搭公車？",
+      "surface": "如果您趕時間，可以在這裡等，或改搭外面的公車。",
+      "speak": "如果您趕時間，可以在這裡等，或改搭外面的公車。",
+      "translation": "如果您趕時間，可以在這裡等，或改搭外面的公車。",
       "friend": {
-        "hint": "做出簡單選擇"
+        "hint": "選擇等待或改搭公車"
       },
       "reply_set": {
         "correct": "r2a",
         "choices": [
           {
             "id": "r2a",
-            "surface": "如果是十五分鐘，我會等。",
+            "surface": "如果是十五分鐘，我在這裡等。",
             "translation": "選擇等待",
-            "speak": "如果是十五分鐘，我會等。",
+            "speak": "如果是十五分鐘，我在這裡等。",
             "learning_role": "production_target"
           },
           {
@@ -123,7 +123,19 @@
             "speak": "請給我收據。",
             "learning_role": "wrong_scenario_or_escalation",
             "feedback": "干擾選項測試錯誤時間、錯誤情境，或超出 A2 範圍的服務升級。"
+          },
+          {
+            "id": "r2d",
+            "surface": "那我改搭外面的公車。",
+            "translation": "選擇搭公車",
+            "speak": "那我改搭外面的公車。",
+            "learning_role": "production_target",
+            "ends_dialogue": true
           }
+        ],
+        "accepted": [
+          "r2a",
+          "r2d"
         ]
       }
     },
@@ -189,9 +201,9 @@
         "choices": [
           {
             "id": "r4a",
-            "surface": "了解，我在這裡等。",
+            "surface": "了解，我在這裡等。謝謝。",
             "translation": "確認等待",
-            "speak": "了解，我在這裡等。",
+            "speak": "了解，我在這裡等。謝謝。",
             "learning_role": "production_target"
           },
           {
@@ -222,8 +234,8 @@
   ],
   "feedback": "干擾選項測試錯誤時間、錯誤情境，或超出 A2 範圍的服務升級。",
   "tts_segments": [
-    "請注意，開往 Central 的列車將延誤十五分鐘。",
-    "如果延誤十五分鐘，您要等還是改搭公車？",
+    "是的，開往 Central 的列車會延誤十五分鐘。",
+    "如果您趕時間，可以在這裡等，或改搭外面的公車。",
     "下一班車大約十點二十分到。",
     "好的，請在這個月台等。"
   ],
@@ -237,6 +249,7 @@
   "notes": {
     "authoring_policy": "Fresh-authored from the neutral A2 transport brief. KO surfaces were used only as scenario blueprint, not as translation source.",
     "a2_boundary": "Low-risk A2 transport/service task; avoids refund, compensation, emergency, identity-sensitive, legal, medical, banking, immigration, or police handling.",
-    "language_specific_adaptation": "NPC lines, learner targets, distractors, feedback, support text, and translations are adapted for this language; native review remains pending."
+    "language_specific_adaptation": "NPC lines, learner targets, distractors, feedback, support text, and translations are adapted for this language; native review remains pending.",
+    "scenario_realism_repair_20260615": "Reframed from a broadcast-to-dialogue hybrid into a station-staff information request flow: staff states the delay, learner confirms it, staff offers wait/bus options, and the bus option may end the dialogue."
   }
 }

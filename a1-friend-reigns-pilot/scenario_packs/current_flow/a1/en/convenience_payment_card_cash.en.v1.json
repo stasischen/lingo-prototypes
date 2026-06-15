@@ -73,6 +73,10 @@
       },
       "reply_set": {
         "correct": "r1a",
+        "accepted": [
+          "r1a",
+          "r1d"
+        ],
         "choices": [
           {
             "id": "r1a",
@@ -102,8 +106,8 @@
             "surface": "Cash, please.",
             "translation": "I want to pay with cash.",
             "speak": "Cash, please.",
-            "contrast_type": "wrong_payment_method",
-            "feedback": "That is a payment method, but this practice path is for paying by card."
+            "learning_role": "production_target",
+            "ends_dialogue": true
           }
         ]
       }
@@ -113,16 +117,16 @@
       "speaker": "npc",
       "act": "payment_instruction",
       "act_slots": {
-        "topic": "card payment",
-        "keyword": "tap",
-        "gloss": "use the card reader"
+        "topic": "payment",
+        "keyword": "pay here",
+        "gloss": "finish the payment"
       },
       "learning_role": "listen_only",
-      "surface": "Please tap your card here.",
-      "speak": "Please tap your card here.",
-      "translation": "The cashier is telling you where to use the card.",
+      "surface": "Please pay here.",
+      "speak": "Please pay here.",
+      "translation": "The cashier is telling you where to finish the payment.",
       "friend": {
-        "hint": "You only need to acknowledge the card prompt."
+        "hint": "You already chose a payment method. Now acknowledge the payment instruction."
       },
       "reply_set": {
         "correct": "r2a",
@@ -139,7 +143,7 @@
             "translation": "I want to pay by card.",
             "speak": "Card, please.",
             "contrast_type": "repeated_prior_answer",
-            "feedback": "You already chose card. Now follow the cashier's payment instruction."
+            "feedback": "You already chose a payment method. Now follow the cashier's payment instruction."
           },
           {
             "id": "r2c",
@@ -147,7 +151,7 @@
             "translation": "I am asking the price.",
             "speak": "How much is it?",
             "contrast_type": "wrong_act_price_question",
-            "feedback": "The price was already given. This step is about tapping the card."
+            "feedback": "The price was already given. This step is about finishing the payment."
           }
         ]
       }

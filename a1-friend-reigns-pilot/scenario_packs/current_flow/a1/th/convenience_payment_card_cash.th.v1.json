@@ -102,9 +102,13 @@
             "surface": "เงินสดค่ะ",
             "translation": "現金，謝謝。",
             "speak": "เงินสดค่ะ",
-            "contrast_type": "wrong_payment_method",
-            "feedback": "這也是付款方式，但這一輪要練習刷卡時的回答。"
+            "learning_role": "production_target",
+            "ends_dialogue": true
           }
+        ],
+        "accepted": [
+          "r1a",
+          "r1d"
         ]
       }
     },
@@ -113,16 +117,16 @@
       "speaker": "npc",
       "act": "payment_instruction",
       "act_slots": {
-        "topic": "แตะบัตร",
-        "keyword": "แตะบัตร",
-        "gloss": "感應卡片"
+        "topic": "payment",
+        "keyword": "付款",
+        "gloss": "pay here"
       },
       "learning_role": "listen_only",
-      "surface": "แตะบัตรตรงนี้นะคะ",
-      "speak": "แตะบัตรตรงนี้นะคะ",
-      "translation": "請在這裡感應卡片。",
+      "surface": "จ่ายตรงนี้นะคะ",
+      "speak": "จ่ายตรงนี้นะคะ",
+      "translation": "請在這裡付款。",
       "friend": {
-        "hint": "店員要你在這裡感應卡片。簡短回答「ได้ค่ะ」就可以。"
+        "hint": "店員要你在這裡付款。簡短回答「ได้ค่ะ」就可以。"
       },
       "reply_set": {
         "correct": "r2a",
@@ -139,7 +143,7 @@
             "translation": "卡片，謝謝。",
             "speak": "บัตรค่ะ",
             "contrast_type": "repeated_prior_answer",
-            "feedback": "付款方式已經說了。現在店員在告訴你感應卡片。"
+            "feedback": "付款方式已經說了。現在店員在告訴你付款。"
           },
           {
             "id": "r2c",

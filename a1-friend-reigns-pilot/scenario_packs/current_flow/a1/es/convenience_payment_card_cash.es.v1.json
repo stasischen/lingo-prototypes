@@ -96,7 +96,19 @@
             "speak": "¿Dónde está el baño?",
             "contrast_type": "wrong_scenario_request",
             "feedback": "這句是在問洗手間。店員現在問你怎麼付款。"
+          },
+          {
+            "id": "r1d",
+            "surface": "En efectivo, por favor.",
+            "translation": "付現，謝謝。",
+            "speak": "En efectivo, por favor.",
+            "learning_role": "production_target",
+            "ends_dialogue": true
           }
+        ],
+        "accepted": [
+          "r1a",
+          "r1d"
         ]
       }
     },
@@ -105,16 +117,16 @@
       "speaker": "npc",
       "act": "payment_instruction",
       "act_slots": {
-        "topic": "usar terminal",
-        "keyword": "acerque",
-        "gloss": "靠近"
+        "topic": "payment",
+        "keyword": "pay here",
+        "gloss": "finish the payment"
       },
       "learning_role": "listen_only",
-      "surface": "Perfecto. Acerque la tarjeta, por favor.",
-      "speak": "Perfecto. Acerque la tarjeta, por favor.",
-      "translation": "好的。請把卡靠近感應。",
+      "surface": "Perfecto. Pague aquí, por favor.",
+      "speak": "Perfecto. Pague aquí, por favor.",
+      "translation": "好的。請在這裡付款。",
       "friend": {
-        "hint": "店員請你刷卡或感應。簡短確認就好。"
+        "hint": "You already chose a payment method. Now acknowledge the payment instruction."
       },
       "reply_set": {
         "correct": "r2a",

@@ -123,7 +123,19 @@
             "speak": "Ich möchte die Rechnung in vier gleiche Teile teilen.",
             "contrast_type": "overlong_split_bill",
             "feedback": "這太複雜，超出這個 A1 付款回合。"
+          },
+          {
+            "id": "r2d",
+            "surface": "Bar, bitte.",
+            "translation": "付現，謝謝。",
+            "speak": "Bar, bitte.",
+            "learning_role": "production_target",
+            "ends_dialogue": true
           }
+        ],
+        "accepted": [
+          "r2a",
+          "r2d"
         ]
       }
     },

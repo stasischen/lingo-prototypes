@@ -78,7 +78,19 @@
             "speak": "Dov'è la stazione?",
             "contrast_type": "wrong_scenario_directions",
             "feedback": "這是在問路。結帳時先回答 carta 或 contanti。"
+          },
+          {
+            "id": "r1d",
+            "surface": "In contanti, per favore.",
+            "translation": "付現，謝謝。",
+            "speak": "In contanti, per favore.",
+            "learning_role": "production_target",
+            "ends_dialogue": true
           }
+        ],
+        "accepted": [
+          "r1a",
+          "r1d"
         ]
       }
     },
@@ -87,16 +99,16 @@
       "speaker": "npc",
       "act": "cashier_instruction",
       "act_slots": {
-        "topic": "card payment",
-        "keyword": "pos",
-        "gloss": "card reader"
+        "topic": "payment",
+        "keyword": "pay here",
+        "gloss": "finish the payment"
       },
       "learning_role": "listen_only",
-      "surface": "Inserisca la carta, per favore.",
-      "speak": "Inserisca la carta, per favore.",
-      "translation": "收銀員請你插卡。",
+      "surface": "Perfetto. Paghi qui, per favore.",
+      "speak": "Perfetto. Paghi qui, per favore.",
+      "translation": "好的。請在這裡付款。",
       "friend": {
-        "hint": "聽到付款指示時，用 va bene 這種短確認很自然。"
+        "hint": "Hai già scelto il metodo di pagamento. Ora conferma l’istruzione."
       },
       "inline_explain": {
         "pattern_id": "it.payment.con_carta.v1",
@@ -132,7 +144,7 @@
             "translation": "刷卡，謝謝。",
             "speak": "Con carta, per favore.",
             "contrast_type": "repeated_prior_answer",
-            "feedback": "你已經選好刷卡了。現在只要確認聽懂指示。"
+            "feedback": "Hai già scelto il metodo di pagamento. Ora segui l’istruzione di pagamento."
           },
           {
             "id": "r2c",

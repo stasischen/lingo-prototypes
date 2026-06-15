@@ -141,7 +141,19 @@
             "speak": "Sì, giusto.",
             "contrast_type": "wrong_act_confirmation",
             "feedback": "這是在確認，不是在選選項。請選 qui 或 da portare via。"
+          },
+          {
+            "id": "r2d",
+            "surface": "Qui, per favore.",
+            "translation": "內用，謝謝。",
+            "speak": "Qui, per favore.",
+            "learning_role": "production_target",
+            "ends_dialogue": true
           }
+        ],
+        "accepted": [
+          "r2a",
+          "r2d"
         ]
       }
     },

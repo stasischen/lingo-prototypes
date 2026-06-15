@@ -96,7 +96,19 @@
             "speak": "Onde fica o banheiro?",
             "contrast_type": "wrong_scenario_request",
             "feedback": "這句是在問洗手間。店員現在問你怎麼付款。"
+          },
+          {
+            "id": "r1d",
+            "surface": "Em dinheiro, por favor.",
+            "translation": "付現，謝謝。",
+            "speak": "Em dinheiro, por favor.",
+            "learning_role": "production_target",
+            "ends_dialogue": true
           }
+        ],
+        "accepted": [
+          "r1a",
+          "r1d"
         ]
       }
     },
@@ -105,16 +117,16 @@
       "speaker": "npc",
       "act": "payment_instruction",
       "act_slots": {
-        "topic": "aproximar cartão",
-        "keyword": "aproximar",
-        "gloss": "感應"
+        "topic": "payment",
+        "keyword": "pay here",
+        "gloss": "finish the payment"
       },
       "learning_role": "listen_only",
-      "surface": "Pode aproximar o cartão.",
-      "speak": "Pode aproximar o cartão.",
-      "translation": "可以感應卡片。",
+      "surface": "Pode pagar aqui.",
+      "speak": "Pode pagar aqui.",
+      "translation": "可以在這裡付款。",
       "friend": {
-        "hint": "店員請你感應卡片。簡短確認就好。"
+        "hint": "Você já escolheu o método de pagamento. Agora confirme a instrução."
       },
       "reply_set": {
         "correct": "r2a",

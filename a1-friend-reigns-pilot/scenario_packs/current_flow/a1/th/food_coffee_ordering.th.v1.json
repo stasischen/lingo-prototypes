@@ -141,7 +141,19 @@
             "speak": "ใช่ค่ะ",
             "contrast_type": "wrong_act_confirmation",
             "feedback": "店員給你兩個選項，不是問是或不是。要選「ที่ร้าน」或「กลับบ้าน」。"
+          },
+          {
+            "id": "r2d",
+            "surface": "ทานที่ร้านค่ะ",
+            "translation": "內用。",
+            "speak": "ทานที่ร้านค่ะ",
+            "learning_role": "production_target",
+            "ends_dialogue": true
           }
+        ],
+        "accepted": [
+          "r2a",
+          "r2d"
         ]
       }
     },

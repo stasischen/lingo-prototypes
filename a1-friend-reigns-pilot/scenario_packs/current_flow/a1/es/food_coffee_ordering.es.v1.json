@@ -141,7 +141,19 @@
             "speak": "Sí, por favor.",
             "contrast_type": "wrong_act_confirmation",
             "feedback": "店員給你兩個選項，不是問是或不是。要選「aquí」或「para llevar」。"
+          },
+          {
+            "id": "r2d",
+            "surface": "Para tomar aquí, por favor.",
+            "translation": "內用，謝謝。",
+            "speak": "Para tomar aquí, por favor.",
+            "learning_role": "production_target",
+            "ends_dialogue": true
           }
+        ],
+        "accepted": [
+          "r2a",
+          "r2d"
         ]
       }
     },

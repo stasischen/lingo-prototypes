@@ -1,7 +1,7 @@
 {
   "schema_version": "scenario_pack.v1",
   "scenario_id": "a2_transport_delay_announcement",
-  "title": "교통 지연 안내 이해하기",
+  "title": "교통 지연 정보 확인하기",
   "setting_label": "지하철역 안내 방송",
   "wrap_title": "지연 안내 확인",
   "wrap_friend": "你剛剛聽懂了延誤時間，並選了一個簡單的下一步。",
@@ -13,10 +13,10 @@
   "review_status_framework_state": "candidate_runtime_verified",
   "native_review_state": "native_pending",
   "scenario": "A traveler hears a short subway delay announcement and decides what to do.",
-  "learner_goal": "Understand a delay duration and choose a simple next step.",
+  "learner_goal": "Understand a delay duration and choose whether to wait or take another route.",
   "target_functions": [
-    "announcement_comprehension",
-    "delay_duration",
+    "delay_comprehension",
+    "duration_confirmation",
     "simple_travel_choice"
   ],
   "register_notes": "Public transport service Korean with polite everyday responses; no complaint or refund language.",
@@ -31,7 +31,7 @@
       "typing"
     ]
   },
-  "support_text": "안내 방송을 듣고 얼마나 늦는지 확인한 뒤, 기다릴지 다른 방법을 쓸지 말해 보세요.",
+  "support_text": "역무원에게 열차 지연을 묻고, 지연 시간을 확인한 뒤 간단한 다음 행동을 고릅니다.",
   "roles": {
     "npc": {
       "label": "역무원"
@@ -44,16 +44,17 @@
     {
       "turn_id": "t1",
       "speaker": "npc",
-      "act": "delay_announcement",
+      "act": "delay_information",
       "act_slots": {
         "delay": "10 minutes",
         "keyword": "10분 늦게",
-        "gloss": "晚 10 分鐘"
+        "gloss": "晚 10 分鐘",
+        "topic": "delay_information"
       },
       "learning_role": "listen_only",
-      "surface": "안내 말씀드립니다. 2호선 열차가 약 10분 늦게 도착합니다.",
-      "speak": "안내 말씀드립니다. 이 호선 열차가 약 십 분 늦게 도착합니다.",
-      "translation": "廣播通知：2 號線列車大約晚 10 分鐘到。",
+      "surface": "네. Central행 열차가 약 15분 늦게 도착합니다.",
+      "speak": "네. Central행 열차가 약 15분 늦게 도착합니다.",
+      "translation": "對，開往 Central 的列車大約晚 15 分鐘到。",
       "friend": {
         "hint": "重點是 약 10분 늦게，到底晚多久？"
       },
@@ -62,9 +63,9 @@
         "choices": [
           {
             "id": "r1a",
-            "surface": "10분 늦게 도착한다고 했어요.",
-            "translation": "他說會晚 10 分鐘到。",
-            "speak": "십 분 늦게 도착한다고 했어요.",
+            "surface": "15분 정도 늦게 도착하는 거죠?",
+            "translation": "確認延誤時間",
+            "speak": "15분 정도 늦게 도착하는 거죠?",
             "learning_role": "production_target"
           },
           {
@@ -89,16 +90,17 @@
     {
       "turn_id": "t2",
       "speaker": "npc",
-      "act": "choice_prompt",
+      "act": "travel_option_prompt",
       "act_slots": {
         "options": "wait or bus",
         "keyword": "기다리시겠어요",
-        "gloss": "要等嗎"
+        "gloss": "要等嗎",
+        "topic": "travel_option_prompt"
       },
       "learning_role": "listen_only",
-      "surface": "10분 정도면 기다리시겠어요, 아니면 버스를 타시겠어요?",
-      "speak": "십 분 정도면 기다리시겠어요, 아니면 버스를 타시겠어요?",
-      "translation": "大約 10 分鐘的話，您要等，還是搭公車？",
+      "surface": "급하시면 여기서 기다리시거나 밖에서 버스를 타실 수 있어요.",
+      "speak": "급하시면 여기서 기다리시거나 밖에서 버스를 타실 수 있어요.",
+      "translation": "如果您趕時間，可以在這裡等，或搭外面的公車。",
       "friend": {
         "hint": "對方給你兩個簡單選項：等或搭公車。"
       },
@@ -124,9 +126,9 @@
         "choices": [
           {
             "id": "r2a",
-            "surface": "10분이면 기다릴게요.",
-            "translation": "如果 10 分鐘，我會等。",
-            "speak": "십 분이면 기다릴게요.",
+            "surface": "15분이면 여기서 기다릴게요.",
+            "translation": "選擇等待",
+            "speak": "15분이면 여기서 기다릴게요.",
             "learning_role": "production_target"
           },
           {
@@ -144,7 +146,19 @@
             "speak": "영수증을 주세요.",
             "contrast_type": "wrong_service_receipt",
             "feedback": "여기서는 영수증이 아니라 기다릴지 말지 정하는 상황이에요."
+          },
+          {
+            "id": "r2d",
+            "surface": "그럼 밖에서 버스를 탈게요.",
+            "translation": "選擇搭公車",
+            "speak": "그럼 밖에서 버스를 탈게요.",
+            "learning_role": "production_target",
+            "ends_dialogue": true
           }
+        ],
+        "accepted": [
+          "r2a",
+          "r2d"
         ]
       }
     },
@@ -155,12 +169,13 @@
       "act_slots": {
         "time": "10:20",
         "keyword": "10시 20분쯤",
-        "gloss": "10 點 20 分左右"
+        "gloss": "10 點 20 分左右",
+        "topic": "next_departure_info"
       },
       "learning_role": "listen_only",
       "surface": "다음 열차는 10시 20분쯤 도착해요.",
-      "speak": "다음 열차는 열 시 이십 분쯤 도착해요.",
-      "translation": "下一班列車大約 10 點 20 分到。",
+      "speak": "다음 열차는 10시 20분쯤 도착해요.",
+      "translation": "下一班車大約 10 點 20 分到。",
       "friend": {
         "hint": "聽到下一班的時間後，用一句話確認。"
       },
@@ -170,8 +185,8 @@
           {
             "id": "r3a",
             "surface": "그럼 10시 20분 열차를 탈게요.",
-            "translation": "那我搭 10 點 20 分的車。",
-            "speak": "그럼 열 시 이십 분 열차를 탈게요.",
+            "translation": "確認搭下一班",
+            "speak": "그럼 10시 20분 열차를 탈게요.",
             "learning_role": "production_target"
           },
           {
@@ -200,12 +215,13 @@
       "act_slots": {
         "place": "this platform",
         "keyword": "이쪽 플랫폼",
-        "gloss": "這邊月台"
+        "gloss": "這邊月台",
+        "topic": "platform_wait_confirmation"
       },
       "learning_role": "listen_only",
       "surface": "네, 이쪽 플랫폼에서 기다리시면 돼요.",
       "speak": "네, 이쪽 플랫폼에서 기다리시면 돼요.",
-      "translation": "好的，您在這邊月台等就可以了。",
+      "translation": "好的，請在這個月台等。",
       "friend": {
         "hint": "對方確認了等候地點，用簡單句收尾。"
       },
@@ -214,9 +230,9 @@
         "choices": [
           {
             "id": "r4a",
-            "surface": "알겠습니다. 여기서 기다릴게요.",
-            "translation": "了解。我會在這裡等。",
-            "speak": "알겠습니다. 여기서 기다릴게요."
+            "surface": "알겠습니다. 여기서 기다릴게요. 감사합니다.",
+            "translation": "確認等待",
+            "speak": "알겠습니다. 여기서 기다릴게요. 감사합니다."
           },
           {
             "id": "r4b",
@@ -246,10 +262,10 @@
   ],
   "feedback": "Distractors test delay-duration misunderstanding, wrong service context, past-time response, and out-of-scope escalation.",
   "tts_segments": [
-    "안내 말씀드립니다. 이 호선 열차가 약 십 분 늦게 도착합니다.",
-    "십 분 늦게 도착한다고 했어요.",
-    "십 분이면 기다릴게요.",
-    "그럼 열 시 이십 분 열차를 탈게요."
+    "네. Central행 열차가 약 15분 늦게 도착합니다.",
+    "급하시면 여기서 기다리시거나 밖에서 버스를 타실 수 있어요.",
+    "다음 열차는 10시 20분쯤 도착해요.",
+    "네, 이쪽 플랫폼에서 기다리시면 돼요."
   ],
   "formula_moments": [
     {
@@ -260,6 +276,7 @@
   "runtime_notes": "Fresh KO A2 transport candidate. Requires full-walk runtime gate before final closeout.",
   "notes": {
     "authoring_policy": "Fresh-authored from A2 transport neutral brief. No KO legacy lines copied.",
-    "a2_boundary": "Uses delay duration and a simple wait/alternate choice; avoids refund, emergency, and complaint handling."
+    "a2_boundary": "Uses delay duration and a simple wait/alternate choice; avoids refund, emergency, and complaint handling.",
+    "scenario_realism_repair_20260615": "Reframed from a broadcast-to-dialogue hybrid into a station-staff information request flow: staff states the delay, learner confirms it, staff offers wait/bus options, and the bus option may end the dialogue."
   }
 }

@@ -123,7 +123,19 @@
             "speak": "Vorrei dividere il conto in quattro parti uguali.",
             "contrast_type": "overlong_split_bill",
             "feedback": "這太複雜，超出這個 A1 付款回合。"
+          },
+          {
+            "id": "r2d",
+            "surface": "In contanti, grazie.",
+            "translation": "付現，謝謝。",
+            "speak": "In contanti, grazie.",
+            "learning_role": "production_target",
+            "ends_dialogue": true
           }
+        ],
+        "accepted": [
+          "r2a",
+          "r2d"
         ]
       }
     },

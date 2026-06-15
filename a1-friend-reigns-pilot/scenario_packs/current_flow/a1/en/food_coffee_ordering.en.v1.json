@@ -141,7 +141,19 @@
             "speak": "Yes, it is.",
             "contrast_type": "wrong_act_confirmation",
             "feedback": "This is not a choice. Choose \"for here\" or \"to go.\""
+          },
+          {
+            "id": "r2d",
+            "surface": "For here, please.",
+            "translation": "I will have it here.",
+            "speak": "For here, please.",
+            "learning_role": "production_target",
+            "ends_dialogue": true
           }
+        ],
+        "accepted": [
+          "r2a",
+          "r2d"
         ]
       }
     },

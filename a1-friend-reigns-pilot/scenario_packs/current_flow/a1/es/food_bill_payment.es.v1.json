@@ -141,7 +141,19 @@
             "speak": "¿Cuánto cuesta esto?",
             "contrast_type": "wrong_scenario_shopping",
             "feedback": "這是在商店問商品價格，不是餐廳付帳。"
+          },
+          {
+            "id": "r2d",
+            "surface": "En efectivo, por favor.",
+            "translation": "請用現金。",
+            "speak": "En efectivo, por favor.",
+            "learning_role": "production_target",
+            "ends_dialogue": true
           }
+        ],
+        "accepted": [
+          "r2a",
+          "r2d"
         ]
       }
     },

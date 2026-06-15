@@ -126,7 +126,19 @@
             "speak": "For here, please.",
             "contrast_type": "dine_in_answer_at_payment",
             "feedback": "這是點餐時的回答。現在是在付款。"
+          },
+          {
+            "id": "r3d",
+            "surface": "Cash, please.",
+            "translation": "付現，謝謝。",
+            "speak": "Cash, please.",
+            "learning_role": "production_target",
+            "ends_dialogue": true
           }
+        ],
+        "accepted": [
+          "r3a",
+          "r3d"
         ]
       },
       "runtime_note": "Reply choices mirror the next learner response so the current prototype can render every round."

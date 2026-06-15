@@ -96,7 +96,19 @@
             "speak": "Où sont les toilettes ?",
             "contrast_type": "wrong_scenario_request",
             "feedback": "這是在問洗手間。現在是在結帳。"
+          },
+          {
+            "id": "r1d",
+            "surface": "En espèces, s'il vous plaît.",
+            "translation": "付現，謝謝。",
+            "speak": "En espèces, s'il vous plaît.",
+            "learning_role": "production_target",
+            "ends_dialogue": true
           }
+        ],
+        "accepted": [
+          "r1a",
+          "r1d"
         ]
       }
     },
@@ -105,16 +117,16 @@
       "speaker": "npc",
       "act": "payment_instruction",
       "act_slots": {
-        "topic": "terminal",
-        "keyword": "approcher",
-        "gloss": "tap the card"
+        "topic": "payment",
+        "keyword": "pay here",
+        "gloss": "finish the payment"
       },
       "learning_role": "listen_only",
-      "surface": "Très bien. Approchez la carte, s'il vous plaît.",
-      "speak": "Très bien. Approchez la carte, s'il vous plaît.",
-      "translation": "好的。請把卡靠近感應。",
+      "surface": "Très bien. Payez ici, s'il vous plaît.",
+      "speak": "Très bien. Payez ici, s'il vous plaît.",
+      "translation": "好的。請在這裡付款。",
       "friend": {
-        "hint": "店員請你用卡付款。簡短確認就好。"
+        "hint": "Vous avez déjà choisi un mode de paiement. Confirmez simplement."
       },
       "reply_set": {
         "correct": "r2a",

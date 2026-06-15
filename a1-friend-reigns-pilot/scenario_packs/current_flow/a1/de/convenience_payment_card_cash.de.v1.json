@@ -76,7 +76,19 @@
             "speak": "Wo ist die Toilette?",
             "contrast_type": "asking_directions_instead_of_paying",
             "feedback": "這是在問方向，不是在結帳付款。"
+          },
+          {
+            "id": "c4",
+            "surface": "Bar, bitte.",
+            "translation": "付現，麻煩您。",
+            "speak": "Bar, bitte.",
+            "learning_role": "production_target",
+            "ends_dialogue": true
           }
+        ],
+        "accepted": [
+          "c1",
+          "c4"
         ]
       }
     },
@@ -85,15 +97,15 @@
       "speaker": "npc",
       "act": "cashier_instruction",
       "act_slots": {
-        "topic": "card_terminal",
-        "keyword": "hier",
-        "gloss": "這裡"
+        "topic": "payment",
+        "keyword": "付款",
+        "gloss": "pay here"
       },
       "learning_role": "listen_only",
-      "surface": "Bitte hier einstecken.",
-      "speak": "Bitte hier einstecken.",
-      "translation": "請在這裡插卡。",
-      "friend": "聽到付款指示時，用 alles klar 這種短確認很自然。",
+      "surface": "Bitte zahlen Sie hier.",
+      "speak": "Bitte zahlen Sie hier.",
+      "translation": "請在這裡付款。",
+      "friend": "聽到付款指示時，簡短確認即可。",
       "inline_explain": "Mit Karte = 用卡付款。Bar = 付現。",
       "reply_set": {
         "correct": "c1",
@@ -111,7 +123,7 @@
             "translation": "刷卡，麻煩您。",
             "speak": "Mit Karte, bitte.",
             "contrast_type": "repeated_prior_answer",
-            "feedback": "你已經選了刷卡。現在只要確認聽懂指示。"
+            "feedback": "付款方式已經說了。現在只要確認付款動作。"
           },
           {
             "id": "c3",

@@ -20,6 +20,18 @@ Regenerate plain-text dialogue review exports:
 node scripts/export_current_flow_dialogue_text.js
 ```
 
+Regenerate A1 10x10 learner-projection review data from the control-tower
+artifacts:
+
+```bash
+python scripts/export_a1_learner_projection_viewer_data.py
+```
+
+Open `index.html`, then use **Learner Review** to inspect a learner-language /
+target-language pair. The panel renders static `native_pending` review data from
+`data/a1_learner_projection_20260615.json`: 90 cross-language reviewed pairs and
+10 same-language diagonal exclusions.
+
 ## Publish
 
 This folder is safe to publish separately from the private/control-tower repository.

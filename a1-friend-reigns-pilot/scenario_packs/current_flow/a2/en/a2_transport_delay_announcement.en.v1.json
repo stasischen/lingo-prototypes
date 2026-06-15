@@ -1,7 +1,7 @@
 {
   "schema_version": "scenario_pack.v1",
   "scenario_id": "a2_transport_delay_announcement",
-  "title": "Understand a Delay Announcement",
+  "title": "Confirm a Transport Delay",
   "setting_label": "At a train platform",
   "wrap_title": "Delay Choice",
   "wrap_friend": "你剛剛聽懂簡短的交通延誤公告，確認時間，並做出簡單選擇。",
@@ -13,7 +13,7 @@
   "review_status_framework_state": "candidate_runtime_verified",
   "native_review_state": "native_pending",
   "scenario": "You hear a short train delay announcement and need to decide what to do.",
-  "learner_goal": "Understand the delay time, ask a simple follow-up, and choose to wait or use another option.",
+  "learner_goal": "Understand a delay duration and choose whether to wait or take another route.",
   "target_functions": [
     "delay_comprehension",
     "duration_confirmation",
@@ -31,7 +31,7 @@
       "typing"
     ]
   },
-  "support_text": "Listen for the delay time. Confirm how long it is, then choose a simple next step.",
+  "support_text": "Ask station staff about a train delay, confirm the time, and choose a simple next step.",
   "roles": {
     "npc": {
       "label": "Station Staff"
@@ -44,16 +44,16 @@
     {
       "turn_id": "t1",
       "speaker": "npc",
-      "act": "delay_announcement",
+      "act": "delay_information",
       "act_slots": {
-        "topic": "train delay",
+        "topic": "delay_information",
         "keyword": "fifteen minutes",
         "gloss": "十五分鐘"
       },
       "learning_role": "listen_only",
-      "surface": "Attention, please. The train to Central is delayed by fifteen minutes.",
-      "speak": "Attention, please. The train to Central is delayed by fifteen minutes.",
-      "translation": "請注意。前往 Central 的火車延誤十五分鐘。",
+      "surface": "Yes. The train to Central is delayed by fifteen minutes.",
+      "speak": "Yes. The train to Central is delayed by fifteen minutes.",
+      "translation": "對，前往 Central 的火車延誤十五分鐘。",
       "friend": {
         "hint": "The announcement says the delay is fifteen minutes. Confirm that time."
       },
@@ -89,16 +89,16 @@
     {
       "turn_id": "t2",
       "speaker": "npc",
-      "act": "duration_confirmation",
+      "act": "travel_option_prompt",
       "act_slots": {
-        "topic": "delay duration",
+        "topic": "travel_option_prompt",
         "keyword": "fifteen",
         "gloss": "十五"
       },
       "learning_role": "listen_only",
-      "surface": "Yes, about fifteen minutes.",
-      "speak": "Yes, about fifteen minutes.",
-      "translation": "對，大約十五分鐘。",
+      "surface": "If you are in a hurry, you can wait here or take the bus outside.",
+      "speak": "If you are in a hurry, you can wait here or take the bus outside.",
+      "translation": "如果您趕時間，可以在這裡等，或搭外面的公車。",
       "friend": {
         "hint": "Ask if there is another simple option."
       },
@@ -124,9 +124,9 @@
         "choices": [
           {
             "id": "r2a",
-            "surface": "Is there another train soon?",
-            "translation": "很快會有另一班火車嗎？",
-            "speak": "Is there another train soon?",
+            "surface": "If it is fifteen minutes, I will wait here.",
+            "translation": "如果是十五分鐘，我會在這裡等。",
+            "speak": "If it is fifteen minutes, I will wait here.",
             "learning_role": "production_target"
           },
           {
@@ -144,23 +144,35 @@
             "speak": "I need a hotel room.",
             "contrast_type": "wrong_scenario_hotel",
             "feedback": "This is hotel language. Here you are asking about transport."
+          },
+          {
+            "id": "r2d",
+            "learning_role": "production_target",
+            "ends_dialogue": true,
+            "surface": "Then I will take the bus outside.",
+            "speak": "Then I will take the bus outside.",
+            "translation": "那我搭外面的公車。"
           }
+        ],
+        "accepted": [
+          "r2a",
+          "r2d"
         ]
       }
     },
     {
       "turn_id": "t3",
       "speaker": "npc",
-      "act": "simple_option",
+      "act": "next_departure_info",
       "act_slots": {
-        "topic": "next departure",
+        "topic": "next_departure_info",
         "keyword": "platform two",
         "gloss": "二號月台"
       },
       "learning_role": "listen_only",
-      "surface": "There is a bus outside, or you can wait here for the train.",
-      "speak": "There is a bus outside, or you can wait here for the train.",
-      "translation": "外面有公車，或者你可以在這裡等火車。",
+      "surface": "The next train should arrive around ten twenty.",
+      "speak": "The next train should arrive around ten twenty.",
+      "translation": "下一班車大約 10 點 20 分到。",
       "friend": {
         "hint": "Choose one simple action. Waiting is fine."
       },
@@ -169,9 +181,9 @@
         "choices": [
           {
             "id": "r3a",
-            "surface": "I will wait here for the train.",
-            "translation": "我會在這裡等火車。",
-            "speak": "I will wait here for the train.",
+            "surface": "Then I will take the train at ten twenty.",
+            "translation": "那我搭十點二十分那班車。",
+            "speak": "Then I will take the train at ten twenty.",
             "learning_role": "production_target"
           },
           {
@@ -189,21 +201,33 @@
             "speak": "Please cancel my dinner.",
             "contrast_type": "wrong_scenario_restaurant",
             "feedback": "This is not a restaurant situation. Choose a transport option."
+          },
+          {
+            "id": "r3d",
+            "surface": "I will take the bus.",
+            "translation": "我會搭公車。",
+            "speak": "I will take the bus.",
+            "learning_role": "production_target",
+            "ends_dialogue": true
           }
+        ],
+        "accepted": [
+          "r3a",
+          "r3d"
         ]
       }
     },
     {
       "turn_id": "t4",
       "speaker": "npc",
-      "act": "closing",
+      "act": "platform_wait_confirmation",
       "act_slots": {
-        "topic": "wait here"
+        "topic": "platform_wait_confirmation"
       },
       "learning_role": "listen_only",
       "surface": "Okay. Please wait near this platform.",
       "speak": "Okay. Please wait near this platform.",
-      "translation": "好的。請在這個月台附近等候。",
+      "translation": "好的，請在這個月台附近等。",
       "friend": {
         "hint": "The choice is clear. Close politely."
       },
@@ -212,9 +236,9 @@
         "choices": [
           {
             "id": "r4a",
-            "surface": "Okay, thank you.",
-            "translation": "好的，謝謝。",
-            "speak": "Okay, thank you."
+            "surface": "Okay, I will wait here. Thank you.",
+            "translation": "好，我在這裡等。謝謝。",
+            "speak": "Okay, I will wait here. Thank you."
           },
           {
             "id": "r4b",
@@ -244,10 +268,10 @@
   ],
   "feedback": "Distractors test delay duration, current versus past action, and unrelated service language.",
   "tts_segments": [
-    "It is delayed by fifteen minutes, right?",
-    "Is there another train soon?",
-    "I will wait here for the train.",
-    "Okay, thank you."
+    "Yes. The train to Central is delayed by fifteen minutes.",
+    "If you are in a hurry, you can wait here or take the bus outside.",
+    "The next train should arrive around ten twenty.",
+    "Okay. Please wait near this platform."
   ],
   "formula_moments": [
     {
@@ -258,6 +282,7 @@
   "runtime_notes": "Fresh EN A2 transport candidate. Structural checks and two AI semantic review passes completed on 2026-06-14 before metadata promotion.",
   "notes": {
     "authoring_policy": "Fresh-authored in English from the neutral A2 transport brief. KO was used only as schema-shape reference.",
-    "a2_boundary": "Simple delay announcement with one duration and one low-risk choice; avoids refund, compensation, complaint, or emergency handling."
+    "a2_boundary": "Simple delay announcement with one duration and one low-risk choice; avoids refund, compensation, complaint, or emergency handling.",
+    "scenario_realism_repair_20260615": "Reframed from a broadcast-to-dialogue hybrid into a station-staff information request flow: staff states the delay, learner confirms it, staff offers wait/bus options, and the bus option may end the dialogue."
   }
 }

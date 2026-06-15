@@ -6,7 +6,7 @@
   "blueprint_ledger": "release-aggregator/docs/tasks/A2_BASELINE_INVENTORY/A2_TRANSPORT_BLUEPRINT_LEDGER_20260614.md",
   "repo": "content-th",
   "staging_path": "content/core/content_assets/scenario_packs/current_flow/a2/a2_transport_delay_announcement.th.v1.json",
-  "title": "ฟังประกาศรถไฟล่าช้า",
+  "title": "確認交通延誤資訊",
   "setting_label": "ชานชาลารถไฟ",
   "wrap_title": "การล่าช้าของรถไฟ",
   "wrap_friend": "คุณฟังประกาศสั้น ๆ เข้าใจเวลาที่ล่าช้า และเลือกว่าจะรอหรือไปทางอื่น",
@@ -18,7 +18,7 @@
   "review_status_framework_state": "candidate_runtime_verified",
   "native_review_state": "native_pending",
   "scenario": "You hear a short train delay announcement and choose what to do.",
-  "learner_goal": "Understand the delay duration and make a simple next-step choice.",
+  "learner_goal": "Understand a delay duration and choose whether to wait or take another route.",
   "target_functions": [
     "delay_comprehension",
     "duration_confirmation",
@@ -36,7 +36,7 @@
       "typing"
     ]
   },
-  "support_text": "ฟังประกาศว่ารถไฟล่าช้ากี่นาที แล้วเลือกว่าจะรอหรือใช้ทางอื่น",
+  "support_text": "ถามเจ้าหน้าที่เรื่องรถไฟล่าช้า ยืนยันเวลา แล้วเลือกว่าจะรอหรือไปทางอื่น",
   "roles": {
     "npc": {
       "label": "เจ้าหน้าที่"
@@ -49,16 +49,17 @@
     {
       "turn_id": "t1",
       "speaker": "npc",
-      "act": "delay_announcement",
+      "act": "delay_information",
       "act_slots": {
         "delay": "10 minutes",
         "keyword": "ช้าไปประมาณสิบนาที",
-        "gloss": "晚約 10 分鐘"
+        "gloss": "晚約 10 分鐘",
+        "topic": "delay_information"
       },
       "learning_role": "listen_only",
-      "surface": "ประกาศค่ะ รถไฟสายนี้จะมาช้าไปประมาณสิบนาที",
-      "speak": "ประกาศค่ะ รถไฟสายนี้ จะมาช้าไปประมาณสิบนาที",
-      "translation": "廣播：這班車會晚大約十分鐘。",
+      "surface": "ค่ะ รถไฟไป Central จะมาช้าประมาณสิบห้านาทีค่ะ",
+      "speak": "ค่ะ รถไฟไป Central จะมาช้าประมาณสิบห้านาทีค่ะ",
+      "translation": "對，開往 Central 的火車大約晚十五分鐘。",
       "friend": {
         "hint": "ฟังคำว่า สิบนาที ว่ารถไฟช้าเท่าไร"
       },
@@ -67,9 +68,9 @@
         "choices": [
           {
             "id": "r1a",
-            "surface": "รถไฟช้าประมาณสิบนาทีใช่ไหม",
-            "translation": "火車大約晚十分鐘，對嗎？",
-            "speak": "รถไฟช้าประมาณสิบนาที ใช่ไหม",
+            "surface": "รถไฟช้าประมาณสิบห้านาทีใช่ไหมคะ",
+            "translation": "確認延誤時間",
+            "speak": "รถไฟช้าประมาณสิบห้านาทีใช่ไหมคะ",
             "learning_role": "production_target"
           },
           {
@@ -94,16 +95,17 @@
     {
       "turn_id": "t2",
       "speaker": "npc",
-      "act": "choice_prompt",
+      "act": "travel_option_prompt",
       "act_slots": {
         "options": "wait or bus",
         "keyword": "จะรอไหม",
-        "gloss": "要等嗎"
+        "gloss": "要等嗎",
+        "topic": "travel_option_prompt"
       },
       "learning_role": "listen_only",
-      "surface": "ถ้าประมาณสิบนาที จะรอไหมคะ หรือจะไปขึ้นรถบัส",
-      "speak": "ถ้าประมาณสิบนาที จะรอไหมคะ หรือจะไปขึ้นรถบัส",
-      "translation": "如果大約十分鐘，您要等嗎？還是去搭公車？",
+      "surface": "ถ้ารีบ จะรอตรงนี้ หรือไปขึ้นรถบัสข้างนอกก็ได้ค่ะ",
+      "speak": "ถ้ารีบ จะรอตรงนี้ หรือไปขึ้นรถบัสข้างนอกก็ได้ค่ะ",
+      "translation": "如果您趕時間，可以在這裡等，或搭外面的公車。",
       "friend": {
         "hint": "ใช้ ถ้า... จะ... เพื่อบอกการตัดสินใจง่าย ๆ"
       },
@@ -129,9 +131,9 @@
         "choices": [
           {
             "id": "r2a",
-            "surface": "ถ้าสิบนาที จะรอค่ะ",
-            "translation": "如果十分鐘，我會等。",
-            "speak": "ถ้าสิบนาที จะรอค่ะ",
+            "surface": "ถ้าสิบห้านาที จะรอตรงนี้ค่ะ",
+            "translation": "選擇等待",
+            "speak": "ถ้าสิบห้านาที จะรอตรงนี้ค่ะ",
             "learning_role": "production_target"
           },
           {
@@ -149,7 +151,19 @@
             "speak": "ขอใบเสร็จค่ะ",
             "contrast_type": "wrong_service_receipt",
             "feedback": "ตอนนี้ไม่ได้ขอใบเสร็จ ต้องเลือกว่าจะรอหรือไปทางอื่น"
+          },
+          {
+            "id": "r2d",
+            "surface": "งั้นจะไปขึ้นรถบัสข้างนอกค่ะ",
+            "translation": "選擇搭公車",
+            "speak": "งั้นจะไปขึ้นรถบัสข้างนอกค่ะ",
+            "learning_role": "production_target",
+            "ends_dialogue": true
           }
+        ],
+        "accepted": [
+          "r2a",
+          "r2d"
         ]
       }
     },
@@ -160,11 +174,12 @@
       "act_slots": {
         "time": "10:20",
         "keyword": "สิบโมงยี่สิบ",
-        "gloss": "10 點 20 分"
+        "gloss": "10 點 20 分",
+        "topic": "next_departure_info"
       },
       "learning_role": "listen_only",
       "surface": "ขบวนถัดไปจะมาประมาณสิบโมงยี่สิบค่ะ",
-      "speak": "ขบวนถัดไป จะมาประมาณสิบโมงยี่สิบค่ะ",
+      "speak": "ขบวนถัดไปจะมาประมาณสิบโมงยี่สิบค่ะ",
       "translation": "下一班大約十點二十分會到。",
       "friend": {
         "hint": "ยืนยันเวลาขบวนถัดไป"
@@ -175,7 +190,7 @@
           {
             "id": "r3a",
             "surface": "งั้นจะขึ้นขบวนสิบโมงยี่สิบค่ะ",
-            "translation": "那我搭十點二十分那班。",
+            "translation": "確認搭下一班",
             "speak": "งั้นจะขึ้นขบวนสิบโมงยี่สิบค่ะ",
             "learning_role": "production_target"
           },
@@ -205,12 +220,13 @@
       "act_slots": {
         "place": "this platform",
         "keyword": "ชานชาลานี้",
-        "gloss": "這個月台"
+        "gloss": "這個月台",
+        "topic": "platform_wait_confirmation"
       },
       "learning_role": "listen_only",
       "surface": "ค่ะ รอที่ชานชาลานี้ได้เลยค่ะ",
       "speak": "ค่ะ รอที่ชานชาลานี้ได้เลยค่ะ",
-      "translation": "好的，在這個月台等就可以。",
+      "translation": "好的，請在這個月台等。",
       "friend": {
         "hint": "รู้ที่รอแล้ว ตอบสั้น ๆ ได้"
       },
@@ -219,9 +235,9 @@
         "choices": [
           {
             "id": "r4a",
-            "surface": "เข้าใจแล้วค่ะ จะรอตรงนี้",
-            "translation": "了解，我會在這裡等。",
-            "speak": "เข้าใจแล้วค่ะ จะรอตรงนี้"
+            "surface": "เข้าใจแล้วค่ะ จะรอตรงนี้ ขอบคุณค่ะ",
+            "translation": "確認等待",
+            "speak": "เข้าใจแล้วค่ะ จะรอตรงนี้ ขอบคุณค่ะ"
           },
           {
             "id": "r4b",
@@ -251,10 +267,10 @@
   ],
   "feedback": "Distractors test delay misunderstanding, wrong service context, past-time response, and out-of-scope escalation.",
   "tts_segments": [
-    "ประกาศค่ะ รถไฟสายนี้ จะมาช้าไปประมาณสิบนาที",
-    "รถไฟช้าประมาณสิบนาที ใช่ไหม",
-    "ถ้าสิบนาที จะรอค่ะ",
-    "งั้นจะขึ้นขบวนสิบโมงยี่สิบค่ะ"
+    "ค่ะ รถไฟไป Central จะมาช้าประมาณสิบห้านาทีค่ะ",
+    "ถ้ารีบ จะรอตรงนี้ หรือไปขึ้นรถบัสข้างนอกก็ได้ค่ะ",
+    "ขบวนถัดไปจะมาประมาณสิบโมงยี่สิบค่ะ",
+    "ค่ะ รอที่ชานชาลานี้ได้เลยค่ะ"
   ],
   "formula_moments": [
     {
@@ -265,6 +281,7 @@
   "runtime_notes": "TH A2 transport candidate. Full-walk runtime gate required before final closeout.",
   "notes": {
     "authoring_policy": "Fresh-authored from the neutral A2 transport brief. KO surfaces were not translated.",
-    "a2_boundary": "Uses delay duration and a simple wait/bus choice; avoids refunds, complaints, and emergencies."
+    "a2_boundary": "Uses delay duration and a simple wait/bus choice; avoids refunds, complaints, and emergencies.",
+    "scenario_realism_repair_20260615": "Reframed from a broadcast-to-dialogue hybrid into a station-staff information request flow: staff states the delay, learner confirms it, staff offers wait/bus options, and the bus option may end the dialogue."
   }
 }
