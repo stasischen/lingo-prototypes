@@ -1,0 +1,107 @@
+<!doctype html><html lang='zh-Hant'><head><meta charset='utf-8'><meta name='viewport' content='width=device-width,initial-scale=1'><title>ko-a1-l005</title><style>
+:root{--bg:#fbfaf7;--fg:#1f1d1a;--muted:#6b665e;--line:#e4e0d8;--card:#fff;--accent:#2f6f5e;--bad:#a2412f;--ok:#2f6f3e;--hl:#f3efe6}
+@media (prefers-color-scheme:dark){:root{--bg:#171614;--fg:#ece8e1;--muted:#a39d93;--line:#34312c;--card:#1f1e1b;--accent:#7cc4ad;--bad:#e38b77;--ok:#8fd19e;--hl:#26241f}}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--fg);font:16px/1.6 -apple-system,"Noto Sans TC","Noto Sans KR",sans-serif}
+main{max-width:860px;margin:0 auto;padding:24px 16px 64px}h1{font-size:1.5rem;margin:.2em 0}h2{font-size:1.15rem;margin:2em 0 .6em;border-bottom:1px solid var(--line);padding-bottom:.3em}
+a{color:var(--accent)}.muted{color:var(--muted);font-size:.9rem}.tag{display:inline-block;padding:0 .5em;border-radius:6px;background:var(--hl);font-size:.8rem;margin-right:.3em}
+.ok{color:var(--ok)}.bad{color:var(--bad)}table{border-collapse:collapse;width:100%}td,th{border-bottom:1px solid var(--line);padding:.45em .4em;text-align:left;vertical-align:top}
+.ko{font-size:1.08rem}.spk{white-space:nowrap;color:var(--muted);width:6em}.card{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:.8em 1em;margin:.6em 0}
+.choice{display:inline-block;margin:.15em .4em .15em 0;padding:.05em .5em;border:1px solid var(--line);border-radius:6px}.choice.correct{border-color:var(--ok);color:var(--ok)}
+pre{white-space:pre-wrap;background:var(--card);border:1px solid var(--line);border-radius:10px;padding:.8em 1em;font:14px/1.55 ui-monospace,Menlo,monospace}
+.wrap{overflow-x:auto}
+</style></head><body><main><p><a href='index.html'>← 全部課程</a></p><h1>課程簡報：韓語 A1 第 5 課「介紹家人」</h1>
+<p class='muted'><span class='tag'>peer_review</span> 分支 ds4/ko-course-ko-a1-l005-content @ 92ef8d4d6　<span class='bad'>Claude：要修改（2ff30e7）</span></p><details><summary>Claude 審查意見</summary><pre>Claude 語言審查：ko-a1-l005 A 段（brief＋正文），head 2ff30e7。要修改，修完再交。
+
+先讀 docs/tasks/DEEPSEEK_COURSE_PILOT_20261015/BRIEF_TEMPLATE.md 新增的「content 段的正文規則」，這次的問題都在那裡。
+
+1. 句子 ID：全部改成 ex.ko.s.ko-a1-l005.000001 起的流水號；lesson.json 裡所有引用（turn、teaching examples、exercise、vocabulary_use）一起改。brief 第 2 條「句子 id 沿用 ex.ko.s.theme02」刪掉。檢查程式現在會擋舊 ID。
+2. 對話前後矛盾（最嚴重）。유나 的家人是 어머니、오빠、언니、自己，共 4 人；민수 的家人是 아버지、누나、남동생、自己，共 4 人，沒有 형、여동생。下列對話句跟這些事實衝突，要改寫或移出對話：
+   - 000017（유나）「이 사람은 제 여동생이에요.」：유나 沒有 여동생，而且 000007 她說過「동생은 없어요」。
+   - 000019（유나）「저는 여동생이 두 명 있어요.」：同上。
+   - 000020（민수）「가족이 세 명이에요.」：민수 說過家裡 4 人（000004、000016）。
+   - 000021（유나）「저는 형제가 없어요.」：유나 有 오빠 和 언니。
+   - 000022（민수 問 유나）「형이 있어요?」：유나 是女生，不用 형；要問也是「오빠가 있어요?」，但 000003 她已經說過有 오빠，所以這句不該問。
+   對話在 000016 前後收尾就好，不要硬湊輪數；brief 的份量下限可以下修。
+3. 練習：用到上面句子的題目（ex1 用 000017、ex5 用 000021、ex9 用 000019）要換。題目需要「여동생이 두 명 있어요」這類句子時，可以另造練習句，但不要放進對話輪。
+4. 000008「여기 제 가족이에요.」改成「이게 제 가족 사진이에요.」或「여기 제 가족 사진이 있어요.」較自然（在給對方看照片）。
+5. brief：「對話沿用固定課 a1-theme02-01，句子、講者與輪次原樣納入」改成「參考舊課，但逐句照範本規則重寫」；「練習句子都取自本課對話，不另造句子」改成第 3 點的寫法。
+6. 對的部分不用動：유나 問 민수「누나가 있어요?」「형도 있어요?」用的是 민수 的稱謂，正確；제＝저의、한／두／세／네＋명、몇 명 的教學方向正確；「두 개」當錯誤選項很好。</pre></details>
+<h2>對話</h2><div class='wrap'><table>
+<tr><td colspan=3 class='muted'>場景 l5.s1：yuna、minsu</td></tr>
+<tr><td class='spk'>yuna</td><td class='ko'>민수 씨, 이거 제 가족 사진이에요.</td><td class='muted'>000001</td></tr>
+<tr><td class='spk'>minsu</td><td class='ko'>아, 그래요? 유나 씨는 가족이 몇 명이에요?</td><td class='muted'>000002</td></tr>
+<tr><td class='spk'>yuna</td><td class='ko'>네 명이에요. 어머니, 오빠, 언니, 그리고 저예요.</td><td class='muted'>000003</td></tr>
+<tr><td class='spk'>minsu</td><td class='ko'>저도 가족이 네 명이에요.</td><td class='muted'>000004</td></tr>
+<tr><td class='spk'>yuna</td><td class='ko'>이 사람은 제 오빠예요. 그리고 이 사람은 제 언니예요.</td><td class='muted'>000005</td></tr>
+<tr><td class='spk'>minsu</td><td class='ko'>동생도 있어요?</td><td class='muted'>000006</td></tr>
+<tr><td class='spk'>yuna</td><td class='ko'>아니요, 동생은 없어요. 민수 씨 가족은요?</td><td class='muted'>000007</td></tr>
+<tr><td colspan=3 class='muted'>場景 l5.s2：minsu、yuna</td></tr>
+<tr><td class='spk'>minsu</td><td class='ko'>이게 제 가족 사진이에요.</td><td class='muted'>000008</td></tr>
+<tr><td class='spk'>yuna</td><td class='ko'>누나가 있어요?</td><td class='muted'>000009</td></tr>
+<tr><td class='spk'>minsu</td><td class='ko'>네, 누나가 한 명 있어요. 남동생도 있어요.</td><td class='muted'>000010</td></tr>
+<tr><td class='spk'>yuna</td><td class='ko'>형도 있어요?</td><td class='muted'>000011</td></tr>
+<tr><td class='spk'>minsu</td><td class='ko'>아니요, 형은 없어요. 여동생도 없어요.</td><td class='muted'>000012</td></tr>
+<tr><td class='spk'>yuna</td><td class='ko'>아, 그래요?</td><td class='muted'>000013</td></tr>
+<tr><td class='spk'>minsu</td><td class='ko'>이 사람은 제 누나예요.</td><td class='muted'>000014</td></tr>
+<tr><td class='spk'>yuna</td><td class='ko'>어머, 예뻐요.</td><td class='muted'>000015</td></tr>
+<tr><td class='spk'>minsu</td><td class='ko'>아버지, 누나, 남동생, 그리고 저예요.</td><td class='muted'>000016</td></tr>
+</table></div>
+<h2>教學卡</h2>
+<div class='card'><span class='tag'>structure</span><span class='muted'>ko.g.ui.nominal-relation#c01</span><div class='ko'>민수 씨, 이거 제 가족 사진이에요.</div><div class='ko'>이게 제 가족 사진이에요.</div></div>
+<div class='card'><span class='tag'>usage</span><span class='muted'>ko.g.ui.nominal-relation#c01</span><div class='ko'>이 사람은 제 오빠예요. 그리고 이 사람은 제 언니예요.</div><div class='ko'>이 사람은 제 누나예요.</div><div class='ko'>이 사람은 제 여동생이에요.</div></div>
+<div class='card'><span class='tag'>usage</span><span class='muted'>ko.g.itda.relational-have#c01</span><div class='ko'>누나가 있어요?</div><div class='ko'>저는 여동생이 두 명 있어요.</div><div class='ko'>저는 형제가 없어요.</div></div>
+<div class='card'><span class='tag'>structure</span><span class='muted'>ko.g.quantity.counter#c02</span><div class='ko'>아, 그래요? 유나 씨는 가족이 몇 명이에요?</div></div>
+<div class='card'><span class='tag'>usage</span><span class='muted'>ko.g.quantity.counter#c01</span><div class='ko'>네 명이에요. 어머니, 오빠, 언니, 그리고 저예요.</div><div class='ko'>네, 누나가 한 명 있어요. 남동생도 있어요.</div><div class='ko'>저는 여동생이 두 명 있어요.</div><div class='ko'>가족이 세 명이에요.</div></div>
+<h2>練習</h2>
+<div class='card'><span class='tag'>cloze</span><span class='muted'>ko.g.ui.nominal-relation#c01</span><div class='ko'>이 사람은 제 여동생이에요.</div><div><span class='choice correct'>제</span><span class='choice'>저는</span><span class='choice'>제가</span></div></div>
+<div class='card'><span class='tag'>chunk_assembly</span><span class='muted'>ko.g.ui.nominal-relation#c01</span><div class='ko'>이 사람은 제 누나예요.</div><div><span class='choice correct'>이 사람은</span><span class='choice correct'>제</span><span class='choice correct'>누나예요.</span><span class='choice'>저는</span><span class='choice'>제가</span></div></div>
+<div class='card'><span class='tag'>multiple_choice</span><span class='muted'>ko.g.ui.nominal-relation#c01</span><div class='ko'>이게 제 가족 사진이에요.</div><div><span class='choice correct'>이게 제 가족 사진이에요.</span><span class='choice'>이게 저 가족 사진이에요.</span><span class='choice'>이게 제가 가족 사진이에요.</span></div></div>
+<div class='card'><span class='tag'>cloze</span><span class='muted'>ko.g.itda.relational-have#c01</span><div class='ko'>누나가 있어요?</div><div><span class='choice correct'>있어요</span><span class='choice'>없어요</span><span class='choice'>있습니다</span></div></div>
+<div class='card'><span class='tag'>multiple_choice</span><span class='muted'>ko.g.itda.relational-have#c01</span><div class='ko'>저는 형제가 없어요.</div><div><span class='choice correct'>저는 형제가 없어요.</span><span class='choice'>저는 형제가 있어요.</span><span class='choice'>저는 형제가 없습니다.</span></div></div>
+<div class='card'><span class='tag'>cloze</span><span class='muted'>ko.g.itda.relational-have#c01</span><div class='ko'>아니요, 동생은 없어요. 민수 씨 가족은요?</div><div><span class='choice correct'>없어요</span><span class='choice'>있어요</span><span class='choice'>없습니다</span></div></div>
+<div class='card'><span class='tag'>cloze</span><span class='muted'>ko.g.quantity.counter#c02</span><div class='ko'>아, 그래요? 유나 씨는 가족이 몇 명이에요?</div><div><span class='choice correct'>몇</span><span class='choice'>한</span><span class='choice'>세</span></div></div>
+<div class='card'><span class='tag'>cloze</span><span class='muted'>ko.g.quantity.counter#c01</span><div class='ko'>네 명이에요. 어머니, 오빠, 언니, 그리고 저예요.</div><div><span class='choice correct'>명</span><span class='choice'>개</span><span class='choice'>사람</span></div></div>
+<div class='card'><span class='tag'>multiple_choice</span><span class='muted'>ko.g.quantity.counter#c01</span><div class='ko'>저는 여동생이 두 명 있어요.</div><div><span class='choice correct'>저는 여동생이 두 명 있어요.</span><span class='choice'>저는 여동생이 한 명 있어요.</span><span class='choice'>저는 여동생이 두 개 있어요.</span></div></div>
+<h2>其他句子（練習或教學用）</h2><ul><li class='ko'>가족이 세 명이에요.</li></ul>
+<h2>Brief</h2><pre># 課程簡報：韓語 A1 第 5 課「介紹家人」
+
+## 學習目標（can-do）
+
+學習者能介紹自己的家人關係和簡單的家庭組成，詢問／說明家人「有沒有」以及人數（1–4 人）。
+
+## 對象與情境
+
+成人向同輩展示家人照片，所指的人物和關係由情境明定。對話沿用固定課 `ko-a1-l005`（16 句）：第一景 7 輪（유나 展示），第二景 9 輪（민수 展示）。
+
+## 本課要教的文法
+
+| ID | 範圍 | 說明 |
+|---|---|---|
+| `ko.g.ui.nominal-relation` | c01 | 「제」＝저의，說「我的家人」；例：제 가족／제 오빠／제 누나 |
+| `ko.g.itda.relational-have` | c01 | 「있어요／없어요」問答「有沒有」；例：누나가 있어요?／형제가 없어요 |
+| `ko.g.quantity.counter` | c01, c02 | 用「한／두／세／네＋명」說人數（1–4 人），用「몇＋명」問人數 |
+
+每條新文法至少 1 張教學卡、2 題練習。
+
+## 會用到的舊文法（只出現在對話，不教、不考）
+
+| ID | 說明 |
+|---|---|
+| `ko.g.ida.identification` | 「이 사람은 …예요」指認家人；對話自然出現 |
+| `ko.g.address.social-choice` | 依說話者性別選稱謂：형／오빠／누나／언니／남동생／여동생；對話自然出現 |
+
+## 本課要用到的詞
+
+가족、아버지、어머니、형、오빠、누나、언니、남동생、여동생、명、몇、한、두、세、네、있다、없다、제。
+
+## 內容規則
+
+1. **只教三條新文法。** `identification` 和 `social-choice` 是舊文法，只出現在對話，不進教學卡與練習。
+2. **對話沿用固定課 `ko-a1-l005`。** 句子、講者與輪次原樣納入，句子 id 沿用 `ex.ko.s.ko-a1-l005.NNNNNN`。
+3. **教學卡與練習只涵蓋三條新文法。** 教學卡 5 張（nominal-relation 2、relational-have 1、quantity.counter 2），練習 9 題（每條新文法 3 題）。
+4. **練習句子都取自本課對話。** 不另造句子。
+
+## 份量
+
+句子 20 句、對話輪 16 輪、教學卡 5 張、練習 9 題（每文法至少 2 題）。
+</pre></main></body></html>
